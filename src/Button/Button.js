@@ -7,9 +7,18 @@ import ThemeComponent from '../Base/ThemeComponent';
 import CluedInButtonStyle from './Button.style';
 import { theme } from '../Theme';
 
-
 type Props = {
   message: String,
+  text: String,
+  type: String,
+  disabled: Boolean,
+  icon: any,
+  iconPosition: String,
+  isFullWidth: Boolean,
+  onClick: () => void,
+  click: () => void,
+  link: String,
+  style: Object,
 };
 
 class Button extends ThemeComponent<Props> {
@@ -115,7 +124,7 @@ class Button extends ThemeComponent<Props> {
 
 const havingClicks = (props, propName, componentName) => {
   const clickMethod = props.click || props.onClick;
-  
+
   if (!clickMethod) {
     return new Error(`you must pass either one of click, onClick or link to 'uxi/${componentName}'.`);
   }
@@ -130,24 +139,9 @@ const havingClicks = (props, propName, componentName) => {
 };
 
 Button.propTypes = {
-  message: PropTypes.node,
-  text: PropTypes.string,
-  type: PropTypes.string,
   onClick: havingClicks,
   click: havingClicks,
-  link: (props, propName, componentName) => {
-    if (!props.link && !props.click && !props.onClick) {
-      return new Error(`you must pass either one of click or link to '${componentName}'.`);
-    }
-    if ({}.toString.call(props.link) === '[object String]') {
-      return null; // means props's been validated
-    }
-  },
-  disabled: PropTypes.bool,
-  icon: PropTypes.node,
-  iconPosition: PropTypes.string,
-  isFullWidth: PropTypes.bool,
-  style: PropTypes.object,
+  link: havingClicks,
 };
 
 Button.contextTypes = {
