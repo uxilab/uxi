@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/radium/src
+.*/node_modules/babel*
+.*/node_modules/fbjs
+.*/node_modules/react-event-listener/src
+.*/node_modules/tinyfun/index.js
+
+[include]
+
+[libs]
+flow-typed
+
+[options]

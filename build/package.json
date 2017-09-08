@@ -1,0 +1,23 @@
+{
+  "name": "cluedin-integration",
+  "author": "",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CluedIn-io/uxi.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CluedIn-io/uxi/issues"
+  },
+  "homepage": "https://github.com/CluedIn-io/uxi#readme",
+  "dependencies": {
+    "radium": "^0.19.4",
+    "react": "~15.4.0",
+    "react-addons-test-utils": "~15.4.0",
+    "react-dom": "~15.4.0",
+    "simple-assign": "^0.1.0"
+  }
+}

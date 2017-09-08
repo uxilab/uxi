@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a Button 1`] = `
+<Button
+  onClick={[Function]}
+  text="YO!"
+/>
+`;
