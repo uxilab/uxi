@@ -1,14 +1,10 @@
 import React from 'react';
 import Button from '../Button';
-import ThemeProvider from '../../Theme';
+import { mount } from '../../../test/utils';
 
 it('should render a Button', () => {
   const testValue = 'YO!';
-  const wrapper = shallow(
-    <ThemeProvider>
-      <Button onClick={()=>{}} text={testValue}/>
-    </ThemeProvider>
-  );
+  const wrapper = shallow(mount(<Button onClick={()=>{}} text={testValue}/>));
   expect(wrapper).toMatchSnapshot();
   expect(wrapper.props().text).toContain(testValue);
 });
