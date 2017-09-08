@@ -15,8 +15,8 @@ type Props = {
   icon: any,
   iconPosition: String,
   isFullWidth: Boolean,
-  onClick: () => void,
-  click: () => void,
+  onClick: (event: Event) => void,
+  click: (event: Event) => void,
   link: String,
   style: Object,
 };
@@ -121,28 +121,6 @@ class Button extends ThemeComponent<Props> {
     );
   }
 }
-
-const havingClicks = (props, propName, componentName) => {
-  const clickMethod = props.click || props.onClick;
-
-  if (!clickMethod) {
-    return new Error(`you must pass either one of click, onClick or link to 'uxi/${componentName}'.`);
-  }
-
-  if (!{}.toString.call(props.click) === '[object Function]') {
-    if (!props.link) {
-      return new Error(`you must pass either one of click or link to 'uxi/${componentName}'.`);
-    }
-  } else {
-    return null; // means props's been validated
-  }
-};
-
-Button.propTypes = {
-  onClick: havingClicks,
-  click: havingClicks,
-  link: havingClicks,
-};
 
 Button.contextTypes = {
   theme: PropTypes.object.isRequired,
