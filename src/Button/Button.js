@@ -1,24 +1,22 @@
 /* @flow */
-
 import React, { PropTypes } from 'react';
 import radium from 'radium';
 import Ripples from '../Motion/Ripples';
 import ThemeComponent from '../Base/ThemeComponent';
-import CluedInButtonStyle from './Button.style';
-import { theme } from '../Theme';
+import ButtonStyle from './Button.style';
 
 type Props = {
-  message: String,
-  text: String,
-  type: String,
-  disabled: Boolean,
-  icon: any,
-  iconPosition: String,
-  isFullWidth: Boolean,
-  onClick: (event: Event) => void,
-  click: (event: Event) => void,
-  link: String,
-  style: Object,
+  message: string,
+  text: string,
+  type?: "primary" | "secondary",
+  disabled?: Boolean,
+  icon?: any,
+  iconPosition?: string,
+  isFullWidth?: Boolean,
+  onClick?: (event: Event) => void,
+  click?: (event: Event) => void,
+  link?: string,
+  style?: Object,
 };
 
 class Button extends ThemeComponent<Props> {
@@ -35,7 +33,7 @@ class Button extends ThemeComponent<Props> {
     const textOrMessage = message || text;
     
     const buttonStyles = [
-      this.getStyle('button', CluedInButtonStyle.button),
+      this.getStyle('button', ButtonStyle.baseButton),
     ];
 
     if (this.isValidType(type)) {
@@ -43,7 +41,7 @@ class Button extends ThemeComponent<Props> {
     }
 
     if (disabled) {
-      buttonStyles.push(CluedInButtonStyle.disabled);
+      buttonStyles.push(ButtonStyle.disabled);
     } else {
       if (this.isValidType(type)) {
         buttonStyles.push(this.getSubStylePseudoElement('button', type, 'hover'));
@@ -54,22 +52,22 @@ class Button extends ThemeComponent<Props> {
 
     if (icon) {
       const isHover = radium.getState(this.state, 'button', ':hover');
-      let hoverIcon = { color: theme['button'].color };
+      let hoverIcon = { color: ButtonStyle.button.color };
 
       if (type === 'primary' || type === 'secondary') {
         hoverIcon = { color: '#fff' };
       }
 
       if (isHover && type !== 'primary' && type !== 'secondary') {
-        hoverIcon = { color: theme['button:hover'].color };
+        hoverIcon = { color: ButtonStyle['button:hover'].color };
       }
 
       if (isHover && type === 'primary') {
-        hoverIcon = { color: theme['button:primary:hover'].color };
+        hoverIcon = { color: ButtonStyle['button:primary:hover'].color };
       }
 
       if (isHover && type === 'secondary') {
-        hoverIcon = { color: theme['button:secondary:hover'].color };
+        hoverIcon = { color: ButtonStyle['button:secondary:hover'].color };
       }
 
       if (iconPosition && iconPosition === 'after') {
@@ -100,7 +98,7 @@ class Button extends ThemeComponent<Props> {
       return (
         <a onClick={click} style={buttonStyles} href={link}>
           {iconContentBefore}
-          <span style={CluedInButtonStyle.text}>{textOrMessage}</span>
+          <span style={ButtonStyle.text}>{textOrMessage}</span>
           {iconContentAfter}
         </a>
       );
@@ -109,7 +107,7 @@ class Button extends ThemeComponent<Props> {
     buttonContent = (
       <button key="button" style={buttonStyles} onClick={click}>
         {iconContentBefore}
-        <span style={CluedInButtonStyle.text}>{textOrMessage}</span>
+        <span style={ButtonStyle.text}>{textOrMessage}</span>
         {iconContentAfter}
       </button>
     );

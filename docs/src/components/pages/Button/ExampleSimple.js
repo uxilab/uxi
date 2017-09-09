@@ -3,9 +3,7 @@ import Button from 'uxi/Button';
 
 const ExampleSimple = () => (
   <div>
-    <Button icon={<KeyArrowUp />} iconPosition="after" click={() => {
-      alert('test')
-    }} message="Test"/>
+    <Button text="Test"/>
   </div>
 );
 

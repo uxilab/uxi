@@ -19,14 +19,16 @@ module.exports = {
   ],
   devtool: 'inline-source-map',
   output: {
-    filename: 'spp.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'app.js',
+    path: __dirname,
   },
   devServer: {
     host: 'localhost',
     port: 3000,
-
-    historyApiFallback: true,
+    contentBase: './',
+    historyApiFallback: {
+      index: '/'
+    },
     // respond to 404s with index.html
 
     hot: true,
@@ -59,9 +61,9 @@ module.exports = {
   },
   plugins: [
     //new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
+    /*new HtmlWebpackPlugin({
       title: 'Development'
-    }),
+    }),*/
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates

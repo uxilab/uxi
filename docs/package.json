@@ -4,12 +4,12 @@
   "description": "doc for cluedin-ui",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "start": "webpack-dev-server --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "history": "^3.3.0",
+    "history": "^4.7.2",
     "react": "^15.6.1",
     "react-router-dom": "^4.2.2"
   },

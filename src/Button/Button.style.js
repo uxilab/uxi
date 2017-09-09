@@ -1,5 +1,7 @@
+import { palette } from '../Theme';
+
 export default {
-  button: {
+  baseButton: {
     outline: '0 !important',
     display: 'inline-block',
     marginBottom: 0,
@@ -32,4 +34,33 @@ export default {
     transition: 'none',
     outline: '0 !important',
   },
+  button: {
+    backgroundColor: palette.lightWhite,
+    color: palette.lightBlack,
+    borderColor: palette.grey,
+  },
+  'button:hover': {
+    color: palette.lightBlack,
+    backgroundColor: palette.white,
+  },
+  'button:primary': {
+    color: palette.white,
+    backgroundColor: palette.primary,
+    borderColor: palette.primary,
+  },
+  'button:primary:hover': {
+    color: palette.primary,
+    backgroundColor: palette.white,
+    borderColor: palette.primaryDark,
+  },
+  'button:secondary': {
+    color: palette.white,
+    backgroundColor: palette.secondary,
+    borderColor: palette.secondary,
+  },
+  'button:secondary:hover': {
+    color: palette.secondary,
+    backgroundColor: palette.white,
+    borderColor: palette.secondaryDark,
+  }
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-
-const AppShell = ({ children }) => (<div>{children}</div>);
+import ThemProvider from 'uxi/Theme'
+const AppShell = ({ children }) => (<ThemProvider>{children}</ThemProvider>);
 
 export default AppShell;
