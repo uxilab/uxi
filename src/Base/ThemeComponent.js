@@ -1,10 +1,15 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 
-type Props = {
-  style: Object,
-};
+export type ThemeComponentProps = {
+  style: Object;
+}
 
-class ThemeComponent extends Component<Props> {
+class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
+  static contextTypes = {
+    theme: PropTypes.object.isRequired,
+  };
+  
   getSubStylePseudoElement(name: string, subStyleName: string, pseudoElementName: string) {
     const theme = this.context.theme;
     const result = {};
@@ -39,9 +44,5 @@ class ThemeComponent extends Component<Props> {
     return Object.assign({}, (style || {}), themeForComponent, stylesFromComponent);
   }
 }
-
-ThemeComponent.propTypes = {
-  style: PropTypes.object,
-};
 
 export default ThemeComponent;

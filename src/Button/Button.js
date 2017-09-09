@@ -2,13 +2,16 @@
 import React, { PropTypes } from 'react';
 import radium from 'radium';
 import Ripples from '../Motion/Ripples';
-import ThemeComponent from '../Base/ThemeComponent';
+import ThemeComponent  from '../Base/ThemeComponent';
 import ButtonStyle from './Button.style';
+import type ThemeComponentProps from '../Base/ThemeComponent';
 
-type Props = {
+type buttonType = "primary" | "secondary";
+
+type ButtonProps = ThemeComponentProps & {
   message: string,
   text: string,
-  type?: "primary" | "secondary",
+  type: buttonType,
   disabled?: Boolean,
   icon?: any,
   iconPosition?: string,
@@ -16,11 +19,10 @@ type Props = {
   onClick?: (event: Event) => void,
   click?: (event: Event) => void,
   link?: string,
-  style?: Object,
 };
 
-class Button extends ThemeComponent<Props> {
-  isValidType(type) {
+class Button extends ThemeComponent<ButtonProps> {
+  isValidType(type: buttonType) {
     return (type && (type === 'primary' || type === 'secondary'));
   }
 
@@ -37,14 +39,14 @@ class Button extends ThemeComponent<Props> {
     ];
 
     if (this.isValidType(type)) {
-      buttonStyles.push(this.getSubStyle('button', type));
+      buttonStyles.push(this.getSubStyle('button', type.toString()));
     }
 
     if (disabled) {
       buttonStyles.push(ButtonStyle.disabled);
     } else {
       if (this.isValidType(type)) {
-        buttonStyles.push(this.getSubStylePseudoElement('button', type, 'hover'));
+        buttonStyles.push(this.getSubStylePseudoElement('button', type.toString(), 'hover'));
       } else {
         buttonStyles.push(this.getPseudoElement('button', 'hover'));
       }
@@ -119,9 +121,5 @@ class Button extends ThemeComponent<Props> {
     );
   }
 }
-
-Button.contextTypes = {
-  theme: PropTypes.object.isRequired,
-};
 
 export default radium(Button);

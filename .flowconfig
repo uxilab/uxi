@@ -4,7 +4,7 @@
 .*/node_modules/fbjs
 .*/node_modules/react-event-listener/src
 .*/node_modules/tinyfun/index.js
-
+.*/node_modules/config-chain/
 [include]
 
 [libs]
