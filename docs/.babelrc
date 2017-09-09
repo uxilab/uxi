@@ -1,0 +1,9 @@
+{
+  "presets": ["es2015", "stage-2", "react"],
+  "plugins": [
+    "react-hot-loader/babel",
+    [ "transform-replace-object-assign","simple-assign"],
+    "transform-dev-warning",
+    "transform-flow-strip-types"
+  ]
+}
