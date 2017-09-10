@@ -4,7 +4,7 @@ import radium from 'radium';
 import Ripples from '../Motion/Ripples';
 import ThemeComponent  from '../Base/ThemeComponent';
 import ButtonStyle from './Button.style';
-import type ThemeComponentProps from '../Base/ThemeComponent';
+import type { ThemeComponentProps } from '../Base/ThemeComponent';
 
 type buttonType = "primary" | "secondary";
 
