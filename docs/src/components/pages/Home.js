@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { PageTitle, PageSubTitle } from 'uxi/Page';
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div>
-       <ul>
-           <li><Link to="/">Home</Link></li>
-       </ul>
-      </div>
-    );
-  }
-}
+const Home = () => (
+  <div>
+    <PageTitle>UXI - Build UI faster</PageTitle>
+    <p>
+      Hi!
+    </p>
+    <PageSubTitle>Features</PageSubTitle>
+    <ul>
+      <li>Enterprise library components</li>
+      <li>Components that ships their Sketch and their technical representation</li>
+      <li>Highly customizable</li>
+    </ul>
+  </div>
+);
+
+export default Home;

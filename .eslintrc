@@ -10,7 +10,8 @@
     "import"
   ],
   "extends": [
-    "plugin:flowtype/recommended",
+    "airbnb",
+    "plugin:flowtype/recommended"
   ],
   "rules": {
     "indent": [
@@ -42,6 +43,21 @@
     "react/self-closing-comp": 1,
     "react/jsx-wrap-multilines": 1,
     "semi": 2,
-    "strict": 0
+    "strict": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
+    "jsx-a11y/no-noninteractive-element-interactions": [
+      "error",
+      {
+        "handlers": [
+          "onMouseDown",
+          "onMouseUp",
+          "onKeyPress",
+          "onKeyDown",
+          "onKeyUp",
+        ]
+      }
+    ]
   }
 }

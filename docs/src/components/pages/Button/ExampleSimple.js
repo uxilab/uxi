@@ -3,7 +3,7 @@ import Button from 'uxi/Button';
 
 const ExampleSimple = () => (
   <div>
-    <Button text="Test"/>
+    <Button text="Test" />
   </div>
 );
 

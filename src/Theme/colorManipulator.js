@@ -30,7 +30,7 @@ export function convertColorToString(color) {
   if (type.indexOf('rgb') > -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
     for (let i = 0; i < 3; i++) {
-      values[i] = parseInt(values[i]);
+      values[i] = parseInt(values[i], 10);
     }
   }
 
@@ -91,9 +91,9 @@ export function decomposeColor(color) {
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
   let values = color.substring(marker + 1, color.length - 1).split(',');
-  values = values.map((value) => parseFloat(value));
+  values = values.map(value => parseFloat(value));
 
-  return { type: type, values: values };
+  return { type, values };
 }
 
 /**

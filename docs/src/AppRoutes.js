@@ -5,8 +5,8 @@ import ButtonPage from './components/pages/Button/Page';
 
 const AppRoutes = (
   <Switch>
-    <Route path="/" exact component={Home}/>
-    <Route path="/button" component={ButtonPage}/>
+    <Route path="/" exact component={Home} />
+    <Route path="/button" component={ButtonPage} />
   </Switch>
 );
 

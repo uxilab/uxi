@@ -62,5 +62,5 @@ export default {
     color: palette.secondary,
     backgroundColor: palette.white,
     borderColor: palette.secondaryDark,
-  }
+  },
 };

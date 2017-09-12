@@ -9,17 +9,17 @@ const BlueGreen = '#25BCBC';
 const cluedinOrange = '#EF5858';
 const carminePink = '#E84A4A';
 
-//black
+// black
 
 const cluedinBlack = '#2C2D30';
 const raisinBlack = '#212223';
 const onyx = '#37373A';
 
-//grey
+// grey
 const cluedInGray = '#D7D7D8';
 const nickelGrey = '#6D6D71';
 
-//white
+// white
 const antiFlashWhite = '#F3F3F2';
 const white = '#ffffff';
 
@@ -34,12 +34,12 @@ export const palette = {
     Viridian,
     BlueGreen,
   },
-  primary: CluedInBlue,
+  primary: CluedInGreen,
   secondary: CluedInGreen,
   accent: cluedinOrange,
   primaryDark: Viridian,
   secondaryDark: carminePink,
-  white: white,
+  white,
   lightWhite: antiFlashWhite,
   black: cluedinBlack,
   darkBlack: raisinBlack,
@@ -47,3 +47,5 @@ export const palette = {
   grey: cluedInGray,
   darkGrey: nickelGrey,
 };
+
+export default palette;

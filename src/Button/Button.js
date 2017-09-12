@@ -1,12 +1,12 @@
 /* @flow */
-import React, { PropTypes } from 'react';
+import React from 'react';
 import radium from 'radium';
 import Ripples from '../Motion/Ripples';
-import ThemeComponent  from '../Base/ThemeComponent';
+import ThemeComponent from '../Base/ThemeComponent';
 import ButtonStyle from './Button.style';
 import type { ThemeComponentProps } from '../Base/ThemeComponent';
 
-type buttonType = "primary" | "secondary";
+type buttonType = 'primary' | 'secondary';
 
 type ButtonProps = ThemeComponentProps & {
   message: string,
@@ -18,38 +18,45 @@ type ButtonProps = ThemeComponentProps & {
   isFullWidth?: Boolean,
   onClick?: (event: Event) => void,
   click?: (event: Event) => void,
-  link?: string,
+  link?: string
 };
 
 class Button extends ThemeComponent<ButtonProps> {
-  isValidType(type: buttonType) {
-    return (type && (type === 'primary' || type === 'secondary'));
+  static isValidType(type: buttonType) {
+    return type && (type === 'primary' || type === 'secondary');
   }
 
   render() {
-    const { message, text, type, click, link, disabled, icon, iconPosition, isFullWidth } = this.props;
-    let buttonContent;
-    let outerStyle = isFullWidth ? { width: '100%' } : {};
+    const {
+      message,
+      text,
+      type,
+      click,
+      link,
+      disabled,
+      icon,
+      iconPosition,
+      isFullWidth,
+    } = this.props;
+    const outerStyle = isFullWidth ? { width: '100%' } : {};
     let iconContentBefore;
     let iconContentAfter;
     const textOrMessage = message || text;
-    
-    const buttonStyles = [
-      this.getStyle('button', ButtonStyle.baseButton),
-    ];
 
-    if (this.isValidType(type)) {
+    const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
+
+    if (Button.isValidType(type)) {
       buttonStyles.push(this.getSubStyle('button', type.toString()));
     }
 
     if (disabled) {
       buttonStyles.push(ButtonStyle.disabled);
+    } else if (Button.isValidType(type)) {
+      buttonStyles.push(
+        this.getSubStylePseudoElement('button', type.toString(), 'hover'),
+      );
     } else {
-      if (this.isValidType(type)) {
-        buttonStyles.push(this.getSubStylePseudoElement('button', type.toString(), 'hover'));
-      } else {
-        buttonStyles.push(this.getPseudoElement('button', 'hover'));
-      }
+      buttonStyles.push(this.getPseudoElement('button', 'hover'));
     }
 
     if (icon) {
@@ -74,12 +81,16 @@ class Button extends ThemeComponent<ButtonProps> {
 
       if (iconPosition && iconPosition === 'after') {
         iconContentAfter = (
-          <div style={{ position: 'absolute', right: '6px', top: '5px' }}>{React.cloneElement(icon, hoverIcon)}</div>
+          <div style={{ position: 'absolute', right: '6px', top: '5px' }}>
+            {React.cloneElement(icon, hoverIcon)}
+          </div>
         );
         buttonStyles.push({ paddingRight: '34px' });
       } else {
         iconContentBefore = (
-          <div style={{ position: 'absolute', left: '6px', top: '5px' }}>{React.cloneElement(icon, hoverIcon)}</div>
+          <div style={{ position: 'absolute', left: '6px', top: '5px' }}>
+            {React.cloneElement(icon, hoverIcon)}
+          </div>
         );
         buttonStyles.push({ paddingLeft: '34px' });
       }
@@ -106,7 +117,7 @@ class Button extends ThemeComponent<ButtonProps> {
       );
     }
 
-    buttonContent = (
+    const buttonContent = (
       <button key="button" style={buttonStyles} onClick={click}>
         {iconContentBefore}
         <span style={ButtonStyle.text}>{textOrMessage}</span>
@@ -114,11 +125,7 @@ class Button extends ThemeComponent<ButtonProps> {
       </button>
     );
 
-    return (
-      <Ripples style={outerStyle}>
-        {buttonContent}
-      </Ripples>
-    );
+    return <Ripples style={outerStyle}>{buttonContent}</Ripples>;
   }
 }
 

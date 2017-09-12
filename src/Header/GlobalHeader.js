@@ -1,12 +1,12 @@
 import React from 'react';
-import ThemeComponent from '../base/ThemeComponent';
-import GlobalHeaderStyle from './GlobalHeader.style.js';
+import ThemeComponent from '../Base/ThemeComponent';
+import GlobalHeaderStyle from './GlobalHeader.style';
 
 class GlobalHeader extends ThemeComponent {
   render() {
     const { children } = this.props;
     const globalHeaderMergedStyle = this.getStyle('GlobalHeader', GlobalHeaderStyle.header);
-    
+
     const mergedStyle = Object.assign({}, globalHeaderMergedStyle, {
       paddingLeft: this.context.theme.padding.breathPadding,
       paddingRight: this.context.theme.padding.breathPadding,

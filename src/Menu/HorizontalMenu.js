@@ -1,5 +1,6 @@
 import React from 'react';
-import ThemeComponent from '../base/ThemeComponent';
+import { Style } from 'radium';
+import ThemeComponent from '../Base/ThemeComponent';
 import HorizontalMenuStyle from './HorizontalMenu.style';
 
 class HorizontalMenu extends ThemeComponent {
@@ -12,21 +13,31 @@ class HorizontalMenu extends ThemeComponent {
         return React.cloneElement(child, {
           style: {
             display: 'inline-block',
-            paddingLeft: this.context.theme.padding.defaultPadding,
-            paddingRight: this.context.theme.padding.defaultPadding,
             height: isMain ? this.context.theme.dimensions.mainHeaderHeight : '40px',
-            lineHeight: isMain ? this.context.theme.dimensions.mainHeaderHeight: '40px',
+            lineHeight: isMain ? this.context.theme.dimensions.mainHeaderHeight : '40px',
           },
           key: `menuItem-${menuNumber}`,
         });
       }
+      return child;
     });
-    
+
     return (
-      <ul style={globalHeaderMergedStyle}>
+      <ul className="uxi-horizontal-menu" style={globalHeaderMergedStyle}>
+        <Style
+          scopeSelector=".uxi-horizontal-menu"
+          rules={{
+            '.uxi-menu-item a': Object.assign({}, this.context.theme.link.linkOnBgLight, {
+              display: 'block',
+              paddingLeft: this.context.theme.padding.defaultPadding,
+              paddingRight: this.context.theme.padding.defaultPadding,
+            }),
+            '.uxi-menu-item a:hover': this.context.theme.link.linkOnBgLightHover,
+          }}
+        />
         {menuItems}
       </ul>
-    )    
+    );
   }
 }
 

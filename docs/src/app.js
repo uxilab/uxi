@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes';
 import AppShell from './AppShell';
-import createBrowserHistory  from 'history/createBrowserHistory';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 window.React = React;
 
@@ -16,5 +16,5 @@ render(
       {AppRoutes}
     </AppShell>
   </Router>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

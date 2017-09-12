@@ -8,6 +8,32 @@ const fonts = {
 };
 
 export const theme = {
+  wrapper: {
+    body: {
+      height: '100%',
+      margin: 0,
+      padding: 0,
+    },
+    html: {
+      height: '100%',
+      margin: 0,
+      padding: 0,
+    },
+    ul: {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
+    },
+    li: {
+      listStyleType: 'circle',
+      marginLeft: '20px',
+      paddingLeft: '4px',
+    },
+  },
+  root: {
+    fontFamily: 'sans-serif',
+    fontSize: '14p',
+  },
   palette,
   padding: {
     breathPadding: '48px',
@@ -28,9 +54,14 @@ export const theme = {
     color: '#586672',
   },
   link: {
-    cursor: 'pointer',
-    textDecoration: 'none',
-    color: palette.primary,
+    linkOnBgLight: {
+      cursor: 'pointer',
+      textDecoration: 'none',
+      color: palette.black,
+    },
+    linkOnBgLightHover: {
+      color: palette.primary,
+    },
   },
 };
 
