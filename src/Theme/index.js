@@ -18,6 +18,7 @@ export const theme = {
       height: '100%',
       margin: 0,
       padding: 0,
+      background: '#f0f2f5',
     },
     ul: {
       margin: 0,
@@ -29,6 +30,7 @@ export const theme = {
       marginLeft: '20px',
       paddingLeft: '4px',
     },
+
   },
   root: {
     fontFamily: 'sans-serif',
