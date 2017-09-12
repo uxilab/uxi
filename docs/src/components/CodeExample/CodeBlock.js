@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import MarkdownElement from '../MarkDownElement';
-import transitions from 'material-ui/styles/transitions';
+import MarkDownElement from '../MarkdownElement/MarkDownElement';
+// import transitions from 'material-ui/styles/transitions';
 import CodeBlockTitle from './CodeBlockTitle';
 
 const styles = {
@@ -11,7 +11,7 @@ const styles = {
   markdown: {
     overflow: 'auto',
     maxHeight: 1400,
-    transition: transitions.create('max-height', '800ms', '0ms', 'ease-in-out'),
+    // transition: transitions.create('max-height', '800ms', '0ms', 'ease-in-out'),
     marginTop: 0,
     marginBottom: 0,
   },
@@ -66,8 +66,8 @@ ${this.props.children}
        <div onTouchTap={this.handleTouchTap} style={styles.codeBlockTitle}>
          <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
        </div>
-       <MarkdownElement style={codeStyle} text={text} />
-       <MarkdownElement style={descriptionStyle} text={this.props.description} />
+       <MarkDownElement style={codeStyle} text={text} />
+       <MarkDownElement style={descriptionStyle} text={this.props.description} />
      </div>
    );
  }
