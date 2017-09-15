@@ -18,7 +18,9 @@ export const theme = {
       height: '100%',
       margin: 0,
       padding: 0,
-      background: '#f0f2f5',
+      background: '#F3F3F2',
+      fontFamily: '\'Source Sans Pro\', sans-serif',
+      color: palette.darkGrey,
     },
     ul: {
       margin: 0,
@@ -30,10 +32,11 @@ export const theme = {
       marginLeft: '20px',
       paddingLeft: '4px',
     },
-
+    'h1, h2, h3, h4': {
+      color: palette.lightBlack,
+    },
   },
   root: {
-    fontFamily: 'sans-serif',
     fontSize: '14p',
   },
   palette,
@@ -46,20 +49,28 @@ export const theme = {
   },
   fontsAndColor: {
     default: Object.assign({
-      color: '#2c2d30',
+      color: '#37373a',
     }, fonts),
     defaultOnDarkBg: Object.assign({
       color: '#fff',
     }, fonts),
   },
   title: {
-    color: '#586672',
+    color: palette.lightBlack,
   },
   link: {
+    linkOnBgDark: {
+      cursor: 'pointer',
+      textDecoration: 'none',
+      color: palette.white,
+    },
+    linkOnBgDarktHover: {
+      color: palette.primary,
+    },
     linkOnBgLight: {
       cursor: 'pointer',
       textDecoration: 'none',
-      color: palette.black,
+      color: palette.darkGrey,
     },
     linkOnBgLightHover: {
       color: palette.primary,

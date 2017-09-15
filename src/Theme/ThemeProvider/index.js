@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { theme } from '../index';
 import getTheme from './getTheme';
 import { Style } from 'radium';
+import { Helmet } from 'react-helmet';
 
 class ThemeProvider extends Component {
   static propTypes = {
@@ -25,6 +26,9 @@ class ThemeProvider extends Component {
 
     return (
       <div className="uxi-root">
+        <Helmet>
+          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
+        </Helmet>
         <Style
           rules={theme.wrapper}
         />

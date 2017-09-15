@@ -31,25 +31,31 @@ class VerticallMenu extends ThemeComponent {
           scopeSelector=".uxi-vertical-menu"
           rules={{
             '.uxi-menu-item': {
-              borderLeft: '5px solid transparent',
+              borderRight: '5px solid transparent',
             },
             '.uxi-menu-item:hover': {
-              background: lighten(this.context.theme.palette.blues.Independence, 0.9),
-              borderLeft: '5px solid transparent',
+              background: lighten(this.context.theme.palette.primary, 0.9),
+              borderRight: `2px solid transparent ${lighten(this.context.theme.palette.primary, 0.9)}`,
             },
             '.uxi-menu-item a': {
-              color: this.context.theme.palette.black,
+              color: this.context.theme.palette.darkGrey,
               textDecoration: 'none',
               display: 'block',
             },
+            '.uxi-menu-item a:hover': {
+              color: this.context.theme.palette.primary,
+            },
             '.uxi-menu-item.uxi-active': {
-              background: lighten(this.context.theme.palette.blues.Independence, 0.9),
-              borderLeft: `5px solid ${this.context.theme.palette.blues.Independence}`,
+              background: lighten(this.context.theme.palette.primary, 0.9),
+              borderRight: `2px solid ${this.context.theme.palette.primary}`,
             },
             '.uxi-menu-item.uxi-active:hover': {
-              background: lighten(this.context.theme.palette.blues.Independence, 0.85),
-              borderLeft: `5px solid ${lighten(this.context.theme.palette.blues.Independence, 0.1)}`,
-              color: 'black',
+              background: lighten(this.context.theme.palette.primary, 0.85),
+              borderRight: `2px solid ${lighten(this.context.theme.palette.primary, 0.1)}`,
+              color: this.context.theme.palette.darkGrey,
+            },
+            '.uxi-menu-item.uxi-active a': {
+              color: this.context.theme.palette.primary,
             },
           }}
         />

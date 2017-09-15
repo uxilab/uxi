@@ -6,7 +6,7 @@ export default {
     right: 0,
     zIndex: 3,
     height: '48px',
-    background: '#fff',
+    background: palette.blues.Independence,
     margin: 0,
     padding: 0,
     position: 'absolute',

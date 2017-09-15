@@ -27,12 +27,14 @@ class HorizontalMenu extends ThemeComponent {
         <Style
           scopeSelector=".uxi-horizontal-menu"
           rules={{
-            '.uxi-menu-item a': Object.assign({}, this.context.theme.link.linkOnBgLight, {
+            '.uxi-menu-item a': Object.assign({}, this.context.theme.link.linkOnBgDark, {
               display: 'block',
               paddingLeft: this.context.theme.padding.defaultPadding,
               paddingRight: this.context.theme.padding.defaultPadding,
+              fontSize: '14px',
+              transition: 'color 0.5s ease',
             }),
-            '.uxi-menu-item a:hover': this.context.theme.link.linkOnBgLightHover,
+            '.uxi-menu-item a:hover': this.context.theme.link.linkOnBgDarktHover,
           }}
         />
         {menuItems}
