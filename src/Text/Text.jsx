@@ -1,56 +1,34 @@
-import React from 'react';
-import { lighten } from '../Theme/colorManipulator';
+import React, { Component, PropTypes } from 'react';
+import { theme } from '../Theme';
 
-const TextStyle = {
-  title: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: lighten('#000000', 0.11),
-  },
-  heading: {
-    fontSize: '16px',
-    fontWeight: 600,
-    color: lighten('#000000', 0.11),
-  },
-  button: {
-    fontSize: '14px',
-    color: lighten('#000000', 0.21),
-  },
-  body: {
-    fontSize: '14px',
-    color: lighten('#000000', 0.21),
-  },
-  caption: {
-    fontSize: '12px',
-    color: lighten('#000000', 0.45),
-  },
-  disable: {
-    color: lighten('#000000', 0.40),
-  },
-  link: {
-    fontSize: '12px',
-    color: '#15a9a9',
-  },
-};
+class Text extends Component {
+  static contextTypes = {
+    isDarkTheme: PropTypes.func,
+  };
 
-const Text = ({ type = 'body', children, style = {} }) => {
-  const typeLowerCase = type.toLowerCase();
-  const correctStyling = TextStyle[typeLowerCase];
-  const mergedStyle = Object.assign({}, correctStyling || TextStyle.body, style);
+  render() {
+    const { type = 'body', children, style = {} } = this.props;
+    const typeLowerCase = type.toLowerCase();
+    const isDark = this.context.isDarkTheme ? this.context.isDarkTheme() : false;
+    const correctStyling = isDark ? theme.fontsAndColor.dark[typeLowerCase] : theme.fontsAndColor.light[typeLowerCase];
+    const defaultStyle = isDark ? theme.fontsAndColor.dark.body : theme.fontsAndColor.light.body;
 
-  if (type === 'paragraph') {
+    const mergedStyle = Object.assign({}, correctStyling || defaultStyle, style);
+
+    if (type === 'paragraph') {
+      return (
+        <p style={mergedStyle}>
+          {children}
+        </p>
+      );
+    }
+
     return (
-      <p style={mergedStyle}>
+      <span style={mergedStyle}>
         {children}
-      </p>
+      </span>
     );
   }
-
-  return (
-    <span style={mergedStyle}>
-      {children}
-    </span>
-  );
-};
+}
 
 export default Text;

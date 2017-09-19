@@ -2,6 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { theme } from '../Theme';
 
 class Box extends Component {
+  static childContextTypes = {
+    isDarkTheme: PropTypes.func,
+  };
+
+  getChildContext() {
+    return {
+      isDarkTheme: this.isDarkTheme.bind(this),
+    };
+  }
+
   getMargin() {
     const { margin } = this.props;
 
@@ -81,11 +91,18 @@ class Box extends Component {
     );
   }
 
+  isDarkTheme() {
+    const { isDark } = this.props;
+
+    return isDark;
+  }
+
   render() {
-    const { hasBorder, children } = this.props;
+    const { hasBorder, children, isDark } = this.props;
     const style = hasBorder ? {
       border: theme.border.default,
       borderRadius: '2px',
+      background: isDark ? theme.background.dark : theme.background.light,
     } : {};
 
     return (

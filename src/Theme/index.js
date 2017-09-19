@@ -1,5 +1,6 @@
 import { palette as mainPalette } from './palette';
 import ThemeProvider from './ThemeProvider';
+import { lighten, darken } from './colorManipulator';
 
 export const palette = mainPalette;
 
@@ -50,6 +51,10 @@ export const theme = {
     default: '1px solid #e9e9e9',
   },
   palette,
+  background: {
+    light: '#FFFFFF',
+    dark: palette.blues.YankeesBlue,
+  },
   padding: {
     breathPadding: '48px',
     defaultPadding: '24px',
@@ -66,6 +71,68 @@ export const theme = {
     defaultOnDarkBg: Object.assign({
       color: '#fff',
     }, fonts),
+    light: {
+      title: {
+        fontSize: '24px',
+        fontWeight: 'bold',
+        color: lighten('#000000', 0.11),
+      },
+      heading: {
+        fontSize: '16px',
+        fontWeight: 600,
+        color: lighten('#000000', 0.11),
+      },
+      button: {
+        fontSize: '14px',
+        color: lighten('#000000', 0.21),
+      },
+      body: {
+        fontSize: '14px',
+        color: lighten('#000000', 0.21),
+      },
+      caption: {
+        fontSize: '12px',
+        color: lighten('#000000', 0.45),
+      },
+      disable: {
+        color: lighten('#000000', 0.40),
+      },
+      link: {
+        fontSize: '12px',
+        color: '#15a9a9',
+      },
+    },
+    dark: {
+      title: {
+        fontSize: '24px',
+        fontWeight: 'bold',
+        color: darken('#ffffff', 0.11),
+      },
+      heading: {
+        fontSize: '16px',
+        fontWeight: 600,
+        color: darken('#ffffff', 0.11),
+      },
+      button: {
+        fontSize: '14px',
+        color: darken('#ffffff', 0.21),
+      },
+      body: {
+        fontSize: '14px',
+        color: darken('#ffffff', 0.21),
+      },
+      caption: {
+        fontSize: '12px',
+        color: darken('#ffffff', 0.45),
+      },
+      disable: {
+        color: darken('#ffffff', 0.40),
+      },
+      link: {
+        fontSize: '12px',
+        color: '#15a9a9',
+      },
+    },
   },
   title: {
     color: palette.lightBlack,
