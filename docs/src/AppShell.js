@@ -9,6 +9,9 @@ import { PageWithMenu } from 'uxi/Page';
 const AppShell = ({ children }) => {
   const mainMenu = (
     <VerticallMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
+      <MenuItem>
+        <Link to="/font">Fonts</Link>
+      </MenuItem>
       <MenuItem isActive>
         <Link to="/button">Button</Link>
       </MenuItem>
@@ -41,14 +44,14 @@ const AppShell = ({ children }) => {
           style={{ marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }}
           menu={mainMenu}
         >
-          <Layout>
+          <Layout style={{ paddingLeft: '30px', paddingRight: '30px' }}>
             <Row>
               <Col>
                 {children}
               </Col>
             </Row>
           </Layout>
-        </PageWithMenu>
+        </PageWithMenu>s
       </div>
     </ThemProvider>
   );

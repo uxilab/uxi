@@ -24,10 +24,10 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    port: 3000,
+    port: 3001,
     contentBase: './',
     historyApiFallback: {
-      index: '/'
+      index: '/',
     },
     // respond to 404s with index.html
 
@@ -56,14 +56,14 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       // material-ui requires will be searched in src folder, not in node_modules
-      'uxi': path.resolve(__dirname, '../src'),
-    }
+      uxi: path.resolve(__dirname, '../src'),
+    },
   },
   plugins: [
-    //new CleanWebpackPlugin(['dist']),
-    /*new HtmlWebpackPlugin({
+    // new CleanWebpackPlugin(['dist']),
+    /* new HtmlWebpackPlugin({
       title: 'Development'
-    }),*/
+    }), */
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates

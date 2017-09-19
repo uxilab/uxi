@@ -27,7 +27,8 @@ class ThemeProvider extends Component {
     return (
       <div className="uxi-root">
         <Helmet>
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700" rel="stylesheet" />
         </Helmet>
         <Style
           rules={theme.wrapper}
