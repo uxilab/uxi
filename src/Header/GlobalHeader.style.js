@@ -6,10 +6,15 @@ export default {
     right: 0,
     zIndex: 3,
     height: '48px',
-    background: palette.blues.Independence,
     margin: 0,
     padding: 0,
     position: 'absolute',
     left: 0,
+  },
+  dark: {
+    backgroundColor: palette.primary.main,
+  },
+  light: {
+    backgroundColor: '#fff',
   },
 };

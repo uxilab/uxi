@@ -3,50 +3,43 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var CluedInBlue = '#1B3C4F';
-var YankeesBlue = '#1C313F';
-var Independence = '#30556B';
-var CluedInGreen = '#15A9A9';
-var Viridian = '#109999';
-var BlueGreen = '#25BCBC';
+exports.palette = undefined;
 
-var cluedinOrange = '#EF5858';
-var carminePink = '#E84A4A';
-
-//black
-
-var cluedinBlack = '#2C2D30';
-var raisinBlack = '#212223';
-var onyx = '#37373A';
-
-//grey
-var cluedInGray = '#D7D7D8';
-var nickelGrey = '#6D6D71';
-
-//white
-var antiFlashWhite = '#F3F3F2';
-var white = '#ffffff';
+var _colorManipulator = require('./colorManipulator');
 
 var palette = exports.palette = {
-  blues: {
-    CluedInBlue: CluedInBlue,
-    YankeesBlue: YankeesBlue,
-    Independence: Independence
+  white: '#F3F3F2',
+  primary: {
+    light: '#30556b',
+    main: '#1b3c4f',
+    dark: '#1c313f'
   },
-  green: {
-    CluedInGreen: CluedInGreen,
-    Viridian: Viridian,
-    BlueGreen: BlueGreen
+  accent: {
+    light: '#64cfba',
+    main: '#26a29a',
+    dark: '#00897a'
   },
-  primary: CluedInGreen,
-  primaryDark: Viridian,
-  secondary: cluedinOrange,
-  secondaryDark: carminePink,
-  white: white,
-  lightWhite: antiFlashWhite,
-  black: cluedinBlack,
-  darkBlack: raisinBlack,
-  lightBlack: onyx,
-  grey: cluedInGray,
-  darkGrey: nickelGrey
+  semantic: {
+    error: '#d13f48',
+    warning: 'rgba(247, 187, 62, 0.5)',
+    info: '#3e53c1'
+  },
+  neutral: {
+    darkest: (0, _colorManipulator.lighten)('#000000', 0.11),
+    darker: (0, _colorManipulator.lighten)('#000000', 0.21),
+    dark: (0, _colorManipulator.lighten)('#000000', 0.45),
+    neutral: (0, _colorManipulator.lighten)('#000000', 0.60),
+    lightDark: (0, _colorManipulator.lighten)('#000000', 0.85),
+    lightestDark: (0, _colorManipulator.lighten)('#000000', 0.95)
+  },
+  charts: {
+    color1: '#64cfba',
+    color2: '#62acba',
+    color3: '#5789b3',
+    color4: '#476ca2',
+    color5: '#335184',
+    color6: '#1b3c4f'
+  }
 };
+
+exports.default = palette;

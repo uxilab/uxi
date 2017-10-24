@@ -1,51 +1,38 @@
-const CluedInBlue = '#1B3C4F';
-const YankeesBlue = '#1C313F';
-const Independence = '#30556B';
-const CluedInGreen = '#15A9A9';
-const Viridian = '#109999';
-const BlueGreen = '#25BCBC';
-
-
-const cluedinOrange = '#EF5858';
-const carminePink = '#E84A4A';
-
-// black
-
-const cluedinBlack = '#2C2D30';
-const raisinBlack = '#212223';
-const onyx = '#37373A';
-
-// grey
-const cluedInGray = '#D7D7D8';
-const nickelGrey = '#6D6D71';
-
-// white
-const antiFlashWhite = '#F3F3F2';
-const white = '#ffffff';
+import { lighten } from './colorManipulator';
 
 export const palette = {
-  blues: {
-    CluedInBlue,
-    YankeesBlue,
-    Independence,
+  white: '#F3F3F2',
+  primary: {
+    light: '#30556b',
+    main: '#1b3c4f',
+    dark: '#1c313f',
   },
-  green: {
-    CluedInGreen,
-    Viridian,
-    BlueGreen,
+  accent: {
+    light: '#64cfba',
+    main: '#26a29a',
+    dark: '#00897a',
   },
-  primary: CluedInGreen,
-  secondary: CluedInGreen,
-  accent: cluedinOrange,
-  primaryDark: Viridian,
-  secondaryDark: carminePink,
-  white,
-  lightWhite: antiFlashWhite,
-  black: cluedinBlack,
-  darkBlack: raisinBlack,
-  lightBlack: onyx,
-  grey: cluedInGray,
-  darkGrey: nickelGrey,
+  semantic: {
+    error: '#d13f48',
+    warning: 'rgba(247, 187, 62, 0.5)',
+    info: '#3e53c1',
+  },
+  neutral: {
+    darkest: lighten('#000000', 0.11),
+    darker: lighten('#000000', 0.21),
+    dark: lighten('#000000', 0.45),
+    neutral: lighten('#000000', 0.60),
+    lightDark: lighten('#000000', 0.85),
+    lightestDark: lighten('#000000', 0.95),
+  },
+  charts: {
+    color1: '#64cfba',
+    color2: '#62acba',
+    color3: '#5789b3',
+    color4: '#476ca2',
+    color5: '#335184',
+    color6: '#1b3c4f',
+  },
 };
 
 export default palette;

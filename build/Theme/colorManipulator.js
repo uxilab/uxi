@@ -46,7 +46,7 @@ function convertColorToString(color) {
   if (type.indexOf('rgb') > -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
     for (var i = 0; i < 3; i++) {
-      values[i] = parseInt(values[i]);
+      values[i] = parseInt(values[i], 10);
     }
   }
 

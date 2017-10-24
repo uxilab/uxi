@@ -1,49 +1,34 @@
-import React from 'react';
-import { lighten } from '../Theme/colorManipulator';
+import React, { Component, PropTypes } from 'react';
+import { theme } from '../Theme';
 
-const fontFamilly = '\'Fira Sans\', sans-serif';
+class MarketingText extends Component {
+  static contextTypes = {
+    isDarkTheme: PropTypes.func,
+  };
 
-const TextStyle = {
-  title: {
-    fontFamilly,
-    fontSize: '30px',
-    fontWeight: 'bold',
-    color: lighten('#000000', 0.11),
-  },
-  heading: {
-    fontSize: '18px',
-    fontFamilly,
-    fontWeight: 600,
-    color: lighten('#000000', 0.11),
-  },
-  button: {
-    fontSize: '14px',
-    color: lighten('#000000', 0.21),
-  },
-  body: {
-    fontSize: '16px',
-    color: lighten('#000000', 0.21),
-  },
-};
+  render() {
+    const { type = 'body', children, style = {} } = this.props;
+    const typeLowerCase = type.toLowerCase();
+    const isDark = this.context.isDarkTheme ? this.context.isDarkTheme() : false;
+    const correctStyling = isDark ? theme.marketingText.dark[typeLowerCase] : theme.marketingText.light[typeLowerCase];
+    const defaultStyle = isDark ? theme.marketingText.dark.body : theme.marketingText.light.body;
 
-const MarketingText = ({ type = 'body', children, style = {} }) => {
-  const typeLowerCase = type.toLowerCase();
-  const correctStyling = TextStyle[typeLowerCase];
-  const mergedStyle = Object.assign({}, correctStyling || TextStyle.body, style);
+    const mergedStyle = Object.assign({}, correctStyling || defaultStyle, style);
 
-  if (type === 'paragraph') {
+    if (type === 'paragraph') {
+      return (
+        <p style={mergedStyle}>
+          {children}
+        </p>
+      );
+    }
+
     return (
-      <p style={mergedStyle}>
+      <span style={mergedStyle}>
         {children}
-      </p>
+      </span>
     );
   }
-
-  return (
-    <span style={mergedStyle}>
-      {children}
-    </span>
-  );
-};
+}
 
 export default MarketingText;

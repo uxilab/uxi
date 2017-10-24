@@ -6,3 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 var zDepth1 = exports.zDepth1 = {
   boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)'
 };
+
+exports.default = {
+  zDepth1: zDepth1
+};

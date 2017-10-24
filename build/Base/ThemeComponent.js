@@ -88,8 +88,8 @@ var ThemeComponent = function (_Component) {
   return ThemeComponent;
 }(_react.Component);
 
-ThemeComponent.propTypes = process.env.NODE_ENV !== "production" ? {
-  style: _react.PropTypes.object
-} : {};
-
+ThemeComponent.contextTypes = {
+  theme: _react.PropTypes.object.isRequired,
+  isDarkTheme: _react.PropTypes.func
+};
 exports.default = ThemeComponent;

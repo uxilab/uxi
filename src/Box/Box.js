@@ -1,17 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { theme } from '../Theme';
+import IsDarkComponent from '../Base/IsDarkComponent';
 
-class Box extends Component {
-  static childContextTypes = {
-    isDarkTheme: PropTypes.func,
-  };
-
-  getChildContext() {
-    return {
-      isDarkTheme: this.isDarkTheme.bind(this),
-    };
-  }
-
+class Box extends IsDarkComponent {
   getMargin() {
     const { margin } = this.props;
 
@@ -89,12 +80,6 @@ class Box extends Component {
       this.getMargin(),
       stylesFromComponent,
     );
-  }
-
-  isDarkTheme() {
-    const { isDark } = this.props;
-
-    return isDark;
   }
 
   render() {

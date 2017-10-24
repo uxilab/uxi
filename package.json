@@ -1,13 +1,13 @@
 {
   "name": "uxi",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
     "flow": "./node_modules/.bin/flow",
     "typecheck": "./node_modules/.bin/flow check",
     "lint": "./node_modules/.bin/eslint ./src",
-    "build": "npm run lint && npm run test && npm run build:babel && npm run build:copy-files",
+    "build": "npm run build:babel && npm run build:copy-files",
     "build:babel": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=release ./node_modules/.bin/babel ./src --out-dir ./build",
     "build:copy-files": "./node_modules/.bin/babel-node ./scripts/copy-files.js",
     "clean:build": "./node_modules/.bin/rimraf build",
@@ -40,9 +40,9 @@
     "react-addons-test-utils": "~15.4.0",
     "react-dom": "~15.4.0",
     "react-helmet": "^5.2.0",
-    "simple-assign": "^0.1.0",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "simple-assign": "^0.1.0"
   },
   "devDependencies": {
     "app-module-path": "^2.1.0",

@@ -3,7 +3,18 @@ import Button from 'uxi/Button';
 
 const ExampleSimple = () => (
   <div>
-    <Button text="Test" />
+    <p>
+      <Button text="Test" />
+    </p>
+    <p>
+      <Button type="primary" text="Test" />
+    </p>
+    <p>
+      <Button type="secondary" text="Test" />
+    </p>
+    <p>
+      <Button isFullWidth type="primary" text="Install" />
+    </p>
   </div>
 );
 

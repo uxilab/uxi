@@ -7,7 +7,7 @@ const files = [
 ];
 
 Promise.all(
-  files.map((file) => copyFile(file))
+  files.map(file => copyFile(file)),
 )
   .then(() => createPackageFile());
 
@@ -20,7 +20,7 @@ function copyFile(file) {
       (err) => {
         if (err) throw err;
         resolve();
-      }
+      },
     );
   })
     .then(() => console.log(`Copied ${file} to ${buildPath}`));
@@ -40,7 +40,7 @@ function createPackageFile() {
       resolve(data);
     });
   })
-    .then((data) => JSON.parse(data))
+    .then(data => JSON.parse(data))
     .then((packageData) => {
       const {
         author,
@@ -56,7 +56,7 @@ function createPackageFile() {
       } = packageData;
 
       const minimalPackage = {
-        name: 'cluedin-integration',
+        name: 'uxi',
         author,
         version,
         description,

@@ -3,8 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _Theme = require('../Theme');
+
 exports.default = {
-  button: {
+  baseButton: {
     outline: '0 !important',
     display: 'inline-block',
     marginBottom: 0,

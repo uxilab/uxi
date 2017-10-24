@@ -34,11 +34,11 @@ class VerticallMenu extends ThemeComponent {
               borderRight: '5px solid transparent',
             },
             '.uxi-menu-item:hover': {
-              background: lighten(this.context.theme.palette.primary, 0.9),
-              borderRight: `2px solid transparent ${lighten(this.context.theme.palette.primary, 0.9)}`,
+              background: lighten(this.context.theme.palette.accent.main, 0.9),
+              borderRight: '4px solid transparent',
             },
             '.uxi-menu-item a': {
-              color: this.context.theme.palette.darkGrey,
+              color: this.context.theme.palette.neutral.dark,
               textDecoration: 'none',
               display: 'block',
             },
@@ -46,16 +46,17 @@ class VerticallMenu extends ThemeComponent {
               color: this.context.theme.palette.primary,
             },
             '.uxi-menu-item.uxi-active': {
-              background: lighten(this.context.theme.palette.primary, 0.9),
-              borderRight: `2px solid ${this.context.theme.palette.primary}`,
+              background: lighten(this.context.theme.palette.accent.main, 0.9),
+              borderRight: `4px solid ${this.context.theme.palette.accent.main}`,
+              color: this.context.theme.palette.accent.dark,
             },
             '.uxi-menu-item.uxi-active:hover': {
-              background: lighten(this.context.theme.palette.primary, 0.85),
-              borderRight: `2px solid ${lighten(this.context.theme.palette.primary, 0.1)}`,
-              color: this.context.theme.palette.darkGrey,
+              background: lighten(this.context.theme.palette.accent.main, 0.7),
+              borderRight: `4px solid ${this.context.theme.palette.accent.main}`,
+              color: this.context.theme.palette.neutral.darker,
             },
             '.uxi-menu-item.uxi-active a': {
-              color: this.context.theme.palette.primary,
+              color: this.context.theme.palette.accent.dark,
             },
           }}
         />

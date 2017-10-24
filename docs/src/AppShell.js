@@ -12,6 +12,9 @@ const AppShell = ({ children }) => {
       <MenuItem>
         <Link to="/font">Fonts</Link>
       </MenuItem>
+      <MenuItem>
+        <Link to="/color">Colors</Link>
+      </MenuItem>
       <MenuItem isActive>
         <Link to="/button">Button</Link>
       </MenuItem>
@@ -21,19 +24,22 @@ const AppShell = ({ children }) => {
       <MenuItem>
         <Link to="/button">SubLayout</Link>
       </MenuItem>
+      <MenuItem>
+        <Link to="/box">Box</Link>
+      </MenuItem>
     </VerticallMenu>
   );
 
   return (
     <ThemProvider>
       <div>
-        <Header>
+        <Header isDark>
           <HorizontalMenu isMain>
             <MenuItem>
               <Link to="/">Home</Link>
             </MenuItem>
             <MenuItem>
-              <Link to="/">Component</Link>
+              <Link to="/">Components</Link>
             </MenuItem>
             <MenuItem>
               <Link to="/">Contact</Link>
@@ -44,14 +50,14 @@ const AppShell = ({ children }) => {
           style={{ marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }}
           menu={mainMenu}
         >
-          <Layout style={{ paddingLeft: '30px', paddingRight: '30px' }}>
+          <Layout>
             <Row>
               <Col>
                 {children}
               </Col>
             </Row>
           </Layout>
-        </PageWithMenu>s
+        </PageWithMenu>
       </div>
     </ThemProvider>
   );

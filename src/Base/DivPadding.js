@@ -77,8 +77,8 @@ class ComponentWithPadding extends Component {
 }
 
 ComponentWithPadding.propTypes = {
-  margin: PropTypes.oneOf(['xs', 's', 'm', 'l','XS', 'S', 'M', 'L',]),
-  padding:  PropTypes.oneOf(['xs', 's', 'm', 'l','XS', 'S', 'M', 'L',]),
+  margin: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']),
+  padding: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']),
   style: PropTypes.object,
 };
 

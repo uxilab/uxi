@@ -2,7 +2,7 @@ import React from 'react';
 import Text from './Text';
 import { theme } from '../Theme';
 
-const Title = ({ text, isHeading, children }) => {
+const Title = ({ text, isHeading, children, style = {} }) => {
   let titleType = 'title';
   let titleStyle = {
     padding: theme.padding.title,
@@ -15,8 +15,10 @@ const Title = ({ text, isHeading, children }) => {
     };
   }
 
+  const mergedStyle = Object.assign({}, titleStyle, style);
+
   return (
-    <div style={titleStyle}>
+    <div style={mergedStyle}>
       <Text type={titleType}>
         {text}
       </Text>

@@ -8,8 +8,34 @@ const fonts = {
   fontFamily: 'Open sans, sans-serif',
 };
 
+const marketingFontFamilly = '\'Fira Sans\', sans-serif';
+
 export const theme = {
   wrapper: {
+    '.uxi_container': {
+      width: '100%',
+      margin: '0 auto',
+    },
+    mediaQueries: {
+      '(min-width: 768px)': {
+        '.uxi_container': {
+          maxWidth: '750px',
+          margin: '0 auto',
+        },
+      },
+      '(min-width: 992px)': {
+        '.uxi_container': {
+          maxWidth: '970px',
+          margin: '0 auto',
+        },
+      },
+      '(min-width: 1200px)': {
+        '.uxi_container': {
+          maxWidth: '1170px',
+          margin: '0 auto',
+        },
+      },
+    },
     body: {
       height: '100%',
       margin: 0,
@@ -28,13 +54,19 @@ export const theme = {
       padding: 0,
       listStyle: 'none',
     },
-    li: {
-      listStyleType: 'circle',
-      marginLeft: '20px',
-      paddingLeft: '4px',
+    a: {
+      color: palette.accent.main,
+      textDecoration: 'none',
+    },
+    'a:hover': {
+      color: lighten(palette.accent.main, 0.1),
+      textDecoration: 'none',
     },
     'h1, h2, h3, h4': {
-      color: palette.lightBlack,
+      color: palette.neutral.dark,
+    },
+    '.uxi-root': {
+      height: '100%',
     },
     table: {
       margin: 0,
@@ -53,7 +85,7 @@ export const theme = {
   palette,
   background: {
     light: '#FFFFFF',
-    dark: palette.blues.YankeesBlue,
+    dark: palette.primary.main,
   },
   padding: {
     breathPadding: '48px',
@@ -63,6 +95,52 @@ export const theme = {
   },
   dimensions: {
     mainHeaderHeight: '80px',
+  },
+  marketingText: {
+    light: {
+      title: {
+        fontFamilly: marketingFontFamilly,
+        fontSize: '30px',
+        fontWeight: 'bold',
+        color: lighten('#000000', 0.11),
+      },
+      heading: {
+        fontSize: '18px',
+        fontFamilly: marketingFontFamilly,
+        fontWeight: 600,
+        color: lighten('#000000', 0.11),
+      },
+      button: {
+        fontSize: '14px',
+        color: lighten('#000000', 0.21),
+      },
+      body: {
+        fontSize: '16px',
+        color: lighten('#000000', 0.21),
+      },
+    },
+    dark: {
+      title: {
+        fontFamilly: marketingFontFamilly,
+        fontSize: '30px',
+        fontWeight: 'bold',
+        color: lighten('#ffffff', 0.11),
+      },
+      heading: {
+        fontSize: '18px',
+        fontFamilly: marketingFontFamilly,
+        fontWeight: 600,
+        color: lighten('#ffffff', 0.11),
+      },
+      button: {
+        fontSize: '14px',
+        color: lighten('#ffffff', 0.21),
+      },
+      body: {
+        fontSize: '16px',
+        color: lighten('#ffffff', 0.21),
+      },
+    },
   },
   fontsAndColor: {
     default: Object.assign({
@@ -115,7 +193,7 @@ export const theme = {
       },
       button: {
         fontSize: '14px',
-        color: darken('#ffffff', 0.21),
+        color: '#ffffff',
       },
       body: {
         fontSize: '14px',
@@ -137,6 +215,36 @@ export const theme = {
   title: {
     color: palette.lightBlack,
   },
+  button: {
+    backgroundColor: palette.neutral.lightestDark,
+    color: palette.neutral.darker,
+    borderColor: palette.neutral.lightDark,
+  },
+  'button:hover': {
+    backgroundColor: palette.neutral.lightDark,
+    color: palette.neutral.darker,
+    borderColor: palette.neutral.neutral,
+  },
+  'button:primary': {
+    color: palette.white,
+    backgroundColor: palette.accent.main,
+    borderColor: palette.accent.dark,
+  },
+  'button:primary:hover': {
+    color: palette.accent.main,
+    backgroundColor: palette.white,
+    borderColor: palette.accent.dark,
+  },
+  'button:secondary': {
+    color: palette.white,
+    backgroundColor: palette.primary.main,
+    borderColor: palette.primary.dark,
+  },
+  'button:secondary:hover': {
+    color: palette.primary.main,
+    backgroundColor: palette.white,
+    borderColor: palette.primary.dark,
+  },
   link: {
     linkOnBgDark: {
       cursor: 'pointer',
@@ -149,10 +257,10 @@ export const theme = {
     linkOnBgLight: {
       cursor: 'pointer',
       textDecoration: 'none',
-      color: palette.darkGrey,
+      color: palette.neutral.dark,
     },
     linkOnBgLightHover: {
-      color: palette.primary,
+      color: palette.accent.main,
     },
   },
 };

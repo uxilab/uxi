@@ -8,8 +8,9 @@ export type ThemeComponentProps = {
 class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   static contextTypes = {
     theme: PropTypes.object.isRequired,
+    isDarkTheme: PropTypes.func,
   };
-  
+
   getSubStylePseudoElement(name: string, subStyleName: string, pseudoElementName: string) {
     const theme = this.context.theme;
     const result = {};
