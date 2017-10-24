@@ -8,12 +8,12 @@
     "typecheck": "flow check",
     "lint": "eslint ./src",
     "build": "npm run build:babel && npm run build:copy-files",
-    "build:babel": "cross-env.js NODE_ENV=release babel ./src --out-dir ./build",
+    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
-    "test": "cross-env.js NODE_ENV=test jest",
-    "test:coverage": "cross-env.js NODE_ENV=test jest --coverage",
-    "test:watch": "cross-env.js NODE_ENV=test jest --watch",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
     "typeinstall": "flow-typed install"
   },
   "jest": {
