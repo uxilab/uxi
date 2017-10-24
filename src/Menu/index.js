@@ -1,3 +1,3 @@
 export HorizontalMenu from './HorizontalMenu';
-export VerticallMenu from './VerticallMenu';
+export VerticalMenu from './VerticalMenu';
 export MenuItem from './MenuItem';

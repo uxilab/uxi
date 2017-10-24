@@ -2,7 +2,7 @@ import React, { PropTypes, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 import uuid from './uuid';
-import childrenPropType from './childrenPropTypes';
+// import childrenPropType from './childrenPropTypes'; // where is dat supp to be? -df
 import Tab from './Tab';
 
 // Determine if a node from event.target is a Tab element
@@ -23,7 +23,8 @@ export default React.createClass({
     selectedIndex: PropTypes.number,
     onSelect: PropTypes.func,
     focus: PropTypes.bool,
-    children: childrenPropType,
+    // children: childrenPropType,
+    children: PropTypes.node,
     forceRenderTabPanel: PropTypes.bool,
     isMainStyle: PropTypes.bool,
   },

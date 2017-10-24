@@ -1,13 +1,13 @@
 import React from 'react';
 import { Style } from 'radium';
 import ThemeComponent from '../Base/ThemeComponent';
-import VerticallMenuStyle from './VerticallMenu.style';
+import VerticalMenuStyle from './VerticalMenu.style';
 import { lighten } from '../Theme/colorManipulator';
 
-class VerticallMenu extends ThemeComponent {
+class VerticalMenu extends ThemeComponent {
   render() {
     const { children } = this.props;
-    const verticalMergedStyle = this.getStyle('VerticallMenu', VerticallMenuStyle.root);
+    const verticalMergedStyle = this.getStyle('VerticalMenu', VerticalMenuStyle.root);
 
     const menuItems = React.Children.map(children, (child, menuNumber) => {
       if (React.isValidElement(child)) {
@@ -66,4 +66,4 @@ class VerticallMenu extends ThemeComponent {
   }
 }
 
-export default VerticallMenu;
+export default VerticalMenu;
