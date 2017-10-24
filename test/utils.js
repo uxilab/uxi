@@ -1,10 +1,12 @@
 import React from 'react';
 import ThemProvider from '../src/Theme';
 
-export const mount = component => (
+export const mountWithTheme = component => (
   <ThemProvider>
     {component}
   </ThemProvider>
 );
 
-export default mount;
+export default {
+  mountWithTheme,
+};

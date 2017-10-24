@@ -8,15 +8,22 @@
     "typecheck": "flow check",
     "lint": "eslint ./src",
     "build": "npm run build:babel && npm run build:copy-files",
-    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build",
+    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore test.js,__tests__,__test__ ",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
-    "test": "cross-env NODE_ENV=test jest",
-    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
-    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
     "typeinstall": "flow-typed install"
   },
   "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "setupFiles": [
       "./test/jestsetup.js"
     ],
@@ -51,7 +58,7 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.2",
-    "babel-jest": "^19.0.0",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
