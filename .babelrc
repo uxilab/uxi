@@ -6,7 +6,9 @@
     "transform-flow-strip-types"
   ],
    "ignore": [
-    "/**/*.spec.js"
+    "/**/*.spec.js",
+    "/**/*.test.js",
+    "/**/__tests__/*.js"
   ],
   "env": {
     "test": {
