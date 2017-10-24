@@ -1,14 +1,14 @@
 import React from 'react';
 import ThemProvider from 'uxi/Theme';
 import Header from 'uxi/Header';
-import { HorizontalMenu, VerticallMenu, MenuItem } from 'uxi/Menu';
+import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
 import { Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 
 const AppShell = ({ children }) => {
   const mainMenu = (
-    <VerticallMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
+    <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
       <MenuItem>
         <Link to="/font">Fonts</Link>
       </MenuItem>
@@ -27,7 +27,7 @@ const AppShell = ({ children }) => {
       <MenuItem>
         <Link to="/box">Box</Link>
       </MenuItem>
-    </VerticallMenu>
+    </VerticalMenu>
   );
 
   return (

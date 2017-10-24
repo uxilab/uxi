@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CollapsableBoxStyle from './CollapsableBox.style';
 import Text from '../Text';
-import Icon from '../Icons';
 import IconButton from '../Button/IconButton';
-import ThemeComponent from '../base/ThemeComponent';
+import ThemeComponent from '../Base/ThemeComponent';
 
 class CollapsableBox extends ThemeComponent {
   constructor(props) {
