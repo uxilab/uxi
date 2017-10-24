@@ -7,7 +7,7 @@ export const providerConfigs = {
         oauthCallbackKey: 'slack',
         initial: 'api/slack?authError=none',
         callback: 'api/slack?authError',
-      }
+      },
     },
     domain: 'slack.com',
     properties: [{
@@ -17,11 +17,11 @@ export const providerConfigs = {
       name: 'channels',
       options: {
         key: 'Id',
-        displayName: 'Name'
-      }
+        displayName: 'Name',
+      },
     }],
   },
-  '111111111': {
+  111111111: {
     name: 'Zendesk',
     icon: 'https://s3.eu-central-1.amazonaws.com/cluedintest/zendesk.png',
     properties: [],
@@ -33,26 +33,26 @@ export const providerConfigs = {
           displayName: 'Website Name',
           protocol: 'https://',
           domain: 'zendesk.com',
-          isRequired: true
+          isRequired: true,
         },
         {
           type: 'input',
           name: 'username',
           displayName: 'Username',
-          isRequired: true
+          isRequired: true,
         },
         {
           type: 'password',
           name: 'password',
           displayName: 'Password',
-          isRequired: true
-        }
+          isRequired: true,
+        },
       ],
-    }
-  }
+    },
+  },
 };
 
-export const providers  = [
+export const providers = [
   {
     Name: 'Slack',
     Id: '000000000',
@@ -62,5 +62,5 @@ export const providers  = [
     Name: 'Zendesk',
     Id: '111111111',
     Details: 'Zendesk does somethings',
-  }
+  },
 ];
