@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const rippleStyle = {
   position: 'absolute',
@@ -41,8 +42,8 @@ class Ripples extends Component {
     const {
       pageX, pageY, currentTarget: {
         offsetLeft, offsetTop,
-        offsetWidth, offsetHeight
-      }
+        offsetWidth, offsetHeight,
+      },
     } = ev;
 
     const left = pageX - offsetLeft;
@@ -50,10 +51,11 @@ class Ripples extends Component {
 
     this.setState({
       rippleStyle: {
-        top, left,
+        top,
+        left,
         opacity: 1,
         backgroundColor: color,
-      }
+      },
     });
 
     setTimeout(() => {
@@ -61,12 +63,13 @@ class Ripples extends Component {
 
       this.setState({
         rippleStyle: {
-          top, left,
+          top,
+          left,
           backgroundColor: color,
           transition: `all ${during}ms`,
           transform: `${rippleStyle.transform} scale(${size / 9})`,
           opacity: 0,
-        }
+        },
       });
     }, 50);
 
@@ -90,7 +93,8 @@ class Ripples extends Component {
         <s style={{
           ...rippleStyle,
           ...state.rippleStyle,
-        }}/>
+        }}
+        />
       </div>
     );
   }

@@ -1,4 +1,6 @@
-import React, { PropTypes, cloneElement } from 'react';
+import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
+
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 import uuid from './uuid';

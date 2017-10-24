@@ -1,8 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
 import radium from 'radium';
-import Ripples from '../Motion/Ripples';
+// import Ripples from '../Motion/Ripples';
 import Icon from '../Icons';
+import getAppropriateIcon from '../Icons/getAppropriateIcon';
 
 class IconButton extends Component {
   render() {
@@ -10,7 +11,10 @@ class IconButton extends Component {
       onClick,
       link,
       disabled,
+      icon,
     } = this.props;
+
+    const Icon = getAppropriateIcon(icon);
 
     if (link) {
       <a href={link}>
