@@ -8,12 +8,12 @@
     "typecheck": "flow check",
     "lint": "eslint ./src",
     "build": "npm run build:babel && npm run build:copy-files",
-    "build:babel": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=release babel ./src --out-dir ./build",
+    "build:babel": "cross-env.js NODE_ENV=release babel ./src --out-dir ./build",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
-    "test": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=test jest",
-    "test:coverage": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=test jest --coverage",
-    "test:watch": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=test jest --watch",
+    "test": "cross-env.js NODE_ENV=test jest",
+    "test:coverage": "cross-env.js NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env.js NODE_ENV=test jest --watch",
     "typeinstall": "flow-typed install"
   },
   "jest": {
@@ -36,7 +36,6 @@
   "homepage": "https://github.com/CluedIn-io/uxi#readme",
   "dependencies": {
     "classnames": "^2.2.5",
-    "jest": "^21.2.1",
     "prop-types": "^15.6.0",
     "radium": "^0.19.4",
     "react": "^16.0.0",
@@ -68,8 +67,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "cross-env": "^5.0.5",
-    "enzyme": "^2.9.1",
-    "enzyme-to-json": "^1.5.1",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "enzyme-to-json": "^3.1.4",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-flowtype": "^2.35.1",
@@ -80,6 +80,7 @@
     "flow-types": "^1.0.0",
     "fs-extra": "^4.0.1",
     "jest": "^21.2.1",
+    "react-test-renderer": "^16.0.0",
     "webpack": "^3.5.6"
   }
 }
