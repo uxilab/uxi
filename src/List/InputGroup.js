@@ -7,9 +7,8 @@ const styles = {
 };
 
 /**
- * TODO: what happens when the context does not provide enough width to render all ? -df
+ * TODO: what happens when the context/parentDomBox does not provide enough width to render all inline ? -df
  */
-
 let count = 0;
 const getKey = () => count++;
 
