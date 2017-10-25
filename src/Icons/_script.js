@@ -24,6 +24,7 @@ const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
 const toLowerCase = x => x.toLowerCase();
 const removeDashIco = x => x.replace('-ico', '');
 const camelCaser = (match, p1, offset, string) => {
+
   console.log('match', match);
   console.log('p1', p1);
   console.log('offset', offset);
@@ -41,7 +42,7 @@ const toCamelCase = x => (
 const objToString = Object.prototype.toString;
 const isFn = x => objToString.call(x) === '[object Function]';
 const addLinFeedToOpenningTag = (match, p1, offset, string) => `\n ${p1}`;
-const cleanSVGContent = x => (x
+const cleanSVGContent = x => ( x
   .replace(/<defs>.*<\/defs>/g, '')
   .replace(/<title>.*<\/title>/g, '')
   .replace(/(class="cls-1")/g, '')
@@ -51,7 +52,7 @@ const cleanSVGContent = x => (x
   .replace(/(viewBox=".*")/, '$& width="24px" height="24px"')
 );
 
-const getRatio = (string) => { // this is so unstable
+const getRatio = string => {  // this is so unstable
   const matches = string
     .match(/viewBox="(.*)"/)[1]
     .split(' ')
@@ -74,7 +75,7 @@ const writeFile = (x) => {
 
   // const ratio = getRatio(cleanedSvgFileContent);
 
-  const content = template
+  let content = template
     .replace('{{svg}}', cleanedSvgFileContent)
     .replace(/{{name}}/g, finalFileName);
     // .replace('{{ratio}}', ratio);
@@ -85,24 +86,26 @@ const writeFile = (x) => {
 };
 const addFileToIndex = (x) => {
   exec(`echo "export ${x} from './${x}';" >> index.js`, (err, stdout, stderr) => {
-    if (err) { console.log(err); return false; }
-    console.log(`good for ${x}`);
+    if (err) { console.log(err); return false; };
+    console.log('good for ' + x);
   });
   return x;
 };
 /*
   const prettifyString = (x) => prettier.format(x);
 */
-const prettifyFile = x => new Promise((resolve, reject) => {
-  exec(`prettier --single-quote --write ./${x}.js `, (err, stdout, stderr) => {
-    if (err) { console.log(err); reject(err); }
-    console.log(`all good for ${x}.js`);
-    resolve(x);
+const prettifyFile = (x) => {
+  return new Promise((resolve, reject) => {
+    exec(`prettier --single-quote --write ./${x}.js `, function (err, stdout, stderr) {
+      if (err) { console.log(err); reject(err); }
+      console.log(`all good for ${x}.js`);
+      resolve(x);
+    });
   });
-});
+};
 
 const eslintAutoFix = (x) => {
-  exec(`eslint --fix ./${x}.js `, (err, stdout, stderr) => {
+  exec(`eslint --fix ./${x}.js `, function (err, stdout, stderr) {
     if (err) { console.log(err); return false; }
     console.log(`all good for ${x}.js`);
   });
@@ -111,7 +114,7 @@ const eslintAutoFix = (x) => {
 
 const onlySVGFiles = x => x.match(/.svg$/) !== -1;
 
-const addParenthesisBack = (s) => {
+const addParenthesisBack = s => {
   // .readdirSync('./', 'utf8')
   // .filter(onlySVGFiles)
   // .map(x => {
@@ -127,7 +130,7 @@ const compose = function () {
   const fns = [...arguments];
   fns.filter(x => isFn);
 
-  return item =>
+  return (item) =>
     fns.reduce((r, fn) => { r = fn(r); return r; }, item);
 };
 
@@ -161,12 +164,12 @@ export default {{name}};`;
  */
 // eraseIndex
 exec("echo '' > ./index.js", (err, std, stdout) => {
-  if (err) { console.log(err); return false; }
+  if (err) { console.log(err); return false; };
   console.log('index deleted');
 });
 
 exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
-  if (err) { console.log(err); return false; }
+  if (err) { console.log(err); return false; };
   console.log('index deleted');
 });
 
@@ -185,7 +188,7 @@ exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
 
   originalFiles
     .map(addParenthesisBack)
-    .map((x) => { console.log(x); return x; });
+    .map(x => { console.log(x); return x; });
 
   // eslint-disable-next-line single-quote
   const gASI = `import React from \'react\';
@@ -195,16 +198,16 @@ const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
 
 export const getAppropriateIcon = (identifier) => {
   const cleanedIdentifer = capitalize(identifier.toLowerCase());
-  console.log('cleanedIdentifer', cleanedIdentifer);
-  return Icons[cleanedIdentifer] ? Icons[cleanedIdentifer] : Icons['Default'];
+  return Icons[cleanedIdentifer] ? Icons[cleanedIdentifer] : Icons['Circle'];
 };
 
 export default getAppropriateIcon;
 `;
   exec(`echo "${gASI}" > ./getAppropriateIcon.js`, (err, std, stdout) => {
-    if (err) { console.log(err); return false; }
+    if (err) { console.log(err); return false; };
     console.log('index deleted');
   });
+
 
 
   /*
@@ -217,4 +220,4 @@ export const getAppropriateSvgIcon = (identifier) => {
   */
 
   // .map(addParenthesisBack)
-}());
+})();

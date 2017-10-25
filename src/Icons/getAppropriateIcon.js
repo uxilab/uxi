@@ -5,8 +5,7 @@ const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
 
 export const getAppropriateIcon = (identifier) => {
   const cleanedIdentifer = capitalize(identifier.toLowerCase());
-  console.log('cleanedIdentifer', cleanedIdentifer);
-  return Icons[cleanedIdentifer] ? Icons[cleanedIdentifer] : Icons['Default'];
+  return Icons[cleanedIdentifer] ? Icons[cleanedIdentifer] : Icons['Circle'];
 };
 
 export default getAppropriateIcon;

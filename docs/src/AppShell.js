@@ -27,6 +27,12 @@ const AppShell = ({ children }) => {
       <MenuItem>
         <Link to="/box">Box</Link>
       </MenuItem>
+      <MenuItem>
+        <Link to="/sociallinks">List/SocialLinks</Link>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/inputs">Inputs</Link>
+      </MenuItem>
     </VerticalMenu>
   );
 

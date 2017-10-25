@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { theme } from '../Theme';
 
+/* eslint-disable react/prefer-stateless-function */
 class Text extends Component {
   static contextTypes = {
     isDarkTheme: PropTypes.func,

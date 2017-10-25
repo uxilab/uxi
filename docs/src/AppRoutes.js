@@ -5,6 +5,8 @@ import ButtonPage from './components/pages/Button/Page';
 import FontPage from './components/pages/Font/Page';
 import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
+import SocialLinksPage from './components/pages/SocialLinks/Page';
+import InputsPage from './components/pages/Inputs/Page';
 
 const AppRoutes = (
   <Switch>
@@ -13,6 +15,8 @@ const AppRoutes = (
     <Route path="/button" component={ButtonPage} />
     <Route path="/color" component={ColorPage} />
     <Route path="/box" component={BoxPage} />
+    <Route path="/sociallinks" component={SocialLinksPage} />
+    <Route path="/inputs" component={InputsPage} />
   </Switch>
 );
 
