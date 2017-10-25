@@ -88,7 +88,7 @@ export const theme = {
     dark: palette.primary.main,
   },
   padding: {
-    breathPadding: '48px',
+    breathPadding: '1em',
     defaultPadding: '24px',
     title: '15px 0',
     heading: '10px 0',
