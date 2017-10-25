@@ -6,7 +6,7 @@ export default {
     right: 0,
     zIndex: 3,
     height: '48px',
-    margin: 0,
+    margin: '0 auto',
     padding: 0,
     position: 'absolute',
     left: 0,
