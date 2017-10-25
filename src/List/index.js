@@ -2,3 +2,4 @@
 export SimpleList from './SimpleList';
 export ListItem from './ListItem';
 export SocialLinks from './SocialLinks';
+export InputGroup from './InputGroup';

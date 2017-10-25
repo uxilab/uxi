@@ -8,10 +8,10 @@ const styles = {
   padding: '8px 16px',
 };
 
-const EmailInput = ({ onChange }) => (
+const EmailInput = ({ onChange, style }) => (
   <input
     type="email"
-    style={styles}
+    style={{ ...styles, ...style }}
     placeholder="Email"
     onChange={onChange}
   />

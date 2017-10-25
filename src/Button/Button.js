@@ -37,6 +37,7 @@ class Button extends ThemeComponent<ButtonProps> {
       icon,
       iconPosition,
       isFullWidth,
+      style,
     } = this.props;
     const outerStyle = isFullWidth ? { width: '100%' } : {};
     let iconContentBefore;
@@ -107,6 +108,7 @@ class Button extends ThemeComponent<ButtonProps> {
         verticalAlign: 'top',
         fontWeight: 'normal',
       });
+      buttonStyles.push(style); // final overwrite with style from this.props
 
       return (
         <a onClick={click} style={buttonStyles} href={link}>
@@ -116,6 +118,8 @@ class Button extends ThemeComponent<ButtonProps> {
         </a>
       );
     }
+
+    buttonStyles.push(style); // final overwrite with style from this.props
 
     const buttonContent = (
       <button key="button" style={buttonStyles} onClick={click}>
