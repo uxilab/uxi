@@ -7,6 +7,7 @@ import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
 import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
+import IconsPage from './components/pages/Icons/Page';
 
 const AppRoutes = (
   <Switch>
@@ -17,6 +18,7 @@ const AppRoutes = (
     <Route path="/box" component={BoxPage} />
     <Route path="/sociallinks" component={SocialLinksPage} />
     <Route path="/inputs" component={InputsPage} />
+    <Route path="/Icons" component={IconsPage} />
   </Switch>
 );
 

@@ -58,12 +58,12 @@ export class SvgIcon extends Component {
   };
 
   handleMouseLeave = (event) => {
-    this.setState({hovered: false});
+    this.setState({ hovered: false });
     this.props.onMouseLeave(event);
   };
 
   handleMouseEnter = (event) => {
-    this.setState({hovered: true});
+    this.setState({ hovered: true });
     this.props.onMouseEnter(event);
   };
 
@@ -76,6 +76,7 @@ export class SvgIcon extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       style,
       viewBox,
+      size,
       ...other
     } = this.props;
 
@@ -84,15 +85,15 @@ export class SvgIcon extends Component {
     //   prepareStyles,
     // } = this.context.muiTheme;
 
-    const offColor = color ? color : 'currentColor';
-    const onColor = hoverColor ? hoverColor : offColor;
+    const offColor = color || 'currentColor';
+    const onColor = hoverColor || offColor;
 
     const mergedStyles = {
       display: 'inline-block',
-      color: color,
+      color,
       fill: this.state.hovered ? onColor : offColor,
-      height: 24,
-      width: 24,
+      height: size || 24,
+      width: size || 24,
       userSelect: 'none',
       transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
       ...style,

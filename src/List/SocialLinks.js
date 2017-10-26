@@ -20,8 +20,8 @@ const getListItemStyles = horizontal => ({
   padding: horizontal ? '2px' : 0,
 });
 
-const SocialLinks = ({ socialLinks, horizontal }) => (
-  <ul style={getListStyles(horizontal)}>
+const SocialLinks = ({ socialLinks, horizontal, style }) => (
+  <ul style={{ ...getListStyles(horizontal), ...style }}>
     {socialLinks.map(({ name, url }) => (
       <li key={name} style={getListItemStyles(horizontal)}>
         <a href={url}>
@@ -32,5 +32,16 @@ const SocialLinks = ({ socialLinks, horizontal }) => (
   </ul>
 );
 
+SocialLinks.propTypes = {
+  socialLinks: PropTypes.array,
+  horizontal: PropTypes.bool,
+  style: PropTypes.object,
+};
+
+SocialLinks.defaultProps = {
+  socialLinks: [],
+  horizontal: false,
+  style: {},
+};
 
 export default SocialLinks;

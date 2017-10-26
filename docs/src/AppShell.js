@@ -33,6 +33,9 @@ const AppShell = ({ children }) => {
       <MenuItem>
         <Link to="/inputs">Inputs</Link>
       </MenuItem>
+      <MenuItem>
+        <Link to="/icons">Icons</Link>
+      </MenuItem>
     </VerticalMenu>
   );
 
