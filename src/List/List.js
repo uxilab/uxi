@@ -8,6 +8,8 @@ const List = ({ items, component }) => {
   const ComponentToRender = component;
   let content = (<div />);
 
+  if (!ComponentToRender) { return []; }
+
   // If we have items, render them
   if (items) {
     content = items.map(item => (

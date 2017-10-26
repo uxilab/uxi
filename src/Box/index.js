@@ -1,4 +1,5 @@
 export default from './Box';
-export CollapsableBox from './CollapsableBox';
+export Box from './Box';
+export CollapsibleBox from './CollapsibleBox';
 export BoxItem from './BoxItem';
 export RatioBox from './RatioBox';
