@@ -84,15 +84,15 @@ class Box extends IsDarkComponent {
   }
 
   render() {
-    const { hasBorder, children, isDark } = this.props;
-    const style = hasBorder ? {
+    const { hasBorder, children, isDark, style } = this.props;
+    const borderStyle = hasBorder ? {
       border: theme.border.default,
       borderRadius: '2px',
       background: isDark ? theme.background.dark : theme.background.light,
     } : {};
 
     return (
-      <div style={this.getStyle(style)}>
+      <div style={{ ...this.getStyle(borderStyle), ...style }}>
         {children}
       </div>
     );

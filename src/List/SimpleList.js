@@ -12,11 +12,12 @@ const defaultItemListStyle = {
 };
 
 const bulltItemListStyle = {
-  listStyleType: 'circle',
+  listStyleType: 'disc',
   marginLeft: '20px',
   paddingLeft: '4px',
   paddingTop: '5px',
   paddingBottom: '5px',
+  color: '#26a29a', // hardcode list bullet color for now, an good alternative is : https://stackoverflow.com/a/13150561  -df
 };
 
 export const SimpleList = ({ children, isBullet, style = {}, listItemStyle = {} }) => {

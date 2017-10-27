@@ -1,4 +1,5 @@
 import React from 'react';
+import { theme } from '../Theme';
 
 const styles = {
   wrapper: {
@@ -32,13 +33,19 @@ const getWrapperStyles = ({ ratio }) => ({
   ...styles.wrapper,
   paddingBottom: ratio ? `${getRatioValue(ratio)}%` : '100%',
 });
+
+const getBorderStyle = hasBorder => (hasBorder ? {
+  border: theme.border.default,
+  borderRadius: '2px',
+} : {});
+
 /**
  * the purpose of this compo is to provide a box (DOM div)
  * that enforce an apsect ratio
  * default to square (1/1), accept a custom ratio (e.g. '16/9', '2/1' ...)
  */
-const RatioBox = ({ children, ratio, style }) => (
-  <div style={{ ...getWrapperStyles({ ratio }), ...style }} >
+const RatioBox = ({ children, ratio, style, hasBorder }) => (
+  <div style={{ ...getWrapperStyles({ ratio }), ...getBorderStyle(hasBorder), ...style }} >
     <div style={styles.contentBox}>
       {children}
     </div>

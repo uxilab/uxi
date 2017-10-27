@@ -10,6 +10,7 @@ export default {
   header: {
     borderBottom: '1px solid #ccc',
     display: 'flex',
+    alignItems: 'center',
     padding: '5px  15px',
     cursor: 'pointer',
   },

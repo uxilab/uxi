@@ -6,12 +6,30 @@ import { Link } from 'react-router-dom';
 import { Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 
+
+const makeMenuItem = ({ path, label }) => {
+  console.log({ path, label });
+  return (<MenuItem key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>);
+};
 const AppShell = ({ children }) => {
+  const routes = [
+    { path: '/font', label: 'Fonts' },
+    { path: '/color', label: 'color' },
+    { path: '/button', label: 'button' },
+    { path: '/layouts', label: 'Layout' },
+    // {/* { path: '/sublayout', label: 'SubLayout' }, */ },
+    { path: '/box', label: 'box' },
+    { path: '/sociallinks', label: 'sociallinks' },
+    { path: '/inputs', label: 'inputs' },
+    { path: '/icons', label: 'icons' }];
+
+  console.log(routes);
+  console.log(routes.map(makeMenuItem));
+
   const mainMenu = (
     <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
-      <MenuItem>
-        <Link to="/font">Fonts</Link>
-      </MenuItem>
+      {routes.map(makeMenuItem) }
+      {/*     <MenuItem> <Link to="/font">Fonts</Link> </MenuItem>
       <MenuItem>
         <Link to="/color">Colors</Link>
       </MenuItem>
@@ -35,7 +53,7 @@ const AppShell = ({ children }) => {
       </MenuItem>
       <MenuItem>
         <Link to="/icons">Icons</Link>
-      </MenuItem>
+      </MenuItem> */}
     </VerticalMenu>
   );
 
