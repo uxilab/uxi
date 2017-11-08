@@ -7,10 +7,10 @@ import { Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 
 
-const makeMenuItem = ({ path, label }) => {
-  console.log({ path, label });
-  return (<MenuItem key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>);
-};
+const makeMenuItem = ({ path, label }) => (
+  <MenuItem key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>
+);
+
 const AppShell = ({ children }) => {
   const routes = [
     { path: '/font', label: 'Fonts' },
@@ -21,39 +21,14 @@ const AppShell = ({ children }) => {
     { path: '/box', label: 'box' },
     { path: '/sociallinks', label: 'sociallinks' },
     { path: '/inputs', label: 'inputs' },
-    { path: '/icons', label: 'icons' }];
-
-  console.log(routes);
-  console.log(routes.map(makeMenuItem));
+    { path: '/icons', label: 'icons' },
+    { path: '/table', label: 'table' },
+    { path: '/switch', label: 'switch' },
+  ];
 
   const mainMenu = (
     <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
       {routes.map(makeMenuItem) }
-      {/*     <MenuItem> <Link to="/font">Fonts</Link> </MenuItem>
-      <MenuItem>
-        <Link to="/color">Colors</Link>
-      </MenuItem>
-      <MenuItem isActive>
-        <Link to="/button">Button</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/button">Layout</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/button">SubLayout</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/box">Box</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/sociallinks">List/SocialLinks</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/inputs">Inputs</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/icons">Icons</Link>
-      </MenuItem> */}
     </VerticalMenu>
   );
 

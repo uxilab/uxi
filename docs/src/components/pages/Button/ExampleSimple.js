@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'uxi/Button';
+import Button from '../../../../../src/Button/Button';
 
 const ExampleSimple = () => (
   <div>

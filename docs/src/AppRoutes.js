@@ -9,6 +9,8 @@ import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
 import IconsPage from './components/pages/Icons/Page';
 import LayoutPage from './components/pages/Layouts/Page';
+import TablePage from './components/pages/Table/Page';
+import SwitchPage from './components/pages/Switch/Page';
 
 const AppRoutes = (
   <Switch>
@@ -21,6 +23,8 @@ const AppRoutes = (
     <Route path="/inputs" component={InputsPage} />
     <Route path="/icons" component={IconsPage} />
     <Route path="/layouts" component={LayoutPage} />
+    <Route path="/table" component={TablePage} />
+    <Route path="/switch" component={SwitchPage} />
   </Switch>
 );
 

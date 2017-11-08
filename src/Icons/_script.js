@@ -97,7 +97,7 @@ describe('Icon : <${fileName} />', () => {
 const writeFileTest = (fileName) => {
   exec(`echo "${getTestTemplate(fileName)}" > ./__tests__/${fileName}.test.js`, (err, stdout, stderr) => {
     if (err) { console.log(err); return false; }
-    console.log(`test written for ${  fileName}`);
+    console.log(`test written for ${fileName}`);
   });
   return fileName;
 };
@@ -105,20 +105,20 @@ const writeFileTest = (fileName) => {
 const addFileToIndex = (x) => {
   exec(`echo "export ${x} from './${x}';" >> index.js`, (err, stdout, stderr) => {
     if (err) { console.log(err); return false; }
-    console.log(`good for ${  x}`);
+    console.log(`good for ${x}`);
   });
   return x;
 };
 /*
   const prettifyString = (x) => prettier.format(x);
 */
-const prettifyFile = (x) => new Promise((resolve, reject) => {
-    exec(`prettier --single-quote --write ./${x}.js `, function (err, stdout, stderr) {
-      if (err) { console.log(err); reject(err); }
-      console.log(`all good for ${x}.js`);
-      resolve(x);
-    });
+const prettifyFile = x => new Promise((resolve, reject) => {
+  exec(`prettier --single-quote --write ./${x}.js `, (err, stdout, stderr) => {
+    if (err) { console.log(err); reject(err); }
+    console.log(`all good for ${x}.js`);
+    resolve(x);
   });
+});
 
 const eslintAutoFix = (x) => {
   exec(`eslint --fix ./${x}.js `, (err, stdout, stderr) => {
@@ -153,7 +153,8 @@ const compose = function () {
 
 const cleanFileName = compose(toLowerCase, capitalize, removeDashIco, toCamelCase);
 const template = // fs.readFileSync('./_template.js', 'utf8');
-  `import React, { PropTypes } from 'react';
+  `import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '../SvgIcon';
 /* eslint-disable max-len */
 
@@ -183,10 +184,10 @@ exec("echo '' > ./index.js", (err, std, stdout) => {
   console.log('index deleted');
 });
 
-exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
-  if (err) { console.log(err); return false; }
-  console.log('index deleted');
-});
+// exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
+//   if (err) { console.log(err); return false; }
+//   console.log('index deleted');
+// });
 
 
 (async function () {
@@ -198,8 +199,8 @@ exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
       .map(writeFileTest)
       // .map(prettifyFile)
       .map(addFileToIndex)
-      .map(prettifyFile),
-  );
+      .map(prettifyFile));
+
   console.log('originalFiles', originalFiles);
 
   originalFiles

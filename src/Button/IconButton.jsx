@@ -12,6 +12,7 @@ class IconButton extends Component {
       link,
       disabled,
       icon,
+      children,
     } = this.props;
 
     const Icon = getAppropriateIcon(icon);
@@ -25,6 +26,7 @@ class IconButton extends Component {
     return (
       <button style={{ border: 0, padding: 0, verticalAlign: 'middle', cursor: 'pointer', background: 'transparent' }} onClick={onClick}>
         <Icon {...this.props} />
+        {children}
       </button>
     );
   }
