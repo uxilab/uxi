@@ -24,7 +24,6 @@ const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
 const toLowerCase = x => x.toLowerCase();
 const removeDashIco = x => x.replace('-ico', '');
 const camelCaser = (match, p1, offset, string) => {
-
   console.log('match', match);
   console.log('p1', p1);
   console.log('offset', offset);
@@ -42,7 +41,7 @@ const toCamelCase = x => (
 const objToString = Object.prototype.toString;
 const isFn = x => objToString.call(x) === '[object Function]';
 const addLinFeedToOpenningTag = (match, p1, offset, string) => `\n ${p1}`;
-const cleanSVGContent = x => ( x
+const cleanSVGContent = x => (x
   .replace(/<defs>.*<\/defs>/g, '')
   .replace(/<title>.*<\/title>/g, '')
   .replace(/(class="cls-1")/g, '')
@@ -52,7 +51,7 @@ const cleanSVGContent = x => ( x
   .replace(/(viewBox=".*")/, '$& width="24px" height="24px"')
 );
 
-const getRatio = string => {  // this is so unstable
+const getRatio = (string) => { // this is so unstable
   const matches = string
     .match(/viewBox="(.*)"/)[1]
     .split(' ')
@@ -75,37 +74,54 @@ const writeFile = (x) => {
 
   // const ratio = getRatio(cleanedSvgFileContent);
 
-  let content = template
+  const content = template
     .replace('{{svg}}', cleanedSvgFileContent)
     .replace(/{{name}}/g, finalFileName);
-    // .replace('{{ratio}}', ratio);
+  // .replace('{{ratio}}', ratio);
 
 
   fs.writeFileSync(`${finalFileName}.js`, content);
   return finalFileName;
 };
+
+const getTestTemplate = fileName => `import React from 'react';
+import ${fileName} from '../${fileName}';
+
+describe('Icon : <${fileName} />', () => {
+  it('match snapshot', () => {
+    expect(shallow(<${fileName} />)).toMatchSnapshot();
+  });
+});
+
+`;
+const writeFileTest = (fileName) => {
+  exec(`echo "${getTestTemplate(fileName)}" > ./__tests__/${fileName}.test.js`, (err, stdout, stderr) => {
+    if (err) { console.log(err); return false; }
+    console.log(`test written for ${  fileName}`);
+  });
+  return fileName;
+};
+
 const addFileToIndex = (x) => {
   exec(`echo "export ${x} from './${x}';" >> index.js`, (err, stdout, stderr) => {
-    if (err) { console.log(err); return false; };
-    console.log('good for ' + x);
+    if (err) { console.log(err); return false; }
+    console.log(`good for ${  x}`);
   });
   return x;
 };
 /*
   const prettifyString = (x) => prettier.format(x);
 */
-const prettifyFile = (x) => {
-  return new Promise((resolve, reject) => {
+const prettifyFile = (x) => new Promise((resolve, reject) => {
     exec(`prettier --single-quote --write ./${x}.js `, function (err, stdout, stderr) {
       if (err) { console.log(err); reject(err); }
       console.log(`all good for ${x}.js`);
       resolve(x);
     });
   });
-};
 
 const eslintAutoFix = (x) => {
-  exec(`eslint --fix ./${x}.js `, function (err, stdout, stderr) {
+  exec(`eslint --fix ./${x}.js `, (err, stdout, stderr) => {
     if (err) { console.log(err); return false; }
     console.log(`all good for ${x}.js`);
   });
@@ -114,7 +130,7 @@ const eslintAutoFix = (x) => {
 
 const onlySVGFiles = x => x.match(/.svg$/) !== -1;
 
-const addParenthesisBack = s => {
+const addParenthesisBack = (s) => {
   // .readdirSync('./', 'utf8')
   // .filter(onlySVGFiles)
   // .map(x => {
@@ -130,15 +146,14 @@ const compose = function () {
   const fns = [...arguments];
   fns.filter(x => isFn);
 
-  return (item) =>
+  return item =>
     fns.reduce((r, fn) => { r = fn(r); return r; }, item);
 };
 
 
 const cleanFileName = compose(toLowerCase, capitalize, removeDashIco, toCamelCase);
 const template = // fs.readFileSync('./_template.js', 'utf8');
-`import React from 'react';
-import PropTypes from 'prop-types';
+  `import React, { PropTypes } from 'react';
 import SvgIcon from '../SvgIcon';
 /* eslint-disable max-len */
 
@@ -164,12 +179,12 @@ export default {{name}};`;
  */
 // eraseIndex
 exec("echo '' > ./index.js", (err, std, stdout) => {
-  if (err) { console.log(err); return false; };
+  if (err) { console.log(err); return false; }
   console.log('index deleted');
 });
 
 exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
-  if (err) { console.log(err); return false; };
+  if (err) { console.log(err); return false; }
   console.log('index deleted');
 });
 
@@ -180,15 +195,16 @@ exec('echo "import React from \'react\';" > ./index.js', (err, std, stdout) => {
     fs.readdirSync('./svgs')
       // .filter(x => x.match('options'))
       .map(writeFile)
+      .map(writeFileTest)
       // .map(prettifyFile)
       .map(addFileToIndex)
-      .map(prettifyFile)
+      .map(prettifyFile),
   );
   console.log('originalFiles', originalFiles);
 
   originalFiles
     .map(addParenthesisBack)
-    .map(x => { console.log(x); return x; });
+    .map((x) => { console.log(x); return x; });
 
   // eslint-disable-next-line single-quote
   const gASI = `import React from \'react\';
@@ -204,10 +220,9 @@ export const getAppropriateIcon = (identifier) => {
 export default getAppropriateIcon;
 `;
   exec(`echo "${gASI}" > ./getAppropriateIcon.js`, (err, std, stdout) => {
-    if (err) { console.log(err); return false; };
+    if (err) { console.log(err); return false; }
     console.log('index deleted');
   });
-
 
 
   /*
@@ -220,4 +235,4 @@ export const getAppropriateSvgIcon = (identifier) => {
   */
 
   // .map(addParenthesisBack)
-})();
+}());
