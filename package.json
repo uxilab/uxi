@@ -15,7 +15,8 @@
     "test": "jest src",
     "test:coverage": "jest src --coverage",
     "test:watch": "jest src --watch",
-    "typeinstall": "flow-typed install"
+    "typeinstall": "flow-typed install",
+    "deploy": "npm version patch && npm run build && npm publish build"
   },
   "jest": {
     "transform": {
