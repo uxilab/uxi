@@ -19,7 +19,6 @@ const styles = {
   },
   label: {
     cursor: 'pointer',
-    padding: '2px',
   },
   input: {
     opacity: 0,
