@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Listul /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 14.2"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <polygon
+          points="0 5.8 0 4.2 1.59 5 0 5.8"
+        />
+        <rect
+          height="1.59"
+          width="12.48"
+          x="3.52"
+          y="4.2"
+        />
+        <polygon
+          points="0 10 0 8.4 1.59 9.2 0 10"
+        />
+        <rect
+          height="1.59"
+          width="12.48"
+          x="3.52"
+          y="8.4"
+        />
+        <rect
+          height="1.59"
+          width="12.48"
+          y="12.61"
+        />
+        <rect
+          height="1.59"
+          width="12.48"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

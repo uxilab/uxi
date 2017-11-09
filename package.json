@@ -7,13 +7,14 @@
     "flow": "flow",
     "typecheck": "flow check",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
     "build": "npm run build:babel && npm run build:copy-files",
     "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore test.js,__tests__,__test__ ",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "jest src",
+    "test:coverage": "jest src --coverage",
+    "test:watch": "jest src --watch",
     "typeinstall": "flow-typed install"
   },
   "jest": {

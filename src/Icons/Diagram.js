@@ -21,11 +21,11 @@ const Diagram = props => (
 );
 
 Diagram.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Diagram.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Diagram;

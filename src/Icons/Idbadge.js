@@ -25,11 +25,11 @@ const Idbadge = props => (
 );
 
 Idbadge.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Idbadge.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Idbadge;

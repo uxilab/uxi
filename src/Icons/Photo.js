@@ -22,11 +22,11 @@ const Photo = props => (
 );
 
 Photo.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Photo.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Photo;

@@ -28,11 +28,11 @@ const Slack = props => (
 );
 
 Slack.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Slack.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Slack;

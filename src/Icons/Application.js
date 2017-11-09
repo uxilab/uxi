@@ -22,11 +22,11 @@ const Application = props => (
 );
 
 Application.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Application.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Application;

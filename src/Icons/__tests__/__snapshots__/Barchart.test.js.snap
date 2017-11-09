@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Barchart /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 10.33"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <path
+          d="M16,4.76a.71.71,0,0,0-.71-.71H11.14V.71A.71.71,0,0,0,10.43,0H5.57a.71.71,0,0,0-.71.71V3.24H.71A.71.71,0,0,0,0,3.95V9.62a.71.71,0,0,0,.71.71H15.29A.71.71,0,0,0,16,9.62ZM4.86,8.91H1.42V4.66H4.86Zm4.86,0H6.28V1.42H9.72Zm4.86,0H11.14V5.47h3.44Z"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

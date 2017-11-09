@@ -22,11 +22,11 @@ const Add = props => (
 );
 
 Add.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Add.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Add;

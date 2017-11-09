@@ -22,11 +22,11 @@ const Country = props => (
 );
 
 Country.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Country.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Country;

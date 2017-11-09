@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Linkedin /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 16"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <path
+          d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM5.92,11.91H3.85V6.7H5.92Zm-1-6a1,1,0,0,1-1-.93,1,1,0,0,1,1-.93,1,1,0,0,1,1,.93A1,1,0,0,1,4.88,5.94Zm7.29,6H10.5V8.74a.94.94,0,0,0-.91-.84,1,1,0,0,0-1,.8v3.2H6.94L7,6.68H8.6v.66a1.64,1.64,0,0,1,1.62-.86c1.28,0,1.86.73,2,2.11Z"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

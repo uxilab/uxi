@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Backlogitem /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 12.48 16"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <path
+          d="M8.88,2.11l0-.08A2.7,2.7,0,0,0,3.62,2l0,.08H2.82V3.52H1.31A1.31,1.31,0,0,0,0,4.83v9.87A1.31,1.31,0,0,0,1.31,16h9.87a1.31,1.31,0,0,0,1.31-1.31V4.83a1.31,1.31,0,0,0-1.31-1.31H9.66V2.11ZM4.93,2A1.51,1.51,0,0,1,7.55,2l.09.16H4.84ZM4,3.32H8.46V4.93H4Zm7.26,1.41V14.8H1.2V4.72H2.82V6.13H9.66V4.72Z"
+        />
+        <rect
+          height="1.37"
+          width="1.53"
+          x="2.9"
+          y="8.33"
+        />
+        <rect
+          height="1.37"
+          width="3.64"
+          x="5.94"
+          y="8.33"
+        />
+        <rect
+          height="1.37"
+          width="1.53"
+          x="2.9"
+          y="11.22"
+        />
+        <rect
+          height="1.37"
+          width="3.64"
+          x="5.94"
+          y="11.22"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

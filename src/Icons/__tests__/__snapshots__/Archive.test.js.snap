@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Archive /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 16"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <path
+          d="M14.22,0H1.78A1.78,1.78,0,0,0,0,1.78V14.22A1.78,1.78,0,0,0,1.78,16H14.22A1.78,1.78,0,0,0,16,14.22V1.78A1.78,1.78,0,0,0,14.22,0Zm0,14.22H1.78V8.91H14.22ZM1.78,7.09V1.78H14.22V7.09Z"
+        />
+        <circle
+          cx="8"
+          cy="4.59"
+          r="0.84"
+        />
+        <circle
+          cx="8"
+          cy="11.52"
+          r="0.84"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

@@ -21,11 +21,11 @@ const Twitter = props => (
 );
 
 Twitter.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Twitter.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Twitter;

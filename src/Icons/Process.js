@@ -23,11 +23,11 @@ const Process = props => (
 );
 
 Process.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Process.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Process;

@@ -23,11 +23,11 @@ const Archive = props => (
 );
 
 Archive.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Archive.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Archive;

@@ -24,11 +24,11 @@ const Keepintheloop = props => (
 );
 
 Keepintheloop.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Keepintheloop.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Keepintheloop;

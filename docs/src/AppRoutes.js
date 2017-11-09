@@ -11,6 +11,7 @@ import IconsPage from './components/pages/Icons/Page';
 import LayoutPage from './components/pages/Layouts/Page';
 import TablePage from './components/pages/Table/Page';
 import SwitchPage from './components/pages/Switch/Page';
+import AlertPage from './components/pages/Alert/Page';
 
 const AppRoutes = (
   <Switch>
@@ -25,6 +26,7 @@ const AppRoutes = (
     <Route path="/layouts" component={LayoutPage} />
     <Route path="/table" component={TablePage} />
     <Route path="/switch" component={SwitchPage} />
+    <Route path="/alert" component={AlertPage} />
   </Switch>
 );
 

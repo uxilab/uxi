@@ -24,6 +24,7 @@ const AppShell = ({ children }) => {
     { path: '/icons', label: 'icons' },
     { path: '/table', label: 'table' },
     { path: '/switch', label: 'switch' },
+    { path: '/alert', label: 'Alert' },
   ];
 
   const mainMenu = (

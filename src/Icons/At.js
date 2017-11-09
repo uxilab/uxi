@@ -21,11 +21,11 @@ const At = props => (
 );
 
 At.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 At.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default At;

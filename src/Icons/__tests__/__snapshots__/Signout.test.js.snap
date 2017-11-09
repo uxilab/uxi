@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Signout /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 16"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <polygon
+          points="0 8 4.08 12.08 5.2 10.97 3.02 8.79 10.19 8.79 10.19 7.21 3.02 7.21 5.2 5.03 4.08 3.92 0 8"
+        />
+        <path
+          d="M1.69,16H14.31A1.69,1.69,0,0,0,16,14.31V1.69A1.69,1.69,0,0,0,14.31,0H1.69A1.69,1.69,0,0,0,0,1.69v2H1.58V1.58H14.42V14.42H1.58V12.36H0v2A1.69,1.69,0,0,0,1.69,16Z"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

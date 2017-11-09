@@ -22,11 +22,11 @@ const Upload = props => (
 );
 
 Upload.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Upload.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Upload;

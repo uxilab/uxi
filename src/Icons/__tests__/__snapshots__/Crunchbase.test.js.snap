@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Crunchbase /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 16"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <circle
+          cx="10.91"
+          cy="9.23"
+          r="1.64"
+        />
+        <path
+          d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM5.09,10.86a1.64,1.64,0,0,0,1.49-1H7.63a2.63,2.63,0,1,1,0-1.28h-1a1.64,1.64,0,1,0-1.51,2.26Zm5.83,1a2.62,2.62,0,0,1-1.64-.57v.35h-1V4.14h1v3a2.63,2.63,0,1,1,1.64,4.69Z"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;
