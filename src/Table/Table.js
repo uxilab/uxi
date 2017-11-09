@@ -3,10 +3,34 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import TableStyle from './Table.style';
+import tooltipStyles from './tooltipStyles';
 
 class Table extends Component {
   state = {
     allRowsSelected: false,
+  };
+
+  componentWillMount() {
+    if (this.props.allRowsSelected) {
+      this.setState({ allRowsSelected: true });
+    }
+  }
+
+  onRowSelection = (selectedRows) => {
+    if (this.state.allRowsSelected) this.setState({ allRowsSelected: false });
+    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+  };
+
+  onSelectAll = () => {
+    // if (this.props.onRowSelection) {
+    //   if (!this.state.allRowsSelected) {
+    //     this.props.onRowSelection('all');
+    //   } else {
+    //     this.props.onRowSelection('none');
+    //   }
+    // }
+
+    this.setState({ allRowsSelected: !this.state.allRowsSelected });
   };
 
   createTableBody(base) {
@@ -37,28 +61,6 @@ class Table extends Component {
     return base;
   }
 
-  componentWillMount() {
-    if (this.props.allRowsSelected) {
-      this.setState({ allRowsSelected: true });
-    }
-  }
-
-  onRowSelection = (selectedRows) => {
-    if (this.state.allRowsSelected) this.setState({ allRowsSelected: false });
-    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
-  };
-
-  onSelectAll = () => {
-    // if (this.props.onRowSelection) {
-    //   if (!this.state.allRowsSelected) {
-    //     this.props.onRowSelection('all');
-    //   } else {
-    //     this.props.onRowSelection('none');
-    //   }
-    // }
-
-    this.setState({ allRowsSelected: !this.state.allRowsSelected });
-  };
 
   render() {
     const { children } = this.props;
@@ -84,6 +86,7 @@ class Table extends Component {
 
     return (
       <div style={TableStyle.container}>
+        <style dangerouslySetInnerHTML={{ __html: tooltipStyles }} />
         <table style={TableStyle.table}>
           {tHead}
           {tBody}

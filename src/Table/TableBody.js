@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import Tooltip from 'rc-tooltip';
+import Tooltip from 'rc-tooltip';
 // import Checkbox from 'material-ui/Checkbox';
 import Checkbox from '../Input/Checkbox';
 import { Markassensitive as Lock } from '../Icons';
@@ -77,16 +77,15 @@ class TableBody extends Component {
     if (rowProps.readOnly) {
       disabled = true;
       const icon = (<Lock style={{ color: 'rgb(158, 158, 158)', fill: 'rgb(158, 158, 158)' }} />);
-      /* if (rowProps.readOnlyText) {
+      if (rowProps.readOnlyText) {
         content = (
-          <Tooltip placement="bottom" overlay={rowProps.readOnlyText}>
+          <Tooltip placement="bottom" overlay={rowProps.readOnlyText} >
             {icon}
           </Tooltip>
         );
       } else {
         content = icon;
-      } */
-      content = icon;
+      }
     } else {
       content = (
         <Checkbox
