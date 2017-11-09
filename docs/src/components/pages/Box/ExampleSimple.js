@@ -1,9 +1,9 @@
 import React from 'react';
-import { CollapsableBox, BoxItem } from 'uxi/Box';
+import { CollapsibleBox, BoxItem } from '../../../../../src/Box';
 
 const ExampleSimple = () => (
   <div>
-    <CollapsableBox title="Example">
+    <CollapsibleBox title="Example">
       <BoxItem padding="S">
         TOTO!
       </BoxItem>
@@ -19,7 +19,7 @@ const ExampleSimple = () => (
       <BoxItem padding="S" isLast>
         TOTO!
       </BoxItem>
-    </CollapsableBox>
+    </CollapsibleBox>
   </div>
 );
 
