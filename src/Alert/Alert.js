@@ -26,6 +26,7 @@ class Alert extends Component {
     type: PropTypes.oneOf(['danger', 'error', 'success', 'warning', 'information']),
     noIcon: PropTypes.bool,
     className: PropTypes.string,
+    isBanner: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -52,16 +53,18 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, showClose, noIcon, className } = this.props;
+    const { type, showClose, noIcon, className, isBanner } = this.props;
     const { isOpen } = this.state;
 
-    // let iconIdentifier;
-    const classNames = [AlertStyle.alert];
+    const wrapperStyles = [AlertStyle.alert];
+
+    if (isBanner) { wrapperStyles.push(AlertStyle.bannerAlert); }
+
     let closeContent;
     let iconContent;
     let IconComp;
     const mainAlertStyle = [AlertStyle.alertContent];
-    if (showClose) {
+    if (showClose || isBanner) {
       closeContent = (
         <button key="closeIcon" onClick={() => { this.close(); }} style={AlertStyle.closeWrapper}>
           <Close color="white" />
@@ -74,16 +77,16 @@ class Alert extends Component {
     }
 
     if (type === 'danger' || type === 'error') {
-      classNames.push(AlertStyle.danger);
+      wrapperStyles.push(AlertStyle.danger);
       IconComp = Issue;
     } else if (type === 'warning') {
-      classNames.push(AlertStyle.warning);
+      wrapperStyles.push(AlertStyle.warning);
       IconComp = AlertIcon;
     } else if (type === 'success') {
-      classNames.push(AlertStyle.success);
+      wrapperStyles.push(AlertStyle.success);
       IconComp = Done;
     } else {
-      classNames.push(AlertStyle.info);
+      wrapperStyles.push(AlertStyle.info);
       IconComp = AlertIcon;
     }
 
@@ -94,13 +97,13 @@ class Alert extends Component {
     }
 
     if (!isOpen) {
-      classNames.push({
+      wrapperStyles.push({
         display: 'none',
       });
     }
 
     return (
-      <div style={classNames} className={className}>
+      <div style={wrapperStyles} className={className}>
         {closeContent}
         {iconContent}
         <div style={mainAlertStyle}>

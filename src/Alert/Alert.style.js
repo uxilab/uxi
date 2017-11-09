@@ -7,6 +7,14 @@ export default {
     display: 'flex',
     alignItems: 'center',
   },
+  bannerAlert: {
+    position: 'fixed',
+    zIndex: 5,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 'auto',
+  },
   info: {
     color: '#fff',
     backgroundColor: 'rgb(49, 112, 143)',
