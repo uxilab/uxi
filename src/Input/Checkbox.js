@@ -65,6 +65,7 @@ class Checkbox extends React.PureComponent {
   render() {
     const {
       name,
+      disabled,
       // ...restOfProps
     } = this.props;
 
@@ -82,6 +83,7 @@ class Checkbox extends React.PureComponent {
             checked={checker}
             name={name}
             type="checkbox"
+            disabled={disabled}
             onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
           />
         </IconButton>
