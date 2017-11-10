@@ -44,8 +44,7 @@ class Checkbox extends React.PureComponent {
   }
 
   handleChange(e) {
-    const checked = event.target.checked;
-    console.log('handleChange : checked: ', checked);
+    const checked = e.target.checked;
     if (!this.isControlled) {
       this.setState({ checked: !this.state.checked });
     }
