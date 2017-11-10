@@ -43,6 +43,15 @@ class Checkbox extends React.PureComponent {
     }
   }
 
+  getWrapperStyles() {
+    // disabled
+    const { disabled } = this.props;
+    return {
+      ...styles.wrapper,
+      ...(disabled ? { opacity: 0.6 } : {}),
+    };
+  }
+
   handleChange(e) {
     const checked = e.target.checked;
     if (!this.isControlled) {
@@ -65,7 +74,7 @@ class Checkbox extends React.PureComponent {
 
     /* eslint-disable jsx-a11y/label-has-for */
     return (
-      <div style={styles.wrapper}>
+      <div style={this.getWrapperStyles()}>
         <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px' }}>
           <input
             id={name}

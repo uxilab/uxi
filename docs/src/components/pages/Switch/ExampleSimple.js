@@ -7,6 +7,10 @@ const ExampleSimple = () => (
       <h3>Checkbox :</h3>
       <Checkbox />
     </li>
+    <li>
+      <h3>Checkbox disabled</h3>
+      <Checkbox disabled />
+    </li>
   </ul>
 );
 
