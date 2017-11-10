@@ -70,6 +70,7 @@ class Checkbox extends React.PureComponent {
           <input
             id={name}
             style={styles.input}
+            checked={checker}
             name={name}
             type="checkbox"
             onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
