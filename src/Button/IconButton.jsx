@@ -5,6 +5,7 @@ import radium from 'radium';
 import Icon from '../Icons';
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
 
+/* eslint-disable react/prefer-stateless-function */
 class IconButton extends Component {
   render() {
     const {
