@@ -38,11 +38,12 @@ class Button extends ThemeComponent<ButtonProps> {
       iconPosition,
       isFullWidth,
       style,
+      children,
     } = this.props;
     const outerStyle = isFullWidth ? { width: '100%' } : {};
     let iconContentBefore;
     let iconContentAfter;
-    const textOrMessage = message || text;
+    const textOrMessage = message || text || children;
 
     const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
 
