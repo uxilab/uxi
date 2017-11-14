@@ -51,6 +51,10 @@ const ExampleSimple = () => (
     <Alert type="danger" iconSize={64} >
       I'm an alert with a big icon (custom sized)
     </Alert>
+    <h2> Alert with exit handler </h2>
+    <Alert type="danger" onExit={() => { window.alert('exited Alert'); }}>
+      I'm an alert with a big icon (custom sized)
+    </Alert>
   </div>
 );
 
