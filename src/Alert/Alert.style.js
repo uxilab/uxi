@@ -34,7 +34,7 @@ export default {
     color: '#fff',
   },
   icon: {
-    marginLeft: '16px',
+    margin: '8px 8px 8px 16px',
     minWidth: '24px',
 
     // fontSize: '24px',

@@ -27,6 +27,10 @@ class Alert extends Component {
     noIcon: PropTypes.bool,
     className: PropTypes.string,
     isBanner: PropTypes.bool,
+    iconSize: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   };
 
   static defaultProps = {
@@ -53,7 +57,7 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, showClose, noIcon, className, isBanner } = this.props;
+    const { type, showClose, noIcon, className, isBanner, iconSize } = this.props;
     const { isOpen } = this.state;
 
     const wrapperStyles = [AlertStyle.alert];
@@ -92,7 +96,7 @@ class Alert extends Component {
 
     if (!noIcon) {
       iconContent = (
-        <IconComp color="white" style={AlertStyle.icon} />
+        <IconComp color="white" style={AlertStyle.icon} size={iconSize} />
       );
     }
 
