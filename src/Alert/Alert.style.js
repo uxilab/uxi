@@ -6,6 +6,7 @@ export default {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    minHeight: '50px',
   },
   bannerAlert: {
     position: 'fixed',

@@ -45,6 +45,7 @@ const ExampleSimple = () => (
       This is a banner Alert!
       Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit. Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat. Ipsum tempor nostrud amet officia consequat consectetur do labore. Incididunt culpa est irure nisi commodo adipisicing. Quis culpa ullamco est occaecat deserunt culpa occaecat. Officia elit qui ullamco do ipsum mollit aliquip sit excepteur. Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet voluptate.
     </Alert>
+    <Alert type="danger" isBanner />
   </div>
 );
 
