@@ -21,11 +21,11 @@ const Emailthread = props => (
 );
 
 Emailthread.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Emailthread.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Emailthread;

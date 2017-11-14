@@ -22,11 +22,11 @@ const Skype = props => (
 );
 
 Skype.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Skype.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Skype;

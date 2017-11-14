@@ -7,3 +7,4 @@ describe('Icon : <Picture />', () => {
   });
 });
 
+

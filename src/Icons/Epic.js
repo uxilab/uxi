@@ -21,11 +21,11 @@ const Epic = props => (
 );
 
 Epic.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Epic.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Epic;

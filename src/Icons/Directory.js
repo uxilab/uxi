@@ -21,11 +21,11 @@ const Directory = props => (
 );
 
 Directory.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Directory.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Directory;

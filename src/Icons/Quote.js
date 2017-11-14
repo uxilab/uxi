@@ -22,11 +22,11 @@ const Quote = props => (
 );
 
 Quote.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Quote.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Quote;

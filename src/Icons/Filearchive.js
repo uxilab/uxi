@@ -28,11 +28,11 @@ const Filearchive = props => (
 );
 
 Filearchive.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Filearchive.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Filearchive;

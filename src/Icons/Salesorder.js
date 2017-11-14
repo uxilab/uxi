@@ -21,11 +21,11 @@ const Salesorder = props => (
 );
 
 Salesorder.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Salesorder.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Salesorder;

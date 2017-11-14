@@ -21,11 +21,11 @@ const Announcement = props => (
 );
 
 Announcement.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Announcement.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Announcement;

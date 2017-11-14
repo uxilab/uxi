@@ -21,11 +21,11 @@ const File = props => (
 );
 
 File.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 File.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default File;

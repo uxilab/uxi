@@ -21,11 +21,11 @@ const Position = props => (
 );
 
 Position.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Position.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Position;

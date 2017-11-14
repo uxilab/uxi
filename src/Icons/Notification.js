@@ -21,11 +21,11 @@ const Notification = props => (
 );
 
 Notification.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Notification.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Notification;

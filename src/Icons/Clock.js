@@ -22,11 +22,11 @@ const Clock = props => (
 );
 
 Clock.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Clock.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Clock;

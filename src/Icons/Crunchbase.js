@@ -22,11 +22,11 @@ const Crunchbase = props => (
 );
 
 Crunchbase.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Crunchbase.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Crunchbase;

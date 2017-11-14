@@ -22,11 +22,11 @@ const Externallink = props => (
 );
 
 Externallink.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Externallink.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Externallink;

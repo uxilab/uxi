@@ -21,11 +21,11 @@ const Sourcebranch = props => (
 );
 
 Sourcebranch.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Sourcebranch.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Sourcebranch;

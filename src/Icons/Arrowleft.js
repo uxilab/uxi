@@ -21,11 +21,11 @@ const Arrowleft = props => (
 );
 
 Arrowleft.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Arrowleft.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Arrowleft;

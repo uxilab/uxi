@@ -24,11 +24,11 @@ const Event = props => (
 );
 
 Event.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Event.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Event;

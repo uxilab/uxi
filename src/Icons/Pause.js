@@ -22,11 +22,11 @@ const Pause = props => (
 );
 
 Pause.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Pause.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Pause;

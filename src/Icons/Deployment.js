@@ -22,11 +22,11 @@ const Deployment = props => (
 );
 
 Deployment.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Deployment.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Deployment;
