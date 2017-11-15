@@ -5,7 +5,7 @@ const ExampleSimple = () => (
   <ul>
     <li>
       <h3>Email :</h3>
-      <TextField type="email" />
+      <TextField type="email" defaultValue={'fooobar'} />
     </li>
     <li>
       <h3>Email :</h3>

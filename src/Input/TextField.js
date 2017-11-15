@@ -16,14 +16,19 @@ const styles = {
   },
 };
 
-const TextField = ({ onChange, style, type, placeholder }) => (
-  <input
-    type={type}
-    style={{ ...styles, ...style }}
-    placeholder={placeholder}
-    onChange={onChange}
-  />
-);
+const TextField = (props) => {
+  const { onChange, style, type, placeholder } = props;
+  return (
+    <input
+      {...props}
+      type={type}
+      style={{ ...styles, ...style }}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
+  );
+};
+
 
 TextField.propTypes = {
   type: PropTypes.oneOf([
