@@ -20,7 +20,7 @@ class Alert extends Component {
      * Show or Hide the
      */
     showClose: PropTypes.bool,
-    onExit: PropTypes.func,
+    onClose: PropTypes.func,
     /**
      * One of the value of danger, error, success, warning.
      */
@@ -52,9 +52,9 @@ class Alert extends Component {
    * Close the Alert message when the property showClose is set to 'true'
    */
   close() {
-    const { onExit } = this.props;
-    if (onExit) {
-      onExit();
+    const { onClose } = this.props;
+    if (onClose) {
+      onClose();
     }
     this.setState({
       isOpen: false,
@@ -62,7 +62,7 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, showClose, noIcon, className, isBanner, iconSize, onExit } = this.props;
+    const { type, showClose, noIcon, className, isBanner, iconSize, onClose } = this.props;
     const { isOpen } = this.state;
 
     const wrapperStyles = [AlertStyle.alert];
@@ -73,7 +73,7 @@ class Alert extends Component {
     let iconContent;
     let IconComp;
     const mainAlertStyle = [AlertStyle.alertContent];
-    if (showClose || isBanner || onExit) {
+    if (showClose || isBanner || onClose) {
       closeContent = (
         <button key="closeIcon" onClick={() => { this.close(); }} style={AlertStyle.closeWrapper}>
           <Close color="white" />
