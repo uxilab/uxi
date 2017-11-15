@@ -62,7 +62,16 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, showClose, noIcon, className, isBanner, iconSize, onClose } = this.props;
+    const {
+      type,
+      showClose,
+      noIcon,
+      className,
+      isBanner,
+      iconSize,
+      onClose,
+      style,
+    } = this.props;
     const { isOpen } = this.state;
 
     const wrapperStyles = [AlertStyle.alert];
@@ -110,6 +119,8 @@ class Alert extends Component {
         display: 'none',
       });
     }
+
+    wrapperStyles.push(style);
 
     return (
       <div style={wrapperStyles} className={className}>
