@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Radium from 'radium';
 
 const styles = {
   borderRadius: '3px',
-  fontSize: '16px',
-  border: 'none',
-  background: '#ececec',
+  fontSize: '14px',
+  border: '1px solid #ececec',
   padding: '8px 16px',
+  minWidth: '100%',
+  boxSizing: 'border-box',
+  ':focus': {
+    outline: 'none',
+    border: '1px solid rgb(37, 188, 188)',
+    boxShadow: '0 0 10px #719ECE',
+  },
 };
 
 const TextField = ({ onChange, style, type, placeholder }) => (
@@ -28,4 +35,4 @@ TextField.defaultProps = {
   type: 'text',
 };
 
-export default TextField;
+export default Radium(TextField);
