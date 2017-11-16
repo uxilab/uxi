@@ -7,6 +7,7 @@ class Switch extends React.PureComponent {
     const {
       onChange,
       name,
+      type,
     } = this.props;
 
     return (

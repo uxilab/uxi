@@ -32,7 +32,7 @@ const TextField = (props) => {
 
 TextField.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'email', 'password', 'search',
+    'text', 'email', 'password', 'search', 'file',
   ]),
 };
 

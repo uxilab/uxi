@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import radium from 'radium';
 // import Ripples from '../Motion/Ripples';
-import Icon from '../Icons';
+// import Icon from '../Icons';
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -16,12 +16,18 @@ class IconButton extends Component {
       children,
     } = this.props;
 
-    const Icon = getAppropriateIcon(icon);
+    let Icon;
+
+    if (typeof icon === 'string') {
+      Icon = getAppropriateIcon(icon);
+    } else {
+      Icon = icon;
+    }
 
     if (link) {
-      <a href={link}>
+      return (<a href={link}>
         <Icon {...this.props} />
-      </a>;
+      </a>);
     }
 
     return (

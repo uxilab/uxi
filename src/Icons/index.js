@@ -103,6 +103,8 @@ export Printer from './Printer';
 export Profile from './Profile';
 export Questionmark from './Questionmark';
 export Quote from './Quote';
+export Radioinput from './Radioinput';
+export Radioinputoutline from './Radioinputoutline';
 export Report from './Report';
 export Salesorder from './Salesorder';
 export Search from './Search';
