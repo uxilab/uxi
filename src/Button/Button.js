@@ -32,6 +32,7 @@ class Button extends ThemeComponent<ButtonProps> {
       text,
       type,
       click,
+      onClick,
       link,
       disabled,
       icon,
@@ -44,7 +45,7 @@ class Button extends ThemeComponent<ButtonProps> {
     let iconContentBefore;
     let iconContentAfter;
     const textOrMessage = message || text || children;
-
+    const clickHandler = click || onClick;
     const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
 
     if (Button.isValidType(type)) {
@@ -112,7 +113,7 @@ class Button extends ThemeComponent<ButtonProps> {
       buttonStyles.push(style); // final overwrite with style from this.props
 
       return (
-        <a onClick={click} style={buttonStyles} href={link}>
+        <a onClick={clickHandler} style={buttonStyles} href={link}>
           {iconContentBefore}
           <span style={ButtonStyle.text}>{textOrMessage}</span>
           {iconContentAfter}

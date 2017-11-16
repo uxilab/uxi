@@ -15,6 +15,12 @@ const ExampleSimple = () => (
     <div>
       <Button isFullWidth type="primary" text="Install" />
     </div>
+    <div>
+      <Button isFullWidth type="primary" text="Install" onClick={() => { window.alert('hi from onclick'); }} click={() => { window.alert('hi from click'); }} />
+    </div>
+    <div>
+      <Button isFullWidth type="primary" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
   </div>
 );
 
