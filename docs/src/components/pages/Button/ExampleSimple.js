@@ -29,7 +29,16 @@ const ExampleSimple = () => (
       <Button type="success" text="Install" click={() => { window.alert('hi'); }} />
     </div>
     <div>
-      <Button icon={<Merge size="14" />} type="warning" text="Install" click={() => { window.alert('hi'); }} />
+      <Button icon={<Merge />} type="warning" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
+    <div>
+      <Button icon={<Merge size="14" />} type="danger" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
+    <div>
+      <Button icon={<Merge size="18" />} type="success" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
+    <div>
+      <Button iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
     </div>
   </div>
 );
