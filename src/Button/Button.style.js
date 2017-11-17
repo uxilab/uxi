@@ -34,4 +34,5 @@ export default {
     transition: 'none',
     outline: '0 !important',
   },
+  button: { color: 'darkgrey' }
 };

@@ -23,7 +23,13 @@ type ButtonProps = ThemeComponentProps & {
 
 class Button extends ThemeComponent<ButtonProps> {
   static isValidType(type: buttonType) {
-    return type && (type === 'primary' || type === 'secondary');
+    return type && (
+      type === 'primary' ||
+      type === 'secondary' ||
+      type === 'danger' ||
+      type === 'warning' ||
+      type === 'success'
+    );
   }
 
   render() {
