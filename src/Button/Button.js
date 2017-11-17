@@ -52,8 +52,10 @@ class Button extends ThemeComponent<ButtonProps> {
     let iconContentAfter;
     const textOrMessage = message || text || children;
     const clickHandler = click || onClick;
+    const originalThemeButtonStyles = this.getStyle('button', ButtonStyle.baseButton);
     const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
-
+    console.log(buttonStyles);
+    console.log(originalThemeButtonStyles);
     if (Button.isValidType(type)) {
       buttonStyles.push(this.getSubStyle('button', type.toString()));
     }
@@ -70,22 +72,34 @@ class Button extends ThemeComponent<ButtonProps> {
 
     if (icon) {
       const isHover = radium.getState(this.state, 'button', ':hover');
-      let hoverIcon = { color: ButtonStyle.button.color };
+      let hoverIcon = { color: this.getStyle('button').color };
 
-      if (type === 'primary' || type === 'secondary') {
+      if (type === 'primary' || type === 'secondary' || type === 'danger' || type === 'warning' || type === 'success') {
         hoverIcon = { color: '#fff' };
       }
 
       if (isHover && type !== 'primary' && type !== 'secondary') {
-        hoverIcon = { color: ButtonStyle['button:hover'].color };
+        hoverIcon = { color: this.getStyle(['button:hover']).color };
       }
 
       if (isHover && type === 'primary') {
-        hoverIcon = { color: ButtonStyle['button:primary:hover'].color };
+        hoverIcon = { color: this.getStyle(['button:primary:hover']).color };
       }
 
       if (isHover && type === 'secondary') {
-        hoverIcon = { color: ButtonStyle['button:secondary:hover'].color };
+        hoverIcon = { color: this.getStyle(['button:secondary:hover']).color };
+      }
+
+      if (isHover && type === 'warning') {
+        hoverIcon = { color: this.getStyle(['button:warning:hover']).color };
+      }
+
+      if (isHover && type === 'danger') {
+        hoverIcon = { color: this.getStyle(['button:danger:hover']).color };
+      }
+
+      if (isHover && type === 'success') {
+        hoverIcon = { color: this.getStyle(['button:success:hover']).color };
       }
 
       if (iconPosition && iconPosition === 'after') {

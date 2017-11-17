@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../../../../../src/Button/Button';
+import { Merge } from '../../../../../src/Icons';
 
 const ExampleSimple = () => (
   <div>
@@ -28,7 +29,7 @@ const ExampleSimple = () => (
       <Button type="success" text="Install" click={() => { window.alert('hi'); }} />
     </div>
     <div>
-      <Button type="warning" text="Install" click={() => { window.alert('hi'); }} />
+      <Button icon={<Merge size="14" />} type="warning" text="Install" click={() => { window.alert('hi'); }} />
     </div>
   </div>
 );
