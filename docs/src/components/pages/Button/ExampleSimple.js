@@ -20,7 +20,7 @@ const ExampleSimple = () => (
       <Button isFullWidth type="primary" text="Install" onClick={() => { window.alert('hi from onclick'); }} click={() => { window.alert('hi from click'); }} />
     </div>
     <div>
-      <Button isFullWidth type="primary" text="Install" click={() => { window.alert('hi'); }} />
+      <Button icon={<Merge />} isFullWidth type="primary" text="Install" click={() => { window.alert('hi'); }} />
     </div>
     <div>
       <Button type="danger" text="Install" click={() => { window.alert('hi'); }} />
