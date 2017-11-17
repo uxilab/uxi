@@ -6,10 +6,20 @@ import FontDefinition from './FontDefinition';
 import MarketingFontDefinition from './MarketingFontDefinition';
 import ColorLightTheme from './ColorLightTheme';
 import ColorDarkTheme from './ColorDarkTheme';
+import { ErrorText } from '../../../../../src/Text';
 
 const FontPage = () => (
   <div>
     <Title text="Font" />
+    <ErrorText text="Error text" />
+    <Text>
+      Cluedin uses two types of font famillies Source Sans and Fyra Sans.
+    </Text>
+    <ErrorText inline> I'm an inline error text </ErrorText>
+    <Text>
+      Cluedin uses two types of font famillies Source Sans and Fyra Sans.
+    </Text>
+
     <Text type="paragraph">
       Cluedin uses two types of font famillies Source Sans and Fyra Sans.
     </Text>
