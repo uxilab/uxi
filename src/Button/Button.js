@@ -6,7 +6,7 @@ import ThemeComponent from '../Base/ThemeComponent';
 import ButtonStyle from './Button.style';
 import type { ThemeComponentProps } from '../Base/ThemeComponent';
 
-type buttonType = 'primary' | 'secondary';
+type buttonType = 'primary' | 'secondary' | 'danger' | 'success' | 'warning' ;
 
 type ButtonProps = ThemeComponentProps & {
   message: string,

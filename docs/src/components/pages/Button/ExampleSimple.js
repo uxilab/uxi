@@ -21,6 +21,15 @@ const ExampleSimple = () => (
     <div>
       <Button isFullWidth type="primary" text="Install" click={() => { window.alert('hi'); }} />
     </div>
+    <div>
+      <Button type="danger" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
+    <div>
+      <Button type="success" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
+    <div>
+      <Button type="warning" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
   </div>
 );
 

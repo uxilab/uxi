@@ -14,8 +14,11 @@ export const palette = {
   },
   semantic: {
     error: '#d13f48',
-    warning: 'rgba(247, 187, 62, 0.5)',
+    // this nwarn color looks way too pale -df
+    // warning: 'rgba(247, 187, 62, 0.5)',
+    warning: 'rgb(255, 152, 0)',
     info: '#3e53c1',
+    success: 'rgb(0, 150, 136)',
   },
   neutral: {
     darkest: lighten('#000000', 0.11),

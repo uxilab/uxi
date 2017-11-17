@@ -235,6 +235,7 @@ export const theme = {
     backgroundColor: palette.white,
     borderColor: palette.accent.dark,
   },
+
   'button:secondary': {
     color: palette.white,
     backgroundColor: palette.primary.main,
@@ -244,6 +245,39 @@ export const theme = {
     color: palette.primary.main,
     backgroundColor: palette.white,
     borderColor: palette.primary.dark,
+  },
+
+  'button:danger': {
+    color: palette.white,
+    backgroundColor: palette.semantic.error,
+    borderColor: palette.semantic.error,
+  },
+  'button:danger:hover': {
+    color: palette.semantic.error,
+    backgroundColor: palette.white,
+    borderColor: palette.semantic.error,
+  },
+
+  'button:warning': {
+    color: palette.white,
+    backgroundColor: palette.semantic.warning,
+    borderColor: palette.semantic.warning,
+  },
+  'button:warning:hover': {
+    color: palette.semantic.warning,
+    backgroundColor: palette.white,
+    borderColor: palette.semantic.warning,
+  },
+
+  'button:success': {
+    color: palette.white,
+    backgroundColor: palette.semantic.success,
+    borderColor: palette.semantic.success,
+  },
+  'button:success:hover': {
+    color: palette.semantic.success,
+    backgroundColor: palette.white,
+    borderColor: palette.semantic.success,
   },
   link: {
     linkOnBgDark: {
