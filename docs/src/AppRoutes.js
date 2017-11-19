@@ -13,6 +13,7 @@ import TablePage from './components/pages/Table/Page';
 import SwitchPage from './components/pages/Switch/Page';
 import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
+import ImgPage from './components/pages/Img/Page';
 
 const AppRoutes = (
   <Switch>
@@ -29,6 +30,7 @@ const AppRoutes = (
     <Route path="/switch" component={SwitchPage} />
     <Route path="/alert" component={AlertPage} />
     <Route path="/loader" component={LoaderPage} />
+    <Route path="/img" component={ImgPage} />
   </Switch>
 );
 
