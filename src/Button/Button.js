@@ -54,8 +54,6 @@ class Button extends ThemeComponent<ButtonProps> {
     const clickHandler = click || onClick;
     const originalThemeButtonStyles = this.getStyle('button', ButtonStyle.baseButton);
     const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
-    console.log(buttonStyles);
-    console.log(originalThemeButtonStyles);
     if (Button.isValidType(type)) {
       buttonStyles.push(this.getSubStyle('button', type.toString()));
     }
