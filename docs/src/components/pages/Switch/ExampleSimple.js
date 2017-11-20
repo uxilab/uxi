@@ -8,8 +8,16 @@ const ExampleSimple = () => (
       <Checkbox />
     </li>
     <li>
+      <h3>Checkbox checked :</h3>
+      <Checkbox checked />
+    </li>
+    <li>
       <h3>Checkbox disabled</h3>
       <Checkbox disabled />
+    </li>
+    <li>
+      <h3>Checkbox disabled nd checked</h3>
+      <Checkbox checked disabled />
     </li>
   </ul>
 );

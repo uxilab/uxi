@@ -71,7 +71,10 @@ class Checkbox extends React.PureComponent {
 
     const checker = this.isControlled ? this.props.checked : this.state.checked;
 
-    const iconIdentifier = checker ? 'Checkbox' : 'Checkboxoutline';
+    // eslint-disable-next-line no-nested-ternary
+    const iconIdentifier = disabled
+      ? (checker ? 'Padlock' : 'Padlock')
+      : (checker ? 'Checkbox' : 'Checkboxoutline');
 
     /* eslint-disable jsx-a11y/label-has-for */
     return (
