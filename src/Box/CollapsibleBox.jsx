@@ -106,8 +106,8 @@ class CollapsibleBox extends ThemeComponent {
     } = this.props;
 
     const expandIcon = this.state.isOpen
-      ? (<IconButton style={{ width: '14px' }} color={this.context.theme.palette.accent.main} size="S" icon="Arrowdown" />)
-      : (<IconButton style={{ width: '14px' }} color={this.context.theme.palette.accent.main} size="S" icon="Arrowup" />);
+      ? (<IconButton style={{ width: '14px' }} color={this.context.uxiTheme.palette.accent.main} size="S" icon="Arrowdown" />)
+      : (<IconButton style={{ width: '14px' }} color={this.context.uxiTheme.palette.accent.main} size="S" icon="Arrowup" />);
 
     const header = (
       <ul role="menu" style={CollapsibleBoxStyle.header} onClick={() => { this.toggle(); }}>

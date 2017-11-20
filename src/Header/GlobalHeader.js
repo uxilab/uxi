@@ -10,7 +10,7 @@ class GlobalHeader extends ThemeComponent {
   };
 
   static contextTypes = {
-    theme: PropTypes.object,
+    uxiTheme: PropTypes.object,
     isFixedWidth: PropTypes.func,
   };
 
@@ -34,10 +34,10 @@ class GlobalHeader extends ThemeComponent {
     const globalHeaderMergedStyle = this.getStyle('GlobalHeader', GlobalHeaderStyle.header);
 
     const mergedStyle = Object.assign({}, globalHeaderMergedStyle, {
-      paddingLeft: this.context.theme.padding.breathPadding,
-      paddingRight: this.context.theme.padding.breathPadding,
-      height: this.context.theme.dimensions.mainHeaderHeight,
-      ...this.context.theme.fontsAndColor.fontsAndColor,
+      paddingLeft: this.context.uxiTheme.padding.breathPadding,
+      paddingRight: this.context.uxiTheme.padding.breathPadding,
+      height: this.context.uxiTheme.dimensions.mainHeaderHeight,
+      ...this.context.uxiTheme.fontsAndColor.fontsAndColor,
     }, isDark ? GlobalHeaderStyle.dark : GlobalHeaderStyle.light);
 
     if (isContainedResult) {

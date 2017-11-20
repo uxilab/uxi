@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemProvider from 'uxi/Theme';
+import ThemeProvider from '../../src/Theme';
 import Header from 'uxi/Header';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ const AppShell = ({ children }) => {
   );
 
   return (
-    <ThemProvider>
+    <ThemeProvider>
       <div>
         <Header isDark>
           <HorizontalMenu isMain>
@@ -64,7 +64,7 @@ const AppShell = ({ children }) => {
           </Layout>
         </PageWithMenu>
       </div>
-    </ThemProvider>
+    </ThemeProvider>
   );
 };
 

@@ -14,8 +14,8 @@ class HorizontalMenu extends ThemeComponent {
         return React.cloneElement(child, {
           style: {
             display: 'inline-block',
-            height: isMain ? this.context.theme.dimensions.mainHeaderHeight : '40px',
-            lineHeight: isMain ? this.context.theme.dimensions.mainHeaderHeight : '40px',
+            height: isMain ? this.context.uxiTheme.dimensions.mainHeaderHeight : '40px',
+            lineHeight: isMain ? this.context.uxiTheme.dimensions.mainHeaderHeight : '40px',
           },
           key: `menuItem-${menuNumber}`,
         });
@@ -28,14 +28,14 @@ class HorizontalMenu extends ThemeComponent {
         <Style
           scopeSelector=".uxi-horizontal-menu"
           rules={{
-            '.uxi-menu-item a': Object.assign({}, isDark ? this.context.theme.link.linkOnBgDark : this.context.theme.link.linkOnBgLight, {
+            '.uxi-menu-item a': Object.assign({}, isDark ? this.context.uxiTheme.link.linkOnBgDark : this.context.uxiTheme.link.linkOnBgLight, {
               display: 'block',
-              paddingLeft: this.context.theme.padding.defaultPadding,
-              paddingRight: this.context.theme.padding.defaultPadding,
+              paddingLeft: this.context.uxiTheme.padding.defaultPadding,
+              paddingRight: this.context.uxiTheme.padding.defaultPadding,
               fontSize: '14px',
               transition: 'color 0.5s ease',
             }),
-            '.uxi-menu-item a:hover': isDark ? this.context.theme.link.linkOnBgDarktHover : this.context.theme.link.linkOnBgLightHover,
+            '.uxi-menu-item a:hover': isDark ? this.context.uxiTheme.link.linkOnBgDarktHover : this.context.uxiTheme.link.linkOnBgLightHover,
           }}
         />
         {menuItems}

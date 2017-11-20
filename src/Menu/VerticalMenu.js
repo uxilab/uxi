@@ -34,29 +34,29 @@ class VerticalMenu extends ThemeComponent {
               borderRight: '5px solid transparent',
             },
             '.uxi-menu-item:hover': {
-              background: lighten(this.context.theme.palette.accent.main, 0.9),
+              background: lighten(this.context.uxiTheme.palette.accent.main, 0.9),
               borderRight: '4px solid transparent',
             },
             '.uxi-menu-item a': {
-              color: this.context.theme.palette.neutral.dark,
+              color: this.context.uxiTheme.palette.neutral.dark,
               textDecoration: 'none',
               display: 'block',
             },
             '.uxi-menu-item a:hover': {
-              color: this.context.theme.palette.primary,
+              color: this.context.uxiTheme.palette.primary,
             },
             '.uxi-menu-item.uxi-active': {
-              background: lighten(this.context.theme.palette.accent.main, 0.9),
-              borderRight: `4px solid ${this.context.theme.palette.accent.main}`,
-              color: this.context.theme.palette.accent.dark,
+              background: lighten(this.context.uxiTheme.palette.accent.main, 0.9),
+              borderRight: `4px solid ${this.context.uxiTheme.palette.accent.main}`,
+              color: this.context.uxiTheme.palette.accent.dark,
             },
             '.uxi-menu-item.uxi-active:hover': {
-              background: lighten(this.context.theme.palette.accent.main, 0.7),
-              borderRight: `4px solid ${this.context.theme.palette.accent.main}`,
-              color: this.context.theme.palette.neutral.darker,
+              background: lighten(this.context.uxiTheme.palette.accent.main, 0.7),
+              borderRight: `4px solid ${this.context.uxiTheme.palette.accent.main}`,
+              color: this.context.uxiTheme.palette.neutral.darker,
             },
             '.uxi-menu-item.uxi-active a': {
-              color: this.context.theme.palette.accent.dark,
+              color: this.context.uxiTheme.palette.accent.dark,
             },
           }}
         />
