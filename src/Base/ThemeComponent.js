@@ -42,7 +42,6 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   }
 
   getStyle(name: string, stylesFromComponent: Object = {}) {
-    console.log(this.context);
     const { style } = this.props;
     const theme = this.context.uxiTheme;
     const themeForComponent = theme[name] || {};
