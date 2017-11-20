@@ -6,14 +6,17 @@ export type ThemeComponentProps = {
   style: Object;
 }
 
+// call context uxiTheme
+// check theme component to see it uses the good one this.context.uxiTheme
+
 class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
+    uxiTheme: PropTypes.object.isRequired,
     isDarkTheme: PropTypes.func,
   };
 
   getSubStylePseudoElement(name: string, subStyleName: string, pseudoElementName: string) {
-    const theme = this.context.theme;
+    const theme = this.context.uxiTheme;
     const result = {};
 
     result[`:${pseudoElementName}`] = theme[`${name}:${subStyleName}:${pseudoElementName}`] || {};
@@ -22,7 +25,7 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   }
 
   getPseudoElement(name: string, pseudoElement: string) {
-    const theme = this.context.theme;
+    const theme = this.context.uxiTheme;
     const result = {};
     const pseudoElementStyle = theme[`${name}:${pseudoElement}`] || {};
 
@@ -32,15 +35,16 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   }
 
   getSubStyle(name: string, subStyleName: string, stylesFromComponent: Object = {}) {
-    const theme = this.context.theme;
+    const theme = this.context.uxiTheme;
     const themeForComponent = theme[`${name}:${subStyleName}`] || {};
 
     return Object.assign({}, themeForComponent, stylesFromComponent);
   }
 
   getStyle(name: string, stylesFromComponent: Object = {}) {
+    console.log(this.context);
     const { style } = this.props;
-    const theme = this.context.theme;
+    const theme = this.context.uxiTheme;
     const themeForComponent = theme[name] || {};
 
     return Object.assign({}, (style || {}), themeForComponent, stylesFromComponent);

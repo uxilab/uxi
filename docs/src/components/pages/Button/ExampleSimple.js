@@ -14,6 +14,9 @@ const ExampleSimple = () => (
       <Button type="secondary" text="Test" />
     </div>
     <div>
+      <Button type="danger" text="Test" />
+    </div>
+    <div>
       <Button isFullWidth type="primary" text="Install" />
     </div>
     <div>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { theme } from '../index';
-import getTheme from './getTheme';
 import { Style, StyleRoot } from 'radium';
 import { Helmet } from 'react-helmet';
+import { theme } from '../index';
+import getTheme from './getTheme';
 
-class ThemeProvider extends Component {
+export class ThemeProvider extends Component {
   static propTypes = {
     children: PropTypes.element,
     theme: PropTypes.object,
@@ -15,13 +15,13 @@ class ThemeProvider extends Component {
   };
 
   static childContextTypes = {
-    theme: PropTypes.object.isRequired,
+    uxiTheme: PropTypes.object.isRequired,
     isFixedWidth: PropTypes.func,
   };
 
   getChildContext() {
     return {
-      theme: this.props.theme || getTheme(this.props.extendTheme),
+      uxiTheme: this.props.theme || getTheme(this.props.extendTheme),
       isFixedWidth: this.isFixedWidth.bind(this),
     };
   }
