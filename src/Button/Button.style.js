@@ -3,7 +3,10 @@ import { palette } from '../Theme';
 export default {
   baseButton: {
     outline: '0 !important',
-    display: 'inline-block',
+    // display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 0,
     textAlign: 'center',
     verticalAlign: 'middle',
@@ -34,5 +37,5 @@ export default {
     transition: 'none',
     outline: '0 !important',
   },
-  button: { color: 'darkgrey' }
+  button: { color: 'darkgrey' },
 };

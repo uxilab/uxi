@@ -104,18 +104,27 @@ class Button extends ThemeComponent<ButtonProps> {
 
       if (iconPosition && iconPosition === 'after') {
         iconContentAfter = (
-          <div style={{ position: 'absolute', right: '8px', top: '7px' }}>
-            {React.cloneElement(icon, { ...hoverIcon, size: icon.props.size || 18 })}
-          </div>
+          React.cloneElement(icon,
+            {
+              ...hoverIcon,
+              style: {
+                marginLeft: '4px',
+              },
+              size: icon.props.size || 18,
+            },
+          )
         );
-        buttonStyles.push({ paddingRight: '34px' });
       } else {
         iconContentBefore = (
-          <div style={{ position: 'absolute', left: '8px' }}>
-            {React.cloneElement(icon, { ...hoverIcon, size: icon.props.size || 18 })}
-          </div>
+          React.cloneElement(icon,
+            {
+              ...hoverIcon,
+              style: {
+                marginRight: '4px',
+              },
+              size: icon.props.size || 18,
+            })
         );
-        buttonStyles.push({ paddingLeft: '34px' });
       }
     }
 
