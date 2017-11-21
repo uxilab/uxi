@@ -14,7 +14,6 @@ import SwitchPage from './components/pages/Switch/Page';
 import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
 import ImgPage from './components/pages/Img/Page';
-import HelpersPage from './components/pages/Helpers/Page';
 
 const AppRoutes = (
   <Switch>
@@ -32,7 +31,6 @@ const AppRoutes = (
     <Route path="/alert" component={AlertPage} />
     <Route path="/loader" component={LoaderPage} />
     <Route path="/img" component={ImgPage} />
-    <Route path="/helpers" component={HelpersPage} />
   </Switch>
 );
 
