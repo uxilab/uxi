@@ -39,6 +39,10 @@ export class SvgIcon extends Component {
      * and each unit will be worth 10px.
      */
     viewBox: PropTypes.string,
+    size: PropTypes.oneOf([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   };
 
   static defaultProps = {
@@ -47,6 +51,7 @@ export class SvgIcon extends Component {
     viewBox: '0 0 24 24',
     color: '#6d6d71',
     style: {},
+    size: 24,
   };
 
   // static contextTypes = {
