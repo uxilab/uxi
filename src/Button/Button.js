@@ -140,7 +140,7 @@ class Button extends ThemeComponent<ButtonProps> {
       });
       buttonStyles.push(style); // final overwrite with style from this.props
 
-      return LinkComponent
+      return !LinkComponent
         ? (
           <a onClick={clickHandler} style={buttonStyles} href={link}>
             {iconContentBefore}
