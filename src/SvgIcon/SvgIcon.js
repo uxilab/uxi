@@ -39,7 +39,7 @@ export class SvgIcon extends Component {
      * and each unit will be worth 10px.
      */
     viewBox: PropTypes.string,
-    size: PropTypes.oneOf([
+    size: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
