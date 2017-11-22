@@ -46,7 +46,6 @@ class Button extends ThemeComponent<ButtonProps> {
       isFullWidth,
       style,
       children,
-      LinkComponent,
     } = this.props;
     const outerStyle = isFullWidth ? { width: '100%' } : {};
     let iconContentBefore;
@@ -140,21 +139,13 @@ class Button extends ThemeComponent<ButtonProps> {
       });
       buttonStyles.push(style); // final overwrite with style from this.props
 
-      return !LinkComponent
-        ? (
-          <a onClick={clickHandler} style={buttonStyles} href={link}>
-            {iconContentBefore}
-            <span style={ButtonStyle.text}>{textOrMessage}</span>
-            {iconContentAfter}
-          </a>
-        )
-        : (
-          <LinkComponent onClick={clickHandler} style={buttonStyles} to={link}>
-            {iconContentBefore}
-            <span style={ButtonStyle.text}>{textOrMessage}</span>
-            {iconContentAfter}
-          </LinkComponent >
-        );
+      return (
+        <a onClick={clickHandler} style={buttonStyles} href={link}>
+          {iconContentBefore}
+          <span style={ButtonStyle.text}>{textOrMessage}</span>
+          {iconContentAfter}
+        </a>
+      );
     }
 
     buttonStyles.push(style); // final overwrite with style from this.props
