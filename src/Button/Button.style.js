@@ -36,6 +36,7 @@ export default {
     opacity: '0.6',
     transition: 'none',
     outline: '0 !important',
+    cursor: 'not-allowed',
   },
   button: { color: 'darkgrey' },
 };

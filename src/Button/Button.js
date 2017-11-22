@@ -51,8 +51,8 @@ class Button extends ThemeComponent<ButtonProps> {
     let iconContentBefore;
     let iconContentAfter;
     const textOrMessage = message || text || children;
-    const clickHandler = click || onClick;
-    const originalThemeButtonStyles = this.getStyle('button', ButtonStyle.baseButton);
+    const clickHandler = disabled ? () => { } : (click || onClick);
+    // const originalThemeButtonStyles = this.getStyle('button', ButtonStyle.baseButton);
     const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
     if (Button.isValidType(type)) {
       buttonStyles.push(this.getSubStyle('button', type.toString()));
@@ -151,7 +151,7 @@ class Button extends ThemeComponent<ButtonProps> {
     buttonStyles.push(style); // final overwrite with style from this.props
 
     const buttonContent = (
-      <button key="button" style={buttonStyles} onClick={click}>
+      <button key="button" style={buttonStyles} onClick={clickHandler}>
         {iconContentBefore}
         <span style={ButtonStyle.text}>{textOrMessage}</span>
         {iconContentAfter}

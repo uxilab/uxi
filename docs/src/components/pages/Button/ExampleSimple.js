@@ -43,6 +43,10 @@ const ExampleSimple = () => (
     <div>
       <Button iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
     </div>
+    <div>
+      <h3>disabled</h3>
+      <Button disabled iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
   </div>
 );
 
