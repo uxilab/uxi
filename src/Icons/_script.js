@@ -136,7 +136,7 @@ const addParenthesisBack = (s) => {
   // .map(x => {
   const file = fs.readFileSync(`${s}.js`, 'utf8');
   const fileContent = file
-    .replace('=>', '=> (')
+    .replace('=>', '=>')
     .replace('</SvgIcon>;', '</SvgIcon>\n);');
 
   fs.writeFileSync(`${s}.js`, fileContent, 'utf8');
