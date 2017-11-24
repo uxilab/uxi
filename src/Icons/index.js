@@ -7,6 +7,7 @@ export Document from './Document';
 export Engagement from './Engagement';
 export Filearchive from './Filearchive';
 export File from './File';
+export Gdpr from './Gdpr';
 export Help from './Help';
 export Idbadge from './Idbadge';
 export Industry from './Industry';
