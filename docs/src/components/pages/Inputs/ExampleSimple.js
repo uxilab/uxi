@@ -20,6 +20,10 @@ const ExampleSimple = () => (
       <TextField type="email" defaultValue={'fooobar'} success />
     </li>
     <li>
+      <h3>text input with no default value and a placeholder :</h3>
+      <TextField type="email" placeholder={'placeholder'} success />
+    </li>
+    <li>
       <h3>file :</h3>
       <TextField type="file" />
     </li>
