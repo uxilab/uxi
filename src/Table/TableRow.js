@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TableRowStyle from './TableRow.style';
+import Radium from 'radium';
 
 class TableRow extends Component {
   onRowClick(event) {
@@ -43,7 +44,8 @@ class TableRow extends Component {
     let merged = TableRowStyle;
     if (readOnly) {
       merged = Object.assign({}, merged, {
-        background: '#f2f2f2',
+        background: '#f6f6f6',
+        ':hover': { background: '#f6f6f6' },
       });
     }
 
@@ -82,4 +84,4 @@ TableRow.defaultProps = {
   selected: false,
 };
 
-export default TableRow;
+export default Radium(TableRow);
