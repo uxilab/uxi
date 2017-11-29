@@ -11,6 +11,9 @@ const ExampleSimple = () => (
       <Button type="primary" text="Test" />
     </div>
     <div>
+      <Button type="primary" icon={<Merge />} text="Test" />
+    </div>
+    <div>
       <Button type="secondary" text="Test" />
     </div>
     <div>
@@ -46,6 +49,12 @@ const ExampleSimple = () => (
     <div>
       <h3>disabled</h3>
       <Button disabled iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
+    </div>
+    <div>
+      <h3>Button of type subit in a form</h3>
+      <form onSubmit={() => { window.alert('form submitted'); }}>
+        <Button icon={<Merge />} type="submit" text="submit" click={() => { window.alert('hi'); }} />
+      </form>
     </div>
   </div>
 );

@@ -28,7 +28,8 @@ class Button extends ThemeComponent<ButtonProps> {
       type === 'secondary' ||
       type === 'danger' ||
       type === 'warning' ||
-      type === 'success'
+      type === 'success' ||
+      type === 'submit'
     );
   }
 
@@ -36,7 +37,7 @@ class Button extends ThemeComponent<ButtonProps> {
     const {
       message,
       text,
-      type,
+      type: originalType,
       click,
       onClick,
       link,
@@ -47,6 +48,8 @@ class Button extends ThemeComponent<ButtonProps> {
       style,
       children,
     } = this.props;
+    const wasASubmitInitially = originalType === 'submit';
+    const type = wasASubmitInitially ? 'primary' : originalType;
     const outerStyle = isFullWidth ? { width: '100%' } : {};
     let iconContentBefore;
     let iconContentAfter;
@@ -72,15 +75,21 @@ class Button extends ThemeComponent<ButtonProps> {
       const isHover = radium.getState(this.state, 'button', ':hover');
       let hoverIcon = { color: this.getStyle('button').color };
 
-      if (type === 'primary' || type === 'secondary' || type === 'danger' || type === 'warning' || type === 'success') {
+      if (type === 'primary' ||
+          type === 'secondary' ||
+          type === 'danger' ||
+          type === 'warning' ||
+          type === 'success' ||
+          type === 'primary'
+      ) {
         hoverIcon = { color: '#fff' };
       }
 
-      if (isHover && type !== 'primary' && type !== 'secondary') {
+      if (isHover && type !== 'primary' && type !== 'secondary' && type !== 'submit') {
         hoverIcon = { color: this.getStyle(['button:hover']).color };
       }
 
-      if (isHover && type === 'primary') {
+      if (isHover && (type === 'primary' || type === 'submit')) {
         hoverIcon = { color: this.getStyle(['button:primary:hover']).color };
       }
 
@@ -150,8 +159,10 @@ class Button extends ThemeComponent<ButtonProps> {
 
     buttonStyles.push(style); // final overwrite with style from this.props
 
+    const finalButtonType = wasASubmitInitially ? { type: 'submit' } : {};
+
     const buttonContent = (
-      <button key="button" style={buttonStyles} onClick={clickHandler}>
+      <button key="button" style={buttonStyles} onClick={clickHandler} {...finalButtonType} >
         {iconContentBefore}
         <span style={ButtonStyle.text}>{textOrMessage}</span>
         {iconContentAfter}
