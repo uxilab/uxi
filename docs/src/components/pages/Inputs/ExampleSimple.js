@@ -8,6 +8,18 @@ const ExampleSimple = () => (
       <TextField type="email" defaultValue={'fooobar'} />
     </li>
     <li>
+      <h3>Email with error :</h3>
+      <TextField type="email" defaultValue={'fooobar'} error={'error message'} />
+    </li>
+    <li>
+      <h3>Email with success (and an hagning error, error wins) :</h3>
+      <TextField type="email" defaultValue={'fooobar'} error={<span>error node</span>} success />
+    </li>
+    <li>
+      <h3>Email with success and no error :</h3>
+      <TextField type="email" defaultValue={'fooobar'} success />
+    </li>
+    <li>
       <h3>file :</h3>
       <TextField type="file" />
     </li>
