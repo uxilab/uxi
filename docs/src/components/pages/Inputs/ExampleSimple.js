@@ -1,8 +1,34 @@
 import React from 'react';
-import { TextField, Radio, RadioGroup, Checkbox, FileInput } from '../../../../../src/Input';
+import { TextField, Radio, RadioGroup, Checkbox, FileInput, SelectInput } from '../../../../../src/Input';
 
 const ExampleSimple = () => (
   <ul>
+    <li>
+      <h3>Select (dropdown no values) :</h3>
+      <SelectInput onChange={(x) => { console.log(x) ;}}>
+        <div>Hi</div>
+        <strong>Hey</strong>
+        <div>
+          <img style={{ width: '30px' }} src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png" />
+          Billy the kid
+        </div>
+      </SelectInput>
+    </li>
+    <li>
+      <h3>Select (dropdown WITH values) :</h3>
+      <SelectInput onChange={(x) => { console.log(x) ;}}>
+        <div value={'item1'}>Hi</div>
+        <strong value={'item2'}>Hey</strong>
+        <div value={'item3'}>
+          <img
+            style={{ width: '30px' }}
+            src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+            alt="ersf"
+          />
+          Billy the kid
+        </div>
+      </SelectInput>
+    </li>
     <li>
       <h3>FileInput :</h3>
       <FileInput onChange={(e) => { console.log(e); }} />
