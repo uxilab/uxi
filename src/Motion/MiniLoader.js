@@ -3,8 +3,8 @@ import React from 'react';
 const MiniLoader = ({ size }) => (
   <svg
     className="lds-spinner-zefv"
-    width={size ? `${size}px` : '56px'}
-    height={size ? `${size}px` : '56px'}
+    width={size ? `${size}px` : '34px'}
+    height={size ? `${size}px` : '34px'}
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
     style={{ background: 'none' }}

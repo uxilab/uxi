@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loader, MiniLoader } from '../../../../../src/Motion';
+import { Button } from '../../../../../src/Button';
 
 const ExampleSimple = () => (
   <ul>
@@ -17,6 +18,12 @@ const ExampleSimple = () => (
     </li>
     <li>
       <MiniLoader size={140} />
+    </li>
+    <li>
+      <h3>MiniLoader with button</h3>
+    </li>
+    <li>
+      <MiniLoader /> <Button> YO </Button>
     </li>
   </ul>
 );
