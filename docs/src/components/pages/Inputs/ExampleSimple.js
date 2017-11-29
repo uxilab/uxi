@@ -1,8 +1,16 @@
 import React from 'react';
-import { TextField, Radio, RadioGroup, Checkbox } from '../../../../../src/Input';
+import { TextField, Radio, RadioGroup, Checkbox, FileInput } from '../../../../../src/Input';
 
 const ExampleSimple = () => (
   <ul>
+    <li>
+      <h3>FileInput :</h3>
+      <FileInput onChange={(e) => { console.log(e); }} />
+    </li>
+    <li>
+      <h3>FileInput with custom label :</h3>
+      <FileInput label="choose image" />
+    </li>
     <li>
       <h3>Email :</h3>
       <TextField type="email" defaultValue={'fooobar'} />

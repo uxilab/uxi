@@ -52,7 +52,7 @@ const getInputDynamicStyle = ({ error, success }) => ({
 
 
 const TextField = (props) => {
-  const { onChange, style, type, placeholder, success, error } = props;
+  const { onChange, style, type, placeholder, success, error, ...attributes } = props;
 
   const stateIcon = error // eslint-disable-line no-nested-ternary
     ? <ErrorIcon size="16" color={palette.semantic.error} />
@@ -63,7 +63,7 @@ const TextField = (props) => {
   return (
     <div style={styles.wrapper}>
       <input
-        {...props}
+        {...attributes}
         type={type}
         style={inputStyles}
         placeholder={placeholder}
