@@ -16,23 +16,27 @@ class IconButton extends Component {
       children,
     } = this.props;
 
-    let Icon;
+    let finalIcon;
 
     if (typeof icon === 'string') {
-      Icon = getAppropriateIcon(icon);
+      const Icon = getAppropriateIcon(icon);
+      finalIcon = <Icon {...this.props} />;
+    } else if (React.isValidElement(icon)) {
+      finalIcon = icon;
     } else {
-      Icon = icon;
+      const Icon = icon;
+      finalIcon = <Icon {...this.props} />;
     }
 
     if (link) {
       return (<a href={link}>
-        <Icon {...this.props} />
+        {finalIcon}
       </a>);
     }
 
     return (
       <button style={{ border: 0, padding: 0, verticalAlign: 'middle', cursor: 'pointer', background: 'transparent' }} onClick={onClick}>
-        <Icon {...this.props} />
+        {finalIcon}
         {children}
       </button>
     );

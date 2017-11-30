@@ -46,9 +46,20 @@ const ExampleSimple = () => (
       />
     </li>
     <li>
-      <h3>Drop Down:</h3>
+      <h3>Drop Down with button (not working) :</h3>
       <DropDown
         main={<Button onClick={() => window.alert('###########')} icon={<Merge />}>Trigger</Button>}
+        items={[
+          <div key="1">stuff goes here</div>,
+          <div key="2">and here</div>,
+          <div key="3">or here</div>,
+        ]}
+      />
+    </li>
+    <li>
+      <h3>{'Drop Down with button (button needs to be inert: Button({ inert: true })) :'}</h3>
+      <DropDown
+        main={<Button inert onClick={() => window.alert('###########')} icon={<Merge />}>Trigger</Button>}
         items={[
           <div key="1">stuff goes here</div>,
           <div key="2">and here</div>,

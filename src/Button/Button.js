@@ -47,6 +47,7 @@ class Button extends ThemeComponent<ButtonProps> {
       isFullWidth,
       style,
       children,
+      inert,
     } = this.props;
     const wasASubmitInitially = originalType === 'submit';
     const type = wasASubmitInitially ? 'primary' : originalType;
@@ -154,6 +155,24 @@ class Button extends ThemeComponent<ButtonProps> {
           <span style={ButtonStyle.text}>{textOrMessage}</span>
           {iconContentAfter}
         </a>
+      );
+    }
+
+    if (inert) {
+      buttonStyles.push({
+        textDecoration: 'none',
+        position: 'relative',
+        verticalAlign: 'top',
+        fontWeight: 'normal',
+      });
+      buttonStyles.push(style); // final overwrite with style from this.props
+
+      return (
+        <div style={buttonStyles}>
+          {iconContentBefore}
+          <span style={ButtonStyle.text}>{textOrMessage}</span>
+          {iconContentAfter}
+        </div>
       );
     }
 
