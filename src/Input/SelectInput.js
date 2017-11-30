@@ -54,7 +54,6 @@ class SelectInput extends PureComponent {
         onChange(nextState);
       }
     }
-    return true;
   }
 
   getTrigerrerLabel() {
@@ -138,7 +137,6 @@ class SelectInput extends PureComponent {
 
     return (
       <DropDown
-        closeOnClickOutside
         main={trigerer}
         items={optionsItems}
       />

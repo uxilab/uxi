@@ -20,13 +20,15 @@ const styles = {
     transition: 'opacity .6s ease-out',
     width: '100%',
     height: '100%',
-    margin: '0 auto',
+    margin: '0',
     opacity: 0,
   },
 };
 
 const getWrapperStyles = (props, loaded) => ({
   ...styles.wrapper,
+  ...(props.style.width ? { width: props.style.width, minWidth: props.style.width, height: props.style.width } : {}),
+  ...(props.width ? { width: props.width, minWidth: props.width, height: props.width } : {}),
   backgroundImage: `url(${props.src})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: props.contain ? 'contain' : 'cover',
@@ -56,7 +58,7 @@ class Img extends PureComponent {
     const { loaded } = this.state;
     return (
       <figure
-        style={{ ...getWrapperStyles(props, loaded), ...props.style }}
+        style={{ ...props.style, ...getWrapperStyles(props, loaded) }}
         onLoad={this.onLoadHandler.bind(this)}
       >
         <img src={props.src} alt={props.alt} style={styles.img} />

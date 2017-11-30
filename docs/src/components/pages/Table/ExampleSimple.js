@@ -11,7 +11,10 @@ import Button from '../../../../../src/Button';
 import {
   Arrowup as ArrowUp,
   Arrowdown as ArrowDown,
+  Options as OptionsIcon,
 } from '../../../../../src/Icons';
+import { AvatarWithName } from '../../../../../src/Img';
+import { DropDown } from '../../../../../src/Menu';
 
 const ExampleSimple = () => (
   <div>
@@ -38,13 +41,19 @@ const ExampleSimple = () => (
             </span>
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{ float: 'right', paddingRight: '30px' }}>
-            <div style={{ marginTop: '15px' }}>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
               <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={7} style={{ cursor: 'pointer' }} />
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
               </div>
               <div>
-                <ArrowDown size={7} style={{ cursor: 'pointer' }} />
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
               </div>
             </div>
           </TableRowColumn>
@@ -58,13 +67,19 @@ const ExampleSimple = () => (
             </span>
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{ float: 'right', paddingRight: '30px' }}>
-            <div style={{ marginTop: '15px' }}>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
               <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={7} style={{ cursor: 'pointer' }} />
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
               </div>
               <div>
-                <ArrowDown size={7} style={{ cursor: 'pointer' }} />
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
               </div>
             </div>
           </TableRowColumn>
@@ -78,13 +93,19 @@ const ExampleSimple = () => (
             </span>
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{ float: 'right', paddingRight: '30px' }}>
-            <div style={{ marginTop: '15px' }}>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
               <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={7} style={{ cursor: 'pointer' }} />
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
               </div>
               <div>
-                <ArrowDown size={7} style={{ cursor: 'pointer' }} />
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
               </div>
             </div>
           </TableRowColumn>
@@ -98,19 +119,76 @@ const ExampleSimple = () => (
           </TableRowColumn>
           <TableRowColumn>Simona Superstart</TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{ float: 'right', paddingRight: '30px' }}>
-            <div style={{ marginTop: '15px' }}>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
               <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={7} style={{ cursor: 'pointer' }} />
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
               </div>
               <div>
-                <ArrowDown size={7} style={{ cursor: 'pointer' }} />
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
               </div>
             </div>
           </TableRowColumn>
         </TableRow>
       </TableBody>
     </Table>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <br />
+    <Table multiSelectable selectable >
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>First Name</TableHeaderColumn>
+          <TableHeaderColumn>Last Name</TableHeaderColumn>
+          <TableHeaderColumn>Job Title</TableHeaderColumn>
+          <TableHeaderColumn>Email</TableHeaderColumn>
+          <TableHeaderColumn>Phone number</TableHeaderColumn>
+          <TableHeaderColumn>{/* actions menu */}</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableRowColumn>
+            <AvatarWithName
+              imgSize="42"
+              src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+              name={<a href="google.com">Billy</a>}
+            />
+          </TableRowColumn>
+          <TableRowColumn>
+            Doe
+          </TableRowColumn>
+          <TableRowColumn>
+            Boss
+          </TableRowColumn>
+          <TableRowColumn>
+            Boss@boss.com
+          </TableRowColumn>
+          <TableRowColumn>
+            555-555-555
+          </TableRowColumn>
+          <TableRowColumn>
+            <DropDown
+              main={<div><OptionsIcon size="18" /></div>}
+              items={[
+                <a key="1" href="https://google.com" >action 1</a>,
+                <a key="2" href="https://google.com" >action 2</a>,
+                <a key="3" href="https://google.com" >action 3</a>,
+              ]}
+            />
+          </TableRowColumn>
+        </TableRow>
+      </TableBody>
+    </Table>
+
   </div>
 );
 

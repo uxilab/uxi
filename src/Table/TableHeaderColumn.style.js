@@ -10,5 +10,6 @@ export default {
     textOverflow: 'ellipsis',
     color: 'rgb(158, 158, 158)',
     position: 'relative',
+    textTransform: 'uppercase',
   },
 };

@@ -23,7 +23,10 @@ const styles = {
     borderColor: 'transparent',
     borderTop: 'none',
     borderTopColor: 'transparent !important',
-    transition: 'max-height .2s ease-out',
+    transition: 'max-height .2s ease-out, opacity .2s ease-out',
+    opacity: 0,
+    display: 'flex',
+    flexDirection: 'column',
   },
 };
 
@@ -38,27 +41,66 @@ class DropDown extends PureComponent {
     super(props);
     this.state = {
       isOpen: false,
+      windowWidth: (window.innerWidth),
+      windowHeight: (window.innerHeight),
     };
     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+    this.handleWindowResize = this.handleWindowResize.bind(this);
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowResize);
+  }
 
   getDynamicItemsStyles() {
     const { isOpen, mainRef, itemsRef } = this.state;
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
-    const itemsHeight = [...itemsRef.children].reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
+    const itemsHeight = [...itemsRef.children]
+      .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
+
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
+      position: 'absolute',
       top: mainRef.getBoundingClientRect().height,
       borderColor: isOpen ? '#cecece' : 'transparent',
+      opacity: isOpen ? 1 : 0,
     };
-    return res;
+
+    const cRect = itemsRef.getBoundingClientRect();
+
+    return {
+      ...res,
+      position: isOpen ? 'fixed' : 'absolute',
+      top: isOpen ? cRect.top : res.top,
+    };
+    // return res;
   }
 
+  componentDidUnmount() {
+    window.removeEventListener('resize', this.handleWindowResize, 100);
+  }
+
+  handleWindowResize() {
+    const { isOpen } = this.state;
+    if (isOpen) {
+      this.setState({ isOpen: false });
+    }
+    // console.log('handleWindowResize');
+    // console.log(this);
+    // const {
+    //   windowWidth,
+    //   windowHeight,
+    // } = this.state;
+
+    // if (window.innerWidth !== windowWidth || window.innerHeight !== windowHeight) {
+    //   this.forceUpdate();
+    // }
+  }
   handleClickOutside() {
-    const { closeOnClickOutside } = this.props;
-    if (closeOnClickOutside) {
+    console.log('click outside');
+    const { leaveOpenOnClickOutside } = this.props;
+    if (!leaveOpenOnClickOutside) {
       this.setState({
         isOpen: false,
       });
@@ -78,6 +120,7 @@ class DropDown extends PureComponent {
   }
 
   render() {
+    console.log('render dropdown');
     const {
       props: { main, items },
     } = this;
