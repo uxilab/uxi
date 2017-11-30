@@ -1,10 +1,40 @@
 import React, { PureComponent } from 'react';
+import { DropDown } from '../Menu';
+import { Arrowdown } from '../Icons';
+import Option from './SelectInputOptions';
+import { palette } from '../Theme/palette';
+
+// TODO show default value if any
+const styles = {
+  trigerrer: {
+    minWidth: '145px',
+    maxWidth: '145px',
+    border: '1px solid #cecece',
+    padding: '4px 8px',
+    // display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  trigerrerIcon: {
+    // marginLeft: 'auto',
+    position: 'absolute',
+    right: '0',
+    top: '0',
+    bottom: '0',
+    display: 'flex',
+    /* justify-content: 'center', */
+    alignItems: 'center',
+    padding: '0 8px',
+    background: palette.accent.main,
+  },
+};
 
 class SelectInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       options: [],
+      optionsNode: [],
       // TODO: handle multi select
       selectedIndex: null,
     };
@@ -15,10 +45,8 @@ class SelectInput extends PureComponent {
     this.storeOptions(children);
   }
 
-  // cheating here to get the updated state
-  // doing one thing at a time
-  // first change the selectedIndex, then call onChange on the next render
-  shouldComponentUpdate(nextProps, nextState) {
+
+  componentWillUpdate(nextProps, nextState) {
     const { selectedIndex } = this.state;
     const { onChange } = this.props;
     if (selectedIndex !== nextState.selectedIndex) {
@@ -29,19 +57,54 @@ class SelectInput extends PureComponent {
     return true;
   }
 
+  getTrigerrerLabel() {
+    const {
+      state: {
+        selectedIndex,
+        optionsNode,
+      },
+    } = this;
+
+    if (selectedIndex && optionsNode[selectedIndex]) {
+      return (
+        <span style={styles.trigerrer}>
+          {optionsNode[selectedIndex]}
+          <span style={styles.trigerrerIcon}>
+            <Arrowdown size="14" color="white" />
+          </span>
+        </span>
+      );
+    }
+    return (
+      <span style={styles.trigerrer}>
+        Pick something
+        <span style={styles.trigerrerIcon}>
+          <Arrowdown size="14" color="white" />
+        </span>
+      </span>
+    );
+  }
+
   storeOptions(children) {
     const options = [];
+    const optionsNode = [];
     React.Children.forEach(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
       options[i] = value; // garanties ordering
+      optionsNode[i] = React.cloneElement(child, {
+        style: {
+          display: 'inline-block',
+          ...child.props.style,
+        },
+      }); // garanties ordering
     });
     this.setState({
       options,
+      optionsNode,
     });
   }
 
   clickHandler(e) {
-    console.log(e.currentTarget);
     const selectedIndex = e.currentTarget.dataset.index;
     this.setState({
       selectedIndex,
@@ -52,24 +115,33 @@ class SelectInput extends PureComponent {
     const {
       props: {
         children,
-        onChange,
+        // onChange,
       },
     } = this;
 
+    const optionsItems = React.Children.map(children, (child, i) => {
+      const value = child.props.value ? child.props.value : i;
+      return (
+        <Option>
+          {React.cloneElement(child, {
+            value,
+            'data-index': i,
+            onClick: e => this.clickHandler(e),
+          })
+          }
+        </Option>
+      );
+    });
+
+    const trigerer = this.getTrigerrerLabel();
+
 
     return (
-      <div>
-        {
-          React.Children.map(children, (child, i) => {
-            const value = child.props.value ? child.props.value : i;
-            return React.cloneElement(child, {
-              value,
-              'data-index': i,
-              onClick: e => this.clickHandler(e),
-            });
-          })
-        }
-      </div>
+      <DropDown
+        closeOnClickOutside
+        main={trigerer}
+        items={optionsItems}
+      />
     );
   }
 }

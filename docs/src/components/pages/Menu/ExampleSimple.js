@@ -34,8 +34,9 @@ const ExampleSimple = () => (
         </li>
     */}
     <li>
-      <h3>Drop Down:</h3>
+      <h3>Drop Down: (closeOnClickOutside = true)</h3>
       <DropDown
+        closeOnClickOutside
         main={<span>Trigger</span>}
         items={[
           <div key="1">stuff goes here</div>,
