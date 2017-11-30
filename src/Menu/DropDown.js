@@ -58,7 +58,6 @@ class DropDown extends PureComponent {
 
   handleClickOutside() {
     const { closeOnClickOutside } = this.props;
-    console.log('click outside');
     if (closeOnClickOutside) {
       this.setState({
         isOpen: false,
