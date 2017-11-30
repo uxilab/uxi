@@ -23,10 +23,10 @@ const DateTimeInput = (props) => {
 
   return (
     <input
-      style={{ ...styles, ...('style' in props ? props.style : {}) }}
       type={inputType || 'date'}
       {...props}
       defaultValue={intialDateValue}
+      style={{ ...styles, ...('style' in props ? props.style : {}) }}
     />
   );
 };
