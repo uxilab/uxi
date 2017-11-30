@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 const pad = v => (v < 10 ? `0${v}` : v);
 
+const styles = {
+  width: '100%',
+  boxSizing: 'border-box',
+  padding: '10px 5px',
+};
 const DateTimeInput = (props) => {
   let intialDateValue = null;
   const { inputType } = props;
@@ -17,7 +22,12 @@ const DateTimeInput = (props) => {
   }
 
   return (
-    <input type={inputType || 'date'} {...props} defaultValue={intialDateValue} />
+    <input
+      style={{ ...styles, ...('style' in props ? props.style : {}) }}
+      type={inputType || 'date'}
+      {...props}
+      defaultValue={intialDateValue}
+    />
   );
 };
 
