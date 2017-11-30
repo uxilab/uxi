@@ -17,7 +17,7 @@ const DateTimeInput = (props) => {
   }
 
   return (
-    <input type={inputType || 'datetime'} {...props} defaultValue={intialDateValue} />
+    <input type={inputType || 'date'} {...props} defaultValue={intialDateValue} />
   );
 };
 
