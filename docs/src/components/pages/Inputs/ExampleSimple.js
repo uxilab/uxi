@@ -1,15 +1,41 @@
 import React from 'react';
-import { TextField, Radio, RadioGroup, Checkbox, FileInput, SelectInput } from '../../../../../src/Input';
+import {
+  TextField,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  FileInput,
+  SelectInput,
+  DateInput,
+  TimeInput,
+} from '../../../../../src/Input';
+import Img from '../../../../../src/Img';
 
 const ExampleSimple = () => (
   <ul>
+    <li>
+      <h3>DateInput (defaultValue type Date) :</h3>
+      <DateInput defaultValue={Date.now() - 10e9} />
+    </li>
+    <li>
+      <h3>DateInput (defaultValue type string) :</h3>
+      <DateInput defaultValue={`${new Date().toISOString()}`} />
+    </li>
+    <li>
+      <h3>DateInput (no default) :</h3>
+      <DateInput />
+    </li>
+    <li>
+      <h3>TimeInput (defaultValue type Date) :</h3>
+      <TimeInput defaultValue={Date.now() - 10e9} />
+    </li>
     <li>
       <h3>Select (dropdown no values) :</h3>
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
         <div>Hi</div>
         <div>Hey</div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
+          <Img
             style={{ width: '30px' }}
             src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
             alt="ersf"

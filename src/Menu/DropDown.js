@@ -60,7 +60,6 @@ class DropDown extends PureComponent {
   }
 
   getDynamicItemsStyles() {
-    console.log('getDynamicItemsStyles');
     const { isOpen, mainRef, itemsRef } = this.state;
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
@@ -68,11 +67,6 @@ class DropDown extends PureComponent {
       .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
 
     const cRectMain = mainRef.getBoundingClientRect();
-
-    // const cRectMain = ReactDOM // eslint-disable-line react/no-find-dom-node
-    //   .findDOMNode(mainRef)
-    //   .getBoundingClientRect(); // outputs <h3> coordinates
-    console.log('cRectMain', cRectMain);
 
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
@@ -88,7 +82,6 @@ class DropDown extends PureComponent {
     itemsRef.setAttribute('style', `${initialStyle}; top: ${cRectMain.height}; position: absolute`);
     itemsRef.setAttribute('style', `${initialStyle}; top: ${cRectMain.bottom}; position: fixed`);
 
-    console.log('supposed top value =', isOpen ? cRectMain.bottom : cRectMain.height);
     return {
       ...res,
       position: isOpen ? 'fixed' : 'absolute',
@@ -105,7 +98,6 @@ class DropDown extends PureComponent {
   }
   handleClickOutside() {
     const { isOpen } = this.state;
-    console.log('click outside');
     if (isOpen) {
       const { leaveOpenOnClickOutside } = this.props;
       if (!leaveOpenOnClickOutside) {
@@ -136,24 +128,13 @@ class DropDown extends PureComponent {
   }
 
   render() {
-    console.log('render dropdown');
     const {
       props: { main, items, style },
     } = this;
 
     const dropDownMain = React.cloneElement(main,
       {
-        ref: (ref) => {
-          console.log('ref', ref);
-          // handle case where we d'ont have a direct dom elemnt
-          // like a raidum decorated compo
-          // if (ref && ref.props) {
-          //   const elementRef = ref.props.children;
-          //   console.log('elementRef', elementRef);
-          //   return this.storeMainRef(elementRef);
-          // }
-          return this.storeMainRef(ref);
-        },
+        ref: ref => this.storeMainRef(ref),
       });
 
     return (
