@@ -5,6 +5,7 @@ import { Style, StyleRoot } from 'radium';
 import { Helmet } from 'react-helmet';
 import { theme } from '../index';
 import getTheme from './getTheme';
+import { getThemeWithCustomPalette } from '../index';
 
 export class ThemeProvider extends Component {
   static propTypes = {
@@ -12,6 +13,7 @@ export class ThemeProvider extends Component {
     theme: PropTypes.object,
     extendTheme: PropTypes.object,
     isContained: PropTypes.bool,
+    palette: PropTypes.object,
   };
 
   static childContextTypes = {
@@ -20,8 +22,12 @@ export class ThemeProvider extends Component {
   };
 
   getChildContext() {
+    const theTheme = this.props.palette
+      ? getThemeWithCustomPalette(this.props.palette)
+      : this.props.theme || getTheme(this.props.extendTheme);
+
     return {
-      uxiTheme: this.props.theme || getTheme(this.props.extendTheme),
+      uxiTheme: theTheme,
       isFixedWidth: this.isFixedWidth.bind(this),
     };
   }
@@ -35,6 +41,10 @@ export class ThemeProvider extends Component {
   render() {
     const { children } = this.props;
 
+    const theTheme = this.props.palette
+      ? getThemeWithCustomPalette(this.props.palette)
+      : this.props.theme || getTheme(this.props.extendTheme);
+
 
     return (
       <StyleRoot>
@@ -44,11 +54,11 @@ export class ThemeProvider extends Component {
             <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700" rel="stylesheet" />
           </Helmet>
           <Style
-            rules={theme.wrapper}
+            rules={theTheme.wrapper}
           />
           <Style
             scopeSelector=".uxi-root"
-            rules={Object.assign({}, theme.root, theme.fixedWidth)}
+            rules={Object.assign({}, theTheme.root, theTheme.fixedWidth)}
           />
           {children}
         </div>
