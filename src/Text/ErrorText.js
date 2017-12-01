@@ -1,8 +1,6 @@
 import React from 'react';
 import { palette } from '../Theme/palette';
 
-console.log(palette);
-
 const styles = {
   color: palette.semantic.error,
 };
