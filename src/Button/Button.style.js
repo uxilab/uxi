@@ -32,6 +32,7 @@ export default {
   text: {
     textTransform: 'uppercase',
     letterSpacing: '0.0075em',
+    display: 'flex',
   },
   disabled: {
     opacity: '0.6',
