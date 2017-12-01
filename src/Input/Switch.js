@@ -22,4 +22,6 @@ class Switch extends React.PureComponent {
   }
 }
 
+Switch.displayName = 'Switch';
+
 export default Switch;

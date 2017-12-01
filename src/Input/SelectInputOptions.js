@@ -16,4 +16,6 @@ const Options = ({ children }) => (
   </div>
 );
 
+Options.displayName = 'Options';
+
 export default Radium(Options);

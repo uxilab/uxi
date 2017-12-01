@@ -95,4 +95,6 @@ TextField.defaultProps = {
   type: 'text',
 };
 
+TextField.displayName = 'TextField';
+
 export default Radium(TextField);

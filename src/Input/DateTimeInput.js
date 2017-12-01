@@ -42,5 +42,6 @@ DateTimeInput.defaultProps = {
   defaultValue: null,
 };
 
+DateTimeInput.displayName = 'DateTimeInput';
 
 export default DateTimeInput;
