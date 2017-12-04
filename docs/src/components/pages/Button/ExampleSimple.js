@@ -1,9 +1,12 @@
 import React from 'react';
-import Button from '../../../../../src/Button/Button';
+import { Button, FlatButton } from '../../../../../src/Button';
 import { Merge } from '../../../../../src/Icons';
 
 const ExampleSimple = () => (
   <div>
+    <div>
+      <FlatButton text="Test" />
+    </div>
     <div>
       <Button text="Test" />
     </div>
