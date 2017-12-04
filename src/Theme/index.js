@@ -301,17 +301,24 @@ export const theme = {
 
 // eslint-disable-next-line no-shadow
 function mergeCustomPalette(mainPalette, customPalette) {
+  let primary = mainPalette.primary.main;
+  let secondary = mainPalette.accent.main;
+
+  if (!customPalette) { return mainPalette; }
+  if (customPalette.primary) { primary = customPalette.primary; }
+  if (customPalette.secondary) { secondary = customPalette.secondary; }
+
   const palette = { // eslint-disable-line no-shadow
     ...mainPalette,
     primary: {
-      main: customPalette.primary,
-      light: lighten(customPalette.primary),
-      dark: darken(customPalette.primary),
+      main: primary,
+      light: lighten(primary),
+      dark: darken(primary),
     },
     accent: {
-      main: customPalette.secondary,
-      light: lighten(customPalette.secondary),
-      dark: darken(customPalette.secondary),
+      main: secondary,
+      light: lighten(secondary),
+      dark: darken(secondary),
     },
   };
   return palette;

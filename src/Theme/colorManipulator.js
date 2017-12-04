@@ -84,6 +84,7 @@ export function convertHexToRGB(color) {
  * @returns {{type: string, values: number[]}} A MUI color object
  */
 export function decomposeColor(color) {
+  console.log(color);
   if (color.charAt(0) === '#') {
     return decomposeColor(convertHexToRGB(color));
   }
@@ -134,6 +135,7 @@ export function getLuminance(color) {
   } else if (color.type.indexOf('hsl') > -1) {
     return color.values[2] / 100;
   }
+  return color;
 }
 
 /**
@@ -178,6 +180,7 @@ export function fade(color, value) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
+  console.log(color);
   color = decomposeColor(color);
   coefficient = clamp(coefficient, 0, 1);
 
@@ -199,6 +202,7 @@ export function darken(color, coefficient) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color, coefficient) {
+  console.log(color);
   color = decomposeColor(color);
   coefficient = clamp(coefficient, 0, 1);
 

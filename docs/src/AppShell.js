@@ -37,7 +37,7 @@ const AppShell = ({ children }) => {
   );
 
   return (
-    <ThemeProvider palette={{ primary: '#663399', secondary: '#7fff00' }}>
+    <ThemeProvider palette={{ /* primary: '#663399', secondary: '#7fff00' */ }}>
       <div>
         <Header isDark>
           <HorizontalMenu isMain>
