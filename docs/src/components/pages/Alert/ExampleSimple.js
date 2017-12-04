@@ -3,6 +3,18 @@ import Alert from '../../../../../src/Alert';
 
 const ExampleSimple = () => (
   <div>
+    <Alert type="danger" noIcon style={{ width: '150px' }}>
+      This is an danger Alert without icon and close btn!
+      It has a fixed width of 150px
+      Daaaanger zone....
+    </Alert>
+    <br />
+    <Alert type="danger" noIcon style={{ maxWidth: '150px' }}>
+      This is an danger Alert without icon and close btn!
+      It has a fixed width (max-width) of 150px
+      Daaaanger zone....
+    </Alert>
+    <br />
     <Alert type="danger" noIcon >
       This is an danger Alert without icon and close btn! Daaaanger zone....
     </Alert>

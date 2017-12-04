@@ -36,20 +36,12 @@ export default {
   icon: {
     margin: '8px 8px 8px 16px',
     minWidth: '24px',
-
-    // fontSize: '24px',
-    // color: '#fff',
-    // position: 'absolute',
-    // left: '15px',
-    // top: '13px',
-    // width: '20px',
-    // textAlign: 'center',
   },
   alertContent: {
     display: 'inline-block',
     boxSizing: 'border-box',
     padding: '15px',
-    // width: '100%',
+    width: '100%',
   },
   closeWrapper: {
     position: 'absolute',
