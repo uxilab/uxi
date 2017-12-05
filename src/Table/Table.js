@@ -50,7 +50,9 @@ class Table extends Component {
     return React.cloneElement(
       base,
       {
-        enableSelectAll: /* base.props.enableSelectAll && */ this.props.selectable && this.props.multiSelectable,
+        // enableSelectAll: /* base.props.enableSelectAll && */ this.props.selectable && this.props.multiSelectable,
+        selectable: this.props.selectable,
+        multiSelectable: this.props.multiSelectable,
         onSelectAll: this.onSelectAll.bind(this),
         selectAllSelected: this.state.allRowsSelected,
       },

@@ -140,7 +140,7 @@ class TableHeader extends Component {
   }
 
   createBaseHeaderRow() {
-    const { enableSelectAll } = this.props;
+    const { multiSelectable, selectable } = this.props;
     const numChildren = React.Children.count(this.props.children);
     const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     const props = {
@@ -149,8 +149,12 @@ class TableHeader extends Component {
     };
 
     const children = [];
-    if (enableSelectAll) {
-      children.push(this.getSelectAllCheckboxColumn(props));
+    if (selectable) {
+      if (multiSelectable) {
+        children.push(this.getSelectAllCheckboxColumn(props));
+      } else {
+        children.push(<span />);
+      }
     }
 
     React.Children.forEach(child.props.children, (child) => {
