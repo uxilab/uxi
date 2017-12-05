@@ -136,6 +136,32 @@ const ExampleSimple = () => (
             </div>
           </TableRowColumn>
         </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>
+            <span>/EmailThread</span>
+            <br />
+            <span>/Email</span>
+          </TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
+              <div style={{ marginBottom: '5px' }}>
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
+              </div>
+              <div>
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
+              </div>
+            </div>
+          </TableRowColumn>
+        </TableRow>
       </TableBody>
     </Table>
     <br />
