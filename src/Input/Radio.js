@@ -67,6 +67,7 @@ class Radio extends React.PureComponent {
       name,
       disabled,
       value,
+      label,
       // ...restOfProps
     } = this.props;
 
@@ -89,7 +90,7 @@ class Radio extends React.PureComponent {
             onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
           />
         </IconButton>
-        <label htmlFor={name} style={styles.label} />
+        <label htmlFor={name} style={styles.label} >{label}</label>
       </div>
     );
   }

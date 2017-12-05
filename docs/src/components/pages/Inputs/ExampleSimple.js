@@ -102,8 +102,8 @@ const ExampleSimple = () => (
     <li>
       <h3>RadioGroup :</h3>
       <RadioGroup name="zevzeg" value="val A" onChange={() => { window.alert('radio changed'); }}>
-        <Radio value="val A" />
-        <Radio value="val B" />
+        <Radio value="val A" label="First Value Label" />
+        <Radio value="val B" label="Second Value Label" />
       </RadioGroup>
     </li>
   </ul>
