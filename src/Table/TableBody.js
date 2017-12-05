@@ -189,7 +189,7 @@ class TableBody extends Component {
   }
 
   createRows() {
-    const { selectable, multiSelectable } = this.props;
+    const { selectable } = this.props;
     const numChildren = React.Children.count(this.props.children);
     let rowNumber = 0;
 
@@ -211,7 +211,7 @@ class TableBody extends Component {
         }
 
         const children = [];
-        if (selectable && multiSelectable) {
+        if (selectable) {
           children.push(this.createRowCheckboxColumn(props));
         }
 

@@ -224,7 +224,7 @@ const ExampleSimple = () => (
     <hr />
     <br />
     <br />
-    <h3>TAble without select</h3>
+    <h3>TAble without select and without multiselect</h3>
     <Table>
       <TableHeader>
         <TableRow>
@@ -275,7 +275,62 @@ const ExampleSimple = () => (
         </TableRow>
       </TableBody>
     </Table>
-
+    <br />
+    <br />
+    <hr />
+    <br />
+    <br />
+    <h3>TAble without multiselectable but WITH selectable</h3>
+    <Table selectable>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>First Name</TableHeaderColumn>
+          <TableHeaderColumn>Last Name</TableHeaderColumn>
+          <TableHeaderColumn>Job Title</TableHeaderColumn>
+          <TableHeaderColumn>Email</TableHeaderColumn>
+          <TableHeaderColumn>Phone number</TableHeaderColumn>
+          <TableHeaderColumn>Actions</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableRowColumn>
+            <AvatarWithName
+              imgSize="42"
+              src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+              name={<a href="google.com">Billy</a>}
+            />
+          </TableRowColumn>
+          <TableRowColumn>
+            Doe
+          </TableRowColumn>
+          <TableRowColumn>
+            Boss
+          </TableRowColumn>
+          <TableRowColumn>
+            Boss@boss.com
+          </TableRowColumn>
+          <TableRowColumn>
+            555-555-555
+          </TableRowColumn>
+          <TableRowColumn>
+            <DropDown
+              style={{
+                // float: 'right',
+                // display: 'flex',
+                // alignItems: 'center',
+              }}
+              main={<Button inert><OptionsIcon size="18" /></Button>}
+              items={[
+                <a key="1" href="https://google.com" >action 1</a>,
+                <a key="2" href="https://google.com" >action 2</a>,
+                <a key="3" href="https://google.com" >action 3</a>,
+              ]}
+            />
+          </TableRowColumn>
+        </TableRow>
+      </TableBody>
+    </Table>
   </div>
 );
 
