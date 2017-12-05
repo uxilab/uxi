@@ -198,7 +198,8 @@ const ExampleSimple = () => (
     <hr />
     <br />
     <br />
-    <Table multiSelectable selectable >
+    <h3>TAble without select</h3>
+    <Table>
       <TableHeader>
         <TableRow>
           <TableHeaderColumn>First Name</TableHeaderColumn>
@@ -206,7 +207,7 @@ const ExampleSimple = () => (
           <TableHeaderColumn>Job Title</TableHeaderColumn>
           <TableHeaderColumn>Email</TableHeaderColumn>
           <TableHeaderColumn>Phone number</TableHeaderColumn>
-          <TableHeaderColumn>{/* actions menu */}</TableHeaderColumn>
+          <TableHeaderColumn>Actions</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>
