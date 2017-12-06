@@ -13,13 +13,14 @@ class MenuItem extends ThemeComponent {
     const className = isActive ? 'uxi-menu-item uxi-active' : 'uxi-menu-item';
 
     return (
-      <li
+      <div
+        role="listitem"
         className={className}
         style={mainItemMergedStyle}
         onClick={onClick}
       >
         {children}
-      </li>
+      </div>
     );
   }
 }

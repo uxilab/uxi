@@ -3,9 +3,12 @@ import HorizontalMenu from '../../../../../src/Menu/HorizontalMenu';
 import VerticalMenu from '../../../../../src/Menu/VerticalMenu';
 import {
   DropDown,
+  DropDownMenu,
+  Separator,
 } from '../../../../../src/Menu';
 import { Button } from '../../../../../src/Button';
 import { Merge, Arrowdown } from '../../../../../src/Icons';
+import MenuItem from 'uxi/Menu/MenuItem';
 
 const ExampleSimple = () => (
   <ul>
@@ -34,7 +37,63 @@ const ExampleSimple = () => (
         </li>
     */}
     <li>
-      <h3>Drop Down: (leaveOpenOnClickOutside = true)</h3>
+      <h3>{'<DropDownMenu>'}</h3>
+      <DropDownMenu button={<div>{'I\'m the button'} </div>} >
+        <MenuItem>
+          <a href="#">other children</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="#">are just items</a>
+        </MenuItem>
+        <Separator label="I'm a separator" />
+        <MenuItem>
+          <div>not a link</div>
+        </MenuItem>
+        <MenuItem>
+          <div>not a link</div>
+        </MenuItem>
+      </DropDownMenu>
+    </li>
+    <li>
+      <h3>{'<DropDownMenu>'}</h3>
+      <DropDownMenu
+        button={<div style={{ border: '1px solid black', padding: '4px' }}><div>{'I\'m the button'} </div> </div>}
+      >
+        <Separator label="NO COLOR" />
+        <MenuItem>
+          <a href="#">other children</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="#">are just items</a>
+        </MenuItem>
+
+        <Separator label="BLUE" />
+        <MenuItem>
+          <a href="#">someOtherChildren</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="#">another one</a>
+        </MenuItem>
+
+        <Separator label="RED" />
+        <MenuItem>
+          <a href="#">someOtherChildren</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="#">another one</a>
+        </MenuItem>
+
+        <Separator />
+        <MenuItem>
+          <a href="#">someOtherChildren</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="#">another one</a>
+        </MenuItem>
+      </DropDownMenu>
+    </li>
+    <li>
+      <h3>{'<DropDown />:'} (leaveOpenOnClickOutside = true)</h3>
       <DropDown
         leaveOpenOnClickOutside
         main={<span>Trigger</span>}

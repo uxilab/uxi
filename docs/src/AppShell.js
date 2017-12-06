@@ -1,5 +1,6 @@
 import React from 'react';
-import ThemeProvider from '../../src/Theme';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
+import ThemeProvider, { getThemeWithCustomPalette } from '../../src/Theme';
 import Header from 'uxi/Header';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
@@ -37,35 +38,37 @@ const AppShell = ({ children }) => {
   );
 
   return (
-    <ThemeProvider palette={{ /* primary: '#663399', secondary: '#7fff00' */ }}>
-      <div>
-        <Header isDark>
-          <HorizontalMenu isMain>
-            <MenuItem>
-              <Link to="/">Home</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to="/">Components</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to="/">Contact</Link>
-            </MenuItem>
-          </HorizontalMenu>
-        </Header>
-        <PageWithMenu
-          style={{ marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }}
-          menu={mainMenu}
-        >
-          <Layout>
-            <Row>
-              <Col>
-                {children}
-              </Col>
-            </Row>
-          </Layout>
-        </PageWithMenu>
-      </div>
-    </ThemeProvider>
+    <SCThemeProvider theme={getThemeWithCustomPalette()} >
+      <ThemeProvider palette={{ /* primary: '#663399', secondary: '#7fff00' */ }}>
+        <div>
+          <Header isDark>
+            <HorizontalMenu isMain>
+              <MenuItem>
+                <Link to="/">Home</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/">Components</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/">Contact</Link>
+              </MenuItem>
+            </HorizontalMenu>
+          </Header>
+          <PageWithMenu
+            style={{ marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }}
+            menu={mainMenu}
+          >
+            <Layout>
+              <Row>
+                <Col>
+                  {children}
+                </Col>
+              </Row>
+            </Layout>
+          </PageWithMenu>
+        </div>
+      </ThemeProvider>
+    </SCThemeProvider>
   );
 };
 

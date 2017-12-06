@@ -129,13 +129,22 @@ class DropDown extends PureComponent {
 
   render() {
     const {
-      props: { main, items, style },
+      props: { main, items: itemsBefore, style },
     } = this;
 
     const dropDownMain = React.cloneElement(main,
       {
         ref: ref => this.storeMainRef(ref),
       });
+
+    const items = React.Children.map(itemsBefore, child => React.cloneElement(child, {
+      style: {
+        ...child.props.style,
+        ':hover': {
+          backgroundColor: '#bebebe',
+        },
+      },
+    }));
 
     return (
       <span style={{ ...styles.wrapper, ...style }}>
