@@ -52,14 +52,14 @@ class Radio extends React.PureComponent {
     };
   }
 
-  handleChange(e) {
-    const checked = e.target.checked;
+  handleChange(event) {
+    const checked = event.target.checked;
     if (!this.isControlled) {
       this.setState({ checked: !this.state.checked });
     }
 
     const { onChange } = this.props;
-    if (onChange) { onChange(e, checked); }
+    if (onChange) { onChange({ checked }, event); }
   }
 
   render() {

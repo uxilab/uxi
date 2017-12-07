@@ -14,13 +14,26 @@ import Img from '../../../../../src/Img';
 
 const ExampleSimple = () => (
   <ul>
+
     <li>
-      <h3>Switch</h3>
-      <Switch name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
+      <h3>Uncontrolled Switch (labelBefore = true)</h3>
+      <Switch labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
     </li>
     <li>
-      <h3>Switch (labelBefore = true)</h3>
-      <Switch labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
+      <h3>Uncontrolled Switch (labelBefore = true, defaultChecked = true)</h3>
+      <Switch defaultChecked labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
+    </li>
+    <li>
+      <h3>Uncontrolled Switch (no default)</h3>
+      <Switch name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
+    </li>
+    <li>
+      <h3>Controlled Switch (checked = true)</h3>
+      <Switch checked name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
+    </li>
+    <li>
+      <h3>Controlled Switch (checked = false)</h3>
+      <Switch checked={false} name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
     </li>
     <li>
       <h3>DateInput (defaultValue type Date) :</h3>
@@ -101,8 +114,20 @@ const ExampleSimple = () => (
       <TextField type="file" />
     </li>
     <li>
-      <h3>Checkbox :</h3>
+      <h3>Uncontrolled Checkbox</h3>
       <Checkbox />
+    </li>
+    <li>
+      <h3>Uncontrolled Checkbox (defaultChecked: true):</h3>
+      <Checkbox onChange={(e, checked) => console.log(e, checked)} defaultChecked />
+    </li>
+    <li>
+      <h3>Controlled Checkbox (checked: true):</h3>
+      <Checkbox onChange={(e, checked) => console.log(e, checked)} checked />
+    </li>
+    <li>
+      <h3>Controlled Checkbox (checked: false):</h3>
+      <Checkbox onChange={(e, checked) => console.log(e, checked)} checked={false} />
     </li>
     <li>
       <h3>Radio :</h3>

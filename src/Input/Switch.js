@@ -52,32 +52,45 @@ class Switch extends PureComponent {
     this.state = {
       checked: false,
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick() {
-    const { checked } = this.state;
-    const newState = (!checked);
-    this.setState({
-      checked: newState,
-    });
-    if (this.props.onChange) {
-      this.props.onChange({ checked: newState });
+  componentWillMount() {
+    this.isControlled = this.props.checked !== undefined;
+    if (!this.isControlled) {
+      // not controlled, use internal state
+      this.setState({
+        checked: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
+      });
     }
   }
 
-  render() {
+  handleChange(event) {
     const { checked } = this.state;
-    const { label, name, id, labelBefore } = this.props;
+    const { onChange } = this.props;
+    const newState = (!checked);
+    if (!this.isControlled) {
+      this.setState({
+        checked: newState,
+      });
+    }
+    if (onChange) { onChange({ checked: newState }, event); }
+  }
+
+  render() {
+    const { label, name, id, labelBefore, checked } = this.props;
+
+    const checker = this.isControlled ? checked : this.state.checked;
+
     return (
       <div style={styles.outterWrapper} >
         <LabelWrapper
           labelBefore={labelBefore}
           htmlFor={name || 'myAwesomeCheckBox'}
-          onClick={this.handleClick}
+          onClick={this.handleChange}
         >
-          <SwitchOutterWrapper checked={checked}>
-            <SwitchInnerWrapper checked={checked} />
+          <SwitchOutterWrapper checked={checker}>
+            <SwitchInnerWrapper checked={checker} />
           </SwitchOutterWrapper>
           <div style={styles.label}>
             {label}
