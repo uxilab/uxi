@@ -9,9 +9,9 @@ const styles = {
   },
 };
 
-const AvatarWithName = ({ src, name, imgSize }) => (
+const AvatarWithName = ({ src, name, imgSize, isSquare }) => (
   <div style={styles.wrapper}>
-    <Img width="48px" style={{ borderRadius: '50%' }} src={src} />
+    <Img width="48px" style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
     <div>
       {name}
     </div>
