@@ -8,3 +8,4 @@ export { default as SelectInput } from './SelectInput';
 export { default as DateInput } from './DateInput';
 export { default as TimeInput } from './TimeInput';
 export { default as Switch } from './Switch';
+export { default as TextFieldWithIcon } from './TextFieldWithIcon';

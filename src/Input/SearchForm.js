@@ -10,38 +10,28 @@ const TextFieldWithIconUI = styled.div`
   align-items: center;
 `;
 
-class TextFieldWithIcon extends Component {
+class SearchForm extends Component {
   constructor(props) {
     super(props);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
     const { value, defaultValue } = this.props;
-    const valueToInitStoreWith = value || defaultValue || '';
+    const valueToInitStoreWith = value || defaultValue || '';// || value === '' ? value : '';
     this.setState({ value: valueToInitStoreWith });
   }
 
-  handleChange(event) {
-    const { value } = event.target;
-    const { onChange } = this.props;
-
-    this.setState({ value });
-
-    if (onChange) { onChange(event); }
-  }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target);
-    const value = event.target.querySelector('input').value;
     console.log('handleSubmit');
-    const { onClick, onSubmit, onEnter } = this.props;
-    // const { value } = this.state;
+    const { onClick, onSubmit } = this.props;
+    const { value } = this.state;
     if (onClick) { onClick(value); }
     if (onSubmit) { onSubmit(value); }
-    if (onEnter) { onEnter(value); }
   }
 
   render() {
@@ -73,6 +63,6 @@ class TextFieldWithIcon extends Component {
   }
 }
 
-TextFieldWithIcon.displayName = 'TextFieldWithIcon';
+SearchForm.displayName = 'SearchForm';
 
-export default TextFieldWithIcon;
+export default SearchForm;

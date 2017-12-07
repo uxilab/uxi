@@ -14,6 +14,7 @@ class IconButton extends Component {
       disabled,
       icon,
       children,
+      style,
     } = this.props;
 
     let finalIcon;
@@ -29,13 +30,13 @@ class IconButton extends Component {
     }
 
     if (link) {
-      return (<a href={link}>
+      return (<a href={link} style={style}>
         {finalIcon}
       </a>);
     }
 
     return (
-      <button style={{ border: 0, padding: 0, verticalAlign: 'middle', cursor: 'pointer', background: 'transparent' }} onClick={onClick}>
+      <button style={{ border: 0, padding: 0, verticalAlign: 'middle', cursor: 'pointer', background: 'transparent', ...style }} onClick={onClick}>
         {finalIcon}
         {children}
       </button>

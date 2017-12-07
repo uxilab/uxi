@@ -7,15 +7,27 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  nameWrapper: {
+    marginLeft: '6px'
+  }
 };
 
-const AvatarWithName = ({ src, name, imgSize, isSquare }) => (
-  <div style={styles.wrapper}>
-    <Img width="48px" style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
-    <div>
-      {name}
+const AvatarWithName = ({ src, icon, name, imgSize, isSquare }) => {
+
+  const imgContent = src
+    ? <Img width={imgSize || "34px"} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
+    : React.cloneElement(icon, {
+      size: imgSize || "34px",
+    });
+
+  return (
+    <div style={styles.wrapper}>
+      { imgContent }
+      <div style={styles.nameWrapper}>
+        {name}
+      </div>
     </div>
-  </div>
-);
+  )
+}
 
 export default AvatarWithName;

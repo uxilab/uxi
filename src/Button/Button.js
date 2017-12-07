@@ -158,6 +158,7 @@ class Button extends ThemeComponent<ButtonProps> {
       );
     }
 
+    // this allow things like a button being use as a dropDown(Menu) trigger
     if (inert) {
       buttonStyles.push({
         textDecoration: 'none',

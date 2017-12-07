@@ -9,11 +9,45 @@ import {
   DateInput,
   TimeInput,
   Switch,
+  InputGroup,
+  TextFieldWithIcon,
 } from '../../../../../src/Input';
 import Img from '../../../../../src/Img';
+import { Merge } from 'uxi/Icons';
+import { IconButton, Button } from 'uxi/Button';
 
 const ExampleSimple = () => (
   <ul>
+
+    <li>
+      <h3>Uncontrolled InputGroup</h3>
+      <TextFieldWithIcon
+        icon={<Merge />}
+        onChange={x => console.log(x)}
+        placeholder="placeholder"
+        onClick={x => console.log(x)}
+      />
+    </li>
+
+    <li>
+      <h3>Uncontrolled InputGroup (defaultValue: foobar)</h3>
+      <TextFieldWithIcon
+        defaultValue="foobar"
+        icon={<Merge />}
+        onChange={x => console.log(x)}
+        onClick={x => console.log(x)}
+      />
+    </li>
+
+    <li>
+      <h3>Controlled InputGroup (value: foobar)</h3>
+      <TextFieldWithIcon
+        value="foobar"
+        icon={<Merge />}
+        onChange={x => console.log(x)}
+        onClick={x => console.log(x)}
+      />
+    </li>
 
     <li>
       <h3>Uncontrolled Switch (labelBefore = true)</h3>
@@ -90,8 +124,8 @@ const ExampleSimple = () => (
       <FileInput label="choose image" />
     </li>
     <li>
-      <h3>Email :</h3>
-      <TextField type="email" defaultValue={'fooobar'} />
+      <h3>Email : (controlled value : bar)</h3>
+      <TextField type="email" value={'bar'} />
     </li>
     <li>
       <h3>Email with error :</h3>

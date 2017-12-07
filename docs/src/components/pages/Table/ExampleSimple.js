@@ -15,6 +15,7 @@ import {
 } from '../../../../../src/Icons';
 import { AvatarWithName } from '../../../../../src/Img';
 import { DropDown } from '../../../../../src/Menu';
+import { User } from 'uxi/Icons'
 
 const ExampleSimple = () => (
   <div>
@@ -293,6 +294,44 @@ const ExampleSimple = () => (
         </TableRow>
       </TableHeader>
       <TableBody>
+        <TableRow>
+          <TableRowColumn>
+            <AvatarWithName
+              imgSize="42"
+              // src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+              icon={<User />}
+              name={<a href="google.com">Billy</a>}
+            />
+          </TableRowColumn>
+          <TableRowColumn>
+            Doe
+          </TableRowColumn>
+          <TableRowColumn>
+            Boss
+          </TableRowColumn>
+          <TableRowColumn>
+            Boss@boss.com
+          </TableRowColumn>
+          <TableRowColumn>
+            555-555-555
+          </TableRowColumn>
+          <TableRowColumn>
+            <DropDown
+              style={{
+                // float: 'right',
+                // display: 'flex',
+                // alignItems: 'center',
+              }}
+              main={<Button inert><OptionsIcon size="18" /></Button>}
+              items={[
+                <a key="1" href="https://google.com" >action 1</a>,
+                <a key="2" href="https://google.com" >action 2</a>,
+                <a key="3" href="https://google.com" >action 3</a>,
+              ]}
+            />
+          </TableRowColumn>
+        </TableRow>
+
         <TableRow>
           <TableRowColumn>
             <AvatarWithName
