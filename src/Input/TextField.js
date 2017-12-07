@@ -16,7 +16,7 @@ const styles = {
   input: {
     borderRadius: '3px',
     fontSize: '14px',
-    border: '1px solid #ececec',
+    border: '1px solid #dcdcdc',
     padding: '8px 28px 8px 8px',
     minWidth: '100%',
     boxSizing: 'border-box',
@@ -41,7 +41,7 @@ const styles = {
 const getInputDynamicStyle = ({ error, success }) => ({
   border: (error
     ? `1px solid ${semantic.error}`
-    : (success ? `1px solid ${semantic.success}` : '1px solid #ececec')
+    : (success ? `1px solid ${semantic.success}` : '1px solid #dcdcdc')
   ),
   ':focus': {
     outline: 'none',

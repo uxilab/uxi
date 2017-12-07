@@ -10,6 +10,10 @@ const TextFieldWithIconUI = styled.div`
   align-items: center;
 `;
 
+const FormUI = styled.form`
+  display: flex,
+`;
+
 class TextFieldWithIcon extends Component {
   constructor(props) {
     super(props);
@@ -34,11 +38,8 @@ class TextFieldWithIcon extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target);
     const value = event.target.querySelector('input').value;
-    console.log('handleSubmit');
     const { onClick, onSubmit, onEnter } = this.props;
-    // const { value } = this.state;
     if (onClick) { onClick(value); }
     if (onSubmit) { onSubmit(value); }
     if (onEnter) { onEnter(value); }
@@ -47,28 +48,25 @@ class TextFieldWithIcon extends Component {
   render() {
     const {
       icon,
-      // onClick,
       onChange,
-      // value,
       ...otherProps
     } = this.props;
 
     const inputProps = {
       ...otherProps,
-      // ...{ onChange: this.handleChange },
     };
 
     return (
-      <InputGroup>
-        <form onSubmit={this.handleSubmit}>
+      <FormUI onSubmit={this.handleSubmit}>
+        <InputGroup>
           <TextField {...inputProps} />
           <Button
             type="primary"
-            style={{ height: '100%' }}
+            style={{ minHeight: '100%' }}
             icon={icon}
           />
-        </form>
-      </InputGroup>
+        </InputGroup>
+      </FormUI>
     );
   }
 }

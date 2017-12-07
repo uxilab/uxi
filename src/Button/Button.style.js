@@ -23,7 +23,7 @@ export default {
     padding: '6px 12px',
     fontSize: '14px',
     lineHeight: '1.42857143',
-    borderRadius: '2px',
+    borderRadius: '3px',
     userSelect: 'none',
     transition: 'all 0.5s ease-in',
     textTransform: 'uppercase',

@@ -6,7 +6,10 @@ const pad = v => (v < 10 ? `0${v}` : v);
 const styles = {
   width: '100%',
   boxSizing: 'border-box',
-  padding: '10px 5px',
+  padding: '8px',
+  borderRadius: '3px',
+  border: '1px solid #dcdcdc',
+
 };
 const DateTimeInput = (props) => {
   let intialDateValue = null;
