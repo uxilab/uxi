@@ -3,6 +3,8 @@ import { lighten } from './colorManipulator';
 export const palette = {
   purewhite: '#FFFFFF',
   white: '#F3F3F2',
+  lightGray: '#d4d4d4',
+  darkGrey: '#222222',
   primary: {
     light: '#30556b',
     main: '#1b3c4f',

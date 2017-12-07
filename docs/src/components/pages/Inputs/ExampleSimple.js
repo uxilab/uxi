@@ -8,11 +8,20 @@ import {
   SelectInput,
   DateInput,
   TimeInput,
+  Switch,
 } from '../../../../../src/Input';
 import Img from '../../../../../src/Img';
 
 const ExampleSimple = () => (
   <ul>
+    <li>
+      <h3>Switch</h3>
+      <Switch name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
+    </li>
+    <li>
+      <h3>Switch (labelBefore = true)</h3>
+      <Switch labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
+    </li>
     <li>
       <h3>DateInput (defaultValue type Date) :</h3>
       <DateInput defaultValue={Date.now() - 10e9} />
