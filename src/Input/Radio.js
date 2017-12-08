@@ -65,6 +65,7 @@ class Radio extends React.PureComponent {
   render() {
     const {
       name,
+      id,
       disabled,
       value,
       label,
@@ -80,7 +81,7 @@ class Radio extends React.PureComponent {
       <div style={this.getWrapperStyles()}>
         <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px' }}>
           <input
-            id={name}
+            id={id}
             style={styles.input}
             checked={checker}
             name={name}
