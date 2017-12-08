@@ -48,6 +48,7 @@ class Button extends ThemeComponent<ButtonProps> {
       style,
       children,
       inert,
+      ...attributes
     } = this.props;
     const wasASubmitInitially = originalType === 'submit';
     const type = wasASubmitInitially ? 'primary' : originalType;
@@ -150,7 +151,7 @@ class Button extends ThemeComponent<ButtonProps> {
       buttonStyles.push(style); // final overwrite with style from this.props
 
       return (
-        <a onClick={clickHandler} style={buttonStyles} href={link}>
+        <a onClick={clickHandler} style={buttonStyles} href={link} {...attributes} >
           {iconContentBefore}
           <span style={ButtonStyle.text}>{textOrMessage}</span>
           {iconContentAfter}
@@ -169,7 +170,7 @@ class Button extends ThemeComponent<ButtonProps> {
       buttonStyles.push(style); // final overwrite with style from this.props
 
       return (
-        <div style={buttonStyles}>
+        <div style={buttonStyles} {...attributes}>
           {iconContentBefore}
           <span style={ButtonStyle.text}>{textOrMessage}</span>
           {iconContentAfter}
@@ -182,7 +183,7 @@ class Button extends ThemeComponent<ButtonProps> {
     const finalButtonType = wasASubmitInitially ? { type: 'submit' } : {};
 
     const buttonContent = (
-      <button key="button" style={buttonStyles} onClick={clickHandler} {...finalButtonType} >
+      <button key="button" style={buttonStyles} onClick={clickHandler} {...finalButtonType} {...attributes} >
         {iconContentBefore}
         <span style={ButtonStyle.text}>{textOrMessage}</span>
         {iconContentAfter}
