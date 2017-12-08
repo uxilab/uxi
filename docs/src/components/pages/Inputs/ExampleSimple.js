@@ -18,7 +18,17 @@ import { IconButton, Button } from 'uxi/Button';
 
 const ExampleSimple = () => (
   <ul>
-
+    <li>
+      <h3>Radio :</h3>
+      <Radio />
+    </li>
+    <li>
+      <h3>RadioGroup :</h3>
+      <RadioGroup name="zevzeg" value="val A" onChange={() => { window.alert('radio changed'); }}>
+        <Radio value="val A" label="First Value Label" />
+        <Radio value="val B" label="Second Value Label" />
+      </RadioGroup>
+    </li>
     <li>
       <h3>Uncontrolled InputGroup</h3>
       <TextFieldWithIcon
@@ -163,17 +173,7 @@ const ExampleSimple = () => (
       <h3>Controlled Checkbox (checked: false):</h3>
       <Checkbox onChange={(e, checked) => console.log(e, checked)} checked={false} />
     </li>
-    <li>
-      <h3>Radio :</h3>
-      <Radio />
-    </li>
-    <li>
-      <h3>RadioGroup :</h3>
-      <RadioGroup name="zevzeg" value="val A" onChange={() => { window.alert('radio changed'); }}>
-        <Radio value="val A" label="First Value Label" />
-        <Radio value="val B" label="Second Value Label" />
-      </RadioGroup>
-    </li>
+
   </ul>
 );
 
