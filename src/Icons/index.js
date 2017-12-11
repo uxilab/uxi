@@ -1,6 +1,8 @@
 
 export Archive from './Archive';
 export Barchart from './Barchart';
+export Circledintegration from './Circledintegration';
+export Circleduser from './Circleduser';
 export Country from './Country';
 export Directory from './Directory';
 export Document from './Document';

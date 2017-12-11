@@ -11,18 +11,15 @@ const styles = {
     maxWidth: '145px',
     border: '1px solid #cecece',
     padding: '4px 8px',
-    // display: 'inline-block',
     display: 'flex',
     alignItems: 'center',
   },
   trigerrerIcon: {
-    // marginLeft: 'auto',
     position: 'absolute',
     right: '0',
     top: '0',
     bottom: '0',
     display: 'flex',
-    /* justify-content: 'center', */
     alignItems: 'center',
     padding: '0 8px',
     background: palette.accent.main,
@@ -51,7 +48,13 @@ class SelectInput extends PureComponent {
     const { onChange } = this.props;
     if (selectedIndex !== nextState.selectedIndex) {
       if (onChange) {
-        onChange(nextState);
+        const { options } = this.state;
+        const value = options[nextState.selectedIndex];
+        const fakeEvent = {
+          target: { value },
+          currentTarget: { value },
+        };
+        onChange(fakeEvent, value);
       }
     }
   }

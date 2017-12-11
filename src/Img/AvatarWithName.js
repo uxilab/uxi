@@ -1,4 +1,8 @@
 import React from 'react';
+// eslint-disable-next-line import/no-named-as-default
+import getAppropriateIcon from '../Icons/getAppropriateIcon';
+
+
 import Img from './Img';
 
 const styles = {
@@ -8,17 +12,18 @@ const styles = {
     justifyContent: 'flex-start',
   },
   nameWrapper: {
-    marginLeft: '6px'
-  }
+    marginLeft: '6px',
+  },
 };
 
 const AvatarWithName = ({ src, icon, name, imgSize, isSquare }) => {
-
+  // eslint-disable-next-line no-nested-ternary
   const imgContent = src
-    ? <Img width={imgSize || "34px"} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
-    : React.cloneElement(icon, {
-      size: imgSize || "34px",
-    });
+    ? <Img width={imgSize || '34px'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
+    : (icon
+      ? React.cloneElement(icon, { size: imgSize || '34px' })
+      : React.createElement(getAppropriateIcon('Circle'), { size: imgSize || '34px' })
+    );
 
   return (
     <div style={styles.wrapper}>
@@ -27,7 +32,9 @@ const AvatarWithName = ({ src, icon, name, imgSize, isSquare }) => {
         {name}
       </div>
     </div>
-  )
-}
+  );
+};
+
+AvatarWithName.displayName = 'AvatarWithName';
 
 export default AvatarWithName;

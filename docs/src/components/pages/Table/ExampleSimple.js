@@ -15,7 +15,7 @@ import {
 } from '../../../../../src/Icons';
 import { AvatarWithName } from '../../../../../src/Img';
 import { DropDown } from '../../../../../src/Menu';
-import { User } from 'uxi/Icons'
+import { User } from 'uxi/Icons';
 
 const ExampleSimple = () => (
   <div>
@@ -186,7 +186,7 @@ const ExampleSimple = () => (
           <TableRowColumn>
             <AvatarWithName
               imgSize="42"
-              src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+              src=""
               name={<a href="google.com">Billy</a>}
             />
           </TableRowColumn>
