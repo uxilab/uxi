@@ -14,7 +14,7 @@ const FormUI = styled.form`
   display: flex,
 `;
 
-class TextFieldWithIcon extends Component {
+class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,16 +33,22 @@ class TextFieldWithIcon extends Component {
 
     this.setState({ value });
 
-    if (onChange) { onChange(event); }
+    if (onChange) { onChange(event, value); }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const value = event.target.querySelector('input').value;
     const { onClick, onSubmit, onEnter } = this.props;
-    if (onClick) { onClick(value); }
-    if (onSubmit) { onSubmit(value); }
-    if (onEnter) { onEnter(value); }
+
+    const fakeEvent = {
+      target: { value },
+      currentTarget: { value },
+    };
+
+    if (onClick) { onClick(fakeEvent, value); }
+    if (onSubmit) { onSubmit(fakeEvent, value); }
+    if (onEnter) { onEnter(fakeEvent, value); }
   }
 
   render() {
@@ -54,6 +60,7 @@ class TextFieldWithIcon extends Component {
 
     const inputProps = {
       ...otherProps,
+      onChange: this.handleChange,
     };
 
     return (
@@ -71,6 +78,6 @@ class TextFieldWithIcon extends Component {
   }
 }
 
-TextFieldWithIcon.displayName = 'TextFieldWithIcon';
+SearchForm.displayName = 'SearchForm';
 
-export default TextFieldWithIcon;
+export default SearchForm;

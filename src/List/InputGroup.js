@@ -10,8 +10,6 @@ const styles = {
 /**
  * TODO: what happens when the context/parentDomBox does not provide enough width to render all inline ? -df
  */
-let count = 0;
-const getKey = () => count++;
 
 const InputGroup = ({ children }) => (
   <div style={styles}>
@@ -25,7 +23,7 @@ const InputGroup = ({ children }) => (
 
         return React.cloneElement(child, {
           style: { ...child.props.style, borderRadius: rules },
-          key: getKey(),
+          key: i,
         });
       })
     }

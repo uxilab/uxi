@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import {
@@ -50,39 +50,79 @@ const getInputDynamicStyle = ({ error, success }) => ({
   },
 });
 
+// eslint-disable-next-line react/prefer-stateless-function
+class TextField extends Component {
+  // TODO handle generating uid that doesn't force rerebder
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-const TextField = (props) => {
-  const { onChange, style, type, placeholder, success, error, ...attributes } = props;
+  componentWillMount() {
+    this.isControlled = this.props.value !== undefined;
+    if (!this.isControlled) {
+      // not controlled, use internal state
+      this.setState({
+        value: this.props.defaultValue !== undefined ? this.props.defaultValue : '',
+      });
+    }
+  }
 
-  const stateIcon = error // eslint-disable-line no-nested-ternary
-    ? <ErrorIcon size="16" color={palette.semantic.error} />
-    : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
+  handleChange(event) {
+    const { value } = event.target;
+    if (!this.isControlled) {
+      this.setState({ value });
+    }
 
-  const inputStyles = { ...styles.input, ...getInputDynamicStyle(props), ...style };
+    const { onChange } = this.props;
+    if (onChange) { onChange(event, value); }
+  }
 
-  return (
-    <div style={styles.wrapper}>
-      <input
-        {...attributes}
-        type={type}
-        style={inputStyles}
-        placeholder={placeholder}
-        onChange={onChange}
-      />
+  render() {
+    const {
+      onChange,
+      style,
+      type,
+      placeholder,
+      success,
+      error,
+      defaultValue,
+      ...attributes
+    } = this.props;
 
-      {/* Error Message/node */}
-      <div style={styles.errorWrapper}>
-        {error}
+    const stateIcon = error // eslint-disable-line no-nested-ternary
+      ? <ErrorIcon size="16" color={palette.semantic.error} />
+      : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
+
+    const inputStyles = { ...styles.input, ...getInputDynamicStyle(this.props), ...style };
+    const inputAttributes = {
+      ...attributes,
+      value: this.isControlled ? this.props.value : this.state.value,
+    };
+    return (
+      <div style={styles.wrapper}>
+        <input
+          {...inputAttributes}
+          type={type}
+          style={inputStyles}
+          placeholder={placeholder}
+          onChange={this.handleChange}
+        />
+
+        {/* Error Message/node */}
+        <div style={styles.errorWrapper}>
+          {error}
+        </div>
+
+
+        {/* state icon (succes/error/none) */}
+        <div style={styles.stateIconWrapper}>
+          {stateIcon}
+        </div>
       </div>
-
-
-      {/* state icon (succes/error/none) */}
-      <div style={styles.stateIconWrapper}>
-        {stateIcon}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 
 TextField.propTypes = {

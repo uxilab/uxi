@@ -10,7 +10,7 @@ import {
   TimeInput,
   Switch,
   InputGroup,
-  TextFieldWithIcon,
+  SearchForm,
 } from '../../../../../src/Input';
 import Img from '../../../../../src/Img';
 import { Merge } from 'uxi/Icons';
@@ -31,17 +31,17 @@ const ExampleSimple = () => (
     </li>
     <li>
       <h3>Uncontrolled InputGroup</h3>
-      <TextFieldWithIcon
+      <SearchForm
         icon={<Merge />}
-        onChange={x => console.log(x)}
+        onChange={(x, y) => console.log(x, y)}
         placeholder="placeholder"
-        onClick={x => console.log(x)}
+        onClick={(x, y) => console.log(x, y)}
       />
     </li>
 
     <li>
       <h3>Uncontrolled InputGroup (defaultValue: foobar)</h3>
-      <TextFieldWithIcon
+      <SearchForm
         defaultValue="foobar"
         icon={<Merge />}
         onChange={x => console.log(x)}
@@ -51,7 +51,7 @@ const ExampleSimple = () => (
 
     <li>
       <h3>Controlled InputGroup (value: foobar)</h3>
-      <TextFieldWithIcon
+      <SearchForm
         value="foobar"
         icon={<Merge />}
         onChange={x => console.log(x)}
@@ -132,6 +132,10 @@ const ExampleSimple = () => (
     <li>
       <h3>FileInput with custom label :</h3>
       <FileInput label="choose image" />
+    </li>
+    <li>
+      <h3>controlled text field : (controlled value : bar)</h3>
+      <TextField type="text" value={'bar'} />
     </li>
     <li>
       <h3>Email : (controlled value : bar)</h3>
