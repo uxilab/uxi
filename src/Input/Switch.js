@@ -19,7 +19,7 @@ const SwitchOutterWrapper = styled.div`
   position: relative;
   margin: 0 6px 0 0;
   background: #cecece;
-  background: ${({ theme, checked }) => (!checked ? theme.palette.lightGray : theme.palette.accent.main)};
+  background: ${({ theme, checked }) => (!checked ? theme.palette.grey : theme.palette.accent.main)};
 `;
 
 const SwitchInnerWrapper = styled.div`

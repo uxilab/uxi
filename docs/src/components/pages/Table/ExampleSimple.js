@@ -27,7 +27,6 @@ const ExampleSimple = () => (
           <TableHeaderColumn>Chosen Entities</TableHeaderColumn>
           <TableHeaderColumn>Added By</TableHeaderColumn>
           <TableHeaderColumn>Is only For Admin</TableHeaderColumn>
-          <TableHeaderColumn />
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,22 +39,6 @@ const ExampleSimple = () => (
             </span>
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{
-            float: 'right',
-            paddingRight: '30px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          >
-            <div>
-              <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
-              </div>
-              <div>
-                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
-              </div>
-            </div>
-          </TableRowColumn>
         </TableRow>
         <TableRow readOnly>
           <TableRowColumn>Company</TableRowColumn>
@@ -66,22 +49,6 @@ const ExampleSimple = () => (
             </span>
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{
-            float: 'right',
-            paddingRight: '30px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          >
-            <div>
-              <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
-              </div>
-              <div>
-                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
-              </div>
-            </div>
-          </TableRowColumn>
         </TableRow>
         <TableRow readOnly>
           <TableRowColumn>Person</TableRowColumn>
@@ -92,22 +59,6 @@ const ExampleSimple = () => (
             </span>
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{
-            float: 'right',
-            paddingRight: '30px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          >
-            <div>
-              <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
-              </div>
-              <div>
-                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
-              </div>
-            </div>
-          </TableRowColumn>
         </TableRow>
         <TableRow>
           <TableRowColumn>Email Thread</TableRowColumn>
@@ -118,22 +69,6 @@ const ExampleSimple = () => (
           </TableRowColumn>
           <TableRowColumn>Simona Superstart</TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{
-            float: 'right',
-            paddingRight: '30px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          >
-            <div>
-              <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
-              </div>
-              <div>
-                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
-              </div>
-            </div>
-          </TableRowColumn>
         </TableRow>
         <TableRow>
           <TableRowColumn>Email Thread</TableRowColumn>
@@ -144,22 +79,54 @@ const ExampleSimple = () => (
           </TableRowColumn>
           <TableRowColumn>Simona Superstart</TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
-          <TableRowColumn style={{
-            float: 'right',
-            paddingRight: '30px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-          >
-            <div>
-              <div style={{ marginBottom: '5px' }}>
-                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
-              </div>
-              <div>
-                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
-              </div>
-            </div>
+        </TableRow>
+      </TableBody>
+    </Table>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <br />
+    <h3>Condensed table</h3>
+    <Table condensed>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>Name</TableHeaderColumn>
+          <TableHeaderColumn>Added By</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow readOnlyText="System Filter Cannot Be Modified" readOnly>
+          <TableRowColumn>All</TableRowColumn>
+          <TableRowColumn>
+            <span style={{ color: 'rgb(158, 158, 158)' }}>
+              System
+            </span>
           </TableRowColumn>
+        </TableRow>
+        <TableRow readOnly>
+          <TableRowColumn>Company</TableRowColumn>
+          <TableRowColumn>
+            <span style={{ color: 'rgb(158, 158, 158)' }}>
+              System
+            </span>
+          </TableRowColumn>
+        </TableRow>
+        <TableRow readOnly>
+          <TableRowColumn>Person</TableRowColumn>
+          <TableRowColumn>
+            <span style={{ color: 'rgb(158, 158, 158)' }}>
+              System
+            </span>
+          </TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
         </TableRow>
       </TableBody>
     </Table>

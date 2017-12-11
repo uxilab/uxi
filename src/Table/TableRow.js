@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import TableRowStyle from './TableRow.style';
 import Radium from 'radium';
+
+const Tr = styled.tr`
+  border-bottom: 1px solid rgb(224, 224, 224);
+  color: rgba(0, 0, 0, 0.870588);
+  height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
+  background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#fff')};
+  &:hover {
+    background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#f2f2f2')};
+  }
+`;
 
 
 class TableRow extends Component {
@@ -27,13 +38,14 @@ class TableRow extends Component {
       selectable, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       style,
-      readOnly,
-      readOnlyText,
+      // readOnly,
+      // readOnlyText,
       ...other
     } = this.props;
 
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
+        console.log('child.props.condensed', child.props.condensed);
         return React.cloneElement(child, {
           columnNumber,
           key: `${this.props.rowNumber}-${columnNumber}`,
@@ -42,21 +54,12 @@ class TableRow extends Component {
       }
     });
 
-    let merged = TableRowStyle;
-    if (readOnly) {
-      merged = Object.assign({}, merged, {
-        background: '#f6f6f6',
-        ':hover': { background: '#f6f6f6' },
-      });
-    }
-
     return (
-      <tr
-        style={merged}
+      <Tr
         {...other}
       >
         {rowColumns}
-      </tr>
+      </Tr>
     );
   }
 }

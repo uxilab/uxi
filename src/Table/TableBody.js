@@ -71,12 +71,18 @@ class TableBody extends Component {
       return null;
     }
 
+    const { condensed } = rowProps;
     const key = `${rowProps.rowNumber}-cb`;
     let content;
     let disabled = !this.props.selectable;
     if (rowProps.readOnly) {
       disabled = true;
-      const icon = (<Lock style={{ color: 'rgb(158, 158, 158)', fill: 'rgb(158, 158, 158)' }} />);
+
+      const icon = (<Lock
+        style={{ color: 'rgb(158, 158, 158)', fill: 'rgb(158, 158, 158)' }}
+        size={condensed ? 14 : 24}
+      />);
+
       if (rowProps.readOnlyText) {
         content = (
           <Tooltip placement="bottom" overlay={rowProps.readOnlyText} >
@@ -89,7 +95,7 @@ class TableBody extends Component {
     } else {
       content = (
         <Checkbox
-          ref="rowSelectCB"
+          // ref="rowSelectCB" // ref have to be fn
           name={key}
           value="selected"
           disabled={disabled}
@@ -108,6 +114,7 @@ class TableBody extends Component {
         key={key}
         columnNumber={0}
         style={checkBoxStyle}
+        condensed={condensed}
       >
         {content}
       </TableRowColumn>
@@ -189,7 +196,7 @@ class TableBody extends Component {
   }
 
   createRows() {
-    const { selectable } = this.props;
+    const { selectable, condensed } = this.props;
     const numChildren = React.Children.count(this.props.children);
     let rowNumber = 0;
 
@@ -200,6 +207,7 @@ class TableBody extends Component {
         };
 
         const props = Object.assign({}, {
+          condensed,
           readOnly: child.props.readOnly,
           readOnlyText: child.props.readOnlyText,
           selected: child.props.readOnly ? false : this.isRowSelected(rowNumber),
@@ -216,7 +224,11 @@ class TableBody extends Component {
         }
 
         React.Children.forEach(child.props.children, (aChild) => {
-          children.push(aChild);
+          const augmentedChildren = React.cloneElement(aChild, {
+            ...aChild.props,
+            condensed,
+          });
+          children.push(augmentedChildren);
         });
 
         return React.cloneElement(child, { ...props, ...handlers }, children);

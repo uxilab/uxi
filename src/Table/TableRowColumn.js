@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const TableRowColumnStyle = {
-  paddingLeft: '24px',
-  paddingRight: '4px',
-  height: '48px',
-  textAlign: 'left',
-  fontSize: '13px',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  backgroundColor: 'inherit',
-};
+const Td = styled.td`
+  padding-left: 24px;
+  padding-right: 4px;
+  height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
+  text-align: left;
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: inherit;
+`;
 
 class TableRowColumn extends Component {
   static propTypes = {
@@ -57,17 +58,14 @@ class TableRowColumn extends Component {
       onClick: this.onClick,
     };
 
-    const mergedStyle = Object.assign({}, TableRowColumnStyle, style);
-
     return (
-      <td
+      <Td
         className={className}
-        style={mergedStyle}
         {...other}
         {...handlers}
       >
         {children}
-      </td>
+      </Td>
     );
   }
 }

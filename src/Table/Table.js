@@ -41,6 +41,7 @@ class Table extends Component {
         multiSelectable: this.props.multiSelectable,
         onRowSelection: this.onRowSelection,
         selectable: this.props.selectable,
+        condensed: this.props.condensed,
         style: Object.assign({ height: this.props.height }, (base.props.style || {})),
       },
     );
@@ -55,6 +56,7 @@ class Table extends Component {
         multiSelectable: this.props.multiSelectable,
         onSelectAll: this.onSelectAll.bind(this),
         selectAllSelected: this.state.allRowsSelected,
+        condensed: this.props.condensed,
       },
     );
   }
