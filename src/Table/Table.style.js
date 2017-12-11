@@ -8,5 +8,6 @@ export default {
     borderCollapse: 'collapse',
     borderSpacing: '0px',
     tableLayout: 'fixed',
+    border: 'none',
   },
 };

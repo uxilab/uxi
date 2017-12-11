@@ -42,6 +42,7 @@ class Table extends Component {
         onRowSelection: this.onRowSelection,
         selectable: this.props.selectable,
         condensed: this.props.condensed,
+        noBorder: this.props.noBorder,
         style: Object.assign({ height: this.props.height }, (base.props.style || {})),
       },
     );
@@ -57,6 +58,7 @@ class Table extends Component {
         onSelectAll: this.onSelectAll.bind(this),
         selectAllSelected: this.state.allRowsSelected,
         condensed: this.props.condensed,
+        noBorder: this.props.noBorder,
       },
     );
   }

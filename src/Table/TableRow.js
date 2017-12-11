@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TableRowStyle from './TableRow.style';
-import Radium from 'radium';
+// import TableRowStyle from './TableRow.style';
+// import Radium from 'radium';
 
 const Tr = styled.tr`
-  border-bottom: 1px solid rgb(224, 224, 224);
+  border-bottom: ${({ noBorder }) => (noBorder ? 'none' : '1px solid rgb(224, 224, 224)')};
   color: rgba(0, 0, 0, 0.870588);
   height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
   background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#fff')};
@@ -13,7 +13,6 @@ const Tr = styled.tr`
     background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#f2f2f2')};
   }
 `;
-
 
 class TableRow extends Component {
   onRowClick(event) {
@@ -88,4 +87,4 @@ TableRow.defaultProps = {
   selected: false,
 };
 
-export default Radium(TableRow);
+export default TableRow;

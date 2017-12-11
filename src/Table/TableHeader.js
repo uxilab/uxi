@@ -128,19 +128,29 @@ class TableHeader extends Component {
   }
 
   createSuperHeaderRow(child, props) {
+    const { condensed, noBorder } = this.props;
     const children = [];
     if (this.props.adjustForCheckbox) {
       children.push(this.getCheckboxPlaceholder(props));
     }
-    React.Children.forEach(child.props.children, (child) => {
-      children.push(child);
+    // React.Children.forEach(child.props.children, (child) => {
+    //   children.push(child);
+    // });
+
+    React.Children.forEach(child.props.children, (aChild) => {
+      const augmentedChildren = React.cloneElement(aChild, {
+        ...aChild.props,
+        condensed,
+        noBorder,
+      });
+      children.push(augmentedChildren);
     });
 
-    return React.cloneElement(child, props, children);
+    return React.cloneElement(child, { ...props, condensed, noBorder }, children);
   }
 
   createBaseHeaderRow() {
-    const { multiSelectable, selectable } = this.props;
+    const { multiSelectable, selectable, condensed, noBorder } = this.props;
     const numChildren = React.Children.count(this.props.children);
     const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     const props = {
@@ -157,13 +167,22 @@ class TableHeader extends Component {
       }
     }
 
-    React.Children.forEach(child.props.children, (child) => {
-      children.push(child);
+    // React.Children.forEach(child.props.children, (child) => {
+    //   children.push(child);
+    // });
+
+    React.Children.forEach(child.props.children, (aChild) => {
+      const augmentedChildren = React.cloneElement(aChild, {
+        ...aChild.props,
+        condensed,
+        noBorder,
+      });
+      children.push(augmentedChildren);
     });
 
     return React.cloneElement(
       child,
-      props,
+      { ...props, condensed, noBorder },
       children,
     );
   }

@@ -1,6 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TableHeaderColumnStyle from './TableHeaderColumn.style';
+import styled from 'styled-components';
+
+const Th = styled.td`
+  font-weight: normal;
+  font-size: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
+  height: ${({ condensed }) => (condensed ? 'auto' : '56px')};
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgb(158, 158, 158);
+  position: relative;
+  text-transform: uppercase;
+`;
+
+  // root: {
+  //   fontWeight: 'normal',
+  //   fontSize: 12,
+  //   paddingLeft: '24px',
+  //   paddingRight: '24px',
+  //   height: '56px',
+  //   textAlign: 'left',
+  //   whiteSpace: 'nowrap',
+  //   textOverflow: 'ellipsis',
+  //   color: 'rgb(158, 158, 158)',
+  //   position: 'relative',
+  //   textTransform: 'uppercase',
+  // },
+
 
 class TableHeaderColumn extends Component {
   state = {
@@ -29,14 +59,13 @@ class TableHeaderColumn extends Component {
     };
 
     return (
-      <th
+      <Th
         className={className}
-        style={Object.assign({}, TableHeaderColumnStyle.root, style)}
         {...handlers}
         {...other}
       >
         {children}
-      </th>
+      </Th>
     );
   }
 }

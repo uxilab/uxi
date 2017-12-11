@@ -71,7 +71,7 @@ class TableBody extends Component {
       return null;
     }
 
-    const { condensed } = rowProps;
+    const { condensed, noBorder } = rowProps;
     const key = `${rowProps.rowNumber}-cb`;
     let content;
     let disabled = !this.props.selectable;
@@ -115,6 +115,7 @@ class TableBody extends Component {
         columnNumber={0}
         style={checkBoxStyle}
         condensed={condensed}
+        noBorder={noBorder}
       >
         {content}
       </TableRowColumn>
@@ -196,7 +197,7 @@ class TableBody extends Component {
   }
 
   createRows() {
-    const { selectable, condensed } = this.props;
+    const { selectable, condensed, noBorder } = this.props;
     const numChildren = React.Children.count(this.props.children);
     let rowNumber = 0;
 
@@ -208,6 +209,7 @@ class TableBody extends Component {
 
         const props = Object.assign({}, {
           condensed,
+          noBorder,
           readOnly: child.props.readOnly,
           readOnlyText: child.props.readOnlyText,
           selected: child.props.readOnly ? false : this.isRowSelected(rowNumber),
@@ -227,6 +229,7 @@ class TableBody extends Component {
           const augmentedChildren = React.cloneElement(aChild, {
             ...aChild.props,
             condensed,
+            noBorder,
           });
           children.push(augmentedChildren);
         });

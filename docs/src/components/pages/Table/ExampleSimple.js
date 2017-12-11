@@ -88,7 +88,7 @@ const ExampleSimple = () => (
     <br />
     <br />
     <h3>Condensed table</h3>
-    <Table condensed>
+    <Table condensed noBorder>
       <TableHeader>
         <TableRow>
           <TableHeaderColumn>Name</TableHeaderColumn>
