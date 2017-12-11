@@ -19,6 +19,153 @@ import { User } from 'uxi/Icons';
 
 const ExampleSimple = () => (
   <div>
+    <h3>Condensed table</h3>
+    <Table multiSelectable selectable condensed>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>Name</TableHeaderColumn>
+          <TableHeaderColumn>Chosen Entities</TableHeaderColumn>
+          <TableHeaderColumn>Added By</TableHeaderColumn>
+          <TableHeaderColumn>Is only For Admin</TableHeaderColumn>
+          <TableHeaderColumn />
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow readOnlyText="System Filter Cannot Be Modified" readOnly>
+          <TableRowColumn>All</TableRowColumn>
+          <TableRowColumn>All Entities</TableRowColumn>
+          <TableRowColumn>
+            <span style={{ color: 'rgb(158, 158, 158)' }}>
+              System
+            </span>
+          </TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
+              <div style={{ marginBottom: '5px' }}>
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
+              </div>
+              <div>
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
+              </div>
+            </div>
+          </TableRowColumn>
+        </TableRow>
+        <TableRow readOnly>
+          <TableRowColumn>Company</TableRowColumn>
+          <TableRowColumn>/Company</TableRowColumn>
+          <TableRowColumn>
+            <span style={{ color: 'rgb(158, 158, 158)' }}>
+              System
+            </span>
+          </TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
+              <div style={{ marginBottom: '5px' }}>
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
+              </div>
+              <div>
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
+              </div>
+            </div>
+          </TableRowColumn>
+        </TableRow>
+        <TableRow readOnly>
+          <TableRowColumn>Person</TableRowColumn>
+          <TableRowColumn>/Company</TableRowColumn>
+          <TableRowColumn>
+            <span style={{ color: 'rgb(158, 158, 158)' }}>
+              System
+            </span>
+          </TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
+              <div style={{ marginBottom: '5px' }}>
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
+              </div>
+              <div>
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
+              </div>
+            </div>
+          </TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>
+            <span>/EmailThread</span>
+            <br />
+            <span>/Email</span>
+          </TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
+              <div style={{ marginBottom: '5px' }}>
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
+              </div>
+              <div>
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
+              </div>
+            </div>
+          </TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>
+            <span>/EmailThread</span>
+            <br />
+            <span>/Email</span>
+          </TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn style={{
+            float: 'right',
+            paddingRight: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          >
+            <div>
+              <div style={{ marginBottom: '5px' }}>
+                <ArrowUp size={9} style={{ cursor: 'pointer' }} />
+              </div>
+              <div>
+                <ArrowDown size={9} style={{ cursor: 'pointer' }} />
+              </div>
+            </div>
+          </TableRowColumn>
+        </TableRow>
+      </TableBody>
+    </Table>
+    <br />
+    <br />
+    <hr />
     <div style={{ paddingLeft: '80px' }}>
       <Button click={() => { }} disabled message="Delete" />
     </div>

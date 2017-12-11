@@ -58,7 +58,18 @@ const ExampleSimple = () => (
         onClick={x => console.log(x)}
       />
     </li>
-
+    <li>
+      <h3> Switch (defaultchecked=true) </h3>
+      <Switch defaultChecked labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
+    </li>
+    <li>
+      <h3>disabled Switch </h3>
+      <Switch disabled labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
+    </li>
+    <li>
+      <h3>disabled Switch (checked=true) </h3>
+      <Switch disabled checked labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
+    </li>
     <li>
       <h3>Uncontrolled Switch (labelBefore = true)</h3>
       <Switch labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />

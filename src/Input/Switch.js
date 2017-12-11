@@ -5,8 +5,10 @@ const LabelWrapper = styled.label`
   display: flex;
   align-items: center;
   user-select: none;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};;
   flex-direction: ${({ labelBefore }) => (labelBefore ? 'row-reverse' : 'row')};
+  opacity: ${props => (props.disabled ? '.7' : 1)};
+  filter: ${props => (props.disabled ? 'grayscale(35%) opacity(70%)' : 'none')};
 `;
 
 const SwitchOutterWrapper = styled.div`
@@ -66,6 +68,7 @@ class Switch extends PureComponent {
   }
 
   handleChange(event) {
+    if (this.props.disabled) { return; }
     const { checked } = this.state;
     const { onChange } = this.props;
     const newState = (!checked);
@@ -78,7 +81,7 @@ class Switch extends PureComponent {
   }
 
   render() {
-    const { label, name, id, labelBefore, checked } = this.props;
+    const { label, name, id, labelBefore, checked, disabled } = this.props;
 
     const checker = this.isControlled ? checked : this.state.checked;
 
@@ -88,9 +91,10 @@ class Switch extends PureComponent {
           labelBefore={labelBefore}
           htmlFor={name || 'myAwesomeCheckBox'}
           onClick={this.handleChange}
+          disabled={disabled}
         >
-          <SwitchOutterWrapper checked={checker}>
-            <SwitchInnerWrapper checked={checker} />
+          <SwitchOutterWrapper checked={checker} disabled={disabled}>
+            <SwitchInnerWrapper checked={checker} disabled={disabled} />
           </SwitchOutterWrapper>
           <div style={styles.label}>
             {label}
