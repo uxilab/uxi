@@ -15,7 +15,8 @@ const posAbs = {
 const styles = {
   wrapper: {
     position: 'relative',
-    display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
   },
   label: {
     cursor: 'pointer',
@@ -45,10 +46,11 @@ class Checkbox extends React.PureComponent {
 
   getWrapperStyles() {
     // disabled
-    const { disabled } = this.props;
+    const { disabled, labelBefore } = this.props;
     return {
       ...styles.wrapper,
       ...(disabled ? { opacity: 0.6 } : {}),
+      ...(labelBefore ? { flexDirection: 'row-reverse' } : {}),
     };
   }
 
@@ -68,6 +70,7 @@ class Checkbox extends React.PureComponent {
       disabled,
       checked,
       defaultChecked,
+      label,
       // ...restOfProps
     } = this.props;
 
@@ -80,20 +83,24 @@ class Checkbox extends React.PureComponent {
 
     /* eslint-disable jsx-a11y/label-has-for */
     return (
-      <div style={this.getWrapperStyles()}>
-        <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px' }}>
-          <input
-            id={name}
-            style={styles.input}
-            checked={checker}
-            defaultChecked={defaultChecked}
-            name={name}
-            type="checkbox"
-            disabled={disabled}
-            onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
-          />
-        </IconButton>
-        <label htmlFor={name} style={styles.label} />
+      <div style={{ display: 'inline-block' }}>
+        <div style={this.getWrapperStyles()}>
+          <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px' }}>
+            <input
+              id={name}
+              style={styles.input}
+              checked={checker}
+              defaultChecked={defaultChecked}
+              name={name}
+              type="checkbox"
+              disabled={disabled}
+              onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
+            />
+          </IconButton>
+          <label htmlFor={name} style={styles.label} >
+            {label}
+          </label>
+        </div>
       </div>
     );
   }

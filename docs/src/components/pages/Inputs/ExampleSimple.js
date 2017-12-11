@@ -173,6 +173,18 @@ const ExampleSimple = () => (
       <TextField type="file" />
     </li>
     <li>
+      <h3>Uncontrolled Checkbox with label</h3>
+      <Checkbox label={<div><span>Push Notifications :</span></div>} />
+    </li>
+    <li>
+      <h3>Uncontrolled Checkbox with labelBefore</h3>
+      <Checkbox labelBefore label={<div><span>Push Notifications :</span></div>} />
+    </li>
+    <li>
+      <h3>Uncontrolled Checkbox with label before and defaultChecked = true</h3>
+      <Checkbox defaultChecked lablBefore label={<div><span>Push Notifications :</span></div>} />
+    </li>
+    <li>
       <h3>Uncontrolled Checkbox</h3>
       <Checkbox />
     </li>
