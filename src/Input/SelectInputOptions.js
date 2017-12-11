@@ -3,6 +3,7 @@ import Radium from 'radium';
 
 const styles = {
   item: {
+    padding: '0 0 0 6px',
     background: 'white',
     ':hover': {
       background: '#f4f4f4',

@@ -11,6 +11,7 @@ const styles = {
     maxWidth: '145px',
     border: '1px solid #cecece',
     padding: '4px 8px',
+    padding: '0 0 0 6px',
     display: 'flex',
     alignItems: 'center',
   },
@@ -98,7 +99,7 @@ class SelectInput extends PureComponent {
           display: 'inline-block',
           ...child.props.style,
         },
-      }); // garanties ordering
+      });
     });
     this.setState({
       options,
