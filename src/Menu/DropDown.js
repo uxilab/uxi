@@ -11,20 +11,16 @@ const styles = {
   triggerWrapper: {
     cursor: 'pointer',
   },
-  triggerInnerWrapper: {
-    // pointerEvents: 'none',
-  },
   itemsWrapper: {
     zIndex: 1,
-    minWidth: '160px',
+    minWidth: '180px',
     background: 'white',
     position: 'absolute',
     overflow: 'hidden',
     border: '1px solid #cecece',
     borderColor: 'transparent',
-    // borderTop: 'none',
-    // borderTopColor: 'transparent !important',
-    marginTop: '-1px',
+    marginTop: '1px',
+    borderRadius: '3px',
     transition: 'max-height .2s ease-out, opacity .2s ease-out',
     opacity: 0,
     display: 'flex',

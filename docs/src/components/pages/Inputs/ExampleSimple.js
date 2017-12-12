@@ -17,6 +17,9 @@ import Img from '../../../../../src/Img';
 import { Merge } from 'uxi/Icons';
 import { IconButton, Button } from 'uxi/Button';
 
+
+const selectInputDefaultValueRef = 'fooooobar';
+
 const ExampleSimple = () => (
   <ul>
     <li>
@@ -106,7 +109,7 @@ const ExampleSimple = () => (
       <TimeInput defaultValue={Date.now() - 10e9} />
     </li>
     <li>
-      <h3>Select (dropdown no values) :</h3>
+      <h3>Select (next to a button) :</h3>
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
         <div>Hi</div>
         <div>Hey</div>
@@ -122,8 +125,29 @@ const ExampleSimple = () => (
       </SelectInput>
     </li>
     <li>
-      <h3>Select (dropdown WITH values) :</h3>
+      <h3>Select (dropdown no values) :</h3>
+
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
+        <div>Hi</div>
+        <div>Hey</div>
+        <Separator label="separator" />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Img
+            style={{ width: '30px' }}
+            src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+            alt="ersf"
+          />
+          Billy the kid
+        </div>
+      </SelectInput>
+    </li>
+    <li>
+      <Button type="primary"> I'ma button </Button>
+      <Button type="primary" icon={<Merge />} iconPosition="after" > I'ma button </Button>
+      <Button type="primary" icon={<Merge />} iconPosition="before"> I'ma button </Button>
+      <Button link="https://google.com" type="primary" icon={<Merge />} iconPosition="before"> I'ma (link) button </Button>
+      <h3>Select (dropdown WITH values) :</h3>
+      <SelectInput defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>
         <div value={'item1'}>Hi</div>
         <div value={'item2'}>Hey I'm way too long for this</div>
         <div value={'item3'}>
@@ -134,6 +158,7 @@ const ExampleSimple = () => (
           />
           Billy the kid
         </div>
+        <div value={selectInputDefaultValueRef}>Wut?</div>
       </SelectInput>
     </li>
     <li>

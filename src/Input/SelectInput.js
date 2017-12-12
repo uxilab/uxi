@@ -1,18 +1,19 @@
 import React, { PureComponent } from 'react';
 import { DropDown } from '../Menu';
 import { Arrowdown } from '../Icons';
+import { Button } from '../Button';
 import Option from './SelectInputOptions';
-import { palette } from '../Theme/palette';
 
 // TODO show default value if any
 const styles = {
   trigerrer: {
     minWidth: '180px',
+    minHeight: '26px',
     maxWidth: '180px',
     border: '1px solid #cecece',
-    padding: '2px 2px 2px 6px',
     display: 'flex',
     alignItems: 'center',
+    borderRadius: '3px',
     overflow: 'hidden',
   },
   trigerrerIcon: {
@@ -22,8 +23,13 @@ const styles = {
     bottom: '0',
     display: 'flex',
     alignItems: 'center',
-    padding: '0 8px',
-    background: palette.accent.main,
+    padding: 0,
+  },
+  button: {
+    // border: 'none',
+    // borderColor: 'transparent',
+    borderRadius: '0 3px 3px 0',
+    padding: '6px 8px',
   },
 };
 
@@ -38,11 +44,28 @@ class SelectInput extends PureComponent {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { children } = this.props;
     this.storeOptions(children);
   }
 
+  componentDidMount() {
+    this.isControlled = this.props.value !== undefined;
+    if (!this.isControlled) {
+      const { defaultValue } = this.props;
+      if (defaultValue) {
+        const { options } = this.state;
+        // not controlled, use internal state
+        const foundIndex = options.findIndex((o) => {
+          console.log('o', o);
+          console.log('defaultValue', defaultValue);
+          return o === defaultValue;
+        });
+        const selectedIndex = foundIndex > -1 ? foundIndex : null;
+        this.setState({ selectedIndex });
+      }
+    }
+  }
 
   componentWillUpdate(nextProps, nextState) {
     const { selectedIndex } = this.state;
@@ -71,26 +94,28 @@ class SelectInput extends PureComponent {
     if (selectedIndex && optionsNode[selectedIndex]) {
       return (
         <span style={styles.trigerrer}>
-          {
-            React.cloneElement(optionsNode[selectedIndex], {
-              style: {
-                ...optionsNode[selectedIndex].props.style,
-                whiteSpace: 'nowrap',
-              },
-            })
-          }
-          <span style={styles.trigerrerIcon}>
-            <Arrowdown size="14" color="white" />
-          </span>
+          <Option>
+            {
+              React.cloneElement(optionsNode[selectedIndex], {
+                style: {
+                  ...optionsNode[selectedIndex].props.style,
+                  whiteSpace: 'nowrap',
+                },
+              })
+            }
+          </Option>
+          <div style={styles.trigerrerIcon}>
+            <Button inert type="primary" style={styles.button} icon={<Arrowdown size="14" color="white" />} />
+          </div>
         </span>
       );
     }
     return (
       <span style={styles.trigerrer}>
-        &nbsp;
-        <span style={styles.trigerrerIcon}>
-          <Arrowdown size="14" color="white" />
-        </span>
+        <div>&nbsp;</div>
+        <div style={styles.trigerrerIcon}>
+          <Button inert type="primary" style={styles.button} icon={<Arrowdown size="14" color="white" />} />
+        </div>
       </span>
     );
   }

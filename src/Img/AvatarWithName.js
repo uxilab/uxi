@@ -19,10 +19,10 @@ const styles = {
 const AvatarWithName = ({ src, icon, name, imgSize, isSquare }) => {
   // eslint-disable-next-line no-nested-ternary
   const imgContent = src
-    ? <Img width={imgSize || '32px'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
+    ? <Img width={imgSize || '26px'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
     : (icon
-      ? React.cloneElement(icon, { size: imgSize || '34px' })
-      : React.createElement(getAppropriateIcon('Circle'), { size: imgSize || '32px' })
+      ? React.cloneElement(icon, { size: imgSize || '26px' })
+      : React.createElement(getAppropriateIcon('Circle'), { size: imgSize || '26px' })
     );
 
   return (
