@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from './TextField';
 import styled from 'styled-components';
 import { IconButton, Button } from 'uxi/Button';
-import { Merge } from 'uxi/Icons';
+import { Search } from 'uxi/Icons';
 import { InputGroup } from 'uxi/Input';
 
 const TextFieldWithIconUI = styled.div`
@@ -63,6 +63,8 @@ class SearchForm extends Component {
       onChange: this.handleChange,
     };
 
+    const finalIcon = icon || <Search style={{ margin: 0 }} />;
+
     return (
       <FormUI onSubmit={this.handleSubmit}>
         <InputGroup>
@@ -70,7 +72,7 @@ class SearchForm extends Component {
           <Button
             type="primary"
             style={{ minHeight: '100%' }}
-            icon={icon}
+            icon={finalIcon}
           />
         </InputGroup>
       </FormUI>

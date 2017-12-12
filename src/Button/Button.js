@@ -118,6 +118,7 @@ class Button extends ThemeComponent<ButtonProps> {
               ...hoverIcon,
               style: {
                 marginLeft: '4px',
+                ...icon.props.style,
               },
               size: icon.props.size || 18,
             },
@@ -130,6 +131,7 @@ class Button extends ThemeComponent<ButtonProps> {
               ...hoverIcon,
               style: {
                 marginRight: '4px',
+                ...icon.props.style,
               },
               size: icon.props.size || 18,
             })

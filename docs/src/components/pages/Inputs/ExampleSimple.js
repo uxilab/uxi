@@ -33,7 +33,6 @@ const ExampleSimple = () => (
     <li>
       <h3>Uncontrolled InputGroup</h3>
       <SearchForm
-        icon={<Merge />}
         onChange={(x, y) => console.log(x, y)}
         placeholder="placeholder"
         onClick={(x, y) => console.log(x, y)}
@@ -44,14 +43,13 @@ const ExampleSimple = () => (
       <h3>Uncontrolled InputGroup (defaultValue: foobar)</h3>
       <SearchForm
         defaultValue="foobar"
-        icon={<Merge />}
         onChange={x => console.log(x)}
         onClick={x => console.log(x)}
       />
     </li>
 
     <li>
-      <h3>Controlled InputGroup (value: foobar)</h3>
+      <h3>Controlled InputGroup (value: foobar and custom icon)</h3>
       <SearchForm
         value="foobar"
         icon={<Merge />}
