@@ -11,6 +11,7 @@ const styles = {
     justifyContent: 'center',
     textTransform: 'uppercase',
     fontSize: '.85em',
+    userSelect: 'none',
   },
   bar: {
     height: '1px',
@@ -28,8 +29,8 @@ const Separator = ({ label }) => (label && label !== ''
         <div>
           <div style={styles.main}>
             <span style={styles.bar} />
-            &nbsp;{label}&nbsp;
-              <span style={styles.bar} />
+              &nbsp;{label}&nbsp;
+            <span style={styles.bar} />
           </div>
         </div>
       )

@@ -7,13 +7,13 @@ import { palette } from '../Theme/palette';
 // TODO show default value if any
 const styles = {
   trigerrer: {
-    minWidth: '145px',
-    maxWidth: '145px',
+    minWidth: '180px',
+    maxWidth: '180px',
     border: '1px solid #cecece',
-    padding: '4px 8px',
-    padding: '0 0 0 6px',
+    padding: '2px 2px 2px 6px',
     display: 'flex',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   trigerrerIcon: {
     position: 'absolute',
@@ -71,7 +71,14 @@ class SelectInput extends PureComponent {
     if (selectedIndex && optionsNode[selectedIndex]) {
       return (
         <span style={styles.trigerrer}>
-          {optionsNode[selectedIndex]}
+          {
+            React.cloneElement(optionsNode[selectedIndex], {
+              style: {
+                ...optionsNode[selectedIndex].props.style,
+                whiteSpace: 'nowrap',
+              },
+            })
+          }
           <span style={styles.trigerrerIcon}>
             <Arrowdown size="14" color="white" />
           </span>
@@ -80,7 +87,7 @@ class SelectInput extends PureComponent {
     }
     return (
       <span style={styles.trigerrer}>
-        Pick something
+        &nbsp;
         <span style={styles.trigerrerIcon}>
           <Arrowdown size="14" color="white" />
         </span>
@@ -111,15 +118,17 @@ class SelectInput extends PureComponent {
     const selectedIndex = e.currentTarget.dataset.index;
     this.setState({
       selectedIndex,
+      isOpen: false,
     });
+    this.forceUpdate();
   }
 
   render() {
     const {
       props: {
         children,
-        // onChange,
       },
+      state: { isOpen },
     } = this;
 
     const optionsItems = React.Children.map(children, (child, i) => {
@@ -141,6 +150,7 @@ class SelectInput extends PureComponent {
 
     return (
       <DropDown
+        isOpen={isOpen}
         main={trigerer}
         items={optionsItems}
       />

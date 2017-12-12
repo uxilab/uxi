@@ -51,10 +51,30 @@ class DropDown extends PureComponent {
     this.handleWindowScroll = this.handleWindowScroll.bind(this);
   }
 
+  componentWillMount() {
+    this.isControlled = this.props.isOpen !== undefined;
+    // if (!this.isControlled) {
+    //   // not controlled, use internal state
+    //   this.setState({
+    //     isOpen: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
+    //   });
+    // }
+  }
+
   componentDidMount() {
     window.addEventListener('resize', this.handleWindowResize);
     window.addEventListener('scroll', this.handleWindowScroll);
   }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    if (nextProps.isOpen !== undefined) {
+      this.setState({
+        isOpen: nextProps.isOpen,
+      });
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleWindowResize);
     window.removeEventListener('scroll', this.handleWindowScroll);
@@ -130,7 +150,7 @@ class DropDown extends PureComponent {
 
   render() {
     const {
-      props: { main, items: itemsBefore, style },
+      props: { main, items: itemsBefore, style, isOpen },
     } = this;
 
     const dropDownMain = React.cloneElement(main,

@@ -12,6 +12,7 @@ import {
   InputGroup,
   SearchForm,
 } from '../../../../../src/Input';
+import { Separator } from 'uxi/Menu';
 import Img from '../../../../../src/Img';
 import { Merge } from 'uxi/Icons';
 import { IconButton, Button } from 'uxi/Button';
@@ -111,6 +112,7 @@ const ExampleSimple = () => (
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
         <div>Hi</div>
         <div>Hey</div>
+        <Separator label="separator" />
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Img
             style={{ width: '30px' }}
@@ -125,7 +127,7 @@ const ExampleSimple = () => (
       <h3>Select (dropdown WITH values) :</h3>
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
         <div value={'item1'}>Hi</div>
-        <div value={'item2'}>Hey</div>
+        <div value={'item2'}>Hey I'm way too long for this</div>
         <div value={'item3'}>
           <img
             style={{ width: '30px' }}
