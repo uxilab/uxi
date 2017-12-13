@@ -69,7 +69,7 @@ class Table extends Component {
 
 
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
 
     let tBody;
     let tHead;
@@ -93,7 +93,7 @@ class Table extends Component {
     return (
       <div style={TableStyle.container}>
         <style dangerouslySetInnerHTML={{ __html: tooltipStyles }} />
-        <table style={TableStyle.table}>
+        <table style={{ ...TableStyle.table, style }}>
           {tHead}
           {tBody}
           {tFoot}

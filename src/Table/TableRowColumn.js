@@ -50,7 +50,7 @@ class TableRowColumn extends Component {
       columnNumber, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
-      style,
+      // style,
       ...other
     } = this.props;
 

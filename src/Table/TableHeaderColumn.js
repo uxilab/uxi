@@ -63,6 +63,7 @@ class TableHeaderColumn extends Component {
         className={className}
         {...handlers}
         {...other}
+        style={style}
       >
         {children}
       </Th>

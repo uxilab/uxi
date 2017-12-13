@@ -36,7 +36,7 @@ class TableRow extends Component {
       rowNumber, // eslint-disable-line no-unused-vars
       selectable, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
-      style,
+      // style,
       // readOnly,
       // readOnlyText,
       ...other
