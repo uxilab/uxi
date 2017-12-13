@@ -4,11 +4,19 @@ import { Arrowdown } from '../Icons';
 import { Button } from '../Button';
 import Option from './SelectInputOptions';
 
+function isElement(element) {
+  return React.isValidElement(element);
+}
+
+function isDOMTypeElement(element) {
+  return isElement(element) && typeof element.type === 'string';
+}
+
 // TODO show default value if any
 const styles = {
   trigerrer: {
     minWidth: '180px',
-    minHeight: '26px',
+    minHeight: '30px',
     maxWidth: '180px',
     border: '1px solid #cecece',
     display: 'flex',
@@ -29,7 +37,9 @@ const styles = {
     // border: 'none',
     // borderColor: 'transparent',
     borderRadius: '0 3px 3px 0',
-    padding: '6px 8px',
+    padding: '0 8px',
+    minHeight: '100%',
+    minHeight: 'calc(100% - 2px)',
   },
 };
 
@@ -53,14 +63,10 @@ class SelectInput extends PureComponent {
     this.isControlled = this.props.value !== undefined;
     if (!this.isControlled) {
       const { defaultValue } = this.props;
-      if (defaultValue) {
+      if (defaultValue !== undefined) {
         const { options } = this.state;
         // not controlled, use internal state
-        const foundIndex = options.findIndex((o) => {
-          console.log('o', o);
-          console.log('defaultValue', defaultValue);
-          return o === defaultValue;
-        });
+        const foundIndex = options.findIndex(o => o === defaultValue);
         const selectedIndex = foundIndex > -1 ? foundIndex : null;
         this.setState({ selectedIndex });
       }
@@ -91,28 +97,46 @@ class SelectInput extends PureComponent {
       },
     } = this;
 
-    if (selectedIndex && optionsNode[selectedIndex]) {
-      return (
-        <span style={styles.trigerrer}>
-          <Option>
-            {
-              React.cloneElement(optionsNode[selectedIndex], {
-                style: {
-                  ...optionsNode[selectedIndex].props.style,
-                  whiteSpace: 'nowrap',
-                },
-              })
-            }
-          </Option>
-          <div style={styles.trigerrerIcon}>
-            <Button inert type="primary" style={styles.button} icon={<Arrowdown size="14" color="white" />} />
-          </div>
-        </span>
+    let mainContent = null;
+    console.log(
+      'selectedIndex',
+      selectedIndex,
+    );
+    console.log(
+      'optionsNode[selectedIndex]',
+      optionsNode[selectedIndex],
+    );
+    console.log(
+      'selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined',
+      selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined,
+    );
+
+
+    if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
+      mainContent = (
+        <div style={{ padding: '2px 2px 2px 6px' }} >
+          {
+            React.cloneElement(optionsNode[selectedIndex], {
+              style: {
+                ...optionsNode[selectedIndex].props.style,
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+              },
+            })
+          }
+        </div>
       );
+      // if (React.isValidElement(child)) {
+      //   if (!isDOMTypeElement(child)) {
+      //   }
+      // }
+    } else {
+      mainContent = <div>&nbsp;</div>;
     }
+
     return (
       <span style={styles.trigerrer}>
-        <div>&nbsp;</div>
+        {mainContent}
         <div style={styles.trigerrerIcon}>
           <Button inert type="primary" style={styles.button} icon={<Arrowdown size="14" color="white" />} />
         </div>
@@ -120,11 +144,53 @@ class SelectInput extends PureComponent {
     );
   }
 
+  getOptionsItem() {
+    const {
+      children,
+    } = this.props;
+
+    return React.Children.map(children, (child, i) => {
+      const value = child.props.value ? child.props.value : i;
+      const isTheOne = this.state.selectedIndex === i;
+      console.log('this.state.selectedIndex', this.state.selectedIndex);
+      console.log('i', i);
+      console.log('isTheOne', isTheOne);
+      const selectedStyles = isTheOne
+        ? { backgroundColor: '#3e53c1', color: 'white' }
+        : {};
+
+      if (React.isValidElement(child)) {
+        if (!isDOMTypeElement(child)) {
+          return (
+            <div onClick={e => this.clickHandler(e)} data-index={i}>
+              <Option selected={isTheOne} style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}>
+                {React.cloneElement(child, {
+                  value,
+                })}
+              </Option>
+            </div>
+          );
+        }
+
+        return (
+          <Option selected={isTheOne} style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}>
+            {React.cloneElement(child, {
+              value,
+              'data-index': i,
+              onClick: e => this.clickHandler(e),
+            })}
+          </Option>
+        );
+      }
+      return null;
+    });
+  }
+
   storeOptions(children) {
     const options = [];
     const optionsNode = [];
     React.Children.forEach(children, (child, i) => {
-      const value = child.props.value ? child.props.value : i;
+      const value = child.props.value !== undefined ? child.props.value : i;
       options[i] = value; // garanties ordering
       optionsNode[i] = React.cloneElement(child, {
         style: {
@@ -140,6 +206,11 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
+    console.log(e);
+    console.log(e.currentTarget);
+    console.log(e.currentTarget.dataset);
+    console.log(e.target);
+    console.log(e.target.dataset);
     const selectedIndex = e.currentTarget.dataset.index;
     this.setState({
       selectedIndex,
@@ -149,35 +220,23 @@ class SelectInput extends PureComponent {
   }
 
   render() {
-    const {
-      props: {
-        children,
-      },
-      state: { isOpen },
-    } = this;
+    const { isOpen } = this.state;
 
-    const optionsItems = React.Children.map(children, (child, i) => {
-      const value = child.props.value ? child.props.value : i;
-      return (
-        <Option>
-          {React.cloneElement(child, {
-            value,
-            'data-index': i,
-            onClick: e => this.clickHandler(e),
-          })
-          }
-        </Option>
-      );
-    });
+    const optionsItems = this.getOptionsItem();
 
     const trigerer = this.getTrigerrerLabel();
-
 
     return (
       <DropDown
         isOpen={isOpen}
         main={trigerer}
         items={optionsItems}
+        itemsStyle={{
+          maxHeight: '200px',
+          maxWidth: '200px',
+          overflowY: 'auto',
+          overflowX: 'hidden',
+        }}
       />
     );
   }

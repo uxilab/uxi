@@ -44,7 +44,6 @@ class TableRow extends Component {
 
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
-        console.log('child.props.condensed', child.props.condensed);
         return React.cloneElement(child, {
           columnNumber,
           key: `${this.props.rowNumber}-${columnNumber}`,

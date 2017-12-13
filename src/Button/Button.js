@@ -78,16 +78,10 @@ class Button extends ThemeComponent<ButtonProps> {
     const isHoverA = radium.getState(this.state, 'a', ':hover');
     const isHoverAny = radium.getState(this.state, '', ':hover');
 
-    console.log('isHoverButton', isHoverButton);
-    console.log('isHoverDiv', isHoverDiv);
-    console.log('isHoverA', isHoverA);
-    console.log('isHoverAny', isHoverAny);
-
     const isHover = (isHoverButton || isHoverDiv || isHoverA || isHoverAny);
 
     if (icon) {
       let hoverIcon = { color: this.getStyle('button').color };
-      console.log(isHover);
       if (type === 'primary' ||
           type === 'secondary' ||
           type === 'danger' ||

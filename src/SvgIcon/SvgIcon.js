@@ -98,13 +98,13 @@ export class SvgIcon extends Component {
       color,
       fill: this.state.hovered ? onColor : offColor,
       height: size ? `${parseInt(size, 10)}px` : '24px',
+      minHeight: size ? `${parseInt(size, 10)}px` : '24px',
       width: size ? `${parseInt(size, 10)}px` : '24px',
+      minWidth: size ? `${parseInt(size, 10)}px` : '24px',
       userSelect: 'none',
       transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
       ...style,
     };
-    console.log(style);
-    console.log(mergedStyles);
     return (
       <svg
         {...other}
