@@ -83,7 +83,6 @@ class DropDown extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.isOpen !== undefined) {
       this.setState({
         isOpen: nextProps.isOpen,
@@ -110,7 +109,6 @@ class DropDown extends PureComponent {
     }
 
     const cRectMain = mainRef.getBoundingClientRect();
-    console.log('isOppen', isOpen);
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
       position: 'absolute',

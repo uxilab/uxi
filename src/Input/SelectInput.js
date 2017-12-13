@@ -98,20 +98,6 @@ class SelectInput extends PureComponent {
     } = this;
 
     let mainContent = null;
-    console.log(
-      'selectedIndex',
-      selectedIndex,
-    );
-    console.log(
-      'optionsNode[selectedIndex]',
-      optionsNode[selectedIndex],
-    );
-    console.log(
-      'selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined',
-      selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined,
-    );
-
-
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
       mainContent = (
         <div style={{ padding: '2px 2px 2px 6px' }} >
@@ -126,10 +112,6 @@ class SelectInput extends PureComponent {
           }
         </div>
       );
-      // if (React.isValidElement(child)) {
-      //   if (!isDOMTypeElement(child)) {
-      //   }
-      // }
     } else {
       mainContent = <div>&nbsp;</div>;
     }
@@ -152,9 +134,6 @@ class SelectInput extends PureComponent {
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
       const isTheOne = this.state.selectedIndex === i;
-      console.log('this.state.selectedIndex', this.state.selectedIndex);
-      console.log('i', i);
-      console.log('isTheOne', isTheOne);
       const selectedStyles = isTheOne
         ? { backgroundColor: '#3e53c1', color: 'white' }
         : {};
@@ -206,11 +185,6 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
-    console.log(e);
-    console.log(e.currentTarget);
-    console.log(e.currentTarget.dataset);
-    console.log(e.target);
-    console.log(e.target.dataset);
     const selectedIndex = e.currentTarget.dataset.index;
     this.setState({
       selectedIndex,
