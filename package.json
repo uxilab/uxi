@@ -45,6 +45,8 @@
   "homepage": "https://github.com/CluedIn-io/uxi#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "keycode": "^2.1.9",
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "radium": "^0.19.4",
     "rc-tooltip": "^3.7.0",
@@ -52,9 +54,11 @@
     "react-addons-test-utils": "~15.4.0",
     "react-click-outside": "^3.0.0",
     "react-dom": "^16.0.0",
+    "react-event-listener": "^0.5.2",
     "react-helmet": "^5.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.2.1",
     "simple-assign": "^0.1.0",
     "styled-components": "^2.2.4"
   },
