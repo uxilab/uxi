@@ -26,9 +26,9 @@ const ExampleSimple = () => (
       <h3>Select</h3>
       <SelectInput defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>
         <Separator label="B" />
-        <div ><AvatarWithName value={'item1'} name="Billy Jarvis" icon={<Merge />} /></div>
-        <div ><AvatarWithName value={'item2'} name="Billy Joel" icon={<Slack />} /></div>
-        <div ><AvatarWithName value={'item3'} name="Billy Joelle" icon={<Facebook />} /></div>
+        <AvatarWithName value={'item1'} name="Billy Jarvis" icon={<Merge />} />
+        <AvatarWithName value={'item2'} name="Billy Joel" icon={<Slack />} />
+        <AvatarWithName value={'item3'} name="Billy Joelle" icon={<Facebook />} />
         <Separator label="C" />
         <AvatarWithName value={'item4'} name="Cos Maner" />
         <AvatarWithName value={'selectInputDefaultValueRef'} name="Bort Zreck" />
