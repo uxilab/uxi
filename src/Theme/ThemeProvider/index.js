@@ -53,13 +53,6 @@ export class ThemeProvider extends Component {
             <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700" rel="stylesheet" />
           </Helmet>
-          <Style
-            rules={theTheme.wrapper}
-          />
-          <Style
-            scopeSelector=".uxi-root"
-            rules={Object.assign({}, theTheme.root, theTheme.fixedWidth)}
-          />
           {children}
         </div>
       </StyleRoot>

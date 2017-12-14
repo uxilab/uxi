@@ -2,10 +2,12 @@ import React from 'react';
 import HorizontalMenu from '../../../../../src/Menu/HorizontalMenu';
 import VerticalMenu from '../../../../../src/Menu/VerticalMenu';
 import {
-  DropDown,
   DropDownMenu,
   Separator,
 } from '../../../../../src/Menu';
+import {
+  DropDown,
+} from '../../../../../src/internal/DropDown';
 import { Button } from '../../../../../src/Button';
 import { Merge, Arrowdown } from '../../../../../src/Icons';
 import MenuItem from 'uxi/Menu/MenuItem';

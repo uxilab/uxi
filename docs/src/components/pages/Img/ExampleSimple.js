@@ -9,6 +9,9 @@ const ExampleSimple = () => (
     <li>
       <Img style={{ width: '200px' }} src="https://tettra.co/wp-content/logos/asana.png" />
     </li>
+    <li>
+      <Img contain style={{ width: '160px' }} src="https://tettra.co/wp-content/logos/asana.png" />
+    </li>
   </ul>
 );
 

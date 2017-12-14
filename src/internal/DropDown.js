@@ -44,7 +44,7 @@ const styles = {
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
-class DropDown extends PureComponent {
+export class DropDown extends PureComponent {
   static propTypes = {
     main: PropTypes.node,
     items: PropTypes.array,
