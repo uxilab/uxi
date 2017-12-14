@@ -11,7 +11,7 @@ const TextFieldWithIconUI = styled.div`
 `;
 
 const FormUI = styled.form`
-  display: flex,
+  display: flex;
 `;
 
 class SearchForm extends Component {

@@ -76,6 +76,31 @@ export function convertHexToRGB(color) {
 }
 
 /**
+ * Converts a color from CSS hex format to CSS rgb format.
+ *
+ *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
+ *  @param {number} alpha - Hex color, i.e. #nnn or #nnnnnn
+ *  @returns {string} A CSS rgb color string
+ */
+export function convertHexToRGBA(color, alpha) {
+  if (color.length === 4) {
+    let extendedColor = '#';
+    for (let i = 1; i < color.length; i++) {
+      extendedColor += color.charAt(i) + color.charAt(i);
+    }
+    color = extendedColor;
+  }
+
+  const values = {
+    r: parseInt(color.substr(1, 2), 16),
+    g: parseInt(color.substr(3, 2), 16),
+    b: parseInt(color.substr(5, 2), 16),
+  };
+
+  return `rgba(${values.r}, ${values.g}, ${values.b}, ${alpha})`;
+}
+
+/**
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.

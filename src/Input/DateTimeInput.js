@@ -9,6 +9,7 @@ const styles = {
   padding: '8px',
   borderRadius: '3px',
   border: '1px solid #dcdcdc',
+  padding: '6.75px 6.75px 6.75px 6.75px',
 
 };
 const DateTimeInput = (props) => {

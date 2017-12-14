@@ -3,8 +3,10 @@ import Radium from 'radium';
 
 const styles = {
   item: {
+    display: 'border-box',
     cursor: 'pointer',
     padding: '2px 2px 2px 6px',
+    // minHeight: '32px',
     background: 'white',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',

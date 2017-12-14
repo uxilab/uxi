@@ -17,7 +17,7 @@ const styles = {
     borderRadius: '3px',
     fontSize: '14px',
     border: '1px solid #dcdcdc',
-    padding: '8px 28px 8px 8px',
+    padding: '6.5px 26px 6.5px 6.5px',
     minWidth: '100%',
     boxSizing: 'border-box',
     ':focus': {

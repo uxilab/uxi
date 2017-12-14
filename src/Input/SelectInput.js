@@ -141,7 +141,7 @@ class SelectInput extends PureComponent {
       if (React.isValidElement(child)) {
         if (!isDOMTypeElement(child)) {
           return (
-            <div onClick={e => this.clickHandler(e)} data-index={i}>
+            <div onClick={e => this.clickHandler(e)} data-index={i} {...child.props} >
               <Option selected={isTheOne} style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}>
                 {React.cloneElement(child, {
                   value,
