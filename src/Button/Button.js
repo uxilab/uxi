@@ -73,10 +73,15 @@ class Button extends ThemeComponent<ButtonProps> {
       buttonStyles.push(this.getPseudoElement('button', 'hover'));
     }
 
-    if (icon) {
-      const isHover = radium.getState(this.state, 'button', ':hover');
-      let hoverIcon = { color: this.getStyle('button').color };
+    const isHoverButton = radium.getState(this.state, 'button', ':hover');
+    const isHoverDiv = radium.getState(this.state, 'div', ':hover');
+    const isHoverA = radium.getState(this.state, 'a', ':hover');
+    const isHoverAny = radium.getState(this.state, '', ':hover');
 
+    const isHover = (isHoverButton || isHoverDiv || isHoverA || isHoverAny);
+
+    if (icon) {
+      let hoverIcon = { color: this.getStyle('button').color };
       if (type === 'primary' ||
           type === 'secondary' ||
           type === 'danger' ||
@@ -124,13 +129,24 @@ class Button extends ThemeComponent<ButtonProps> {
             },
           )
         );
-      } else {
+      } else if (iconPosition && iconPosition) {
         iconContentBefore = (
           React.cloneElement(icon,
             {
               ...hoverIcon,
               style: {
                 marginRight: '4px',
+                ...icon.props.style,
+              },
+              size: icon.props.size || 18,
+            })
+        );
+      } else {
+        iconContentBefore = (
+          React.cloneElement(icon,
+            {
+              ...hoverIcon,
+              style: {
                 ...icon.props.style,
               },
               size: icon.props.size || 18,

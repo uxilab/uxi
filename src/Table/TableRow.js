@@ -36,7 +36,7 @@ class TableRow extends Component {
       rowNumber, // eslint-disable-line no-unused-vars
       selectable, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
-      style,
+      // style,
       // readOnly,
       // readOnlyText,
       ...other
@@ -44,7 +44,6 @@ class TableRow extends Component {
 
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
-        console.log('child.props.condensed', child.props.condensed);
         return React.cloneElement(child, {
           columnNumber,
           key: `${this.props.rowNumber}-${columnNumber}`,

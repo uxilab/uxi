@@ -14,11 +14,51 @@ import {
 } from '../../../../../src/Input';
 import { Separator } from 'uxi/Menu';
 import Img from '../../../../../src/Img';
-import { Merge } from 'uxi/Icons';
+import { Merge, Slack, Facebook } from 'uxi/Icons';
 import { IconButton, Button } from 'uxi/Button';
+import { AvatarWithName } from 'uxi/Img';
+
+const selectInputDefaultValueRef = 'fooooobar';
 
 const ExampleSimple = () => (
   <ul>
+    <li>
+      <h3>Select</h3>
+      <SelectInput defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>
+        <Separator label="B" />
+        <div ><AvatarWithName value={'item1'} name="Billy Jarvis" icon={<Merge />} /></div>
+        <div ><AvatarWithName value={'item2'} name="Billy Joel" icon={<Slack />} /></div>
+        <div ><AvatarWithName value={'item3'} name="Billy Joelle" icon={<Facebook />} /></div>
+        <Separator label="C" />
+        <AvatarWithName value={'item4'} name="Cos Maner" />
+        <AvatarWithName value={'selectInputDefaultValueRef'} name="Bort Zreck" />
+        <Separator label="Z" />
+        <AvatarWithName
+          src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+          value={'item6'}
+          name="Zack Smith"
+        />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="I'm wayyy too looooooooooog for this" />
+        <AvatarWithName value={'sdgsfbg'} name="I'm wayyy too looooooooooog for thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiis" />
+        <AvatarWithName value={'sdgsfbg'} name="I'm way way way tooooooooooooooooooo looooooooooog for thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiiiiiiiiiis" />
+        <Separator label="Others" />
+        <div value={selectInputDefaultValueRef}>Hi</div>
+      </SelectInput>
+    </li>
     <li>
       <h3>Radio :</h3>
       <Radio />
@@ -106,8 +146,27 @@ const ExampleSimple = () => (
       <TimeInput defaultValue={Date.now() - 10e9} />
     </li>
     <li>
-      <h3>Select (dropdown no values) :</h3>
+      <h3>Select (next to a button) :</h3>
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
+        <div>Hi</div>
+        <div>Hey</div>
+        <Separator label="separator" />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Img
+            style={{ width: '30px' }}
+            src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+            alt="ersf"
+          />
+          Billy the kid
+        </div>
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+      </SelectInput>
+    </li>
+    <li>
+      <h3>Select (dropdown no values) :</h3>
+
+      <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
         <div>Hi</div>
         <div>Hey</div>
         <Separator label="separator" />
@@ -122,8 +181,12 @@ const ExampleSimple = () => (
       </SelectInput>
     </li>
     <li>
+      <Button type="primary"> I'ma button </Button>
+      <Button type="primary" icon={<Merge />} iconPosition="after" > I'ma button </Button>
+      <Button type="primary" icon={<Merge />} iconPosition="before"> I'ma button </Button>
+      <Button link="https://google.com" type="primary" icon={<Merge />} iconPosition="before"> I'ma (link) button </Button>
       <h3>Select (dropdown WITH values) :</h3>
-      <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
+      <SelectInput defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>
         <div value={'item1'}>Hi</div>
         <div value={'item2'}>Hey I'm way too long for this</div>
         <div value={'item3'}>
@@ -134,6 +197,7 @@ const ExampleSimple = () => (
           />
           Billy the kid
         </div>
+        <div value={selectInputDefaultValueRef}>Wut?</div>
       </SelectInput>
     </li>
     <li>

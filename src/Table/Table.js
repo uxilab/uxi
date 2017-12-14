@@ -69,7 +69,7 @@ class Table extends Component {
 
 
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
 
     let tBody;
     let tHead;
@@ -86,14 +86,14 @@ class Table extends Component {
       } else if (componentName === 'TableFooter') {
         tFoot = this.createTableFooter(child);
       } else {
-        console.log('cluedin-ui: Children of the Table component must be TableBody or TableHeader or TableFooter. Nothing is rendered.');
+        console.warn('cluedin-ui: Children of the Table component must be TableBody or TableHeader or TableFooter. Nothing is rendered.');
       }
     });
 
     return (
       <div style={TableStyle.container}>
         <style dangerouslySetInnerHTML={{ __html: tooltipStyles }} />
-        <table style={TableStyle.table}>
+        <table style={{ ...TableStyle.table, style }}>
           {tHead}
           {tBody}
           {tFoot}

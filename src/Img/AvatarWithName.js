@@ -1,8 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/no-named-as-default
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
-
-
 import Img from './Img';
 
 const styles = {
@@ -16,17 +14,17 @@ const styles = {
   },
 };
 
-const AvatarWithName = ({ src, icon, name, imgSize, isSquare }) => {
+const AvatarWithName = ({ src, icon, name, imgSize, isSquare, onClick }) => {
   // eslint-disable-next-line no-nested-ternary
   const imgContent = src
-    ? <Img width={imgSize || '32px'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
+    ? <Img async width={imgSize || '26px'} style={{ borderRadius: (isSquare ? 0 : '50%'), minWidth: imgSize || '26px' }} src={src} />
     : (icon
-      ? React.cloneElement(icon, { size: imgSize || '34px' })
-      : React.createElement(getAppropriateIcon('Circle'), { size: imgSize || '32px' })
+      ? React.cloneElement(icon, { size: imgSize || '26px' })
+      : React.createElement(getAppropriateIcon('Circleduser'), { size: imgSize || '26px' })
     );
 
   return (
-    <div style={styles.wrapper}>
+    <div style={styles.wrapper} onClick={onClick || null}>
       { imgContent }
       <div style={styles.nameWrapper}>
         {name}

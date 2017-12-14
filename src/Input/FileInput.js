@@ -54,12 +54,10 @@ class FileInput extends PureComponent {
 
   setFocus() {
     this.setState({ focussed: true });
-    console.log('state to => ', 'focussed: true');
   }
 
   setBlur() {
     this.setState({ focussed: false });
-    console.log('state to => ', 'focussed: false');
   }
 
   render() {

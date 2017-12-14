@@ -11,25 +11,36 @@ const styles = {
   triggerWrapper: {
     cursor: 'pointer',
   },
-  triggerInnerWrapper: {
-    // pointerEvents: 'none',
-  },
   itemsWrapper: {
     zIndex: 1,
-    minWidth: '160px',
+    minWidth: '180px',
     background: 'white',
     position: 'absolute',
     overflow: 'hidden',
     border: '1px solid #cecece',
     borderColor: 'transparent',
-    // borderTop: 'none',
-    // borderTopColor: 'transparent !important',
-    marginTop: '-1px',
-    transition: 'max-height .2s ease-out, opacity .2s ease-out',
+    marginTop: '1px',
+    borderRadius: '3px',
+    transition: 'height .2s, max-height .2s, opacity .2s ease-out',
     opacity: 0,
     display: 'flex',
     flexDirection: 'column',
   },
+  // itemsWrapperString: `
+  //   z-index: 1,
+  //   min-width: 180px,
+  //   background: white,
+  //   position: absolute,
+  //   overflow: hidden,
+  //   border: 1px solid #cecece,
+  //   border-color: transparent,
+  //   margin-top: 1px,
+  //   border-radius: 3px,
+  //   transition: max-height .3s ease-out, opacity .3,8s ease-out,
+  //   opacity: 0,
+  //   display: flex,
+  //   flex-direction: column,
+  // `,
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -45,6 +56,7 @@ class DropDown extends PureComponent {
       isOpen: false,
       windowWidth: (window.innerWidth),
       windowHeight: (window.innerHeight),
+      initalStyleValue: null,
     };
     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
     this.handleWindowResize = this.handleWindowResize.bind(this);
@@ -62,12 +74,15 @@ class DropDown extends PureComponent {
   }
 
   componentDidMount() {
+    const { style } = this.props;
     window.addEventListener('resize', this.handleWindowResize);
     window.addEventListener('scroll', this.handleWindowScroll);
+    this.setState({
+      initalStyleValue: style,
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.isOpen !== undefined) {
       this.setState({
         isOpen: nextProps.isOpen,
@@ -82,26 +97,32 @@ class DropDown extends PureComponent {
 
   getDynamicItemsStyles() {
     const { isOpen, mainRef, itemsRef } = this.state;
+    const { itemsStyle } = this.props;
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
-    const itemsHeight = [...itemsRef.children]
-      .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
+    let itemsHeight;
+    if (itemsStyle && 'maxHeight' in itemsStyle) {
+      itemsHeight = itemsStyle.maxHeight;
+    } else {
+      itemsHeight = [...itemsRef.children]
+        .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
+    }
 
     const cRectMain = mainRef.getBoundingClientRect();
-
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
       position: 'absolute',
       top: cRectMain.height,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
+      // opacity: 1,
       pointerEvents: isOpen ? 'all' : 'none',
     };
 
     // FLIP :
-    const initialStyle = itemsRef.getAttribute('style');
-    itemsRef.setAttribute('style', `${initialStyle}; top: ${cRectMain.height}; position: absolute`);
-    itemsRef.setAttribute('style', `${initialStyle}; top: ${cRectMain.bottom}; position: fixed`);
+    // const initialStyle = itemsRef.getAttribute('style');
+    // itemsRef.setAttribute('style', `${styles.itemsWrapperString}; top: ${cRectMain.height}; position: absolute`);
+    // itemsRef.setAttribute('style', `${styles.itemsWrapperString}; top: ${cRectMain.bottom}; position: fixed`);
 
     return {
       ...res,
@@ -150,7 +171,17 @@ class DropDown extends PureComponent {
 
   render() {
     const {
-      props: { main, items: itemsBefore, style, isOpen },
+      props: {
+        main,
+        items: itemsBefore,
+        // style,
+        itemsStyle,
+        // mainStyle,
+        // isOpen,
+      },
+      state: {
+        isOpen,
+      },
     } = this;
 
     const dropDownMain = React.cloneElement(main,
@@ -167,15 +198,26 @@ class DropDown extends PureComponent {
       },
     }));
 
+    const cleanedItemsStyle = {
+      ...itemsStyle,
+      // maxHeight: isOpen && itemsStyle ? itemsStyle.maxHeight : 0,
+      ...(isOpen && itemsStyle && 'maxHeight' in itemsStyle
+        ? { maxHeight: itemsStyle.maxHeight }
+        : {}
+      ),
+      ...(!isOpen ? { maxHeight: 0 } : {}
+      ),
+    };
+
     return (
-      <span style={{ ...styles.wrapper, ...style }}>
+      <span style={{ ...styles.wrapper/* , ...style */ }}>
         <span tabIndex={0} role="menu" style={styles.triggerWrapper} onClick={this.handleToggleVisibility} >
           <span style={styles.triggerInnerWrapper}>
             {dropDownMain}
           </span>
         </span>
         <div
-          style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles() }}
+          style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
         >
           {items}

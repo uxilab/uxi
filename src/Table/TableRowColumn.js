@@ -7,7 +7,7 @@ const Td = styled.td`
   padding-right: 4px;
   height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
   text-align: left;
-  font-size: 13px;
+  font-size: ${({ condensed }) => (condensed ? '13px' : '14px')};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -50,7 +50,7 @@ class TableRowColumn extends Component {
       columnNumber, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
-      style,
+      // style,
       ...other
     } = this.props;
 
