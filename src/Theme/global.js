@@ -36,10 +36,10 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
       list-style: none;
     }
     a {
-        color: palette.accent.main;
+        color: ${palette.accent.main};
         textDecoration: none;
       &:hover {
-        color: lighten(palette.accent.main, 0.1);
+        color: ${lighten(palette.accent.main, 0.1)};
       }
     }
 
