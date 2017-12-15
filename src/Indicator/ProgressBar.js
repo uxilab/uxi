@@ -32,7 +32,7 @@ const ProgressIndicatorWrapperUI = styled.div`
   margin: ${({ labelPosition }) => {
     if (labelPosition === 'left') { return '0'; }
     if (labelPosition === 'top') { return '4px 0 0 0'; }
-    if (labelPosition === 'bottom') { return '0 0 4px 0'; }
+    if (labelPosition === 'bottom') { return 0; }
     return '0 6px 0 0';
   }};
 `;
@@ -41,8 +41,8 @@ const LabelWrapperUI = styled.div`
   display: inline-block;
     margin: ${({ labelPosition }) => {
     if (labelPosition === 'left') { return '0 6px 0 0'; }
-    if (labelPosition === 'top') { return '4px 0 0 0'; }
-    if (labelPosition === 'bottom') { return '0 0 4px 0'; }
+    if (labelPosition === 'top') { return 0; }
+    if (labelPosition === 'bottom') { return '4px 0 0 0'; }
     return '0';
   }};
 `;
@@ -59,7 +59,7 @@ const ProgressIndicatorUI = styled.div`
 
 const ProgressBar = ({ min, max, value, width, label, labelPosition }) => (
   <ProgressBarWrapperUI labelPosition={labelPosition} width={width}>
-    <ProgressIndicatorWrapperUI width={width}>
+    <ProgressIndicatorWrapperUI width={width} labelPosition={labelPosition}>
       <ProgressIndicatorUI value={lt(value, min, max, 0, 100)} />
     </ProgressIndicatorWrapperUI>
     <LabelWrapperUI labelPosition={labelPosition} >
