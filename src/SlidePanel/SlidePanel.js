@@ -18,43 +18,21 @@ function getSlideDirection(anchor) {
   return 'up';
 }
 
-const styles = {
-  contentDefault: {
-    zIndex: '14',
+const SidePanelStyle = {
+  root: {
+    zIndex: '200',
     width: '500px',
+    top: 0,
     position: 'fixed',
-    top: '0',
-    right: '0',
-    height: '100vh',
     background: '#fff',
+    height: '100vh',
+    boxShadow: 'rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px',
   },
-  contentAnchorLeft: {
+  left: {
     left: 0,
-    right: 'auto',
   },
-  contentAnchorRight: {
-    left: 'auto',
+  right: {
     right: 0,
-  },
-  contentAnchorBottom: {
-    top: 'auto',
-    left: 0,
-    bottom: 0,
-    right: 0,
-    height: 'auto',
-    maxHeight: '100vh',
-  },
-  contentAnchorDockedLeft: {
-    borderRight: '1px solid #ccc',
-  },
-  contentAnchorDockedTop: {
-    borderBottom: '1px solid #ccc',
-  },
-  contentAnchorDockedRight: {
-    borderLeft: '1px solid #ccc',
-  },
-  contentAnchorDockedBottom: {
-    borderTop: '1px solid #ccc',
   },
 };
 
@@ -78,28 +56,46 @@ class SidePanel extends React.Component {
       children,
       onClose,
       open,
+      showOverlay,
+      style,
+      modal,
     } = this.props;
 
+    const mergedStyle = Object.assign(
+      {},
+      SidePanelStyle.root,
+      SidePanelStyle[anchor],
+      style || {},
+    );
     return (
-      <Slide
-        in={open}
-        direction="right"
-        appear={!this.state.firstMount}
-      >
-        <div style={{
-          zIndex: '200',
-          width: '500px',
-          top: 0,
-          position: 'fixed',
-          left: 0,
-          background: '#fff',
-          height: '100vh',
-        }}
+      <div>
+        <Slide
+          in={open}
+          direction={anchor === 'right' ? 'left' : 'right'}
+          appear={!this.state.firstMount}
         >
-          {getSlideDirection(anchor)}
-          {children}
-        </div>
-      </Slide>
+          <div style={mergedStyle}>
+            <div style={{ position: 'relative', height: '100%' }}>
+              {
+                (children && children.length > 1) ?
+                  children.map((c, index) => React.cloneElement(c, {
+                    key: `sidePanel-${index}`,
+                    onClose,
+                    anchor,
+                  })) :
+                  React.cloneElement(children, {
+                    onClose,
+                    anchor,
+                  })
+              }
+            </div>
+          </div>
+        </Slide>
+        { showOverlay ? <Modal
+          show={open}
+          onClose={modal ? null : onClose}
+        /> : null }
+      </div>
     );
   }
 }
@@ -109,6 +105,7 @@ SidePanel.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
   open: PropTypes.bool,
+  showOverlay: PropTypes.bool,
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
@@ -118,6 +115,7 @@ SidePanel.propTypes = {
 SidePanel.defaultProps = {
   anchor: 'right',
   open: false,
+  showOverlay: false,
 };
 
 export default SidePanel;

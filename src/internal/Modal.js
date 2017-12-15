@@ -31,7 +31,6 @@ class Modal extends React.Component {
   };
 
   handleBackdropClick = (event) => {
-    alert('backdrop!');
     if (event.target !== event.currentTarget) {
       return;
     }

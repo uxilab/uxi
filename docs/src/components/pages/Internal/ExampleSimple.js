@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Backdrop from 'uxi/internal/Backdrop';
-import Modal from 'uxi/internal/Modal';
+import Dialog, { DialogHeader, DialogFooter } from 'uxi/Dialog';
 import Button from 'uxi/Button';
-import SlidePanel from 'uxi/Panel/SlidePanel';
+import SlidePanel, { SlidePanelHeader, SlidePanelFooter } from 'uxi/SlidePanel';
 
 class ExampleSimple extends Component {
   constructor(props) {
@@ -21,21 +21,37 @@ class ExampleSimple extends Component {
         <Button onClick={() => { this.setState({ showSidePanel: true }); }}>
          Show SidePanel
         </Button>
-        <SlidePanel open={this.state.showSidePanel}>
-          <div className="content of slide">
-            <h1>TOTO</h1>
-          </div>
+        <SlidePanel
+          onClose={() => { this.setState({ showSidePanel: false }); }}
+          open={this.state.showSidePanel}
+        >
+          <SlidePanelHeader title="Some Slide Title" />
+          <SlidePanelFooter>
+            <Button type="primary">Save</Button>
+          </SlidePanelFooter>
         </SlidePanel>
-        <Modal
+        <SlidePanel
+          anchor="left"
+          onClose={() => { this.setState({ showSidePanel: false }); }}
+          open={this.state.showSidePanel}
+        >
+          <SlidePanelHeader title="Some Slide Title" />
+          <SlidePanelFooter>
+            <Button type="primary">Save</Button>
+          </SlidePanelFooter>
+        </SlidePanel>
+        <Dialog
           show={this.state.show}
           onClose={() => { this.setState({ show: false }); }}
         >
-          <div style={{ zIndex: '14', width: '500px', margin: '15px', position: 'fixed', top: '35%', left: '50%', transform: 'translate(-50%, -50%)', background: '#fff' }}>
-            <div>
-              <h1>TOTO</h1>
-            </div>
+          <DialogHeader title="Some Title" />
+          <div style={{ padding: '15px' }}>
+            Some Dialog content
           </div>
-        </Modal>
+          <DialogFooter>
+            <Button type="primary">Save</Button>
+          </DialogFooter>
+        </Dialog>
       </div>
     );
   }
