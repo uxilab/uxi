@@ -1,10 +1,10 @@
 import React from 'react';
 import ExampleSimple from './ExampleSimple';
 
-const MotionPage = () => (
+const IndicatorPage = () => (
   <div>
     <ExampleSimple />
   </div>
 );
 
-export default MotionPage;
+export default IndicatorPage;
