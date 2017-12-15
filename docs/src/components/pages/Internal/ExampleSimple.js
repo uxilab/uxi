@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Backdrop from 'uxi/internal/Backdrop';
-import Dialog, { DialogHeader, DialogFooter } from 'uxi/Dialog';
+import Dialog, { DialogHeader, DialogFooter, ConfirmDialog } from 'uxi/Dialog';
 import Button from 'uxi/Button';
 import SlidePanel, { SlidePanelHeader, SlidePanelFooter } from 'uxi/SlidePanel';
 
@@ -9,12 +9,20 @@ class ExampleSimple extends Component {
     super(props);
     this.state = {
       show: false,
+      showConfim: true,
     };
   }
 
   render() {
     return (
       <div>
+        <ConfirmDialog
+          show={this.state.showConfim}
+          text="Are you sure to ?"
+          onConfirm={() => { this.setState({ showConfim: false }); }}
+          onCancel={() => { this.setState({ showConfim: false }); }}
+        />
+
         <Button onClick={() => { this.setState({ show: true }); }}>
          Show Dialog
         </Button>

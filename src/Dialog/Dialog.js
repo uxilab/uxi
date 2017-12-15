@@ -21,10 +21,13 @@ const Dialog = ({ show, modal, onClose, children }) => (
     onClose={modal ? null : onClose}
   >
     <div style={DialogStyle.root}>
-      {children.map((c, index) => React.cloneElement(c, {
+      {children && children.length > 0 && children.map((c, index) => React.cloneElement(c, {
         key: `dialogContent-${index}`,
         onClose,
       }))}
+      {children && !children.length && React.cloneElement(children, {
+        onClose,
+      })}
     </div>
   </Modal>
 );
