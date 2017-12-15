@@ -28,8 +28,22 @@ const styles = {
 
 const getWrapperStyles = props => ({
   ...styles.wrapper,
-  ...(props.style.width ? { width: props.style.width, minWidth: props.style.width, height: props.style.width } : {}),
-  ...(props.width ? { width: props.width, minWidth: props.width, height: props.width } : {}),
+  ...(props.style.width ? {
+    width: props.style.width,
+    minWidth: `${props.style.width}px`,
+    maxWidth: `${props.style.width}px`,
+    height: `${props.style.width}px`,
+    minHeight: `${props.style.width}px`,
+    maxHeight: `${props.style.width}px`,
+  } : {}),
+  ...(props.width ? {
+    width: `${props.width}px`,
+    minWidth: `${props.width}px`,
+    maxWidth: `${props.width}px`,
+    minHeight: `${props.width}px`,
+    height: `${props.width}px`,
+    maxHeight: `${props.width}px`,
+  } : {}),
   backgroundImage: `url(${props.src})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: props.contain ? 'contain' : 'cover',
