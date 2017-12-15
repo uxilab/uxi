@@ -14,7 +14,7 @@ import {
   Options as OptionsIcon,
 } from '../../../../../src/Icons';
 import { AvatarWithName } from '../../../../../src/Img';
-import { DropDown } from '../../../../../src/Menu';
+import { DropDown } from '../../../../../src/internal/DropDown';
 import { User } from 'uxi/Icons';
 
 const ExampleSimple = () => (
@@ -292,14 +292,14 @@ const ExampleSimple = () => (
           <TableHeaderColumn>Job Title</TableHeaderColumn>
           <TableHeaderColumn>Email</TableHeaderColumn>
           <TableHeaderColumn>Phone number</TableHeaderColumn>
-          <TableHeaderColumn>{/* actions menu */}</TableHeaderColumn>
+          <TableHeaderColumn>&nbsp;</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
           <TableRowColumn>
             <AvatarWithName
-              imgSize="42"
+              imgSize="26"
               src=""
               name={<a href="google.com">Billy</a>}
             />
@@ -355,7 +355,7 @@ const ExampleSimple = () => (
         <TableRow>
           <TableRowColumn>
             <AvatarWithName
-              imgSize="42"
+              imgSize="26"
               src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
               name={<a href="google.com">Billy</a>}
             />
@@ -411,7 +411,7 @@ const ExampleSimple = () => (
         <TableRow>
           <TableRowColumn>
             <AvatarWithName
-              imgSize="42"
+              imgSize="26"
               // src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
               icon={<User />}
               name={<a href="google.com">Billy</a>}
@@ -449,7 +449,7 @@ const ExampleSimple = () => (
         <TableRow>
           <TableRowColumn>
             <AvatarWithName
-              imgSize="42"
+              imgSize="26"
               src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
               name={<a href="google.com">Billy</a>}
             />

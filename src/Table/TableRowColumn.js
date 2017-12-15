@@ -59,13 +59,13 @@ class TableRowColumn extends Component {
     };
 
     return (
-      <Td
+      <td
         className={className}
         {...other}
         {...handlers}
       >
         {children}
-      </Td>
+      </td>
     );
   }
 }
