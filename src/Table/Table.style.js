@@ -1,7 +1,10 @@
 export default {
   container: {
-    height: 'auto',
-    overflow: 'auto',
+    // overflow: 'auto',
+    // height: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   table: {
     width: '100%',

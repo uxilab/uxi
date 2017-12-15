@@ -93,7 +93,7 @@ class Table extends Component {
     return (
       <div style={TableStyle.container}>
         <style dangerouslySetInnerHTML={{ __html: tooltipStyles }} />
-        <table style={{ ...TableStyle.table, style }}>
+        <table style={{ ...TableStyle.table, ...style }}>
           {tHead}
           {tBody}
           {tFoot}

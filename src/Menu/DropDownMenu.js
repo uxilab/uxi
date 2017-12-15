@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 // import ReactDOM from 'react-dom';
 // import PropTypes from 'prop-types';
-import DropDown from './DropDown';
+import DropDown from '../internal/DropDown';
 import { MenuItem } from '../Menu';
 import Separator from './Separator';
 import ThemeComponent from '../Base/ThemeComponent';

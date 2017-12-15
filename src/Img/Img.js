@@ -6,7 +6,6 @@ const styles = {
     width: '100%',
     height: 'auto',
     opacity: 0,
-    opacity: 1,
     /* eslint-disable no-dupe-keys */
     // imageRendering: 'optimizeSpeed',
     // imageRendering: '-moz-crisp-edges',

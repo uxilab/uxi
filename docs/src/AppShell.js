@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider as SCThemeProvider } from 'styled-components';
+import UXISCThemeProvider from 'uxi/Theme/ThemeProvider/UXISCThemeProvider';
 import ThemeProvider, { getThemeWithCustomPalette } from '../../src/Theme';
 import Header from 'uxi/Header';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
@@ -40,7 +40,7 @@ const AppShell = ({ children }) => {
   );
 
   return (
-    <SCThemeProvider theme={getThemeWithCustomPalette()} >
+    <UXISCThemeProvider theme={getThemeWithCustomPalette()} >
       <ThemeProvider palette={{ /* primary: '#663399', secondary: '#7fff00' */ }}>
         <div>
           <Header isDark>
@@ -70,7 +70,7 @@ const AppShell = ({ children }) => {
           </PageWithMenu>
         </div>
       </ThemeProvider>
-    </SCThemeProvider>
+    </UXISCThemeProvider>
   );
 };
 

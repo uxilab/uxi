@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { DropDown } from '../Menu';
+import DropDown from '../internal/DropDown';
 import { Arrowdown } from '../Icons';
 import { Button } from '../Button';
 import Option from './SelectInputOptions';
