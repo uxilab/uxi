@@ -18,6 +18,7 @@ import MenuPage from './components/pages/Menu/Page';
 import InternalPage from './components/pages/Internal/Page';
 import BadgePage from './components/pages/Badge/Page';
 import IndicatorPage from './components/pages/Indicator/Page';
+import DashboardPage from './components/pages/DashboardLayout/Page';
 
 const AppRoutes = (
   <Switch>
@@ -39,6 +40,7 @@ const AppRoutes = (
     <Route path="/internal" exact component={InternalPage} />
     <Route path="/badge" component={BadgePage} />
     <Route path="/indicator" component={IndicatorPage} />
+    <Route path="/dashboard" component={DashboardPage} />
   </Switch>
 );
 
