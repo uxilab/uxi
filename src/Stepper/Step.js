@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Done } from '../../Icons';
-import { Badge } from '../../Badge';
-import { palette } from '../../Theme';
+import { Done } from '../Icons';
+import { Badge } from '../Badge';
+import { palette } from '../Theme';
 
 const StepWrapperUI = styled.div`
   display: flex;

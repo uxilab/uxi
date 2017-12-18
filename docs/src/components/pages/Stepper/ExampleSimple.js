@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stepper, Step, StepButton } from 'uxi/Indicator';
+import { Stepper, Step, StepButton } from 'uxi/Stepper';
 import { Arrowright } from 'uxi/Icons';
 
 const ExampleSimple = () => (
