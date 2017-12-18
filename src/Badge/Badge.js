@@ -8,7 +8,6 @@ const BadgeStyle = {
     margin: 0,
     boxSizing: 'border-box',
     position: 'relative',
-    display: 'inline',
     padding: '0.4em 0.3em',
     fontSize: '12px',
     lineHeight: '1',
@@ -17,6 +16,10 @@ const BadgeStyle = {
     whiteSpace: 'nowrap',
     verticalAlign: 'baseline',
     borderRadius: '0.25em',
+    // display: 'inline',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   info: {
     color: '#fff',
@@ -35,6 +38,10 @@ const BadgeStyle = {
     backgroundColor: '#009688',
     color: '#fff',
   },
+  default: {
+    backgroundColor: '#cecece',
+    color: '#fff',
+  },
 };
 
 /* eslint-disable react/prefer-stateless-function */
@@ -45,15 +52,16 @@ class Badge extends Component {
      */
     children: PropTypes.node,
     style: PropTypes.object,
-    type: PropTypes.oneOf(['error', 'success', 'warning', 'info']),
+    type: PropTypes.oneOf(['error', 'success', 'warning', 'info', 'default']),
+    rounded: PropTypes.bool,
   };
 
   static defaultProps = {
-    type: 'info',
+    type: 'default',
   };
 
   render() {
-    const { type, style } = this.props;
+    const { type, style, rounded } = this.props;
     const mergedStyle = Object.assign({}, BadgeStyle.badge, style);
     const classNames = [mergedStyle];
 
@@ -63,8 +71,20 @@ class Badge extends Component {
       classNames.push(BadgeStyle.warning);
     } else if (type === 'success') {
       classNames.push(BadgeStyle.success);
-    } else {
+    } else if (type === 'info') {
       classNames.push(BadgeStyle.info);
+    } else {
+      classNames.push(BadgeStyle.default);
+    }
+
+    if (rounded) {
+      classNames.push({
+        borderRadius: '50%',
+        minWidth: '20px',
+        maxWidth: '20px',
+        minHeight: '20px',
+        maxHeight: '20px',
+      });
     }
 
     return (
