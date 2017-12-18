@@ -28,6 +28,7 @@ class Stepper extends Component {
         active: false,
         ...step.props,
         nonLinear,
+        index,
       }
       if (activeStep === index) {
         props.active = true
