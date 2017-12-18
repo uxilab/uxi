@@ -1,4 +1,5 @@
 
+export Anonymize from './Anonymize';
 export Archive from './Archive';
 export Barchart from './Barchart';
 export Circledintegration from './Circledintegration';
