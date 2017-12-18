@@ -8,8 +8,13 @@ import grid from './grid';
  * and I guess does not depend on the
  * theme provider to be already rendered -df
  */
+/* eslint-disable indent */
+/* eslint-disable prefer-template */
 export const makeGlobalCSSInjector = (injectGlobal, theme) => {
-  const { palette } = theme;
+  const {
+    palette,
+    transition,
+  } = theme;
 
   return () => injectGlobal`
 
@@ -42,6 +47,12 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
         color: ${lighten(palette.accent.main, 0.1)};
       }
     }
+
+    svg {
+      transition: all ${transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+    }
+    /* little trick relating to SvgIcon: a svg wrapper */
+    svg>svg { fill: inherit }
 
     /**
      * Extend using css from styled-components

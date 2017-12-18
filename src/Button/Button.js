@@ -1,215 +1,107 @@
 /* @flow */
-import React from 'react';
-import radium from 'radium';
+/* eslint-disable brace-style */
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
 import Ripples from '../Motion/Ripples';
-import ThemeComponent from '../Base/ThemeComponent';
-import ButtonStyle from './Button.style';
-import type { ThemeComponentProps } from '../Base/ThemeComponent';
+import ButtonBaseStyles from './ButtonBaseStyles';
 
-type buttonType = 'primary' | 'secondary' | 'danger' | 'success' | 'warning' ;
-
-type ButtonProps = ThemeComponentProps & {
-  message: string,
-  text: string,
-  type: buttonType,
-  disabled?: Boolean,
-  icon?: any,
-  iconPosition?: string,
-  isFullWidth?: Boolean,
-  onClick?: (event: Event) => void,
-  click?: (event: Event) => void,
-  link?: string
+const getTypeColor = ({ palette }, type) => {
+  if (palette.semantic[type]) { return palette.semantic[type]; }
+  if (type === 'primary') { return palette.accent.main; }
+  if (type === 'secondary') { return palette.primary.main; }
+  return '#fff';
 };
 
-class Button extends ThemeComponent<ButtonProps> {
-  static isValidType(type: buttonType) {
-    return type && (
-      type === 'primary' ||
-      type === 'secondary' ||
-      type === 'danger' ||
-      type === 'warning' ||
-      type === 'success' ||
-      type === 'submit'
-    );
+/* eslint-disable indent */
+const ButtonBaseMixin = css`
+  /* STATIC BASE STYLES: */
+  ${ButtonBaseStyles};
+
+  /* ICON POSITION: */
+  flex-direction: ${({ iconPosition }) => {
+    if (iconPosition && iconPosition === 'after') { return 'row-reverse'; }
+    return 'row';
+  }};
+
+  /* FULL WIDTH STYLES: */
+  ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
+
+  /* TYPE STYLES: */
+  background-color: ${({ theme, type }) => getTypeColor(theme, type)};
+  border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};
+  color: ${({ type }) => (type ? '#fff' : 'inherit')};
+  svg { fill: ${({ type }) => (type ? '#fff' : 'inherit')};}
+  &:hover {
+    border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};
+    color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};
+    background-color: ${({ type, theme }) => (type ? '#fff' : theme.palette.lightGrey)};
+    svg { fill: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};}
   }
 
+  /* DISABLED STYLES: (overrides types styles)*/
+  cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
+  ${({ disabled, theme: { palette } }) => (disabled ?
+    `background-color: ${palette.lightGrey}; color: ${palette.grey};` : '')}
+  ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
+  &:hover {
+    ${({ disabled, theme: { palette } }) => (disabled ?
+      `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
+    ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
+  }
+
+}
+`;
+/* eslint-enable indent */
+
+const ButtonUI = styled.button`${ButtonBaseMixin};`;
+const ButtonLinkUI = styled.a`${ButtonBaseMixin};`;
+const ButtonDivUI = styled.div`${ButtonBaseMixin};`;
+
+// eslint-disable-next-line react/prefer-stateless-function
+class Button extends Component {
   render() {
     const {
       message,
       text,
       type: originalType,
+      children,
+      inert,
+      link,
+      isFullWidth,
       click,
       onClick,
-      link,
       disabled,
       icon,
       iconPosition,
-      isFullWidth,
       style,
-      children,
-      inert,
-      ...attributes
+      // ...restOfProps
     } = this.props;
-    const wasASubmitInitially = originalType === 'submit';
-    const type = wasASubmitInitially ? 'primary' : originalType;
-    const outerStyle = isFullWidth ? { width: '100%' } : {};
-    let iconContentBefore;
-    let iconContentAfter;
+
     const textOrMessage = message || text || children;
-    const clickHandler = disabled ? () => { } : (click || onClick);
-    // const originalThemeButtonStyles = this.getStyle('button', ButtonStyle.baseButton);
-    const buttonStyles = [this.getStyle('button', ButtonStyle.baseButton)];
-    if (Button.isValidType(type)) {
-      buttonStyles.push(this.getSubStyle('button', type.toString()));
-    }
 
-    if (disabled) {
-      buttonStyles.push(ButtonStyle.disabled);
-    } else if (Button.isValidType(type)) {
-      buttonStyles.push(
-        this.getSubStylePseudoElement('button', type.toString(), 'hover'),
-      );
-    } else {
-      buttonStyles.push(this.getPseudoElement('button', 'hover'));
-    }
+    const wasASubmitInitially = originalType === 'submit';
 
-    const isHoverButton = radium.getState(this.state, 'button', ':hover');
-    const isHoverDiv = radium.getState(this.state, 'div', ':hover');
-    const isHoverA = radium.getState(this.state, 'a', ':hover');
-    const isHoverAny = radium.getState(this.state, '', ':hover');
+    const type = wasASubmitInitially ? 'primary' : originalType;
 
-    const isHover = (isHoverButton || isHoverDiv || isHoverA || isHoverAny);
+    const buttonProps = { isFullWidth, disabled, type, iconPosition };
 
-    if (icon) {
-      let hoverIcon = { color: this.getStyle('button').color };
-      if (type === 'primary' ||
-          type === 'secondary' ||
-          type === 'danger' ||
-          type === 'warning' ||
-          type === 'success' ||
-          type === 'primary'
-      ) {
-        hoverIcon = { color: '#fff' };
-      }
+    // which element to render
+    let TheButtonComponent = null;
+    if (inert) { TheButtonComponent = ButtonDivUI; }
+    else if (link) { TheButtonComponent = ButtonLinkUI; }
+    else { TheButtonComponent = ButtonUI; }
 
-      if (isHover && type !== 'primary' && type !== 'secondary' && type !== 'submit') {
-        hoverIcon = { color: this.getStyle(['button:hover']).color };
-      }
-
-      if (isHover && (type === 'primary' || type === 'submit')) {
-        hoverIcon = { color: this.getStyle(['button:primary:hover']).color };
-      }
-
-      if (isHover && type === 'secondary') {
-        hoverIcon = { color: this.getStyle(['button:secondary:hover']).color };
-      }
-
-      if (isHover && type === 'warning') {
-        hoverIcon = { color: this.getStyle(['button:warning:hover']).color };
-      }
-
-      if (isHover && type === 'danger') {
-        hoverIcon = { color: this.getStyle(['button:danger:hover']).color };
-      }
-
-      if (isHover && type === 'success') {
-        hoverIcon = { color: this.getStyle(['button:success:hover']).color };
-      }
-
-      if (iconPosition && iconPosition === 'after') {
-        iconContentAfter = (
-          React.cloneElement(icon,
-            {
-              ...hoverIcon,
-              style: {
-                marginLeft: '4px',
-                ...icon.props.style,
-              },
-              size: icon.props.size || 18,
-            },
-          )
-        );
-      } else if (iconPosition && iconPosition) {
-        iconContentBefore = (
-          React.cloneElement(icon,
-            {
-              ...hoverIcon,
-              style: {
-                marginRight: '4px',
-                ...icon.props.style,
-              },
-              size: icon.props.size || 18,
-            })
-        );
-      } else {
-        iconContentBefore = (
-          React.cloneElement(icon,
-            {
-              ...hoverIcon,
-              style: {
-                ...icon.props.style,
-              },
-              size: icon.props.size || 18,
-            })
-        );
-      }
-    }
-
-    if (isFullWidth) {
-      buttonStyles.push({ width: '100%' });
-    }
-
-    if (link) {
-      buttonStyles.push({
-        textDecoration: 'none',
-        position: 'relative',
-        verticalAlign: 'top',
-        fontWeight: 'normal',
-      });
-      buttonStyles.push(style); // final overwrite with style from this.props
-
-      return (
-        <a onClick={clickHandler} style={buttonStyles} href={link} {...attributes} >
-          {iconContentBefore}
-          <span style={ButtonStyle.text}>{textOrMessage}</span>
-          {iconContentAfter}
-        </a>
-      );
-    }
-
-    // this allow things like a button being use as a dropDown(Menu) trigger
-    if (inert) {
-      buttonStyles.push({
-        textDecoration: 'none',
-        position: 'relative',
-        verticalAlign: 'top',
-        fontWeight: 'normal',
-      });
-      buttonStyles.push(style); // final overwrite with style from this.props
-
-      return (
-        <div style={buttonStyles} {...attributes}>
-          {iconContentBefore}
-          <span style={ButtonStyle.text}>{textOrMessage}</span>
-          {iconContentAfter}
-        </div>
-      );
-    }
-
-    buttonStyles.push(style); // final overwrite with style from this.props
-
-    const finalButtonType = wasASubmitInitially ? { type: 'submit' } : {};
-
-    const buttonContent = (
-      <button key="button" style={buttonStyles} onClick={clickHandler} {...finalButtonType} {...attributes} >
-        {iconContentBefore}
-        <span style={ButtonStyle.text}>{textOrMessage}</span>
-        {iconContentAfter}
-      </button>
+    const theButton = (
+      <TheButtonComponent {...buttonProps} isFullWidth={isFullWidth}>
+        {icon}
+        {textOrMessage}
+      </TheButtonComponent>
     );
 
-    return <Ripples style={outerStyle}>{buttonContent}</Ripples>;
+    const rippleStyles = isFullWidth ? { width: '100%' } : {};
+
+    return disabled ? theButton : (<Ripples style={rippleStyles}>{theButton}</Ripples>);
   }
 }
 
-export default radium(Button);
+export default Button;

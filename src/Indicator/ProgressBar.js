@@ -28,7 +28,7 @@ const ProgressIndicatorWrapperUI = styled.div`
   width: 100%;
   height: 4px;
   max-width: ${({ width }) => (width !== undefined ? `${width}px` : 'auto')};
-  background: ${({ theme }) => theme.palette.lightGray};
+  background: ${({ theme }) => theme.palette.lightGrey};
   margin: ${({ labelPosition }) => {
     if (labelPosition === 'left') { return '0'; }
     if (labelPosition === 'top') { return '4px 0 0 0'; }

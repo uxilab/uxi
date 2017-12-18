@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a Button 1`] = `
+<StyleRoot>
+  <div
+    className="uxi-root"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <link
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700"
+        rel="stylesheet"
+      />
+    </HelmetWrapper>
+    <Style
+      rules={
+        Object {
+          ".uxi-root": Object {
+            "height": "100%",
+          },
+          ".uxi_container": Object {
+            "margin": "0 auto",
+            "width": "100%",
+          },
+          "a": Object {
+            "color": "#26a29a",
+            "textDecoration": "none",
+          },
+          "a:hover": Object {
+            "color": "rgb(59, 171, 164)",
+            "textDecoration": "none",
+          },
+          "body": Object {
+            "height": "100%",
+            "margin": 0,
+            "padding": 0,
+          },
+          "h1, h2, h3, h4": Object {
+            "color": "rgb(114, 114, 114)",
+          },
+          "html": Object {
+            "background": "#F3F3F2",
+            "color": undefined,
+            "fontFamily": "'Source Sans Pro', sans-serif",
+            "height": "100%",
+            "margin": 0,
+            "padding": 0,
+          },
+          "mediaQueries": Object {
+            "(min-width: 1200px)": Object {
+              ".uxi_container": Object {
+                "margin": "0 auto",
+                "maxWidth": "1170px",
+              },
+            },
+            "(min-width: 768px)": Object {
+              ".uxi_container": Object {
+                "margin": "0 auto",
+                "maxWidth": "750px",
+              },
+            },
+            "(min-width: 992px)": Object {
+              ".uxi_container": Object {
+                "margin": "0 auto",
+                "maxWidth": "970px",
+              },
+            },
+          },
+          "table": Object {
+            "margin": 0,
+            "padding": 0,
+          },
+          "td": Object {
+            "padding": "5px 10px",
+          },
+          "ul": Object {
+            "listStyle": "none",
+            "margin": 0,
+            "padding": 0,
+          },
+        }
+      }
+      scopeSelector=""
+    />
+    <Style
+      rules={
+        Object {
+          "fontSize": "14p",
+        }
+      }
+      scopeSelector=".uxi-root"
+    />
+    <Button
+      onClick={[Function]}
+      text="YO!"
+    />
+  </div>
+</StyleRoot>
+`;

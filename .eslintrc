@@ -14,6 +14,7 @@
     "node": true
   },
   "plugins": [
+    "styled-components-config",
     "react",
     "flowtype",
     "import"

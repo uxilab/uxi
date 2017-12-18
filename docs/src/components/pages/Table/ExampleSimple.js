@@ -372,14 +372,14 @@ const ExampleSimple = () => (
           <TableRowColumn>
             555-555-555
           </TableRowColumn>
-          <TableRowColumn>
+          <TableRowColumn style={{ paddingTop: 0, paddingBottom: 0 }}>
             <DropDown
               style={{
                 // float: 'right',
                 // display: 'flex',
                 // alignItems: 'center',
               }}
-              main={<Button inert><OptionsIcon size="18" /></Button>}
+              main={<Button inert style={{ minHeight: '100%' }}><OptionsIcon size="18" /></Button>}
               items={[
                 <a key="1" href="https://google.com" >action 1</a>,
                 <a key="2" href="https://google.com" >action 2</a>,

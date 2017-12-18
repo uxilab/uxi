@@ -297,6 +297,14 @@ export const theme = {
       color: palette.accent.main,
     },
   },
+  shadow: {
+    base: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+  },
+  transition: {
+    duration: '450ms',
+    delay: '0ms',
+    easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+  },
 };
 
 // eslint-disable-next-line no-shadow
@@ -614,6 +622,14 @@ export const getThemeWithCustomPalette = (customPalette) => { // eslint-disable-
       linkOnBgLightHover: {
         color: palette.accent.main,
       },
+    },
+    shadow: {
+      base: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+    },
+    transition: {
+      duration: '450ms',
+      delay: '0ms',
+      easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
     },
   };
 

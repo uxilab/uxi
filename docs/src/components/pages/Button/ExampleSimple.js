@@ -1,65 +1,70 @@
 import React from 'react';
 import { Button, FlatButton } from '../../../../../src/Button';
 import { Merge } from '../../../../../src/Icons';
+import styled from 'styled-components';
+
+const Li = styled.li`
+  padding: 8px
+`;
 
 const ExampleSimple = () => (
-  <div>
-    <div>
+  <ul>
+    <Li>
       <FlatButton text="Test" />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button text="Test" />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button type="primary" text="Test" />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button type="primary" icon={<Merge />} text="Test" />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button type="secondary" text="Test" />
-    </div>
-    <div>
-      <Button type="danger" text="Test" />
-    </div>
-    <div>
+    </Li>
+    <Li>
+      <Button type="error" text="Test" />
+    </Li>
+    <Li>
       <Button isFullWidth type="primary" text="Install" />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button isFullWidth type="primary" text="Install" onClick={() => { window.alert('hi from onclick'); }} click={() => { window.alert('hi from click'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button icon={<Merge />} isFullWidth type="primary" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
-      <Button type="danger" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
+      <Button type="error" text="Install" click={() => { window.alert('hi'); }} />
+    </Li>
+    <Li>
       <Button type="success" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button icon={<Merge />} type="warning" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
-      <Button icon={<Merge size="14" />} type="danger" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
+      <Button icon={<Merge size="14" />} type="error" text="Install" click={() => { window.alert('hi'); }} />
+    </Li>
+    <Li>
       <Button icon={<Merge size="18" />} type="success" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <Button iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <h3>disabled</h3>
       <Button disabled iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
-    </div>
-    <div>
+    </Li>
+    <Li>
       <h3>Button of type subit in a form</h3>
       <form onSubmit={() => { window.alert('form submitted'); }}>
         <Button icon={<Merge />} type="submit" text="submit" click={() => { window.alert('hi'); }} />
       </form>
-    </div>
-  </div>
+    </Li>
+  </ul>
 );
 
 export default ExampleSimple;
