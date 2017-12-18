@@ -17,7 +17,7 @@ const styles = {
 const AvatarWithName = ({ src, icon, name, imgSize, isSquare, onClick }) => {
   // eslint-disable-next-line no-nested-ternary
   const imgContent = src
-    ? <Img async width={imgSize || '26px'} style={{ borderRadius: (isSquare ? 0 : '50%'), minWidth: imgSize || '26px' }} src={src} />
+    ? <Img async width={imgSize || '26'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
     : (icon
       ? React.cloneElement(icon, { size: imgSize || '26px' })
       : React.createElement(getAppropriateIcon('Circleduser'), { size: imgSize || '26px' })

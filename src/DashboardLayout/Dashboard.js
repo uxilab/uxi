@@ -1,39 +1,39 @@
 import React from 'react';
 
 /**
- * 
+ *
  *   column width = 100% / column width.
  *   height row = unit = 200px
- * 
+ *
  *  column = 2, row = 2
  *  A1 = 50%, 200px
  *  A2 = 50%, 200px
  *  B1 = 50%, 200px
  *  B2 = 50%, 200px
- * 
+ *
  *  Cell:
  *  position:absolute
  *  left: 0,
  *  width: 50%
  *  height: 200px
- * 
+ *
  *  A2:A3
- * 
+ *
  *  position:absolute
  *  left: (X start * (column / total column) )
  *  width = (X end - X start ) * (100/total column),
  *  height: (row end - row start) * unit
  *  top: (row start & Y unit)
- *  
+ *
  *  positionX: 2:3
  *  positionY: A:C
  *  left: (X start * (column / total column) )
  *  width = (X end - X start ) * (100/total column),
  *  height: (row end - row start) * unit
- *   
+ *
  */
 const makeGrid = (column, row) => (
-  
+  null
 );
 /**
  * Creating an XLS like Grid.
