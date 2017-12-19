@@ -92,6 +92,7 @@ class Button extends Component {
       icon: iconProp,
       iconPosition,
       style,
+      className,
       // ...restOfProps
     } = this.props;
 
@@ -107,8 +108,10 @@ class Button extends Component {
       icon = React.cloneElement(iconProp, { size: '16' });
     }
 
-    const buttonProps = {
+    const buttonAttr = {
       onClick: click || onClick || null,
+      className,
+      style,
     };
 
     const styleProps = {
@@ -126,7 +129,7 @@ class Button extends Component {
     else { TheButtonComponent = ButtonUI; }
 
     const theButton = (
-      <TheButtonComponent {...styleProps} {...buttonProps} isFullWidth={isFullWidth} style={style}>
+      <TheButtonComponent {...styleProps} {...buttonAttr}>
         {icon &&
           <ButtonIconWrapper {...styleProps}> {icon} </ButtonIconWrapper>
         }
