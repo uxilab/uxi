@@ -138,7 +138,7 @@ class Button extends Component {
 
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
-    return disabled ? theButton : (<Ripples style={rippleStyles}>{theButton}</Ripples>);
+    return theButton;
   }
 }
 

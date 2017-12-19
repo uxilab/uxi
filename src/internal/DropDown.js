@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
+import { UnstyledButton } from '../Button';
 
 const styles = {
   wrapper: {
@@ -151,6 +152,7 @@ export class DropDown extends PureComponent {
   }
 
   handleToggleVisibility() {
+    if (this.props.main.props.onClick) { this.props.main.props.onClick(); }
     this.setState({ isOpen: !this.state.isOpen });
   }
 
@@ -187,7 +189,13 @@ export class DropDown extends PureComponent {
     const dropDownMain = React.cloneElement(main,
       {
         ref: ref => this.storeMainRef(ref),
+        onClick: () => {
+          console.log('clicked');
+          this.handleToggleVisibility;
+        },
       });
+    // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
+
 
     const items = React.Children.map(itemsBefore, child => React.cloneElement(child, {
       style: {
@@ -211,11 +219,11 @@ export class DropDown extends PureComponent {
 
     return (
       <span style={{ ...styles.wrapper/* , ...style */ }}>
-        <span tabIndex={0} role="menu" style={styles.triggerWrapper} onClick={this.handleToggleVisibility} >
+        <UnstyledButton tabIndex={0} role="menu" style={styles.triggerWrapper} onClick={this.handleToggleVisibility} >
           <span style={styles.triggerInnerWrapper}>
             {dropDownMain}
           </span>
-        </span>
+        </UnstyledButton>
         <div
           style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
