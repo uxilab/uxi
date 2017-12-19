@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import DropDown from '../internal/DropDown';
 import { Arrowdown } from '../Icons';
-import { Button } from '../Button';
+import { Button, ButtonWithoutRipple } from '../Button';
 import Option from './SelectInputOptions';
 
 function isElement(element) {
@@ -120,7 +120,15 @@ class SelectInput extends PureComponent {
       <span style={styles.trigerrer}>
         {mainContent}
         <div style={styles.trigerrerIcon}>
-          <Button inert type="primary" style={styles.button} icon={<Arrowdown size="14" color="white" />} />
+          {/* <Arrowdown /> */}
+          {/* <button><Arrowdown /></button> */}
+          <ButtonWithoutRipple
+            inert
+            type="primary"
+            style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
+            icon={<Arrowdown />}
+          />
+          {/* <Button inert type="primary" style={styles.button} icon={<Arrowdown />} /> */}
         </div>
       </span>
     );
