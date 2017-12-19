@@ -62,7 +62,8 @@ const ButtonIconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: ${({ icon }) => (icon ? '0 4px' : '0')};
+  margin: ${({ icon, textOrMessage }) =>
+    (icon && textOrMessage ? '0 4px' : '0')};
 `;
 
 const ButtonContentWrapper = styled.div`
@@ -120,6 +121,7 @@ class Button extends Component {
       type,
       iconPosition,
       icon,
+      textOrMessage,
     };
 
     // which element to render div|a|button

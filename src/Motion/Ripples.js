@@ -49,23 +49,23 @@ class Ripples extends Component {
   handleClick = (ev) => {
     const { disabled } = this.props;
     if (disabled) return false;
-    ev.stopPropagation();
-
+    // ev.stopPropagation();
     const { onClick, color, during } = this.props;
     const {
-      pageX, pageY, currentTarget: {
-        offsetLeft, offsetTop,
-        offsetWidth, offsetHeight,
+      pageX, clientY, currentTarget: {
+        offsetWidth, offsetHeight
       },
+      currentTarget,
     } = ev;
+    const { top, left } = currentTarget.getBoundingClientRect()
 
-    const left = pageX - offsetLeft;
-    const top = pageY - offsetTop;
+    const rippleLeft =  pageX - left;
+    const rippleTop = clientY - top;
 
     this.setState({
       rippleStyle: {
-        top,
-        left,
+        top: rippleTop,
+        left: rippleLeft,
         opacity: 1,
         backgroundColor: color,
       },
@@ -76,8 +76,8 @@ class Ripples extends Component {
 
       this.setState({
         rippleStyle: {
-          top,
-          left,
+          top: rippleTop,
+          left: rippleLeft,
           backgroundColor: color,
           transition: `all ${during}ms`,
           transform: `${rippleStyle.transform} scale(${size / 9})`,

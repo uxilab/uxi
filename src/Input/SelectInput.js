@@ -118,17 +118,15 @@ class SelectInput extends PureComponent {
 
     return (
       <span style={styles.trigerrer}>
-        {mainContent}
+        <div>
+          {mainContent}
+        </div>
         <div style={styles.trigerrerIcon}>
-          {/* <Arrowdown /> */}
-          {/* <button><Arrowdown /></button> */}
-          <ButtonWithoutRipple
-            inert
+          <Button
             type="primary"
             style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
             icon={<Arrowdown />}
           />
-          {/* <Button inert type="primary" style={styles.button} icon={<Arrowdown />} /> */}
         </div>
       </span>
     );
