@@ -11,6 +11,7 @@ import grid from './grid';
 /* eslint-disable indent */
 /* eslint-disable prefer-template */
 export const makeGlobalCSSInjector = (injectGlobal, theme) => {
+  if (!theme) return () => console.warn('called `makeGlobalCSSInjector` without passing a theme');
   const {
     palette,
     transition,
