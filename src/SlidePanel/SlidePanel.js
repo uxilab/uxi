@@ -83,10 +83,10 @@ class SidePanel extends React.Component {
                     onClose,
                     anchor,
                   })) :
-                  React.cloneElement(children, {
+                  (children && React.cloneElement(children, {
                     onClose,
                     anchor,
-                  })
+                  }))
               }
             </div>
           </div>
