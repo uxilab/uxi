@@ -23,6 +23,14 @@ const ButtonBaseStyles = css`
   transition: all 0.38s ease-out;
   font-family: 'Fira sans', sans-serif;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  svg {
+    min-width: 26px;
+    width: 26px;
+    max-width: 26px;
+    min-height: 26px;
+    height: 26px;
+    max-height: 26px;
+  }
 `;
 
 export default ButtonBaseStyles;

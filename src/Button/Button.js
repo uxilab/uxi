@@ -45,14 +45,32 @@ const ButtonBaseMixin = css`
   ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
   &:hover {
     ${({ disabled, theme: { palette } }) => (disabled ?
-      `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
+    `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
     ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
+    svg {
+      ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
+    }
+  }
+  svg {
+    ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
   }
 
 }
 `;
-/* eslint-enable indent */
 
+const ButtonIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${({ icon }) => (icon ? '0 4px' : '0')};
+`;
+
+const ButtonContentWrapper = styled.div`
+  margin: 0 4px;
+`;
+
+
+/* eslint-enable indent */
 const ButtonUI = styled.button`${ButtonBaseMixin};`;
 const ButtonLinkUI = styled.a`${ButtonBaseMixin};`;
 const ButtonDivUI = styled.div`${ButtonBaseMixin};`;
@@ -71,7 +89,7 @@ class Button extends Component {
       click,
       onClick,
       disabled,
-      icon,
+      icon: iconProp,
       iconPosition,
       style,
       // ...restOfProps
@@ -83,9 +101,15 @@ class Button extends Component {
 
     const type = wasASubmitInitially ? 'primary' : originalType;
 
-    const buttonProps = { isFullWidth, disabled, type, iconPosition };
 
-    // which element to render
+    let icon;
+    if (React.isValidElement(iconProp)) {
+      icon = React.cloneElement(iconProp, { size: '16' });
+    }
+
+    const buttonProps = { isFullWidth, disabled, type, iconPosition, icon };
+
+    // which element to render div|a|button
     let TheButtonComponent = null;
     if (inert) { TheButtonComponent = ButtonDivUI; }
     else if (link) { TheButtonComponent = ButtonLinkUI; }
@@ -93,8 +117,12 @@ class Button extends Component {
 
     const theButton = (
       <TheButtonComponent {...buttonProps} isFullWidth={isFullWidth}>
-        {icon}
-        {textOrMessage}
+        <ButtonIconWrapper {...buttonProps}>
+          {icon}
+        </ButtonIconWrapper>
+        <ButtonContentWrapper {...buttonProps}>
+          {textOrMessage}
+        </ButtonContentWrapper>
       </TheButtonComponent>
     );
 

@@ -59,6 +59,14 @@ const ExampleSimple = () => (
       <Button disabled iconPosition="after" icon={<Merge />} type="success" text="Install" click={() => { window.alert('hi'); }} />
     </Li>
     <Li>
+      <h3>info</h3>
+      <Button iconPosition="after" icon={<Merge />} type="info" text="ima button" click={() => { window.alert('hi'); }} />
+    </Li>
+    <Li>
+      <h3>disabled</h3>
+      <Button disabled text="Install" click={() => { window.alert('hi'); }} />
+    </Li>
+    <Li>
       <h3>Button of type subit in a form</h3>
       <form onSubmit={() => { window.alert('form submitted'); }}>
         <Button icon={<Merge />} type="submit" text="submit" click={() => { window.alert('hi'); }} />
