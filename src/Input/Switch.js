@@ -17,22 +17,42 @@ const SwitchOutterWrapper = styled.div`
   border-radius: 11px;
   border: 1px solid transparent;
   position: relative;
+  transition: background-color .3s ease-out;
   margin: 0 6px 0 0;
-  background: #cecece;
-  background: ${({ theme, checked }) => (!checked ? theme.palette.grey : theme.palette.accent.main)};
+  background-color: ${({ checked }) => (!checked ? '#9a9a9a' : '#26a29a')};
+  background-color: ${({ theme, checked }) => (!checked ? theme.palette.grey : theme.palette.accent.main)};
+  &:before, &:after {
+    display: flex;
+    align-items: center;
+    color: white;
+    opacity: .4;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-family: sans-serif;
+  }
+  &:before {
+    content: 'I';
+    left: 7.5px;
+  };
+  &:after {
+    content: '0';
+    right: 6px;
+  }
 `;
 
 const SwitchInnerWrapper = styled.div`
+  /* z-index: 1; */
   width: 16px;
   height: 16px;
   border-radius: 9px;
   border: 1px solid transparent;
   position: absolute;
   margin: 1px;
-  transition: right .3s ease-out;
+  transition: left .3s ease-out;
   background: white;
-  left: ${({ checked }) => (!checked ? 0 : 'auto')};
-  right: ${({ checked }) => (!checked ? 'auto' : 0)};
+  left: ${({ checked }) => (!checked ? 0 : 'calc(100% - 20px)')};
+  /* right: ${({ checked }) => (!checked ? 'auto' : 0)}; */
 `;
 
 
