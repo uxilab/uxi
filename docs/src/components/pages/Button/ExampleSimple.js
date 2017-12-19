@@ -13,7 +13,13 @@ const ExampleSimple = () => (
       <FlatButton text="Test" />
     </Li>
     <Li>
+      <FlatButton type="primary" text="Test" />
+    </Li>
+    <Li>
       <Button text="Test" />
+    </Li>
+    <Li>
+      <Button icon={<Merge />} text="Test" />
     </Li>
     <Li>
       <Button type="primary" text="Test" />

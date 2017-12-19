@@ -28,14 +28,14 @@ const ButtonBaseMixin = css`
 
   /* TYPE STYLES: */
   background-color: ${({ theme, type }) => getTypeColor(theme, type)};
-  border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};
-  color: ${({ type }) => (type ? '#fff' : 'inherit')};
-  svg { fill: ${({ type }) => (type ? '#fff' : 'inherit')};}
+  border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.lightGrey)};
+  color: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};
+  svg { fill: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};}
   &:hover {
-    border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};
-    color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};
+    border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
+    color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};
     background-color: ${({ type, theme }) => (type ? '#fff' : theme.palette.lightGrey)};
-    svg { fill: ${({ theme, type }) => (type ? getTypeColor(theme, type) : 'inherit')};}
+    svg { fill: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};}
   }
 
   /* DISABLED STYLES: (overrides types styles)*/
@@ -108,7 +108,7 @@ class Button extends Component {
     }
 
     const buttonProps = {
-      onClick,
+      onClick: click || onClick || null,
     };
 
     const styleProps = {
