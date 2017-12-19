@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Done } from '../Icons';
-import { Badge } from '../Badge';
 import { palette } from '../Theme';
+
+const Badge = styled.div`
+  box-sizing: border-box;
+  color: #ffffff ;
+  color: ${({ theme }) => theme.palette.pureWhite };
+  overflow: hidden;
+  font-size: 13px;
+  border-radius: 7px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  min-width: 20px;
+  width: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  margin-right: 4px;
+  padding: 0;
+  /* padding: 0.4em 0.3em; */
+  background-color: ${({ theme, type }) =>
+    (type === 'success' ? theme.palette.accent.main : theme.palette.lightGrey) }
+`;
 
 const StepWrapperUI = styled.div`
   display: flex;
@@ -29,10 +52,10 @@ const Step = ({ active, disabled, completed, nonLinear, index, children }) => {
   // eslint-disable-next-line no-nested-ternary
   const progressBadge = active
     // ? <Radioinput style={{ marginRight: '4px' }} size="20" color={palette.accent.main} />
-    ? <Badge rounded type="success" style={{ marginRight: '4px' }}>{index}</Badge>
+    ? <Badge type="success" style={{ marginRight: '4px' }}>{index}</Badge>
     : (!nonLinear && completed
       ? <Done size="20" color={palette.semantic.success} style={{ marginRight: '4px' }} />
-      : <Badge rounded style={{ marginRight: '4px' }}>{index}</Badge>
+      : <Badge style={{ marginRight: '4px' }}>{index}</Badge>
     );
 
   return (

@@ -16,10 +16,7 @@ const BadgeStyle = {
     whiteSpace: 'nowrap',
     verticalAlign: 'baseline',
     borderRadius: '0.25em',
-    // display: 'inline',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: 'inline-block',
   },
   info: {
     color: '#fff',
@@ -75,16 +72,6 @@ class Badge extends Component {
       classNames.push(BadgeStyle.info);
     } else {
       classNames.push(BadgeStyle.default);
-    }
-
-    if (rounded) {
-      classNames.push({
-        borderRadius: '50%',
-        minWidth: '20px',
-        maxWidth: '20px',
-        minHeight: '20px',
-        maxHeight: '20px',
-      });
     }
 
     return (

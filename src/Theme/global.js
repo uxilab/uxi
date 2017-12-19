@@ -18,6 +18,9 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
   } = theme;
 
   return () => injectGlobal`
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       height: 100%;

@@ -5,11 +5,18 @@ const ExampleSimple = () => (
   <div>
     <ul>
       <li>
-        <Badge type="danger" />
+        <Badge type="info" >
+          This is you
+        </Badge>
       </li>
       <li>
-        <Badge type="danger">
-          qsffr
+        <Badge type="error" >
+          Admin
+        </Badge>
+      </li>
+      <li>
+        <Badge type="primary">
+          you
         </Badge>
       </li>
       <li>
