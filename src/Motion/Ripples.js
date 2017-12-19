@@ -47,6 +47,8 @@ class Ripples extends Component {
   };
 
   handleClick = (ev) => {
+    const { disabled } = this.props;
+    if (disabled) return false;
     ev.stopPropagation();
 
     const { onClick, color, during } = this.props;
