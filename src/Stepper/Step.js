@@ -6,7 +6,7 @@ import { palette } from '../Theme';
 const Badge = styled.div`
   box-sizing: border-box;
   color: #ffffff ;
-  color: ${({ theme }) => theme.palette.pureWhite };
+  color: ${({ theme }) => theme.palette.pureWhite};
   overflow: hidden;
   font-size: 13px;
   border-radius: 7px;
@@ -24,7 +24,7 @@ const Badge = styled.div`
   padding: 0;
   /* padding: 0.4em 0.3em; */
   background-color: ${({ theme, type }) =>
-    (type === 'success' ? theme.palette.accent.main : theme.palette.lightGrey) }
+    (type === 'success' ? theme.palette.accent.main : theme.palette.lightGrey)}
 `;
 
 const StepWrapperUI = styled.div`

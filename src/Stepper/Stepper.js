@@ -8,6 +8,7 @@ const StepperWrapperUI = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: ${({ nowrap }) => (nowrap ? 'nowrap' : 'wrap')};
 `;
 
 /* eslint-disable */
@@ -52,7 +53,7 @@ class Stepper extends Component {
     })
 
     return (
-      <StepperWrapperUI>
+      <StepperWrapperUI nowrap={nowrap}>
         {steps}
       </StepperWrapperUI>
     );

@@ -5,6 +5,7 @@ const StepConnectorWrapperUI = styled.div`
   height: 100%;
   position: relative;
   flex-grow: 2;
+  flex-shrink: 9;
   padding: 8px
 `;
 
