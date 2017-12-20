@@ -5,41 +5,105 @@ import radium from 'radium';
 import TableStyle from './Table.style';
 import tooltipStyles from './tooltipStyles';
 
+function ascendingSort(a, b) {
+  if (a < b) {
+    return -1;
+  }
+  if (a > b) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 class Table extends Component {
   state = {
     allRowsSelected: false,
+    selectedRows: [],
+    rowsLength: 0,
+    availableRows: [],
   };
 
   componentWillMount() {
+    let allRowsSelected = this.state.allRowsSelected;
     if (this.props.allRowsSelected) {
-      this.setState({ allRowsSelected: true });
+      allRowsSelected = this.props.allRowsSelected;
     }
+
+    let childCount = 0;
+    const availableRows = [];
+    React.Children.forEach(this.props.children, (child) => {
+      if (!React.isValidElement(child)) return;
+
+      const { componentName } = child.type;
+      if (componentName === 'TableBody') {
+        childCount = React.Children.count(child.props.children);
+        React.Children.forEach(child.props.children, (row, idx) => availableRows.push(idx));
+      }
+    });
+
+    this.setState({
+      availableRows,
+      allRowsSelected,
+      rowsLength: childCount,
+    });
   }
 
-  onRowSelection = (selectedRows) => {
-    if (this.state.allRowsSelected) this.setState({ allRowsSelected: false });
-    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+  onRowSelection = (rowNumber) => {
+    const { selectedRows, allRowsSelected } = this.state;
+
+    if (rowNumber === 'all') {
+      if (allRowsSelected) this.setState({ allRowsSelected: true });
+      this.setState({
+        selectedRows: [...this.state.availableRows],
+      });
+    } else if (rowNumber === 'none') {
+      if (allRowsSelected) {
+        this.setState({
+          selectedRows: [],
+        });
+      }
+    } else {
+      if (selectedRows.length === 0) { // eslint-disable-line no-lonely-if
+        selectedRows.push(rowNumber);
+        this.setState({ selectedRows });
+      } else if (selectedRows.length > 0) {
+        const idx = selectedRows.indexOf(rowNumber);
+
+        if (idx > -1) {
+          selectedRows.splice(idx, 1);
+        } else {
+          selectedRows.splice(idx, 0, rowNumber);
+        }
+
+        this.setState({
+          selectedRows: selectedRows.sort(ascendingSort),
+        });
+      }
+    }
   };
 
   onSelectAll = () => {
-    // if (this.props.onRowSelection) {
-    //   if (!this.state.allRowsSelected) {
-    //     this.props.onRowSelection('all');
-    //   } else {
-    //     this.props.onRowSelection('none');
-    //   }
-    // }
-
     this.setState({ allRowsSelected: !this.state.allRowsSelected });
+    if (this.onRowSelection) {
+      if (!this.state.allRowsSelected) {
+        this.onRowSelection('all');
+      } else {
+        this.onRowSelection('none');
+      }
+    }
   };
 
   createTableBody(base) {
+    const { selectedRows } = this.state;
     return React.cloneElement(
       base,
       {
-        allRowsSelected: this.state.allRowsSelected,
+        allRowsSelected: this.state.rowsLength === selectedRows.length,
+        selectedRows: this.state.selectedRows,
         multiSelectable: this.props.multiSelectable,
         onRowSelection: this.onRowSelection,
+        onSelectAll: this.onSelectAll,
         selectable: this.props.selectable,
         condensed: this.props.condensed,
         noBorder: this.props.noBorder,

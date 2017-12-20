@@ -11,6 +11,17 @@ const TableBodyStyle = {
   container: {},
 };
 
+function ascendingSort(a, b) {
+  if (a < b) {
+    return -1;
+  }
+  if (a > b) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 const genRangeOfValues = (start, offset) => {
   const values = [];
   const dir = (offset > 0) ? -1 : 1; // This forces offset to approach 0 from either direction.
@@ -52,26 +63,24 @@ const splitRange = (range, splitPoint) => {
 class TableBody extends Component {
   static componentName = 'TableBody';
 
-  state = {
-    selectedRows: [],
-  };
 
-  onRowClick = (rowProps, event, rowNumber) => {
-    event.stopPropagation();
-
+  onRowSelect = (rowProps, event, rowNumber) => {
+    // event.stopPropagation();
     if (this.props.selectable && !rowProps.readOnly) {
       // Prevent text selection while selecting rows.
-      window.getSelection().removeAllRanges();
+      // I don't think this is working! -df
+      // window.getSelection().removeAllRanges();
+
       this.processRowSelection(event, rowNumber);
     }
-  };
+  }
 
   createRowCheckboxColumn(rowProps) {
     if (!this.props.displayRowCheckbox) {
       return null;
     }
 
-    const { condensed, noBorder } = rowProps;
+    const { condensed, noBorder, onRowSelect, rowNumber } = rowProps;
     const key = `${rowProps.rowNumber}-cb`;
     let content;
     let disabled = !this.props.selectable;
@@ -100,12 +109,12 @@ class TableBody extends Component {
           value="selected"
           disabled={disabled}
           checked={rowProps.selected}
+          onChange={event => onRowSelect(rowProps, event, rowNumber)}
         />
       );
     }
 
-    const checkBoxStyle = {
-      width: 24,
+    const checkBoxCellStyle = {
       cursor: disabled ? 'not-allowed' : 'inherit',
     };
 
@@ -113,7 +122,7 @@ class TableBody extends Component {
       <TableRowColumn
         key={key}
         columnNumber={0}
-        style={checkBoxStyle}
+        style={checkBoxCellStyle}
         condensed={condensed}
         noBorder={noBorder}
       >
@@ -127,59 +136,14 @@ class TableBody extends Component {
       return true;
     }
 
-    for (let i = 0; i < this.state.selectedRows.length; i++) {
-      const selection = this.state.selectedRows[i];
-
-      if (typeof selection === 'object') {
-        if (isValueInRange(rowNumber, selection)) return true;
-      } else if (selection === rowNumber) return true;
+    if (this.props.selectedRows.indexOf(rowNumber) > -1) {
+      return true;
     }
-
     return false;
   }
 
   processRowSelection(event, rowNumber) {
-    let selectedRows = this.state.selectedRows;
-
-    if (event.shiftKey && this.props.multiSelectable && selectedRows.length) {
-      const lastIndex = selectedRows.length - 1;
-      const lastSelection = selectedRows[lastIndex];
-
-      if (typeof lastSelection === 'object') {
-        lastSelection.end = rowNumber;
-      } else {
-        selectedRows.splice(lastIndex, 1, { start: lastSelection, end: rowNumber });
-      }
-    } else if (
-      ((event.ctrlKey && !event.metaKey) || (event.metaKey && !event.ctrlKey))
-      && this.props.multiSelectable
-    ) {
-      const idx = selectedRows.indexOf(rowNumber);
-      if (idx < 0) {
-        let foundRange = false;
-        for (let i = 0; i < selectedRows.length; i++) {
-          const range = selectedRows[i];
-          if (typeof range !== 'object') continue;
-
-          if (this.isValueInRange(rowNumber, range)) {
-            foundRange = true;
-            const values = splitRange(range, rowNumber);
-            selectedRows.splice(i, 1, ...values);
-          }
-        }
-
-        if (!foundRange) selectedRows.push(rowNumber);
-      } else {
-        selectedRows.splice(idx, 1);
-      }
-    } else if (selectedRows.length === 1 && selectedRows[0] === rowNumber) {
-      selectedRows = [];
-    } else {
-      selectedRows = [rowNumber];
-    }
-
-    this.setState({ selectedRows });
-    if (this.props.onRowSelection) this.props.onRowSelection(this.flattenRanges(selectedRows));
+    if (this.props.onRowSelection) this.props.onRowSelection(rowNumber);
   }
 
   flattenRanges(selectedRows) {
@@ -197,23 +161,26 @@ class TableBody extends Component {
   }
 
   createRows() {
-    const { selectable, condensed, noBorder } = this.props;
+    const { selectable, condensed, noBorder, allRowsSelected } = this.props;
     const numChildren = React.Children.count(this.props.children);
     let rowNumber = 0;
+    const availableRows = [];
 
-    return React.Children.map(this.props.children, (child) => {
+    const rowChildren = React.Children.map(this.props.children, (child) => {
       if (React.isValidElement(child)) {
         const handlers = {
-          onRowClick: this.onRowClick.bind(this, child.props),
+          // onRowClick: this.onRowClick.bind(this, child.props),
         };
 
         const props = Object.assign({}, {
+          allRowsSelected,
           condensed,
           noBorder,
           readOnly: child.props.readOnly,
           readOnlyText: child.props.readOnlyText,
           selected: child.props.readOnly ? false : this.isRowSelected(rowNumber),
-          rowNumber: rowNumber++,
+          rowNumber,
+          onRowSelect: this.onRowSelect,
         });
 
         if (rowNumber === numChildren) {
@@ -234,9 +201,12 @@ class TableBody extends Component {
           children.push(augmentedChildren);
         });
 
+        rowNumber += 1;
+        availableRows.push(rowNumber);
         return React.cloneElement(child, { ...props, ...handlers }, children);
       }
     });
+    return rowChildren;
   }
 
   render() {

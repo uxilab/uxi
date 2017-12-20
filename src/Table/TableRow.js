@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import TableRowStyle from './TableRow.style';
-// import Radium from 'radium';
 
 const Tr = styled.tr`
   border-bottom: ${({ noBorder }) => (noBorder ? 'none' : '1px solid rgb(224, 224, 224)')};
@@ -15,30 +13,13 @@ const Tr = styled.tr`
 `;
 
 class TableRow extends Component {
-  onRowClick(event) {
-    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(event, this.props.rowNumber);
-  }
-
-  onCellClick = (event, columnIndex) => {
-    if (this.props.selectable && this.props.onCellClick) {
-      this.props.onCellClick(event, this.props.rowNumber, columnIndex);
-    }
-    event.ctrlKey = true;
-    this.onRowClick(event);
-  };
-
   render() {
     const {
       className,
       displayBorder, // eslint-disable-line no-unused-vars
-      onCellClick, // eslint-disable-line no-unused-vars
-      onRowClick, // eslint-disable-line no-unused-vars
       rowNumber, // eslint-disable-line no-unused-vars
       selectable, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
-      // style,
-      // readOnly,
-      // readOnlyText,
       ...other
     } = this.props;
 

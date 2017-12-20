@@ -23,22 +23,22 @@ const ExampleSimple = () => (
     <Table multiSelectable selectable condensed>
       <TableHeader>
         <TableRow>
-          <TableHeaderColumn>Name</TableHeaderColumn>
-          <TableHeaderColumn>Chosen Entities</TableHeaderColumn>
-          <TableHeaderColumn>Added By</TableHeaderColumn>
-          <TableHeaderColumn>Is only For Admin</TableHeaderColumn>
+          <TableHeaderColumn onClick={() => console.log('Name')}>Name</TableHeaderColumn>
+          <TableHeaderColumn onClick={() => console.log('Chosen Entities')}>Chosen Entities</TableHeaderColumn>
+          <TableHeaderColumn onClick={() => console.log('Added By')}>Added By</TableHeaderColumn>
+          <TableHeaderColumn onClick={() => console.log('Is only For Admin')}>Is only For Admin</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow readOnlyText="System Filter Cannot Be Modified" readOnly>
-          <TableRowColumn>All</TableRowColumn>
-          <TableRowColumn>All Entities</TableRowColumn>
-          <TableRowColumn>
+          <TableRowColumn onClick={() => console.log('All')}>All</TableRowColumn>
+          <TableRowColumn onClick={() => console.log('All Entities')}>All Entities</TableRowColumn>
+          <TableRowColumn onClick={() => console.log('System')}>
             <span style={{ color: 'rgb(158, 158, 158)' }}>
               System
             </span>
           </TableRowColumn>
-          <TableRowColumn>False</TableRowColumn>
+          <TableRowColumn onClick={() => console.log('False')}>False</TableRowColumn>
         </TableRow>
         <TableRow readOnly>
           <TableRowColumn>Company</TableRowColumn>
@@ -58,6 +58,26 @@ const ExampleSimple = () => (
               System
             </span>
           </TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>
+            <span>/EmailThread</span>
+            <br />
+            <span>/Email</span>
+          </TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
+          <TableRowColumn>False</TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Email Thread</TableRowColumn>
+          <TableRowColumn>
+            <span>/EmailThread</span>
+            <br />
+            <span>/Email</span>
+          </TableRowColumn>
+          <TableRowColumn>Simona Superstart</TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
         </TableRow>
         <TableRow>
