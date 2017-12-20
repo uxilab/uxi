@@ -19,6 +19,7 @@ class Stepper extends Component {
       children,
       nonLinear,
       connector: connectorProp,
+      nowrap,
     } = this.props
 
     const childrenArray = React.Children.toArray(children)
