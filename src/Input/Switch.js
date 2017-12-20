@@ -51,7 +51,7 @@ const SwitchInnerWrapper = styled.div`
   margin: 1px;
   transition: left .3s ease-out;
   background: white;
-  left: ${({ checked }) => (!checked ? 0 : 'calc(100% - 18px)')};
+  left: ${({ checked }) => (!checked ? 0 : 'calc(100% - 20px)')};
   /* right: ${({ checked }) => (!checked ? 'auto' : 0)}; */
 `;
 
