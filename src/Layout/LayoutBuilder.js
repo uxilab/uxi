@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Tab, TabList, TabPanel, Tabs } from '../Tabs';
 import Col from './Col';
 import Row from './Row';
