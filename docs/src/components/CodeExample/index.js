@@ -39,11 +39,12 @@ class CodeExample extends Component {
 
    const styles = {
      root: {
-       backgroundColor: 'grey',
+       backgroundColor: 'white',
+       border: '1px solid lightGrey',
        marginBottom: 32,
+       borderRadius: '3px',
      },
      exampleBlock: {
-       borderRadius: '0 0 2px 0',
        padding: '14px 24px 24px',
        margin: 0,
        width: layoutSideBySide ? '45%' : null,

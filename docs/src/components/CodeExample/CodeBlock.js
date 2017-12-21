@@ -54,11 +54,11 @@ ${this.props.children}
 
    const descriptionStyle = styles.description;
    let codeStyle = Object.assign({}, styles.markdown, styles.markdownRetracted);
-   let tooltip = 'Show source';
+   let tooltip = 'Show';
 
    if (this.state.expand) {
      codeStyle = styles.markdown;
-     tooltip = 'Hide source';
+     tooltip = 'Hide';
    }
 
    return (

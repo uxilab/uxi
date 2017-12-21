@@ -1,16 +1,25 @@
 import React from 'react';
-import { Button, FlatButton } from '../../../../../src/Button';
+import styled from 'styled-components';
+import { FlatButton } from '../../../../../src/Button';
 import { Merge } from '../../../../../src/Icons';
 
-const ExampleSimple = () => (
+const Li = styled.li`
+  display: inline;
+  padding: 0 8px 0 0;
+`;
+
+const ExampleSimpleFlat = () => (
   <ul>
-    <li>
-      <FlatButton text="Test" />
-    </li>
-    <li>
-      <FlatButton type="primary" text="Test" />
-    </li>
+    <Li>
+      <FlatButton text="send" />
+    </Li>
+    <Li>
+      <FlatButton type="primary" text="SUBMIT" />
+    </Li>
+    <Li>
+      <FlatButton type="warning" text="IGNORE" />
+    </Li>
   </ul>
 );
 
-export default ExampleSimple;
+export default ExampleSimpleFlat;
