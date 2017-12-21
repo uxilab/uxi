@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Button, FlatButton } from '../../../../../src/Button';
 import { Merge } from '../../../../../src/Icons';
-import styled from 'styled-components';
+import Loader from '../../../../../src/Indicator/Loader';
 
 const Li = styled.li`
   padding: 8px
@@ -20,6 +21,12 @@ const ExampleSimple = () => (
     </Li>
     <Li>
       <Button icon={<Merge />} text="Test" />
+    </Li>
+    <Li>
+      <Button icon={<Loader />} text="Test" />
+    </Li>
+    <Li>
+      <Button type="primary" icon={<Loader />} text="Test" />
     </Li>
     <Li>
       <Button type="primary" text="Test" />
