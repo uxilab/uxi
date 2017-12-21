@@ -9,9 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "highlight.js": "^9.12.0",
     "history": "^4.7.2",
+    "marked": "^0.3.7",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
+    "react-docgen": "^2.20.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
     "styled-components": "^2.2.4"
@@ -26,6 +29,7 @@
     "html-webpack-plugin": "^2.30.1",
     "install": "^0.10.1",
     "npm": "^5.4.1",
+    "raw-loader": "^0.5.1",
     "react-hot-loader": "^3.0.0-beta.7",
     "webpack": "^3.5.6",
     "webpack-dev-server": "^2.7.1"

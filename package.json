@@ -45,6 +45,7 @@
   "homepage": "https://github.com/CluedIn-io/uxi#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "component-playground": "^3.0.0",
     "keycode": "^2.1.9",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",

@@ -1,5 +1,8 @@
 import { lighten } from './colorManipulator';
 import grid from './grid';
+import synthaxHighlight from './synthaxHighlight';
+import markdown from './markdown';
+//
 /**
  * injectGlobal: A helper method to write global CSS.
  * It does not return a component,
@@ -62,6 +65,8 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
      * Extend using css from styled-components
      */
     ${grid}
+    ${synthaxHighlight}
+    ${markdown}
 `;
 };
 
