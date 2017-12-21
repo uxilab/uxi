@@ -54,6 +54,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    // modules: ['uxi', 'node_modules'],
     alias: {
       // material-ui requires will be searched in src folder, not in node_modules
       uxi: path.resolve(__dirname, '../src'),
