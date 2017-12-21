@@ -73,7 +73,10 @@ const ButtonContentWrapper = styled.div`
 
 /* eslint-enable indent */
 const ButtonUI = styled.button`${ButtonBaseMixin};`;
-const ButtonLinkUI = styled.a`${ButtonBaseMixin};`;
+const ButtonLinkUI = styled.a`
+  ${ButtonBaseMixin};
+  text-decoration: none
+`;
 const ButtonDivUI = styled.div`${ButtonBaseMixin};`;
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -131,7 +134,7 @@ class Button extends Component {
     else { TheButtonComponent = ButtonUI; }
 
     const theButton = (
-      <TheButtonComponent {...styleProps} {...buttonAttr}>
+      <TheButtonComponent {...(link ? { href: link } : {})} {...styleProps} {...buttonAttr}>
         {icon &&
           <ButtonIconWrapper {...styleProps}> {icon} </ButtonIconWrapper>
         }
