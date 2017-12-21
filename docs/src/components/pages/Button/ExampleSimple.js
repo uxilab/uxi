@@ -1,6 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Button, FlatButton } from '../../../../../src/Button';
 import { Merge } from '../../../../../src/Icons';
+import Loader from '../../../../../src/Indicator/Loader';
+
+const Li = styled.li`
+  padding: 8px
+`;
 
 const ExampleSimple = () => (
   <ul>
