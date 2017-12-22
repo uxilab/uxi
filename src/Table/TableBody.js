@@ -89,7 +89,7 @@ class TableBody extends Component {
 
       const icon = (<Lock
         style={{ color: 'rgb(158, 158, 158)', fill: 'rgb(158, 158, 158)' }}
-        size={condensed ? 14 : 24}
+        size={condensed ? 14 : 20}
       />);
 
       if (rowProps.readOnlyText) {
@@ -116,6 +116,10 @@ class TableBody extends Component {
 
     const checkBoxCellStyle = {
       cursor: disabled ? 'not-allowed' : 'inherit',
+      width: '42px',
+      paddingLeft: '8px',
+      paddingRight: '8px',
+      textAlign: 'center',
     };
 
     return (

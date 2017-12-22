@@ -19,7 +19,6 @@ import { User } from 'uxi/Icons';
 
 const ExampleSimple = () => (
   <div>
-    <h3>Condensed table</h3>
     <Table>
       <TableHeader>
         <TableRow>

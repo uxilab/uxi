@@ -68,8 +68,12 @@ class TableHeader extends Component {
       <TableHeaderColumn
         key={key}
         style={{
-          width: 24,
           cursor: disabled ? 'not-allowed' : 'inherit',
+          width: '42px',
+          paddingLeft: '8px',
+          paddingRight: '8px',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       />
     );
@@ -79,6 +83,7 @@ class TableHeader extends Component {
     if (!this.props.displaySelectAll) return this.getCheckboxPlaceholder(props);
 
     const disabled = !this.props.enableSelectAll;
+
     const checkbox = (
       <Checkbox
         key="selectallcb"
@@ -95,8 +100,11 @@ class TableHeader extends Component {
       <TableHeaderColumn
         key={key}
         style={{
-          width: 24,
           cursor: disabled ? 'not-allowed' : 'inherit',
+          width: '42px',
+          paddingLeft: '8px',
+          paddingRight: '8px',
+          textAlign: 'center',
         }}
       >
         {checkbox}
