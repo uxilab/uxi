@@ -6,16 +6,20 @@ import {
   TableRowColumn,
   TableHeader,
   TableHeaderColumn,
-} from '../../../../../src/Table';
-import Button, { IconButton } from '../../../../../src/Button';
+} from 'uxi/Table';
+import Button, { IconButton } from 'uxi/Button';
 import {
   Arrowup as ArrowUp,
   Arrowdown as ArrowDown,
   Options as OptionsIcon,
-} from '../../../../../src/Icons';
-import { AvatarWithName } from '../../../../../src/Img';
-import { DropDown } from '../../../../../src/internal/DropDown';
+} from 'uxi/Icons';
+import { AvatarWithName } from 'uxi/Img';
+import { DropDown } from 'uxi/internal/DropDown';
 import { User } from 'uxi/Icons';
+
+import CodeExample from '../../CodeExample';
+import ExampleSimpleFlat from './ExampleSimpleFlat';
+import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 
 const ExampleSimple = () => (
   <div>

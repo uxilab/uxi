@@ -1,9 +1,14 @@
 import React from 'react';
-import ExampleSimple from './ExampleSimple';
+import CodeExample from '../../CodeExample';
+
+import ExampleSimpleTable from './ExampleSimpleTable';
+import RAWExampleSimpleTable from '!raw-loader!./ExampleSimpleTable';
 
 const TablePage = () => (
   <div>
-    <ExampleSimple />
+    <CodeExample code={RAWExampleSimpleTable} component description="FlatButton">
+      <ExampleSimpleTable />
+    </CodeExample>
   </div>
 );
 

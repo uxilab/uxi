@@ -16,6 +16,7 @@ class CodeExample extends Component {
    exampleBlockStyle: React.PropTypes.object,
    layoutSideBySide: PropTypes.bool,
    title: PropTypes.string,
+   fullWidth: PropTypes.bool
  };
 
  static defaultProps = {
@@ -35,23 +36,20 @@ class CodeExample extends Component {
      layoutSideBySide,
    } = this.props;
 
-  //  const palette = this.context.muiTheme.rawTheme.palette;
-  //  const canvasColor = palette.canvasColor;
-
-   const styles = {
-     root: {
-       backgroundColor: 'white',
-       border: '1px solid lightGrey',
-       marginBottom: 32,
-       borderRadius: '3px',
-     },
-     exampleBlock: {
-       padding: '14px 24px 24px',
-       margin: 0,
-       width: layoutSideBySide ? '45%' : null,
-       float: layoutSideBySide ? 'right' : null,
-     },
-   };
+  const styles = {
+    root: {
+      backgroundColor: 'white',
+      border: '1px solid lightGrey',
+      marginBottom: 32,
+      borderRadius: '3px',
+    },
+    exampleBlock: {
+      padding: '14px 24px 24px',
+      margin: 0,
+      width: layoutSideBySide ? '45%' : null,
+      float: layoutSideBySide ? 'right' : null,
+    },
+  };
 
   //  const docs = component ? parse(code) : {};
 

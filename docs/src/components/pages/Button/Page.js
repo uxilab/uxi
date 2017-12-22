@@ -14,7 +14,7 @@ import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoade
 
 
 const ButtonPage = () => (
-  <ul style={{ maxWidth: '700px', margin: '0 auto' }}>
+  <ul>
     <li>
       <CodeExample code={RAWExampleSimpleFlat} component description="FlatButton">
         <ExampleSimpleFlat />
