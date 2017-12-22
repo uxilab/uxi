@@ -13,7 +13,7 @@ const TablePage = () => (
       <ExampleSelectableTable />
     </CodeExample>
     <br />
-    <CodeExample code={RAWExampleSimpleTable} component description="Simple table">
+    <CodeExample code={RAWExampleSimpleTable} component description="Simple table with click handlers">
       <ExampleSimpleTable />
     </CodeExample>
   </div>

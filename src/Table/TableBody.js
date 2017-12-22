@@ -199,6 +199,7 @@ class TableBody extends Component {
         React.Children.forEach(child.props.children, (aChild) => {
           const augmentedChildren = React.cloneElement(aChild, {
             ...aChild.props,
+            onClickHandler: aChild.props.onClick,
             condensed,
             noBorder,
           });

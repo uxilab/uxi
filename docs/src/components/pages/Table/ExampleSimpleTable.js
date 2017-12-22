@@ -21,11 +21,11 @@ const ExampleSimple = () => (
   <div>
     <Table>
       <TableHeader>
-        <TableRow>
-          <TableHeaderColumn onClick={() => console.log('Name')}>Name</TableHeaderColumn>
-          <TableHeaderColumn onClick={() => console.log('Chosen Entities')}>Chosen Entities</TableHeaderColumn>
-          <TableHeaderColumn onClick={() => console.log('Added By')}>Added By</TableHeaderColumn>
-          <TableHeaderColumn onClick={() => console.log('Is only For Admin')}>Is only For Admin</TableHeaderColumn>
+        <TableRow onClick={() => console.log('clicked header row')}>
+          <TableHeaderColumn onClick={() => console.log('clicked Name')}>Name</TableHeaderColumn>
+          <TableHeaderColumn onClick={() => console.log('clicked Chosen Entities')}>Chosen Entities</TableHeaderColumn>
+          <TableHeaderColumn>Added By</TableHeaderColumn>
+          <TableHeaderColumn>Is only For Admin</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -39,9 +39,9 @@ const ExampleSimple = () => (
           </TableRowColumn>
           <TableRowColumn>False</TableRowColumn>
         </TableRow>
-        <TableRow>
-          <TableRowColumn>Email Thread</TableRowColumn>
-          <TableRowColumn>
+        <TableRow onClick={() => console.log('clicked 2nd row')}>
+          <TableRowColumn onClick={() => console.log('clicked 2nd row 1st cell')}>Email Thread</TableRowColumn>
+          <TableRowColumn onClick={() => console.log('clicked 2nd row 2nd cell')}>
             <span>/EmailThread</span>
             <br />
             <span>/Email</span>

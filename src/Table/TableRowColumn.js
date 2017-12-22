@@ -38,8 +38,8 @@ class TableRowColumn extends Component {
   };
 
   onClick = (event) => {
-    if (this.props.onClick) {
-      this.props.onClick(event, this.props.columnNumber);
+    if (this.props.onClickHandler) {
+      this.props.onClickHandler(event, this.props.columnNumber);
     }
   };
 
@@ -49,8 +49,6 @@ class TableRowColumn extends Component {
       className,
       columnNumber, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
-      onClick, // eslint-disable-line no-unused-vars
-      // style,
       ...other
     } = this.props;
 

@@ -28,7 +28,7 @@ class TableRow extends Component {
         return React.cloneElement(child, {
           columnNumber,
           key: `${this.props.rowNumber}-${columnNumber}`,
-          onClick: this.onCellClick,
+          onClick: child.props.onClick,
         });
       }
     });

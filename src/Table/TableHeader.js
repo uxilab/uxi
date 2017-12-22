@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import Checkbox from '../Input/Checkbox';
 import TableHeaderColumn from './TableHeaderColumn';
 
-// const TableHeaderStyle = {
-//   borderBottom: '1px solid rgb(158, 158, 158)',
-// };
-
 class TableHeader extends Component {
   static componentName = 'TableHeader';
 
@@ -123,6 +119,7 @@ class TableHeader extends Component {
       if (!React.isValidElement(child)) continue;
 
       const props = {
+        ...child.props,
         key: `sh${index}`,
         rowNumber: index,
       };
@@ -141,9 +138,6 @@ class TableHeader extends Component {
     if (this.props.adjustForCheckbox) {
       children.push(this.getCheckboxPlaceholder(props));
     }
-    // React.Children.forEach(child.props.children, (child) => {
-    //   children.push(child);
-    // });
 
     React.Children.forEach(child.props.children, (aChild) => {
       const augmentedChildren = React.cloneElement(aChild, {
@@ -164,6 +158,7 @@ class TableHeader extends Component {
     const props = {
       key: `h${numChildren}`,
       rowNumber: numChildren,
+      fooobar: 'f',
     };
 
     const children = [];
@@ -175,13 +170,13 @@ class TableHeader extends Component {
       }
     }
 
-    // React.Children.forEach(child.props.children, (child) => {
-    //   children.push(child);
-    // });
-
     React.Children.forEach(child.props.children, (aChild) => {
       const augmentedChildren = React.cloneElement(aChild, {
         ...aChild.props,
+        fooobar: 'fzef',
+        notOnClick: aChild.props.onClick,
+        onClick: aChild.props.onClick,
+        onClickHandler: aChild.props.onClick,
         condensed,
         noBorder,
       });
