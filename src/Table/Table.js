@@ -30,14 +30,12 @@ class Table extends Component {
       allRowsSelected = this.props.allRowsSelected;
     }
 
-    let childCount = 0;
     const availableRows = [];
     React.Children.forEach(this.props.children, (child) => {
       if (!React.isValidElement(child)) return;
 
       const { componentName } = child.type;
       if (componentName === 'TableBody') {
-        childCount = React.Children.count(child.props.children);
         React.Children.forEach(child.props.children, (row, idx) => availableRows.push(idx));
       }
     });
@@ -45,28 +43,23 @@ class Table extends Component {
     this.setState({
       availableRows,
       allRowsSelected,
-      rowsLength: childCount,
     });
   }
 
   onRowSelection = (rowNumber) => {
-    const { selectedRows, allRowsSelected } = this.state;
-
+    const { allRowsSelected, availableRows } = this.state;
+    let { selectedRows } = this.state;
+    const { onChange } = this.props;
     if (rowNumber === 'all') {
       if (allRowsSelected) this.setState({ allRowsSelected: true });
-      this.setState({
-        selectedRows: [...this.state.availableRows],
-      });
+      selectedRows = [...this.state.availableRows];
     } else if (rowNumber === 'none') {
       if (allRowsSelected) {
-        this.setState({
-          selectedRows: [],
-        });
+        selectedRows = [];
       }
     } else {
       if (selectedRows.length === 0) { // eslint-disable-line no-lonely-if
         selectedRows.push(rowNumber);
-        this.setState({ selectedRows });
       } else if (selectedRows.length > 0) {
         const idx = selectedRows.indexOf(rowNumber);
 
@@ -75,12 +68,10 @@ class Table extends Component {
         } else {
           selectedRows.splice(idx, 0, rowNumber);
         }
-
-        this.setState({
-          selectedRows: selectedRows.sort(ascendingSort),
-        });
       }
     }
+    this.setState({ selectedRows });
+    if (onChange) { onChange(event, selectedRows, availableRows); }
   };
 
   onSelectAll = () => {
@@ -99,7 +90,7 @@ class Table extends Component {
     return React.cloneElement(
       base,
       {
-        allRowsSelected: this.state.rowsLength === selectedRows.length,
+        allRowsSelected: this.state.availableRows.length === selectedRows.length,
         selectedRows: this.state.selectedRows,
         multiSelectable: this.props.multiSelectable,
         onRowSelection: this.onRowSelection,

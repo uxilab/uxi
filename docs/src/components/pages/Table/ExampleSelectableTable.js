@@ -17,8 +17,15 @@ import { AvatarWithName } from 'uxi/Img';
 import { DropDown } from 'uxi/internal/DropDown';
 import { User } from 'uxi/Icons';
 
+const handleChange = (event, selectedRows, availableRows) => {
+  console.log('event', event)
+  console.log('selectedRows', selectedRows)
+  console.log('availableRows', availableRows)
+  console.log('rows ' + selectedRows.map(x => x + 1).join(', ') + ' are selected')
+}
+
 const ExampleSelectableTable = () => (
-  <Table multiSelectable selectable >
+  <Table multiSelectable selectable onChange={handleChange}>
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>Name</TableHeaderColumn>
