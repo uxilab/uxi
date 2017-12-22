@@ -86,7 +86,7 @@ class TableHeader extends Component {
         name="selectallcb"
         value="selected"
         disabled={disabled}
-        checked={this.props.selectAllSelected}
+        checked={this.props.availableRows.length === this.props.selectedRows.length}
         onChange={this.handleCheckAll}
       />
     );
