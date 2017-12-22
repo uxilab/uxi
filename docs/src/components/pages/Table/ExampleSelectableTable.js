@@ -16,6 +16,7 @@ import Button, { IconButton } from 'uxi/Button';
 import { AvatarWithName } from 'uxi/Img';
 import { DropDown } from 'uxi/internal/DropDown';
 import { User } from 'uxi/Icons';
+import { Switch } from 'uxi/Input';
 
 const handleChange = (event, selectedRows, availableRows) => {
   console.log('event', event)
@@ -32,6 +33,7 @@ const ExampleSelectableTable = () => (
         <TableHeaderColumn>Chosen Entities</TableHeaderColumn>
         <TableHeaderColumn>Added By</TableHeaderColumn>
         <TableHeaderColumn>Is only For Admin</TableHeaderColumn>
+        <TableHeaderColumn>Active</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody>
@@ -44,6 +46,33 @@ const ExampleSelectableTable = () => (
           </span>
         </TableRowColumn>
         <TableRowColumn>False</TableRowColumn>
+        <TableRowColumn><Switch /></TableRowColumn>
+      </TableRow>
+      <TableRow locked readOnly>
+        <TableRowColumn>Email Thread</TableRowColumn>
+        <TableRowColumn>
+          <span>/EmailThread</span>
+          <br />
+          <span>/Email</span>
+        </TableRowColumn>
+        <TableRowColumn>
+          <span style={{ color: 'rgb(158, 158, 158)' }}>
+            System
+          </span>
+        </TableRowColumn>
+        <TableRowColumn>False</TableRowColumn>
+        <TableRowColumn><Switch /></TableRowColumn>
+      </TableRow>
+      <TableRow locked>
+        <TableRowColumn>Email Thread</TableRowColumn>
+        <TableRowColumn>
+          <span>/EmailThread</span>
+          <br />
+          <span>/Email</span>
+        </TableRowColumn>
+        <TableRowColumn>Simona Superstart</TableRowColumn>
+        <TableRowColumn>False</TableRowColumn>
+        <TableRowColumn><Switch /></TableRowColumn>
       </TableRow>
       <TableRow>
         <TableRowColumn>Email Thread</TableRowColumn>
@@ -54,16 +83,7 @@ const ExampleSelectableTable = () => (
         </TableRowColumn>
         <TableRowColumn>Simona Superstart</TableRowColumn>
         <TableRowColumn>False</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>Email Thread</TableRowColumn>
-        <TableRowColumn>
-          <span>/EmailThread</span>
-          <br />
-          <span>/Email</span>
-        </TableRowColumn>
-        <TableRowColumn>Simona Superstart</TableRowColumn>
-        <TableRowColumn>False</TableRowColumn>
+        <TableRowColumn><Switch /></TableRowColumn>
       </TableRow>
     </TableBody>
   </Table>

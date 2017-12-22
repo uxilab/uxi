@@ -9,7 +9,7 @@ import RAWExampleSelectableTable from '!raw-loader!./ExampleSelectableTable';
 
 const TablePage = () => (
   <div>
-    <CodeExample code={RAWExampleSelectableTable} component description="Selectable table">
+    <CodeExample code={RAWExampleSelectableTable} component description="Selectable + actionnable table">
       <ExampleSelectableTable />
     </CodeExample>
     <br />

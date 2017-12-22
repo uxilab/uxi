@@ -7,6 +7,7 @@ const Tr = styled.tr`
   color: rgba(0, 0, 0, 0.870588);
   height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
   background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#fff')};
+  opacity: ${({ readOnly }) => (readOnly ? 0.6 : 1)};
   &:hover {
     background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#f2f2f2')};
   }
@@ -59,6 +60,7 @@ TableRow.propTypes = {
   className: PropTypes.string,
   readOnly: PropTypes.bool,
   readOnlyText: PropTypes.node,
+  locked: PropTypes.bool,
 };
 
 TableRow.defaultProps = {

@@ -36,12 +36,15 @@ class Table extends Component {
 
       const { componentName } = child.type;
       if (componentName === 'TableBody') {
-        React.Children.forEach(child.props.children, (row, idx) => availableRows.push(idx));
+        React.Children.forEach(child.props.children, (row, idx) => (row.props.locked
+          ? availableRows.push(null)
+          : availableRows.push(idx)
+        ));
       }
     });
 
     this.setState({
-      availableRows,
+      availableRows: availableRows.filter(x => x !== null),
       allRowsSelected,
     });
   }
@@ -88,6 +91,7 @@ class Table extends Component {
       {
         allRowsSelected: this.state.availableRows.length === selectedRows.length,
         selectedRows: this.state.selectedRows,
+        availableRows: this.state.availableRows,
         multiSelectable: this.props.multiSelectable,
         onRowSelection: this.onRowSelection,
         onSelectAll: this.onSelectAll,

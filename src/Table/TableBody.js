@@ -66,7 +66,7 @@ class TableBody extends Component {
 
   onRowSelect = (rowProps, event, rowNumber) => {
     // event.stopPropagation();
-    if (this.props.selectable && !rowProps.readOnly) {
+    if (this.props.selectable /* && !rowProps.readOnly */) {
       // Prevent text selection while selecting rows.
       // I don't think this is working! -df
       // window.getSelection().removeAllRanges();
@@ -74,18 +74,18 @@ class TableBody extends Component {
       this.processRowSelection(event, rowNumber);
     }
   }
-
+  /* eslint-disable class-methods-use-this */
   createRowCheckboxColumn(rowProps) {
-    if (!this.props.displayRowCheckbox) {
-      return null;
-    }
+    // if (!this.props.displayRowCheckbox) {
+    //   return null;
+    // }
 
     const { condensed, noBorder, onRowSelect, rowNumber } = rowProps;
     const key = `${rowProps.rowNumber}-cb`;
     let content;
-    let disabled = !this.props.selectable;
-    if (rowProps.readOnly) {
-      disabled = true;
+    const disabled = rowProps.locked;
+    if (rowProps.locked) {
+      // disabled = true;
 
       const icon = (<Lock
         style={{ color: 'rgb(158, 158, 158)', fill: 'rgb(158, 158, 158)' }}
@@ -106,8 +106,7 @@ class TableBody extends Component {
         <Checkbox
           // ref="rowSelectCB" // ref have to be fn
           name={key}
-          value="selected"
-          disabled={disabled}
+          disabled={false}
           checked={rowProps.selected}
           onChange={event => onRowSelect(rowProps, event, rowNumber)}
         />
@@ -182,7 +181,8 @@ class TableBody extends Component {
           noBorder,
           readOnly: child.props.readOnly,
           readOnlyText: child.props.readOnlyText,
-          selected: child.props.readOnly ? false : this.isRowSelected(rowNumber),
+          locked: child.props.locked,
+          selected: this.isRowSelected(rowNumber),
           rowNumber,
           onRowSelect: this.onRowSelect,
         });
