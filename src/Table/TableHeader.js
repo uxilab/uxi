@@ -148,7 +148,11 @@ class TableHeader extends Component {
       children.push(augmentedChildren);
     });
 
-    return React.cloneElement(child, { ...props, condensed, noBorder }, children);
+    return React.cloneElement(
+      child,
+      { ...props, condensed, noBorder, isTableHeader: true },
+      children,
+    );
   }
 
   createBaseHeaderRow() {
@@ -185,7 +189,7 @@ class TableHeader extends Component {
 
     return React.cloneElement(
       child,
-      { ...props, condensed, noBorder },
+      { ...props, condensed, noBorder, isTableHeader: true },
       children,
     );
   }

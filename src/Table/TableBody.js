@@ -164,15 +164,20 @@ class TableBody extends Component {
   }
 
   createRows() {
-    const { selectable, condensed, noBorder, allRowsSelected } = this.props;
+    const { selectable, condensed, noBorder, allRowsSelected, onActivateRow, activeRow } = this.props;
     const numChildren = React.Children.count(this.props.children);
     let rowNumber = 0;
     const availableRows = [];
 
     const rowChildren = React.Children.map(this.props.children, (child) => {
       if (React.isValidElement(child)) {
+        const activateRowHandlerProxy = (event, rowNumber) => {
+          if (onActivateRow) onActivateRow(event, rowNumber);
+          if (child.props.onClick) child.props.onClick(event, rowNumber);
+        };
+
         const handlers = {
-          // onRowClick: this.onRowClick.bind(this, child.props),
+          onClick: activateRowHandlerProxy,
         };
 
         const props = Object.assign({}, {
@@ -185,6 +190,7 @@ class TableBody extends Component {
           selected: this.isRowSelected(rowNumber),
           rowNumber,
           onRowSelect: this.onRowSelect,
+          activeRow,
         });
 
         if (rowNumber === numChildren) {
@@ -196,12 +202,17 @@ class TableBody extends Component {
           children.push(this.createRowCheckboxColumn(props));
         }
 
-        React.Children.forEach(child.props.children, (aChild) => {
+        React.Children.forEach(child.props.children, (aChild, i) => {
+          // const activateRowHandlerProxy = (event) => {
+          //   if (onActivateRow) onActivateRow(event, rowNumber);
+          //   if (aChild.props.onClick) child.props.onClick(event, rowNumber);
+          // };
           const augmentedChildren = React.cloneElement(aChild, {
             ...aChild.props,
             onClickHandler: aChild.props.onClick,
             condensed,
             noBorder,
+            // activeRow,
           });
           children.push(augmentedChildren);
         });

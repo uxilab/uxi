@@ -17,11 +17,16 @@ function ascendingSort(a, b) {
 }
 
 class Table extends Component {
+  constructor(props) {
+    super(props);
+    this.onActivateRow = this.onActivateRow.bind(this);
+  }
   state = {
     allRowsSelected: false,
     selectedRows: [],
     rowsLength: 0,
     availableRows: [],
+    activeRow: null,
   };
 
   componentWillMount() {
@@ -47,6 +52,15 @@ class Table extends Component {
       availableRows: availableRows.filter(x => x !== null),
       allRowsSelected,
     });
+  }
+
+  onActivateRow(event, rowNumber) {
+    const { activeRow } = this.state;
+    if (rowNumber === activeRow) {
+      this.setState({ activeRow: null });
+    } else {
+      this.setState({ activeRow: rowNumber });
+    }
   }
 
   onRowSelection = (rowNumber) => {
@@ -89,11 +103,13 @@ class Table extends Component {
     return React.cloneElement(
       base,
       {
+        activeRow: this.state.activeRow,
         allRowsSelected: this.state.availableRows.length === selectedRows.length,
         selectedRows: this.state.selectedRows,
         availableRows: this.state.availableRows,
         multiSelectable: this.props.multiSelectable,
         onRowSelection: this.onRowSelection,
+        onActivateRow: this.onActivateRow,
         onSelectAll: this.onSelectAll,
         selectable: this.props.selectable,
         condensed: this.props.condensed,

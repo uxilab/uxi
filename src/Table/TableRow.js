@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { lighten } from '../Theme/colorManipulator';
 
+/* eslint-disable indent */
+/* eslint-disable no-nested-ternary */
 const Tr = styled.tr`
   border-bottom: ${({ noBorder }) => (noBorder ? 'none' : '1px solid rgb(224, 224, 224)')};
   color: rgba(0, 0, 0, 0.870588);
   height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
-  background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#fff')};
+  background-color: ${({ readOnly, activeRow, theme, rowNumber }) => {
+    if (activeRow === rowNumber) {
+      return lighten(theme.palette.accent.light, 0.5);
+    }
+    return (readOnly ? '#f6f6f6' : '#fff');
+  }};
   opacity: ${({ readOnly }) => (readOnly ? 0.6 : 1)};
   &:hover {
-    background-color: ${({ readOnly }) => (readOnly ? '#f6f6f6' : '#f2f2f2')};
+    background-color: ${({ isTableHeader, locked, theme }) => (isTableHeader
+      ? (locked ? '#f6f6f6' : 'transparent')
+      : lighten(theme.palette.accent.light, 0.8))
+    };
   }
 `;
 
 class TableRow extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    const { onClick, rowNumber } = this.props;
+    if (onClick) { onClick(event, rowNumber); }
+  }
+
   render() {
     const {
       className,
@@ -34,9 +55,15 @@ class TableRow extends Component {
       }
     });
 
+    const handlers = {
+      onClick: this.handleClick,
+    };
+
     return (
       <Tr
         {...other}
+        rowNumber={rowNumber}
+        {...handlers}
       >
         {rowColumns}
       </Tr>
@@ -61,6 +88,7 @@ TableRow.propTypes = {
   readOnly: PropTypes.bool,
   readOnlyText: PropTypes.node,
   locked: PropTypes.bool,
+  activeRow: PropTypes.number,
 };
 
 TableRow.defaultProps = {
