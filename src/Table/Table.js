@@ -47,16 +47,13 @@ class Table extends Component {
   }
 
   onRowSelection = (rowNumber) => {
-    const { allRowsSelected, availableRows } = this.state;
+    const { availableRows } = this.state;
     let { selectedRows } = this.state;
     const { onChange } = this.props;
     if (rowNumber === 'all') {
-      if (allRowsSelected) this.setState({ allRowsSelected: true });
       selectedRows = [...this.state.availableRows];
     } else if (rowNumber === 'none') {
-      if (allRowsSelected) {
-        selectedRows = [];
-      }
+      selectedRows = [];
     } else {
       if (selectedRows.length === 0) { // eslint-disable-line no-lonely-if
         selectedRows.push(rowNumber);
@@ -75,12 +72,11 @@ class Table extends Component {
   };
 
   onSelectAll = () => {
-    this.setState({ allRowsSelected: !this.state.allRowsSelected });
     if (this.onRowSelection) {
-      if (!this.state.allRowsSelected) {
-        this.onRowSelection('all');
-      } else {
+      if (this.state.availableRows.length === this.state.selectedRows.length) {
         this.onRowSelection('none');
+      } else {
+        this.onRowSelection('all');
       }
     }
   };
