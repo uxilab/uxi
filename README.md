@@ -1,22 +1,205 @@
 # UXI
 
-All generics CluedIn components that supports:
+This page is only dedicated to contributors. For documentation around the project, please go >>> here <<<
 
-- Theming
-- Unit Tests
-- Static Typing
-- Object oriented design
+## Pre-requirements
 
-
-Why ?
-
-To create a more stable environment that supports white label on key components.
-
-Target Number 1?
-
-- Move the the button
+- We currently only support React
+- We currently only React > 16.0 (using older verson might work or not)
+- We currently test only on 'modern' browser (see list) (if you want us to extend our browser support => help us).
 
 
-useful types
+## Installing
 
-React.Element<*>
+- Install node.js
+- Clone Repo
+- > npm i
+- > npm run start
+- open browser to http://localhost:3001
+
+## Backlog of things
+
+### General
+
+- Having UXI documentation online
+- Having UXI website online
+
+### Alert
+
+- Create Sketch file for Alert
+- Create better documentation
+- Write UX guidelines
+
+### Badge
+
+- Create tests for Badge
+- Create Sketch file for Badge
+- Create better documentation
+- Write UX guidelines
+
+### Button
+
+- Create better documentation
+- Create Sketch file for Button
+- Add more tests
+- Write UX guidelines
+
+### Dialog
+
+- Create documentation
+- Create Sketch file for Dialog
+- Create tests
+- Write UX guidelines
+
+### Header
+
+- Write UX guidelines
+- Create documentation
+- Create tests
+- Create Sketch file
+
+### Img
+
+- Write UX guidelines
+- Create documentation
+- Create tests
+- Create Sketch file (?)
+
+### Indicator
+
+- Write UX guidelines
+- Create documentation
+- Create tests
+- Create sketch file
+
+### Input
+
+#### Checkbox
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create sketch file
+
+#### Date Input
+
+- on hold
+
+#### File Input
+
+- on hold
+
+#### Radio Input
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create Sketch File
+
+#### Search Form
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create Sketch File
+
+#### Select Input
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create Sketch File
+
+### Switch Input
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create Sketch file
+
+#### TextField 
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create Sketch file
+
+#### Input Group
+
+- Create tests
+- Write UX guidelines
+- Create Documentation
+- Create Sketch File
+
+#### Form Decorate for redux-form
+
+TODO
+
+### Icons
+
+- Create Documentation
+- Create Sketch File
+- Create UX guidelines
+
+### Menu
+
+- Create Documentation
+- Create Sketch File
+- Create UX guidelines
+- Create Tests
+
+### Dropdown
+
+- Create Documentation
+- Create Sketch File
+- Create tests
+- Create UX guidelines
+
+### SlidePanel
+
+- Create Documentation
+- Create Sketch File
+- Create tests
+- Create UX guidelines
+
+### Stepper
+
+- Create Documentation
+- Create Sketch File
+- Create tests
+- Create UX guidelines
+
+#### Divier
+
+- Create Documentation
+- Create Sketch File
+- Create tests
+- Create UX guidelines
+
+#### Avatar
+
+- Create Documentation
+- Create Sketch File
+- Create tests
+- Create UX guidelines
+
+### Tabs
+
+- Create stand-alone version of tabs
+- Create overflow version of tabs
+- Create Documentation
+- Create Sketch File
+- Create UX guidelines
+- Creats tests
+
+### Auto-Complete
+
+- Create the component
+- Create Documentation
+- Create Sketch File
+- Create UX guideline
+- Create tests
+
+### Browser
+
+Define list of targeted browser (can be restrictive, just need to be clear)
