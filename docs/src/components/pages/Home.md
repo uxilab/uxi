@@ -22,6 +22,10 @@ If you want to build a MVP for your product, an internal web application, a publ
 
 UXI is not just a component library, it comes with a whole set of UX and UI best-practises that your users would benefit from. Even if the current version is not entirely finished, we will take topics such as responsive, accessibility, keyboard shortcuts seriously to always bring a 'don't make think' UX to your user with an impressive look and feel.
 
+### Business Agnostic, so you can focus on Business Value
+
+When creating an application for your users, we beleive developers should be focused on delivering Business values to the user, this means the less time you spend on buiness agnostic part, the more time you have to satisfy your users. UXI aims to remove a large chunk of business agnostic work for you on the UI and UX side, so you can focus back on your users.
+
 ### White Labelling
 
 We want to easily have web application tailored by your users by simply picking few colors. Of course, UXI supports 'exit' strategy to always override our default style but the idea is to provide a quick way to brand all components not only like you like but also like your users like.
