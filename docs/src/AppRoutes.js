@@ -20,6 +20,7 @@ import BadgePage from './components/pages/Badge/Page';
 import IndicatorPage from './components/pages/Indicator/Page';
 import DashboardPage from './components/pages/DashboardLayout/Page';
 import StepperPage from './components/pages/Stepper/Page';
+import DialogDropDownPage from './components/pages/DialogWithDropDown/Page';
 
 const AppRoutes = (
   <Switch>
@@ -43,6 +44,7 @@ const AppRoutes = (
     <Route path="/indicator" component={IndicatorPage} />
     <Route path="/dashboard" component={DashboardPage} />
     <Route path="/stepper" component={StepperPage} />
+    <Route path="/DialogDropDown" component={DialogDropDownPage} />
   </Switch>
 );
 

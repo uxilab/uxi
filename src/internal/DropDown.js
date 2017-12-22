@@ -110,25 +110,32 @@ export class DropDown extends PureComponent {
     }
 
     const cRectMain = mainRef.getBoundingClientRect();
+    const ItemsTop = cRectMain.bottom;
+    console.log(ItemsTop);
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
-      position: 'absolute',
-      top: cRectMain.height,
+      // position: 'absolute',
+      // top: cRectMain.height,
+      // top: isOpen ? cRectMain.bottom : cRectMain.height,
+      top: ItemsTop,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
       // opacity: 1,
       pointerEvents: isOpen ? 'all' : 'none',
+      position: 'fixed',
     };
 
     // FLIP :
     // const initialStyle = itemsRef.getAttribute('style');
     // itemsRef.setAttribute('style', `${styles.itemsWrapperString}; top: ${cRectMain.height}; position: absolute`);
-    // itemsRef.setAttribute('style', `${styles.itemsWrapperString}; top: ${cRectMain.bottom}; position: fixed`);
+    // const absRect = itemsRef.getBoundingClientRect();
+    // console.log('absRect.top', absRect.top);
+    // itemsRef.setAttribute('style', initialStyle);
 
     return {
       ...res,
-      position: isOpen ? 'fixed' : 'absolute',
-      top: isOpen ? cRectMain.bottom : cRectMain.height,
+      // position: isOpen ? 'fixed' : 'absolute',
+      // top: isOpen ? cRectMain.bottom : cRectMain.height,
     };
   }
 
@@ -190,7 +197,7 @@ export class DropDown extends PureComponent {
       {
         ref: ref => this.storeMainRef(ref),
         onClick: () => {
-          console.log('clicked');
+          // console.log('clicked');
           this.handleToggleVisibility;
         },
       });
@@ -213,8 +220,7 @@ export class DropDown extends PureComponent {
         ? { maxHeight: itemsStyle.maxHeight }
         : {}
       ),
-      ...(!isOpen ? { maxHeight: 0 } : {}
-      ),
+      // ...(!isOpen ? { maxHeight: 0 } : {} ),
     };
 
     return (

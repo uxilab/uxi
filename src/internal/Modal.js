@@ -53,7 +53,7 @@ class Modal extends React.Component {
       BackdropTransitionDuration,
       show,
     } = this.props;
-
+    console.log('this.props', this.props);
     return (
       <Fade appear in={show} timeout={BackdropTransitionDuration}>
         <BackdropComponent
@@ -75,11 +75,8 @@ class Modal extends React.Component {
       return null;
     }
 
-
     return (
-      <Portal
-        open
-      >
+      <Portal open >
         <div
           style={styles.root}
           ref={(node) => {
