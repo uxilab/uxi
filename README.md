@@ -199,3 +199,7 @@ TODO
 - Create Sketch File
 - Create UX guideline
 - Create tests
+
+### Browser
+
+Define list of targeted browser (can be restrictive, just need to be clear)

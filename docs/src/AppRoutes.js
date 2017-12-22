@@ -20,6 +20,7 @@ import BadgePage from './components/pages/Badge/Page';
 import IndicatorPage from './components/pages/Indicator/Page';
 import DashboardPage from './components/pages/DashboardLayout/Page';
 import StepperPage from './components/pages/Stepper/Page';
+import AutoCompletePage from './components/pages/AutoComplete/Page';
 
 const AppRoutes = (
   <Switch>
@@ -35,6 +36,7 @@ const AppRoutes = (
     <Route path="/table" component={TablePage} />
     <Route path="/switch" component={SwitchPage} />
     <Route path="/alert" component={AlertPage} />
+    <Route path="/autocomplete" exact component={AutoCompletePage} />
     <Route path="/loader" component={LoaderPage} />
     <Route path="/img" component={ImgPage} />
     <Route path="/menu" component={MenuPage} />
