@@ -10,7 +10,16 @@ const getMenuStyle = menuWidth => ({
   },
 });
 
-const getContentStyle = style => ({
+const getContentStyle = menuWidth => ({
+  flex: '1',
+  width: '100%',
+  '@media (min-width: 768px)': {
+    width: `calc(100% - ${menuWidth})`,
+    maxWidth: `calc(100% - ${menuWidth})`,
+  },
+});
+
+const getContextStyle = style => ({
   '@media (min-width: 768px)': {
     display: 'flex',
   },
@@ -18,11 +27,11 @@ const getContentStyle = style => ({
 });
 
 const PageWithMenuContent = ({ children, style = {}, menu, menuWidth }) => (
-  <div style={getContentStyle(style)}>
+  <div style={getContextStyle(style)}>
     <div style={getMenuStyle(menuWidth)}>
       {menu}
     </div>
-    <div style={{ flex: 1 }}>
+    <div style={getContentStyle(menuWidth)}>
       {children}
     </div>
   </div>
@@ -30,6 +39,7 @@ const PageWithMenuContent = ({ children, style = {}, menu, menuWidth }) => (
 
 const RadiumPageWithMenuContent = Radium(PageWithMenuContent);
 
+/* eslint-disable react/prefer-stateless-function */
 class PageWithMenu extends Component {
   static contextTypes = {
     isFixedWidth: PropTypes.func,
