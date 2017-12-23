@@ -8,7 +8,7 @@ const SlidePanelFooterStyle = {
     left: 0,
     right: 0,
     display: 'flex',
-    position: 'absolute',
+    // position: 'absolute',
     padding: '10px 15px',
     borderTop: '1px solid rgb(204, 204, 204)',
     background: '#cccccc1f',

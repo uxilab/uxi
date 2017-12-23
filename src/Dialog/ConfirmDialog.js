@@ -11,7 +11,7 @@ const ConfirmDialog = ({
   confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
 }) => (
-  <Dialog show={show} modal>
+  <Dialog show={show} modal style={{ maxWidth: '400px' }}>
     <DivPadding padding="M" style={{ textAlign: 'center' }}>
       <div>
         {text}
