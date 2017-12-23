@@ -2,6 +2,11 @@ import React from 'react';
 import { Style } from 'radium';
 import ThemeComponent from '../Base/ThemeComponent';
 import HorizontalMenuStyle from './HorizontalMenu.style';
+import styled from 'styled-components';
+
+const root = styled.ul`
+
+`;
 
 class HorizontalMenu extends ThemeComponent {
   render() {
