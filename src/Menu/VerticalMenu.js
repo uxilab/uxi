@@ -12,7 +12,7 @@ class VerticalMenu extends ThemeComponent {
     const menuItems = React.Children.map(children, (child, menuNumber) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
-          style: {
+          fromParentStyle: {
             display: 'block',
             height: '40px',
             lineHeight: '40px',

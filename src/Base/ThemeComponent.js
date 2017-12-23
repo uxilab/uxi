@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 export type ThemeComponentProps = {
   style: Object;
+  isDark: Boolean,
+  fromParentStyle: Object;
 }
 
 // call context uxiTheme
@@ -12,8 +14,20 @@ export type ThemeComponentProps = {
 class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   static contextTypes = {
     uxiTheme: PropTypes.object.isRequired,
+    isFixedWidth: PropTypes.func,
     isDarkTheme: PropTypes.func.isRequired,
+    isDarkThemeFromTheme: PropTypes.func,
   };
+
+  static childContextTypes = {
+    isDarkThemeFromTheme: PropTypes.func,
+  };
+
+  getChildContext() {
+    return {
+      isDarkThemeFromTheme: this.isDarkThemeFromTheme.bind(this),
+    };
+  }
 
   getSubStylePseudoElement(name: string, subStyleName: string, pseudoElementName: string) {
     const theme = this.context.uxiTheme;
@@ -42,11 +56,19 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   }
 
   getStyle(name: string, stylesFromComponent: Object = {}) {
-    const { style } = this.props;
+    const { style, fromParentStyle } = this.props;
     const theme = this.context.uxiTheme;
     const themeForComponent = theme[name] || {};
 
-    return Object.assign({}, (style || {}), themeForComponent, stylesFromComponent);
+    return Object.assign({}, themeForComponent, stylesFromComponent, (fromParentStyle || {}), (style || {}));
+  }
+
+  isDarkThemeFromTheme() {
+    const { isDark } = this.props;
+    const isDarkFromRoot = this.context.isDarkTheme();
+    const isDarkFromTheme = this.context.isDarkThemeFromTheme ? this.context.isDarkThemeFromTheme() : false;
+
+    return isDark || isDarkFromRoot || isDarkFromTheme;
   }
 }
 

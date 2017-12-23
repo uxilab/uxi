@@ -286,7 +286,7 @@ export const theme = {
       color: palette.white,
     },
     linkOnBgDarktHover: {
-      color: palette.primary,
+      color: palette.accent.main,
     },
     linkOnBgLight: {
       cursor: 'pointer',
@@ -612,7 +612,7 @@ export const getThemeWithCustomPalette = (customPalette) => { // eslint-disable-
         color: palette.white,
       },
       linkOnBgDarktHover: {
-        color: palette.primary,
+        color: palette.accent.main,
       },
       linkOnBgLight: {
         cursor: 'pointer',

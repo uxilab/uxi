@@ -16,7 +16,7 @@ const ExampleSimple = () => (
 <div>
   <h3>Horizontal menu:</h3>
   <HorizontalMenu>
-    <MenuItem>Stuff goes here</MenuItem>
+    <MenuItem style={{ backgroundColor: 'red' }}>Stuff goes here</MenuItem>
     <MenuItem>and here</MenuItem>
     <MenuItem>or here</MenuItem>
   </HorizontalMenu>        
