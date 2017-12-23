@@ -46,25 +46,26 @@ class Alert extends Component {
     this.state = {
       isOpen: true,
     };
+    this.close = this.close.bind(this);
+    this.isControlled = !!this.props.onClose;
   }
 
   /**
    * Close the Alert message when the property showClose is set to 'true'
    */
-  close() {
+  close(event) {
     const { onClose } = this.props;
-    if (onClose) {
-      onClose();
+    if (onClose) { onClose(event, this.state.isOpen); }
+    if (!this.isControlled) {
+      this.setState({ isOpen: false });
     }
-    this.setState({
-      isOpen: false,
-    });
   }
 
   render() {
     const {
       type,
       showClose,
+      hideClose,
       noIcon,
       className,
       isBanner,
@@ -82,14 +83,13 @@ class Alert extends Component {
     let iconContent;
     let IconComp;
     const mainAlertStyle = [AlertStyle.alertContent];
-    if (showClose || isBanner || onClose) {
+    if (!hideClose && (showClose || onClose || isBanner)) {
       closeContent = (
-        <button key="closeIcon" onClick={() => { this.close(); }} style={AlertStyle.closeWrapper}>
+        <button key="closeIcon" onClick={this.close} style={AlertStyle.closeWrapper}>
           <Close color="white" />
         </button>
       );
       mainAlertStyle.push({
-        // marginLeft: '15px',
         marginRight: '50px',
       });
     }

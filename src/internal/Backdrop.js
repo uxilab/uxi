@@ -11,8 +11,10 @@ export const BackdropStyle = {
     left: 0,
     // Remove grey highlight
     WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+    // I think it's like this -df :
+    '-webkitTapHightLightColor': 'rgba(0,0,0,0)',
     backgroundColor: 'rgba(0,0,0, 0.25)',
-    transition: 'translate(0px, 0px)',
+    // transition: 'translate(0px, 0px)',
     willChange: 'opacity',
     opacity: '0.25',
   },

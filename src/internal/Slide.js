@@ -2,203 +2,96 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
-import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
-import Transition from 'react-transition-group/Transition';
-import transitions from './transitions';
+import styled from 'styled-components';
 
-const GUTTER = 24;
-
-// Translate the node so he can't be seen on the screen.
-// Later, we gonna translate back the node to his original location
-// with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, node) {
-  const { direction } = props;
-  const rect = node.getBoundingClientRect();
-
-  let transform;
-
-  if (node.fakeTransform) {
-    transform = node.fakeTransform;
-  } else {
-    const computedStyle = window.getComputedStyle(node);
-    transform =
-      computedStyle.getPropertyValue('-webkit-transform') ||
-      computedStyle.getPropertyValue('transform');
-  }
-
-  let offsetX = 0;
-  let offsetY = 0;
-
-  if (transform && transform !== 'none' && typeof transform === 'string') {
-    const transformValues = transform
-      .split('(')[1]
-      .split(')')[0]
-      .split(',');
-    offsetX = parseInt(transformValues[4], 10);
-    offsetY = parseInt(transformValues[5], 10);
-  }
-
-  if (direction === 'left') {
-    return `translateX(100vw) translateX(-${rect.left - offsetX}px)`;
-  } else if (direction === 'right') {
-    return `translateX(-${rect.left + rect.width + GUTTER - offsetX}px)`;
-  } else if (direction === 'up') {
-    return `translateY(100vh) translateY(-${rect.top - offsetY}px)`;
-  }
-
-  // direction === 'down
-  return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
-}
-
-export function setTranslateValue(props, node) {
-  const transform = getTranslateValue(props, node);
-
-  if (transform) {
-    node.style.transform = transform;
-    node.style.webkitTransform = transform;
-  }
-}
-
-const reflow = node => node.scrollTop;
+/* eslint-disable */
+const SlideUI = styled.div`
+  z-index: 200;
+  transition: all 1s linear;
+  transform: ${({ in: isIn, dir }) => {
+    if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0'; }
+    else {
+      if (dir === 'left') return 'translate3d(-100%, 0, 0)'
+      if (dir === 'right') return 'translate3d(100%, 0, 0)'
+      if (dir === 'top') return 'translate3d(0, -100%, 0)'
+      if (dir === 'bottom') return 'translate3d(0, 100%, 0)'
+    }
+  }};
+  transition: all ${({ in: isIn, timeout, timeout: { enter, exit }, theme: { transition } }) => isIn
+    ? transition.durationIn + transition.easing
+    : transition.durationOut + transition.easing
+  };
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  /* ${({ dir }) => {dir === 'left' || dir === 'right' ? 'height: 100vh' : 'width: 100vw' }}; */
+  ${({ dir }) => {
+    if (dir === 'left') return 'left: 100%; right: auto; top: 0; bottom: 0'
+    if (dir === 'right') return 'right: 100%; left: auto; top: 0; bottom: 0'
+    if (dir === 'top') return 'top: 100%; bottom: auto; left: 0; right:0'
+    if (dir === 'bottom') return 'bottom: 100%; top: auto; left: 0; right:0'
+  }};
+`;
 
 class Slide extends React.Component {
-  /* state = {
-    // We use this state to handle the server-side rendering.
-    firstMount: true,
-  };
-*/
-  componentDidMount() {
-    // state.firstMount handle SSR, once the component is mounted, we need
-    // to properly hide it.
-    if (!this.props.in) {
-      // We need to set initial translate values of transition element
-      // otherwise component will be shown when in=false.
-      this.updatePosition();
-    }
-  }
-  /*
-  componentWillReceiveProps() {
-    this.setState({
-      firstMount: false,
-    });
-  } */
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.direction !== this.props.direction && !this.props.in) {
-      // We need to update the position of the drawer when the direction change and
-      // when it's hidden.
-      this.updatePosition();
-    }
+  constructor(props) {
+    super(props)
+    this.handleEntered = this.handleEntered.bind(this)
+    this.handleEntering = this.handleEntering.bind(this)
+    this.handleExit = this.handleExit.bind(this)
+    this.handleExited = this.handleExited.bind(this)
   }
 
-  componentWillUnmount() {
-    this.handleResize.cancel();
+  // componentDidUpdate() {
+  //   const {
+  //     onEnter,
+  //     onEntering,
+  //     onExit,
+  //     onExited,
+  //   } = this.props
+  // }
+
+  handleEntered(event) { const { onEnter } = this.props; if (onEnter) onEnter(event) }
+  handleEntering(event) { const { onEntering } = this.props; if (onEntering) onEntering(event) }
+  handleExit(event) { const { onExit } = this.props; if (onExit) onExit(event) }
+  handleExited(event) { const { onExited } = this.props; if (onExited) onExited(event) }
+
+  render() {
+    const {
+      children,
+      onEnter,
+      onEntering,
+      onExit,
+      onExited,
+      style: styleProp,
+      timeout,
+      in: isIn,
+      direction,
+      ...other
+    } = this.props;
+
+    const handlers = {
+      onAnimationStart: isIn ? this.handleEntering : this.handleExit,
+      onAnimationEnd: isIn ? this.handleEntered : this.handleExited,
+    }
+
+    return (
+      <SlideUI
+        timeout={timeout}
+        className="SlideUI"
+        in={isIn}
+        dir={direction}
+        {...handlers}
+      >
+        { children }
+      </SlideUI>
+    );
   }
-
-  transition = null;
-
-  updatePosition() {
-    const element = findDOMNode(this.transition);
-    if (element instanceof HTMLElement) {
-      element.style.visibility = 'inherit';
-      setTranslateValue(this.props, element);
-    }
-  }
-
-  handleResize = debounce(() => {
-    // Skip configuration where the position is screen size invariant.
-    if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
-      return;
-    }
-
-    const node = findDOMNode(this.transition);
-    if (node instanceof HTMLElement) {
-      setTranslateValue(this.props, node);
-    }
-  }, 166);
-
-  handleEnter = (node) => {
-    setTranslateValue(this.props, node);
-    reflow(node);
-  };
-
-  handleEntering = (node) => {
-    const transitionValue = transitions.create('transform', {
-      duration: 225,
-      easing: transitions.easing.easeOut,
-    });
-
-    node.style.transition = transitionValue;
-    node.style.transform = 'translate3d(0, 0, 0)';
-  };
-
-   handleExit = (node) => {
-     const { timeout } = this.props;
-     const transitionValue = transitions.create('transform', {
-       duration: typeof timeout === 'number' ? timeout : timeout.exit,
-       easing: transitions.easing.sharp,
-     });
-
-     node.style.transition = transitionValue;
-     setTranslateValue(this.props, node);
-
-     if (this.props.onExit) {
-       this.props.onExit(node);
-     }
-   };
-
-   handleExited = (node) => {
-     // No need for transitions when the component is hidden
-     node.style.transition = '';
-     node.style.webkitTransition = '';
-
-     if (this.props.onExited) {
-       this.props.onExited(node);
-     }
-   };
-
-   render() {
-     const {
-       children,
-       onEnter,
-       onEntering,
-       onExit,
-       onExited,
-       style: styleProp,
-       ...other
-     } = this.props;
-
-     const style = { ...styleProp };
-
-     /* if (!this.props.in && this.state.firstMount) {
-      style.visibility = 'hidden';
-    } */
-
-     //  <EventListener target="window" onResize={this.handleResize}>
-     return (
-
-       <Transition
-         onEnter={this.handleEnter}
-         onEntering={this.handleEntering}
-         onExit={this.handleExit || null}
-         onExited={this.handleExited || null}
-         appear
-         {...other}
-         ref={(node) => {
-           this.transition = node;
-         }}
-       >
-         {children}
-       </Transition>
-     );
-   }
 }
 
 Slide.propTypes = {
   children: PropTypes.element,
-  direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+  direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
   in: PropTypes.bool,
   onEnter: PropTypes.func,
   onEntered: PropTypes.func,
@@ -217,6 +110,7 @@ Slide.defaultProps = {
     enter: 225,
     exit: 195,
   },
+  direction: 'right'
 };
 
 export default Slide;
