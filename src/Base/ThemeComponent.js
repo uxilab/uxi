@@ -12,7 +12,7 @@ export type ThemeComponentProps = {
 class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
   static contextTypes = {
     uxiTheme: PropTypes.object.isRequired,
-    isDarkTheme: PropTypes.func,
+    isDarkTheme: PropTypes.func.isRequired,
   };
 
   getSubStylePseudoElement(name: string, subStyleName: string, pseudoElementName: string) {

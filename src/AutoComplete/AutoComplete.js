@@ -123,10 +123,9 @@ class AutoComplete extends Component {
             const nameToRender = item.name;
             const selectedClass = '';
             let liStyle = {};
-
-            if (index === (currentIndex+1)) {
+            //if (index === (currentIndex+1)) {
               liStyle = Object.assign({}, {color: 'red', background: '#ccc'});
-            }
+            //}
 
             return (
               <MenuItem

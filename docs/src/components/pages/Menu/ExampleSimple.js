@@ -13,31 +13,20 @@ import { Merge, Arrowdown } from '../../../../../src/Icons';
 import MenuItem from 'uxi/Menu/MenuItem';
 
 const ExampleSimple = () => (
+<div>
+  <h3>Horizontal menu:</h3>
+  <HorizontalMenu>
+    <MenuItem>Stuff goes here</MenuItem>
+    <MenuItem>and here</MenuItem>
+    <MenuItem>or here</MenuItem>
+  </HorizontalMenu>        
+  <h3>VerticalMenu menu:</h3>
+  <VerticalMenu>
+    <MenuItem>Stuff goes here</MenuItem>
+    <MenuItem>and here</MenuItem>
+    <MenuItem>or here</MenuItem>
+  </VerticalMenu>
   <ul>
-    {/* Those menus are broken : where does isDarkTheme comes
-      from it's supposed to be on the context */}
-    {/*
-          <li>
-          <h3>Horizontal menu:</h3>
-          <HorizontalMenu>
-            <ul>
-              <li>stuff goes here</li>
-              <li>and here</li>
-              <li>or here</li>
-            </ul>
-          </HorizontalMenu>
-        </li>
-        <li>
-          <h3>VerticalMenu menu:</h3>
-          <VerticalMenu>
-            <ul>
-              <li>stuff goes here</li>
-              <li>and here</li>
-              <li>or here</li>
-            </ul>
-          </VerticalMenu>
-        </li>
-    */}
     <li>
       <h3>{'<DropDownMenu>'}</h3>
       <DropDownMenu button={<div>{'I\'m the button'} </div>} >
@@ -140,6 +129,7 @@ const ExampleSimple = () => (
       />
     </li>
   </ul>
+  </div>
 );
 
 export default ExampleSimple;

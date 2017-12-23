@@ -19,6 +19,7 @@ export class ThemeProvider extends Component {
   static childContextTypes = {
     uxiTheme: PropTypes.object.isRequired,
     isFixedWidth: PropTypes.func,
+    isDarkTheme: PropTypes.func.isRequired,
   };
 
   getChildContext() {
@@ -29,7 +30,12 @@ export class ThemeProvider extends Component {
     return {
       uxiTheme: theTheme,
       isFixedWidth: this.isFixedWidth.bind(this),
+      isDarkTheme: this.isDarkTheme.bind(this),
     };
+  }
+
+  isDarkTheme() {
+    return false;
   }
 
   isFixedWidth() {
