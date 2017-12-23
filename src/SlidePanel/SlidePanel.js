@@ -34,34 +34,8 @@ const SidePanelUI = styled.div`
   /* top&bottom | right&left */
   ${({ dir }) => (slidesHorizontaly(dir) ? 'top: 0; bottom: 0' : 'left: 0; right: 0')};
   &>*:last-child { ${({ dir }) => (slidesHorizontaly(dir) ? 'margin-top: auto' : '')} }
-  /* height: 100vh; */
-/*   left: {
-    left: 0,
-  },
-  right: {
-    right: 0,
-  }, */
+`;
 
-  `;
-/*
-const SidePanelStyle = {
-  root: {
-    // zIndex: '200',
-    width: '500px',
-    // top: 0,
-    // position: 'fixed',
-    background: '#fff',
-    height: '100vh',
-    boxShadow: 'rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px',
-  },
-  left: {
-    left: 0,
-  },
-  right: {
-    right: 0,
-  },
-};
-*/
 class SidePanel extends React.Component {
   state = {
     // Let's assume that the Drawer will always be rendered on user space.
@@ -87,12 +61,6 @@ class SidePanel extends React.Component {
       modal,
     } = this.props;
 
-    // const mergedStyle = Object.assign(
-    //   {},
-    //   // SidePanelStyle.root,
-    //   // SidePanelStyle[anchor],
-    //   style || {},
-    // );
     return (
       <div>
         <Slide

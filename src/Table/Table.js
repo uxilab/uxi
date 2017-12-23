@@ -41,7 +41,7 @@ class Table extends Component {
 
       const { componentName } = child.type;
       if (componentName === 'TableBody') {
-        React.Children.forEach(child.props.children, (row, idx) => (row.props.locked
+        React.Children.forEach(child.props.children, (row, idx) => (row && row.props.locked
           ? availableRows.push(null)
           : availableRows.push(idx)
         ));
