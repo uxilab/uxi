@@ -33,7 +33,8 @@ const SidePanelUI = styled.div`
   ${({ dir }) => (slidesHorizontaly(dir) ? 'height: 100vh' : 'width: 100vw')};
   /* top&bottom | right&left */
   ${({ dir }) => (slidesHorizontaly(dir) ? 'top: 0; bottom: 0' : 'left: 0; right: 0')};
-  &>*:last-child { ${({ dir }) => (slidesHorizontaly(dir) ? 'margin-top: auto' : '')} }
+  &>*:last-child { ${({ dir, children }) =>
+    (React.Children.count(children) >= 3 && slidesHorizontaly(dir) ? 'margin-top: auto' : '')} }
 `;
 
 class SidePanel extends React.Component {
