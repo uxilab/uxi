@@ -111,7 +111,6 @@ export class DropDown extends PureComponent {
 
     const cRectMain = mainRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
-    console.log(ItemsTop);
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
       // position: 'absolute',
@@ -129,7 +128,6 @@ export class DropDown extends PureComponent {
     // const initialStyle = itemsRef.getAttribute('style');
     // itemsRef.setAttribute('style', `${styles.itemsWrapperString}; top: ${cRectMain.height}; position: absolute`);
     // const absRect = itemsRef.getBoundingClientRect();
-    // console.log('absRect.top', absRect.top);
     // itemsRef.setAttribute('style', initialStyle);
 
     return {
@@ -197,7 +195,6 @@ export class DropDown extends PureComponent {
       {
         ref: ref => this.storeMainRef(ref),
         onClick: () => {
-          // console.log('clicked');
           this.handleToggleVisibility;
         },
       });
