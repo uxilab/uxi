@@ -3,6 +3,9 @@ import CodeExample from '../../CodeExample';
 import ExampleSimpleFlat from './ExampleSimpleFlat';
 import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 
+import ExampleButtonLinks from './ExampleButtonLinks';
+import RAWExampleButtonLinks from '!raw-loader!./ExampleButtonLinks';
+
 import ExampleSimpleSemantic from './ExampleSimpleSemantic';
 import RAWExampleSimpleSemantic from '!raw-loader!./ExampleSimpleSemantic';
 
@@ -15,6 +18,11 @@ import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoade
 
 const ButtonPage = () => (
   <ul>
+    <li>
+      <CodeExample code={RAWExampleButtonLinks} component description="Button's shaped link">
+        <ExampleButtonLinks />
+      </CodeExample>
+    </li>
     <li>
       <CodeExample code={RAWExampleSimpleFlat} component description="FlatButton">
         <ExampleSimpleFlat />

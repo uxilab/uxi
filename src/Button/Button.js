@@ -30,6 +30,8 @@ const ButtonBaseMixin = css`
   background-color: ${({ theme, type }) => getTypeColor(theme, type)};
   border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.lightGrey)};
   color: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};
+  /* this next line overwritte the `.root a` selector rules from uxi NON-StyledComponent theme/css */
+  * { color: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)}; }
   svg { fill: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};}
   &:hover {
     border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
