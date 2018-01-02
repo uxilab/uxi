@@ -12,8 +12,12 @@ import AlertStyle from './Alert.style';
 // import EntityIcon from '../Entity/Card/internal/EntityIcon';
 
 const AlertUI = styled.div`
-  a { color: white }
-  a:hover { color: white }
+  div{
+    a, a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
 `;
 
 class Alert extends Component {
