@@ -1,24 +1,44 @@
 import React from 'react';
-import { Style } from 'radium';
+import styled from 'styled-components';
 import ThemeComponent from '../Base/ThemeComponent';
 import HorizontalMenuStyle from './HorizontalMenu.style';
-import styled from 'styled-components';
 
-const root = styled.ul`
-
+const Root = styled.div`
+  margin: 0;
+  padding: 0;
+  div.uxi-menu-item {
+    padding-left: 15px;
+    padding-right:15px;
+    display: inline-block;
+    fontSize: 14px;
+    transition: color 0.5s ease;
+    height: 40px;
+    lineHeight: 40px;
+    cursor: pointer;
+    color: ${props => (props.menuColor)};
+    &:hover {
+      color: ${props => (props.menuColorHover)};
+    }
+  }
+  div.uxi-menu-item a {
+    text-decoration: none;
+    color: ${props => (props.menuColor)};
+    &:hover {
+      color: ${props => (props.menuColorHover)};
+    }
+  }
 `;
 
 class HorizontalMenu extends ThemeComponent {
   render() {
     const { children, isMain } = this.props;
     const globalHeaderMergedStyle = this.getStyle('HorizontalMenu', HorizontalMenuStyle.root);
-    const isDark = this.context.isDarkTheme();
+    const isDark = this.isDarkThemeFromTheme();
 
     const menuItems = React.Children.map(children, (child, menuNumber) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
-          style: {
-            display: 'inline-block',
+          fromParentStyle: {
             height: isMain ? this.context.uxiTheme.dimensions.mainHeaderHeight : '40px',
             lineHeight: isMain ? this.context.uxiTheme.dimensions.mainHeaderHeight : '40px',
           },
@@ -29,22 +49,22 @@ class HorizontalMenu extends ThemeComponent {
     });
 
     return (
-      <ul className="uxi-horizontal-menu" style={globalHeaderMergedStyle}>
-        <Style
-          scopeSelector=".uxi-horizontal-menu"
-          rules={{
-            '.uxi-menu-item a': Object.assign({}, isDark ? this.context.uxiTheme.link.linkOnBgDark : this.context.uxiTheme.link.linkOnBgLight, {
-              display: 'block',
-              paddingLeft: this.context.uxiTheme.padding.defaultPadding,
-              paddingRight: this.context.uxiTheme.padding.defaultPadding,
-              fontSize: '14px',
-              transition: 'color 0.5s ease',
-            }),
-            '.uxi-menu-item a:hover': isDark ? this.context.uxiTheme.link.linkOnBgDarktHover : this.context.uxiTheme.link.linkOnBgLightHover,
-          }}
-        />
+      <Root
+        className="uxi-horizontal-menu"
+        style={globalHeaderMergedStyle}
+        menuColor={
+          isDark ?
+            this.context.uxiTheme.link.linkOnBgDark.color :
+            this.context.uxiTheme.link.linkOnBgLight.color
+        }
+        menuColorHover={
+          isDark ?
+            this.context.uxiTheme.link.linkOnBgDarktHover.color :
+            this.context.uxiTheme.link.linkOnBgLightHover.color
+        }
+      >
         {menuItems}
-      </ul>
+      </Root>
     );
   }
 }

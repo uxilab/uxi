@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
 import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';
+import ThemeComponent from '../Base/ThemeComponent';
 
-const AutoCompleteStyle= {
+const AutoCompleteStyle = {
   popover: {
     position: 'absolute',
     top: '30px',
@@ -13,12 +14,11 @@ const AutoCompleteStyle= {
     boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px',
     margin: 0,
     padding: 0,
-    zIndex:2,
-  }
+    zIndex: 2,
+  },
 };
 
-class AutoComplete extends Component {
-
+class AutoComplete extends ThemeComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,6 +70,10 @@ class AutoComplete extends Component {
   onQuerychange(value) {
     const { onchange } = this.props;
 
+    this.setState({
+      valueForInput: value,
+    });
+
     onchange && onchange(value);
   }
 
@@ -82,6 +86,10 @@ class AutoComplete extends Component {
 
   onEnter(value) {
     const { onChange } = this.props;
+
+    this.setState({
+      valueForInput: value,
+    });
 
     onChange && onChange(value);
   }
@@ -118,35 +126,38 @@ class AutoComplete extends Component {
     const { items, placeholder, itemComponent } = this.props;
     const { index, escape } = this.state;
     const autoComplete = !escape ? (
-        <VerticalMenu style={AutoCompleteStyle.popover} ref={(ref) => { this.autoComplete = ref; }}>
-          { items && items.map((item, currentIndex) => {
-            const nameToRender = item.name;
-            const selectedClass = '';
-            let liStyle = {};
-            //if (index === (currentIndex+1)) {
-              liStyle = Object.assign({}, {color: 'red', background: '#ccc'});
-            //}
+      <VerticalMenu style={AutoCompleteStyle.popover} ref={(ref) => { this.autoComplete = ref; }}>
+        { items && items.map((item, currentIndex) => {
+          const nameToRender = item.name;
+          const selectedClass = '';
+          let liStyle = {};
+          if (index === (currentIndex)) {
+            liStyle = Object.assign({}, {
+              color: this.context.uxiTheme.palette.accent.main,
+              background: '#eee',
+            });
+          }
 
-            return (
-              <MenuItem
-                key={currentIndex}
-                onClick={this.onItemClick.bind(this, currentIndex)}
-                style={liStyle}
-              >
-                {nameToRender}
-              </MenuItem>
-            );
-          })}
-        </VerticalMenu>): null;
+          return (
+            <MenuItem
+              key={currentIndex}
+              onClick={this.onItemClick.bind(this, currentIndex)}
+              style={liStyle}
+            >
+              {nameToRender}
+            </MenuItem>
+          );
+        })}
+      </VerticalMenu>) : null;
 
     return (
       <div
-        style={{position:'relative'}}
+        style={{ position: 'relative' }}
         ref={(node) => { this.node = node; }}
         onKeyUp={this.updateSearchValue.bind(this)}
       >
         <TextField
-          style={{zIndex:3}}
+          style={{ zIndex: 3 }}
           placeholder={placeholder}
           ref={(ref) => { this.currentInput = ref; }}
           onChange={this.onChangeWrap.bind(this)}

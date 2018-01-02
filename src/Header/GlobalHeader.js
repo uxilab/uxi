@@ -5,30 +5,9 @@ import ThemeComponent from '../Base/ThemeComponent';
 import GlobalHeaderStyle from './GlobalHeader.style';
 
 class GlobalHeader extends ThemeComponent {
-  static childContextTypes = {
-    isDarkTheme: PropTypes.func,
-  };
-
-  static contextTypes = {
-    uxiTheme: PropTypes.object,
-    isFixedWidth: PropTypes.func,
-  };
-
-  getChildContext() {
-    return {
-      isDarkTheme: this.isDarkTheme.bind(this),
-    };
-  }
-
-  isDarkTheme() {
-    const { isDark } = this.props;
-
-    return isDark;
-  }
-
   render() {
     const { children, isContained } = this.props;
-    const isDark = this.isDarkTheme();
+    const isDark = this.isDarkThemeFromTheme();
     const isContainedResult = isContained ? true : this.context.isFixedWidth();
 
     const globalHeaderMergedStyle = this.getStyle('GlobalHeader', GlobalHeaderStyle.header);
