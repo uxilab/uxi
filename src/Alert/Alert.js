@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
+import styled from 'styled-components';
 import {
   Close,
   Issue,
@@ -9,6 +10,11 @@ import {
 } from '../Icons';
 import AlertStyle from './Alert.style';
 // import EntityIcon from '../Entity/Card/internal/EntityIcon';
+
+const AlertUI = styled.div`
+  a { color: white }
+  a:hover { color: white }
+`;
 
 class Alert extends Component {
   static propTypes = {
@@ -123,13 +129,15 @@ class Alert extends Component {
     wrapperStyles.push(style);
 
     return (
-      <div style={wrapperStyles} className={className}>
-        {closeContent}
-        {iconContent}
-        <div style={mainAlertStyle}>
-          {this.props.children}
+      <AlertUI>
+        <div style={wrapperStyles} className={className}>
+          {closeContent}
+          {iconContent}
+          <div style={mainAlertStyle}>
+            {this.props.children}
+          </div>
         </div>
-      </div>
+      </AlertUI>
     );
   }
 }
