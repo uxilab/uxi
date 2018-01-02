@@ -22,7 +22,6 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
 
   return () => injectGlobal`
     * {
-      box-sizing: border-box;
     }
 
     html {
