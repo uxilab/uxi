@@ -15,6 +15,10 @@ const ExampleSimple = () => (
       Daaaanger zone....
     </Alert>
     <br />
+    <Alert type="danger" noIcon style={{ maxWidth: '150px' }}>
+      I'm an alert that has a link in its children <a href="#">link</a>
+    </Alert>
+    <br />
     <Alert type="danger" noIcon >
       This is an danger Alert without icon and close btn! Daaaanger zone....
     </Alert>
