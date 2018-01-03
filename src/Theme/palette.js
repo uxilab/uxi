@@ -19,6 +19,7 @@ export const palette = {
   semantic: {
     default: '#cecece', // !important for fallback
     error: '#d13f48',
+    danger: '#d13f48',
     // this nwarn color looks way too pale -df
     // warning: 'rgba(247, 187, 62, 0.5)',
     warning: '#ff9800',

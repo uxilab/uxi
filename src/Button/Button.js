@@ -37,6 +37,7 @@ const ButtonBaseMixin = css`
     border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
     color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};
     background-color: ${({ type, theme }) => (type ? '#fff' : theme.palette.lightGrey)};
+    * { color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)}; }
     svg { fill: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};}
   }
 
