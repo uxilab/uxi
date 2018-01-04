@@ -35,6 +35,7 @@ const AppShell = ({ children }) => {
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/stepper', label: 'stepper' },
     { path: '/autocomplete', label: 'AutoComplete' },
+    { path: '/breadcrumbs', label: 'BreadCrumbs' },
   ];
 
   const mainMenu = (

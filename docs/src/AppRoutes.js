@@ -22,6 +22,7 @@ import DashboardPage from './components/pages/DashboardLayout/Page';
 import StepperPage from './components/pages/Stepper/Page';
 import DialogDropDownPage from './components/pages/DialogWithDropDown/Page';
 import AutoCompletePage from './components/pages/AutoComplete/Page';
+import BreadCrumbsPage from './components/pages/BreadCrumbs/Page';
 
 const AppRoutes = (
   <Switch>
@@ -47,6 +48,7 @@ const AppRoutes = (
     <Route path="/dashboard" component={DashboardPage} />
     <Route path="/stepper" component={StepperPage} />
     <Route path="/DialogDropDown" component={DialogDropDownPage} />
+    <Route path="/BreadCrumbs" component={BreadCrumbsPage} />
   </Switch>
 );
 
