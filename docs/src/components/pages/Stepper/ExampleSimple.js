@@ -47,7 +47,7 @@ const ExampleSimple = () => (
       </li>
       <li>
         <h3>Stepper (non-linear | currentStep: 3)</h3>
-        <Stepper nonLinear activeStep={3}>
+        <Stepper nonLinear activeStep={3} nowrap>
           <Step>
             <StepButton onClick={() => {}} >
                 step 1

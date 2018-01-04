@@ -24,6 +24,7 @@ class Stepper extends Component {
 
     const childrenArray = React.Children.toArray(children)
     const steps = childrenArray.map((step, index) => {
+      const stepIndex = (index + 1)
       const isLast = childrenArray.length === index + 1
       const props = {
         last: isLast,
@@ -31,15 +32,16 @@ class Stepper extends Component {
         ...step.props,
         nonLinear,
         index,
+        step: stepIndex,
       }
-      if (activeStep === index) {
+      if (activeStep === stepIndex) {
         props.active = true
       }
       if (!nonLinear) {
-        props.disabled = (index > activeStep ? true : false)
+        props.disabled = (stepIndex > activeStep ? true : false)
       }
       if (!nonLinear) {
-        props.completed = (index < activeStep ? true : false)
+        props.completed = (stepIndex < activeStep ? true : false)
       }
 
       const connector = connectorProp
@@ -48,7 +50,7 @@ class Stepper extends Component {
 
       return [
         connector && index > 0 &&
-        React.cloneElement(connector, { key: `connect-${index - 1}-to-${index}`}),
+        React.cloneElement(connector, { key: `connect-${stepIndex - 1}-to-${stepIndex}`}),
         React.cloneElement(step, props)
       ]
     })
