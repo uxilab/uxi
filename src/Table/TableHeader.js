@@ -170,15 +170,13 @@ class TableHeader extends Component {
       if (multiSelectable) {
         children.push(this.getSelectAllCheckboxColumn(props));
       } else {
-        children.push(<span />);
+        children.push(this.getCheckboxPlaceholder(props));
       }
     }
 
     React.Children.forEach(child.props.children, (aChild) => {
       const augmentedChildren = React.cloneElement(aChild, {
         ...aChild.props,
-        fooobar: 'fzef',
-        notOnClick: aChild.props.onClick,
         onClick: aChild.props.onClick,
         onClickHandler: aChild.props.onClick,
         condensed,
