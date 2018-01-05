@@ -203,7 +203,7 @@ export class DropDown extends PureComponent {
 
     const items = React.Children.map(itemsBefore, child => React.cloneElement(child, {
       style: {
-        ...child.props.style,
+        ...(child && child.props.style ? child.props.style : {}),
         ':hover': {
           backgroundColor: '#bebebe',
         },
