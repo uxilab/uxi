@@ -50,6 +50,8 @@ const ChildrenWrapper = styled.div`
   margin-left: 4px;
   display: flex;
   flex-flow: ${({ nowrap }) => (nowrap ? 'inherit' : 'row wrap')};
+  justify-content: ${({ nowrap }) => (!nowrap ? 'center' : 'inherit')};
+  text-align: ${({ nowrap }) => (!nowrap ? 'center' : '')};
 `;
 
 const Step = (

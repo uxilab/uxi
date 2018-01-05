@@ -9,37 +9,37 @@ const ExampleSimple = () => (
       <li>
         <h3>Stepper (strictlyLinear | currentStep: 2)</h3>
         <Stepper strictlyLinear activeStep={2} connector={<Arrowright />} nowrap>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi} >
                 step 1
             </StepButton>
           </Step>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi}>
                 step 2
             </StepButton>
           </Step>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi}>
                 step 3
             </StepButton>
           </Step>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi}>
                 step 4
             </StepButton>
           </Step>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi}>
                 step 5
             </StepButton>
           </Step>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi}>
                 step 6
             </StepButton>
           </Step>
-          <Step>
+          <Step nowrap>
             <StepButton onClick={sayHi}>
                 step 7
             </StepButton>
@@ -49,46 +49,46 @@ const ExampleSimple = () => (
       <li>
         <h3>Stepper (linear | currentStep: 2)</h3>
         <Stepper linear activeStep={2} connector={<Arrowright />} nowrap>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi} >
-                step 1
+                step 1 dg rghrth rsthzrth
             </StepButton>
           </Step>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi}>
-                step 2
+                step 2 rzth zrth
             </StepButton>
           </Step>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi}>
-                step 3
+                step 3 zrth zrth
             </StepButton>
           </Step>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi}>
-                step 4
+                step 4 zrth rhr rzrzth
             </StepButton>
           </Step>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi}>
-                step 5
+                step 5zr trt hrtzhrtz rtzhrzth
             </StepButton>
           </Step>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi}>
-                step 6
+                step 6  rgtsfgb sgbrs
             </StepButton>
           </Step>
-          <Step nowrap>
+          <Step>
             <StepButton onClick={sayHi}>
-                step 7
+                step 7 rzth erhrehrh
             </StepButton>
           </Step>
         </Stepper>
       </li>
       <li>
         <h3>Stepper (non-linear | currentStep: 3)</h3>
-        <Stepper activeStep={3} nowrap>
+        <Stepper activeStep={3} >
           <Step>
             <StepButton onClick={sayHi} >
                 step 1
