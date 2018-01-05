@@ -17,7 +17,8 @@ class Stepper extends Component {
     const {
       activeStep,
       children,
-      nonLinear,
+      linear,
+      strictlyLinear,
       connector: connectorProp,
       nowrap,
     } = this.props
@@ -30,17 +31,21 @@ class Stepper extends Component {
         last: isLast,
         active: false,
         ...step.props,
-        nonLinear,
+        linear,
+        strictlyLinear,
         index,
         step: stepIndex,
       }
       if (activeStep === stepIndex) {
         props.active = true
       }
-      if (!nonLinear) {
+      if (linear) {
         props.disabled = (stepIndex > activeStep ? true : false)
       }
-      if (!nonLinear) {
+      if (strictlyLinear) {
+        props.disabled = (stepIndex !== activeStep ? true : false)
+      }
+      if (linear || strictlyLinear) {
         props.completed = (stepIndex < activeStep ? true : false)
       }
 

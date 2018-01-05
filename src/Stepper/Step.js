@@ -27,6 +27,7 @@ const Badge = styled.div`
 `;
 
 const StepWrapperUI = styled.div`
+  user-select: none;
   display: flex;
   flex-grow: 3;
   justify-content: center;
@@ -36,29 +37,39 @@ const StepWrapperUI = styled.div`
   background: ${({ active }) => (active ? 'white' : 'inherit')};
   ${({ disabled }) => (disabled ? 'background: white' : '')};
   &:hover {
-    background: #efefef;
+    background: ${({ disabled }) => (disabled ? 'inherit' : '#efefef')};
   }
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  /* this next line is a tad too agressive: */
+  /* pointer-events: ${({ disabled }) => (disabled ? 'none' : 'inherit')}; */
   border-radius: 3px;
 `;
 
 const ChildrenWrapper = styled.div`
   opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
+  margin-left: 4px;
+  display: flex;
+  flex-flow: ${({ nowrap }) => (nowrap ? 'inherit' : 'row wrap')};
 `;
 
-const Step = ({ active, disabled, completed, nonLinear, index, children, step }) => {
-  // eslint-disable-next-line no-nested-ternary
-  const progressBadge = active
-    ? <Badge type="success" style={{ marginRight: '4px' }}>{step}</Badge>
-    : (!nonLinear && completed
-      ? <Done size="20" color={palette.semantic.success} style={{ marginRight: '4px' }} />
-      : <Badge style={{ marginRight: '4px' }}>{step}</Badge>
-    );
+const Step = (
+  { active, disabled, completed, stricltyLinear, children, step, nowrap },
+) => {
+  let progressBadge = null;
+  if (active) {
+    progressBadge = <Badge type="success" style={{ marginRight: '4px' }} >{step}</Badge>;
+  } else if (stricltyLinear && completed) {
+    progressBadge = <Done size="20" color={palette.semantic.success} style={{ opacity: 0.4, marginRight: '4px' }} />;
+  } else if (completed) {
+    progressBadge = <Done size="20" color={palette.semantic.success} style={{ marginRight: '4px' }} />;
+  } else {
+    progressBadge = <Badge style={{ marginRight: '4px' }} >{step}</Badge>;
+  }
 
   return (
     <StepWrapperUI active={active} disabled={disabled} completed={completed} >
-      {progressBadge}
-      <ChildrenWrapper disabled={disabled}>
+      <ChildrenWrapper disabled={disabled} nowrap={nowrap}>
+        {progressBadge}
         {children}
       </ChildrenWrapper>
     </StepWrapperUI>
