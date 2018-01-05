@@ -84,7 +84,12 @@ class Table extends Component {
             selectedRows.splice(idx, 0, rowNumber);
           }
         } else if (selectable && !multiSelectable) {
-          selectedRows = [rowNumber];
+          const idx = selectedRows.indexOf(rowNumber);
+          if (idx > -1) { // single select, is already in, remove it
+            selectedRows = [];
+          } else { // add
+            selectedRows = [rowNumber];
+          }
         }
       }
     }
