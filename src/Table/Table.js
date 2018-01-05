@@ -66,7 +66,7 @@ class Table extends Component {
   onRowSelection = (rowNumber) => {
     const { availableRows } = this.state;
     let { selectedRows } = this.state;
-    const { onChange } = this.props;
+    const { onChange, multiSelectable, selectable } = this.props;
     if (rowNumber === 'all') {
       selectedRows = [...this.state.availableRows];
     } else if (rowNumber === 'none') {
@@ -75,12 +75,16 @@ class Table extends Component {
       if (selectedRows.length === 0) { // eslint-disable-line no-lonely-if
         selectedRows.push(rowNumber);
       } else if (selectedRows.length > 0) {
-        const idx = selectedRows.indexOf(rowNumber);
+        if (multiSelectable) {
+          const idx = selectedRows.indexOf(rowNumber);
 
-        if (idx > -1) {
-          selectedRows.splice(idx, 1);
-        } else {
-          selectedRows.splice(idx, 0, rowNumber);
+          if (idx > -1) {
+            selectedRows.splice(idx, 1);
+          } else {
+            selectedRows.splice(idx, 0, rowNumber);
+          }
+        } else if (selectable && !multiSelectable) {
+          selectedRows = [rowNumber];
         }
       }
     }
