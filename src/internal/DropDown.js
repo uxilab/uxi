@@ -194,6 +194,7 @@ export class DropDown extends PureComponent {
     const dropDownMain = React.cloneElement(main,
       {
         ref: ref => this.storeMainRef(ref),
+        // this next line is useless
         onClick: () => {
           this.handleToggleVisibility;
         },
