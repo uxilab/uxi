@@ -4,15 +4,17 @@ import React, { Component } from 'react';
 // import { find } from '../utils/helpers';
 
 class RadioGroup extends Component {
-  state = {
-    selectedValue: null,
-  }
+  // state = {
+  //   selectedValue: null,
+  // }
   componentWillMount() {
     this.isControlled = this.props.value !== undefined;
     if (!this.isControlled) {
       // not controlled, use internal state
+      // check for defaultValue
+      const { defaultValue } = this.props;
       this.setState({
-        selectedValue: this.props.value,
+        selectedValue: (defaultValue !== undefined ? defaultValue : null),
       });
     }
   }
@@ -51,12 +53,9 @@ class RadioGroup extends Component {
 
   render() {
     const { children, name, value, onChange, ...other } = this.props;
-    let { selectedValue } = this.state;
     this.radios = [];
 
-    if (selectedValue === null) {
-      selectedValue = this.props.value;
-    }
+    const selectedValue = this.isControlled ? value : this.state.selectedValue;
 
     return (
       <form role="radiogroup" {...other}>
