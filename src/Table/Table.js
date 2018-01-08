@@ -21,11 +21,13 @@ class Table extends Component {
     super(props);
     this.onActivateRow = this.onActivateRow.bind(this);
   }
+
   state = {
     allRowsSelected: false,
     selectedRows: [],
+    selectedRowsValues: [],
     rowsLength: 0,
-    availableRows: [],
+    availableRowsValues: [],
     activeRow: null,
   };
 
@@ -36,20 +38,27 @@ class Table extends Component {
     }
 
     const availableRows = [];
+    const availableRowsValues = [];
     React.Children.forEach(this.props.children, (child) => {
       if (!React.isValidElement(child)) return;
-
       const { componentName } = child.type;
       if (componentName === 'TableBody') {
-        React.Children.forEach(child.props.children, (row, idx) => (row && row.props.locked
-          ? availableRows.push(null)
-          : availableRows.push(idx)
-        ));
+        React.Children.forEach(child.props.children, (row, idx) => {
+          if (row) {
+            const { props: { value, locked } } = row;
+            console.log('value', value);
+            if (locked !== true) {
+              availableRowsValues.push(value);
+              availableRows.push(idx);
+            }
+          }
+        });
       }
     });
 
     this.setState({
-      availableRows: availableRows.filter(x => x !== null),
+      availableRows, // : availableRows.filter(x => x !== null),
+      availableRowsValues, // : availableRowsValue.filter(x => x !== null),
       allRowsSelected,
     });
   }
@@ -64,7 +73,7 @@ class Table extends Component {
   }
 
   onRowSelection = (rowNumber) => {
-    const { availableRows } = this.state;
+    const { availableRows, availableRowsValues } = this.state;
     let { selectedRows } = this.state;
     const { onChange, multiSelectable, selectable } = this.props;
     if (rowNumber === 'all') {
@@ -93,8 +102,14 @@ class Table extends Component {
         }
       }
     }
-    this.setState({ selectedRows });
-    if (onChange) { onChange(event, selectedRows, availableRows); }
+    // make values, yeah this idirty
+    const selectedRowsValues = selectedRows.map((rowIndex) => {
+      const indexInValues = this.state.availableRows.indexOf(rowIndex);
+      return this.state.availableRowsValues[indexInValues];
+    });
+
+    this.setState({ selectedRows, selectedRowsValues });
+    if (onChange) { onChange(event, selectedRows, selectedRowsValues, availableRows, availableRowsValues); }
   };
 
   onSelectAll = () => {
