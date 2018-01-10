@@ -7,5 +7,5 @@ it('should render an Alert', () => {
     <Alert>{child}</Alert>,
   );
   expect(wrapper).toMatchSnapshot();
-  expect(wrapper.text()).toContain(child);
+  expect(wrapper.contains('This is a message')).toEqual(true);
 });

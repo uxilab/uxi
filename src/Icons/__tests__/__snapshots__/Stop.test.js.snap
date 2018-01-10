@@ -5,12 +5,13 @@ exports[`Icon : <Stop /> match snapshot 1`] = `
   color="#6d6d71"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  size={24}
   style={Object {}}
   viewBox="0 0 24 24"
 >
   <svg
     height="24px"
-    viewBox="0 0 16 16"
+    viewBox="0 0 20 20"
     width="24px"
     xmlns="http://www.w3.org/2000/svg"
   >

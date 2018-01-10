@@ -1,3 +1,4 @@
+import { css } from 'styled-components';
 import { palette as mainPalette } from './palette';
 import ThemeProvider from './ThemeProvider';
 import { lighten, darken } from './colorManipulator';
@@ -62,7 +63,7 @@ export const theme = {
       color: lighten(palette.accent.main, 0.1),
       textDecoration: 'none',
     },
-    'h1, h2, h3, h4': {
+    headings: {
       color: palette.neutral.dark,
     },
     '.uxi-root': {
@@ -632,6 +633,20 @@ export const getThemeWithCustomPalette = (customPalette) => { // eslint-disable-
       durationOut: '196ms ',
       delay: '0ms ',
       easing: 'cubic-bezier(0.23, 1, 0.32, 1) ',
+    },
+    sc: {
+      // titleColor: 'red',
+      // titleFontSize: '2em',
+      // OR title: { color: '', 'font-size': }
+      title: css`
+        color: palette.darkGrey;
+        font-size: 2em;
+      `,
+      h2: css` font-size: 1.85em  `,
+      h3: css` font-size: 1.70em  `,
+      h4: css` font-size: 1.6em  `,
+      h5: css` font-size: 1.45em  `,
+      h6: css` font-size: 1.15em  `,
     },
   };
 
