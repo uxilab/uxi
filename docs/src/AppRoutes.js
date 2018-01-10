@@ -24,6 +24,7 @@ import DialogDropDownPage from './components/pages/DialogWithDropDown/Page';
 import AutoCompletePage from './components/pages/AutoComplete/Page';
 import BreadCrumbsPage from './components/pages/BreadCrumbs/Page';
 import RadioPage from './components/pages/Radio/Page';
+import ClassicPage from './components/pages/Classic/Page';
 
 const AppRoutes = (
   <Switch>
@@ -51,6 +52,7 @@ const AppRoutes = (
     <Route path="/DialogDropDown" component={DialogDropDownPage} />
     <Route path="/BreadCrumbs" component={BreadCrumbsPage} />
     <Route path="/radio" component={RadioPage} />
+    <Route path="/classic" component={ClassicPage} />
   </Switch>
 );
 
