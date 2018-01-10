@@ -20,7 +20,7 @@ const BreadCrumbs = ({ children }) => {
   const childrenCount = React.Children.count(children);
 
   React.Children.forEach(children, (child, i) => {
-    if (i <= childrenCount) {
+    if (i <= childrenCount && i > 0) {
       finalChildren.push(<BreadCrumbsSeparator />);
     }
     finalChildren.push(<BreadCrumb>{child}</BreadCrumb>);
