@@ -14,6 +14,13 @@ This page is only dedicated to contributors. For documentation around the projec
 - Install node.js
 - Clone Repo
 - > npm i
+
+Go to the doc folder:
+
+- > cd docs
+- Install deps for docs
+- > npm i
+- Launch webpack dev server
 - > npm run start
 - open browser to http://localhost:3001
 
