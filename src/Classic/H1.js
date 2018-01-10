@@ -8,6 +8,7 @@ import styled from 'styled-components';
 */
 const H1 = styled.h1`
   ${({ theme: { sc } }) => sc.title}
+  ${({ theme: { sc } }) => sc.h1}
 `;
 
 export default H1;

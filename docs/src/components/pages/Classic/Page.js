@@ -10,12 +10,22 @@ import RAWExampleSimpleP from '!raw-loader!./ExampleSimpleP';
 const ClassicPage = () => (
   <ul>
     <li>
-      <CodeExample code={RAWExampleSimpleP} component description="Paragraph">
+      <CodeExample
+        title="Paragraph"
+        code={RAWExampleSimpleP}
+        component
+        hasPadding
+      >
         <ExampleSimpleP />
       </CodeExample>
     </li>
     <li>
-      <CodeExample code={RAWExampleSimpleHeadings} component description="Headings">
+      <CodeExample
+        title="Headings"
+        code={RAWExampleSimpleHeadings}
+        component
+        hasPadding
+      >
         <ExampleSimpleHeadings />
       </CodeExample>
     </li>

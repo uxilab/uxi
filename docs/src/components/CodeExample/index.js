@@ -4,7 +4,6 @@ import { parse } from 'react-docgen';
 import CodeBlock from './CodeBlock';
 // import ClearFix from 'material-ui/internal/ClearFix';
 import { DivPadding } from '../../../../src/Base';
-
 /* eslint-disable */
 
 class CodeExample extends Component {

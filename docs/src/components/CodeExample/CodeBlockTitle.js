@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Code } from 'uxi/Icons';
+import { H3 } from 'uxi/Classic'
 
 const styles = {
   display: 'flex',
@@ -9,7 +10,7 @@ const styles = {
 const CodeBlockTitle = props => (
   <div style={{ ...styles, padding: '8px' }}>
     <div style={{ ...styles, padding: '8px' }}>
-      {props.title || 'Example'}
+      {<H3 style={{ margin: 0 }}>{props.title || 'Example' }</H3> }
     </div>
     <div style={{ ...styles, marginLeft: 'auto', padding: '4px' }}>
       {props.tooltip}
