@@ -1,4 +1,5 @@
 import React from 'react';
+import { P } from 'uxi/Classic';
 import CodeExample from '../../CodeExample';
 
 import ExampleSimpleTable from './ExampleSimpleTable';
@@ -12,16 +13,19 @@ import RAWExampleSelectableTableValues from '!raw-loader!./ExampleSelectableTabl
 
 const TablePage = () => (
   <div>
+    <P>
+      This is a simple table without interaction.
+    </P>
+    <CodeExample code={RAWExampleSimpleTable} component description="Simple table with click handlers">
+      <ExampleSimpleTable />
+    </CodeExample>
+    <br />
     <CodeExample code={RAWExampleSelectableTableValues} component description="Selectable table with custom values instead of rowIndexes">
       <ExampleSelectableTableValues />
     </CodeExample>
     <br />
     <CodeExample code={RAWExampleSelectableTable} component description="Selectable + actionnable table">
       <ExampleSelectableTable />
-    </CodeExample>
-    <br />
-    <CodeExample code={RAWExampleSimpleTable} component description="Simple table with click handlers">
-      <ExampleSimpleTable />
     </CodeExample>
   </div>
 );
