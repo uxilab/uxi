@@ -16,7 +16,8 @@ class CodeExample extends Component {
    exampleBlockStyle: React.PropTypes.object,
    layoutSideBySide: PropTypes.bool,
    title: PropTypes.string,
-   fullWidth: PropTypes.bool
+   fullWidth: PropTypes.bool,
+   hasPadding: PropTypes.bool,
  };
 
  static defaultProps = {
@@ -34,6 +35,7 @@ class CodeExample extends Component {
      component,
      exampleBlockStyle,
      layoutSideBySide,
+     hasPadding,
    } = this.props;
 
   const styles = {
@@ -44,7 +46,7 @@ class CodeExample extends Component {
       borderRadius: '3px',
     },
     exampleBlock: {
-      padding: '14px 24px 24px',
+      padding: hasPadding ? '14px' : 0,
       margin: 0,
       width: layoutSideBySide ? '45%' : null,
       float: layoutSideBySide ? 'right' : null,
@@ -57,7 +59,7 @@ class CodeExample extends Component {
      <DivPadding style={styles.root}>
        <CodeBlock
          title={this.props.title}
-         description={this.props.description || 'description'}
+         description={this.props.description}
        >
          {code}
        </CodeBlock>

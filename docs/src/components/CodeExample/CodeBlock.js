@@ -21,7 +21,7 @@ const styles = {
   description: {
     background: '#ffffff',
     overflow: 'auto',
-    padding: '10px 20px 0',
+    padding: '10px 20px 10px',
     marginTop: 0,
     marginBottom: 0,
   },
@@ -67,7 +67,10 @@ ${this.props.children}
          <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
        </div>
        <MarkDownElement style={codeStyle} text={text} lang="js" />
-       <MarkDownElement style={descriptionStyle} text={this.props.description} />
+      {
+        this.props.description &&
+        <MarkDownElement style={descriptionStyle} text={this.props.description} />
+      }
      </div>
    );
  }
