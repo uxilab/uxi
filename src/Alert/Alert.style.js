@@ -10,7 +10,7 @@ export default {
   },
   bannerAlert: {
     position: 'fixed',
-    zIndex: 5,
+    zIndex: 250,
     top: 0,
     left: 0,
     right: 0,
