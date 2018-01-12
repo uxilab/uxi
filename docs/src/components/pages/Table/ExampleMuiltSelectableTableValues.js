@@ -7,19 +7,9 @@ import {
   TableHeader,
   TableHeaderColumn,
 } from 'uxi/Table';
-import {
-  Arrowup as ArrowUp,
-  Arrowdown as ArrowDown,
-  Options as OptionsIcon,
-} from 'uxi/Icons';
-import Button, { IconButton } from 'uxi/Button';
-import { AvatarWithName } from 'uxi/Img';
-import { DropDown } from 'uxi/internal/DropDown';
-import { User } from 'uxi/Icons';
-import { Switch } from 'uxi/Input';
 import { P } from 'uxi/Classic';
 
-class ExampleSelectableTable extends Component {
+class ExampleMultiSelectableTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +29,7 @@ class ExampleSelectableTable extends Component {
       <P>
         Selection: {JSON.stringify(selection)}
       </P>
-      <Table onChange={this.onChangeHandler.bind(this)} selectable>
+      <Table onChange={this.onChangeHandler.bind(this)} multiSelectable selectable>
         <TableHeader>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
@@ -75,4 +65,4 @@ class ExampleSelectableTable extends Component {
   }
 }
 
-export default ExampleSelectableTable;
+export default ExampleMultiSelectableTable;

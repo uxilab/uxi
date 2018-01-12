@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Table,
   TableBody,
@@ -17,76 +17,62 @@ import { AvatarWithName } from 'uxi/Img';
 import { DropDown } from 'uxi/internal/DropDown';
 import { User } from 'uxi/Icons';
 import { Switch } from 'uxi/Input';
+import { P } from 'uxi/Classic';
 
-const handleChange = (event, selectedRows, availableRows) => {
-  console.log('event', event)
-  console.log('selectedRows', selectedRows)
-  console.log('availableRows', availableRows)
-  console.log('rows ' + selectedRows.map(x => x + 1).join(', ') + ' are selected')
+class ExampleSelectableTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selection: [],
+    };
+  }
+  onChangeHandler(event, selectedRows, selectedRowsValues) {
+    this.setState({
+      selection: selectedRowsValues,
+    });
+  }
+
+  render() {
+    const { selection } = this.state;
+    return (
+      <div>
+      <P>
+        Selection: {JSON.stringify(selection)}
+      </P>
+      <Table onChange={this.onChangeHandler.bind(this)} multiSelectable selectable>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn>Titles</TableHeaderColumn>
+            <TableHeaderColumn>Allegiance</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow value="Jon Snow">
+            <TableRowColumn>Jon Snow</TableRowColumn>
+            <TableRowColumn>King in the North</TableRowColumn>
+            <TableRowColumn>House Stark</TableRowColumn>
+          </TableRow>
+          <TableRow value="Daenerys Targaryen">
+            <TableRowColumn>Daenerys Targaryen</TableRowColumn>
+            <TableRowColumn>Queen of the Andals and the First Men</TableRowColumn>
+            <TableRowColumn>House Targaryen </TableRowColumn>
+          </TableRow>
+          <TableRow locked value="Tyrion Lannister">
+            <TableRowColumn>Tyrion Lannister</TableRowColumn>
+            <TableRowColumn>Hand of the Queen</TableRowColumn>
+            <TableRowColumn>House Lannister</TableRowColumn>
+          </TableRow>
+          <TableRow readOnly value="Jaime Lannister">
+            <TableRowColumn>Jaime Lannister</TableRowColumn>
+            <TableRowColumn>Lord Commander of the Kingsguard</TableRowColumn>
+            <TableRowColumn>House Lannister</TableRowColumn>
+          </TableRow>
+        </TableBody>
+      </Table>
+      </div>
+    );
+  }
 }
-
-const ExampleSelectableTable = () => (
-  <Table multiSelectable selectable onChange={handleChange}>
-    <TableHeader>
-      <TableRow>
-        <TableHeaderColumn>Name</TableHeaderColumn>
-        <TableHeaderColumn>Chosen Entities</TableHeaderColumn>
-        <TableHeaderColumn>Added By</TableHeaderColumn>
-        <TableHeaderColumn>Is only For Admin</TableHeaderColumn>
-        <TableHeaderColumn>Active</TableHeaderColumn>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      <TableRow readOnly>
-        <TableRowColumn>Person</TableRowColumn>
-        <TableRowColumn>/Company</TableRowColumn>
-        <TableRowColumn>
-          <span style={{ color: 'rgb(158, 158, 158)' }}>
-            System
-          </span>
-        </TableRowColumn>
-        <TableRowColumn>False</TableRowColumn>
-        <TableRowColumn><Switch /></TableRowColumn>
-      </TableRow>
-      <TableRow locked readOnly>
-        <TableRowColumn>Email Thread</TableRowColumn>
-        <TableRowColumn>
-          <span>/EmailThread</span>
-          <br />
-          <span>/Email</span>
-        </TableRowColumn>
-        <TableRowColumn>
-          <span style={{ color: 'rgb(158, 158, 158)' }}>
-            System
-          </span>
-        </TableRowColumn>
-        <TableRowColumn>False</TableRowColumn>
-        <TableRowColumn><Switch /></TableRowColumn>
-      </TableRow>
-      <TableRow locked>
-        <TableRowColumn>Email Thread</TableRowColumn>
-        <TableRowColumn>
-          <span>/EmailThread</span>
-          <br />
-          <span>/Email</span>
-        </TableRowColumn>
-        <TableRowColumn>Simona Superstart</TableRowColumn>
-        <TableRowColumn>False</TableRowColumn>
-        <TableRowColumn><Switch /></TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>Email Thread</TableRowColumn>
-        <TableRowColumn>
-          <span>/EmailThread</span>
-          <br />
-          <span>/Email</span>
-        </TableRowColumn>
-        <TableRowColumn>Simona Superstart</TableRowColumn>
-        <TableRowColumn>False</TableRowColumn>
-        <TableRowColumn><Switch /></TableRowColumn>
-      </TableRow>
-    </TableBody>
-  </Table>
-);
 
 export default ExampleSelectableTable;

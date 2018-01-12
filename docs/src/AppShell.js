@@ -30,6 +30,7 @@ const AppShell = ({ children }) => {
     { path: '/internal', label: 'Internal' },
     { path: '/img', label: 'Image' },
     { path: '/layouts', label: 'Layout' },
+    { path: '/list', label: 'List' },
     { path: '/loader', label: 'Loader' },
     { path: '/menu', label: 'Menu' },
     // {/* { path: '/sublayout', label: 'SubLayout' }, */ },

@@ -25,6 +25,7 @@ import AutoCompletePage from './components/pages/AutoComplete/Page';
 import BreadCrumbsPage from './components/pages/BreadCrumbs/Page';
 import RadioPage from './components/pages/Radio/Page';
 import ClassicPage from './components/pages/Classic/Page';
+import ListPage from './components/pages/List/Page';
 
 const AppRoutes = (
   <Switch>
@@ -37,6 +38,7 @@ const AppRoutes = (
     <Route path="/inputs" component={InputsPage} />
     <Route path="/icons" component={IconsPage} />
     <Route path="/layouts" component={LayoutPage} />
+    <Route path="/list" component={ListPage} />
     <Route path="/table" component={TablePage} />
     <Route path="/switch" component={SwitchPage} />
     <Route path="/alert" component={AlertPage} />

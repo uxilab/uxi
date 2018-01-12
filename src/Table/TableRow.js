@@ -7,19 +7,23 @@ import { lighten } from '../Theme/colorManipulator';
 /* eslint-disable no-nested-ternary */
 const Tr = styled.tr`
   border-bottom: ${({ noBorder }) => (noBorder ? 'none' : '1px solid rgb(224, 224, 224)')};
+  cursor: ${({ activable }) => (activable ? 'pointer' : '')};
   color: rgba(0, 0, 0, 0.870588);
   height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
-  background-color: ${({ readOnly, activeRow, theme, rowNumber }) => {
-    if (activeRow === rowNumber) {
-      return lighten(theme.palette.accent.light, 0.5);
+  background-color: ${({ readOnly, activable, isActive, theme, sperateRows, rowNumber }) => {
+    if (activable && isActive) {
+      return lighten(theme.palette.accent.light, 0.8);
+    }
+    if (sperateRows && rowNumber % 2 === 0) {
+      return '#f4f4f4';
     }
     return (readOnly ? '#f6f6f6' : '#fff');
   }};
   opacity: ${({ readOnly }) => (readOnly ? 0.6 : 1)};
   &:hover {
-    background-color: ${({ isTableHeader, locked, theme }) => (isTableHeader
+    background-color: ${({ readOnly, isTableHeader, locked, theme }) => (isTableHeader
       ? (locked ? '#f6f6f6' : 'transparent')
-      : lighten(theme.palette.accent.light, 0.8))
+      : (readOnly ? '#f6f6f6' : lighten(theme.palette.accent.light, 0.93)))
     };
   }
 `;
@@ -40,8 +44,6 @@ class TableRow extends Component {
       className,
       displayBorder, // eslint-disable-line no-unused-vars
       rowNumber, // eslint-disable-line no-unused-vars
-      selectable, // eslint-disable-line no-unused-vars
-      selected, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
@@ -81,20 +83,17 @@ TableRow.propTypes = {
    * automatically populated when used with the TableBody component.
    */
   rowNumber: PropTypes.number,
-  selectable: PropTypes.bool,
-  selected: PropTypes.bool,
   style: PropTypes.object,
   className: PropTypes.string,
   readOnly: PropTypes.bool,
   readOnlyText: PropTypes.node,
   locked: PropTypes.bool,
-  activeRow: PropTypes.number,
+  activable: PropTypes.boold,
+  isActive: PropTypes.bool,
 };
 
 TableRow.defaultProps = {
   displayBorder: true,
-  selectable: true,
-  selected: false,
 };
 
 export default TableRow;

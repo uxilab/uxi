@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from '../Input/Checkbox';
-import TableHeaderColumn from './TableHeaderColumn';
+import TableHeaderCheckedAllCell from './TableHeaderCheckedAllCell';
+import TableHeaderCheckedPlaceholderCell from './TableHeaderCheckedPlaceholderCell';
 
 class TableHeader extends Component {
   static componentName = 'TableHeader';
@@ -55,58 +55,6 @@ class TableHeader extends Component {
     selectAllSelected: false,
   };
 
-  getCheckboxPlaceholder(props) {
-    if (!this.props.adjustForCheckbox) return null;
-
-    const disabled = !this.props.enableSelectAll;
-    const key = `hpcb${props.rowNumber}`;
-    return (
-      <TableHeaderColumn
-        key={key}
-        style={{
-          cursor: disabled ? 'not-allowed' : 'inherit',
-          width: '42px',
-          paddingLeft: '8px',
-          paddingRight: '8px',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      />
-    );
-  }
-
-  getSelectAllCheckboxColumn(props) {
-    if (!this.props.displaySelectAll) return this.getCheckboxPlaceholder(props);
-
-    const disabled = !this.props.enableSelectAll;
-
-    const checkbox = (
-      <Checkbox
-        key="selectallcb"
-        name="selectallcb"
-        value="selected"
-        disabled={disabled}
-        checked={this.props.availableRows.length === this.props.selectedRows.length}
-        onChange={this.handleCheckAll}
-      />
-    );
-
-    const key = `hpcb${props.rowNumber}`;
-    return (
-      <TableHeaderColumn
-        key={key}
-        style={{
-          cursor: disabled ? 'not-allowed' : 'inherit',
-          width: '42px',
-          paddingLeft: '8px',
-          paddingRight: '8px',
-          textAlign: 'center',
-        }}
-      >
-        {checkbox}
-      </TableHeaderColumn>
-    );
-  }
 
   createSuperHeaderRows() {
     const numChildren = React.Children.count(this.props.children);
@@ -133,10 +81,22 @@ class TableHeader extends Component {
   }
 
   createSuperHeaderRow(child, props) {
-    const { condensed, noBorder } = this.props;
+    const {
+      condensed,
+      noBorder,
+      adjustForCheckbox,
+      enableSelectAll,
+      rowNumber,
+    } = this.props;
+
     const children = [];
-    if (this.props.adjustForCheckbox) {
-      children.push(this.getCheckboxPlaceholder(props));
+    if (adjustForCheckbox) {
+      children.push(
+        <TableHeaderCheckedPlaceholderCell
+          enableSelectAll={enableSelectAll}
+          rowNumber={rowNumber}
+        />,
+      );
     }
 
     React.Children.forEach(child.props.children, (aChild) => {
@@ -156,21 +116,42 @@ class TableHeader extends Component {
   }
 
   createBaseHeaderRow() {
-    const { multiSelectable, selectable, condensed, noBorder } = this.props;
+    const {
+      multiSelectable,
+      selectable,
+      condensed,
+      noBorder,
+      allRowsSelected,
+      enableSelectAll,
+      rowNumber,
+      onSelectAll,
+    } = this.props;
+
     const numChildren = React.Children.count(this.props.children);
     const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
-    const props = {
-      key: `h${numChildren}`,
-      rowNumber: numChildren,
-      fooobar: 'f',
-    };
 
     const children = [];
+
     if (selectable) {
       if (multiSelectable) {
-        children.push(this.getSelectAllCheckboxColumn(props));
+        children.push(
+          <TableHeaderCheckedAllCell
+            onCheckAll={(event, checked) => {
+              if (onSelectAll) {
+                onSelectAll(checked);
+              }
+            }}
+            allRowsSelected={allRowsSelected}
+            rowNumber={numChildren}
+          />,
+        );
       } else {
-        children.push(this.getCheckboxPlaceholder(props));
+        children.push(
+          <TableHeaderCheckedPlaceholderCell
+            enableSelectAll={enableSelectAll}
+            rowNumber={numChildren}
+          />,
+        );
       }
     }
 
@@ -187,16 +168,16 @@ class TableHeader extends Component {
 
     return React.cloneElement(
       child,
-      { ...props, condensed, noBorder, isTableHeader: true },
+      {
+        key: `h${numChildren}`,
+        rowNumber: numChildren,
+        condensed,
+        noBorder,
+        isTableHeader: true,
+      },
       children,
     );
   }
-
-  handleCheckAll = (event, checked) => {
-    if (this.props.onSelectAll) {
-      this.props.onSelectAll(checked);
-    }
-  };
 
   render() {
     const {

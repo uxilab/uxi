@@ -9,7 +9,7 @@ import {
 } from 'uxi/Table';
 
 const ExampleSimple = () => (
-  <Table>
+  <Table activable>
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>Name</TableHeaderColumn>
@@ -28,7 +28,7 @@ const ExampleSimple = () => (
         <TableRowColumn>Queen of the Andals and the First Men</TableRowColumn>
         <TableRowColumn>House Targaryen </TableRowColumn>
       </TableRow>
-      <TableRow>
+      <TableRow readOnly>
         <TableRowColumn>Tyrion Lannister</TableRowColumn>
         <TableRowColumn>Hand of the Queen</TableRowColumn>
         <TableRowColumn>House Lannister</TableRowColumn>

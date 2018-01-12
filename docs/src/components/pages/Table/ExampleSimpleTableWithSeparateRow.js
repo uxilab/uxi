@@ -8,8 +8,8 @@ import {
   TableHeaderColumn,
 } from 'uxi/Table';
 
-const ExampleSimple = () => (
-  <Table>
+const ExampleSimpleTableWithSeparateRow = () => (
+  <Table sperateRows>
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>Name</TableHeaderColumn>
@@ -28,7 +28,7 @@ const ExampleSimple = () => (
         <TableRowColumn>Queen of the Andals and the First Men</TableRowColumn>
         <TableRowColumn>House Targaryen </TableRowColumn>
       </TableRow>
-      <TableRow>
+      <TableRow locked>
         <TableRowColumn>Tyrion Lannister</TableRowColumn>
         <TableRowColumn>Hand of the Queen</TableRowColumn>
         <TableRowColumn>House Lannister</TableRowColumn>
@@ -42,4 +42,4 @@ const ExampleSimple = () => (
   </Table>
 );
 
-export default ExampleSimple;
+export default ExampleSimpleTableWithSeparateRow;
