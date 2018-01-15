@@ -1,3 +1,17 @@
+import React, { Component } from 'react';
+import {
+  Table,
+} from '../Table';
+import {
+  toHeaderDefinition,
+  toViewModel,
+} from './grid/viewModel';
+import {
+  createDataGridHeader,
+  createDataGridBody,
+} from './grid/factory';
+import PropTypes from 'prop-types';
+
 /**
  *
  * Data grid is much more complex than a Table.
@@ -38,3 +52,62 @@
  *   }
  * }
  */
+
+/**
+  *    var gridOptions = {
+        columnDefs: columnDefs,
+        rowSelection: 'multiple',
+        enableColResize: true,
+        enableSorting: true,
+        enableFilter: true,
+        enableRangeSelection: true,
+        suppressRowClickSelection: true,
+        animateRows: true,
+        onModelUpdated: modelUpdated,
+        debug: true
+    };
+  */
+
+
+class DataGrid extends Component {
+  static contextTypes = {
+    getTypeDefinition: PropTypes.func,
+  };
+
+  render() {
+    const {
+      data,
+      propertyKey,
+      properties,
+      selectable,
+      fixedHeight,
+    } = this.props;
+    const { getTypeDefinition } = this.context;
+    const headers = toHeaderDefinition(data, properties);
+    const viewModel = toViewModel(
+      data,
+      properties,
+      propertyKey,
+      getTypeDefinition,
+    );
+
+    const content = (
+      <Table selectable={selectable}>
+        {createDataGridHeader(headers, fixedHeight)}
+        {createDataGridBody(viewModel)}
+      </Table>
+    );
+
+    if (!fixedHeight) {
+      return content;
+    }
+
+    return (
+      <div style={{ height: `${fixedHeight}px`, position: 'relative', overflowY: 'scroll' }}>
+        {content}
+      </div>
+    );
+  }
+}
+
+export default DataGrid;
