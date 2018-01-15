@@ -57,7 +57,8 @@ const ExampleSimpleDataGridWithCustomType = () => {
   return (
     <TypeProvider types={types}>
       <DataGrid
-        fixedHeight={200}
+        selectable
+        multiSelectable
         propertyKey='id'
         properties={[
           'make',
@@ -66,6 +67,7 @@ const ExampleSimpleDataGridWithCustomType = () => {
           {
             property: 'isSold',
             displayName: 'Sold',
+            isSortable: true,
           },
           {
             property: 'quantity',

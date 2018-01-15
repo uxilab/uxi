@@ -5,9 +5,11 @@ export const toHeaderDefinition = (data, properties) => {
 
   return headers.map((h) => {
     if (typeof h === 'object') {
-      return h.displayName;
+      return h;
     }
-    return h;
+    return {
+      displayName: h,
+    };
   });
 };
 

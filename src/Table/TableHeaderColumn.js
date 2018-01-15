@@ -6,9 +6,6 @@ import styled from 'styled-components';
 const Th = styled.td`
   font-weight: normal;
   font-size: ${({ condensed }) => (condensed ? '12px' : '13px')};
-  padding-left: 24px;
-  padding-right: 24px;
-  height: ${({ condensed }) => (condensed ? 'auto' : '56px')};
   text-align: left;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -50,7 +47,15 @@ class TableHeaderColumn extends Component {
         {...handlers}
         style={style}
       >
-        {children}
+        <div style={{
+          paddingLeft: '24px',
+          paddingRight: '24px',
+          height: '100%',
+          lineHeight: '46px',
+        }}
+        >
+          {children}
+        </div>
       </Th>
     );
   }

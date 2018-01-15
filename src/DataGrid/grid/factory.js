@@ -6,6 +6,7 @@ import {
   TableHeaderColumn,
   TableRowColumn,
 } from '../../Table';
+import DataGridSorting from './DataGridSorting';
 
 export const createDataGridCell = property => (
   <TableRowColumn>
@@ -25,7 +26,7 @@ export const createDataGridColumn = viewModel => (
   </TableRow>
 );
 
-export const createDataGridBody = (viewModels) => {
+export const createDataGridBody = (viewModels, isHidden) => {
   const result = [];
 
   viewModels.forEach((viewModel) => {
@@ -35,32 +36,31 @@ export const createDataGridBody = (viewModels) => {
   });
 
   return (
-    <TableBody>
+    <TableBody style={isHidden ? { visibility: 'hidden' } : {}}>
       {result}
     </TableBody>
   );
 };
 
-export const createDataGridHeader = (headers = [], fixedHeight) => {
-  const style = fixedHeight ? {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    right: '0',
-  } : {};
-
-  return (
-    <TableHeader style={style}>
-      <TableRow>
-        {headers.map(header => (
-          <TableHeaderColumn key={`header-${header}`}>
-            {header}
-          </TableHeaderColumn>
-        ))}
-      </TableRow>
-    </TableHeader>
-  );
-};
+export const createDataGridHeader = (headers = [], fixedHeight) => (
+  <TableHeader>
+    <TableRow>
+      {
+        headers.map((header) => {
+          const key = `header-${header.name || header.displayName}`;
+          if (!header.isSortable) {
+            return (
+              <TableHeaderColumn key={key}>{header.displayName}</TableHeaderColumn>
+            );
+          }
+          return (
+            <DataGridSorting key={key} title={header.displayName} />
+          );
+        })
+      }
+    </TableRow>
+  </TableHeader>
+);
 
 export default {
   createDataGridHeader,

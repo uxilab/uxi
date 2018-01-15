@@ -81,6 +81,7 @@ class DataGrid extends Component {
       properties,
       selectable,
       fixedHeight,
+      multiSelectable,
     } = this.props;
     const { getTypeDefinition } = this.context;
     const headers = toHeaderDefinition(data, properties);
@@ -91,10 +92,13 @@ class DataGrid extends Component {
       getTypeDefinition,
     );
 
+    const header = createDataGridHeader(headers, fixedHeight);
+    const body = createDataGridBody(viewModel);
+
     const content = (
       <Table selectable={selectable}>
-        {createDataGridHeader(headers, fixedHeight)}
-        {createDataGridBody(viewModel)}
+        {header}
+        {body}
       </Table>
     );
 
@@ -103,8 +107,15 @@ class DataGrid extends Component {
     }
 
     return (
-      <div style={{ height: `${fixedHeight}px`, position: 'relative', overflowY: 'scroll' }}>
-        {content}
+      <div>
+        <Table multiSelectable={multiSelectable} selectable={selectable}>
+          {header}
+        </Table>
+        <div style={{ height: `${fixedHeight}px`, overflowY: 'scroll' }}>
+          <Table selectable={selectable} multiSelectable={multiSelectable}>
+            {body}
+          </Table>
+        </div>
       </div>
     );
   }
