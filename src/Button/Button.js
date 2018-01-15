@@ -100,6 +100,7 @@ class Button extends Component {
       iconPosition,
       style,
       className,
+      target,
       // ...restOfProps
     } = this.props;
 
@@ -137,7 +138,12 @@ class Button extends Component {
     else { TheButtonComponent = ButtonUI; }
 
     const theButton = (
-      <TheButtonComponent {...(link ? { href: link } : {})} {...styleProps} {...buttonAttr}>
+      <TheButtonComponent
+        {...(link ? { href: link } : {})}
+        {...(link && target ? { target } : {})}
+        {...styleProps}
+        {...buttonAttr}
+      >
         {icon &&
           <ButtonIconWrapper {...styleProps}> {icon} </ButtonIconWrapper>
         }

@@ -7,8 +7,8 @@ const styles = {
   maxWidth: '400px',
 };
 
-const IFrame = ({ src }) => (
-  <iframe title={src} style={styles} src={src} />
+const IFrame = ({ src, style }) => (
+  <iframe title={src} style={{ ...styles, ...style }} src={src} />
 );
 
 IFrame.propTypes = {
