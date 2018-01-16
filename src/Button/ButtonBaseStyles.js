@@ -18,6 +18,8 @@ const ButtonBaseStyles = css`
   text-transform: uppercase;
   line-height: 1.42857143;
   line-height: 1.3;
+  box-sizing: border-box;
+  min-height: 32px;
   border-radius: 2px;
   user-select: none;
   transition: all 0.38s ease-out;
