@@ -1,14 +1,14 @@
 import React from 'react';
 import { FlatButton } from 'uxi/Button';
-import Ul from './Ul';
+import { List } from 'uxi/List';
 
 const ExampleSimpleFlat = () => (
-  <Ul>
+  <List>
     <FlatButton text="send" />
     <FlatButton type="primary" text="SUBMIT" />
     <FlatButton type="warning" text="IGNORE" />
     <FlatButton link="https://www.google.com" type="info" text="GO BACK" />
-  </Ul>
+  </List>
 );
 
 export default ExampleSimpleFlat;

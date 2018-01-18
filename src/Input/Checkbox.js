@@ -71,6 +71,7 @@ class Checkbox extends React.PureComponent {
       checked,
       defaultChecked,
       label,
+      style,
       // ...restOfProps
     } = this.props;
 
@@ -82,10 +83,14 @@ class Checkbox extends React.PureComponent {
       : (checker ? 'Checkbox' : 'Checkboxoutline');
 
     /* eslint-disable jsx-a11y/label-has-for */
+    const checkboxWrapperStyle = Object.assign({}, {
+      display: 'inline-block',
+    }, style || {});
+
     return (
-      <div style={{ display: 'inline-block' }}>
+      <div style={checkboxWrapperStyle}>
         <div style={this.getWrapperStyles()}>
-          <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px' }}>
+          <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px', display: 'flex', alignItems: 'center' }}>
             <input
               id={name}
               style={styles.input}

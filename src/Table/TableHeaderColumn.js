@@ -12,6 +12,7 @@ const Th = styled.td`
   color: rgb(158, 158, 158);
   position: relative;
   text-transform: uppercase;
+  padding:0;
 `;
 
 
@@ -33,6 +34,7 @@ class TableHeaderColumn extends Component {
       columnNumber, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
       style,
+      noPadding,
       ...other
     } = this.props;
 
@@ -48,8 +50,8 @@ class TableHeaderColumn extends Component {
         style={style}
       >
         <div style={{
-          paddingLeft: '24px',
-          paddingRight: '24px',
+          paddingLeft: noPadding ? 0 : '24px',
+          paddingRight: noPadding ? 0 : '24px',
           height: '100%',
           lineHeight: '46px',
         }}

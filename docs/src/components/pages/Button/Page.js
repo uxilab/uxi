@@ -18,6 +18,8 @@ import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
 import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
 import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
 
+import ExampleSimpleButtonLink from './ExampleSimpleButtonLink';
+import RAWExampleSimpleButtonLink from '!raw-loader!./ExampleSimpleButtonLink';
 
 const ButtonPage = () => (
   <div>
@@ -74,6 +76,16 @@ const ButtonPage = () => (
           hasPadding
         >
           <ExampleSimpleWithLoaderIcon />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSimpleButtonLink}
+          component
+          title="Button Link"
+          hasPadding
+        >
+          <ExampleSimpleButtonLink />
         </CodeExample>
       </li>
     </ul>

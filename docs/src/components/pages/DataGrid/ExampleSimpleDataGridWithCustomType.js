@@ -2,6 +2,7 @@ import React from 'react';
 import DataGrid from 'uxi/DataGrid';
 import TypeProvider from 'uxi/Business/TypeProvider';
 import { ProgressBar } from 'uxi/Indicator';
+import { Delete, Pencil } from 'uxi/Icons';
 
 const RenderBoolean = ({ value }) => {
   if(value) {
@@ -54,12 +55,36 @@ const ExampleSimpleDataGridWithCustomType = () => {
     Component: RenderBoolean,
   }];
 
+  const deleteSelection = (e, selection) => {
+    alert(JSON.stringify(selection));
+  };
+
   return (
     <TypeProvider types={types}>
       <DataGrid
         selectable
         multiSelectable
         propertyKey='id'
+        batchActions={[
+          {
+            icon: <Delete />,
+            label: 'Delete',
+            onClick: deleteSelection,
+          },
+          {
+            icon: <Pencil />,
+            label: 'Edit',
+            onClick: deleteSelection,
+          }
+        ]}
+        actions={[
+          {
+            icon: <Pencil />,
+            label: 'Edit',
+            onClick: deleteSelection,
+          }
+        ]}
+        ]}
         properties={[
           'make',
           'model',

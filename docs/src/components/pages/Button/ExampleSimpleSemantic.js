@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from 'uxi/Button';
 import { Done } from 'uxi/Icons';
-import Ul from './Ul';
+import { List } from 'uxi/List';
 
 const ExampleSimpleSemantic = () => (
-  <Ul>
+  <List>
     <Button type="error" text="error" />
     <Button type="primary" text="primary" />
     <Button type="secondary" text="secondary" />
@@ -12,7 +12,7 @@ const ExampleSimpleSemantic = () => (
     <Button type="info" text="info" />
     <Button type="success" text="success" />
     <Button text="success" link="http://google.com" icon={<Done />}/>
-  </Ul>
+  </List>
 );
 
 export default ExampleSimpleSemantic;

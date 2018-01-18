@@ -42,7 +42,7 @@ export const createDataGridBody = (viewModels, isHidden) => {
   );
 };
 
-export const createDataGridHeader = (headers = [], fixedHeight) => (
+export const createDataGridHeader = (headers = [], fixedHeight, hideHeader) => (
   <TableHeader>
     <TableRow>
       {
@@ -50,11 +50,11 @@ export const createDataGridHeader = (headers = [], fixedHeight) => (
           const key = `header-${header.name || header.displayName}`;
           if (!header.isSortable) {
             return (
-              <TableHeaderColumn key={key}>{header.displayName}</TableHeaderColumn>
+              <TableHeaderColumn style={hideHeader ? { visibility: 'hidden' } : {}} key={key}>{header.displayName}</TableHeaderColumn>
             );
           }
           return (
-            <DataGridSorting key={key} title={header.displayName} />
+            <DataGridSorting style={hideHeader ? { visibility: 'hidden' } : {}} key={key} title={header.displayName} />
           );
         })
       }

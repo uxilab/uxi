@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Organization,
+  Trianglearrow,
+  Trianglearrowup,
+  Sortingup,
+  Sortingdown,
+  Nosorting,
 } from '../../Icons';
 import {
   TableHeaderColumn,
@@ -81,12 +85,12 @@ class DataGridSorting extends Component {
   }
 
   render() {
-    const { title, key } = this.props;
+    const { title, key, style } = this.props;
     const { show } = this.state;
     const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
     const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
     return (
-      <TableHeaderColumn>
+      <TableHeaderColumn style={style}>
         <div style={{ position: 'relative', cursor: 'pointer', marginLeft: '-24px', marginRight: '-4px', paddingLeft: '24px', paddingRight: '4px', ...styleForButton }}>
           <div
             role="button"
@@ -98,7 +102,7 @@ class DataGridSorting extends Component {
               {title}
             </div>
             <div style={{ width: '30px' }}>
-              <Organization />
+              {show ? <Trianglearrowup size={12} /> : <Trianglearrow size={12} />}
             </div>
           </div>
           <div style={mergedStyle} ref={(ref) => { this.node = ref; }}>
@@ -107,13 +111,13 @@ class DataGridSorting extends Component {
               borderBottom: '1px solid rgb(204, 204, 204)',
             }}
             >
+
               <VerticalMenu>
-                <MenuItem icon={<Organization />}>Sort ascending</MenuItem>
-                <MenuItem>Sort decending</MenuItem>
-                <MenuItem>No Sorting</MenuItem>
+                <MenuItem icon={<Sortingup size={16} />}>Sort ascending</MenuItem>
+                <MenuItem icon={<Sortingdown size={16} />}>Sort decending</MenuItem>
+                <MenuItem icon={<Nosorting size={16} />}>No Sorting</MenuItem>
                 <Separator />
                 <div>Replace column with</div>
-                <MenuItem icon={<Organization />}>Sort ascending</MenuItem>
                 <MenuItem>Just a number</MenuItem>
                 <MenuItem>Some other field</MenuItem>
               </VerticalMenu>
