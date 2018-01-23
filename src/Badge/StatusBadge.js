@@ -7,6 +7,7 @@ const defaultBackgroundColor = '#ccc';
 
 const isValidType = type => (
   type === 'error' ||
+  type === 'danger' ||
   type === 'warning' ||
   type === 'success' ||
   type === 'info' ||
@@ -82,13 +83,13 @@ const StatusBadgeUI = styled.div`
 
 `;
 
-const StatusBadge = ({ label, type, labelBefore }) => {
+const StatusBadge = ({ label, type, labelBefore, style }) => {
   const cleanType = isValidType(type) ? type : 'default';
 
   return (
     <StatusBadgeInlineWrapperUI>
       <StatusBadgeWrapperUI labelBefore={labelBefore}>
-        <StatusBadgeUI type={cleanType} label={label} labelBefore={labelBefore} />
+        <StatusBadgeUI type={cleanType} label={label} labelBefore={labelBefore} style={style} />
         {label}
       </StatusBadgeWrapperUI>
     </StatusBadgeInlineWrapperUI>
@@ -97,7 +98,7 @@ const StatusBadge = ({ label, type, labelBefore }) => {
 
 StatusBadge.propsTypes = {
   type: PropTypes.oneOf([
-    'error', 'warning', 'info', 'success',
+    'error', 'warning', 'info', 'success', 'danger',
   ]),
   label: PropTypes.any,
 };

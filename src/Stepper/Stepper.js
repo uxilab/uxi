@@ -69,7 +69,7 @@ class Stepper extends Component {
 }
 
 Stepper.propTypes = {
-  connector: PropTypes.func,
+  connector: PropTypes.object,
 }
 
 Stepper.defaultProps = {
