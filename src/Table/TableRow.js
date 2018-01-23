@@ -88,7 +88,7 @@ TableRow.propTypes = {
   readOnly: PropTypes.bool,
   readOnlyText: PropTypes.node,
   locked: PropTypes.bool,
-  activable: PropTypes.boold,
+  activable: PropTypes.bool,
   isActive: PropTypes.bool,
 };
 
