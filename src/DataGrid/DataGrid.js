@@ -11,6 +11,8 @@ import {
   createDataGridBody,
 } from './grid/factory';
 import PropTypes from 'prop-types';
+import { ButtonLink } from '../Button';
+import { List } from '../List';
 
 /**
  *
@@ -74,6 +76,53 @@ class DataGrid extends Component {
     getTypeDefinition: PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedEntities: [],
+    };
+  }
+
+  onChange(e, indexes, values) {
+    this.setState({
+      selectedEntities: values,
+    });
+  }
+
+  createBatchActions(actions) {
+    const { selectedEntities } = this.state;
+
+    if (selectedEntities.length === 0) {
+      return <div />;
+    }
+
+    const listStyle = {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      paddingLeft: '82px',
+      lineHeight: '49px',
+      display: 'flex',
+      justifyContent: 'stretch',
+    };
+
+    return (
+      <List style={listStyle}>
+        <span>
+          {selectedEntities.length} selected
+        </span>
+        {actions.map(action => (
+          <ButtonLink
+            text={action.label}
+            icon={action.icon}
+            onClick={action.onClick}
+          />
+        ))}
+      </List>
+    );
+  }
+
   render() {
     const {
       data,
@@ -81,6 +130,8 @@ class DataGrid extends Component {
       properties,
       selectable,
       fixedHeight,
+      multiSelectable,
+      batchActions,
     } = this.props;
     const { getTypeDefinition } = this.context;
     const headers = toHeaderDefinition(data, properties);
@@ -90,12 +141,26 @@ class DataGrid extends Component {
       propertyKey,
       getTypeDefinition,
     );
+    const { selectedEntities } = this.state;
+
+    let hideHeader = false;
+
+    if (batchActions && batchActions.length > 0 && selectedEntities && selectedEntities.length > 0) {
+      hideHeader = true;
+    }
+
+    const header = createDataGridHeader(headers, fixedHeight, hideHeader);
+    const body = createDataGridBody(viewModel);
+    const batchActionsContent = this.createBatchActions(batchActions || []);
 
     const content = (
-      <Table selectable={selectable}>
-        {createDataGridHeader(headers, fixedHeight)}
-        {createDataGridBody(viewModel)}
-      </Table>
+      <div style={{ position: 'relative' }}>
+        {batchActionsContent}
+        <Table onChange={this.onChange.bind(this)} multiSelectable={selectable} selectable={selectable}>
+          {header}
+          {body}
+        </Table>
+      </div>
     );
 
     if (!fixedHeight) {
@@ -103,8 +168,16 @@ class DataGrid extends Component {
     }
 
     return (
-      <div style={{ height: `${fixedHeight}px`, position: 'relative', overflowY: 'scroll' }}>
-        {content}
+      <div>
+        {batchActionsContent}
+        <Table multiSelectable={selectable} selectable={selectable}>
+          {header}
+        </Table>
+        <div style={{ height: `${fixedHeight}px`, overflowY: 'scroll' }}>
+          <Table onChange={this.onChange.bind(this)} selectable={selectable} multiSelectable={multiSelectable}>
+            {body}
+          </Table>
+        </div>
       </div>
     );
   }

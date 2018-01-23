@@ -14,12 +14,18 @@ const TableHeaderCheckedAllCell = ({
       value="selected"
       checked={allRowsSelected}
       onChange={onCheckAll}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
     />
   );
 
   return (
     <TableHeaderColumn
       key={`hpcb${rowNumber}`}
+      noPadding
       style={{
         cursor: !allRowsSelected ? 'not-allowed' : 'inherit',
         width: '42px',

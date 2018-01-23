@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'uxi/Button';
-import Ul from './Ul';
+import { List } from 'uxi/List';
 
 const ExampleSimpleFlat = () => (
-  <Ul>
+  <List>
     <Button link="http://google.com" text="send" />
     <Button link="http://google.com" type="primary" text="SUBMIT" />
     <Button link="http://google.com" type="warning" text="IGNORE" />
@@ -14,7 +14,7 @@ const ExampleSimpleFlat = () => (
       click={() => { }}
       message="Add Configuration"
     />
-  </Ul>
+  </List>
 );
 
 export default ExampleSimpleFlat;

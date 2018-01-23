@@ -6,15 +6,13 @@ import styled from 'styled-components';
 const Th = styled.td`
   font-weight: normal;
   font-size: ${({ condensed }) => (condensed ? '12px' : '13px')};
-  padding-left: 24px;
-  padding-right: 24px;
-  height: ${({ condensed }) => (condensed ? 'auto' : '56px')};
   text-align: left;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: rgb(158, 158, 158);
   position: relative;
   text-transform: uppercase;
+  padding:0;
 `;
 
 
@@ -36,6 +34,7 @@ class TableHeaderColumn extends Component {
       columnNumber, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
       style,
+      noPadding,
       ...other
     } = this.props;
 
@@ -50,7 +49,15 @@ class TableHeaderColumn extends Component {
         {...handlers}
         style={style}
       >
-        {children}
+        <div style={{
+          paddingLeft: noPadding ? 0 : '24px',
+          paddingRight: noPadding ? 0 : '24px',
+          height: '100%',
+          lineHeight: '46px',
+        }}
+        >
+          {children}
+        </div>
       </Th>
     );
   }
