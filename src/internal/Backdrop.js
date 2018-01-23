@@ -10,9 +10,10 @@ export const BackdropStyle = {
     top: 0,
     left: 0,
     // Remove grey highlight
-    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-    // I think it's like this -df :
-    '-webkitTapHightLightColor': 'rgba(0,0,0,0)',
+    // we should keep those outline and have a better solution that remove -df
+    // those are super usefull when keyboard navigating and are -df
+    // seriously not that bad visually if well done I thinkg -df
+    WebkitTapHightLightColor: 'rgba(0,0,0,0)',
     backgroundColor: 'rgba(0,0,0, 0.25)',
     // transition: 'translate(0px, 0px)',
     willChange: 'opacity',
@@ -35,6 +36,8 @@ const Backdrop = (props) => {
 
   return <div style={mergedStyle} onClick={onClick} aria-hidden="true" />;
 };
+
+Backdrop.dispalyName = 'Backdrop';
 
 Backdrop.propTypes = {
   invisible: PropTypes.bool,
