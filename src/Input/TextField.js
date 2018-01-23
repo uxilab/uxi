@@ -127,7 +127,7 @@ class TextField extends Component {
 
 TextField.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'email', 'password', 'search', 'file',
+    'text', 'email', 'password', 'search', 'file', 'number',
   ]),
 };
 
