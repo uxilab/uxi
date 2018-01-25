@@ -84,7 +84,6 @@ const ExampleSimpleDataGridWithCustomType = () => {
             onClick: deleteSelection,
           }
         ]}
-        ]}
         properties={[
           'make',
           'model',
