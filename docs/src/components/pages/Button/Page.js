@@ -18,6 +18,9 @@ import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
 import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
 import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
 
+import ExampleButtonPlayGround from './ExampleButtonPlayGround';
+import RAWExampleButtonPlayGround from '!raw-loader!./ExampleButtonPlayGround';
+
 import ExampleSimpleButtonLink from './ExampleSimpleButtonLink';
 import RAWExampleSimpleButtonLink from '!raw-loader!./ExampleSimpleButtonLink';
 
@@ -28,6 +31,16 @@ const ButtonPage = () => (
       Button are used to emphasizes important functions on your page.
     </P>
     <ul>
+      <li>
+        <CodeExample
+          code={RAWExampleButtonPlayGround}
+          component
+          title="Playground"
+          hasPadding
+        >
+          <ExampleButtonPlayGround />
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWExampleButtonLinks}

@@ -51,11 +51,11 @@ const ButtonBaseMixin = css`
     `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
     ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
     svg {
-      ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
+      ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.darkGrey}` : '')};
     }
   }
   svg {
-    ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
+    ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.darkGrey}` : '')};
   }
 
 }

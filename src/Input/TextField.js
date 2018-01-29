@@ -7,10 +7,11 @@ import {
 } from '../Icons';
 import { palette } from '../Theme/palette';
 
-const { semantic } = palette;
+const { semantic } = palette;
 
 const styles = {
   wrapper: {
+    // display: block,
     position: 'relative',
   },
   input: {
@@ -27,10 +28,12 @@ const styles = {
     },
   },
   errorWrapper: {
+    // display: block,
     padding: '0 6px',
     fontSize: '12px',
   },
   stateIconWrapper: {
+    // display: block,
     position: 'absolute',
     right: '8px',
     top: '9px',
@@ -100,7 +103,7 @@ class TextField extends Component {
       value: this.isControlled ? this.props.value : this.state.value,
     };
     return (
-      <div style={styles.wrapper}>
+      <span style={styles.wrapper}>
         <input
           {...inputAttributes}
           type={type}
@@ -110,16 +113,16 @@ class TextField extends Component {
         />
 
         {/* Error Message/node */}
-        <div style={styles.errorWrapper}>
+        <span style={styles.errorWrapper}>
           {error}
-        </div>
+        </span>
 
 
         {/* state icon (succes/error/none) */}
-        <div style={styles.stateIconWrapper}>
+        <span style={styles.stateIconWrapper}>
           {stateIcon}
-        </div>
-      </div>
+        </span>
+      </span>
     );
   }
 }
@@ -127,7 +130,7 @@ class TextField extends Component {
 
 TextField.propTypes = {
   type: PropTypes.oneOf([
-    'text', 'email', 'password', 'search', 'file',
+    'text', 'email', 'password', 'search', 'file', 'number',
   ]),
 };
 

@@ -71,7 +71,6 @@ class SearchForm extends Component {
           <TextField {...inputProps} />
           <Button
             type="primary"
-            style={{ minHeight: '100%' }}
             icon={finalIcon}
           />
         </InputGroup>

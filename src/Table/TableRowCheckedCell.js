@@ -28,7 +28,7 @@ const createCheckbox = (rowProps) => {
   }
 
   return (
-    <div data-uniqueId={uniqueId}>
+    <div data-uniqueid={uniqueId}>
       <Checkbox
       // ref="rowSelectCB" // ref have to be fn
         name={key}
