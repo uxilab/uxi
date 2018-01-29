@@ -9,24 +9,29 @@ const getIconColor = ({ isSelected, isActive }) => {
   }
 
   if (isSelected) {
-    return '#343434';
+    return '#0ea4a5';
   }
 
   return '#c2c2c2';
 };
 
+
+// border-radius: ${({ isSelected }) => (isSelected ? '50px' : '0')};
+
 const GlobalMenuItemDiv = styled.div`
-  color: ${({ isSelected }) => (isSelected ? '#212121' : '#c2c2c2')};
-  width: 42px;
-  height: 42px;
+  display: flex;
+  align-items: center;
+  color: ${({ isSelected }) => (isSelected ? '#fff' : '#c2c2c2')};
+  width: 100%;
+  box-sizing: border-box;
   cursor: pointer;
-  margin: 15px auto 0 auto;
+  margin: 0 auto;
+  padding: 7px 30px; //7px 0 in mobile
   position: relative;
-  background: ${({ isSelected }) => (isSelected ? '#c2c2c2' : 'none')};;
-  border-radius: ${({ isSelected }) => (isSelected ? '50px' : '0')};
+  border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
+  background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
   &:hover {
-    background: ${({ primaryColor }) => (primaryColor)};
-    border-radius: 50px;
+    background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : '#1b3c4f')};
     svg {
       fill: #fff;
     }
@@ -35,6 +40,10 @@ const GlobalMenuItemDiv = styled.div`
     fill: ${props => (getIconColor(props))};
     margin-top: 9px;
   }
+`;
+
+const LabelDiv = styled.div`
+  padding-left: 10px;
 `;
 
 const NewInfo = styled.div`
@@ -46,8 +55,9 @@ const NewInfo = styled.div`
     height: 16px;
     font-size: 12px;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 50%;
+    right: 5px;
+    transform: translate(0, -50%);
 `;
 
 const GlobalMenuItem = ({
@@ -77,7 +87,12 @@ const GlobalMenuItem = ({
         style={containerStyle}
         onClick={onClick}
       >
-        <Icon />
+        <div>
+          <Icon />
+        </div>
+        <LabelDiv>
+          {label}
+        </LabelDiv>
         {isNewContent}
       </GlobalMenuItemDiv>
     </Tooltip>

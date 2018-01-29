@@ -18,7 +18,7 @@ const getRight = ({
 
 const getLeft = ({ isOpen, width, fullWidth }) => {
   if (isOpen) {
-    return '75px';
+    return '200px';
   }
 
   if (!isOpen && width && !fullWidth) {

@@ -8,7 +8,7 @@ const GlobalMenuDiv = styled.div`
   text-align: center;
   bottom: 0;
   left: 0;
-  width: 75px;
+  width: 200px; //75px in mobile
   background-color: ${({ backgroundColor }) => (backgroundColor || '#1C313F')};
   border-right: 1px solid ${({ backgroundColor }) => (backgroundColor || '#1C313F')};
   z-index: 3;

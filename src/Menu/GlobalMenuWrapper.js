@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GlobalMenuContainer from './GlobalMenuContainer';
 import GlobalMenuItem from './GlobalMenuItem';
+import GlobalMenuSubItem from './GlobalMenuSubItem';
 
 const GlobalMenuWrapper = ({
   selectedKey,
@@ -27,6 +28,21 @@ const GlobalMenuWrapper = ({
         primaryColor={primaryColor}
       />,
     );
+
+    if (menuDescriptor.children) {
+      menuDescriptorsContent.push(
+        <GlobalMenuSubItem
+          key={menuDescriptor.key}
+          isSelected={menuDescriptor.isSelected}
+          isActive={menuDescriptor.isActive}
+          onClick={menuDescriptor.onClick}
+          hasNew={menuDescriptor.hasNew}
+          label={menuDescriptor.displayName}
+          index={menuDescriptor.key}
+          primaryColor={primaryColor}
+        />,
+      );
+    }
   });
   return (
     <GlobalMenuContainer backgroundColor={backgroundColor}>

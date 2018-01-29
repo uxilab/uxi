@@ -47,6 +47,16 @@ class ExampleSimple extends Component {
           Action: ({close}) => (<button onClick={close}>test</button>),
           width: 300,
         },
+        children: [
+          {
+            key: 'viewAllRequest',
+            displayName: 'View all request',
+          },
+          {
+            key: 'GDPRConfiguration',
+            displayName: 'GDPR Configuration',
+          },
+        ]
       },
       {
         hasNew: true,
