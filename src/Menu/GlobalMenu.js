@@ -47,10 +47,31 @@ class GlobalMenu extends Component {
 
     const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
       const isSelected = this.getSelected(menuDescriptor.key);
+      const menuDescriptorChildren = [];
+      let isMenuSelected;
 
+      if (menuDescriptor.children) {
+        menuDescriptor.children.forEach((m) => {
+          const isChildrenSelected = this.getSelected(m.key);
+          if (isChildrenSelected) {
+            isMenuSelected = true;
+          }
+          menuDescriptorChildren.push({
+            ...menuDescriptor,
+            isSelected: isChildrenSelected,
+            isOpen: !!(isChildrenSelected && m.panel && m.panel.Content),
+            onClick: () => {
+              this.changeSelected(m.key);
+              if (m.onClick) {
+                m.onClick();
+              }
+            },
+          });
+        });
+      }
       return {
         ...menuDescriptor,
-        isSelected,
+        isSelected: isSelected || isMenuSelected,
         isOpen: !!(isSelected && menuDescriptor.panel && menuDescriptor.panel.Content),
         onClick: () => {
           this.changeSelected(menuDescriptor.key);
@@ -58,6 +79,7 @@ class GlobalMenu extends Component {
             menuDescriptor.onClick();
           }
         },
+        children: menuDescriptorChildren,
       };
     });
 

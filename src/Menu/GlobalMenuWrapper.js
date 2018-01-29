@@ -29,21 +29,25 @@ const GlobalMenuWrapper = ({
       />,
     );
 
-    if (menuDescriptor.children) {
-      menuDescriptorsContent.push(
-        <GlobalMenuSubItem
-          key={menuDescriptor.key}
-          isSelected={menuDescriptor.isSelected}
-          isActive={menuDescriptor.isActive}
-          onClick={menuDescriptor.onClick}
-          hasNew={menuDescriptor.hasNew}
-          label={menuDescriptor.displayName}
-          index={menuDescriptor.key}
-          primaryColor={primaryColor}
-        />,
-      );
+    if (menuDescriptor.children && menuDescriptor.children.length > 0) {
+      menuDescriptor.children.forEach((child) => {
+        menuDescriptorsContent.push(
+          <GlobalMenuSubItem
+            key={child.key}
+            isSelected={child.isSelected}
+            isParentSelected={menuDescriptor.isSelected}
+            isActive={child.isActive}
+            onClick={child.onClick}
+            hasNew={child.hasNew}
+            label={child.displayName}
+            index={child.key}
+            primaryColor={primaryColor}
+          />,
+        );
+      });
     }
   });
+
   return (
     <GlobalMenuContainer backgroundColor={backgroundColor}>
       {logo}

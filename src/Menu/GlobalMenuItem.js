@@ -30,6 +30,7 @@ const GlobalMenuItemDiv = styled.div`
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
+  border-bottom: 1px solid #162834;
   &:hover {
     background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : '#1b3c4f')};
     svg {
