@@ -12,6 +12,9 @@ const GlobalMenuDiv = styled.div`
   background-color: ${({ backgroundColor }) => (backgroundColor || '#1C313F')};
   border-right: 1px solid ${({ backgroundColor }) => (backgroundColor || '#1C313F')};
   z-index: 3;
+  @media (max-width: 700px) {
+    width: 75px;
+  }
 `;
 
 const GlobalMenuContainer = ({ backgroundColor, children }) => (

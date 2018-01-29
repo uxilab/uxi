@@ -26,7 +26,7 @@ const GlobalMenuItemDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 7px 30px; //7px 0 in mobile
+  padding: 7px 30px;
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
@@ -41,10 +41,17 @@ const GlobalMenuItemDiv = styled.div`
     fill: ${props => (getIconColor(props))};
     margin-top: 9px;
   }
+  @media (max-width: 700px) {
+    padding: 7px 0;
+    justify-content: center;
+  }
 `;
 
 const LabelDiv = styled.div`
   padding-left: 10px;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const NewInfo = styled.div`

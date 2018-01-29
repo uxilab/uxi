@@ -13,6 +13,9 @@ const GlobalMenuSubItemDiv = styled.div`
   &:hover {
     color: #fff;
   }
+  @media (max-width: 700px) {
+    display:none;
+  }
 `;
 
 const GlobalMenuSubItem = ({ label, onClick, isSelected, isParentSelected }) => (
