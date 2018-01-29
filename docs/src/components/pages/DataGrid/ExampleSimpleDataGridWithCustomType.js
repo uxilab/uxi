@@ -62,6 +62,7 @@ const ExampleSimpleDataGridWithCustomType = () => {
   return (
     <TypeProvider types={types}>
       <DataGrid
+        fixedHeight={300}
         selectable
         multiSelectable
         propertyKey='id'
@@ -83,7 +84,6 @@ const ExampleSimpleDataGridWithCustomType = () => {
             label: 'Edit',
             onClick: deleteSelection,
           }
-        ]}
         ]}
         properties={[
           'make',

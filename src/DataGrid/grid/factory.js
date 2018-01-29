@@ -6,6 +6,8 @@ import {
   TableHeaderColumn,
   TableRowColumn,
 } from '../../Table';
+import TableHeaderCheckedAllCell from '../../Table/TableHeaderCheckedAllCell';
+
 import DataGridSorting from './DataGridSorting';
 
 export const createDataGridCell = property => (
@@ -42,9 +44,10 @@ export const createDataGridBody = (viewModels, isHidden) => {
   );
 };
 
-export const createDataGridHeader = (headers = [], fixedHeight, hideHeader) => (
+export const createDataGridHeader = (headers = [], fixedHeight, hideHeader, withCheckbox, checkAllHandler) => (
   <TableHeader>
     <TableRow>
+      {withCheckbox && <TableHeaderCheckedAllCell onCheckAll={checkAllHandler} />}
       {
         headers.map((header) => {
           const key = `header-${header.name || header.displayName}`;

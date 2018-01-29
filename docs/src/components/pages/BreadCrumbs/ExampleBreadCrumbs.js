@@ -6,9 +6,9 @@ import { Integration } from 'uxi/Icons'
 const ExampleBreadCrumbs = () => (
   <div>
     <BreadCrumbs>
-      <a href="http://google.com">
+      <a style={{fontSize:'18px'}} href="http://google.com">
         <AvatarWithName
-          imgSize="16"
+          imgSize="32"
           icon={<Integration />}
           name={'Integration'}
         />

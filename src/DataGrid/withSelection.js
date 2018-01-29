@@ -66,7 +66,7 @@ export const withSelection = Comp => class WithSelection extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { availableRowsValues, selectedRowsValues } = this.state;
+    const { availableRowsValues, selectedRowsValues, availableIndexes, allRowsSelected } = this.state;
     const newValues = getValuesAndRows(nextProps);
     const newSelectedIndex = [];
     const newSelectedValues = [];
@@ -87,6 +87,29 @@ export const withSelection = Comp => class WithSelection extends Component {
       // selectedRowsVAlues should not change
 
       this.setState(Object.assign({}, newValues, { selectedRows: newSelectedIndex, selectedRowsValues: newSelectedValues }));
+    }
+    if (allRowsSelected !== nextProps.allRowsSelected) {
+      if (nextProps.allRowsSelected) {
+        this.setState(Object.assign({}, this.state, { allRowsSelected: true, selectedRows: availableIndexes, selectedRowsValues: availableRowsValues }));
+        if (nextProps.onChange) {
+          nextProps.onChange(
+            null,
+            availableIndexes,
+            availableRowsValues,
+            availableIndexes,
+            availableRowsValues);
+        }
+      } else {
+        this.setState(Object.assign({}, this.state, { allRowsSelected: false, selectedRows: [], selectedRowsValues: [] }));
+        if (nextProps.onChange) {
+          nextProps.onChange(
+            null,
+            [],
+            [],
+            availableIndexes,
+            availableRowsValues);
+        }
+      }
     }
   }
 

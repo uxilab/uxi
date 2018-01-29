@@ -40,6 +40,7 @@ const AppShell = ({ children }) => {
     { path: '/stepper', label: 'Stepper' },
     { path: '/switch', label: 'Switch' },
     { path: '/table', label: 'Table' },
+    { path: '/globalmenu', label: 'Global Menu' },
   ];
 
   const mainMenu = (

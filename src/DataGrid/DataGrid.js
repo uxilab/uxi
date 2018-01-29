@@ -80,12 +80,22 @@ class DataGrid extends Component {
     super(props);
     this.state = {
       selectedEntities: [],
+      allChecked: false,
     };
   }
 
   onChange(e, indexes, values) {
+    const { onChange } = this.props;
     this.setState({
       selectedEntities: values,
+    });
+    if (onChange) {
+      onChange(e, indexes, values);
+    }
+  }
+  checkAll() {
+    this.setState({
+      allChecked: !this.state.allChecked,
     });
   }
 
@@ -141,7 +151,7 @@ class DataGrid extends Component {
       propertyKey,
       getTypeDefinition,
     );
-    const { selectedEntities } = this.state;
+    const { selectedEntities, allChecked } = this.state;
 
     let hideHeader = false;
 
@@ -167,14 +177,18 @@ class DataGrid extends Component {
       return content;
     }
 
+    const headerWithCheckbox = createDataGridHeader(headers, fixedHeight, hideHeader, true, () => {
+      this.checkAll();
+    });
+
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         {batchActionsContent}
-        <Table multiSelectable={selectable} selectable={selectable}>
-          {header}
+        <Table>
+          {headerWithCheckbox}
         </Table>
         <div style={{ height: `${fixedHeight}px`, overflowY: 'scroll' }}>
-          <Table onChange={this.onChange.bind(this)} selectable={selectable} multiSelectable={multiSelectable}>
+          <Table allRowsSelected={allChecked} onChange={this.onChange.bind(this)} selectable={selectable} multiSelectable={multiSelectable}>
             {body}
           </Table>
         </div>
