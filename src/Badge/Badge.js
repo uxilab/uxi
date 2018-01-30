@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Radium from 'radium';
-
 const BadgeStyle = {
   badge: {
     margin: 0,
@@ -82,4 +80,4 @@ class Badge extends Component {
   }
 }
 
-export default Radium(Badge);
+export default Badge;
