@@ -18,21 +18,6 @@
     "typeinstall": "flow-typed install",
     "deploy": "npm version patch && npm run build && npm publish build"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.js$": "babel-jest"
-    },
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
-    "setupFiles": [
-      "./test/jestsetup.js"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CluedIn-io/uxi.git"
@@ -100,5 +85,20 @@
     "jest": "^21.2.1",
     "react-test-renderer": "^16.0.0",
     "webpack": "^3.5.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "setupFiles": [
+      "./test/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
   }
 }

@@ -1,13 +1,14 @@
 {
   "parser": "babel-eslint",
   "globals": {
-    "window": true,
-    "shallow": true,
-    "render": true,
-    "mount": true,
-    "expect": true,
-    "it": true,
-    "__cluedin": true
+    "__cluedin": false,
+    "window": false,
+    "shallow": false,
+    "render": false,
+    "mount": false,
+    "describe": false,
+    "it": false,
+    "expect": false
   },
   "env": {
     "browser": true,
