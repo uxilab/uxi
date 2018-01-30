@@ -37,8 +37,6 @@ class GlobalMenu extends Component {
       menuDescriptors,
       onLogoClick,
       Logo,
-      backgroundColor,
-      primaryColor,
     } = this.props;
     const {
       selected,
@@ -83,24 +81,25 @@ class GlobalMenu extends Component {
       };
     });
 
-    const menuDescriptorsPanel = (menuDescriptorWithActiveAndSelected || []).map((menuDescriptor) => {
-      if (menuDescriptor && menuDescriptor.panel) {
-        return (
-          <GlobalMenuPanel
-            key={menuDescriptor.key}
-            onClickOutside={() => { this.handleClickOutside(menuDescriptor.key); }}
-            Title={menuDescriptor.panel.Title}
-            Content={menuDescriptor.panel.Content}
-            Action={menuDescriptor.panel.Action}
-            width={menuDescriptor.panel.width}
-            fullWidth={menuDescriptor.panel.fullWidth}
-            isOpen={menuDescriptor.isOpen}
-          />
-        );
-      }
+    const menuDescriptorsPanel = (menuDescriptorWithActiveAndSelected || [])
+      .map((menuDescriptor) => {
+        if (menuDescriptor && menuDescriptor.panel) {
+          return (
+            <GlobalMenuPanel
+              key={menuDescriptor.key}
+              onClickOutside={() => { this.handleClickOutside(menuDescriptor.key); }}
+              Title={menuDescriptor.panel.Title}
+              Content={menuDescriptor.panel.Content}
+              Action={menuDescriptor.panel.Action}
+              width={menuDescriptor.panel.width}
+              fullWidth={menuDescriptor.panel.fullWidth}
+              isOpen={menuDescriptor.isOpen}
+            />
+          );
+        }
 
-      return null;
-    });
+        return null;
+      });
 
     return (
       <div>
@@ -109,8 +108,6 @@ class GlobalMenu extends Component {
           onLogoClick={onLogoClick}
           selectedKey={selected}
           activeKey={active}
-          backgroundColor={backgroundColor}
-          primaryColor={primaryColor}
           menuDescriptors={menuDescriptorWithActiveAndSelected}
         />
         {menuDescriptorsPanel}
