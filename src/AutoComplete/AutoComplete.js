@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import debounce from 'lodash/debounce';
 import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';
 import ThemeComponent from '../Base/ThemeComponent';
+import { InteractiveElement } from '../Button';
 
 const AutoCompleteStyle = {
   popover: {
@@ -62,19 +63,20 @@ class AutoComplete extends ThemeComponent {
 
   clickHandlerForDom(e) {
     const domNode = this.node;
+    console.log(this.node);
     if ((!domNode || !domNode.contains(e.target))) {
       this.setState({ index: -1, escape: true });
     }
   }
 
   onQuerychange(value) {
-    const { onchange } = this.props;
+    const { onChange } = this.props;
 
     this.setState({
       valueForInput: value,
     });
 
-    onchange && onchange(value);
+    if (onChange) onChange(value);
   }
 
   onChangeWrap(e) {
@@ -91,7 +93,7 @@ class AutoComplete extends ThemeComponent {
       valueForInput: value,
     });
 
-    onChange && onChange(value);
+    if (onChange) onChange(value);
   }
 
   updateSearchValue(e) {
@@ -123,13 +125,12 @@ class AutoComplete extends ThemeComponent {
   }
 
   render() {
-    const { items, placeholder, itemComponent } = this.props;
+    const { items, placeholder } = this.props;
     const { index, escape } = this.state;
     const autoComplete = !escape ? (
       <VerticalMenu style={AutoCompleteStyle.popover} ref={(ref) => { this.autoComplete = ref; }}>
         { items && items.map((item, currentIndex) => {
           const nameToRender = item.name;
-          const selectedClass = '';
           let liStyle = {};
           if (index === (currentIndex)) {
             liStyle = Object.assign({}, {
@@ -140,7 +141,8 @@ class AutoComplete extends ThemeComponent {
 
           return (
             <MenuItem
-              key={currentIndex}
+              key={currentIndex} // eslint-disable-line react/no-array-index-key
+              // eslint-disable-next-line react/jsx-no-bind
               onClick={this.onItemClick.bind(this, currentIndex)}
               style={liStyle}
             >
@@ -152,7 +154,8 @@ class AutoComplete extends ThemeComponent {
 
     return (
       <div
-        style={{ position: 'relative' }}
+        role="search"
+        style={{ position: 'relative', textAlign: 'left', minWidth: '100%' }}
         ref={(node) => { this.node = node; }}
         onKeyUp={this.updateSearchValue.bind(this)}
       >

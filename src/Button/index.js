@@ -6,5 +6,6 @@ export FlatButton from './FlatButton';
 export UnstyledButton from './UnstyledButton';
 export IconButton from './IconButton';
 export ButtonLink from './ButtonLink';
+export InteractiveElement from './InteractiveElement';
 
 export default Button;
