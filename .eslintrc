@@ -53,6 +53,7 @@
     "react/react-in-jsx-scope": 1,
     "react/self-closing-comp": 1,
     "react/jsx-wrap-multilines": 1,
+    "react/forbid-prop-types": 1,
     "semi": 2,
     "strict": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],

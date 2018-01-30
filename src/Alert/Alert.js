@@ -21,7 +21,8 @@ const AlertUI = styled.div`
 class Alert extends Component {
   static propTypes = {
     children: PropTypes.node,
-    showClose: PropTypes.bool,
+    showClose: PropTypes.bool, // weird ?
+    hideClose: PropTypes.bool, // weird ?
     onClose: PropTypes.func,
     type: PropTypes.oneOf(['danger', 'error', 'success', 'warning', 'information']),
     noIcon: PropTypes.bool,
@@ -31,18 +32,21 @@ class Alert extends Component {
       PropTypes.string,
       PropTypes.number,
     ]),
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   };
 
   static defaultProps = {
     type: 'information',
-    showClose: false,
+    showClose: undefined,
+    hideClose: undefined,
     className: '',
     noIcon: false,
     isBanner: false,
-    iconSize: 24, // uxi default, check SvgIcon
+    iconSize: 24, // uxi default, src of thruth => SvgIcon
     onClose: null,
     // in case some text is not evaluated, the comp might appear like it has no children (text node)
     children: null, // we don't require children, alert always has at least 50px of height
+    style: {},
   };
 
   constructor(props) {
@@ -69,8 +73,9 @@ class Alert extends Component {
   render() {
     const {
       type,
-      showClose,
-      hideClose,
+      // TODO decide on a single behaviour
+      showClose, // if banner defaults to showing X close, and you don't wnat one, ok
+      hideClose, // but this is getting weird, we should settle on a posit or negatv word,
       noIcon,
       className,
       isBanner,
