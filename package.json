@@ -67,7 +67,7 @@
     "app-module-path": "^2.1.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.2",
+    "babel-eslint": "^8.2.1",
     "babel-jest": "^21.2.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-dev-warning": "^0.1.0",
