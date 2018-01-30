@@ -24,11 +24,11 @@ const Album = props => (
 );
 
 Album.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Album.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Album;

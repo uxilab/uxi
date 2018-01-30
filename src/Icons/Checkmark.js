@@ -21,11 +21,11 @@ const Checkmark = props => (
 );
 
 Checkmark.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Checkmark.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Checkmark;

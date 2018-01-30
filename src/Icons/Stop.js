@@ -21,11 +21,11 @@ const Stop = props => (
 );
 
 Stop.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Stop.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Stop;

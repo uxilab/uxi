@@ -23,11 +23,11 @@ const Issue = props => (
 );
 
 Issue.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Issue.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Issue;

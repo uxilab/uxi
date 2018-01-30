@@ -22,11 +22,11 @@ const Profile = props => (
 );
 
 Profile.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Profile.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Profile;

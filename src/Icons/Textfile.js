@@ -22,11 +22,11 @@ const Textfile = props => (
 );
 
 Textfile.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Textfile.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Textfile;

@@ -22,11 +22,11 @@ const License = props => (
 );
 
 License.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 License.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default License;

@@ -21,11 +21,11 @@ const Close = props => (
 );
 
 Close.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Close.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Close;

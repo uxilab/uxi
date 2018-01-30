@@ -24,11 +24,11 @@ const Delete = props => (
 );
 
 Delete.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Delete.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Delete;

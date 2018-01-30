@@ -21,11 +21,11 @@ const Linkedin = props => (
 );
 
 Linkedin.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Linkedin.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Linkedin;

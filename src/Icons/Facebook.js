@@ -21,11 +21,11 @@ const Facebook = props => (
 );
 
 Facebook.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Facebook.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Facebook;

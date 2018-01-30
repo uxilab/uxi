@@ -21,11 +21,11 @@ const Access = props => (
 );
 
 Access.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Access.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Access;

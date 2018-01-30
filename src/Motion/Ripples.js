@@ -53,13 +53,13 @@ class Ripples extends Component {
     const { onClick, color, during } = this.props;
     const {
       pageX, clientY, currentTarget: {
-        offsetWidth, offsetHeight
+        offsetWidth, offsetHeight,
       },
       currentTarget,
     } = ev;
-    const { top, left } = currentTarget.getBoundingClientRect()
+    const { top, left } = currentTarget.getBoundingClientRect();
 
-    const rippleLeft =  pageX - left;
+    const rippleLeft = pageX - left;
     const rippleTop = clientY - top;
 
     this.setState({

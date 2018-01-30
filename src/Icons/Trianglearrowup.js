@@ -21,11 +21,11 @@ const Trianglearrowup = props => (
 );
 
 Trianglearrowup.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Trianglearrowup.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Trianglearrowup;

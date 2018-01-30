@@ -24,11 +24,11 @@ const Industry = props => (
 );
 
 Industry.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Industry.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Industry;
