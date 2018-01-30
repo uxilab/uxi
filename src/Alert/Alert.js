@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import radium from 'radium';
 import styled from 'styled-components';
 import {
   Close,
@@ -9,7 +8,6 @@ import {
   Done,
 } from '../Icons';
 import AlertStyle from './Alert.style';
-// import EntityIcon from '../Entity/Card/internal/EntityIcon';
 
 const AlertUI = styled.div`
   div{
@@ -22,18 +20,9 @@ const AlertUI = styled.div`
 
 class Alert extends Component {
   static propTypes = {
-    /**
-     * The Alert will be added relativelty to this node.
-     */
     children: PropTypes.node,
-    /**
-     * Show or Hide the
-     */
     showClose: PropTypes.bool,
     onClose: PropTypes.func,
-    /**
-     * One of the value of danger, error, success, warning.
-     */
     type: PropTypes.oneOf(['danger', 'error', 'success', 'warning', 'information']),
     noIcon: PropTypes.bool,
     className: PropTypes.string,
@@ -48,6 +37,12 @@ class Alert extends Component {
     type: 'information',
     showClose: false,
     className: '',
+    noIcon: false,
+    isBanner: false,
+    iconSize: 24, // uxi default, check SvgIcon
+    onClose: null,
+    // in case some text is not evaluated, the comp might appear like it has no children (text node)
+    children: null, // we don't require children, alert always has at least 50px of height
   };
 
   constructor(props) {
@@ -85,36 +80,39 @@ class Alert extends Component {
     } = this.props;
     const { isOpen } = this.state;
 
-    const wrapperStyles = [AlertStyle.alert];
+    let wrapperStyles = { ...AlertStyle.alert };
 
-    if (isBanner) { wrapperStyles.push(AlertStyle.bannerAlert); }
+    if (isBanner) {
+      wrapperStyles = { ...wrapperStyles, ...AlertStyle.bannerAlert };
+    }
 
     let closeContent;
     let iconContent;
     let IconComp;
-    const mainAlertStyle = [AlertStyle.alertContent];
+    let mainAlertStyle = { ...AlertStyle.alertContent };
     if (!hideClose && (showClose || onClose || isBanner)) {
       closeContent = (
         <button key="closeIcon" onClick={this.close} style={AlertStyle.closeWrapper}>
           <Close color="white" />
         </button>
       );
-      mainAlertStyle.push({
+      mainAlertStyle = {
+        ...mainAlertStyle,
         marginRight: '50px',
-      });
+      };
     }
 
     if (type === 'danger' || type === 'error') {
-      wrapperStyles.push(AlertStyle.danger);
+      wrapperStyles = { ...wrapperStyles, ...AlertStyle.danger };
       IconComp = Issue;
     } else if (type === 'warning') {
-      wrapperStyles.push(AlertStyle.warning);
+      wrapperStyles = { ...wrapperStyles, ...AlertStyle.warning };
       IconComp = AlertIcon;
     } else if (type === 'success') {
-      wrapperStyles.push(AlertStyle.success);
+      wrapperStyles = { ...wrapperStyles, ...AlertStyle.success };
       IconComp = Done;
     } else {
-      wrapperStyles.push(AlertStyle.info);
+      wrapperStyles = { ...wrapperStyles, ...AlertStyle.info };
       IconComp = AlertIcon;
     }
 
@@ -125,12 +123,13 @@ class Alert extends Component {
     }
 
     if (!isOpen) {
-      wrapperStyles.push({
-        display: 'none',
-      });
+      wrapperStyles = { ...wrapperStyles, display: 'none' };
     }
 
-    wrapperStyles.push(style);
+    wrapperStyles = {
+      ...wrapperStyles,
+      ...style, // overwrite prop from consumer
+    };
 
     return (
       <AlertUI>
@@ -146,4 +145,4 @@ class Alert extends Component {
   }
 }
 
-export default radium(Alert);
+export default Alert;

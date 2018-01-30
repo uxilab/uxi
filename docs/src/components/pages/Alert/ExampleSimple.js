@@ -1,5 +1,6 @@
 import React from 'react';
 import Alert from '../../../../../src/Alert';
+import { P } from '../../../../../src/Classic';
 
 const ExampleSimple = () => (
   <div>
@@ -45,12 +46,24 @@ const ExampleSimple = () => (
     <br />
     <Alert>
       This is an monstruous Alert with too much text!
-      Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit. Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat. Ipsum tempor nostrud amet officia consequat consectetur do labore. Incididunt culpa est irure nisi commodo adipisicing. Quis culpa ullamco est occaecat deserunt culpa occaecat. Officia elit qui ullamco do ipsum mollit aliquip sit excepteur. Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet voluptate.
+      Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit.
+      Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat.
+      Ipsum tempor nostrud amet officia consequat consectetur do labore.
+      Incididunt culpa est irure nisi commodo adipisicing.
+      Quis culpa ullamco est occaecat deserunt culpa occaecat.
+      Officia elit qui ullamco do ipsum mollit aliquip sit excepteur.
+      Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet voluptate.
     </Alert>
     <br />
     <Alert showClose>
       This is an monstruous Alert with too much text!
-      Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit. Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat. Ipsum tempor nostrud amet officia consequat consectetur do labore. Incididunt culpa est irure nisi commodo adipisicing. Quis culpa ullamco est occaecat deserunt culpa occaecat. Officia elit qui ullamco do ipsum mollit aliquip sit excepteur. Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet voluptate.
+      Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit.
+      Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat.
+      Ipsum tempor nostrud amet officia consequat consectetur do labore.
+      Incididunt culpa est irure nisi commodo adipisicing.
+      Quis culpa ullamco est occaecat deserunt culpa occaecat.
+      Officia elit qui ullamco do ipsum mollit aliquip sit excepteur.
+      Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet.
     </Alert>
     <br />
     <Alert isBanner>
@@ -58,11 +71,17 @@ const ExampleSimple = () => (
     </Alert>
     <br />
     <Alert type="danger" isBanner>
-      This is a banner Alert!
-      Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit. Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat. Ipsum tempor nostrud amet officia consequat consectetur do labore. Incididunt culpa est irure nisi commodo adipisicing. Quis culpa ullamco est occaecat deserunt culpa occaecat. Officia elit qui ullamco do ipsum mollit aliquip sit excepteur. Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet voluptate.
+      This is a banner Alert with too much text!
+      Sunt reprehenderit incididunt occaecat laborum elit consequat reprehenderit.
+      Velit nulla fugiat adipisicing proident aliqua culpa ex fugiat.
+      Ipsum tempor nostrud amet officia consequat consectetur do labore.
+      Incididunt culpa est irure nisi commodo adipisicing.
+      Quis culpa ullamco est occaecat deserunt culpa occaecat.
+      Officia elit qui ullamco do ipsum mollit aliquip sit excepteur.
+      Elit deserunt magna pariatur deserunt culpa duis minim ex ad proident amet.
     </Alert>
-    {/* Alert without content has a min width of 50px : */}
-    <Alert type="danger" isBanner style={{ left: '76px' }} />
+    <P>Alert without content has a min height of 50px :</P>
+    <Alert type="danger"/>
 
     <Alert type="danger" iconSize={64} >
       I'm an alert with a big icon (custom sized)

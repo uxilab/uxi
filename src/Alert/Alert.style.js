@@ -48,9 +48,6 @@ export default {
     cursor: 'pointer',
     right: '15px',
     top: '13px',
-    ':hover': {
-      opacity: '0.6',
-    },
     padding: 0,
     margin: 0,
     border: 'none',

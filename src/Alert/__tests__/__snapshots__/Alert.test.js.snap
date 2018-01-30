@@ -4,7 +4,6 @@ exports[`should render an Alert 1`] = `
 <styled.div>
   <div
     className=""
-    data-radium={true}
     style={
       Object {
         "alignItems": "center",
@@ -22,7 +21,7 @@ exports[`should render an Alert 1`] = `
   >
     <Alert
       color="white"
-      key=".1"
+      size={24}
       style={
         Object {
           "margin": "8px 8px 8px 16px",
@@ -31,8 +30,6 @@ exports[`should render an Alert 1`] = `
       }
     />
     <div
-      data-radium={true}
-      key=".2"
       style={
         Object {
           "boxSizing": "border-box",
