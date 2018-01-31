@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
+import styled from 'styled-components';
 import {
   Done as SuccessIcon,
   Issue as ErrorIcon,
@@ -11,19 +11,32 @@ import { palette } from '../Theme/palette';
 
 const { semantic } = palette;
 
+const FileInputWrapperUI = styled.div`
+  display: inline-block;
+  position: relative;
+  outline: ${({ focussed }) => focussed ? '-webkit-focus-ring-color auto 5px' : 'none'}
+`;
+
+const FileInputLabelUI = styled.label`
+  /* padding: '8px 16px', */
+  padding: 0;
+  width: '100%';
+  cursor: 'pointer';
+  &:hover  {
+    outline: '1px dotted #000';
+    outline: '-webkit-focus-ring-color auto 5px';
+  },
+`;
+
+const FileInputUI = styled.input`
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+`;
+
 const styles = {
-  wrapper: {
-    position: 'relative',
-  },
-  innerWrapper: {
-  },
-  input: {
-    width: '0.1px',
-    height: '0.1px',
-    opacity: '0',
-    position: 'absolute',
-    zIndex: '-1',
-  },
   label: {
     width: '100%',
     cursor: 'pointer',
@@ -35,11 +48,6 @@ const styles = {
   },
 };
 
-const getDynamicStyles = focussed => ({
-  outline: focussed ? '1px dotted #000' : 'none',
-  outline: focussed ? '-webkit-focus-ring-color auto 5px' : 'none', // eslint-disable-line no-dupe-keys
-});
-/* eslint-disable no-nested-ternary */
 
 /* eslint-disable jsx-a11y/label-has-for */
 class FileInput extends PureComponent {
@@ -83,35 +91,22 @@ class FileInput extends PureComponent {
     const finalLabel = label || 'UPLOAD';
 
     return (
-      <div style={{ ...styles.wrapper }}>
-        <span style={{ ...getDynamicStyles(focussed) }}>
-          <input
-            {...props}
-            type="file"
-            style={{ ...inputStyles }}
-            onChange={onChange}
-            id={finalLabel}
-            onFocus={this.setFocus}
-            onBlur={this.setBlur}
-          />
-          <Button style={{ paddingLeft: 0, paddingRight: 0 }}>
-            <label htmlFor={finalLabel} style={{ ...styles.label }}>
-              <UploadIcon size="16" style={{ paddingRight: '8px', marginBottom: '-2px' }} />
-              {finalLabel }
-            </label>
-          </Button>
-
-          {/* Error Message/node */}
-          <div style={styles.errorWrapper}>
-            {error}
-          </div>
-
-          {/* state icon (succes/error/none) */}
-          <div style={styles.stateIconWrapper}>
-            {stateIcon}
-          </div>
-        </span>
-      </div>
+      <FileInputWrapperUI focussed={focussed}>
+        <FileInputUI
+          {...props}
+          type="file"
+          onChange={onChange}
+          id={finalLabel}
+          onFocus={this.setFocus}
+          onBlur={this.setBlur}
+        />
+        <Button>
+          <FileInputLabelUI htmlFor={finalLabel}>
+            <UploadIcon size="16" style={{ paddingRight: '8px', marginBottom: '-2px' }} />
+            {finalLabel }
+          </FileInputLabelUI>
+        </Button>
+      </FileInputWrapperUI>
     );
   }
 }
@@ -123,4 +118,4 @@ FileInput.propTypes = {
 FileInput.defaultProps = {
 };
 
-export default Radium(FileInput);
+export default FileInput;

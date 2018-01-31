@@ -233,10 +233,6 @@ const ExampleSimple = () => (
       <TextField type="email" placeholder={'placeholder'} success />
     </li>
     <li>
-      <h3>file :</h3>
-      <TextField type="file" />
-    </li>
-    <li>
       <h3>Uncontrolled Checkbox with label</h3>
       <Checkbox label={<div><span>Push Notifications :</span></div>} />
     </li>
