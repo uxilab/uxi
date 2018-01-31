@@ -19,35 +19,25 @@ const FileInputWrapperUI = styled.div`
 
 const FileInputLabelUI = styled.label`
   /* padding: '8px 16px', */
+  display: block;
   padding: 0;
-  width: '100%';
-  cursor: 'pointer';
+  width: 100%;
+  cursor: pointer;
   &:hover  {
-    outline: '1px dotted #000';
-    outline: '-webkit-focus-ring-color auto 5px';
-  },
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  };
 `;
 
 const FileInputUI = styled.input`
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
 `;
-
-const styles = {
-  label: {
-    width: '100%',
-    cursor: 'pointer',
-    padding: '8px 16px',
-    ':hover': {
-      outline: '1px dotted #000',
-      outline: '-webkit-focus-ring-color auto 5px', // eslint-disable-line no-dupe-keys
-    },
-  },
-};
-
 
 /* eslint-disable jsx-a11y/label-has-for */
 class FileInput extends PureComponent {
@@ -87,25 +77,24 @@ class FileInput extends PureComponent {
       ? <ErrorIcon size="16" color={palette.semantic.error} />
       : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
 
-    const inputStyles = { ...styles.input, ...style };
     const finalLabel = label || 'UPLOAD';
 
     return (
       <FileInputWrapperUI focussed={focussed}>
-        <FileInputUI
-          {...props}
-          type="file"
-          onChange={onChange}
-          id={finalLabel}
-          onFocus={this.setFocus}
-          onBlur={this.setBlur}
-        />
-        <Button>
-          <FileInputLabelUI htmlFor={finalLabel}>
+        <FileInputLabelUI htmlFor={finalLabel}>
+          <Button inert>
             <UploadIcon size="16" style={{ paddingRight: '8px', marginBottom: '-2px' }} />
             {finalLabel }
-          </FileInputLabelUI>
-        </Button>
+          </Button>
+          <FileInputUI
+            {...props}
+            type="file"
+            onChange={onChange}
+            id={finalLabel}
+            onFocus={this.setFocus}
+            onBlur={this.setBlur}
+          />
+        </FileInputLabelUI>
       </FileInputWrapperUI>
     );
   }
