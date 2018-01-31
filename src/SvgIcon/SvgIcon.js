@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Radium from 'radium';
-// import transitions from '../styles/transitions';
-
 export class SvgIcon extends Component {
-  static muiName = 'SvgIcon';
-
   static propTypes = {
-    /**
-     * Elements passed into the SVG Icon.
-     */
     children: PropTypes.node,
     /**
      * This is the fill color of the svg icon.
      * If not specified, this component will default
-     * to muiTheme.palette.textColor.
+     * to theme default.
      */
     color: PropTypes.string,
-    /**
-     * This is the icon color when the mouse hovers over the icon.
-     */
     hoverColor: PropTypes.string,
     /** @ignore */
     onMouseEnter: PropTypes.func,
@@ -54,10 +43,6 @@ export class SvgIcon extends Component {
     size: 24,
   };
 
-  // static contextTypes = {
-  //   muiTheme: PropTypes.object.isRequired,
-  // };
-
   state = {
     hovered: false,
   };
@@ -85,11 +70,6 @@ export class SvgIcon extends Component {
       ...other
     } = this.props;
 
-    // const {
-    //   svgIcon,
-    //   prepareStyles,
-    // } = this.context.muiTheme;
-
     const offColor = color || 'currentColor';
     const onColor = hoverColor || offColor;
 
@@ -102,7 +82,6 @@ export class SvgIcon extends Component {
       width: size ? `${parseInt(size, 10)}px` : '24px',
       minWidth: size ? `${parseInt(size, 10)}px` : '24px',
       userSelect: 'none',
-      // transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
       ...style,
     };
     return (
@@ -119,4 +98,4 @@ export class SvgIcon extends Component {
   }
 }
 
-export default Radium(SvgIcon);
+export default SvgIcon;
