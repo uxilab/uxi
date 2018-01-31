@@ -1,57 +1,56 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
 import {
   Done as SuccessIcon,
   Issue as ErrorIcon,
 } from '../Icons';
 import { palette } from '../Theme/palette';
+import styled from 'styled-components';
 
 const { semantic } = palette;
 
-const styles = {
-  wrapper: {
-    // display: block,
-    position: 'relative',
-  },
-  input: {
-    borderRadius: '3px',
-    fontSize: '14px',
-    border: '1px solid #dcdcdc',
-    padding: '6.5px 26px 6.5px 6.5px',
-    minWidth: '100%',
-    boxSizing: 'border-box',
-    ':focus': {
-      outline: 'none',
-      border: '1px solid rgb(37, 188, 188)',
-      boxShadow: '0 0 10px #719ECE',
-    },
-  },
-  errorWrapper: {
-    // display: block,
-    padding: '0 6px',
-    fontSize: '12px',
-  },
-  stateIconWrapper: {
-    // display: block,
-    position: 'absolute',
-    right: '8px',
-    top: '9px',
-  },
-};
+const InputWrapperUI = styled.div`
+  position: relative;
+`;
 
-/* eslint-disable no-nested-ternary */
-const getInputDynamicStyle = ({ error, success }) => ({
-  border: (error
-    ? `1px solid ${semantic.error}`
-    : (success ? `1px solid ${semantic.success}` : '1px solid #dcdcdc')
-  ),
-  ':focus': {
-    outline: 'none',
-    border: '1px solid rgb(37, 188, 188)',
-    boxShadow: '0 0 10px #719ECE',
-  },
-});
+const InputUI = styled.input`
+  border-radius: 3px;
+  font-size: 14px;
+  border: 1px solid ${({ theme: { palette: { semantic } } }) => semantic.default};
+  padding: 6.5px 26px 6.5px 6.5px;
+  min-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid ${({ error, success, theme: { palette: { semantic }} }) => error
+    ? semantic.error
+    : (success ? semantic.success : semantic.default)
+  };
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.palette.accent.main};
+    box-shadow: 0 0 10px #719ECE; /* where's that color from ? */
+  }
+`;
+
+const ErrorWrapperUI = styled.span`
+  padding: 0 6px;
+  font-size: 12px;
+  color: ${({ theme: { palette: { semantic }} }) => semantic.error}
+`;
+
+const StatusIcon = styled.span`
+  position: absolute;
+  right: 8px;
+  top: 9px;
+  color: ${({ error, success, theme: { palette: { semantic } } }) => error
+    ? semantic.error
+    : (success ? semantic.success : semantic.default)
+  };
+  & > svg,
+  & > svg * {
+    fill: currentColor !important;
+    color: currentColor !important;
+  }
+`;
 
 // eslint-disable-next-line react/prefer-stateless-function
 class TextField extends Component {
@@ -94,35 +93,35 @@ class TextField extends Component {
     } = this.props;
 
     const stateIcon = error // eslint-disable-line no-nested-ternary
-      ? <ErrorIcon size="16" color={palette.semantic.error} />
-      : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
+      ? <ErrorIcon size="16" />
+      : (success ? <SuccessIcon size="16" /> : null
+      );
 
-    const inputStyles = { ...styles.input, ...getInputDynamicStyle(this.props), ...style };
     const inputAttributes = {
       ...attributes,
       value: this.isControlled ? this.props.value : this.state.value,
     };
+
     return (
-      <span style={styles.wrapper}>
-        <input
+      <InputWrapperUI>
+        <InputUI
           {...inputAttributes}
           type={type}
-          style={inputStyles}
+          style={style}
           placeholder={placeholder}
           onChange={this.handleChange}
+          error={error}
+          success={success}
         />
 
-        {/* Error Message/node */}
-        <span style={styles.errorWrapper}>
-          {error}
-        </span>
-
-
-        {/* state icon (succes/error/none) */}
-        <span style={styles.stateIconWrapper}>
+        <StatusIcon error={error} success={success}>
           {stateIcon}
-        </span>
-      </span>
+        </StatusIcon>
+
+        <ErrorWrapperUI>
+          {error}
+        </ErrorWrapperUI>
+      </InputWrapperUI>
     );
   }
 }
@@ -140,4 +139,4 @@ TextField.defaultProps = {
 
 TextField.displayName = 'TextField';
 
-export default Radium(TextField);
+export default TextField;
