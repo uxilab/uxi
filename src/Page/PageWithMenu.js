@@ -1,41 +1,87 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
+import styled, { css } from 'styled-components';
+import ContainerQuery from '../internal/ContainerQuery'
 
-const getMenuStyle = menuWidth => ({
-  width: '100%',
-  '@media (min-width: 768px)': {
-    width: menuWidth,
-    minWidth: menuWidth,
-  },
-});
+const PageWithMenuUI = styled.div`
+    & > div { width: 100%; }
+  /* @media (min-width: 768px) { */
+/*     display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    &>div:first-child {
+      min-width: ${({ menuWidth }) => menuWidth};
+      max-width: ${({ menuWidth }) => menuWidth};
+      flex-grow: 1;
+    }
+    &>div:last-child {
+      min-width: ${({ menuWidth }) => menuWidth};
+      min-width: ${({ contentWidth }) => contentWidth};
+      max-width: ${({ menuWidth }) => `calc(100% - ${ menuWidth })`};
+      flex-grow: 1; */
+    }
+  /* }; */
+`;
 
-const getContentStyle = menuWidth => ({
-  flex: '1',
-  width: '100%',
-  '@media (min-width: 768px)': {
-    width: `calc(100% - ${menuWidth})`,
-    maxWidth: `calc(100% - ${menuWidth})`,
-  },
-});
 
-const getContextStyle = style => ({
-  '@media (min-width: 768px)': {
-    display: 'flex',
-  },
-  ...style,
-});
+const PageWithMenuContent = (props) => {
+  const {
+    children,
+    style = {},
+    menu,
+    menuWidth,
+    contentWidth
+  } = props
 
-const PageWithMenuContent = ({ children, style = {}, menu, menuWidth }) => (
-  <div style={getContextStyle(style)}>
-    <div style={getMenuStyle(menuWidth)}>
-      {menu}
-    </div>
-    <div style={getContentStyle(menuWidth)}>
-      {children}
-    </div>
-  </div>
-);
+  const queryRule = css`
+    &>div:last-child { color: red !important }
+
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    /* flex: 1 1 100%; */
+    &>div:first-child {
+      min-width: ${({ menuWidth }) => menuWidth};
+      /* width: ${({ menuWidth }) => menuWidth}; */
+      max-width: ${({ menuWidth }) => menuWidth};
+      flex-grow: 1;
+    }
+    &>div:last-child {
+      min-width: ${({ menuWidth }) => menuWidth};
+      min-width: ${({ contentWidth }) => contentWidth};
+      max-width: ${({ menuWidth }) => `calc(100% - ${menuWidth})`};
+      /* width: auto; */
+      flex-grow: 1;
+    }
+  `;
+
+  const containerQueryRules = [
+    {
+      minWidth: 600, // number
+      // css: queryRule,
+      // css: css` &>div:last-child { color: red !important }`,
+      css: queryRule,
+    }
+  ]
+
+  return (
+    <ContainerQuery childrenProps={props} rules={containerQueryRules} >
+      <PageWithMenuUI menuWidth={menuWidth} contentWidth={contentWidth} style={style}>
+        <div> {menu} </div>
+        <div> {children} </div>
+      </PageWithMenuUI>
+    </ContainerQuery>
+  )
+};
+
+PageWithMenuContent.propTypes = {
+  menuWidth: PropTypes.string,
+}
+
+PageWithMenuContent.defaultProps = {
+  menuWidth: '250px',
+}
 
 const RadiumPageWithMenuContent = Radium(PageWithMenuContent);
 
@@ -46,7 +92,7 @@ class PageWithMenu extends Component {
   };
 
   render() {
-    const { menu, isContained, children, style = {}, menuWidth = '250px' } = this.props;
+    const { menu, isContained, children, style = {}, menuWidth } = this.props;
     const isContainedResult = isContained ? true : this.context.isFixedWidth();
 
     if (isContainedResult) {
