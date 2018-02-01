@@ -1,8 +1,5 @@
 /* @flow */
 import React, { Component } from 'react';
-import radium from 'radium';
-// import Ripples from '../Motion/Ripples';
-// import Icon from '../Icons';
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -44,4 +41,4 @@ class IconButton extends Component {
   }
 }
 
-export default radium(IconButton);
+export default IconButton;
