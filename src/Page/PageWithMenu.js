@@ -1,69 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
+import styled from 'styled-components';
 
-const getMenuStyle = menuWidth => ({
-  width: '100%',
-  '@media (min-width: 768px)': {
-    width: menuWidth,
-    minWidth: menuWidth,
-  },
-});
+const WapperUI = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+  };
+`;
 
-const getContentStyle = menuWidth => ({
-  flex: '1',
-  width: '100%',
-  '@media (min-width: 768px)': {
-    width: `calc(100% - ${menuWidth})`,
-    maxWidth: `calc(100% - ${menuWidth})`,
-  },
-});
+const MenuUI = styled.div`
+  width: 100%;
+  min-width: ${({ menuWidth }) => menuWidth };
+  @media (min-width: 768px) {
+    width: ${({ menuWidth }) => menuWidth };
+    min-width: ${({ menuWidth }) => menuWidth };
+    max-width: ${({ menuWidth }) => menuWidth };
+  };
+`;
 
-const getContextStyle = style => ({
-  '@media (min-width: 768px)': {
-    display: 'flex',
-  },
-  ...style,
-});
+const ContentUI = styled.div`
+  flex: 1;
+  width: 100%;
+  @media (min-width: 768px) {
+    max-width: ${({ menuWidth }) => `calc(100% - ${menuWidth})`};
+  };
+`;
 
-const PageWithMenuContent = ({ children, style = {}, menu, menuWidth }) => (
-  <div style={getContextStyle(style)}>
-    <div style={getMenuStyle(menuWidth)}>
+const PageWithMenu = ({ children, style = {}, menu, menuWidth }) => (
+  <WapperUI style={style}>
+    <MenuUI menuWidth={menuWidth}>
       {menu}
-    </div>
-    <div style={getContentStyle(menuWidth)}>
+    </MenuUI>
+    <ContentUI menuWidth={menuWidth}>
       {children}
-    </div>
-  </div>
+    </ContentUI>
+  </WapperUI>
 );
 
-const RadiumPageWithMenuContent = Radium(PageWithMenuContent);
-
-/* eslint-disable react/prefer-stateless-function */
-class PageWithMenu extends Component {
-  static contextTypes = {
-    isFixedWidth: PropTypes.func,
-  };
-
-  render() {
-    const { menu, isContained, children, style = {}, menuWidth = '250px' } = this.props;
-    const isContainedResult = isContained ? true : this.context.isFixedWidth();
-
-    if (isContainedResult) {
-      return (
-        <div className="uxi_container">
-          <RadiumPageWithMenuContent menu={menu} menuWidth={menuWidth} style={style}>
-            {children}
-          </RadiumPageWithMenuContent>
-        </div>
-      );
-    }
-    return (
-      <RadiumPageWithMenuContent menu={menu} menuWidth={menuWidth} style={style}>
-        {children}
-      </RadiumPageWithMenuContent>
-    );
-  }
+PageWithMenu.defaultProps = {
+  menuWidth: '250px',
 }
 
-export default Radium(PageWithMenu);
+export default PageWithMenu;
