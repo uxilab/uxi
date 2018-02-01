@@ -1,5 +1,8 @@
 import React from 'react';
 import MarketingText from './MarketingText';
+/**
+ * TODO: Some of thos compos still use context or import the theme directly, fix it
+ */
 import { theme } from '../Theme';
 
 const MarketingTitle = ({ text, isHeading, children, style = {} }) => {

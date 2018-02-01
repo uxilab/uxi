@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Table,
 } from '../Table';
@@ -10,7 +11,6 @@ import {
   createDataGridHeader,
   createDataGridBody,
 } from './grid/factory';
-import PropTypes from 'prop-types';
 import { ButtonLink } from '../Button';
 import { List } from '../List';
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import { Helmet } from 'react-helmet';
+/**
+ * TODO: Some of thos compos still use context or import the theme directly, fix it
+ */
 import { theme } from '../index';
 import getTheme from './getTheme';
 import { getThemeWithCustomPalette } from '../index';
@@ -39,24 +40,14 @@ export class ThemeProvider extends Component {
 
   isFixedWidth() {
     const { isContained } = this.props;
-
     return isContained;
   }
 
   render() {
     const { children } = this.props;
 
-    const theTheme = this.props.palette
-      ? getThemeWithCustomPalette(this.props.palette)
-      : this.props.theme || getTheme(this.props.extendTheme);
-
-
     return (
       <div className="uxi-root">
-        <Helmet>
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700" rel="stylesheet" />
-        </Helmet>
         {children}
       </div>
     );

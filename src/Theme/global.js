@@ -1,6 +1,7 @@
 import { lighten } from './colorManipulator';
 /** those are css`` mixins import */
 import grid from './grid';
+import fonts from './fonts';
 import verticalMenu from './verticalMenu';
 import tooltip from './tooltip';
 import synthaxHighlight from './synthaxHighlight';
@@ -26,6 +27,8 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
   } = theme;
 
   return () => injectGlobal`
+    ${fonts}
+
     * {
     }
 

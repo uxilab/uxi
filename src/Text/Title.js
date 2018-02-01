@@ -1,5 +1,8 @@
 import React from 'react';
 import Text from './Text';
+/**
+ * TODO: Some of thos compos still use context or import the theme directly, fix it
+ */
 import { theme } from '../Theme';
 
 const Title = ({ text, isHeading, children, style = {} }) => {

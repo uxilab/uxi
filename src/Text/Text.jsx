@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+/**
+ * TODO: Some of thos compos still use context or import the theme directly, fix it
+ */
 import { theme } from '../Theme';
 
 /* eslint-disable react/prefer-stateless-function */

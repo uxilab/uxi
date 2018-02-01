@@ -1,4 +1,7 @@
 import React from 'react';
+/**
+ * TODO: Some of thos compos still use context or import the theme directly, fix it
+ */
 import { palette } from '../Theme/palette';
 
 const styles = {

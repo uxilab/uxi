@@ -33,8 +33,8 @@ const AppRoutes = (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/Font" exact component={FontPage} />
-    <Route path="/button" component={ButtonPage} />
     <Route path="/color" component={ColorPage} />
+    <Route path="/button" component={ButtonPage} />
     <Route path="/box" component={BoxPage} />
     <Route path="/sociallinks" component={SocialLinksPage} />
     <Route path="/inputs" component={InputsPage} />
