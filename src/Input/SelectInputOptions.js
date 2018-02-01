@@ -1,31 +1,26 @@
 import React from 'react';
-import Radium from 'radium';
+import styled from 'styled-components';
 
-const styles = {
-  item: {
-    display: 'border-box',
-    cursor: 'pointer',
-    padding: '2px 2px 2px 6px',
-    // minHeight: '32px',
-    background: 'white',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    userSelect: 'none',
-    ':hover': {
-      backgroundColor: '#f4f4f4',
-    },
-    ':active': {
-      backgroundColor: '#fff',
-    },
-  },
-};
+const OptionsUI = styled.div`
+  display: border-box;
+  cursor: pointer;
+  padding: 2px 2px 2px 6px;
+  background: white;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  user-select: none;
+  &:hover {
+    background-color: #f4f4f4;
+  };
+  &:active {
+    background-color: #fff;
+  };
+`;
 
-const Options = ({ children, selected, style }) => (
-  <div style={{ ...styles.item, ...style }}>
-    {children}
-  </div>
+const Options = (props) => (
+  <OptionsUI {...props} />
 );
 
 Options.displayName = 'Options';
 
-export default Radium(Options);
+export default Options;
