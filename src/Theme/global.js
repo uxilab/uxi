@@ -1,5 +1,6 @@
 import { lighten } from './colorManipulator';
 import grid from './grid';
+import tooltip from './tooltip';
 import synthaxHighlight from './synthaxHighlight';
 import markdown from './markdown';
 //
@@ -66,6 +67,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
     ${grid}
     ${synthaxHighlight}
     ${markdown}
+    ${tooltip}
 `;
 };
 

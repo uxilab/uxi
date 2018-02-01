@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import radium from 'radium';
-import TableStyle from './Table.style';
-import tooltipStyles from './tooltipStyles';
+import styled from 'styled-components';
+
+const TableWrapperUI = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TableUI = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  table-layout: fixed;
+  border: none;
+`;
 
 class Table extends Component {
   createTableBody(base) {
@@ -62,14 +74,13 @@ class Table extends Component {
     });
 
     return (
-      <div style={TableStyle.container}>
-        <style dangerouslySetInnerHTML={{ __html: tooltipStyles }} />
-        <table style={{ ...TableStyle.table, ...style }}>
+      <TableWrapperUI>
+        <TableUI style={style}>
           {tHead}
           {tBody}
           {tFoot}
-        </table>
-      </div>
+        </TableUI>
+      </TableWrapperUI>
     );
   }
 }
@@ -90,4 +101,4 @@ Table.defaultProps = {
   selectable: false,
 };
 
-export default radium(Table);
+export default Table;
