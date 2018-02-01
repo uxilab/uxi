@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import marked from 'marked';
 import { highlight } from 'highlight.js';
-// import markDownCSSString from './mui-github-markdown';
+
+/** styles comes from global css (check Theme/markdown.js) */
 
 const styles = {
   root: {
@@ -31,28 +32,11 @@ class MarkdownElement extends Component {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      //  highlight(code, lang) {
-      //    const r = highlight(lang, code).value;
-      //    console.log(r");
-      //    return r;
-      //  },
       highlight(code) {
         return require('highlight.js').highlightAuto(code).value;
       },
-      // highlight: function (code, lang, callback) {
-      //   require('pygmentize-bundled')({ lang: lang, format: 'html' }, code, function (err, result) {
-      //     callback(err, result.toString());
-      //   });
-      // }
     });
   }
-
-  // componentDidMount() {
-  //   if (this.ref) {
-  //     // console.log(highlight('javascript', this.props.text).value);
-  //     // highlight('js', this.ref);
-  //   }
-  // }
 
   render() {
     const {
@@ -60,14 +44,9 @@ class MarkdownElement extends Component {
       lang,
       text,
     } = this.props;
-    // console.log(highlight);
-    // console.log(lang && highlight(lang, text).value);
-
-    console.log(highlight);
     /* eslint-disable react/no-danger */
     return (
       <div>
-        {/* <style dangerouslySetInnerHTML={{ __html: markDownCSSString }} /> */}
         <div
           ref={ref => this.ref = ref}
           style={Object.assign({}, styles.root, style)}
