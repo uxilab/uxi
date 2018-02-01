@@ -20,7 +20,7 @@ UXISCThemeProvider.PropTypes = {
 };
 
 UXISCThemeProvider.defaultProps = {
-  theme,
+  theme: theme || {},
 };
 
 UXISCThemeProvider.displayName = 'UXISCThemeProvider';

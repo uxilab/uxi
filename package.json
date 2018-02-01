@@ -34,7 +34,6 @@
     "keycode": "^2.1.9",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "radium": "^0.19.4",
     "rc-tooltip": "^3.7.0",
     "react": "^16.0.0",
     "react-addons-test-utils": "~15.4.0",

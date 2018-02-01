@@ -12,71 +12,71 @@ const fonts = {
 const marketingFontFamilly = '\'Fira Sans\', sans-serif';
 
 export const theme = {
-  wrapper: {
-    '.uxi_container': {
-      width: '100%',
-      margin: '0 auto',
-    },
-    mediaQueries: {
-      '(min-width: 768px)': {
-        '.uxi_container': {
-          maxWidth: '750px',
-          margin: '0 auto',
-        },
-      },
-      '(min-width: 992px)': {
-        '.uxi_container': {
-          maxWidth: '970px',
-          margin: '0 auto',
-        },
-      },
-      '(min-width: 1200px)': {
-        '.uxi_container': {
-          maxWidth: '1170px',
-          margin: '0 auto',
-        },
-      },
-    },
-    body: {
-      height: '100%',
-      margin: 0,
-      padding: 0,
-    },
-    html: {
-      height: '100%',
-      margin: 0,
-      padding: 0,
-      background: '#F3F3F2',
-      fontFamily: '\'Source Sans Pro\', sans-serif',
-      color: palette.darkGrey,
-    },
-    ul: {
-      margin: 0,
-      padding: 0,
-      listStyle: 'none',
-    },
-    a: {
-      color: palette.accent.main,
-      textDecoration: 'none',
-    },
-    'a:hover': {
-      color: lighten(palette.accent.main, 0.1),
-      textDecoration: 'none',
-    },
-    headings: {
-      color: palette.neutral.dark,
-    },
-    '.uxi-root': {
-      height: '100%',
-    },
-    table: {
-      margin: 0,
-      padding: 0,
-    },
-    td: {
-      padding: '5px 10px',
-    },
-  },
+  // wrapper: {
+  //   '.uxi_container': {
+  //     width: '100%',
+  //     margin: '0 auto',
+  //   },
+  //   mediaQueries: {
+  //     '(min-width: 768px)': {
+  //       '.uxi_container': {
+  //         maxWidth: '750px',
+  //         margin: '0 auto',
+  //       },
+  //     },
+  //     '(min-width: 992px)': {
+  //       '.uxi_container': {
+  //         maxWidth: '970px',
+  //         margin: '0 auto',
+  //       },
+  //     },
+  //     '(min-width: 1200px)': {
+  //       '.uxi_container': {
+  //         maxWidth: '1170px',
+  //         margin: '0 auto',
+  //       },
+  //     },
+  //   },
+  //   body: {
+  //     height: '100%',
+  //     margin: 0,
+  //     padding: 0,
+  //   },
+  //   html: {
+  //     height: '100%',
+  //     margin: 0,
+  //     padding: 0,
+  //     background: '#F3F3F2',
+  //     fontFamily: '\'Source Sans Pro\', sans-serif',
+  //     color: palette.darkGrey,
+  //   },
+  //   ul: {
+  //     margin: 0,
+  //     padding: 0,
+  //     listStyle: 'none',
+  //   },
+  //   a: {
+  //     color: palette.accent.main,
+  //     text-decoration: 'none',
+  //   },
+  //   'a:hover': {
+  //     color: lighten(palette.accent.main, 0.1),
+  //     text-decoration: 'none',
+  //   },
+  //   headings: {
+  //     color: palette.neutral.dark,
+  //   },
+  //   '.uxi-root': {
+  //     height: '100%',
+  //   },
+  //   table: {
+  //     margin: 0,
+  //     padding: 0,
+  //   },
+  //   td: {
+  //     padding: '5px 10px',
+  //   },
+  // },
   root: {
     fontSize: '14p',
   },

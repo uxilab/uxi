@@ -115,9 +115,9 @@ export const tooltip = css`
   }
 
   .rc-tooltip-placement-leftTop .rc-tooltip-arrow {
-      top: 15%;
-      margin-top: 0;
-  }
+    top: 15%;
+    margin-top: 0;
+}
 
   .rc-tooltip-placement-leftBottom .rc-tooltip-arrow {
     bottom: 15%;

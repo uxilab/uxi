@@ -1,9 +1,13 @@
 import { lighten } from './colorManipulator';
+/** those are css`` mixins import */
 import grid from './grid';
+import verticalMenu from './verticalMenu';
 import tooltip from './tooltip';
 import synthaxHighlight from './synthaxHighlight';
 import markdown from './markdown';
-//
+import layout from './layout';
+import simpleLayout from './simpleLayout';
+
 /**
  * injectGlobal: A helper method to write global CSS.
  * It does not return a component,
@@ -49,7 +53,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
     }
     a {
         color: ${palette.accent.main};
-        textDecoration: none;
+        text-decoration: none;
       &:hover {
         color: ${lighten(palette.accent.main, 0.1)};
       }
@@ -68,6 +72,9 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
     ${synthaxHighlight}
     ${markdown}
     ${tooltip}
+    ${verticalMenu}
+    ${layout}
+    ${simpleLayout}
 `;
 };
 

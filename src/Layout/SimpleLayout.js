@@ -1,5 +1,4 @@
 import React from 'react';
-import { Style } from 'radium';
 import SimpleLayoutObject from './SimpleLayout.style';
 
 const SimpleLayout = ({ columnNumber = 1, children = [], desktopColumnNumber, tabletColumnNumber }) => {
@@ -24,7 +23,6 @@ const SimpleLayout = ({ columnNumber = 1, children = [], desktopColumnNumber, ta
 
   return (
     <div>
-      <Style rules={SimpleLayoutObject} />
       <div className="uxi_s_row">
         {simplayLayoutContent}
       </div>

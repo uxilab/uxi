@@ -30,7 +30,6 @@ const ButtonBaseMixin = css`
   background-color: transparent;
   border-color: transparent;
   color: ${({ theme, type, disabled }) => {
-    console.log('disabled', disabled)
     return disabled
       ? theme.palette.grey
       : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
