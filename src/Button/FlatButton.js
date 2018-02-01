@@ -29,10 +29,22 @@ const ButtonBaseMixin = css`
   /* TYPE STYLES: */
   background-color: transparent;
   border-color: transparent;
-  color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};
-  /* this next line overwritte the '.root a' selector rules from uxi NON-StyledComponent theme/css */
-  * { color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)}; }
-  svg { fill: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};}
+  color: ${({ theme, type, disabled }) => {
+    console.log('disabled', disabled)
+    return disabled
+      ? theme.palette.grey
+      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
+  }};
+
+  /* those next line overwritte the '.root a' selector rules from uxi NON-StyledComponent theme/css
+  * TODO: remove the overwrite once the .root a rules doesn't interfere anymore */
+  * { color: inherit }
+  svg { fill: ${({ theme, type, disabled }) => {
+    return disabled
+      ? theme.palette.grey
+      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
+  }}}
+
   &:hover {
     border-color: transparent;
     color: ${({ theme, type }) => '#ffffff' };
@@ -40,11 +52,6 @@ const ButtonBaseMixin = css`
     * { color: inherit; }
     svg { fill: ${({ type, theme }) => (type ? '#ffffff' : '#ffffff') }
   }
-
-  /* DISABLED STYLES: (overrides types styles)*/
-  cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
-  ${({ disabled, theme: { palette } }) => (disabled ? `background-color: ${palette.lightGrey}; color: ${palette.grey};` : '')}
-  ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
 
   &:hover {
     ${({ disabled, theme: { palette } }) => (disabled ? `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
@@ -56,7 +63,6 @@ const ButtonBaseMixin = css`
   svg {
     ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
   }
-
 }
 `;
 
@@ -101,7 +107,6 @@ class Button extends Component {
       style,
       className,
       target,
-      // ...restOfProps
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -156,7 +161,6 @@ class Button extends Component {
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
     return (<Ripples disabled={disabled} style={rippleStyles}>{theButton}</Ripples>);
-    // return disabled ? theButton : (<Ripples style={rippleStyles}>{theButton}</Ripples>);
   }
 }
 

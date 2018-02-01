@@ -30,34 +30,43 @@ const ButtonBaseMixin = css`
   background-color: ${({ theme, type }) => getTypeColor(theme, type)};
   border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.lightGrey)};
   color: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};
-  /* this next line overwritte the '.root a' selector rules from uxi NON-StyledComponent theme/css */
-  * { color: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)}; }
+
+  /* those next line overwritte the '.root a' selector rules from uxi NON-StyledComponent theme/css
+  * TODO: remove the overwrite once the .root a rules doesn't interfere anymore */
+  * { color: inherit }
   svg { fill: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};}
+
   &:hover {
     border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
     color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};
     background-color: ${({ type, theme }) => (type ? '#fff' : theme.palette.lightGrey)};
-    * { color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)}; }
+    * { color: inherit }
     svg { fill: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};}
   }
 
-  /* DISABLED STYLES: (overrides types styles)*/
-  cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
-  ${({ disabled, theme: { palette } }) => (disabled ?
-    `background-color: ${palette.lightGrey}; color: ${palette.grey};` : '')}
-  ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
+  /* DISABLED STYLES: (overrides types styles) */
+  cursor: ${({ disabled }) => (disabled ?
+    'normal' : 'pointer')};
+
+  ${({ type, disabled, theme }) => (disabled ?
+    `background-color: ${theme.palette.lightGrey};
+    color: ${theme.palette.grey};` : '')}
+
+  ${({ disabled }) => (disabled ?
+    'border-color: transparent;' : '')};
+
+  svg {
+    ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
+  }
+
   &:hover {
     ${({ disabled, theme: { palette } }) => (disabled ?
     `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
     ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
     svg {
-      ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.darkGrey}` : '')};
+      ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
     }
   }
-  svg {
-    ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.darkGrey}` : '')};
-  }
-
 }
 `;
 
@@ -73,7 +82,6 @@ const ButtonContentWrapper = styled.div`
   margin: 0 4px;
   line-height: 0.7;
 `;
-
 
 /* eslint-enable indent */
 const ButtonUI = styled.button`${ButtonBaseMixin};`;
@@ -102,7 +110,6 @@ class Button extends Component {
       style,
       className,
       target,
-      // ...restOfProps
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -140,8 +147,8 @@ class Button extends Component {
 
     const theButton = (
       <TheButtonComponent
-        {...(link ? { href: link } : {})}
-        {...(link && target ? { target } : {})}
+        {...(link && !disabled ? { href: link } : {})}
+        {...(link && !disabled && target ? { target } : {})}
         {...styleProps}
         {...buttonAttr}
       >
@@ -157,7 +164,6 @@ class Button extends Component {
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
     return (<Ripples disabled={disabled} style={rippleStyles}>{theButton}</Ripples>);
-    // return disabled ? theButton : (<Ripples style={rippleStyles}>{theButton}</Ripples>);
   }
 }
 

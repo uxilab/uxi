@@ -12,6 +12,9 @@ import RAWExampleButtonLinks from '!raw-loader!./ExampleButtonLinks';
 import ExampleSimpleSemantic from './ExampleSimpleSemantic';
 import RAWExampleSimpleSemantic from '!raw-loader!./ExampleSimpleSemantic';
 
+import ExampleSimpleSemanticDisabled from './ExampleSimpleSemanticDisabled';
+import RAWExampleSimpleSemanticDisabled from '!raw-loader!./ExampleSimpleSemanticDisabled';
+
 import ExampleSimpleWithIcon from './ExampleSimpleWithIcon';
 import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
 
@@ -59,6 +62,16 @@ const ButtonPage = () => (
           hasPadding
         >
           <ExampleSimpleFlat />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSimpleSemanticDisabled}
+          component
+          title="Disabled Button using semantic colors"
+          hasPadding
+        >
+          <ExampleSimpleSemanticDisabled />
         </CodeExample>
       </li>
       <li>
