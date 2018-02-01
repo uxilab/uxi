@@ -8,8 +8,12 @@ const ExampleButtonPlayGround = () => (
     <Button disabled={true} link="http://google.com" text="send" />
     <Button disabled={true} icon={<Upload />} />
     <br />
-    <Button disabled={false} link="http://google.com" text="send" />
-    <Button disabled={false} icon={<Upload />}  />
+    <Button link="http://google.com" text="send" />
+    <Button icon={<Upload />}  />
+    <br />
+    <Button type="primary" icon={<Upload />} text="send" />
+    <Button type="primary" iconPosition="after" icon={<Upload />} text="send" />
+    <Button type="primary" icon={<Upload />}  />
   </List>
 );
 

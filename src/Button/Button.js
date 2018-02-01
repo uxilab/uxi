@@ -71,6 +71,7 @@ const ButtonIconWrapper = styled.div`
 
 const ButtonContentWrapper = styled.div`
   margin: 0 4px;
+  line-height: 0.7;
 `;
 
 
