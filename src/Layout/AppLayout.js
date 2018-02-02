@@ -1,40 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const styles = {
-  wrapper: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  header: {},
-  footer: {},
-  main: {},
-  item: {
-    flexGrow: 9,
-  },
-};
 /**
- * This comp takes 3 children and make a simple header-content-footer layout
+ * This comp takes 3 children and make a simple
+ * fully responsive, always at least full-height/width
+ * vertical header-content-footer layout
+ *
+ * If you want to use it for the entire viewport,
+ * it's up to you to make the space around available
+ * e.g. remove body margin, make the html and body full height...
  */
-const AppLayout = ({ children }) => (
-  <div style={styles.wrapper} >
-    {
-      React.Children.map(children, (child, index) => {
-        React.cloneElement(child, {
-          // doSomething: this.doSomething,
-        });
 
-        const appliedStyles = {
-          ...styles.item,
-          flexGrow: (index === 1) ? 99 : 1,
-        };
+const WebAppLayoutUI = styled.div`
+  min-height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	&>* { padding: 16px }
+	&>*:nth-child(2) { flex-grow: 999	}
+`;
 
-        return (
-          <div style={appliedStyles}>{child}</div>
-        );
-      })
-    }
-  </div>
-);
+const AppLayout = ({ children }) => {
+  return (
+    <WebAppLayoutUI>
+      {children}
+    </WebAppLayoutUI>
+  )
+}
 
-export default AppLayout;
+AppLayout.displayName = 'AppLayout';
+
+export default AppLayout

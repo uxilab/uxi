@@ -2,10 +2,14 @@ import React from 'react';
 import UXISCThemeProvider from 'uxi/Theme/ThemeProvider/UXISCThemeProvider';
 import ThemeProvider, { getThemeWithCustomPalette } from '../../src/Theme';
 import Header from 'uxi/Header';
+import { H4 } from 'uxi/Classic';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
-import { Layout, Col, Row } from 'uxi/Layout';
+import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
+import { ThemedBox } from 'uxi/Box';
+
+const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }
 
 
 const makeMenuItem = ({ path, label }) => (
@@ -52,7 +56,7 @@ const AppShell = ({ children }) => {
   return (
     <UXISCThemeProvider theme={getThemeWithCustomPalette()} >
       <ThemeProvider palette={{ /* primary: '#663399', secondary: '#7fff00' */ }}>
-        <div>
+        <AppLayout>
           <Header isDark>
             <HorizontalMenu isMain>
               <MenuItem>
@@ -66,10 +70,7 @@ const AppShell = ({ children }) => {
               </MenuItem>
             </HorizontalMenu>
           </Header>
-          <PageWithMenu
-            style={{ marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }}
-            menu={mainMenu}
-          >
+          <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
             <Layout>
               <Row>
                 <Col>
@@ -78,7 +79,10 @@ const AppShell = ({ children }) => {
               </Row>
             </Layout>
           </PageWithMenu>
-        </div>
+          <ThemedBox isDark>
+            <Flex><H4><strong>uxi</strong></H4></Flex>
+          </ThemedBox>
+        </AppLayout>
       </ThemeProvider>
     </UXISCThemeProvider>
   );

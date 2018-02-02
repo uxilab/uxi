@@ -3,3 +3,4 @@ export { default as Col } from './Col';
 export { default as Row } from './Row';
 export { default as SimpleLayout } from './SimpleLayout';
 export { default as Flex } from './Flex';
+export { default as AppLayout } from './AppLayout';
