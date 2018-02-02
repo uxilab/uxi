@@ -53,7 +53,6 @@ class Modal extends React.Component {
       BackdropTransitionDuration,
       show,
     } = this.props;
-    console.log('this.props', this.props);
     return (
       <Fade appear in={show} timeout={BackdropTransitionDuration}>
         <BackdropComponent

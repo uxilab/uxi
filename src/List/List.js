@@ -25,8 +25,11 @@ const ListWrapper = styled.div`
  *  it "just maps stuff" and render in provided compo and DO NOT wraps it
  */
 const List = ({ style, children, type }) => {
+  if (React.Children.count(children) <= 0) {
+    return null
+  }
   const wrappedChildren = React.Children.map(children, (c, i) => {
-    const key = c.key ? `key-${c.key}` : `index-${i}`;
+    const key = c.key ? `key-${c.key || c.name || c.label}` : `index-${i}`;
     return (
       <li key={key}>
         {c}
