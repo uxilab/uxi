@@ -1,12 +1,44 @@
 import React from 'react';
+import styled from 'styled-components';
 import ThemeComponent from '../Base/ThemeComponent';
-import VerticalMenuStyle from './VerticalMenu.style';
 import { lighten } from '../Theme/colorManipulator';
+
+const VerticalMenuUI = styled.ul`
+  & {
+    .uxi-menu-item {
+      border-right: 5px solid transparent;
+    }
+    .uxi-menu-item:hover {
+      background:  ${({ theme: { palette } }) => lighten(palette.accent.main, 0.9)} ;
+      border-right: 4px solid transparent;
+    }
+    .uxi-menu-item a {
+      color:  ${({ theme: { palette } }) => palette.neutral.dark} ;
+      text-decoration: none;
+      display: block;
+    }
+    .uxi-menu-item a:hover {
+      color:  ${({ theme: { palette } }) => palette.accent.light} ;
+    }
+    .uxi-menu-item.uxi-active {
+      background:  ${({ theme: { palette } }) => lighten(palette.accent.main, 0.9)} ;
+      border-right:  ${({ theme: { palette } }) => `4px solid ${palette.accent.main}`} ;
+      color:  ${({ theme: { palette } }) => palette.accent.dark} ;
+    }
+    .uxi-menu-item.uxi-active:hover {
+      background:  ${({ theme: { palette } }) => lighten(palette.accent.main, 0.7)} ;
+      color:  ${({ theme: { palette } }) => palette.neutral.darker} ;
+    }
+    .uxi-menu-item.uxi-active a {
+      color:  ${({ theme: { palette } }) => palette.accent.dark } ;
+    }
+  }
+`;
 
 class VerticalMenu extends ThemeComponent {
   render() {
-    const { children } = this.props;
-    const verticalMergedStyle = this.getStyle('VerticalMenu', VerticalMenuStyle.root);
+    const { children, style } = this.props;
+    const verticalMergedStyle = this.getStyle('VerticalMenu', {});
 
     const menuItems = React.Children.map(children, (child, menuNumber) => {
       if (React.isValidElement(child)) {
@@ -25,9 +57,9 @@ class VerticalMenu extends ThemeComponent {
     });
 
     return (
-      <ul className="uxi-vertical-menu" style={verticalMergedStyle}>
+      <VerticalMenuUI style={{ ...verticalMergedStyle, ...style }}>
         {menuItems}
-      </ul>
+      </VerticalMenuUI>
     );
   }
 }
