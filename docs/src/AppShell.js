@@ -11,9 +11,11 @@ import { ThemedBox } from 'uxi/Box';
 
 const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }
 
+const isActive = (path, currentLocation) =>
+  path.toLowerCase() === currentLocation.toLowerCase();
 
-const makeMenuItem = ({ path, label }) => (
-  <MenuItem key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>
+const makeMenuItem = ({ path, label }, currentLocation) => (
+  <MenuItem isActive={isActive(path, currentLocation)} key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>
 );
 
 const AppShell = ({ children }) => {
@@ -47,9 +49,10 @@ const AppShell = ({ children }) => {
     { path: '/globalmenu', label: 'Global Menu' },
   ];
 
+  const pathname = window.location.pathname;
   const mainMenu = (
     <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
-      {routes.map(makeMenuItem) }
+      {routes.map(x => makeMenuItem(x, pathname)) }
     </VerticalMenu>
   );
 
