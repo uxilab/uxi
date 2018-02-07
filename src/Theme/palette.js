@@ -1,7 +1,7 @@
 import { lighten } from './colorManipulator';
 
 export const palette = {
-  purewhite: '#FFFFFF',
+  pureWhite: '#FFFFFF',
   white: '#F3F3F2',
   lightGrey: '#d4d4d4',
   grey: '#9a9a9a',
