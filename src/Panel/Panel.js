@@ -1,9 +1,17 @@
 import React from 'react';
 import { AppLayout } from '../Layout'
 
-const Panel = ({ children, style }) => (
+const Panel = ({ children, style, onClose }) => (
   <AppLayout style={style}>
-    {children}
+    {
+      /* Pass Panel's onClose to its children */
+      React.Children.map(children, child => (
+        React.cloneElement(
+          child,
+          { onClose, ...child.props } // allow user overwrite
+        )
+      ))
+    }
   </AppLayout>
 );
 
