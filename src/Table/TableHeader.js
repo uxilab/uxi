@@ -100,12 +100,14 @@ class TableHeader extends Component {
     }
 
     React.Children.forEach(child.props.children, (aChild) => {
-      const augmentedChildren = React.cloneElement(aChild, {
-        ...aChild.props,
-        condensed,
-        noBorder,
-      });
-      children.push(augmentedChildren);
+      if (aChild) {
+        const augmentedChildren = React.cloneElement(aChild, {
+          ...aChild.props,
+          condensed,
+          noBorder,
+        });
+        children.push(augmentedChildren);
+      }
     });
 
     return React.cloneElement(
@@ -156,14 +158,16 @@ class TableHeader extends Component {
     }
 
     React.Children.forEach(child.props.children, (aChild) => {
-      const augmentedChildren = React.cloneElement(aChild, {
-        ...aChild.props,
-        onClick: aChild.props.onClick,
-        onClickHandler: aChild.props.onClick,
-        condensed,
-        noBorder,
-      });
-      children.push(augmentedChildren);
+      if (aChild) {
+        const augmentedChildren = React.cloneElement(aChild, {
+          ...aChild.props,
+          onClick: aChild.props.onClick,
+          onClickHandler: aChild.props.onClick,
+          condensed,
+          noBorder,
+        });
+        children.push(augmentedChildren);
+      }
     });
 
     return React.cloneElement(
