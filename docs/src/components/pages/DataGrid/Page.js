@@ -22,7 +22,7 @@ const TablePage = () => (
       The DataGrid is a key component to render a list of Entity. The grid is really Entity oriented and not, as you can find with many grids, Tabular oriented.
       Instead of passing column or cell definitions, you work towards your Entity. This is making the grid more extensible and re-usable. Refer to Entity and Metadata guidelines to know more.
     </P>
-    {/*<CodeExample
+    <CodeExample
       code={RAWExampleSimpleDataGrid}
       title="Simple Data Grid"
       description="Pass the data, DataGrid does the rest"
@@ -36,22 +36,22 @@ const TablePage = () => (
     >
       <ExampleSimpleDataGridOnlySomeKey />
     </CodeExample>
-*/}
-    {/*<CodeExample
+
+    <CodeExample
       code={RAWExampleSimpleDataGridWithCustomType}
       title="Data Grid with custom type renderer"
     >
       
-    </CodeExample>*/}
+    </CodeExample>
 
-<ExampleSimpleDataGridWithCustomType />
+    <ExampleSimpleDataGridWithCustomType />
 
-    {/*<CodeExample
+    <CodeExample
       code={RAWExampleSimpleDataGridComputedProperty}
       title="Data Grid with custom computed Property"
     >
       <ExampleSimpleDataGridComputedProperty />
-    </CodeExample>*/}
+    </CodeExample>
   </div>
 );
 
