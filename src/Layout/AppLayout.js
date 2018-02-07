@@ -11,21 +11,13 @@ import styled from 'styled-components';
  * e.g. remove body margin, make the html and body full height...
  */
 
-const WebAppLayoutUI = styled.div`
+const AppLayout = styled.div`
   min-height: 100%;
 	display: flex;
 	flex-flow: column nowrap;
-	&>* { padding: 16px }
+	&>* { box-sizing: border-box }
 	&>*:nth-child(2) { flex-grow: 999	}
 `;
-
-const AppLayout = ({ children }) => {
-  return (
-    <WebAppLayoutUI>
-      {children}
-    </WebAppLayoutUI>
-  )
-}
 
 AppLayout.displayName = 'AppLayout';
 

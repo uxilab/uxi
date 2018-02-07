@@ -55,7 +55,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 const Step = (
-  { active, disabled, completed, stricltyLinear, children, step, nowrap },
+  { active, disabled, completed, stricltyLinear, children, step, nowrap, style },
 ) => {
   let progressBadge = null;
   if (active) {
@@ -69,7 +69,7 @@ const Step = (
   }
 
   return (
-    <StepWrapperUI active={active} disabled={disabled} completed={completed} >
+    <StepWrapperUI active={active} disabled={disabled} completed={completed} style={style} >
       <ChildrenWrapper disabled={disabled} nowrap={nowrap}>
         {progressBadge}
         {children}
@@ -77,5 +77,7 @@ const Step = (
     </StepWrapperUI>
   );
 };
+
+Step.displayName = 'Step';
 
 export default Step;

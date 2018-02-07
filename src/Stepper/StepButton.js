@@ -10,7 +10,7 @@ const StepButtonUI = styled.div`
 class StepButton extends Component {
   render() {
     return (
-      <div>
+      <div {...this.props} >
         {this.props.children}
       </div>
     );

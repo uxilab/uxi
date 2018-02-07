@@ -21,6 +21,7 @@ class Stepper extends Component {
       strictlyLinear,
       connector: connectorProp,
       nowrap,
+      style,
     } = this.props
 
     const childrenArray = React.Children.toArray(children)
@@ -61,7 +62,7 @@ class Stepper extends Component {
     })
 
     return (
-      <StepperWrapperUI nowrap={nowrap}>
+      <StepperWrapperUI nowrap={nowrap} style={style} >
         {steps}
       </StepperWrapperUI>
     );
