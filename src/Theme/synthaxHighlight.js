@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-const monokai = css`
+export default css`
 /*
 
 Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
@@ -91,5 +91,3 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   color: #75715e;
 }
 `;
-
-export default monokai;

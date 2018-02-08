@@ -1,7 +1,6 @@
 import { css } from 'styled-components';
-// import { lighten } from './colorManipulator';
 
-export const layout = css`
+export default css`
   .uxi_container .row {
     margin-left: -0.75rem;
     margin-right: -0.75rem;
@@ -17,14 +16,15 @@ export const layout = css`
   .uxi_row:after {
     content: "";
     display: table;
-    clear: both;
   }
+    clear: both;
   .uxi_row .uxi_col {
     float: left;
     box-sizing: border-box;
     padding: 0 0.75rem;
   }
-  .uxi_row .uxi_col[class*="push-"], .uxi_row .uxi_col[class*="pull-"] {
+  .uxi_row .uxi_col[class*="push-"],
+  .uxi_row .uxi_col[class*="pull-"] {
     position: relative;
   }
   .uxi_row .uxi_col.s1 {
@@ -572,5 +572,3 @@ export const layout = css`
     }
   }
 `;
-
-export default layout

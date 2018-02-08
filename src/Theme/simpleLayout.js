@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-// import { lighten } from './colorManipulator';
 
 export const simpleLayout = css`
   .uxi_s_row {
@@ -19,7 +18,8 @@ export const simpleLayout = css`
     float: left;
     box-sizing: border-box;
   }
-  .uxi_s_row .uxi_s_col[class*="push-"], .uxi_s_row .uxi_s_col[class*="pull-"] {
+  .uxi_s_row .uxi_s_col[class*="push-"],
+  .uxi_s_row .uxi_s_col[class*="pull-"] {
     position: relative;
   }
   .uxi_s_row .uxi_s_col.s1 {

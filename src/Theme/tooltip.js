@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const tooltip = css`
+export default css`
   .rc-tooltip {
     position: absolute;
     z-index: 1070;
@@ -141,7 +141,7 @@ export const tooltip = css`
   }
 
   .rc-tooltip-placement-bottomRight .rc-tooltip-arrow {
-      righ  t: 15%;
+      right: 15%;
   }
 
   .rc-tooltip.rc-tooltip-zoom-enter,

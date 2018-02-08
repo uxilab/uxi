@@ -26,6 +26,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
 
   return () => injectGlobal`
     ${fonts}
+    ${tooltip}
 
     * {
     }
@@ -34,7 +35,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
       height: 100%;
       margin: 0;
       padding: 0;
-      background: palette.white;
+      background: ${palette.white};
       font-family: 'Source Sans Pro', sans-serif;
       color: ${palette.darkGrey};
     }
@@ -61,7 +62,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
     }
 
     svg {
-      transition: all ${transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+      transition: ${transition.defaultAll};
     }
     /* little trick relating to SvgIcon: a svg wrapper */
     svg>svg { fill: inherit }
@@ -72,7 +73,6 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
     ${grid}
     ${synthaxHighlight}
     ${markdown}
-    ${tooltip}
     ${layout}
     ${simpleLayout}
 `;
