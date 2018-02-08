@@ -20,12 +20,13 @@ const GlobalMenuLogoDiv = styled.div`
   height: 48px; /* harcoding height because */
   display: flex;
   align-items: center;
+  justify-content: center;
   color: ${({ isSelected }) => (isSelected ? '#fff' : '#c2c2c2')};
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 8px 32px;
+  padding: 7px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.dark };
   transition: color ${({ theme: { transition }}) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
@@ -42,16 +43,17 @@ const GlobalMenuLogoDiv = styled.div`
   svg {
     fill: ${props => (getIconColor(props))};
   }
-  @media (max-width: 700px) {
-    padding: 7px 0;
-    justify-content: center;
+  @media (min-width: 700px) {
+    padding: 8px 32px;
+    justify-content: flex-start;
   }
 `;
 
 const LabelDiv = styled.div`
-  padding-left: 10px;
-  @media (max-width: 700px) {
-    display: none;
+  display: none;
+  @media (min-width: 700px) {
+    display: block;
+    padding-left: 10px;
   }
 `;
 

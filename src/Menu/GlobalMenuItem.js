@@ -19,12 +19,13 @@ const getIconColor = ({ isSelected, isActive }) => {
 const GlobalMenuItemDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   color: ${({ isSelected }) => (isSelected ? '#fff' : '#c2c2c2')};
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 8px 32px;
+  padding: 8px 0;
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
@@ -43,16 +44,17 @@ const GlobalMenuItemDiv = styled.div`
   svg {
     fill: ${props => (getIconColor(props))};
   }
-  @media (max-width: 700px) {
-    padding: 7px 0;
-    justify-content: center;
+  @media (min-width: 700px) {
+    justify-content: start;
+    padding: 8px 32px;
   }
 `;
 
 const LabelDiv = styled.div`
-  padding-left: 10px;
-  @media (max-width: 700px) {
-    display: none;
+  display: none;
+  @media (min-width: 700px) {
+    padding-left: 10px;
+    display: block;
   }
 `;
 
