@@ -72,14 +72,16 @@ class TableBody extends Component {
       }
 
       React.Children.forEach(child.props.children, (aChild) => {
-        const augmentedChildren = React.cloneElement(aChild, {
-          ...aChild.props,
-          onClickHandler: aChild.props.onClick,
-          condensed,
-          noBorder,
-          selected: isSelected,
-        });
-        children.push(augmentedChildren);
+        if (aChild && React.isValidElement(aChild)) {
+          const augmentedChildren = React.cloneElement(aChild, {
+            ...aChild.props,
+            onClickHandler: aChild.props.onClick,
+            condensed,
+            noBorder,
+            selected: isSelected,
+          });
+          children.push(augmentedChildren);
+        }
       });
 
       rowNumber += 1;
