@@ -72,11 +72,15 @@ class ExampleSimple extends Component {
       },
     ];
 
+    const logoText = (
+      <div style={{ fontFamily: 'Fira sans' }}>cluedin</div>
+    );
+
     return (
       <div>
         <GlobalMenu
           LogoIcon={Slack}
-          LogoText={'Logo'}
+          LogoText={logoText}
           activeKey="GlobalMenu"
           onLogoClick={this.onLogoClickHandler.bind(this)}
           menuDescriptors={menuDescriptors}

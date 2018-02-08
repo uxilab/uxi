@@ -24,18 +24,19 @@ const GlobalMenuLogoDiv = styled.div`
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
-  margin: 0 auto 32px auto;
-  padding: 7px 30px;
+  margin: 0 auto;
+  padding: 8px 32px;
   position: relative;
-  background: ${({ theme: { palette } }) => {
-  console.log('palette', palette);
-  return palette.primary.dark;
-  }
-  };
+  background: ${({ theme: { palette } }) => palette.primary.dark };
+  transition: color ${({ theme: { transition }}) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
   &:hover {
-    background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : '#1b3c4f')};
+    *:not(svg) {
+      color: ${({ theme: { palette } }) => palette.pureWhite };
+      transition: color ${({ theme: { transition }}) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+    }
     svg {
       fill: #fff;
+      /* svg already trnasitionn automatically */
     }
   }
   svg {

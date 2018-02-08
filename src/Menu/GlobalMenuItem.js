@@ -24,13 +24,18 @@ const GlobalMenuItemDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 16px 30px;
+  padding: 8px 32px;
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
-  border-bottom: 1px solid #162834;
+  border-bottom: 1px solid ${({ theme: { palette } }) => palette.primary.dark };
+  transition: color ${({ theme: { transition } }) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
   &:hover {
     background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : '#1b3c4f')};
+    *:not(svg) {
+      color: ${({ theme: { palette } }) => palette.pureWhite };
+      transition: color ${({ theme: { transition } }) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+    }
     svg {
       fill: #fff;
     }
