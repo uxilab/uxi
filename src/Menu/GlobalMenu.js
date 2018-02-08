@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GlobalMenuWrapper from './GlobalMenuWrapper';
 import GlobalMenuPanel from './GlobalMenuPanel';
+import GlobalMenuLogo from './GlobalMenuLogo';
 
 class GlobalMenu extends Component {
   constructor(props) {
@@ -36,8 +37,10 @@ class GlobalMenu extends Component {
     const {
       menuDescriptors,
       onLogoClick,
-      Logo,
+      LogoIcon,
+      LogoText,
     } = this.props;
+
     const {
       selected,
       active,
@@ -101,10 +104,20 @@ class GlobalMenu extends Component {
         return null;
       });
 
+    const theLogo = (
+      <GlobalMenuLogo
+        key={'GlobalMenuMainLogo'}
+        onClick={onLogoClick}
+        label={(LogoText || '')}
+        Icon={LogoIcon}
+        primaryColor={'red'}
+      />
+    );
+
     return (
       <div>
         <GlobalMenuWrapper
-          logo={Logo ? <Logo onClick={onLogoClick} /> : null}
+          logo={theLogo}
           onLogoClick={onLogoClick}
           selectedKey={selected}
           activeKey={active}
