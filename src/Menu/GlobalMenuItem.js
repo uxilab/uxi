@@ -16,8 +16,6 @@ const getIconColor = ({ isSelected, isActive }) => {
 };
 
 
-// border-radius: ${({ isSelected }) => (isSelected ? '50px' : '0')};
-
 const GlobalMenuItemDiv = styled.div`
   display: flex;
   align-items: center;
@@ -26,7 +24,7 @@ const GlobalMenuItemDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 7px 30px;
+  padding: 16px 30px;
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
@@ -39,7 +37,6 @@ const GlobalMenuItemDiv = styled.div`
   }
   svg {
     fill: ${props => (getIconColor(props))};
-    margin-top: 9px;
   }
   @media (max-width: 700px) {
     padding: 7px 0;
@@ -95,12 +92,8 @@ const GlobalMenuItem = ({
         style={containerStyle}
         onClick={onClick}
       >
-        <div>
-          <Icon />
-        </div>
-        <LabelDiv>
-          {label}
-        </LabelDiv>
+        <Icon />
+        <LabelDiv> {label} </LabelDiv>
         {isNewContent}
       </GlobalMenuItemDiv>
     </Tooltip>
