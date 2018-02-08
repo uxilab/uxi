@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import ThemeComponent from '../Base/ThemeComponent';
 import { lighten } from '../Theme/colorManipulator';
+import defaults from './defaults';
+
+const {
+  borderThickness,
+} = defaults;
 
 const VerticalMenuUI = styled.ul`
   & {
@@ -10,7 +15,7 @@ const VerticalMenuUI = styled.ul`
     }
     .uxi-menu-item:hover {
       background:  ${({ theme: { palette } }) => lighten(palette.accent.main, 0.9)} ;
-      border-right: 4px solid transparent;
+      border-right: ${borderThickness} solid transparent;
     }
     .uxi-menu-item a {
       color:  ${({ theme: { palette } }) => palette.neutral.dark} ;
@@ -22,7 +27,7 @@ const VerticalMenuUI = styled.ul`
     }
     .uxi-menu-item.uxi-active {
       background:  ${({ theme: { palette } }) => lighten(palette.accent.main, 0.9)} ;
-      border-right:  ${({ theme: { palette } }) => `4px solid ${palette.accent.main}`} ;
+      border-right:  ${({ theme: { palette } }) => `${borderThickness} solid ${palette.accent.main}`} ;
       color:  ${({ theme: { palette } }) => palette.accent.dark} ;
     }
     .uxi-menu-item.uxi-active:hover {

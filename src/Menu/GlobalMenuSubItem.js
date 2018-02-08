@@ -1,5 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import defaults from './defaults';
+
+const {
+  breakpoint,
+} = defaults;
 
 const GlobalMenuSubItemDiv = styled.div`
   color: #9a9fa5;
@@ -13,7 +18,7 @@ const GlobalMenuSubItemDiv = styled.div`
   &:hover {
     color: #fff;
   }
-  @media (max-width: 700px) {
+  @media (max-width: ${breakpoint}) {
     display:none;
   }
 `;

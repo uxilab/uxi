@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
+import defaults from './defaults';
+
+const {
+  breakpoint,
+} = defaults;
 
 const getIconColor = ({ isSelected, isActive }) => {
   if (isActive) {
@@ -43,7 +48,7 @@ const GlobalMenuLogoDiv = styled.div`
   svg {
     fill: ${props => (getIconColor(props))};
   }
-  @media (min-width: 700px) {
+  @media (min-width: ${breakpoint}) {
     padding: 16px;
     justify-content: flex-start;
   }
@@ -51,7 +56,7 @@ const GlobalMenuLogoDiv = styled.div`
 
 const LabelDiv = styled.div`
   display: none;
-  @media (min-width: 700px) {
+  @media (min-width: ${breakpoint}) {
     display: block;
     padding-left: 10px;
   }

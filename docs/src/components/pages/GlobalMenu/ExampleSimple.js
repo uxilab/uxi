@@ -42,7 +42,7 @@ class ExampleSimple extends Component {
       },
       {
         displayName: 'Followed entities',
-        key: 'Followed entities',
+        key: 'Followed entities menu item',
         hasNew: true,
         Icon: Followentities,
         panel: {

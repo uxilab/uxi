@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
+import defaults from './defaults';
+
+const {
+  borderThickness,
+  breakpoint,
+} = defaults;
 
 const getIconColor = ({ isSelected, isActive }) => {
   if (isActive) {
@@ -15,7 +21,6 @@ const getIconColor = ({ isSelected, isActive }) => {
   return '#c2c2c2';
 };
 
-const borderSize = '4px';
 
 const GlobalMenuItemDiv = styled.div`
   display: flex;
@@ -26,10 +31,10 @@ const GlobalMenuItemDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: ${`12px 0 12px ${borderSize}`};/* compensate 'inactive' transparent border on mobile */
+  padding: ${`12px 0 12px ${borderThickness}`};
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ?
-    `${borderSize} solid #0ea4a5` : `${borderSize} solid transparent`)
+    `${borderThickness} solid #0ea4a5` : `${borderThickness} solid transparent`)
   };
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
   transition: color ${({ theme: { transition } }) => transition.default};
@@ -48,7 +53,7 @@ const GlobalMenuItemDiv = styled.div`
   svg {
     fill: ${props => (getIconColor(props))};
   }
-  @media (min-width: 700px) {
+  @media (min-width: ${breakpoint}) {
     justify-content: start;
     padding: 16px;
   }
@@ -56,7 +61,7 @@ const GlobalMenuItemDiv = styled.div`
 
 const LabelDiv = styled.div`
   display: none;
-  @media (min-width: 700px) {
+  @media (min-width: ${breakpoint}) {
     padding-left: 10px;
     display: block;
 

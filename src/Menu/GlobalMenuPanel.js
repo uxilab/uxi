@@ -4,6 +4,13 @@ import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import GlobalMenuPanelStyle from './GlobalMenuPanel.style';
 import { Close } from '../Icons';
+import defaults from './defaults';
+
+const {
+  breakpoint,
+  bigMenuWidth,
+  menuWidth,
+} = defaults;
 
 const getRight = ({
   isOpen,
@@ -16,9 +23,9 @@ const getRight = ({
   return 'auto';
 };
 
-const getLeft = ({ isOpen, width, fullWidth }) => {
+const getLeft = ({ isOpen, width, fullWidth }, breakpoint) => {
   if (isOpen) {
-    return '200px';
+    return breakpoint === 'desktop' ? defaults.bigMenuWidth : defaults.menuWidth;
   }
 
   if (!isOpen && width && !fullWidth) {
@@ -63,12 +70,20 @@ const GlobalMenuPanelWrapper = styled.div`
   border-right: 1px solid #ececec;
   border-left: 1px solid #ececec;
   transition: width 0.3s ease-in-out 0.3s, opacity 0.3s ease-in-out 0.3s;
-  z-index: 999;
+  z-index: 98;
   overflow-x: hidden;
   overflow-y: scroll;
   width: ${props => getWidth(props)};
   right: ${props => getRight(props)};
   left: ${props => getLeft(props)};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+
+  @media (min-width: ${breakpoint}) {
+    width: ${props => getWidth(props, 'desktop')};
+    right: ${props => getRight(props, 'desktop')};
+    left: ${props => getLeft(props, 'desktop')};
+    transition: ${({ theme: { transition } }) => transition.defaultAll};
+  }
 `;
 
 class GlobalMenuPanel extends Component {

@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import defaults from './defaults';
+
+const {
+  menuWidth,
+  bigMenuWidth,
+  breakpoint,
+} = defaults;
 
 const GlobalMenuDiv = styled.div`
   position: fixed;
@@ -8,12 +15,12 @@ const GlobalMenuDiv = styled.div`
   text-align: center;
   bottom: 0;
   left: 0;
-  width: 68px;
+  width: ${menuWidth};
   background-color: ${({ theme: { palette: { primary: { main } } } }) => (main || '#1d313f')};
-  z-index: 3;
+  z-index: 99;
   transition:  ${({ theme: { transition } }) => transition.default};
-  @media (min-width: 700px) {
-    width: 180px;
+  @media (min-width: ${breakpoint}) {
+    width: ${bigMenuWidth};
     transition:  ${({ theme: { transition } }) => transition.default};
   }
 `;
