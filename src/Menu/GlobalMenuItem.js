@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
 import defaults from './defaults';
+import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
 
 const {
   borderThickness,
@@ -103,21 +104,31 @@ const GlobalMenuItem = ({
     isNewContent = (<NewInfo>!</NewInfo>);
   }
 
+  // render the tooltip inert above window width of 699px
+  const rules = [{
+    minWidth: 700,
+    mapper: ({ trigger }) => {
+      return { trigger: [] }
+    }
+  }]
+
   return (
-    <Tooltip placement="right" overlay={<span>{label}</span>}>
-      <GlobalMenuItemDiv
-        primaryColor={primaryColor}
-        isSelected={isSelected}
-        isActive={isActive}
-        key={`mainMenuItemContainer-${index}`}
-        style={containerStyle}
-        onClick={onClick}
-      >
-        <Icon />
-        <LabelDiv> {label} </LabelDiv>
-        {isNewContent}
-      </GlobalMenuItemDiv>
-    </Tooltip>
+    <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']}>
+      <Tooltip placement="right" overlay={<span>{label}</span>}>
+        <GlobalMenuItemDiv
+          primaryColor={primaryColor}
+          isSelected={isSelected}
+          isActive={isActive}
+          key={`mainMenuItemContainer-${index}`}
+          style={containerStyle}
+          onClick={onClick}
+        >
+          <Icon />
+          <LabelDiv> {label} </LabelDiv>
+          {isNewContent}
+        </GlobalMenuItemDiv>
+      </Tooltip>
+    </PropsMapperMediaQueriesHOC>
   );
 };
 
