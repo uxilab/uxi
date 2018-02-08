@@ -302,6 +302,7 @@ export const theme = { // eslint-disable-line no-shadow
     base: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px ',
   },
   transition: {
+    default: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     duration: '450ms ',
     durationIn: '232ms ',
     durationOut: '196ms ',

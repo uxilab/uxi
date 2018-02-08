@@ -26,14 +26,14 @@ const GlobalMenuLogoDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 7px 0;
+  padding: 12px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.dark };
-  transition: color ${({ theme: { transition }}) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+  transition: color ${({ theme: { transition }}) => transition.default};
   &:hover {
     *:not(svg) {
       color: ${({ theme: { palette } }) => palette.pureWhite };
-      transition: color ${({ theme: { transition }}) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+      transition: color ${({ theme: { transition }}) => transition.default};
     }
     svg {
       fill: #fff;
@@ -44,7 +44,7 @@ const GlobalMenuLogoDiv = styled.div`
     fill: ${props => (getIconColor(props))};
   }
   @media (min-width: 700px) {
-    padding: 8px 32px;
+    padding: 16px;
     justify-content: flex-start;
   }
 `;

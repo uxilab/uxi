@@ -15,6 +15,7 @@ const getIconColor = ({ isSelected, isActive }) => {
   return '#c2c2c2';
 };
 
+const borderSize = '4px';
 
 const GlobalMenuItemDiv = styled.div`
   display: flex;
@@ -25,17 +26,20 @@ const GlobalMenuItemDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 8px 0;
+  padding: ${`12px 0 12px ${borderSize}`};/* compensate 'inactive' transparent border on mobile */
   position: relative;
-  border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
+  border-right: ${({ isSelected }) => (isSelected ?
+    `${borderSize} solid #0ea4a5` : `${borderSize} solid transparent`)
+  };
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
-  border-bottom: 1px solid ${({ theme: { palette } }) => palette.primary.dark };
-  transition: color ${({ theme: { transition } }) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+  transition: color ${({ theme: { transition } }) => transition.default};
   &:hover {
-    background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : '#1b3c4f')};
+    background: ${({ isSelected, theme: { palette } }) =>
+      (isSelected ? palette.primary.main : palette.primary.light)
+    };
     *:not(svg) {
       color: ${({ theme: { palette } }) => palette.pureWhite };
-      transition: color ${({ theme: { transition } }) => transition.duration + ' ' + transition.easing + ' ' + transition.delay};
+      transition: color ${({ theme: { transition } }) => transition.default};
     }
     svg {
       fill: #fff;
@@ -46,7 +50,7 @@ const GlobalMenuItemDiv = styled.div`
   }
   @media (min-width: 700px) {
     justify-content: start;
-    padding: 8px 32px;
+    padding: 16px;
   }
 `;
 
@@ -55,6 +59,11 @@ const LabelDiv = styled.div`
   @media (min-width: 700px) {
     padding-left: 10px;
     display: block;
+
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 

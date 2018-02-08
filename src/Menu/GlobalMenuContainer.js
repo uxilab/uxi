@@ -8,12 +8,13 @@ const GlobalMenuDiv = styled.div`
   text-align: center;
   bottom: 0;
   left: 0;
-  width: 75px;
+  width: 68px;
   background-color: ${({ theme: { palette: { primary: { main } } } }) => (main || '#1d313f')};
-  border-right: 1px solid ${({ theme: { palette: { primary: { main } } } }) => (main || '#1d313f')};
   z-index: 3;
+  transition:  ${({ theme: { transition } }) => transition.default};
   @media (min-width: 700px) {
-    width: 200px;
+    width: 180px;
+    transition:  ${({ theme: { transition } }) => transition.default};
   }
 `;
 
