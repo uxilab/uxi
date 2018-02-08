@@ -18,19 +18,24 @@ const getIconColor = ({ isSelected, isActive }) => {
 
 // border-radius: ${({ isSelected }) => (isSelected ? '50px' : '0')};
 
-const GlobalMenuItemDiv = styled.div`
+const GlobalMenuLogoDiv = styled.div`
+  height: 48px;
   display: flex;
   align-items: center;
   color: ${({ isSelected }) => (isSelected ? '#fff' : '#c2c2c2')};
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
   padding: 7px 30px;
   position: relative;
-  border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')};
-  background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
-  border-bottom: 1px solid #162834;
+  /* border-right: ${({ isSelected }) => (isSelected ? '3px solid #0ea4a5' : '3px solid transparent')}; */
+  background: ${({ theme: { palette } }) => {
+  console.log('palette', palette);
+  return palette.primary.dark;
+  }
+  };
+  /* border-bottom: 1px solid #162834; */
   &:hover {
     background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : '#1b3c4f')};
     svg {
@@ -54,44 +59,21 @@ const LabelDiv = styled.div`
   }
 `;
 
-const NewInfo = styled.div`
-    background-color: rgb(216, 27, 96);
-    border-radius: 16px;
-    line-height: 16px;
-    color: #fff;
-    width: 16px;
-    height: 16px;
-    font-size: 12px;
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translate(0, -50%);
-`;
-
-const GlobalMenuItem = ({
-  isSelected,
+const GlobalMenuLogo = ({
   Icon,
-  index,
-  hasNew,
   label,
   onClick,
-  isActive,
   primaryColor,
 }) => {
   let containerStyle;
   let isNewContent;
 
-  if (hasNew) {
-    isNewContent = (<NewInfo>!</NewInfo>);
-  }
 
   return (
     <Tooltip placement="right" overlay={<span>{label}</span>}>
-      <GlobalMenuItemDiv
+      <GlobalMenuLogoDiv
         primaryColor={primaryColor}
-        isSelected={isSelected}
-        isActive={isActive}
-        key={`mainMenuItemContainer-${index}`}
+        key={`mainMenuItemContainer-${label}`}
         style={containerStyle}
         onClick={onClick}
       >
@@ -101,15 +83,14 @@ const GlobalMenuItem = ({
         <LabelDiv>
           {label}
         </LabelDiv>
-        {isNewContent}
-      </GlobalMenuItemDiv>
+      </GlobalMenuLogoDiv>
     </Tooltip>
   );
 };
 
-GlobalMenuItem.displayName = 'GlobalMenuItem';
+GlobalMenuLogo.displayName = 'GlobalMenuLogo';
 
-GlobalMenuItem.propTypes = {
+GlobalMenuLogo.propTypes = {
   isSelected: PropTypes.bool,
   Icon: PropTypes.any,
   index: PropTypes.string,
@@ -120,4 +101,4 @@ GlobalMenuItem.propTypes = {
   primaryColor: PropTypes.string,
 };
 
-export default GlobalMenuItem;
+export default GlobalMenuLogo;

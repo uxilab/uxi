@@ -6,6 +6,7 @@ import {
   User,
   Settings,
   Integration,
+  Slack,
 } from 'uxi/Icons';
 
 
@@ -74,6 +75,8 @@ class ExampleSimple extends Component {
     return (
       <div>
         <GlobalMenu
+          LogoIcon={Slack}
+          LogoText={'Logo'}
           activeKey="GlobalMenu"
           onLogoClick={this.onLogoClickHandler.bind(this)}
           menuDescriptors={menuDescriptors}
