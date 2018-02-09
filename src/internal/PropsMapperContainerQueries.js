@@ -90,7 +90,7 @@ export class PropsMapperContainerQueries extends Component {
 
     const type = inline ? 'span' : 'div';
 
-    return React.createClass({
+    return React.createElement({
       type,
       { ref: node this.ref = node },
       React.cloneElement(
