@@ -10,11 +10,15 @@ const {
 } = defaults;
 
 const GlobalMenuDiv = styled.div`
+  /*
   position: fixed;
   top: 0;
-  text-align: center;
   bottom: 0;
   left: 0;
+  */
+  height: 100%;
+  height: 100vh;
+  text-align: center;
   width: ${menuWidth};
   background-color: ${({ theme: { palette: { primary: { main } } } }) => (main || '#1d313f')};
   z-index: 99;

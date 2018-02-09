@@ -15,9 +15,10 @@ import styled from 'styled-components';
  */
 
 const AppLayout = styled.div`
-  min-height: 100%;
+  height: 100%;
 	display: flex;
 	flex-flow: column nowrap;
+  position: relative;
 	&>* {
     box-sizing: border-box;
     flex-grow: 1;

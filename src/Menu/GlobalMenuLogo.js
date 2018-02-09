@@ -32,7 +32,7 @@ const GlobalMenuLogoDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 12px 0;
+  padding: 8px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.dark};
   transition: color ${({ theme: { transition } }) => transition.default};
@@ -65,7 +65,7 @@ const LabelDiv = styled.div`
 `;
 
 const GlobalMenuLogo = ({
-  Icon,
+  icon,
   label,
   onClick,
   primaryColor,
@@ -90,7 +90,7 @@ const GlobalMenuLogo = ({
           style={containerStyle}
           onClick={onClick}
         >
-          {Icon && <Icon />}
+          {icon}
           <LabelDiv> {label} </LabelDiv>
         </GlobalMenuLogoDiv>
       </Tooltip>
@@ -102,7 +102,7 @@ GlobalMenuLogo.displayName = 'GlobalMenuLogo';
 
 GlobalMenuLogo.propTypes = {
   isSelected: PropTypes.bool,
-  Icon: PropTypes.any,
+  icon: PropTypes.any,
   index: PropTypes.string,
   hasNew: PropTypes.bool,
   label: PropTypes.node,

@@ -37,7 +37,7 @@ class GlobalMenu extends Component {
     const {
       menuDescriptors,
       onLogoClick,
-      LogoIcon,
+      logoIcon,
       logoText,
       logoTooltipLabel,
     } = this.props;
@@ -110,7 +110,7 @@ class GlobalMenu extends Component {
         key={'GlobalMenuMainLogo'}
         onClick={onLogoClick}
         label={(logoText || '')}
-        Icon={LogoIcon}
+        icon={logoIcon}
         primaryColor={'red'}
         logoTooltipLabel={logoTooltipLabel}
       />
@@ -118,14 +118,16 @@ class GlobalMenu extends Component {
 
     return (
       <div>
-        <GlobalMenuWrapper
-          logo={theLogo}
-          onLogoClick={onLogoClick}
-          selectedKey={selected}
-          activeKey={active}
-          menuDescriptors={menuDescriptorWithActiveAndSelected}
-        />
-        {menuDescriptorsPanel}
+        <div>
+          <GlobalMenuWrapper
+            logo={theLogo}
+            onLogoClick={onLogoClick}
+            selectedKey={selected}
+            activeKey={active}
+            menuDescriptors={menuDescriptorWithActiveAndSelected}
+          />
+          {menuDescriptorsPanel}
+        </div>
       </div>
     );
   }
@@ -136,7 +138,7 @@ GlobalMenu.propTypes = {
   initialSelected: PropTypes.string,
   onLogoClick: PropTypes.func,
   backgroundColor: PropTypes.string,
-  Logo: PropTypes.object,
+  Logo: PropTypes.any,
   primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
 };

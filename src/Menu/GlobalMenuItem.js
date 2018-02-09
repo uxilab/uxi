@@ -107,11 +107,18 @@ const GlobalMenuItem = ({
   // render the tooltip inert above window width of 699px
   const rules = [{
     minWidth: 700,
-    mapper: ({ trigger }) => ({ trigger: [] }),
+    mapper: ({ trigger }) => ({
+      trigger: [],
+      visible: false, // inject inexisting props
+    }),
   }];
 
   return (
-    <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']} debounceDelay={400} >
+    <PropsMapperMediaQueriesHOC
+      debounceDelay={400}
+      rules={rules}
+      trigger={['hover']}
+    >
       <Tooltip placement="right" overlay={<span>{label}</span>}>
         <GlobalMenuItemDiv
           primaryColor={primaryColor}

@@ -101,7 +101,7 @@ class ExampleSimple extends Component {
     return (
       <div>
         <GlobalMenu
-          LogoIcon={Cluedin}
+          logoIcon={<Cluedin />}
           logoText={logoText}
           logoTooltipLabel="Home"
           onLogoClick={this.onLogoClickHandler.bind(this)}
