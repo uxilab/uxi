@@ -99,6 +99,7 @@ class ExampleSimple extends Component {
         <GlobalMenu
           LogoIcon={Slack}
           LogoText={logoText}
+          logoTooltipLabel="Home"
           activeKey="GlobalMenu"
           onLogoClick={this.onLogoClickHandler.bind(this)}
           menuDescriptors={menuDescriptors}

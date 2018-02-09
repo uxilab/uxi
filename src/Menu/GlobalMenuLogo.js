@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
 import defaults from './defaults';
+import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
 
 const {
   breakpoint,
@@ -67,23 +68,34 @@ const GlobalMenuLogo = ({
   label,
   onClick,
   primaryColor,
+  logoTooltipLabel,
 }) => {
   let containerStyle;
   let isNewContent;
 
 
+  // render the tooltip inert above window width of 699px
+  const rules = [{
+    minWidth: 700,
+    mapper: ({ trigger }) => {
+      return { trigger: [] }
+    }
+  }]
+
   return (
-    <Tooltip placement="right" overlay={<span>{label}</span>}>
-      <GlobalMenuLogoDiv
-        primaryColor={primaryColor}
-        key={`mainMenuItemContainer-${label}`}
-        style={containerStyle}
-        onClick={onClick}
-      >
-        <Icon />
-        <LabelDiv> {label} </LabelDiv>
-      </GlobalMenuLogoDiv>
-    </Tooltip>
+    <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']} debounceDelay={400} >
+      <Tooltip placement="right" overlay={<span>{logoTooltipLabel || label || ''}</span>}>
+        <GlobalMenuLogoDiv
+          primaryColor={primaryColor}
+          key={`mainMenuItemContainer-${label}`}
+          style={containerStyle}
+          onClick={onClick}
+        >
+          <Icon />
+          <LabelDiv> {label} </LabelDiv>
+        </GlobalMenuLogoDiv>
+      </Tooltip>
+    </PropsMapperMediaQueriesHOC>
   );
 };
 

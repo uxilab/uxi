@@ -48,7 +48,9 @@ export class PropsMapperMediaQueriesHOC extends Component {
   constructor(props) {
     super(props)
 
-    this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this)
+    const { debounceDelay } = this.props;
+
+    this.handleResize = debounce(this.handleResize.bind(this), debounceDelay).bind(this)
 
     this.state = {
       width: null,
@@ -59,11 +61,13 @@ export class PropsMapperMediaQueriesHOC extends Component {
   static propTypes = {
     rules: PropTypes.array,
     children: PropTypes.node,
+    debounceDelay: PropTypes.number,
   }
 
   static defaultProps = {
     rules: [],
     children: null,
+    debounceDelay: 180,
   }
 
   componentDidMount() {

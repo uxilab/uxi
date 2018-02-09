@@ -113,7 +113,7 @@ const GlobalMenuItem = ({
   }]
 
   return (
-    <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']}>
+    <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']} debounceDelay={400} >
       <Tooltip placement="right" overlay={<span>{label}</span>}>
         <GlobalMenuItemDiv
           primaryColor={primaryColor}
