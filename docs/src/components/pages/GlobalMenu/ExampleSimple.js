@@ -8,7 +8,9 @@ import {
   Integration,
   Slack,
   Padlock,
+  Cluedin,
 } from 'uxi/Icons';
+import { CluedinLogoText } from 'uxi/Logo';
 
 
 const GDPRContent = ({ close }) => (
@@ -90,15 +92,17 @@ class ExampleSimple extends Component {
       },
     ];
 
-    const logoText = (
-      <div style={{ fontFamily: 'Fira sans' }}>cluedin</div>
-    );
+    const LogoText = (
+      <div style={{ maxWidth: '90px' }}>
+        <CluedinLogoText style={{ width: '100%' }} />
+      </div>
+    )
 
     return (
       <div>
         <GlobalMenu
-          LogoIcon={Slack}
-          LogoText={logoText}
+          LogoIcon={Cluedin}
+          logoText={LogoText}
           logoTooltipLabel="Home"
           activeKey="GlobalMenu"
           onLogoClick={this.onLogoClickHandler.bind(this)}

@@ -57,9 +57,10 @@ const GlobalMenuLogoDiv = styled.div`
 
 const LabelDiv = styled.div`
   display: none;
+  width: 52px;
   @media (min-width: ${breakpoint}) {
     display: block;
-    padding-left: 10px;
+    padding-left: 3px;
   }
 `;
 

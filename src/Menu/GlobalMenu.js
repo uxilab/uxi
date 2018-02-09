@@ -38,7 +38,7 @@ class GlobalMenu extends Component {
       menuDescriptors,
       onLogoClick,
       LogoIcon,
-      LogoText,
+      logoText,
       logoTooltipLabel,
     } = this.props;
 
@@ -109,7 +109,7 @@ class GlobalMenu extends Component {
       <GlobalMenuLogo
         key={'GlobalMenuMainLogo'}
         onClick={onLogoClick}
-        label={(LogoText || '')}
+        label={(logoText || '')}
         Icon={LogoIcon}
         primaryColor={'red'}
         logoTooltipLabel={logoTooltipLabel}
