@@ -1,1 +1,1 @@
-export CluedinLogoText from './CluedinLogoText'
+export CluedinLogoText from './CluedinLogoText';
