@@ -92,7 +92,7 @@ class ExampleSimple extends Component {
       },
     ];
 
-    const LogoText = (
+    const logoText = (
       <div style={{ maxWidth: '90px' }}>
         <CluedinLogoText style={{ width: '100%' }} />
       </div>
@@ -102,10 +102,10 @@ class ExampleSimple extends Component {
       <div>
         <GlobalMenu
           LogoIcon={Cluedin}
-          logoText={LogoText}
+          logoText={logoText}
           logoTooltipLabel="Home"
-          activeKey="GlobalMenu"
           onLogoClick={this.onLogoClickHandler.bind(this)}
+          activeKey="GlobalMenu"
           menuDescriptors={menuDescriptors}
           isOwner
         />

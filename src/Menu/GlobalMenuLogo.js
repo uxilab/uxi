@@ -90,7 +90,7 @@ const GlobalMenuLogo = ({
           style={containerStyle}
           onClick={onClick}
         >
-          <Icon />
+          {Icon && <Icon />}
           <LabelDiv> {label} </LabelDiv>
         </GlobalMenuLogoDiv>
       </Tooltip>
