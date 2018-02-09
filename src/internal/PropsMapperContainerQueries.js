@@ -92,7 +92,7 @@ export class PropsMapperContainerQueries extends Component {
 
     return React.createElement(
       type,
-      { ref: node this.ref = node },
+      { ref: node => this.ref = node },
       React.cloneElement(
         Component,
         applyRules(props, rules, width, height),
