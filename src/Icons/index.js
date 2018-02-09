@@ -5,6 +5,8 @@ export Barchart from './Barchart';
 export Checkmark from './Checkmark';
 export Circledintegration from './Circledintegration';
 export Circleduser from './Circleduser';
+export Cluedin from './Cluedin';
+export Cluedinlogotext from './Cluedinlogotext';
 export Country from './Country';
 export Directory from './Directory';
 export Document from './Document';
