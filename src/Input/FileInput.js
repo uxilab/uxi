@@ -14,7 +14,7 @@ const { semantic } = palette;
 const FileInputWrapperUI = styled.div`
   display: inline-block;
   position: relative;
-  outline: ${({ focussed }) => focussed ? '-webkit-focus-ring-color auto 5px' : 'none'}
+  outline: ${({ focussed }) => (focussed ? '-webkit-focus-ring-color auto 5px' : 'none')}
 `;
 
 const FileInputLabelUI = styled.label`

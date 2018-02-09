@@ -569,4 +569,4 @@ export const simpleLayout = css`
   }
 `;
 
-export default simpleLayout
+export default simpleLayout;

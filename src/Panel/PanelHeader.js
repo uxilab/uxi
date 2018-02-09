@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { IconButton } from '../Button';
 
 const PanelHeaderUI = styled.div`
-  background-color: ${({ theme: { palette } }) => palette.accent.main };
+  background-color: ${({ theme: { palette } }) => palette.accent.main};
   padding: 16px;
-  color: ${({ theme: { palette } }) => palette.pureWhite };
+  color: ${({ theme: { palette } }) => palette.pureWhite};
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -32,9 +32,9 @@ const PanelHeader = (props) => {
       {title}
       {close}
     </PanelHeaderUI>
-  )
-}
+  );
+};
 
 PanelHeader.displayName = 'PanelHeader';
 
-export default PanelHeader
+export default PanelHeader;

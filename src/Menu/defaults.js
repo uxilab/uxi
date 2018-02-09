@@ -3,4 +3,4 @@ export default {
   bigMenuWidth: '180px',
   borderThickness: '4px',
   breakpoint: '700px',
-}
+};

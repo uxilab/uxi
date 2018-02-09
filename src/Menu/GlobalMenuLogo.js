@@ -34,12 +34,12 @@ const GlobalMenuLogoDiv = styled.div`
   margin: 0 auto;
   padding: 12px 0;
   position: relative;
-  background: ${({ theme: { palette } }) => palette.primary.dark };
-  transition: color ${({ theme: { transition }}) => transition.default};
+  background: ${({ theme: { palette } }) => palette.primary.dark};
+  transition: color ${({ theme: { transition } }) => transition.default};
   &:hover {
     *:not(svg) {
-      color: ${({ theme: { palette } }) => palette.pureWhite };
-      transition: color ${({ theme: { transition }}) => transition.default};
+      color: ${({ theme: { palette } }) => palette.pureWhite};
+      transition: color ${({ theme: { transition } }) => transition.default};
     }
     svg {
       fill: #fff;
@@ -77,10 +77,8 @@ const GlobalMenuLogo = ({
   // render the tooltip inert above window width of 699px
   const rules = [{
     minWidth: 700,
-    mapper: ({ trigger }) => {
-      return { trigger: [] }
-    }
-  }]
+    mapper: ({ trigger }) => ({ trigger: [] }),
+  }];
 
   return (
     <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']} debounceDelay={400} >

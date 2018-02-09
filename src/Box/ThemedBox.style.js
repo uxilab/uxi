@@ -1,4 +1,5 @@
 import { palette } from '../Theme';
+
 export default {
   dark: {
     backgroundColor: palette.primary.main,
@@ -6,6 +7,6 @@ export default {
   },
   light: {
     backgroundColor: '#fff',
-    color: palette.semantic.default
+    color: palette.semantic.default,
   },
 };

@@ -35,7 +35,7 @@ const VerticalMenuUI = styled.ul`
       color:  ${({ theme: { palette } }) => palette.neutral.darker} ;
     }
     .uxi-menu-item.uxi-active a {
-      color:  ${({ theme: { palette } }) => palette.accent.dark } ;
+      color:  ${({ theme: { palette } }) => palette.accent.dark} ;
     }
   }
 `;

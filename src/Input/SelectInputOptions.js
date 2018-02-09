@@ -17,7 +17,7 @@ const OptionsUI = styled.div`
   };
 `;
 
-const Options = (props) => (
+const Options = props => (
   <OptionsUI {...props} />
 );
 

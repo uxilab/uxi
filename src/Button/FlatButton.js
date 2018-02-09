@@ -29,27 +29,23 @@ const ButtonBaseMixin = css`
   /* TYPE STYLES: */
   background-color: transparent;
   border-color: transparent;
-  color: ${({ theme, type, disabled }) => {
-    return disabled
+  color: ${({ theme, type, disabled }) => (disabled
       ? theme.palette.grey
-      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
-  }};
+      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey))};
 
   /* those next line overwritte the '.root a' selector rules from uxi NON-StyledComponent theme/css
   * TODO: remove the overwrite once the .root a rules doesn't interfere anymore */
   * { color: inherit }
-  svg { fill: ${({ theme, type, disabled }) => {
-    return disabled
+  svg { fill: ${({ theme, type, disabled }) => (disabled
       ? theme.palette.grey
-      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
-  }}}
+      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey))}}
 
   &:hover {
     border-color: transparent;
-    color: ${({ theme, type }) => '#ffffff' };
+    color: ${({ theme, type }) => '#ffffff'};
     background-color: ${({ type, theme }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
     * { color: inherit; }
-    svg { fill: ${({ type, theme }) => (type ? '#ffffff' : '#ffffff') }
+    svg { fill: ${({ type, theme }) => (type ? '#ffffff' : '#ffffff')}
   }
 
   &:hover {

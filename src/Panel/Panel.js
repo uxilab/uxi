@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppLayout } from '../Layout'
+import { AppLayout } from '../Layout';
 
 const Panel = ({ children, style, onClose }) => (
   <AppLayout style={style}>
@@ -8,7 +8,7 @@ const Panel = ({ children, style, onClose }) => (
       React.Children.map(children, child => (
         React.cloneElement(
           child,
-          { onClose, ...child.props } // allow user overwrite
+          { onClose, ...child.props }, // allow user overwrite
         )
       ))
     }
@@ -17,4 +17,4 @@ const Panel = ({ children, style, onClose }) => (
 
 Panel.displayName = 'Panel';
 
-export default Panel
+export default Panel;

@@ -36,15 +36,15 @@ const GlobalMenuItemDiv = styled.div`
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ?
     `${borderThickness} solid #0ea4a5` : `${borderThickness} solid transparent`)
-  };
+};
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
   transition: color ${({ theme: { transition } }) => transition.default};
   &:hover {
     background: ${({ isSelected, theme: { palette } }) =>
-      (isSelected ? palette.primary.main : palette.primary.light)
-    };
+    (isSelected ? palette.primary.main : palette.primary.light)
+};
     *:not(svg) {
-      color: ${({ theme: { palette } }) => palette.pureWhite };
+      color: ${({ theme: { palette } }) => palette.pureWhite};
       transition: color ${({ theme: { transition } }) => transition.default};
     }
     svg {
@@ -107,10 +107,8 @@ const GlobalMenuItem = ({
   // render the tooltip inert above window width of 699px
   const rules = [{
     minWidth: 700,
-    mapper: ({ trigger }) => {
-      return { trigger: [] }
-    }
-  }]
+    mapper: ({ trigger }) => ({ trigger: [] }),
+  }];
 
   return (
     <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']} debounceDelay={400} >

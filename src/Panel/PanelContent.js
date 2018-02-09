@@ -4,8 +4,8 @@ const PanelContent = ({ children, style }) => (
   <div style={style} >
     {children}
   </div>
-)
+);
 
 PanelContent.displayName = 'PanelContent';
 
-export default PanelContent
+export default PanelContent;

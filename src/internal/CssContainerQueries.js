@@ -21,11 +21,11 @@ import debounce from 'lodash/debounce';
  */
 
 const applyRules = (rules, width, height) => {
-  if (!rules || (rules.length === 0)) return ''
+  if (!rules || (rules.length === 0)) return '';
   return rules
     .filter(({ minWidth }) => width >= minWidth)
-    .map(({ css }) => css)
-}
+    .map(({ css }) => css);
+};
 
 const CssContainerQueriesUI = styled.div`
   &>*{
@@ -35,14 +35,14 @@ const CssContainerQueriesUI = styled.div`
 
 export class CssContainerQueries extends PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this)
+    this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this);
 
     this.state = {
       width: null,
       height: null,
-    }
+    };
   }
 
   static propTypes = {
@@ -51,40 +51,40 @@ export class CssContainerQueries extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize)
-    this.forceUpdate()
+    window.addEventListener('resize', this.handleResize);
+    this.forceUpdate();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('resize', this.handleResize);
   }
 
   handleResize() {
     if (this.ref) {
-      const rect = this.ref.getBoundingClientRect()
+      const rect = this.ref.getBoundingClientRect();
       this.setState({
         width: rect.width,
         height: rect.height,
-      })
+      });
     }
   }
 
   render() {
-    const { rules, children, childrenProps } = this.props
-    const { width, height } = this.state
+    const { rules, children, childrenProps } = this.props;
+    const { width, height } = this.state;
 
     return (
       <CssContainerQueriesUI
         {...childrenProps}
-        innerRef={node => { this.ref = node; this.handleResize() }}
+        innerRef={(node) => { this.ref = node; this.handleResize(); }}
         width={width}
         height={height}
         rules={rules}
       >
         {children}
       </CssContainerQueriesUI>
-    )
+    );
   }
 }
 
-export default CssContainerQueries
+export default CssContainerQueries;

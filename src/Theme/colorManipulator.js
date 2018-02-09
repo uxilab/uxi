@@ -203,7 +203,7 @@ export function fade(color, value) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function darken(color, coefficient = .2) {
+export function darken(color, coefficient = 0.2) {
   color = decomposeColor(color);
   coefficient = clamp(coefficient, 0, 1);
 
@@ -224,7 +224,7 @@ export function darken(color, coefficient = .2) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function lighten(color, coefficient = .2) {
+export function lighten(color, coefficient = 0.2) {
   color = decomposeColor(color);
   coefficient = clamp(coefficient, 0, 1);
 

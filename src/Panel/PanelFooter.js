@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { FlatButton } from '../Button';
 
 const PanelFooterUI = styled.div`
-  background-color: ${({ theme: { palette } }) => palette.white };
-  border-top: 1px solid ${({ theme: { palette } }) => palette.lightGrey };
+  background-color: ${({ theme: { palette } }) => palette.white};
+  border-top: 1px solid ${({ theme: { palette } }) => palette.lightGrey};
   padding: 8px 16px;
   display: flex;
   justify-content: flex-end;
@@ -15,7 +15,7 @@ const PanelFooter = (props) => {
 
   const cancel = (
     hasCancel &&
-      <FlatButton onClick={onClose} style={{ marginRight: '16px'}}>
+      <FlatButton onClick={onClose} style={{ marginRight: '16px' }}>
         {cancelLabel || 'Cancel'}
       </FlatButton>
   );
@@ -26,8 +26,8 @@ const PanelFooter = (props) => {
       {children}
     </PanelFooterUI>
   );
-}
+};
 
 PanelFooter.displayName = 'PanelFooter';
 
-export default PanelFooter
+export default PanelFooter;

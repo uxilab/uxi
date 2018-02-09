@@ -32,4 +32,4 @@ const AppLayout = styled.div`
 
 AppLayout.displayName = 'AppLayout';
 
-export default AppLayout
+export default AppLayout;

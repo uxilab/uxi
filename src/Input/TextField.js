@@ -20,10 +20,10 @@ const InputUI = styled.input`
   padding: 6.5px 26px 6.5px 6.5px;
   min-width: 100%;
   box-sizing: border-box;
-  border: 1px solid ${({ error, success, theme: { palette: { semantic }} }) => error
+  border: 1px solid ${({ error, success, theme: { palette: { semantic } } }) => (error
     ? semantic.error
-    : (success ? semantic.success : semantic.default)
-  };
+    : (success ? semantic.success : semantic.default))
+};
   &:focus {
     outline: none;
     border: 1px solid ${({ theme }) => theme.palette.accent.main};
@@ -34,17 +34,17 @@ const InputUI = styled.input`
 const ErrorWrapperUI = styled.span`
   padding: 0 6px;
   font-size: 12px;
-  color: ${({ theme: { palette: { semantic }} }) => semantic.error}
+  color: ${({ theme: { palette: { semantic } } }) => semantic.error}
 `;
 
 const StatusIcon = styled.span`
   position: absolute;
   right: 8px;
   top: 9px;
-  color: ${({ error, success, theme: { palette: { semantic } } }) => error
+  color: ${({ error, success, theme: { palette: { semantic } } }) => (error
     ? semantic.error
-    : (success ? semantic.success : semantic.default)
-  };
+    : (success ? semantic.success : semantic.default))
+};
   & > svg,
   & > svg * {
     fill: currentColor !important;

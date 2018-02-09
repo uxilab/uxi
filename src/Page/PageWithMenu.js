@@ -10,11 +10,11 @@ const WapperUI = styled.div`
 
 const MenuUI = styled.div`
   width: 100%;
-  min-width: ${({ menuWidth }) => menuWidth };
+  min-width: ${({ menuWidth }) => menuWidth};
   @media (min-width: 768px) {
-    width: ${({ menuWidth }) => menuWidth };
-    min-width: ${({ menuWidth }) => menuWidth };
-    max-width: ${({ menuWidth }) => menuWidth };
+    width: ${({ menuWidth }) => menuWidth};
+    min-width: ${({ menuWidth }) => menuWidth};
+    max-width: ${({ menuWidth }) => menuWidth};
   };
 `;
 
@@ -39,6 +39,6 @@ const PageWithMenu = ({ children, style = {}, menu, menuWidth }) => (
 
 PageWithMenu.defaultProps = {
   menuWidth: '250px',
-}
+};
 
 export default PageWithMenu;

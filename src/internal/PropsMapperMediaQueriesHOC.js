@@ -24,8 +24,8 @@ const applyRules = (props, rules, width, height) => {
 
   let result = { ...props };
 
-  rules = rules.filter(rule => 'minWidth' in rule)  // TODO improve
-    /**
+  rules = rules.filter(rule => 'minWidth' in rule); // TODO improve
+  /**
      * we only apply the mapper if the available
      * WINDOW/VIEWPORT width
      * is wider or equal than the 'minWidth' condition
@@ -33,29 +33,29 @@ const applyRules = (props, rules, width, height) => {
      * logical, ascending, flow of overwrite
      * Mobile first FTW
      */
-  rules = rules.filter(({ minWidth }) => (width >= minWidth))
+  rules = rules.filter(({ minWidth }) => (width >= minWidth));
   rules && rules.forEach(({ minWidth, mapper }) => {
-      result = {
-        ...result,
-        ...mapper(props),
-      }
-    })
+    result = {
+      ...result,
+      ...mapper(props),
+    };
+  });
 
   return result;
-}
+};
 
 export class PropsMapperMediaQueriesHOC extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     const { debounceDelay } = this.props;
 
-    this.handleResize = debounce(this.handleResize.bind(this), debounceDelay).bind(this)
+    this.handleResize = debounce(this.handleResize.bind(this), debounceDelay).bind(this);
 
     this.state = {
       width: null,
       height: null,
-    }
+    };
   }
 
   static propTypes = {
@@ -73,10 +73,10 @@ export class PropsMapperMediaQueriesHOC extends Component {
   componentDidMount() {
     if (window) {
       window.addEventListener('resize', this.handleResize);
-      this.forceUpdate()
+      this.forceUpdate();
     }
-    this.handleResize()
-    this.forceUpdate()
+    this.handleResize();
+    this.forceUpdate();
   }
 
   componentWillUnmount() {
@@ -95,13 +95,13 @@ export class PropsMapperMediaQueriesHOC extends Component {
       this.setState({
         width,
         height,
-      })
+      });
     }
   }
 
   render() {
-    const { children, rules, ...restOfProps } = this.props
-    const { width, height } = this.state
+    const { children, rules, ...restOfProps } = this.props;
+    const { width, height } = this.state;
 
     const theChild = React.Children.only(children);
 
@@ -115,14 +115,14 @@ export class PropsMapperMediaQueriesHOC extends Component {
       },
       rules,
       width,
-      height
+      height,
     );
 
     return React.cloneElement(
       theChild,
-      mappedProps
+      mappedProps,
     );
   }
 }
 
-export default PropsMapperMediaQueriesHOC
+export default PropsMapperMediaQueriesHOC;
