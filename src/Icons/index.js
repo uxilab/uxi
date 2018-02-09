@@ -122,6 +122,7 @@ export Radioinputoutline from './Radioinputoutline';
 export Report from './Report';
 export Salesorder from './Salesorder';
 export Search from './Search';
+export Send from './Send';
 export Server from './Server';
 export Signin from './Signin';
 export Signout from './Signout';
