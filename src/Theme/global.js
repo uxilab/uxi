@@ -58,6 +58,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
         text-decoration: none;
       &:hover {
         color: ${lighten(palette.accent.main, 0.1)};
+        text-decoration: underline;
       }
     }
 
