@@ -11,6 +11,7 @@ const GlobalMenuWrapper = ({
   backgroundColor,
   primaryColor,
   menuDescriptors,
+  attachToViewport,
 }) => {
   const menuDescriptorsContent = [];
 
@@ -49,7 +50,7 @@ const GlobalMenuWrapper = ({
   });
 
   return (
-    <GlobalMenuContainer backgroundColor={backgroundColor}>
+    <GlobalMenuContainer backgroundColor={backgroundColor} attachToViewport={attachToViewport}>
       {logo}
       {menuDescriptorsContent}
     </GlobalMenuContainer>

@@ -9,13 +9,28 @@ const {
   breakpoint,
 } = defaults;
 
+const getPosition = ({ attachToViewport }) => (
+  attachToViewport
+    ? ('fixed;' +
+      'top: 0;' +
+      'bottom: 0;' +
+      'left: 0'
+      )
+    : 'relative'
+)
 const GlobalMenuDiv = styled.div`
   /** create context to allow being above
     * menuPanel in z-index stack order */
-  position: relative;
-
+  position: ${props => getPosition(props)};
+  /* position: ${({ attachToViewport }) => (
+    attachToViewport
+    ? ('fixed;' +
+      'fixed')
+    : 'relative'
+  )}; */
   height: 100%;
   height: 100vh;
+  height: ${({ attachToViewport }) => attachToViewport ? '100vh' : '100%' };
   text-align: center;
   width: ${menuWidth};
   background-color: ${({ theme: { palette: { primary: { main } } } }) => (main || '#1d313f')};
@@ -27,8 +42,10 @@ const GlobalMenuDiv = styled.div`
   }
 `;
 
-const GlobalMenuContainer = ({ backgroundColor, children }) => (
-  <GlobalMenuDiv>{children}</GlobalMenuDiv>
+const GlobalMenuContainer = ({ backgroundColor, children, attachToViewport }) => (
+  <GlobalMenuDiv attachToViewport={attachToViewport}>
+    {children}
+  </GlobalMenuDiv>
 );
 
 GlobalMenuContainer.propTypes = {

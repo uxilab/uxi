@@ -109,6 +109,20 @@ class ExampleSimple extends Component {
           menuDescriptors={menuDescriptors}
           isOwner
         />
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <GlobalMenu
+          attachToViewport
+          logoIcon={<Cluedin />}
+          logoText={logoText}
+          logoTooltipLabel="Home"
+          onLogoClick={this.onLogoClickHandler.bind(this)}
+          activeKey="GlobalMenu"
+          menuDescriptors={menuDescriptors}
+          isOwner
+        />
       </div>
     );
   }

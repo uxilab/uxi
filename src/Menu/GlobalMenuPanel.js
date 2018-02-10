@@ -12,60 +12,60 @@ const {
   menuWidth,
 } = defaults;
 
-const getRight = ({
-  isOpen,
-  fullWidth,
-}) => {
-  if (isOpen && fullWidth) {
-    return '0';
+
+const getWidth = ({ isOpen, width, fullWidth, attachToViewport }, breakpoint) => {
+  const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
+  const unit = attachToViewport ? 'vw' : '%';
+
+  if (fullWidth) {
+    if (attachToViewport) {
+      // if (isOpen) {
+      //   return `100vw` // yep it's weird, layout context stuff...
+      // }
+      return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
+    }
+    return `calc(100${unit} - ${theMenuWidth})`;
   }
 
-  return 'auto';
+
+  return `${width}px`;
 };
 
-const getLeft = ({ isOpen, width, fullWidth }, breakpoint) => {
+const getTransform = ({ width, fullWidth, isOpen }, breakpoint) => {
+  let x = width;
+  const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth
+
   if (isOpen) {
-    return breakpoint === 'desktop' ? defaults.bigMenuWidth : defaults.menuWidth;
+    if (breakpoint === 'desktop') {
+      x = bigMenuWidth;
+    } else {
+      x = menuWidth;
+    }
+  } else {
+    if (fullWidth) {
+      x = `calc(-100vh - ${theMenuWidth})`;
+    } else {
+      x = `calc(-${width}px)`;
+    }
   }
 
-  if (!isOpen && width && !fullWidth) {
-    return `-${width + 125}px`;
+  return `translate3d(${x}, 0, 0)`;
+}
+
+const getAccessibilityRules = ({ isOpen }) => {
+  if (isOpen) {
+    return 'pointer-events: all; visibility: visible'
   }
-
-  if (!isOpen && !width && !fullWidth) {
-    return `-${400 + 125}px`;
-  }
-
-  return '-100%';
-};
-
-const getWidth = ({ isOpen, width, fullWidth }) => {
-  if (isOpen && width && !fullWidth) {
-    return `${width}px`;
-  }
-
-  if (!isOpen && width && !fullWidth) {
-    return `-${width + 125}px`;
-  }
-
-  if (!isOpen && !width && !fullWidth) {
-    return '';
-  }
-
-  if (isOpen && fullWidth) {
-    return 'auto';
-  }
-
-  return '400px';
-};
-
+  return 'pointer-events: none; visibility: collapse';
+}
 
 const GlobalMenuPanelWrapper = styled.div`
-  position: fixed;
+  position: ${({ attachToViewport }) => attachToViewport ? 'fixed' : 'absolute' };
   top: 0;
   bottom: 0;
   margin-left: 0px;
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  /* opacity: ${({ isOpen, attachToViewport }) => (isOpen ? 1 : (attachToViewport ? 1 : 0)) }; */
+  /* opacity: ${({ isOpen, attachToViewport }) => (!attachToViewport ? (isOpen ? 1 : 0) : 1) }; */
   background: #fff;
   border-right: 1px solid #ececec;
   border-left: 1px solid #ececec;
@@ -73,17 +73,22 @@ const GlobalMenuPanelWrapper = styled.div`
   z-index: 98;
   overflow-x: hidden;
   overflow-y: scroll;
+  width: ${({ width }) => width}; /* in case auto was passed */
   width: ${props => getWidth(props)};
-  right: ${props => getRight(props)};
-  left: ${props => getLeft(props)};
+  will-change: transform;
+  transform: ${props => getTransform(props)};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 
   @media (min-width: ${breakpoint}) {
+    width: ${({ width }) => width}; /* in case auto was passed */
     width: ${props => getWidth(props, 'desktop')};
-    right: ${props => getRight(props, 'desktop')};
-    left: ${props => getLeft(props, 'desktop')};
+    transform: ${props => getTransform(props, 'desktop')};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
   }
+
+  /* render inert when not visible */
+  /* ${({ isOpen }) => isOpen ? '' : 'pointer-events: none; visibility: hidden'}; */
+  ${props => getAccessibilityRules(props)};
 `;
 
 class GlobalMenuPanel extends Component {
@@ -102,6 +107,7 @@ class GlobalMenuPanel extends Component {
       width,
       onClickOutside,
       fullWidth,
+      attachToViewport,
     } = this.props;
     let actionContent;
     let closeContent;
@@ -135,11 +141,22 @@ class GlobalMenuPanel extends Component {
     const isTitleString = (Title && typeof Title === 'string');
     const title = Title;
 
+    const attributes = {
+      ...(!isOpen
+        ? { tabIndex: -1, 'aria-hidden': 'true' }
+        : { tabIndex: 0, 'aria-hidden': 'false' }
+      ),
+    }
+    console.log(attributes);
+
     return (
       <GlobalMenuPanelWrapper
+        className="rc-GlobalMenuPanelWrapper"
         isOpen={isOpen}
         width={width}
         fullWidth={fullWidth}
+        attachToViewport={attachToViewport}
+        {...attributes}
       >
         <div style={GlobalMenuPanelStyle.titleContainer}>
           {actionContent}
@@ -164,6 +181,18 @@ GlobalMenuPanel.propTypes = {
   Action: PropTypes.any,
   width: PropTypes.number,
   fullWidth: PropTypes.bool,
+  attachToViewport: PropTypes.bool,
+};
+
+GlobalMenuPanel.defaultProps = {
+  // onClickOutside: PropTypes.func,
+  // isOpen: PropTypes.bool,
+  // Title: PropTypes.any,
+  // Content: PropTypes.any,
+  // Action: PropTypes.any,
+  width: 400,
+  // fullWidth: PropTypes.bool,
+  attachToViewport: false,
 };
 
 export default enhanceWithClickOutside(GlobalMenuPanel);
