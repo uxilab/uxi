@@ -30,7 +30,7 @@ const getWidth = ({ isOpen, width, fullWidth, attachToViewport, fullViewportWidt
 
 const getTransform = ({ width, fullWidth, isOpen }, breakpoint) => {
   let x = width;
-  const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth
+  const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
 
   if (isOpen) {
     if (breakpoint === 'desktop') {
@@ -38,31 +38,29 @@ const getTransform = ({ width, fullWidth, isOpen }, breakpoint) => {
     } else {
       x = menuWidth;
     }
+  } else if (fullWidth) {
+    x = `calc(-100vh - ${theMenuWidth})`;
   } else {
-    if (fullWidth) {
-      x = `calc(-100vh - ${theMenuWidth})`;
-    } else {
-      x = `calc(-${width}px)`;
-    }
+    x = `calc(-${width}px)`;
   }
 
   return `translate3d(${x}, 0, 0)`;
-}
+};
 
 const getAccessibilityRules = ({ isOpen }) => {
   if (isOpen) {
-    return 'pointer-events: all; visibility: visible'
+    return 'pointer-events: all; visibility: visible';
   }
   return 'pointer-events: none; visibility: collapse';
-}
+};
 
 const GlobalMenuPanelWrapper = styled.div`
-  position: ${({ attachToViewport }) => attachToViewport ? 'fixed' : 'absolute' };
+  position: ${({ attachToViewport }) => (attachToViewport ? 'fixed' : 'absolute')};
   top: 0;
   bottom: 0;
   margin-left: 0px;
-  /* opacity: ${({ isOpen, attachToViewport }) => (isOpen ? 1 : (attachToViewport ? 1 : 0)) }; */
-  /* opacity: ${({ isOpen, attachToViewport }) => (!attachToViewport ? (isOpen ? 1 : 0) : 1) }; */
+  /* opacity: ${({ isOpen, attachToViewport }) => (isOpen ? 1 : (attachToViewport ? 1 : 0))}; */
+  /* opacity: ${({ isOpen, attachToViewport }) => (!attachToViewport ? (isOpen ? 1 : 0) : 1)}; */
   background: #fff;
   border-right: 1px solid #ececec;
   border-left: 1px solid #ececec;
@@ -84,7 +82,7 @@ const GlobalMenuPanelWrapper = styled.div`
   }
 
   /* render inert when not visible */
-  /* ${({ isOpen }) => isOpen ? '' : 'pointer-events: none; visibility: hidden'}; */
+  /* ${({ isOpen }) => (isOpen ? '' : 'pointer-events: none; visibility: hidden')}; */
   ${props => getAccessibilityRules(props)};
 `;
 
@@ -144,7 +142,7 @@ class GlobalMenuPanel extends Component {
         ? { tabIndex: -1, 'aria-hidden': 'true' }
         : { tabIndex: 0, 'aria-hidden': 'false' }
       ),
-    }
+    };
     console.log(attributes);
 
     return (

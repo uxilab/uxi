@@ -8,13 +8,13 @@ const GlobalHeaderUI = styled.div`
   width: 100%;
 `;
 
-export const GlobalHeader = props => {
-  const { 
+export const GlobalHeader = (props) => {
+  const {
     menu,
     search,
     children,
     style,
-  } = props
+  } = props;
 
   return (
     <GlobalHeaderUI style={{ style }}>
@@ -24,9 +24,9 @@ export const GlobalHeader = props => {
       </FlexRightCol>
       {children}
     </GlobalHeaderUI>
-  )
-}
+  );
+};
 
 GlobalHeader.dispalyName = 'GlobalHeader';
 
-export default GlobalHeader
+export default GlobalHeader;

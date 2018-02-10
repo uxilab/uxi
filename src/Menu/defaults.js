@@ -28,4 +28,4 @@ export const GlobalMenuItemBase = css`
   { outline: none; }
 `;
 
-export default defaults
+export default defaults;

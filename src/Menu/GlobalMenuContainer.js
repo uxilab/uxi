@@ -15,22 +15,22 @@ const getPosition = ({ attachToViewport }) => (
       'top: 0;' +
       'bottom: 0;' +
       'left: 0'
-      )
+    )
     : 'relative'
-)
+);
 const GlobalMenuDiv = styled.div`
   /** create context to allow being above
     * menuPanel in z-index stack order */
   position: ${props => getPosition(props)};
   /* position: ${({ attachToViewport }) => (
     attachToViewport
-    ? ('fixed;' +
+      ? ('fixed;' +
       'fixed')
-    : 'relative'
+      : 'relative'
   )}; */
   height: 100%;
   height: 100vh;
-  height: ${({ attachToViewport }) => attachToViewport ? '100vh' : '100%' };
+  height: ${({ attachToViewport }) => (attachToViewport ? '100vh' : '100%')};
   text-align: center;
   width: ${menuWidth};
   background-color: ${({ theme: { palette: { primary: { main } } } }) => (main || '#1d313f')};

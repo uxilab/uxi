@@ -66,7 +66,7 @@ const errorMsg = `GlobalAppLayout will only work with all those props:
   - globalFooter
 `;
 
-const GlobalAppLayout = props => {
+const GlobalAppLayout = (props) => {
   const {
     menu,
     header,
@@ -78,8 +78,8 @@ const GlobalAppLayout = props => {
   } = props;
 
   if (!(menu && header && content && footer)) {
-    console.error(errorMsg)
-    return <div />
+    console.error(errorMsg);
+    return <div />;
   }
 
   return (
@@ -89,13 +89,13 @@ const GlobalAppLayout = props => {
         <div>{header}</div>
         <InnerAppLayoutUI>
           {content}
-            {footer}
+          {footer}
         </InnerAppLayoutUI>
       </AppLayoutExtended>
       {children}
     </FlexLeftColExtended>
-  )
-}
+  );
+};
 
 GlobalAppLayout.displayName = 'GlobalAppLayout';
 

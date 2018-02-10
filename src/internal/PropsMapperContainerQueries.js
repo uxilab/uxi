@@ -36,25 +36,25 @@ const applyRules = (props, rules, width, height) => {
       result = {
         ...result,
         ...propsMapper(props),
-      }
-    })
+      };
+    });
 
   return result;
-}
+};
 
 export class PropsMapperContainerQueries extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this)
-    this.applyRules = this.applyRules.bind(this).bind(this)
+    this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this);
+    this.applyRules = this.applyRules.bind(this).bind(this);
 
     this.ref = null;
 
     this.state = {
       width: null,
       height: null,
-    }
+    };
   }
 
   static propTypes = {
@@ -64,7 +64,7 @@ export class PropsMapperContainerQueries extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
-    this.forceUpdate()
+    this.forceUpdate();
   }
 
   componentWillUnmount() {
@@ -73,11 +73,11 @@ export class PropsMapperContainerQueries extends Component {
 
   handleResize() {
     if (this.ref) {
-      const rect = this.ref.getBoundingClientRect()
+      const rect = this.ref.getBoundingClientRect();
       this.setState({
         width: rect.width,
         height: rect.height,
-      })
+      });
     }
 
     const { rules, children } = this.props;
@@ -85,8 +85,8 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   render() {
-    const { rules, children, childrenProps, inline } = this.props
-    const { width, height } = this.state
+    const { rules, children, childrenProps, inline } = this.props;
+    const { width, height } = this.state;
 
     const type = inline ? 'span' : 'div';
 
@@ -96,9 +96,9 @@ export class PropsMapperContainerQueries extends Component {
       React.cloneElement(
         Component,
         applyRules(props, rules, width, height),
-      )
-    )
+      ),
+    );
   }
 }
 
-export default PropsMapperContainerQueries
+export default PropsMapperContainerQueries;
