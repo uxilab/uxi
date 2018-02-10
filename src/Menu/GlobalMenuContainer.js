@@ -42,8 +42,8 @@ const GlobalMenuDiv = styled.div`
   }
 `;
 
-const GlobalMenuContainer = ({ backgroundColor, children, attachToViewport }) => (
-  <GlobalMenuDiv attachToViewport={attachToViewport}>
+const GlobalMenuContainer = ({ backgroundColor, children, attachToViewport, innerStyle }) => (
+  <GlobalMenuDiv attachToViewport={attachToViewport} style={innerStyle}>
     {children}
   </GlobalMenuDiv>
 );

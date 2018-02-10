@@ -21,6 +21,8 @@ const FlexLeftColExtended = FlexLeftCol.extend`
   width: 100vh;
   min-width: 100vh;
   max-width: 100vh;
+  justify-content: flex-start;
+  align-items: stretch;
 `;
 
 const AppLayoutExtended = AppLayout.extend`
@@ -29,6 +31,8 @@ const AppLayoutExtended = AppLayout.extend`
 	max-height: 100vh;
 	width: auto;
 	display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 	flex-flow: column nowrap;
 	&>* {}
 	&>*:first-child() { }
@@ -55,11 +59,6 @@ const InnerAppLayoutUI = AppLayout.extend`
 	}
 `;
 
-const flexStyles = {
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
-};
-
 const errorMsg = `GlobalAppLayout will only work with all those props:
   - globalMenu,
   - globalHeader,
@@ -84,9 +83,9 @@ const GlobalAppLayout = props => {
   }
 
   return (
-    <FlexLeftColExtended style={{ ...flexStyles, ...wrapperStyle }}>
-      <div>{menu}</div>
-      <AppLayoutExtended style={{ ...flexStyles, ...innerWrapperStyle }}>
+    <FlexLeftColExtended style={{ ...wrapperStyle }}>
+      <div style={{ minHeight: '100%' }}>{menu}</div>
+      <AppLayoutExtended style={{ ...innerWrapperStyle }}>
         <div>{header}</div>
         <InnerAppLayoutUI>
           {content}

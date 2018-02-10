@@ -13,17 +13,14 @@ const {
 } = defaults;
 
 
-const getWidth = ({ isOpen, width, fullWidth, attachToViewport }, breakpoint) => {
+const getWidth = ({ isOpen, width, fullWidth, attachToViewport, fullViewportWidthPanel }, breakpoint) => {
   const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
-  const unit = attachToViewport ? 'vw' : '%';
+  const unit = fullViewportWidthPanel ? 'vw' : '%';
 
   if (fullWidth) {
-    if (attachToViewport) {
-      // if (isOpen) {
-      //   return `100vw` // yep it's weird, layout context stuff...
-      // }
-      return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
-    }
+    // if (attachToViewport) {
+    //   return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
+    // }
     return `calc(100${unit} - ${theMenuWidth})`;
   }
 
@@ -108,6 +105,7 @@ class GlobalMenuPanel extends Component {
       onClickOutside,
       fullWidth,
       attachToViewport,
+      fullViewportWidthPanel,
     } = this.props;
     let actionContent;
     let closeContent;
@@ -156,6 +154,7 @@ class GlobalMenuPanel extends Component {
         width={width}
         fullWidth={fullWidth}
         attachToViewport={attachToViewport}
+        fullViewportWidthPanel={fullViewportWidthPanel}
         {...attributes}
       >
         <div style={GlobalMenuPanelStyle.titleContainer}>
@@ -182,6 +181,7 @@ GlobalMenuPanel.propTypes = {
   width: PropTypes.number,
   fullWidth: PropTypes.bool,
   attachToViewport: PropTypes.bool,
+  fullViewportWidthPanel: PropTypes.bool,
 };
 
 GlobalMenuPanel.defaultProps = {

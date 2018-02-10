@@ -41,6 +41,9 @@ class GlobalMenu extends Component {
       logoText,
       logoTooltipLabel,
       attachToViewport,
+      style,
+      innerStyle,
+      fullViewportWidthPanel,
     } = this.props;
 
     const {
@@ -100,6 +103,7 @@ class GlobalMenu extends Component {
               fullWidth={menuDescriptor.panel.fullWidth}
               isOpen={menuDescriptor.isOpen}
               attachToViewport={attachToViewport}
+              fullViewportWidthPanel={fullViewportWidthPanel}
             />
           );
         }
@@ -120,10 +124,10 @@ class GlobalMenu extends Component {
 
     const layoutContext = attachToViewport
       ? { position: 'fixed', zIndex: 80, top: 0, left: 0, bottom: 0, overflowX: 'hidden', }
-      : { position: 'relative', overflowX: 'hidden', };
+      : { position: 'relative', ...(fullViewportWidthPanel ? {} : { overflowX: 'hidden' } )};
 
     return (
-      <div style={{ ...layoutContext }}>
+      <div style={{ ...layoutContext, ...style }}>
         <div>
           <GlobalMenuWrapper
             logo={theLogo}
@@ -132,6 +136,8 @@ class GlobalMenu extends Component {
             activeKey={active}
             menuDescriptors={menuDescriptorWithActiveAndSelected}
             attachToViewport={attachToViewport}
+            innerStyle={innerStyle}
+            fullViewportWidthPanel={fullViewportWidthPanel}
           />
 
           {/* This wrapper div creates the context to wrap the 'fixed' panels
@@ -153,6 +159,7 @@ GlobalMenu.propTypes = {
   Logo: PropTypes.any,
   primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
+  style: PropTypes.object,
 };
 
 export default GlobalMenu;
