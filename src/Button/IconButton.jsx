@@ -12,7 +12,17 @@ class IconButton extends Component {
       icon,
       children,
       style,
+      rel,
+      target,
+      href,
     } = this.props;
+
+    // white list link prop (attributes):
+    const linkPropsAttr = {
+      rel,
+      target,
+      href,
+    }
 
     let finalIcon;
 
@@ -26,19 +36,37 @@ class IconButton extends Component {
       finalIcon = <Icon {...this.props} />;
     }
 
-    if (link) {
-      return (<a href={link} style={style}>
-        {finalIcon}
-      </a>);
+    if (link || href) {
+
+      return (
+        <a href={link} style={style} {...linkPropsAttr} >
+          {finalIcon}
+        </a>
+      );
+    }
+
+    const finalStyles = {
+      border: 0,
+      padding: 0,
+      verticalAlign: 'middle',
+      cursor: 'pointer',
+      background: 'transparent',
+      ...style,
     }
 
     return (
-      <button style={{ border: 0, padding: 0, verticalAlign: 'middle', cursor: 'pointer', background: 'transparent', ...style }} onClick={onClick}>
+      <button style={finalStyles} onClick={onClick}>
         {finalIcon}
         {children}
       </button>
     );
   }
+}
+
+IconButton.defaultProps = {
+  rel: null,
+  target: null,
+  href: null,
 }
 
 export default IconButton;
