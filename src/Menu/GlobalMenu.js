@@ -126,7 +126,12 @@ class GlobalMenu extends Component {
             activeKey={active}
             menuDescriptors={menuDescriptorWithActiveAndSelected}
           />
-          {menuDescriptorsPanel}
+
+          {/* This wrapper div creates the context to wrap the 'fixed' panels
+              which allow us to control the stacking order */}
+          <div>
+            {menuDescriptorsPanel}
+          </div>
         </div>
       </div>
     );

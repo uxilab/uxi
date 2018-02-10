@@ -10,12 +10,10 @@ const {
 } = defaults;
 
 const GlobalMenuDiv = styled.div`
-  /*
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  */
+  /** create context to allow being above
+    * menuPanel in z-index stack order */
+  position: relative;
+
   height: 100%;
   height: 100vh;
   text-align: center;
