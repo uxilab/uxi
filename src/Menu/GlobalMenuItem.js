@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import defaults from './defaults';
 import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
 
@@ -22,8 +22,29 @@ const getIconColor = ({ isSelected, isActive }) => {
   return '#c2c2c2';
 };
 
+const fadeIn = keyframes`
+  0%   { opacity: 0 }
+  100% { opacity: 1 }
+`;
+
+const growIn = keyframes`
+  0% {
+    height: 0;
+    max-height: 0px;
+  }
+  100% {
+    height: auto;
+    max-height: 60px;
+  }
+`;
+
 
 const GlobalMenuItemDiv = styled.div`
+  animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}` };
+  /**
+   * this one is not working well enough
+   * , ${growIn} ${({ theme }) => `${theme.transition.default}` };
+   */
   display: flex;
   align-items: center;
   justify-content: center;
