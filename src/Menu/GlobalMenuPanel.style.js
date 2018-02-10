@@ -22,7 +22,4 @@ export default {
     fontWeight: 300,
     lineHeight: '26px',
   },
-  panel: {
-    padding: '15px',
-  },
 };
