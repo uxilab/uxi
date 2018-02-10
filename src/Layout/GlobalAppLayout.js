@@ -31,13 +31,25 @@ const AppLayoutExtended = AppLayout.extend`
 	&>*:first-child() { }
 	&>*:nth-child(2) {
 		flex-grow: 9;
-		overflow-y: scroll;
+    overflow-y: scroll; /* applies to same elem as line 44 */
 	}
   /* TODO: make the entire cluedin content mobile first! */
 	&>* { width: calc(100vw - ${menuWidth}) }
   @media (min-width: ${breakpoint}) {
     &>* { width: calc(100vw - ${bigMenuWidth}) }
   }
+`;
+
+const InnerAppLayoutUI = AppLayout.extend`
+  /* overflow-y: scroll; *//* applies to same elem as line 34 */
+	&>*:nth-child(1) {
+    flex-grow: 99;
+    flex-shrink: 1;
+  }
+	&>*:nth-child(2) {
+		flex-grow: 1;
+    flex-shrink: 0;
+	}
 `;
 
 const flexStyles = {
@@ -73,10 +85,10 @@ const GlobalAppLayout = props => {
       <div>{menu}</div>
       <AppLayoutExtended style={{ ...flexStyles, ...innerWrapperStyle }}>
         <div>{header}</div>
-        <div>
+        <InnerAppLayoutUI>
           {content}
-          {footer}
-        </div>
+            {footer}
+        </InnerAppLayoutUI>
       </AppLayoutExtended>
       {children}
     </FlexLeftColExtended>
