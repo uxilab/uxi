@@ -32,7 +32,7 @@ const GlobalMenuItemDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: ${`12px 0 12px ${borderThickness}`};
+  padding: ${`16px 0 16px ${borderThickness}`};
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ?
     `${borderThickness} solid #0ea4a5` : `${borderThickness} solid transparent`)

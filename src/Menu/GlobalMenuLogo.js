@@ -32,7 +32,7 @@ const GlobalMenuLogoDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: 8px 0;
+  padding: 16px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.dark};
   transition: color ${({ theme: { transition } }) => transition.default};
