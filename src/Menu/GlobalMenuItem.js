@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled, { keyframes } from 'styled-components';
-import defaults from './defaults';
+import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
 import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
 
 const {
@@ -39,11 +39,13 @@ const growIn = keyframes`
 `;
 
 
-const GlobalMenuItemDiv = styled.div`
-  animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}` };
+const GlobalMenuItemDiv = styled.button`
+  ${buttonReset};
+
+  animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}`};
   /**
    * this one is not working well enough
-   * , ${growIn} ${({ theme }) => `${theme.transition.default}` };
+   * , ${growIn} ${({ theme }) => `${theme.transition.default}`};
    */
   display: flex;
   align-items: center;
@@ -60,7 +62,7 @@ const GlobalMenuItemDiv = styled.div`
   };
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
-  &:hover {
+  &:hover, &:focus {
     background: ${({ isSelected, theme: { palette } }) =>
     (isSelected ? palette.primary.main : palette.primary.light)
   };
@@ -79,6 +81,9 @@ const GlobalMenuItemDiv = styled.div`
     justify-content: start;
     padding: 16px;
   }
+
+  /** a11y */
+  ${GlobalMenuItemBase}
 `;
 
 const LabelDiv = styled.div`

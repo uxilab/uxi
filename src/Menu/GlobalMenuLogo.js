@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
-import defaults from './defaults';
+import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
 import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
 
 const {
@@ -22,7 +22,9 @@ const getIconColor = ({ isSelected, isActive }) => {
 };
 
 
-const GlobalMenuLogoDiv = styled.div`
+const GlobalMenuLogoDiv = styled.button`
+  ${buttonReset};
+
   height: 48px; /* harcoding height because */
   display: flex;
   align-items: center;
@@ -53,6 +55,9 @@ const GlobalMenuLogoDiv = styled.div`
     padding: 16px;
     justify-content: flex-start;
   }
+
+  /** a11y */
+  ${GlobalMenuItemBase}
 `;
 
 const LabelDiv = styled.div`
