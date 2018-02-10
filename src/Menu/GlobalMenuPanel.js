@@ -33,7 +33,7 @@ const getLeft = ({ isOpen, width, fullWidth }, breakpoint) => {
   }
 
   if (!isOpen && !width && !fullWidth) {
-    return `${400 + 125}px`;
+    return `-${400 + 125}px`;
   }
 
   return '-100%';

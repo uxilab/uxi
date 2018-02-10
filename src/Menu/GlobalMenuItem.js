@@ -36,16 +36,16 @@ const GlobalMenuItemDiv = styled.div`
   position: relative;
   border-right: ${({ isSelected }) => (isSelected ?
     `${borderThickness} solid #0ea4a5` : `${borderThickness} solid transparent`)
-};
+  }
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
-  transition: color ${({ theme: { transition } }) => transition.default};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
   &:hover {
     background: ${({ isSelected, theme: { palette } }) =>
     (isSelected ? palette.primary.main : palette.primary.light)
-};
+  }
     *:not(svg) {
       color: ${({ theme: { palette } }) => palette.pureWhite};
-      transition: color ${({ theme: { transition } }) => transition.default};
+      transition: ${({ theme: { transition } }) => transition.defaultAll};
     }
     svg {
       fill: #fff;
