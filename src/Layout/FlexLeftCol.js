@@ -1,5 +1,6 @@
 import Flex from './Flex';
 
+// TODO: would using flexbasis allow for auto transitionalbe layout ?
 const FlexLeftCol = Flex.extend`
   & > *:first-child {
     flex-grow: 0;

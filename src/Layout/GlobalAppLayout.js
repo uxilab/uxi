@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { Flex, FlexLeftCol, AppLayout } from 'uxi/Layout';
 import defaults from '../Menu/defaults'; // TODO bring into theme
 
+// TODO: would using flexbasis allow for auto transitionalbe layout ?
+
+
 const {
   breakpoint,
   menuWidth,

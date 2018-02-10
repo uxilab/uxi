@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// TODO: would using flexbasis allow for auto transitionalbe layout ?
 export const Flex = styled.div`
   background: transparent;
   display: flex;

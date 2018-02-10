@@ -14,6 +14,7 @@ import styled from 'styled-components';
  * you need to constrict/constrain the available space yourself
  */
 
+// TODO: would using flexbasis allow for auto transitionalbe layout ?
 const AppLayout = styled.div`
   height: 100%;
 	display: flex;
