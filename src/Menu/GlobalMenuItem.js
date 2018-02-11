@@ -27,26 +27,10 @@ const fadeIn = keyframes`
   100% { opacity: 1 }
 `;
 
-const growIn = keyframes`
-  0% {
-    height: 0;
-    max-height: 0px;
-  }
-  100% {
-    height: auto;
-    max-height: 60px;
-  }
-`;
-
-
 const GlobalMenuItemDiv = styled.button`
   ${buttonReset};
 
   animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}`};
-  /**
-   * this one is not working well enough
-   * , ${growIn} ${({ theme }) => `${theme.transition.default}`};
-   */
   display: flex;
   align-items: center;
   justify-content: center;

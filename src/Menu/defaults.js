@@ -8,6 +8,8 @@ export const defaults = {
 };
 
 export const buttonReset = css`
+  box-sizing: border-box;
+  width: 100%;
   border: none;
   background: transparent;
   border-radius: 0;

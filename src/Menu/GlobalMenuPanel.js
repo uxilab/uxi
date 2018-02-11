@@ -143,7 +143,6 @@ class GlobalMenuPanel extends Component {
         : { tabIndex: 0, 'aria-hidden': 'false' }
       ),
     };
-    console.log(attributes);
 
     return (
       <GlobalMenuPanelWrapper
