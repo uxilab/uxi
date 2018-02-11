@@ -42,7 +42,8 @@ const GlobalMenuWrapper = ({
             isActive={child.isActive}
             onClick={child.onClick}
             hasNew={child.hasNew}
-            label={child.displayName}
+            content={child.content}
+            displayName={child.displayName}
             index={child.key}
             primaryColor={primaryColor}
           />,

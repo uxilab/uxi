@@ -140,7 +140,7 @@ class GlobalMenuPanel extends Component {
     const attributes = {
       ...(!isOpen
         ? { tabIndex: -1, 'aria-hidden': 'true' }
-        : { tabIndex: 0, 'aria-hidden': 'false' }
+        : { tabIndex: 0, autofocus: "true"}
       ),
     };
 

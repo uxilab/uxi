@@ -32,7 +32,14 @@ const GlobalMenuSubItemDiv = styled.div`
   padding: ${({ isParentSelected }) => isParentSelected ? '16px 32px' : '0 32px' };
   cursor: pointer;
   background: ${({ theme: { palette } }) => palette.primary.dark };
-  color: ${({ isSelected }) => (isSelected ? '#0ea4a5' : 'none')};
+  color: ${({ isSelected, theme: { palette } }) => (
+    isSelected ? palette.accent.light : palette.lightGrey
+    )};
+  a { 
+    color: ${({ isSelected, theme: { palette } }) => (
+      isSelected ? palette.accent.light : palette.lightGrey
+    )}
+    };
   height: 0px;
   max-height: 0px;
   max-height: ${({ isParentSelected }) => isParentSelected ? '60px' : '0px' };
@@ -44,11 +51,15 @@ const GlobalMenuSubItemDiv = styled.div`
   };
 
   &:hover {
+    & a { color: #fff; }
     color: #fff;
-    background: ${({ theme: { palette }}) => palette.primary.light};
+    background: ${({ isSelected, theme: { palette }}) => (
+      isSelected ? palette.primary.dark : palette.primary.light
+    )};
   }
 
   &:focus {
+    & a { color: #fff; }
     transition: inherit;
     background: ${({ isSelected, theme: { palette } }) =>
       (isSelected ? palette.primary.dark : palette.primary.light)
@@ -68,7 +79,7 @@ const GlobalMenuSubItemDiv = styled.div`
   ${props => getAccessibilityRules(props)};
 `;
 
-const GlobalMenuSubItem = ({ label, onClick, isSelected, isParentSelected }) => {
+const GlobalMenuSubItem = ({ content, onClick, isSelected, isParentSelected }) => {
   const attributes = {
     ...(!isParentSelected
       ? { tabIndex: -1, 'aria-hidden': 'true', role: 'navigation' }
@@ -83,9 +94,11 @@ const GlobalMenuSubItem = ({ label, onClick, isSelected, isParentSelected }) => 
       isSelected={isSelected}
       {...attributes}
     >
-      {label}
+      {content}
     </GlobalMenuSubItemDiv>
   );
 };
+
+GlobalMenuSubItem.displayName = 'GlobalMenuSubItem';
 
 export default GlobalMenuSubItem;

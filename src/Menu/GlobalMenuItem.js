@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled, { keyframes } from 'styled-components';
@@ -47,15 +47,29 @@ const GlobalMenuItemDiv = styled.button`
   border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
     `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
   };
-  background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
+  background: ${({ isSelected, theme: { palette }  }) => palette.primary.main};
+  /* background: ${({ isActive, isSelected, theme: { palette }  }) => (
+    isSelected
+      ? (isActive
+        ? palette.primary.main
+        : palette.primary.light // child is slelected, means we can navigate there
+      )
+      : 'none'
+  )}; */
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 
   &:hover {
     transition: inherit;
     color: ${({ theme: { palette } }) => palette.pureWhite };
-    background: ${({ isSelected, theme: { palette } }) =>
-      (isSelected ? palette.primary.main : palette.primary.light)
-    };
+    background: ${({ isActive, isSelected, theme: { palette } }) => (
+      /* (isSelected ? palette.primary.main : palette.primary.light) */
+      isSelected
+        ? (isActive
+          ? palette.primary.main
+          : palette.primary.light // child is slelected, means we can navigate there
+        )
+        : palette.primary.light
+    )};
     svg {
       fill: #fff;
     }
@@ -63,9 +77,13 @@ const GlobalMenuItemDiv = styled.button`
 
   &:focus {
     transition: inherit;
-    background: ${({ isSelected, theme: { palette } }) =>
+    color: ${({ isActive, theme: { palette } }) => (
+      isActive ? 'inherit' : palette.pureWhite
+    )};
+
+    background: ${({ isActive, isSelected, theme: { palette } }) => (
       (isSelected ? palette.primary.main : palette.primary.light)
-    };
+    )};
     color: ${({ isSelected, isActive, theme: { palette } }) =>
       (isSelected || isActive) ? palette.accent.light : palette.pureWhite
     };
@@ -75,6 +93,19 @@ const GlobalMenuItemDiv = styled.button`
       };
     }
   }
+  /*
+  prevent click issue
+  TODO find bvetter solutino
+   */
+  /* &:focus:hover
+  ,&:focus:active
+  ,&:hover:active
+  ,&:focus:not(:hover)
+  {
+    background: ${({ isActive, isSelected, theme: { palette } }) => (
+      isSelected ? palette.primary.main : palette.primary.main
+    )} !important
+  }; */
 
   svg {
     fill: ${props => (getIconColor(props))};
@@ -117,16 +148,18 @@ const NewInfo = styled.div`
     transform: translate(0, -50%);
 `;
 
-const GlobalMenuItem = ({
-  isSelected,
-  Icon,
-  index,
-  hasNew,
-  label,
-  onClick,
-  isActive,
-  primaryColor,
-}) => {
+const GlobalMenuItem = props => {
+  const {
+    isSelected,
+    Icon,
+    index,
+    hasNew,
+    label,
+    onClick,
+    isActive,
+    primaryColor,
+  } = props;
+
   let containerStyle;
   let isNewContent;
 
@@ -165,7 +198,7 @@ const GlobalMenuItem = ({
       </Tooltip>
     </PropsMapperMediaQueriesHOC>
   );
-};
+}
 
 GlobalMenuItem.displayName = 'GlobalMenuItem';
 
