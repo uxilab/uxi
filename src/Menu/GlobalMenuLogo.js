@@ -29,7 +29,11 @@ const GlobalMenuLogoDiv = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ isSelected }) => (isSelected ? '#fff' : '#c2c2c2')};
+  color: ${({ isSelected, isActive, theme }) =>
+    (isSelected || isActive)
+      ? theme.palette.pureWhite
+      : theme.palette.lightGrey
+  };
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
@@ -37,23 +41,36 @@ const GlobalMenuLogoDiv = styled.button`
   padding: 16px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.dark};
-  transition: color ${({ theme: { transition } }) => transition.default};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+
   &:hover {
-    *:not(svg) {
-      color: ${({ theme: { palette } }) => palette.pureWhite};
-      transition: color ${({ theme: { transition } }) => transition.default};
-    }
+    color: ${({ theme: { palette } }) => palette.pureWhite};
+    background: ${({ isActive, isSelected, theme: { palette } }) =>
+    (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
+    };
+    transition: inherit;
     svg {
       fill: #fff;
-      /* svg already trnasitionn automatically */
     }
   }
+  &:focus {
+    color: ${({ theme: { palette } }) => palette.pureWhite};
+    transition: inherit;
+    background: ${({ isActive, isSelected, theme: { palette } }) =>
+      (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
+    };
+    svg {
+      fill: #fff;
+    }
+  }
+
+
   svg {
     fill: ${props => (getIconColor(props))};
   }
   @media (min-width: ${breakpoint}) {
-    padding: 16px;
     justify-content: flex-start;
+    padding: 0 16px;
   }
 
   /** a11y */
@@ -75,6 +92,7 @@ const GlobalMenuLogo = ({
   onClick,
   primaryColor,
   logoTooltipLabel,
+  isActive,
 }) => {
   let containerStyle;
   let isNewContent;
@@ -94,6 +112,7 @@ const GlobalMenuLogo = ({
           key={`mainMenuItemContainer-${label}`}
           style={containerStyle}
           onClick={onClick}
+          isActive={isActive}
         >
           {icon}
           <LabelDiv> {label} </LabelDiv>

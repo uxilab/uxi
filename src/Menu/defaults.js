@@ -17,15 +17,20 @@ export const buttonReset = css`
 
 export const GlobalMenuItemBase = css`
   /** a11y */
-  &:focus { outline: ${({ isActive, isSelected }) => (
+
+  /* No need for ugly outline, we update background color on interaction */
+  /* &:focus { outline: ${({ isActive, isSelected }) => (
     (isActive || isSelected) ? 'none' : '1px solid inherit')}
-  };
+  }; */
+
   /* &:active { filter: saturate(120%) brightness(120%) } */
-  &:hover,
+
+  /* &:hover,
   &:active,
   &:hover:active,
   &:focus:active,
-  { outline: none; }
+  { outline: none; } */
+  & { outline: none; }
 `;
 
 export default defaults;

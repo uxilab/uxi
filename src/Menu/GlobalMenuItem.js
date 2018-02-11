@@ -50,35 +50,55 @@ const GlobalMenuItemDiv = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ isSelected }) => (isSelected ? '#fff' : '#c2c2c2')};
+  color: ${({ isSelected, theme: { palette } }) =>
+    (isSelected ? palette.accent.light : '#c2c2c2')
+  };
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
   margin: 0 auto;
-  padding: ${`16px 0 16px ${borderThickness}`};
+  /* padding: ${`16px 0 16px ${borderThickness}`}; */
+  padding: 16px 0;
   position: relative;
-  border-right: ${({ isSelected }) => (isSelected ?
-    `${borderThickness} solid #0ea4a5` : `${borderThickness} solid transparent`)
-};
+  border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
+    `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
+  };
   background: ${({ isSelected }) => (isSelected ? '#1b3c4f' : 'none')};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
-  &:hover, &:focus {
+
+  &:hover {
+    transition: inherit;
+    color: ${({ theme: { palette } }) => palette.pureWhite };
     background: ${({ isSelected, theme: { palette } }) =>
-    (isSelected ? palette.primary.main : palette.primary.light)
-};
-    *:not(svg) {
-      color: ${({ theme: { palette } }) => palette.pureWhite};
-      transition: ${({ theme: { transition } }) => transition.defaultAll};
-    }
+      (isSelected ? palette.primary.main : palette.primary.light)
+    };
     svg {
       fill: #fff;
     }
   }
+
+  &:focus {
+    transition: inherit;
+    background: ${({ isSelected, theme: { palette } }) =>
+      (isSelected ? palette.primary.main : palette.primary.light)
+    };
+    color: ${({ isSelected, isActive, theme: { palette } }) =>
+      (isSelected || isActive) ? palette.accent.light : palette.pureWhite
+    };
+    svg {
+      fill: ${({ isSelected, isActive, theme: { palette } }) =>
+        (isSelected || isActive) ? palette.accent.light : palette.pureWhite
+      };
+    }
+  }
+
   svg {
     fill: ${props => (getIconColor(props))};
   }
+
   @media (min-width: ${breakpoint}) {
     justify-content: start;
+    padding: ${`16px 0 16px ${borderThickness}`};
     padding: 16px;
   }
 

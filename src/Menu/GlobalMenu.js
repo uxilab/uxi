@@ -114,11 +114,20 @@ class GlobalMenu extends Component {
     const theLogo = (
       <GlobalMenuLogo
         key={'GlobalMenuMainLogo'}
-        onClick={onLogoClick}
         label={(logoText || '')}
         icon={logoIcon}
         primaryColor={'red'}
         logoTooltipLabel={logoTooltipLabel}
+        activeKey={active}
+        isActive={(active === 'GlobalMenuMainLogo')}
+        onClick={onLogoClick}
+        onClick={() => {
+          this.changeSelected('GlobalMenuMainLogo');
+            if (onLogoClick) {
+              onLogoClick();
+            }
+          }
+        }
       />
     );
 
