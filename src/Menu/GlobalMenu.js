@@ -62,8 +62,14 @@ class GlobalMenu extends Component {
           if (isChildrenSelected) {
             isMenuSelected = true;
           }
+          const {
+            children, // single sublevel for now
+            ...menuDescriptorProps,
+          } = menuDescriptor
+
           menuDescriptorChildren.push({
-            ...menuDescriptor,
+            ...menuDescriptorProps,
+            ...m, // not react children
             isSelected: isChildrenSelected,
             isOpen: !!(isChildrenSelected && m.panel && m.panel.Content),
             onClick: () => {
@@ -88,6 +94,8 @@ class GlobalMenu extends Component {
         children: menuDescriptorChildren,
       };
     });
+    console.log('menuDescriptorWithActiveAndSelected')
+    console.log(menuDescriptorWithActiveAndSelected)
 
     const menuDescriptorsPanel = (menuDescriptorWithActiveAndSelected || [])
       .map((menuDescriptor) => {
