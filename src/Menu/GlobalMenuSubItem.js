@@ -20,8 +20,9 @@ const fadeIn = keyframes`
 `;
 
 
-const GlobalMenuSubItemDiv = styled.div`
+const GlobalMenuSubItemDiv = styled.button`
   ${buttonReset};
+  display: flex;
 
   animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}`};
 

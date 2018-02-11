@@ -86,18 +86,18 @@ class ExampleSimple extends Component {
         key: 'GDPR',
         hasNew: true,
         Icon: Padlock,
-        Content: () => (<a style={{ outline: 'none' }} href="#" >GDPR</a>),
+        Content: () => (<a tabIndex="-1" style={{ outline: 'none' }} href="#" >GDPR</a>),
         onClick: () => { console.log('GDPR'); },
         children: [
           {
             key: 'viewAllRequest',
             displayName: 'View all request',
-            content: <a href="#" >View all request</a>,
+            content: <a tabIndex="-1" style={{ outline: 'none' }} href="#" >View all request</a>,
           },
           {
             key: 'GDPRConfiguration',
             displayName: 'GDPR Configuration',
-            content: <a style={{ outline: 'none' }} href="#" >GDPR Configuration</a>,
+            content: <a tabIndex="-1" style={{ outline: 'none' }} href="#" >GDPR Configuration</a>,
           },
         ]
       },
