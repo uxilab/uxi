@@ -43,8 +43,10 @@ class GlobalMenu extends Component {
       attachToViewport,
       style,
       innerStyle,
-      fullViewportWidthPanel,
+      fullViewportWidthPanel: fullViewportWidthPanelProp,
     } = this.props;
+
+    const fullViewportWidthPanel = attachToViewport ? true : fullViewportWidthPanelProp;
 
     const {
       selected,
@@ -97,27 +99,30 @@ class GlobalMenu extends Component {
     console.log('menuDescriptorWithActiveAndSelected')
     console.log(menuDescriptorWithActiveAndSelected)
 
-    const menuDescriptorsPanel = (menuDescriptorWithActiveAndSelected || [])
-      .map((menuDescriptor) => {
-        if (menuDescriptor && menuDescriptor.panel) {
-          return (
-            <GlobalMenuPanel
-              key={menuDescriptor.key}
-              onClickOutside={() => { this.handleClickOutside(menuDescriptor.key); }}
-              Title={menuDescriptor.panel.Title}
-              Content={menuDescriptor.panel.Content}
-              Action={menuDescriptor.panel.Action}
-              width={menuDescriptor.panel.width}
-              fullWidth={menuDescriptor.panel.fullWidth}
-              isOpen={menuDescriptor.isOpen}
-              attachToViewport={attachToViewport}
-              fullViewportWidthPanel={fullViewportWidthPanel}
-            />
-          );
-        }
+    // const menuDescriptorWithActiveAndSelectedAndAttachedPanels = (menuDescriptorWithActiveAndSelected || [])
+    //   .map((menuDescriptor) => {
+    //     if (menuDescriptor && menuDescriptor.panel) {
+    //       return {
+    //         ...menuDescriptor,
+    //         panelComputedContent: (
+    //           <GlobalMenuPanel
+    //             key={menuDescriptor.key}
+    //             onClickOutside={() => { this.handleClickOutside(menuDescriptor.key); }}
+    //             Title={menuDescriptor.panel.Title}
+    //             Content={menuDescriptor.panel.Content}
+    //             Action={menuDescriptor.panel.Action}
+    //             width={menuDescriptor.panel.width}
+    //             fullWidth={menuDescriptor.panel.fullWidth}
+    //             isOpen={menuDescriptor.isOpen}
+    //             attachToViewport={attachToViewport}
+    //             fullViewportWidthPanel={fullViewportWidthPanel}
+    //           />
+    //         ),
+    //       }
+    //     }
 
-        return null;
-      });
+    //     return menuDescriptor;
+    //   });
 
     const theLogo = (
       <GlobalMenuLogo
@@ -155,12 +160,13 @@ class GlobalMenu extends Component {
             attachToViewport={attachToViewport}
             innerStyle={innerStyle}
             fullViewportWidthPanel={fullViewportWidthPanel}
+            handlePanelClickOutside={this.handleClickOutside.bind(this)}
           />
 
           {/* This wrapper div creates the context to wrap the 'fixed' panels
               which allow us to control the stacking order */}
           <div>
-            {menuDescriptorsPanel}
+            {/* {menuDescriptorsPanel} */}
           </div>
         </div>
       </div>

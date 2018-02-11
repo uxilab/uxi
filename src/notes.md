@@ -4,7 +4,9 @@ z-index map :
 
 * 0 body
 * ...
-* 98 GlobalMenuPanel
-* 99 GlobalMenuContainer
+* 96 GlobalMenuPanel
+* 97 FlexExtended
+* 98 GlobalMenuSubItem
+* 99 GlobalMenuItem
 ___
 * 100 and above popup, modal etc.

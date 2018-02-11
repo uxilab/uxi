@@ -25,6 +25,7 @@ const getIconColor = ({ isSelected, isActive }) => {
 const GlobalMenuLogoDiv = styled.button`
   ${buttonReset};
 
+  z-index: 99;
   height: 48px; /* harcoding height because */
   display: flex;
   align-items: center;

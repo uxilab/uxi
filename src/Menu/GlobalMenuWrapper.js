@@ -3,6 +3,19 @@ import PropTypes from 'prop-types';
 import GlobalMenuContainer from './GlobalMenuContainer';
 import GlobalMenuItem from './GlobalMenuItem';
 import GlobalMenuSubItem from './GlobalMenuSubItem';
+import GlobalMenuPanel from './GlobalMenuPanel';
+import { Flex, FlexLeftCol } from '../Layout';
+
+const FlexExtended = Flex.extend`
+  position: absolute;
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 97;
+  height: 100%;
+  background: ${({ theme: { palette }}) => palette.primary.main};
+`;
 
 const GlobalMenuWrapper = ({
   selectedKey,
@@ -14,10 +27,14 @@ const GlobalMenuWrapper = ({
   attachToViewport,
   innerStyle,
   fullViewportWidthPanel,
+  handlePanelClickOutside,
 }) => {
   const menuDescriptorsContent = [];
 
   (menuDescriptors || []).forEach((menuDescriptor) => {
+
+
+
     menuDescriptorsContent.push(
       <GlobalMenuItem
         key={menuDescriptor.key}
@@ -50,7 +67,31 @@ const GlobalMenuWrapper = ({
         );
       });
     }
+
+    if (menuDescriptor && menuDescriptor.panel) {
+      menuDescriptorsContent.push(
+        /* this wrapper div required for layout context */
+        <div>
+          <GlobalMenuPanel
+            key={menuDescriptor.key}
+            onClickOutside={() => { handlePanelClickOutside(menuDescriptor.key); }}
+            Title={menuDescriptor.panel.Title}
+            Content={menuDescriptor.panel.Content}
+            Action={menuDescriptor.panel.Action}
+            width={menuDescriptor.panel.width}
+            fullWidth={menuDescriptor.panel.fullWidth}
+            isOpen={menuDescriptor.key === activeKey}
+            attachToViewport={attachToViewport}
+            fullViewportWidthPanel={fullViewportWidthPanel}
+          />
+        </div>
+      )
+    }
+
   });
+
+  const gapFiller = <FlexExtended />
+  // menuDescriptorsContent.push(gapFiller);
 
   return (
     <GlobalMenuContainer
@@ -61,6 +102,7 @@ const GlobalMenuWrapper = ({
     >
       {logo}
       {menuDescriptorsContent}
+      {fullViewportWidthPanel && gapFiller}
     </GlobalMenuContainer>
   );
 };

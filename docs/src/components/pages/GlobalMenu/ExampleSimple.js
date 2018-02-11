@@ -38,7 +38,7 @@ class ExampleSimple extends Component {
     super(props);
     this.state = {
       color: '#ff0000',
-      attachToViewport: false,
+      attachToViewport: true,
     };
   }
   onLogoClickHandler() {

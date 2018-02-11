@@ -30,6 +30,8 @@ const fadeIn = keyframes`
 const GlobalMenuItemDiv = styled.button`
   ${buttonReset};
 
+  z-index: 99;
+
   animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}`};
   display: flex;
   align-items: center;

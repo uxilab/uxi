@@ -18,9 +18,10 @@ const getWidth = ({ isOpen, width, fullWidth, attachToViewport, fullViewportWidt
   const unit = fullViewportWidthPanel ? 'vw' : '%';
 
   if (fullWidth) {
-    // if (attachToViewport) {
-    //   return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
+    // if (fullViewportWidthPanel) {
+      // return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
     // }
+    // return '100%';
     return `calc(100${unit} - ${theMenuWidth})`;
   }
 
@@ -65,17 +66,18 @@ const GlobalMenuPanelWrapper = styled.div`
   border-right: 1px solid #ececec;
   border-left: 1px solid #ececec;
   transition: width 0.3s ease-in-out 0.3s, opacity 0.3s ease-in-out 0.3s;
-  z-index: 98;
+  z-index: 90;
   overflow-x: hidden;
   overflow-y: scroll;
-  width: ${({ width }) => width}; /* in case auto was passed */
+  width: ${({panelWidth }) => `${panelWidth}px`}; /* in case 680 was passed */
+  width: ${({panelWidth }) => panelWidth}; /* in case auto was passed */
   width: ${props => getWidth(props)};
   will-change: transform;
   transform: ${props => getTransform(props)};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 
   @media (min-width: ${breakpoint}) {
-    width: ${({ width }) => width}; /* in case auto was passed */
+    width: ${({ panelWidth }) => panelWidth}; /* in case auto was passed */
     width: ${props => getWidth(props, 'desktop')};
     transform: ${props => getTransform(props, 'desktop')};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
@@ -148,7 +150,7 @@ class GlobalMenuPanel extends Component {
       <GlobalMenuPanelWrapper
         className="rc-GlobalMenuPanelWrapper"
         isOpen={isOpen}
-        width={width}
+        panelWidth={width}
         fullWidth={fullWidth}
         attachToViewport={attachToViewport}
         fullViewportWidthPanel={fullViewportWidthPanel}

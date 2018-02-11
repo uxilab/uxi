@@ -24,6 +24,9 @@ const GlobalMenuSubItemDiv = styled.button`
   ${buttonReset};
   display: flex;
 
+  z-index: 98;
+  position: relative;
+
   animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}`};
 
   overflow: hidden;
