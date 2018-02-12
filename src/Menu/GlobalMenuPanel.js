@@ -13,7 +13,7 @@ const {
 } = defaults;
 
 
-const getWidth = ({ isOpen, width, fullWidth, attachToViewport, fullViewportWidthPanel }, breakpoint) => {
+const getWidth = ({ isOpen, panelWidth, fullWidth, attachToViewport, fullViewportWidthPanel }, breakpoint) => {
   const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
   const unit = fullViewportWidthPanel ? 'vw' : '%';
 
@@ -26,11 +26,11 @@ const getWidth = ({ isOpen, width, fullWidth, attachToViewport, fullViewportWidt
   }
 
 
-  return `${width}px`;
+  return `${panelWidth}px`;
 };
 
-const getTransform = ({ width, fullWidth, isOpen }, breakpoint) => {
-  let x = width;
+const getTransform = ({ panelWidth, fullWidth, isOpen }, breakpoint) => {
+  let x = panelWidth;
   const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
 
   if (isOpen) {
@@ -40,9 +40,11 @@ const getTransform = ({ width, fullWidth, isOpen }, breakpoint) => {
       x = menuWidth;
     }
   } else if (fullWidth) {
-    x = `calc(-100vh - ${theMenuWidth})`;
+    // x = `calc(-100vh - ${theMenuWidth})`;
+    x = `-100vh`;
   } else {
-    x = `calc(-${width}px)`;
+    // x = `calc(-${width}px)`;
+    x = `-${panelWidth}px`;
   }
 
   return `translate3d(${x}, 0, 0)`;
@@ -69,9 +71,9 @@ const GlobalMenuPanelWrapper = styled.div`
   z-index: 90;
   overflow-x: hidden;
   overflow-y: scroll;
-  width: ${({panelWidth }) => `${panelWidth}px`}; /* in case 680 was passed */
-  width: ${({panelWidth }) => panelWidth}; /* in case auto was passed */
-  width: ${props => getWidth(props)};
+  width: ${({ panelWidth }) => `${panelWidth}px`}; /* in case 680 was passed */
+  width: ${({ panelWidth }) => panelWidth}; /* in case auto was passed */
+  width: ${ props => getWidth(props)};
   will-change: transform;
   transform: ${props => getTransform(props)};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
