@@ -27,9 +27,11 @@ class GlobalMenu extends Component {
 
   handleClickOutside(value) {
     const newSelectedKeyValue = (value === this.state.selected) ? '' : this.state.selected;
+    const newSelectedActiveKeyValue = (value === this.state.selected) ? '' : this.state.selected;
 
     this.setState({
       selected: newSelectedKeyValue,
+      active: newSelectedActiveKeyValue,
     });
   }
 
@@ -96,33 +98,6 @@ class GlobalMenu extends Component {
         children: menuDescriptorChildren,
       };
     });
-    console.log('menuDescriptorWithActiveAndSelected')
-    console.log(menuDescriptorWithActiveAndSelected)
-
-    // const menuDescriptorWithActiveAndSelectedAndAttachedPanels = (menuDescriptorWithActiveAndSelected || [])
-    //   .map((menuDescriptor) => {
-    //     if (menuDescriptor && menuDescriptor.panel) {
-    //       return {
-    //         ...menuDescriptor,
-    //         panelComputedContent: (
-    //           <GlobalMenuPanel
-    //             key={menuDescriptor.key}
-    //             onClickOutside={() => { this.handleClickOutside(menuDescriptor.key); }}
-    //             Title={menuDescriptor.panel.Title}
-    //             Content={menuDescriptor.panel.Content}
-    //             Action={menuDescriptor.panel.Action}
-    //             width={menuDescriptor.panel.width}
-    //             fullWidth={menuDescriptor.panel.fullWidth}
-    //             isOpen={menuDescriptor.isOpen}
-    //             attachToViewport={attachToViewport}
-    //             fullViewportWidthPanel={fullViewportWidthPanel}
-    //           />
-    //         ),
-    //       }
-    //     }
-
-    //     return menuDescriptor;
-    //   });
 
     const theLogo = (
       <GlobalMenuLogo
@@ -165,9 +140,9 @@ class GlobalMenu extends Component {
 
           {/* This wrapper div creates the context to wrap the 'fixed' panels
               which allow us to control the stacking order */}
-          <div>
+          {/* <div> */}
             {/* {menuDescriptorsPanel} */}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     );
