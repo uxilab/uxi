@@ -9,4 +9,6 @@ z-index map :
 * 98 GlobalMenuSubItem
 * 99 GlobalMenuItem
 ___
-* 100 and above popup, modal etc.
+(* 100 and above popup, modal etc.)
+
+* 200-150 Dialog
