@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TableRowCheckedCell from './TableRowCheckedCell';
 
-const TableBodyStyle = {
-  container: {},
-};
 
 class TableBody extends Component {
   static componentName = 'TableBody';
@@ -94,7 +91,7 @@ class TableBody extends Component {
   render() {
     const { style } = this.props;
     return (
-      <tbody style={{ ...TableBodyStyle.container, ...style }}>
+      <tbody style={ style }>
         {this.createRows()}
       </tbody>
     );
