@@ -57,23 +57,23 @@ class Badge extends Component {
 
   render() {
     const { type, style, rounded } = this.props;
-    const mergedStyle = Object.assign({}, BadgeStyle.badge, style);
-    const classNames = [mergedStyle];
+    let mergedStyle = Object.assign({}, BadgeStyle.badge, style);
+    // const classNames = [mergedStyle];
 
     if (type === 'error') {
-      classNames.push(BadgeStyle.error);
+      mergedStyle = { ...mergedStyle, ...BadgeStyle.error };
     } else if (type === 'warning') {
-      classNames.push(BadgeStyle.warning);
+      mergedStyle = { ...mergedStyle, ...BadgeStyle.warning };
     } else if (type === 'success') {
-      classNames.push(BadgeStyle.success);
+      mergedStyle = { ...mergedStyle, ...BadgeStyle.success };
     } else if (type === 'info') {
-      classNames.push(BadgeStyle.info);
+      mergedStyle = { ...mergedStyle, ...BadgeStyle.info };
     } else {
-      classNames.push(BadgeStyle.default);
+      mergedStyle = { ...mergedStyle, ...BadgeStyle.default };
     }
 
     return (
-      <div style={classNames}>
+      <div style={mergedStyle}>
         {this.props.children}
       </div>
     );
