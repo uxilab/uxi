@@ -18,7 +18,9 @@ const SwitchOutterWrapper = styled.div`
   border: 1px solid transparent;
   position: relative;
   transition: background-color .3s ease-out;
-  margin: 0 6px 0 0;
+  margin:${({ label, labelBefore }) => (
+    label ? (labelBefore ? '0 0 0 6px' : '0 6px 0 0') : 0
+  )};
   background-color: ${({ checked }) => (!checked ? '#9a9a9a' : '#26a29a')};
   background-color: ${({ theme, checked }) => (!checked ? theme.palette.grey : theme.palette.accent.main)};
   &:before, &:after {
@@ -55,6 +57,11 @@ const SwitchInnerWrapper = styled.div`
   /* right: ${({ checked }) => (!checked ? 'auto' : 0)}; */
 `;
 
+const LabelTextWrapper = styled.div`
+  margin:${({ label, labelBefore }) => (
+    label ? (labelBefore ? '0 6px 0 0' : '0 0 0 6px') : 0
+  )};
+`;
 
 const styles = {
   outterWrapper: {
@@ -62,9 +69,6 @@ const styles = {
   },
   input: {
     display: 'none',
-  },
-  label: {
-    margin: '0 6px 0 0',
   },
 };
 
@@ -116,9 +120,9 @@ class Switch extends PureComponent {
           <SwitchOutterWrapper checked={checker} disabled={disabled}>
             <SwitchInnerWrapper checked={checker} disabled={disabled} />
           </SwitchOutterWrapper>
-          <div style={styles.label}>
+          <LabelTextWrapper label={label} labelBefore={labelBefore}>
             {label}
-          </div>
+          </LabelTextWrapper>
         </LabelWrapper>
         <input id={name || 'myAwesomeCheckBox'} style={styles.input} type="checkbox" />
       </div>
