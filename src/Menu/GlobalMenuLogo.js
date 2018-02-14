@@ -41,7 +41,7 @@ const GlobalMenuLogoDiv = styled.button`
   margin: 0 auto;
   padding: 8px 0;
   position: relative;
-  background: ${({ theme: { palette } }) => palette.primary.dark};
+  background: ${({ theme: { palette } }) => palette.primary.main || '#1b3c4f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 
   &:hover {

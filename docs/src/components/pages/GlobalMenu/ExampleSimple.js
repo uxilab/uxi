@@ -178,7 +178,17 @@ class ExampleSimple extends Component {
     )
 
     return (
-      <div>
+      // Simulate cluedin rules .root a
+      <div className="root">
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .root a {
+              cursor: pointer;
+              text-decoration: none;
+              color: #06979e;
+          }`
+        }} >
+        </style>
 
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>

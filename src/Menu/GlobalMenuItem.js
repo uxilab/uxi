@@ -49,7 +49,7 @@ const GlobalMenuItemDiv = styled.button`
   border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
     `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
   };
-  background: ${({ isSelected, theme: { palette }  }) => palette.primary.main};
+  background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
   /* background: ${({ isActive, isSelected, theme: { palette }  }) => (
     isSelected
       ? (isActive

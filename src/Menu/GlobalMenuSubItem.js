@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
+import { darken } from '../Theme/colorManipulator';
 
 const {
   breakpoint,
@@ -29,21 +30,32 @@ const GlobalMenuSubItemDiv = styled.button`
 
   animation: ${fadeIn} ${({ theme }) => `${theme.transition.default}`};
 
+  & > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+
   overflow: hidden;
   color: #9a9fa5;
   text-align: left;
-  padding: 16px 32px;
-  padding: ${({ isParentSelected }) => isParentSelected ? '16px 32px' : '0 32px' };
+  padding: 16px 32px 4px 32px;
+  padding: ${({ isParentSelected }) => isParentSelected ? '16px 4px 16px 32px' : '0 32px' };
   cursor: pointer;
-  background: ${({ theme: { palette } }) => palette.primary.dark };
+  background: ${({ theme: { palette } }) => darken(palette.primary.dark) };
   color: ${({ isSelected, theme: { palette } }) => (
     isSelected ? palette.accent.light : palette.lightGrey
-    )};
-  a { 
-    color: ${({ isSelected, theme: { palette } }) => (
-      isSelected ? palette.accent.light : palette.lightGrey
+)};
+
+  a,
+  /* TODO fix tihs .root a situation */
+  .root & a { 
+    color: ${({ isSelected, isActive, theme: { palette } }) => (
+      isSelected || isActive ? palette.accent.light : palette.lightGrey
     )}
-    };
+  };
   height: 0px;
   max-height: 0px;
   max-height: ${({ isParentSelected }) => isParentSelected ? '60px' : '0px' };
@@ -54,13 +66,12 @@ const GlobalMenuSubItemDiv = styled.button`
     `${borderThickness} solid #0ea4a5` : `0 solid transparent`
   };
 
-  &:hover {
-    & a { color: #fff; }
+  & a, & a:hover {
+    text-decoration: none;
     color: #fff;
-    background: ${({ isSelected, theme: { palette }}) => (
-      isSelected ? palette.primary.dark : palette.primary.light
-    )};
+
   }
+
 
   &:focus {
     & a { color: #fff; }
@@ -71,6 +82,22 @@ const GlobalMenuSubItemDiv = styled.button`
     color: ${({ isSelected, isActive, theme: { palette } }) =>
       (isSelected || isActive) ? palette.accent.light : palette.pureWhite
     };
+  }
+
+  &:hover, &:hover:focus, &:hover:not(:focus) {
+    /* color: #fff; */
+    color: ${({ isSelected, isActive, theme: { palette }}) => (
+      isSelected || isActive ? palette.accent.light : palette.pureWhite
+    )};
+
+    background: ${({ isSelected, isActive, theme: { palette }}) => (
+      isSelected || isActive ? darken(palette.primary.dark) : palette.primary.light
+    )};
+    & a {
+       color: ${({ isSelected, isActive, theme: { palette } }) => (
+        isSelected || isActive ? palette.accent.light : palette.pureWhite
+      )};
+     }
   }
 
 

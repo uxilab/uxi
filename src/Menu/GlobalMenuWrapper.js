@@ -14,7 +14,7 @@ const FlexExtended = Flex.extend`
   bottom: 0;
   z-index: 97;
   height: 100%;
-  background: ${({ theme: { palette }}) => palette.primary.main};
+  background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};
 `;
 
 const GlobalMenuWrapper = ({
