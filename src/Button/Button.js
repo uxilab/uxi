@@ -138,11 +138,15 @@ class Button extends Component {
       },
     };
     const marginStyles = {
+      display: 'inline-block',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       ...('margin' in style ? {  margin: style.margin } : {}),
       ...('marginTop' in style ? {  marginTop: style.marginTop } : {}),
       ...('marginRight' in style ? {  marginRight: style.marginRight } : {}),
       ...('marginBottom' in style ? {  marginBottom: style.marginBottom } : {}),
-      ...('marginLeft' in style ? {  marginLeft: style.marginLeft } : {}),
+      ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {}),
     }
 
     const styleProps = {
@@ -178,13 +182,14 @@ class Button extends Component {
 
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
+
     return (
       <span style={marginStyles}>
         <Ripples disabled={disabled} style={rippleStyles}>
           {theButton}
         </Ripples>
       </span>
-      );
+    );
   }
 }
 
