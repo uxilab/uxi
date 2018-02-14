@@ -179,11 +179,11 @@ class Button extends Component {
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
     return (
-      <div style={marginStyles}>
+      <span style={marginStyles}>
         <Ripples disabled={disabled} style={rippleStyles}>
           {theButton}
         </Ripples>
-      </div>
+      </span>
       );
   }
 }
