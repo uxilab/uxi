@@ -87,7 +87,8 @@ const ButtonContentWrapper = styled.div`
 const ButtonUI = styled.button`${ButtonBaseMixin};`;
 const ButtonLinkUI = styled.a`
   ${ButtonBaseMixin};
-  text-decoration: none
+  text-decoration: none;
+  &:hover { text-decoration: none }
 `;
 const ButtonDivUI = styled.div`${ButtonBaseMixin};`;
 
@@ -127,8 +128,22 @@ class Button extends Component {
     const buttonAttr = {
       onClick: click || onClick || null,
       className,
-      style,
+      style: {
+        ...style,
+        margin: 0,
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+      },
     };
+    const marginStyles = {
+      ...('margin' in style ? {  margin: style.margin } : {}),
+      ...('marginTop' in style ? {  marginTop: style.marginTop } : {}),
+      ...('marginRight' in style ? {  marginRight: style.marginRight } : {}),
+      ...('marginBottom' in style ? {  marginBottom: style.marginBottom } : {}),
+      ...('marginLeft' in style ? {  marginLeft: style.marginLeft } : {}),
+    }
 
     const styleProps = {
       isFullWidth,
@@ -163,8 +178,18 @@ class Button extends Component {
 
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
-    return (<Ripples disabled={disabled} style={rippleStyles}>{theButton}</Ripples>);
+    return (
+      <div style={marginStyles}>
+        <Ripples disabled={disabled} style={rippleStyles}>
+          {theButton}
+        </Ripples>
+      </div>
+      );
   }
 }
+
+Button.defaultProps = {
+  style: {}
+};
 
 export default Button;
