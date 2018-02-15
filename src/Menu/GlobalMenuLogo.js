@@ -83,7 +83,7 @@ const LabelDiv = styled.div`
   width: 52px;
   @media (min-width: ${breakpoint}) {
     display: block;
-    padding-left: 3px;
+    /* padding-left: 3px; */
   }
 `;
 
