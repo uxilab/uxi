@@ -243,7 +243,7 @@ class ExampleSimple extends Component {
         />
         <GlobalMenu
           attachToViewport={attachToViewport}
-          logoIcon={<Cluedin />}
+          logoIcon={<Cluedin size={28} />}
           logoText={logoText}
           logoTooltipLabel="Home"
           onLogoClick={this.onLogoClickHandler.bind(this)}

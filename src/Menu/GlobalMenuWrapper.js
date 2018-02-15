@@ -50,9 +50,14 @@ const GlobalMenuWrapper = ({
     );
 
     if (menuDescriptor.children && menuDescriptor.children.length > 0) {
-      menuDescriptor.children.forEach((child) => {
+      console.log(menuDescriptor.children)
+      menuDescriptor.children.forEach((child, idx, list) => {
+        console.log(child, idx, list);
+
         menuDescriptorsContent.push(
           <GlobalMenuSubItem
+            isFirstSubItem={idx === 0}
+            isLastSubItem={idx === list.length - 1}
             key={child.key}
             isSelected={child.isSelected}
             isParentSelected={menuDescriptor.isSelected}

@@ -37,6 +37,9 @@ const GlobalMenuSubItemDiv = styled.button`
     max-width: 100%;
   }
 
+  border-bottom:  ${({ isLastSubItem, theme: { palette } }) =>
+    isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, .5)}`
+  };
 
   overflow: hidden;
   color: #9a9fa5;
@@ -47,7 +50,7 @@ const GlobalMenuSubItemDiv = styled.button`
   background: ${({ theme: { palette } }) => darken(palette.primary.dark) };
   color: ${({ isSelected, theme: { palette } }) => (
     isSelected ? palette.accent.light : palette.lightGrey
-)};
+  )};
 
   a,
   /* TODO fix tihs .root a situation */
@@ -62,16 +65,10 @@ const GlobalMenuSubItemDiv = styled.button`
   height: ${({ isParentSelected }) => isParentSelected ? 'auto' : '0px' };
   transition: ${({ theme }) => theme.transition.defaultAll};
 
-  border-right: ${({ isSelected }) => isSelected ?
-    `${borderThickness} solid #0ea4a5` : `0 solid transparent`
-  };
-
   & a, & a:hover {
     text-decoration: none;
     color: #fff;
-
   }
-
 
   &:focus {
     & a { color: #fff; }
@@ -110,7 +107,16 @@ const GlobalMenuSubItemDiv = styled.button`
   ${props => getAccessibilityRules(props)};
 `;
 
-const GlobalMenuSubItem = ({ content, onClick, isSelected, isParentSelected }) => {
+const GlobalMenuSubItem = props => {
+  const {
+    content,
+    onClick,
+    isSelected,
+    isParentSelected,
+    isFirstSubItem,
+    isLastSubItem,
+  } = props;
+
   const attributes = {
     ...(!isParentSelected
       ? { tabIndex: -1, 'aria-hidden': 'true', role: 'navigation' }
@@ -123,6 +129,8 @@ const GlobalMenuSubItem = ({ content, onClick, isSelected, isParentSelected }) =
       onClick={onClick}
       isParentSelected={isParentSelected}
       isSelected={isSelected}
+      isFirstSubItem={isFirstSubItem}
+      isLastSubItem={isLastSubItem}
       {...attributes}
     >
       {content}

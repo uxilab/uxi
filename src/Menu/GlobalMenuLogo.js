@@ -38,7 +38,7 @@ const GlobalMenuLogoDiv = styled.button`
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
-  margin: 0 auto;
+  margin: 0 auto 80px;
   padding: 8px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.main || '#1b3c4f'};
@@ -71,7 +71,7 @@ const GlobalMenuLogoDiv = styled.button`
   }
   @media (min-width: ${breakpoint}) {
     justify-content: flex-start;
-    padding: 0 16px;
+    padding: 0 24px;
   }
 
   /** a11y */

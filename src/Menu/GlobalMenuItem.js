@@ -116,7 +116,7 @@ const GlobalMenuItemDiv = styled.button`
   @media (min-width: ${breakpoint}) {
     justify-content: start;
     padding: ${`16px 0 16px ${borderThickness}`};
-    padding: 16px;
+    padding: 16px 24px;
   }
 
   /** a11y */
@@ -137,17 +137,18 @@ const LabelDiv = styled.div`
 `;
 
 const NewInfo = styled.div`
-    background-color: rgb(216, 27, 96);
-    border-radius: 16px;
-    line-height: 16px;
-    color: #fff;
-    width: 16px;
-    height: 16px;
-    font-size: 12px;
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translate(0, -50%);
+  background-color: rgb(216, 27, 96);
+  border-radius: 16px;
+  line-height: 16px;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: ${({ isActive, isSelected }) => isActive || isSelected ? '5px' : '9px' };
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
 const GlobalMenuItem = props => {
@@ -166,7 +167,9 @@ const GlobalMenuItem = props => {
   let isNewContent;
 
   if (hasNew) {
-    isNewContent = (<NewInfo>!</NewInfo>);
+    isNewContent = (
+      <NewInfo isActive={isActive} isSelected={isSelected} >!</NewInfo>
+    );
   }
 
   // render the tooltip inert above window width of 699px

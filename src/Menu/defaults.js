@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 export const defaults = {
   menuWidth: '68px',
-  bigMenuWidth: '186px',
+  bigMenuWidth: '216px',
   borderThickness: '4px',
   breakpoint: '960px',
 };
