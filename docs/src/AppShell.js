@@ -18,37 +18,37 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
   <MenuItem isActive={isActive(path, currentLocation)} key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>
 );
 
-const AppShell = ({ children }) => {
-  const routes = [
-    { path: '/font', label: 'Fonts' },
-    { path: '/color', label: 'Colors' },
-    { path: '/alert', label: 'Alert' },
-    { path: '/autocomplete', label: 'AutoComplete' },
-    { path: '/badge', label: 'Badge' },
-    { path: '/breadcrumbs', label: 'BreadCrumbs' },
-    { path: '/box', label: 'Box' },
-    { path: '/button', label: 'Button' },
-    { path: '/classic', label: 'Classic' },
-    { path: '/dashboard', label: 'Dashboard' },
-    { path: '/datagrid', label: 'Data Grid' },
-    { path: '/icons', label: 'Icons' },
-    { path: '/indicator', label: 'Indicator' },
-    { path: '/inputs', label: 'Inputs' },
-    { path: '/internal', label: 'Internal' },
-    { path: '/img', label: 'Image' },
-    { path: '/layouts', label: 'Layout' },
-    { path: '/list', label: 'List' },
-    { path: '/loader', label: 'Loader' },
-    { path: '/menu', label: 'Menu' },
-    // {/* { path: '/sublayout', label: 'SubLayout' }, */ },
-    { path: '/radio', label: 'Radio' },
-    { path: '/sociallinks', label: 'Sociallinks' },
-    { path: '/stepper', label: 'Stepper' },
-    { path: '/switch', label: 'Switch' },
-    { path: '/table', label: 'Table' },
-    { path: '/globalmenu', label: 'Global Menu' },
-  ];
+export const routes = [
+  { path: '/font', label: 'Fonts' },
+  { path: '/color', label: 'Colors' },
+  { path: '/alert', label: 'Alert' },
+  { path: '/autocomplete', label: 'AutoComplete' },
+  { path: '/badge', label: 'Badge' },
+  { path: '/breadcrumbs', label: 'BreadCrumbs' },
+  { path: '/box', label: 'Box' },
+  { path: '/button', label: 'Button' },
+  { path: '/classic', label: 'Classic' },
+  { path: '/dashboard', label: 'Dashboard' },
+  { path: '/datagrid', label: 'Data Grid' },
+  { path: '/icons', label: 'Icons' },
+  { path: '/indicator', label: 'Indicator' },
+  { path: '/inputs', label: 'Inputs' },
+  { path: '/internal', label: 'Internal' },
+  { path: '/img', label: 'Image' },
+  { path: '/layouts', label: 'Layout' },
+  { path: '/list', label: 'List' },
+  { path: '/loader', label: 'Loader' },
+  { path: '/menu', label: 'Menu' },
+  // {/* { path: '/sublayout', label: 'SubLayout' }, */ },
+  { path: '/radio', label: 'Radio' },
+  { path: '/sociallinks', label: 'Sociallinks' },
+  { path: '/stepper', label: 'Stepper' },
+  { path: '/switch', label: 'Switch' },
+  { path: '/table', label: 'Table' },
+  { path: '/globalmenu', label: 'Global Menu' },
+]
 
+const AppShell = ({ children }) => {
   const pathname = window.location.pathname;
   const mainMenu = (
     <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>

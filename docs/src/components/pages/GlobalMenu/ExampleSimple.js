@@ -39,7 +39,7 @@ class ExampleSimple extends Component {
     super(props);
     this.state = {
       color: '#ff0000',
-      attachToViewport: true,
+      attachToViewport: false,
     };
   }
   onLogoClickHandler() {
@@ -130,7 +130,6 @@ class ExampleSimple extends Component {
       },
     ];
 
-  /*
     const badMenuDescriptors = [
       {
         active: true,
@@ -191,7 +190,7 @@ class ExampleSimple extends Component {
         onClick: () => { console.log('Settings'); },
       },
     ];
-*/
+
     const logoText = (
       <div style={{ maxWidth: '90px' }}>
         <CluedinLogoText style={{ width: '100%' }} />
@@ -210,7 +209,6 @@ class ExampleSimple extends Component {
           }`
         }} >
         </style>
-        { /*
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>
           menuitem that have subItem (subroute) don't have panel and vicevera
@@ -257,7 +255,6 @@ class ExampleSimple extends Component {
            toggle attachToViewport prop to make it
            fixed and full viewport sized in one shot
         </P>
-        */ }
 
 
         {/* Attached to viewport */}
