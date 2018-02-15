@@ -19,6 +19,7 @@ class GlobalMenu extends Component {
   }
 
   changeSelected(value) {
+    console.log('changeSelected(value)', value)
     this.setState({
       active: value,
       selected: value,
@@ -66,10 +67,11 @@ class GlobalMenu extends Component {
           if (isChildrenSelected) {
             isMenuSelected = true;
           }
+
           const {
             children, // single sublevel for now
             ...menuDescriptorProps,
-          } = menuDescriptor
+          } = menuDescriptor;
 
           menuDescriptorChildren.push({
             ...menuDescriptorProps,
@@ -77,6 +79,7 @@ class GlobalMenu extends Component {
             isSelected: isChildrenSelected,
             isOpen: !!(isChildrenSelected && m.panel && m.panel.Content),
             onClick: () => {
+              console.log('extended onClick subitem')
               this.changeSelected(m.key);
               if (m.onClick) {
                 m.onClick();
@@ -90,6 +93,7 @@ class GlobalMenu extends Component {
         isSelected: isSelected || isMenuSelected,
         isOpen: !!(isSelected && menuDescriptor.panel && menuDescriptor.panel.Content),
         onClick: () => {
+          console.log('extended onClick item')
           this.changeSelected(menuDescriptor.key);
           if (menuDescriptor.onClick) {
             menuDescriptor.onClick();

@@ -32,27 +32,27 @@ const GlobalMenuWrapper = ({
   const menuDescriptorsContent = [];
 
   (menuDescriptors || []).forEach((menuDescriptor) => {
-
-
-
+    console.log('menuDescriptor', menuDescriptor)
     menuDescriptorsContent.push(
       <GlobalMenuItem
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
         isActive={menuDescriptor.isActive}
-        onClick={menuDescriptor.onClick}
+        onClick={() => { console.log('clicked on GlobalMenuItem'); menuDescriptor.onClick && menuDescriptor.onClick() } }
         hasNew={menuDescriptor.hasNew}
         label={menuDescriptor.displayName}
         index={menuDescriptor.key}
-        Icon={menuDescriptor.Icon}
+        icon={menuDescriptor.icon}
+        Link={menuDescriptor.Link}
+        to={menuDescriptor.to}
+        href={menuDescriptor.href}
         primaryColor={primaryColor}
+        hasPanel={!!menuDescriptor.panel}
       />,
     );
 
     if (menuDescriptor.children && menuDescriptor.children.length > 0) {
-      console.log(menuDescriptor.children)
       menuDescriptor.children.forEach((child, idx, list) => {
-        console.log(child, idx, list);
 
         menuDescriptorsContent.push(
           <GlobalMenuSubItem

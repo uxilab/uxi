@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { GlobalMenu } from 'uxi/Menu';
 import {
   Keepintheloop,
@@ -50,18 +51,37 @@ class ExampleSimple extends Component {
 
     const menuDescriptors = [
       {
-        active: true,
+        displayName: 'base link',
+        key: 'base link',
+        hasNew: true,
+        // content: <div>anything</div>,
+        onClick: () => { console.log('anything'); },
+        icon: <Padlock />,
+        to: '/input',
+        Link: Link,
+      },
+      {
+        displayName: 'Simple anchor',
+        key: 'Simple anchor',
+        hasNew: true,
+        // content: <div>anything</div>,
+        // onClick: () => { console.log('anything'); },
+        icon: <Padlock />,
+        href: '/button',
+      },
+      {
         displayName: 'Keep in the loop',
         key: 'Keep in the loop',
         hasNew: true,
-        Icon: Keepintheloop,
+        icon: <Keepintheloop />,
         onClick: () => { console.log('Keep in the loop'); },
       },
       {
         displayName: 'Followed entities',
         key: 'Followed entities menu item',
         hasNew: true,
-        Icon: Followentities,
+        icon: <Followentities />,
+        onClick: () => console.log('clicked on menuDEscriptor Followentities'),
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>{longString}</div>),
@@ -73,7 +93,7 @@ class ExampleSimple extends Component {
         hasNew: true,
         displayName: 'Users',
         key: 'Users',
-        Icon: User,
+        icon: <User />,
         panel: {
           Title: GDPRTitle,
           Content: GDPRContent,
@@ -85,7 +105,7 @@ class ExampleSimple extends Component {
         displayName: 'GDPR',
         key: 'GDPR',
         hasNew: true,
-        Icon: Padlock,
+        icon: <Padlock />,
         Content: () => (<a tabIndex="-1" style={{ outline: 'none' }} href="#" >GDPR</a>),
         onClick: () => { console.log('GDPR'); },
         children: [
@@ -105,25 +125,26 @@ class ExampleSimple extends Component {
         active: false,
         displayName: 'Settings',
         key: 'Settings',
-        Icon: Settings,
+        icon: <Settings />,
         onClick: () => { console.log('Settings'); },
       },
     ];
 
+  /*
     const badMenuDescriptors = [
       {
         active: true,
         displayName: 'Keep in the loop',
         key: 'Keep in the loop',
         hasNew: true,
-        Icon: Keepintheloop,
+        icon: <Keepintheloop />,
         onClick: () => { console.log('Keep in the loop'); },
       },
       {
         displayName: 'Followed entities',
         key: 'Followed entities menu item',
         hasNew: true,
-        Icon: Followentities,
+        icon: <Followentities />,
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>'List of Followed entities'</div>),
@@ -147,7 +168,7 @@ class ExampleSimple extends Component {
         hasNew: true,
         displayName: 'Users',
         key: 'Users',
-        Icon: User,
+        icon: <User />,
         panel: {
           Title: GDPRTitle,
           Content: GDPRContent,
@@ -159,18 +180,18 @@ class ExampleSimple extends Component {
         displayName: 'GDPR',
         key: 'GDPR',
         hasNew: true,
-        Icon: Padlock,
+        icon: <Padlock />,
         onClick: () => { console.log('GDPR'); },
       },
       {
         active: false,
         displayName: 'Settings',
         key: 'Settings',
-        Icon: Settings,
+        icon: <Settings />,
         onClick: () => { console.log('Settings'); },
       },
     ];
-
+*/
     const logoText = (
       <div style={{ maxWidth: '90px' }}>
         <CluedinLogoText style={{ width: '100%' }} />
@@ -189,7 +210,7 @@ class ExampleSimple extends Component {
           }`
         }} >
         </style>
-
+        { /*
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>
           menuitem that have subItem (subroute) don't have panel and vicevera
@@ -236,6 +257,9 @@ class ExampleSimple extends Component {
            toggle attachToViewport prop to make it
            fixed and full viewport sized in one shot
         </P>
+        */ }
+
+
         {/* Attached to viewport */}
         <Button
           onClick={() => this.setState({ attachToViewport: !attachToViewport })}

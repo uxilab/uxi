@@ -38,7 +38,7 @@ const GlobalMenuLogoDiv = styled.button`
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
-  margin: 0 auto 80px;
+  margin: 0 auto;
   padding: 8px 0;
   position: relative;
   background: ${({ theme: { palette } }) => palette.primary.main || '#1b3c4f'};
