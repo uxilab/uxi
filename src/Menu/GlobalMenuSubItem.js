@@ -98,12 +98,11 @@ const GlobalMenuSubItemDiv = styled.button`
   }
 
 
-@media (max-width: ${breakpoint}) {
+  @media (max-width: ${breakpoint}) {
     display:none;
   }
 
   /** a11y */
-  ${GlobalMenuItemBase};
   ${props => getAccessibilityRules(props)};
 `;
 

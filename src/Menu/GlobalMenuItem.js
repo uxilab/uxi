@@ -25,35 +25,25 @@ const getIconColor = ({ isSelected, isActive }) => {
 
 
 const LinkDecorator  = styled.div`
-  a {
+  .root & a,
+  & a {
     ${buttonReset};
+    ${GlobalMenuItemBase}
 
-    z-index: 99;
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: ${({ isSelected, theme: { palette } }) =>
       (isSelected ? palette.accent.light : '#c2c2c2')
     };
-    width: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-    margin: 0 auto;
-    padding: 16px 0;
     border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
       `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
     };
     background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
     &:hover {
-      transition: inherit;
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
         isSelected
           ? (isActive
-            ? palette.primary.main
+            ? palette.primary.dark
             : palette.primary.light // child is slelected, means we can navigate there
           )
           : palette.primary.light
@@ -63,7 +53,6 @@ const LinkDecorator  = styled.div`
       }
     }
     &:focus {
-      transition: inherit;
       color: ${({ isActive, theme: { palette } }) => (
         isActive ? 'inherit' : palette.pureWhite
       )};
@@ -82,43 +71,32 @@ const LinkDecorator  = styled.div`
     svg {
       fill: ${props => (getIconColor(props))};
     }
-    @media (min-width: ${breakpoint}) {
-      justify-content: start;
-      padding: ${`16px 0 16px ${borderThickness}`};
-      padding: 16px 24px;
-    }
-    /** a11y */
-    ${GlobalMenuItemBase}
   }
 `;
 
 const GlobalMenuItemDiv = styled.a`
   ${buttonReset};
-  z-index: 99;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ isSelected, theme: { palette } }) =>
-    (isSelected ? palette.accent.light : '#c2c2c2')
-  };
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-  margin: 0 auto;
-  padding: 16px 0;
+  ${GlobalMenuItemBase}
+
+  .root &,
+  & {
+    color: ${({ isSelected, theme: { palette } }) =>
+      (isSelected ? palette.accent.light : '#c2c2c2')
+    };
+  }
+
   border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
     `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
   };
   background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
+  .root &:hover, /* TODO solve this .root a  */
   &:hover {
-    transition: inherit;
     color: ${({ theme: { palette } }) => palette.pureWhite };
     background: ${({ isActive, isSelected, theme: { palette } }) => (
       isSelected
         ? (isActive
-          ? palette.primary.main
+          ? palette.primary.dark
           : palette.primary.light // child is slelected, means we can navigate there
         )
         : palette.primary.light
@@ -128,8 +106,8 @@ const GlobalMenuItemDiv = styled.a`
     }
   }
 
+  .root &:focus, /* TODO solve this .root a  */
   &:focus {
-    transition: inherit;
     color: ${({ isActive, theme: { palette } }) => (
       isActive ? 'inherit' : palette.pureWhite
     )};
@@ -149,18 +127,10 @@ const GlobalMenuItemDiv = styled.a`
   svg {
     fill: ${props => (getIconColor(props))};
   }
-
-  @media (min-width: ${breakpoint}) {
-    justify-content: start;
-    padding: ${`16px 0 16px ${borderThickness}`};
-    padding: 16px 24px;
-  }
-
-  /** a11y */
-  ${GlobalMenuItemBase}
 `;
 
 const GlobalMenuItemDivFinal = GlobalMenuItemDiv.withComponent('button');
+
 
 const LabelDiv = styled.div`
   display: none;
@@ -174,7 +144,6 @@ const LabelDiv = styled.div`
     text-overflow: ellipsis;
   }
 `;
-
 
 const NewInfo = styled.div`
   background-color: rgb(216, 27, 96);
