@@ -10,7 +10,7 @@ const UnstyledButtonUI = styled.button`
   padding: 0;
   font-size: inherit;
   background: transparent;
-  min-width: 100%
+  min-width: 100%;
 `;
 
 const UnstyledButton = ({ children, style, onClick }) => {
