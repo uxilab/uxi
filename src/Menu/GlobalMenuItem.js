@@ -12,19 +12,14 @@ const {
 
 const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
-    return '#fff';
+    return palette.pureWhite
   }
 
   if (isActive) {
     return palette.accent.light
   }
 
-  // if (isSelected) {
-  //   return '#0ea4a5';
-  // }
-  return palette.accent.lightGrey
-
-  return '#c2c2c2';
+  return palette.lightGrey
 };
 
 
