@@ -1,6 +1,7 @@
 import React from 'react';
 import Widget, { WidgetSubHeader } from 'uxi/Widget';
 import ActionMenu from 'uxi/ActionMenu'
+import Action from 'uxi/Action';
 import {
   Keepintheloop,
   User,
@@ -31,13 +32,25 @@ const ExampleSimple = () => (
     </div>
     <div style={{marginBottom: '15px'}}>
       <Widget title="All Cars with a simple Menu" isLoadingMore menu={<a>View More</a>}>
-        Some Content
+        evevev
       </Widget>
     </div>
     <div style={{marginBottom: '15px'}}>
-      <Widget title="All Cars with a simple Menu" isLoadingMore menu={<a>View More</a>} emptyText="No cars defined">
-        Some Content
+      <Widget>
+        <Action menuDescriptor={
+              {
+                displayName: 'Keep in the loop',
+                key: 'Keep in the loop',
+                hasNew: true,
+                icon: <Keepintheloop />,
+                onClick: () => { alert('Keep in the loop'); },
+                isPromoted: true,
+              }
+          } />
       </Widget>
+    </div>
+    <div style={{marginBottom: '15px'}}>
+      <Widget title="All Cars with a simple Menu" isLoadingMore menu={<a>View More</a>} emptyText="No cars defined" />
     </div>
     <div style={{marginBottom: '15px'}}>
       <Widget
