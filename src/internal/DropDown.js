@@ -110,12 +110,21 @@ export class DropDown extends PureComponent {
     }
 
     const cRectMain = mainRef.getBoundingClientRect();
+    const cRectItems = itemsRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
+    const ItemsLeft = cRectMain.left - (cRectItems.width - cRectMain.width);
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
       // position: 'absolute',
       // top: cRectMain.height,
       // top: isOpen ? cRectMain.bottom : cRectMain.height,
+
+      // right: `calc(${cRectMain.left}px - 100%)`,
+      // right: cRectMain.right,
+
+      left: cRectMain.left,
+      left: `${ItemsLeft}px`,
+
       top: ItemsTop,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
@@ -190,6 +199,11 @@ export class DropDown extends PureComponent {
         isOpen,
       },
     } = this;
+
+    // quikc dirty check
+    // if (!(main && main.prototype && main.prototype.render)) {
+    //   console.warn('The `main` element of DropDown cannot be stateless, because it needs a ref')
+    // }
 
     const dropDownMain = React.cloneElement(main,
       {

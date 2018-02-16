@@ -17,6 +17,7 @@ const ButtonBaseMixin = css`
   /* STATIC BASE STYLES: */
   ${ButtonBaseStyles};
 
+  cursor: pointer;
   /* ICON POSITION: */
   flex-direction: ${({ iconPosition }) => {
     if (iconPosition && iconPosition === 'after') { return 'row-reverse'; }
