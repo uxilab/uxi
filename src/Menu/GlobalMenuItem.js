@@ -12,12 +12,12 @@ const {
 
 const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
-    return palette.pureWhite
-  }
-
-  if (isActive) {
     return palette.accent.light
   }
+
+  // if (isSelected) {
+  //   return palette.accent.light
+  // }
 
   return palette.lightGrey
 };
@@ -30,8 +30,8 @@ const LinkDecorator  = styled.div`
     ${buttonReset};
     ${GlobalMenuItemBase}
 
-    color: ${({ isSelected, theme: { palette } }) =>
-      (isSelected ? palette.accent.light : '#c2c2c2')
+    color: ${({ isSelected, isActive, theme: { palette } }) =>
+      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
     };
     border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
       `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
@@ -80,8 +80,8 @@ const GlobalMenuItemDiv = styled.a`
 
   .root &,
   & {
-    color: ${({ isSelected, theme: { palette } }) =>
-      (isSelected ? palette.accent.light : '#c2c2c2')
+    color: ${({ isSelected, isActive, theme: { palette } }) =>
+      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
     };
   }
 
