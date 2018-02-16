@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 export const defaults = {
   menuWidth: '68px',
-  bigMenuWidth: '186px',
+  bigMenuWidth: '216px',
   borderThickness: '4px',
   breakpoint: '960px',
 };
@@ -18,21 +18,27 @@ export const buttonReset = css`
 
 
 export const GlobalMenuItemBase = css`
-  /** a11y */
-
-  /* No need for ugly outline, we update background color on interaction */
-  /* &:focus { outline: ${({ isActive, isSelected }) => (
-    (isActive || isSelected) ? 'none' : '1px solid inherit')}
-  }; */
-
-  /* &:active { filter: saturate(120%) brightness(120%) } */
-
-  /* &:hover,
-  &:active,
-  &:hover:active,
-  &:focus:active,
-  { outline: none; } */
   & { outline: none; }
+  z-index: 99;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 16px 0;
+  &:hover, &:focus {
+    transition: inherit;
+  }
+
+  @media (min-width: ${defaults.breakpoint}) {
+    justify-content: start;
+    padding: ${`16px 0 16px ${defaults.borderThickness}`};
+    padding: 16px 24px;
+  }
+
 `;
 
 export default defaults;

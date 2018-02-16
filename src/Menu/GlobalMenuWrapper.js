@@ -32,37 +32,45 @@ const GlobalMenuWrapper = ({
   const menuDescriptorsContent = [];
 
   (menuDescriptors || []).forEach((menuDescriptor) => {
-
-
-
     menuDescriptorsContent.push(
       <GlobalMenuItem
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
-        isActive={menuDescriptor.isActive}
-        onClick={menuDescriptor.onClick}
+        isActive={menuDescriptor.key === selectedKey || (selectedKey ===  '' && menuDescriptor.isActive)}
+        onClick={() => { console.log('clicked on GlobalMenuItem'); menuDescriptor.onClick && menuDescriptor.onClick() } }
         hasNew={menuDescriptor.hasNew}
         label={menuDescriptor.displayName}
         index={menuDescriptor.key}
-        Icon={menuDescriptor.Icon}
+        icon={menuDescriptor.icon}
+        Link={menuDescriptor.Link}
+        to={menuDescriptor.to}
+        href={menuDescriptor.href}
         primaryColor={primaryColor}
+        hasPanel={!!menuDescriptor.panel}
       />,
     );
 
     if (menuDescriptor.children && menuDescriptor.children.length > 0) {
-      menuDescriptor.children.forEach((child) => {
+      menuDescriptor.children.forEach((child, idx, list) => {
+
         menuDescriptorsContent.push(
           <GlobalMenuSubItem
+            isFirstSubItem={idx === 0}
+            isLastSubItem={idx === list.length - 1}
             key={child.key}
             isSelected={child.isSelected}
+            isActive={child.key === selectedKey || (selectedKey === '' && child.isActive)}
             isParentSelected={menuDescriptor.isSelected}
             isActive={child.isActive}
             onClick={child.onClick}
             hasNew={child.hasNew}
             content={child.content}
-            displayName={child.displayName}
+            label={child.displayName}
             index={child.key}
             primaryColor={primaryColor}
+            Link={child.Link}
+            to={child.to}
+            href={child.href}
           />,
         );
       });

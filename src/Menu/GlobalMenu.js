@@ -12,6 +12,32 @@ class GlobalMenu extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log("componentDidMount")
+    const {
+      menuDescriptors,
+    } = this.props;
+
+    const firstActiveFound = menuDescriptors.find(menuDescriptor => {
+      console.log(menuDescriptor.key, 'is', (menuDescriptor.isActive ? 'active' : 'NOT active'))
+      return menuDescriptor.isActive === true
+    });
+
+    console.log("firstActiveFound exists ?", firstActiveFound)
+
+    if (firstActiveFound) {
+      console.log('firstActiveFound')
+      const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
+      if (activeChild) {
+        console.log('firstActiveFound => item child')
+        this.changeSelected(activeChild.key)
+      } else {
+        console.log('firstActiveFound => item')
+        this.changeSelected(firstActiveFound.key)
+      }
+    }
+  }
+
   getSelected(key) {
     const { selected } = this.state;
 
@@ -19,6 +45,7 @@ class GlobalMenu extends Component {
   }
 
   changeSelected(value) {
+    console.log('changeSelected(value)', value)
     this.setState({
       active: value,
       selected: value,
@@ -39,9 +66,7 @@ class GlobalMenu extends Component {
     const {
       menuDescriptors,
       onLogoClick,
-      logoIcon,
-      logoText,
-      logoTooltipLabel,
+      logoDescriptor,
       attachToViewport,
       style,
       innerStyle,
@@ -55,6 +80,20 @@ class GlobalMenu extends Component {
       active,
     } = this.state;
 
+
+    // const firstActiveFound = menuDescriptors.find(menuDescriptor => (
+    //   menuDescriptor.isActive
+    // ));
+    // if (firstActiveFound) {
+    //   const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
+    //   if (activeChild) {
+    //     setTimeout(this.changeSelected(activeChild.key), 0)
+    //   } else {
+    //     setTimeout(this.changeSelected(firstActiveFound.key), 0)
+    //   }
+    // }
+
+
     const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
       const isSelected = this.getSelected(menuDescriptor.key);
       const menuDescriptorChildren = [];
@@ -66,10 +105,11 @@ class GlobalMenu extends Component {
           if (isChildrenSelected) {
             isMenuSelected = true;
           }
+
           const {
             children, // single sublevel for now
             ...menuDescriptorProps,
-          } = menuDescriptor
+          } = menuDescriptor;
 
           menuDescriptorChildren.push({
             ...menuDescriptorProps,
@@ -77,6 +117,7 @@ class GlobalMenu extends Component {
             isSelected: isChildrenSelected,
             isOpen: !!(isChildrenSelected && m.panel && m.panel.Content),
             onClick: () => {
+              console.log('extended onClick subitem')
               this.changeSelected(m.key);
               if (m.onClick) {
                 m.onClick();
@@ -85,11 +126,13 @@ class GlobalMenu extends Component {
           });
         });
       }
+
       return {
         ...menuDescriptor,
-        isSelected: isSelected || isMenuSelected,
+        isSelected: isSelected || isMenuSelected || menuDescriptor.isActive,
         isOpen: !!(isSelected && menuDescriptor.panel && menuDescriptor.panel.Content),
         onClick: () => {
+          console.log('extended onClick item')
           this.changeSelected(menuDescriptor.key);
           if (menuDescriptor.onClick) {
             menuDescriptor.onClick();
@@ -101,18 +144,21 @@ class GlobalMenu extends Component {
 
     const theLogo = (
       <GlobalMenuLogo
-        key={'GlobalMenuMainLogo'}
-        label={(logoText || '')}
-        icon={logoIcon}
-        primaryColor={'red'}
-        logoTooltipLabel={logoTooltipLabel}
+        key={logoDescriptor.key || 'GlobalMenuMainLogo'}
+        label={(logoDescriptor.displayName || '')}
+        icon={logoDescriptor.icon}
+        Link={logoDescriptor.Link}
+        to={logoDescriptor.to}
+        href={logoDescriptor.href}
+        // primaryColor={'red'}
+        logoTooltipLabel={logoDescriptor.displayName || ''}
         activeKey={active}
-        isActive={(active === 'GlobalMenuMainLogo')}
-        onClick={onLogoClick}
+        isActive={(active === logoDescriptor.key || active === 'GlobalMenuMainLogo')}
+        onClick={logoDescriptor.onClick}
         onClick={() => {
-          this.changeSelected('GlobalMenuMainLogo');
-            if (onLogoClick) {
-              onLogoClick();
+          this.changeSelected(logoDescriptor.key || 'GlobalMenuMainLogo');
+            if (logoDescriptor.onClick) {
+              logoDescriptor.onClick();
             }
           }
         }
@@ -158,6 +204,10 @@ GlobalMenu.propTypes = {
   primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
   style: PropTypes.object,
+};
+
+GlobalMenu.defaultProps = {
+  menuDescriptors: [],
 };
 
 export default GlobalMenu;

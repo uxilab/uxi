@@ -41,7 +41,7 @@ const getTransform = ({ panelWidth, fullWidth, isOpen }, breakpoint) => {
     }
   } else if (fullWidth) {
     // x = `calc(-100vh - ${theMenuWidth})`;
-    x = `-100vh`;
+    x = `-100vw`;
   } else {
     // x = `calc(-${width}px)`;
     x = `-${panelWidth}px`;

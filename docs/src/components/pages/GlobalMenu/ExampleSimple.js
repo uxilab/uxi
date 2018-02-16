@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { GlobalMenu } from 'uxi/Menu';
 import {
   Keepintheloop,
@@ -38,7 +39,7 @@ class ExampleSimple extends Component {
     super(props);
     this.state = {
       color: '#ff0000',
-      attachToViewport: true,
+      attachToViewport: false,
     };
   }
   onLogoClickHandler() {
@@ -49,19 +50,39 @@ class ExampleSimple extends Component {
     const { attachToViewport } = this.state;
 
     const menuDescriptors = [
+      // {
+      //   displayName: 'base link',
+      //   key: 'base link',
+      //   hasNew: true,
+      //   // content: <div>anything</div>,
+      //   onClick: () => { console.log('anything'); },
+      //   icon: <Padlock />,
+      //   to: '/input',
+      //   Link: Link,
+      // },
+      // {
+      //   displayName: 'Simple anchor',
+      //   key: 'Simple anchor',
+      //   hasNew: true,
+      //   // content: <div>anything</div>,
+      //   // onClick: () => { console.log('anything'); },
+      //   icon: <Padlock />,
+      //   href: '/button',
+      // },
       {
-        active: true,
         displayName: 'Keep in the loop',
         key: 'Keep in the loop',
         hasNew: true,
-        Icon: Keepintheloop,
+        isActive: (window && window.location.pathname.indexOf('/globalmenu') > -1 ),
+        icon: <Keepintheloop />,
         onClick: () => { console.log('Keep in the loop'); },
       },
       {
         displayName: 'Followed entities',
         key: 'Followed entities menu item',
         hasNew: true,
-        Icon: Followentities,
+        icon: <Followentities />,
+        onClick: () => console.log('clicked on menuDEscriptor Followentities'),
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>{longString}</div>),
@@ -73,7 +94,7 @@ class ExampleSimple extends Component {
         hasNew: true,
         displayName: 'Users',
         key: 'Users',
-        Icon: User,
+        icon: <User />,
         panel: {
           Title: GDPRTitle,
           Content: GDPRContent,
@@ -85,7 +106,7 @@ class ExampleSimple extends Component {
         displayName: 'GDPR',
         key: 'GDPR',
         hasNew: true,
-        Icon: Padlock,
+        icon: <Padlock />,
         Content: () => (<a tabIndex="-1" style={{ outline: 'none' }} href="#" >GDPR</a>),
         onClick: () => { console.log('GDPR'); },
         children: [
@@ -105,7 +126,7 @@ class ExampleSimple extends Component {
         active: false,
         displayName: 'Settings',
         key: 'Settings',
-        Icon: Settings,
+        icon: <Settings />,
         onClick: () => { console.log('Settings'); },
       },
     ];
@@ -116,14 +137,14 @@ class ExampleSimple extends Component {
         displayName: 'Keep in the loop',
         key: 'Keep in the loop',
         hasNew: true,
-        Icon: Keepintheloop,
+        icon: <Keepintheloop />,
         onClick: () => { console.log('Keep in the loop'); },
       },
       {
         displayName: 'Followed entities',
         key: 'Followed entities menu item',
         hasNew: true,
-        Icon: Followentities,
+        icon: <Followentities />,
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>'List of Followed entities'</div>),
@@ -147,7 +168,7 @@ class ExampleSimple extends Component {
         hasNew: true,
         displayName: 'Users',
         key: 'Users',
-        Icon: User,
+        icon: <User />,
         panel: {
           Title: GDPRTitle,
           Content: GDPRContent,
@@ -159,14 +180,14 @@ class ExampleSimple extends Component {
         displayName: 'GDPR',
         key: 'GDPR',
         hasNew: true,
-        Icon: Padlock,
+        icon: <Padlock />,
         onClick: () => { console.log('GDPR'); },
       },
       {
         active: false,
         displayName: 'Settings',
         key: 'Settings',
-        Icon: Settings,
+        icon: <Settings />,
         onClick: () => { console.log('Settings'); },
       },
     ];
@@ -176,6 +197,16 @@ class ExampleSimple extends Component {
         <CluedinLogoText style={{ width: '100%' }} />
       </div>
     )
+
+    const logoDescriptor = {
+      onClick: () => console.log('going home'),
+      key: 'home route',
+      Link,
+      to: '/',
+      displayName: (<CluedinLogoText style={{ width: '100%' }} />),
+      icon: (<Cluedin size={28} />),
+      isActive: (location === '/'),
+    };
 
     return (
       // Simulate cluedin rules .root a
@@ -189,7 +220,6 @@ class ExampleSimple extends Component {
           }`
         }} >
         </style>
-
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>
           menuitem that have subItem (subroute) don't have panel and vicevera
@@ -198,10 +228,7 @@ class ExampleSimple extends Component {
           This usage is encouraged
         </P>
         <GlobalMenu
-          logoIcon={<Cluedin />}
-          logoText={logoText}
-          logoTooltipLabel="Home"
-          onLogoClick={this.onLogoClickHandler.bind(this)}
+          logoDescriptor={logoDescriptor}
           activeKey="GlobalMenu"
           menuDescriptors={menuDescriptors}
           isOwner
@@ -220,9 +247,7 @@ class ExampleSimple extends Component {
           This usage is discouraged
         </P>
         <GlobalMenu
-          logoIcon={<Cluedin />}
-          logoText={logoText}
-          logoTooltipLabel="Home"
+          logoDescriptor={logoDescriptor}
           onLogoClick={this.onLogoClickHandler.bind(this)}
           activeKey="GlobalMenu"
           menuDescriptors={badMenuDescriptors}
@@ -236,6 +261,8 @@ class ExampleSimple extends Component {
            toggle attachToViewport prop to make it
            fixed and full viewport sized in one shot
         </P>
+
+
         {/* Attached to viewport */}
         <Button
           onClick={() => this.setState({ attachToViewport: !attachToViewport })}
@@ -243,9 +270,7 @@ class ExampleSimple extends Component {
         />
         <GlobalMenu
           attachToViewport={attachToViewport}
-          logoIcon={<Cluedin />}
-          logoText={logoText}
-          logoTooltipLabel="Home"
+          logoDescriptor={logoDescriptor}
           onLogoClick={this.onLogoClickHandler.bind(this)}
           activeKey="GlobalMenu"
           menuDescriptors={menuDescriptors}
