@@ -28,6 +28,7 @@ import ClassicPage from './components/pages/Classic/Page';
 import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
+import WidgetPage from './components/pages/Widget/Page';
 
 const AppRoutes = (
   <Switch>
@@ -59,6 +60,7 @@ const AppRoutes = (
     <Route path="/classic" component={ClassicPage} />
     <Route path="/datagrid" component={DataGridPage} />
     <Route path="/globalMenu" component={GlobalMenuPage} />
+    <Route path="/widget" component={WidgetPage} />
   </Switch>
 );
 

@@ -47,6 +47,7 @@ const AppShell = ({ children }) => {
     { path: '/switch', label: 'Switch' },
     { path: '/table', label: 'Table' },
     { path: '/globalmenu', label: 'Global Menu' },
+    { path: '/widget', label: 'Widget' },
   ];
 
   const pathname = window.location.pathname;
