@@ -102,7 +102,7 @@ class DataGridSorting extends Component {
               {title}
             </div>
             <div style={{ width: '30px' }}>
-              {show ? <Trianglearrowup size={12} /> : <Trianglearrow size={12} />}
+              {show ? <Trianglearrowup style={{ transition: 'none' }} size={12} /> : <Trianglearrow style={{ transition: 'none' }} size={12} />}
             </div>
           </div>
           <div style={mergedStyle} ref={(ref) => { this.node = ref; }}>
