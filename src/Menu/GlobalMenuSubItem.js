@@ -48,8 +48,8 @@ const GlobalMenuSubItemDiv = styled.button`
   padding: ${({ isParentSelected }) => isParentSelected ? '16px 4px 16px 32px' : '0 32px' };
   cursor: pointer;
   background: ${({ theme: { palette } }) => darken(palette.primary.dark) };
-  color: ${({ isSelected, theme: { palette } }) => (
-    isSelected ? palette.accent.light : palette.lightGrey
+  color: ${({ isSelected, isActive, theme: { palette } }) => (
+    isSelected || isActive ? palette.accent.light : palette.lightGrey
   )};
 
   a,
@@ -84,15 +84,15 @@ const GlobalMenuSubItemDiv = styled.button`
   &:hover, &:hover:focus, &:hover:not(:focus) {
     /* color: #fff; */
     color: ${({ isSelected, isActive, theme: { palette }}) => (
-      isSelected || isActive ? palette.accent.light : palette.pureWhite
+      isSelected && isActive ? palette.accent.light : palette.pureWhite
     )};
 
     background: ${({ isSelected, isActive, theme: { palette }}) => (
-      isSelected || isActive ? darken(palette.primary.dark) : palette.primary.light
+      isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
     )};
     & a {
        color: ${({ isSelected, isActive, theme: { palette } }) => (
-        isSelected || isActive ? palette.accent.light : palette.pureWhite
+        isSelected && isActive ? palette.accent.light : palette.pureWhite
       )};
      }
   }
@@ -111,6 +111,7 @@ const GlobalMenuSubItem = props => {
     content,
     onClick,
     isSelected,
+    isActive,
     isParentSelected,
     isFirstSubItem,
     isLastSubItem,
@@ -128,6 +129,7 @@ const GlobalMenuSubItem = props => {
       onClick={onClick}
       isParentSelected={isParentSelected}
       isSelected={isSelected}
+      isActive={isActive}
       isFirstSubItem={isFirstSubItem}
       isLastSubItem={isLastSubItem}
       {...attributes}

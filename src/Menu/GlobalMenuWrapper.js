@@ -32,7 +32,6 @@ const GlobalMenuWrapper = ({
   const menuDescriptorsContent = [];
 
   (menuDescriptors || []).forEach((menuDescriptor) => {
-    console.log('menuDescriptor', menuDescriptor)
     menuDescriptorsContent.push(
       <GlobalMenuItem
         key={menuDescriptor.key}
@@ -60,6 +59,7 @@ const GlobalMenuWrapper = ({
             isLastSubItem={idx === list.length - 1}
             key={child.key}
             isSelected={child.isSelected}
+            isActive={child.key === selectedKey || (selectedKey === '' && child.isActive)}
             isParentSelected={menuDescriptor.isSelected}
             isActive={child.isActive}
             onClick={child.onClick}

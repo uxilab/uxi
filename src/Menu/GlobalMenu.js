@@ -12,6 +12,32 @@ class GlobalMenu extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log("componentDidMount")
+    const {
+      menuDescriptors,
+    } = this.props;
+
+    const firstActiveFound = menuDescriptors.find(menuDescriptor => {
+      console.log(menuDescriptor.key, 'is', (menuDescriptor.isActive ? 'active' : 'NOT active'))
+      return menuDescriptor.isActive === true
+    });
+
+    console.log("firstActiveFound exists ?", firstActiveFound)
+
+    if (firstActiveFound) {
+      console.log('firstActiveFound')
+      const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
+      if (activeChild) {
+        console.log('firstActiveFound => item child')
+        this.changeSelected(activeChild.key)
+      } else {
+        console.log('firstActiveFound => item')
+        this.changeSelected(firstActiveFound.key)
+      }
+    }
+  }
+
   getSelected(key) {
     const { selected } = this.state;
 
@@ -55,6 +81,20 @@ class GlobalMenu extends Component {
       selected,
       active,
     } = this.state;
+
+
+    // const firstActiveFound = menuDescriptors.find(menuDescriptor => (
+    //   menuDescriptor.isActive
+    // ));
+    // if (firstActiveFound) {
+    //   const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
+    //   if (activeChild) {
+    //     setTimeout(this.changeSelected(activeChild.key), 0)
+    //   } else {
+    //     setTimeout(this.changeSelected(firstActiveFound.key), 0)
+    //   }
+    // }
+
 
     const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
       const isSelected = this.getSelected(menuDescriptor.key);
@@ -163,6 +203,10 @@ GlobalMenu.propTypes = {
   primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
   style: PropTypes.object,
+};
+
+GlobalMenu.defaultProps = {
+  menuDescriptors: [],
 };
 
 export default GlobalMenu;
