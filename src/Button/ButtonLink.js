@@ -21,10 +21,18 @@ const ButtonLinkWrapper = styled.a`
   }
 `;
 
-const ButtonLink = ({ onClick, icon, text }) => (
-  <ButtonLinkWrapper onClick={(e) => { e.preventDefault(); onClick(e); }}>
+const ButtonLink = ({ onClick, icon, text }) => {
+  const content = icon ? (
     <AvatarWithName imgSize={16} icon={icon} name={text} />
-  </ButtonLinkWrapper>
-);
+  ) : (
+    <div>{text}</div>
+  );
+
+  return (
+    <ButtonLinkWrapper onClick={(e) => { e.preventDefault(); onClick(e); }}>
+      {content}
+    </ButtonLinkWrapper>
+  );
+};
 
 export default ButtonLink;
