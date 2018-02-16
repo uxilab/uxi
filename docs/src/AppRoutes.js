@@ -29,6 +29,7 @@ import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
+import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 
 const AppRoutes = (
   <Switch>
@@ -61,6 +62,7 @@ const AppRoutes = (
     <Route path="/datagrid" component={DataGridPage} />
     <Route path="/globalMenu" component={GlobalMenuPage} />
     <Route path="/widget" component={WidgetPage} />
+    <Route path="/personalizedmenu" component={PesonalizedMenuPage} />
   </Switch>
 );
 

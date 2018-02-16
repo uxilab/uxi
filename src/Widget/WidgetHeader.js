@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MiniLoader } from '../Motion';
+import { Flex } from '../Layout';
 
 const WidgetHeaderWrapper = styled.div`
   box-sizing: border-box;
@@ -33,7 +34,6 @@ const MenuWrapper = styled.div`
   height:100%;
   justify-content: flex-end;
   align-items:center;
-  padding-right:12px;
 `;
 
 const WidgetHeader = ({
@@ -46,14 +46,14 @@ const WidgetHeader = ({
       {title}
     </WidgetHeaderTitle>
     <WidgetRest>
-      <div>
+      <Flex>
         { isLoading &&
         (
 
           <MiniLoader />
         )
         }
-      </div>
+      </Flex>
       {
         menu &&
         <MenuWrapper>

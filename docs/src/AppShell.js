@@ -46,6 +46,8 @@ export const routes = [
   { path: '/switch', label: 'Switch' },
   { path: '/table', label: 'Table' },
   { path: '/globalmenu', label: 'Global Menu' },
+  { path: '/widget', label: 'Widget' },
+  { path: '/personalizedmenu', label: 'Personalized Menu' },
 ]
 
 const AppShell = ({ children }) => {

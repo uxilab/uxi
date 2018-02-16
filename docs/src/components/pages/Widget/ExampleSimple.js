@@ -1,5 +1,10 @@
 import React from 'react';
 import Widget, { WidgetSubHeader } from 'uxi/Widget';
+import ActionMenu from 'uxi/ActionMenu'
+import {
+  Keepintheloop,
+  User,
+} from 'uxi/Icons';
 
 const ExampleSimple = () => (
   <div>
@@ -35,7 +40,29 @@ const ExampleSimple = () => (
       </Widget>
     </div>
     <div style={{marginBottom: '15px'}}>
-      <Widget title="All Cars with a simple Sub Header">
+      <Widget
+        title="All Cars with a simple Sub Header"
+        menu={
+          <ActionMenu menuDescriptors={[
+            {
+              displayName: 'Keep in he loop',
+              key: 'Keep in the loop',
+              hasNew: true,
+              icon: <Keepintheloop />,
+              onClick: () => { alert('Keep in the loop'); },
+              isPromoted: true,
+            },
+            {
+              hasNew: true,
+              displayName: 'Users',
+              key: 'Users',
+              icon: <User />,
+              onClick: () => { alert('User '); },
+            },
+          ]}
+          />
+        }
+        >
         <WidgetSubHeader title="Sub content" />
         <div>
           TETETTE
