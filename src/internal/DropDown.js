@@ -191,6 +191,11 @@ export class DropDown extends PureComponent {
       },
     } = this;
 
+    // quikc dirty check
+    if (!Component.prototype.render) {
+      console.warn('The `main` element of DropDown cannot be stateless, because it needs a ref')
+    }
+
     const dropDownMain = React.cloneElement(main,
       {
         ref: ref => this.storeMainRef(ref),
