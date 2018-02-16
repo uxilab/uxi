@@ -10,14 +10,19 @@ const {
   breakpoint,
 } = defaults;
 
-const getIconColor = ({ isSelected, isActive }) => {
-  if (isActive) {
+const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
+  if (isActive && isSelected) {
     return '#fff';
   }
 
-  if (isSelected) {
-    return '#0ea4a5';
+  if (isActive) {
+    return palette.accent.light
   }
+
+  // if (isSelected) {
+  //   return '#0ea4a5';
+  // }
+  return palette.accent.lightGrey
 
   return '#c2c2c2';
 };
@@ -33,7 +38,7 @@ const LinkDecorator  = styled.div`
     color: ${({ isSelected, theme: { palette } }) =>
       (isSelected ? palette.accent.light : '#c2c2c2')
     };
-    border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
+    border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
       `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
     };
     background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
@@ -85,7 +90,7 @@ const GlobalMenuItemDiv = styled.a`
     };
   }
 
-  border-right: ${({ isSelected, isActive }) => (isSelected || isActive ?
+  border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
     `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
   };
   background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};

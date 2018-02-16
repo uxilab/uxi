@@ -88,9 +88,10 @@ class GlobalMenu extends Component {
           });
         });
       }
+
       return {
         ...menuDescriptor,
-        isSelected: isSelected || isMenuSelected,
+        isSelected: isSelected || isMenuSelected || menuDescriptor.isActive,
         isOpen: !!(isSelected && menuDescriptor.panel && menuDescriptor.panel.Content),
         onClick: () => {
           console.log('extended onClick item')
