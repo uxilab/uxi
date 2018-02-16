@@ -198,6 +198,16 @@ class ExampleSimple extends Component {
       </div>
     )
 
+    const logoDescriptor = {
+      onClick: () => console.log('going home'),
+      key: 'home route',
+      Link,
+      to: '/',
+      displayName: (<CluedinLogoText style={{ width: '100%' }} />),
+      icon: (<Cluedin size={28} />),
+      isActive: (location === '/'),
+    };
+
     return (
       // Simulate cluedin rules .root a
       <div className="root">
@@ -218,10 +228,7 @@ class ExampleSimple extends Component {
           This usage is encouraged
         </P>
         <GlobalMenu
-          logoIcon={<Cluedin />}
-          logoText={logoText}
-          logoTooltipLabel="Home"
-          onLogoClick={this.onLogoClickHandler.bind(this)}
+          logoDescriptor={logoDescriptor}
           activeKey="GlobalMenu"
           menuDescriptors={menuDescriptors}
           isOwner
@@ -240,9 +247,7 @@ class ExampleSimple extends Component {
           This usage is discouraged
         </P>
         <GlobalMenu
-          logoIcon={<Cluedin />}
-          logoText={logoText}
-          logoTooltipLabel="Home"
+          logoDescriptor={logoDescriptor}
           onLogoClick={this.onLogoClickHandler.bind(this)}
           activeKey="GlobalMenu"
           menuDescriptors={badMenuDescriptors}
@@ -265,9 +270,7 @@ class ExampleSimple extends Component {
         />
         <GlobalMenu
           attachToViewport={attachToViewport}
-          logoIcon={<Cluedin size={28} />}
-          logoText={logoText}
-          logoTooltipLabel="Home"
+          logoDescriptor={logoDescriptor}
           onLogoClick={this.onLogoClickHandler.bind(this)}
           activeKey="GlobalMenu"
           menuDescriptors={menuDescriptors}

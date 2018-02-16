@@ -66,9 +66,7 @@ class GlobalMenu extends Component {
     const {
       menuDescriptors,
       onLogoClick,
-      logoIcon,
-      logoText,
-      logoTooltipLabel,
+      logoDescriptor,
       attachToViewport,
       style,
       innerStyle,
@@ -146,18 +144,21 @@ class GlobalMenu extends Component {
 
     const theLogo = (
       <GlobalMenuLogo
-        key={'GlobalMenuMainLogo'}
-        label={(logoText || '')}
-        icon={logoIcon}
-        primaryColor={'red'}
-        logoTooltipLabel={logoTooltipLabel}
+        key={logoDescriptor.key || 'GlobalMenuMainLogo'}
+        label={(logoDescriptor.displayName || '')}
+        icon={logoDescriptor.icon}
+        Link={logoDescriptor.Link}
+        to={logoDescriptor.to}
+        href={logoDescriptor.href}
+        // primaryColor={'red'}
+        logoTooltipLabel={logoDescriptor.displayName || ''}
         activeKey={active}
-        isActive={(active === 'GlobalMenuMainLogo')}
-        onClick={onLogoClick}
+        isActive={(active === logoDescriptor.key || active === 'GlobalMenuMainLogo')}
+        onClick={logoDescriptor.onClick}
         onClick={() => {
-          this.changeSelected('GlobalMenuMainLogo');
-            if (onLogoClick) {
-              onLogoClick();
+          this.changeSelected(logoDescriptor.key || 'GlobalMenuMainLogo');
+            if (logoDescriptor.onClick) {
+              logoDescriptor.onClick();
             }
           }
         }

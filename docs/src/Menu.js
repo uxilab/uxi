@@ -25,13 +25,21 @@ export const GlobalDocAppMenu = props => {
     isActive: getIsActive(route.path)
   }))
 
+
+  const logoDescriptor = {
+    onClick: () => console.log('going home'),
+    key: 'home route',
+    Link,
+    to: '/',
+    displayName: (<CluedinLogoText style={{ width: '100%' }} />),
+    icon: (<Cluedin size={28} />),
+    isActive: (location === '/'),
+  };
+
   return (
     <GlobalMenu
       attachToViewport={true}
-      logoIcon={<Cluedin size={28} />}
-      logoText={'foobar'}
-      logoTooltipLabel="Home"
-      onLogoClick={console.log('go home')}
+      logoDescriptor={logoDescriptor}
       activeKey="GlobalMenu"
       menuDescriptors={menuDescriptors}
       isOwner
