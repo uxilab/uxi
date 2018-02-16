@@ -65,9 +65,12 @@ const GlobalMenuWrapper = ({
             onClick={child.onClick}
             hasNew={child.hasNew}
             content={child.content}
-            displayName={child.displayName}
+            label={child.displayName}
             index={child.key}
             primaryColor={primaryColor}
+            Link={child.Link}
+            to={child.to}
+            href={child.href}
           />,
         );
       });
