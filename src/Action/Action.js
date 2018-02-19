@@ -19,6 +19,7 @@ const ActionWrapper = styled.div`
   cursor:pointer;
   width:100%;
   position:relative;
+  min-height:180px;
   display: flex;
   align-items: left;
   justify-content: center;
@@ -30,7 +31,7 @@ const ActionWrapper = styled.div`
   border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.lightGrey)};
   padding:24px;
   flex-direction:column;
-  box-size:border-box;
+  box-sizing:border-box;
   &:hover svg {
     fill: ${({ theme, type }) => (type ? getLightTypeColor(theme, type) : theme.palette.lightGrey)} !important;
   }
@@ -51,7 +52,7 @@ const ActionIconWrapper = styled.div`
 const ActionDisplayNameWrapper = styled.div`
   color: #2F2F32;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
   font-family: \'Fira Sans\', sans-serif;
   margin-top:20px;
 `;

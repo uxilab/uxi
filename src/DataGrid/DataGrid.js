@@ -72,6 +72,7 @@ import { List } from '../List';
 
 
 class DataGrid extends Component {
+  static componentName = 'DataGrid';
   static contextTypes = {
     getTypeDefinition: PropTypes.func,
   };
@@ -177,7 +178,7 @@ class DataGrid extends Component {
       return content;
     }
 
-    const headerWithCheckbox = createDataGridHeader(headers, fixedHeight, hideHeader, true, () => {
+    const headerWithCheckbox = createDataGridHeader(headers, fixedHeight, hideHeader, multiSelectable, () => {
       this.checkAll();
     });
 
