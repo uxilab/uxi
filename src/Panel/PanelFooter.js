@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlatButton } from '../Button';
+import { Button } from '../Button';
 
 const PanelFooterUI = styled.div`
   background-color: ${({ theme: { palette } }) => palette.white};
@@ -15,15 +15,15 @@ const PanelFooter = (props) => {
 
   const cancel = (
     hasCancel &&
-      <FlatButton onClick={onClose} style={{ marginRight: '16px' }}>
+      <Button onClick={onClose} style={{ marginLeft: '16px' }}>
         {cancelLabel || 'Cancel'}
-      </FlatButton>
+      </Button>
   );
 
   return (
     <PanelFooterUI style={style} >
-      {cancel}
       {children}
+      {cancel}
     </PanelFooterUI>
   );
 };
