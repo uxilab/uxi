@@ -34,6 +34,11 @@ const MenuWrapper = styled.div`
   height:100%;
   justify-content: flex-end;
   align-items:center;
+  &>* {
+    display: flex;
+    align-items:center;
+    height: 100%;
+  }
 `;
 
 const WidgetHeader = ({

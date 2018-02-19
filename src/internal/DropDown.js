@@ -13,6 +13,7 @@ const styles = {
   wrapper: {
     position: 'relative',
     display: 'inline-block',
+    height: '100%',
   },
   triggerWrapper: {
     cursor: 'pointer',
@@ -32,6 +33,11 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
+  triggerInnerWrapper: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'stretch',
+  }
   // itemsWrapperString: `
   //   z-index: 1,
   //   min-width: 180px,
@@ -240,9 +246,9 @@ export class DropDown extends PureComponent {
     return (
       <span style={{ ...styles.wrapper/* , ...style */ }}>
         <UnstyledButton tabIndex={0} role="menu" style={styles.triggerWrapper} onClick={this.handleToggleVisibility} >
-          <span style={styles.triggerInnerWrapper}>
+          <div style={styles.triggerInnerWrapper}>
             {dropDownMain}
-          </span>
+          </div>
         </UnstyledButton>
         <div
           style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
