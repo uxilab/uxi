@@ -13,6 +13,7 @@ class GlobalMenu extends Component {
   }
 
   componentDidMount() {
+    const {
       menuDescriptors,
     } = this.props;
 
