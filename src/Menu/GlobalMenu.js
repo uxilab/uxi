@@ -13,8 +13,6 @@ class GlobalMenu extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount")
-    const {
       menuDescriptors,
     } = this.props;
 
@@ -23,16 +21,12 @@ class GlobalMenu extends Component {
       return menuDescriptor.isActive === true
     });
 
-    console.log("firstActiveFound exists ?", firstActiveFound)
 
     if (firstActiveFound) {
-      console.log('firstActiveFound')
       const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
       if (activeChild) {
-        console.log('firstActiveFound => item child')
         this.changeSelected(activeChild.key)
       } else {
-        console.log('firstActiveFound => item')
         this.changeSelected(firstActiveFound.key)
       }
     }
@@ -45,7 +39,6 @@ class GlobalMenu extends Component {
   }
 
   changeSelected(value) {
-    console.log('changeSelected(value)', value)
     this.setState({
       active: value,
       selected: value,
@@ -80,20 +73,6 @@ class GlobalMenu extends Component {
       active,
     } = this.state;
 
-
-    // const firstActiveFound = menuDescriptors.find(menuDescriptor => (
-    //   menuDescriptor.isActive
-    // ));
-    // if (firstActiveFound) {
-    //   const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
-    //   if (activeChild) {
-    //     setTimeout(this.changeSelected(activeChild.key), 0)
-    //   } else {
-    //     setTimeout(this.changeSelected(firstActiveFound.key), 0)
-    //   }
-    // }
-
-
     const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
       const isSelected = this.getSelected(menuDescriptor.key);
       const menuDescriptorChildren = [];
@@ -117,7 +96,6 @@ class GlobalMenu extends Component {
             isSelected: isChildrenSelected,
             isOpen: !!(isChildrenSelected && m.panel && m.panel.Content),
             onClick: () => {
-              console.log('extended onClick subitem')
               this.changeSelected(m.key);
               if (m.onClick) {
                 m.onClick();
@@ -132,7 +110,6 @@ class GlobalMenu extends Component {
         isSelected: isSelected || isMenuSelected || menuDescriptor.isActive,
         isOpen: !!(isSelected && menuDescriptor.panel && menuDescriptor.panel.Content),
         onClick: () => {
-          console.log('extended onClick item')
           this.changeSelected(menuDescriptor.key);
           if (menuDescriptor.onClick) {
             menuDescriptor.onClick();
@@ -183,12 +160,6 @@ class GlobalMenu extends Component {
             fullViewportWidthPanel={fullViewportWidthPanel}
             handlePanelClickOutside={this.handleClickOutside.bind(this)}
           />
-
-          {/* This wrapper div creates the context to wrap the 'fixed' panels
-              which allow us to control the stacking order */}
-          {/* <div> */}
-            {/* {menuDescriptorsPanel} */}
-          {/* </div> */}
         </div>
       </div>
     );
