@@ -18,7 +18,6 @@ class GlobalMenu extends Component {
     } = this.props;
 
     const firstActiveFound = menuDescriptors.find(menuDescriptor => {
-      console.log(menuDescriptor.key, 'is', (menuDescriptor.isActive ? 'active' : 'NOT active'))
       return menuDescriptor.isActive === true
     });
 
