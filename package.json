@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "cd docs/ && npm i && npm run buildAndBundle",
     "start": "cd docs/ && npm start",
-    "start:dev": "cd docs/ && npm start:dev",
+    "start:dev": "cd docs/ && npm run start:dev",
     "flow": "flow",
     "typecheck": "flow check",
     "lint": "eslint ./src",
@@ -19,7 +19,8 @@
     "test:coverage": "jest src --coverage",
     "test:watch": "jest src --watch",
     "typeinstall": "flow-typed install",
-    "deploy": "npm version patch && npm run build && npm publish build"
+    "deploy": "npm version patch && npm run build && npm publish build",
+    "deploy-doc": "cd docs/ && npm run deploy-doc"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,7 @@
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "rc-tooltip": "^3.7.0",
-    "react": "^16.0.0",
+    "react": "^16.2.0",
     "react-addons-test-utils": "~15.4.0",
     "react-click-outside": "^3.0.0",
     "react-dom": "^16.0.0",
