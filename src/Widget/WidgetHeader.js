@@ -15,7 +15,7 @@ const WidgetHeaderTitle = styled.div`
   color: #2F2F32;
   font-weight: 600;
   font-size: 16px;
-  font-family: \'Fira Sans\', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   padding-left:12px;
   padding-right:12px;
 `;

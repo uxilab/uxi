@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import { UnstyledButton } from '../Button';
 
+/**
+ * DropDown
+ *
+ * default to right aligning the droped down part
+ */
 const styles = {
   wrapper: {
     position: 'relative',
@@ -98,7 +103,7 @@ export class DropDown extends PureComponent {
 
   getDynamicItemsStyles() {
     const { isOpen, mainRef, itemsRef } = this.state;
-    const { itemsStyle } = this.props;
+    const { itemsStyle, anchor } = this.props;
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
     let itemsHeight;
@@ -113,36 +118,32 @@ export class DropDown extends PureComponent {
     const cRectItems = itemsRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
     const ItemsLeft = cRectMain.left - (cRectItems.width - cRectMain.width);
+
+    let left = '';
+    let right = '';
+    if (anchor === 'left') {
+    } else if (anchor === 'right') {
+      left = `${ItemsLeft}px`;
+    } else if (anchor === 'bottom') {
+    } else if (anchor === 'top') {
+    }
+
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
-      // position: 'absolute',
-      // top: cRectMain.height,
-      // top: isOpen ? cRectMain.bottom : cRectMain.height,
 
-      // right: `calc(${cRectMain.left}px - 100%)`,
-      // right: cRectMain.right,
-
-      left: cRectMain.left,
-      left: `${ItemsLeft}px`,
+      left,
+      right,
 
       top: ItemsTop,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
-      // opacity: 1,
       pointerEvents: isOpen ? 'all' : 'none',
       position: 'fixed',
     };
 
-    // FLIP :
-    // const initialStyle = itemsRef.getAttribute('style');
-    // itemsRef.setAttribute('style', `${styles.itemsWrapperString}; top: ${cRectMain.height}; position: absolute`);
-    // const absRect = itemsRef.getBoundingClientRect();
-    // itemsRef.setAttribute('style', initialStyle);
 
     return {
       ...res,
-      // position: isOpen ? 'fixed' : 'absolute',
-      // top: isOpen ? cRectMain.bottom : cRectMain.height,
     };
   }
 
@@ -188,6 +189,7 @@ export class DropDown extends PureComponent {
   render() {
     const {
       props: {
+        anchor,
         main,
         items: itemsBefore,
         // style,

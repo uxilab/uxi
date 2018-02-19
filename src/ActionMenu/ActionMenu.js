@@ -118,7 +118,7 @@ const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization
             <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} />
           ))
         }
-        <DropDownMenu button={<MenuButtonItem><Options /></MenuButtonItem>}>
+        <DropDownMenu button={<MenuButtonItem><Options /></MenuButtonItem>} anchor="right">
           {allMenu.map(menuDescriptor => (
             <PersonalizedMenuItem
               withPeronalization={withPeronalization}

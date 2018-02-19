@@ -19,7 +19,7 @@ const ExampleSimple = () => (
     <MenuItem style={{ backgroundColor: 'red' }}>Stuff goes here</MenuItem>
     <MenuItem>and here</MenuItem>
     <MenuItem>or here</MenuItem>
-  </HorizontalMenu>        
+  </HorizontalMenu>
   <h3>VerticalMenu menu:</h3>
   <VerticalMenu>
     <MenuItem>Stuff goes here</MenuItem>
@@ -29,7 +29,7 @@ const ExampleSimple = () => (
   <ul>
     <li>
       <h3>{'<DropDownMenu>'}</h3>
-      <DropDownMenu button={<div>{'I\'m the button'} </div>} >
+      <DropDownMenu button={<div>{'I\'m the button'} </div>} anchor="right">
         <MenuItem>
           <a href="#">other children</a>
         </MenuItem>
