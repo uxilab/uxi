@@ -2,9 +2,18 @@
   "name": "uxi-docs",
   "version": "0.0.1",
   "description": "doc for cluedin-ui",
-  "main": "./src/index.js",
+  "main": "./server/index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js"
+    "start": "node .",
+    "start:dev": "webpack-dev-server --config webpack.config.js",
+    "buildAndBundle": "npm run build && npm run bundle",
+    "bundle": "webpack --config webpack.PROD.config.js && npm run bundle:copy-index",
+    "build": "npm run build:babel && npm run build:copy-files",
+    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore test.js,__tests__,__test__ ",
+    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "clean:build": "rimraf build",
+    "bundle:copy-index": " cp index.html dist/",
+    "deploy-doc": "npm run build && echo '\n\n # now: git push uxilab\n\n' "
   },
   "author": "",
   "license": "ISC",
@@ -20,12 +29,14 @@
     "styled-components": "^2.2.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^5.1.3",
     "html-webpack-plugin": "^2.30.1",
     "install": "^0.10.1",
     "npm": "^5.4.1",
