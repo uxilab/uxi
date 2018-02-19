@@ -123,25 +123,21 @@ class Button extends Component {
       className,
       style: {
         ...style,
-        // margin: 0,
-        // marginTop: 0,
-        // marginRight: 0,
-        // marginBottom: 0,
-        // marginLeft: 0,
+        margin: 0,
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
       },
     };
-    // const marginStyles = {
-    //   display: 'inline-block',
-    //   display: 'inline-block',
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   ...('margin' in style ? { margin: style.margin } : {} ),
-    //   ...('marginTop' in style ? { marginTop: style.marginTop } : {} ),
-    //   ...('marginRight' in style ? { marginRight: style.marginRight } : {} ),
-    //   ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {} ),
-    //   ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {} ),
-    // }
+    const marginStyles = {
+      display: 'inline-block',
+      ...('margin' in style ? { margin: style.margin } : {} ),
+      ...('marginTop' in style ? { marginTop: style.marginTop } : {} ),
+      ...('marginRight' in style ? { marginRight: style.marginRight } : {} ),
+      ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {} ),
+      ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {} ),
+    }
 
     const styleProps = {
       isFullWidth,
@@ -177,9 +173,11 @@ class Button extends Component {
     const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
     return (
+      <div style={marginStyles}>
         <Ripples disabled={disabled} style={rippleStyles}>
           {theButton}
         </Ripples>
+      </div>
     );
   }
 }

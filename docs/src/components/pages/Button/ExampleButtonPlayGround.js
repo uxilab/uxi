@@ -16,10 +16,10 @@ const ExampleButtonPlayGround = () => (
     <br />
 
     <div style={{ background: 'palegreen', margin: '8px' }}>
-      <Button style={{ margin: '8px' }} link="http://google.com" text="send" />
+      <Button style={{ margin: '8px' }} link="#" text="send" />
     </div>
     <div style={{ background: 'palegreen', margin: '8px' }}>
-      <Button link="#" style={{ margin: '8px' }} link="http://google.com" text="send" />
+      <Button link="#" style={{ margin: '8px' }} link="#" text="send" />
     </div>
     <br />
 
