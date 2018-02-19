@@ -31,6 +31,7 @@ import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 import PanbelPage from './components/pages/Panel/Page';
+import GalleryPage from './components/pages/Gallery/Page';
 
 const AppRoutes = (
   <Switch>
@@ -65,6 +66,7 @@ const AppRoutes = (
     <Route path="/widget" component={WidgetPage} />
     <Route path="/personalizedmenu" component={PesonalizedMenuPage} />
     <Route path="/Panel" component={PanbelPage} />
+    <Route path="/Gallery" component={GalleryPage} />
   </Switch>
 );
 

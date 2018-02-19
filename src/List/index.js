@@ -5,3 +5,4 @@ export ListItem from './ListItem';
 export List from './List';
 export SocialLinks from './SocialLinks';
 export InputGroup from './InputGroup';
+export Gallery from '../Img/Gallery';
