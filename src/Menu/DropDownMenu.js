@@ -28,7 +28,7 @@ const DropDownMenuUI = styled.div`
 // const DropDownMenu = ({ children, button }) => {
 class DropDownMenu extends ThemeComponent {
   render() {
-    const { children, button } = this.props;
+    const { children, button, anchor } = this.props;
     // const isDark = this.context.isDarkTheme();
     const { isDark } = this.props;
     const items = [];
@@ -49,6 +49,7 @@ class DropDownMenu extends ThemeComponent {
     return (
       <DropDownMenuUI isDark={isDark}>
         <DropDown
+          anchor={anchor}
           main={button}
           items={items}
         />
