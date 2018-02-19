@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const GalleryContainerUI = styled.div`
-  --height: 60px;
+  /* --height: 60px;
   --heightMedium: 100px;
-  --heightBig: 150px;
+  --heightBig: 150px; */
 
   max-width: 100%;
   overflow: hidden;
@@ -16,10 +16,6 @@ const GalleryContainerUI = styled.div`
 `;
 
 const GalleryListUI = styled.ul`
-  --height: 60px;
-  --heightMedium: 100px;
-  --heightBig: 150px;
-
   overflow: hidden;
   overflow-y: hidden;
   overflow-x: auto;
@@ -29,21 +25,16 @@ const GalleryListUI = styled.ul`
   display: grid;
   grid-gap: 8px;
   grid-auto-flow: column;
-  min-height: var(--height);
+  /* min-height: var(--height); */
+  min-height: ${({ imgHeight }) => imgHeight}px;
+  height: ${({ imgHeight }) => imgHeight}px;
+  & img {
+    min-height: ${({ imgHeight }) => imgHeight}px;
+    height: ${({ imgHeight }) => imgHeight}px;
+    background-color: black;
+    width: auto;
+  }
 `;
-
-const GalleryListStyles = {
-  overflow: 'hidden',
-  overflowY: 'hidden',
-  overflowX: 'auto',
-  margin: 0,
-  padding: 0,
-  listStyleType: 'none',
-  display: 'grid',
-  gridGap: '8px',
-  gridAutoFlow: 'column',
-  minHeight: 'var(--height)',
-}
 
 const GalleryListItemUI = styled.li`
   display: grid;
@@ -51,9 +42,11 @@ const GalleryListItemUI = styled.li`
 `;
 
 const GalleryImageUI = styled.img`
+  /*
   background-color: black;
   width: auto;
   height: var(--height);
+  */
 `;
 
 const GalleryButtonUI = styled.button`
@@ -122,20 +115,19 @@ class Gallery extends Component {
   }
 
   render() {
-    const { galleryDescriptor } = this.props
+    const { galleryDescriptor, imgHeight } = this.props
+    console.log('imgHeight', imgHeight)
 
     return (
       <GalleryContainerUI>
         <GalleryButtonUI data-action="prev" onClick={this.handlePrevious} />
 
-        <GalleryListUI innerRef={node => this.listRef = node}>
-        {/* <ul style={GalleryListStyles} ref={node => this.listRef = node}> */}
+        <GalleryListUI innerRef={node => this.listRef = node} imgHeight={imgHeight} >
           {galleryDescriptor.map(image => (
             <GalleryListItemUI>
-              <GalleryImageUI tabIndex="0" src={image.url} />
+              <img tabIndex="0" src={image.url} />
             </GalleryListItemUI>
           ))}
-        {/* </ul> */}
         </GalleryListUI>
 
         <GalleryButtonUI data-action="next" onClick={this.handleNext} />
@@ -148,6 +140,7 @@ Gallery.displayName = 'Gallery';
 
 Gallery.defaultProps = {
   galleryDescriptor: [],
+  imgHeight: 60,
 }
 
 export default Gallery;

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 
@@ -23,7 +23,7 @@ const applyRules = (props, rules, width, height) => {
 
   let result = { ...props };
 
-  rules
+  rules = rules
     // .filter(rule => 'minWidth' in rule)  // TODO improve
     /**
      * we only apply the mapper if the available width
@@ -31,11 +31,15 @@ const applyRules = (props, rules, width, height) => {
      * if you order you rules correcty you get a nice
      * logical, ascending, flow of overwrite
      */
-    .filter(({ minWidth }) => width >= minWidth)
-    .forEach(({ minWidth, propsMapper }) => {
+    .filter(({ minWidth }) => width >= minWidth);
+
+  console.log('rules afgter filtering', rules)
+
+  rules.forEach(({ minWidth, mapper }) => {
+      console.log('mapper(result)', mapper(result))
       result = {
         ...result,
-        ...propsMapper(props),
+        ...mapper(result),
       };
     });
 
@@ -47,7 +51,6 @@ export class PropsMapperContainerQueries extends Component {
     super(props);
 
     this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this);
-    this.applyRules = this.applyRules.bind(this).bind(this);
 
     this.ref = null;
 
@@ -64,6 +67,7 @@ export class PropsMapperContainerQueries extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
+    this.handleResize();
     this.forceUpdate();
   }
 
@@ -79,14 +83,21 @@ export class PropsMapperContainerQueries extends Component {
         height: rect.height,
       });
     }
-
-    const { rules, children } = this.props;
-    const { width, height } = this.state;
   }
 
   render() {
-    const { rules, children, childrenProps, inline } = this.props;
+    const { rules, children, inline, ...restOfProps } = this.props;
     const { width, height } = this.state;
+
+    const props = {
+      ...React.Children.only(children).props,
+      ...restOfProps,
+    }
+
+    const mappedProps = applyRules(props, rules, width, height)
+
+    console.log(props)
+    console.log(mappedProps)
 
     const type = inline ? 'span' : 'div';
 
@@ -94,8 +105,8 @@ export class PropsMapperContainerQueries extends Component {
       type,
       { ref: node => this.ref = node },
       React.cloneElement(
-        Component,
-        applyRules(props, rules, width, height),
+        React.Children.only(children),
+        mappedProps,
       ),
     );
   }
