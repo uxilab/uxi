@@ -22,7 +22,7 @@
     "history": "^4.7.2",
     "marked": "^0.3.7",
     "prop-types": "^15.6.0",
-    "react": "^15.6.1",
+    "react": "^16.2.0",
     "react-docgen": "^2.20.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",

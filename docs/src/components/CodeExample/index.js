@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { parse } from 'react-docgen';
 import CodeBlock from './CodeBlock';
 // import ClearFix from 'material-ui/internal/ClearFix';
@@ -12,7 +12,7 @@ class CodeExample extends Component {
    code: PropTypes.string.isRequired,
    component: PropTypes.bool,
    description: PropTypes.string,
-   exampleBlockStyle: React.PropTypes.object,
+   exampleBlockStyle: PropTypes.object,
    layoutSideBySide: PropTypes.bool,
    title: PropTypes.string,
    fullWidth: PropTypes.bool,
