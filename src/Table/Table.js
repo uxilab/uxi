@@ -17,6 +17,7 @@ const TableUI = styled.table`
 `;
 
 class Table extends Component {
+  static componentName = 'Table';
   createTableBody(base) {
     return React.cloneElement(
       base,

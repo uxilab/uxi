@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import WidgetHeader from './WidgetHeader';
 import { Loader } from '../Motion';
@@ -9,7 +9,10 @@ const WidgetWrapper = styled.div`
 `;
 
 const WidgetContainer = styled.div`
-  min-height: 80px;
+  min-height: 150px;
+  
+  height: ${({ fixedHeight }) => (fixedHeight ? `${fixedHeight}px` : 'none')};
+  overflow-y: ${({ fixedHeight }) => (fixedHeight ? 'auto' : 'hidden')};
 `;
 
 const LoaderWrapper = styled.div`
@@ -32,31 +35,74 @@ const EmptyWrapper = styled.div`
 
 // empty
 // SubHeader
-const Widget = ({
-  children,
-  title,
-  isLoading,
-  isLoadingMore,
-  menu,
-  emptyText,
-}) => (
-  <WidgetWrapper>
-    {
-      title &&
-      (
-        <WidgetHeader
-          title={title}
-          isLoading={isLoadingMore}
-          menu={menu}
-        />
-      )
+class Widget extends Component {
+  static componentName = 'Widget';
+
+  createFixedHeightDataGrid(table) {
+    const { fixedHeight } = this.props;
+
+    return React.cloneElement(
+      table,
+      {
+        fixedHeight,
+        height: fixedHeight,
+      },
+    );
+  }
+
+  render() {
+    const {
+      children,
+      title,
+      isLoading,
+      isLoadingMore,
+      menu,
+      emptyText,
+      fixedHeight,
+    } = this.props;
+
+    let content;
+    let hasFixedHeight = fixedHeight;
+
+    if (!isLoading && !emptyText && children && hasFixedHeight) {
+      React.Children.forEach(children, (child) => {
+        if (!React.isValidElement(child)) return;
+
+        const { componentName } = child.type;
+        if (componentName === 'Table') {
+          content = this.createFixedHeightDataGrid(child);
+          hasFixedHeight = false;// reset and pass on to GRID;
+        } else if (componentName === 'DataGrid') {
+          content = this.createFixedHeightDataGrid(child);
+          hasFixedHeight = false;// reset and pass on to GRID;
+        } else {
+          content = children;
+        }
+      });
+    } else {
+      content = children;
     }
-    <WidgetContainer>
-      { !isLoading && !emptyText && children}
-      { isLoading && <LoaderWrapper><Loader /></LoaderWrapper>}
-      { !isLoading && emptyText && <EmptyWrapper>{emptyText}</EmptyWrapper>}
-    </WidgetContainer>
-  </WidgetWrapper>
-);
+
+    return (
+      <WidgetWrapper>
+        {
+          title &&
+          (
+            <WidgetHeader
+              title={title}
+              isLoading={isLoadingMore}
+              menu={menu}
+            />
+          )
+        }
+        <WidgetContainer fixedHeight={hasFixedHeight ? fixedHeight : ''}>
+          { !isLoading && !emptyText && content}
+          { isLoading && <LoaderWrapper><Loader /></LoaderWrapper>}
+          { !isLoading && emptyText && <EmptyWrapper>{emptyText}</EmptyWrapper>}
+        </WidgetContainer>
+      </WidgetWrapper>
+    );
+  }
+}
 
 export default Widget;
