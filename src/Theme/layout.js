@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export default css`
+export default `
   .uxi_container .row {
     margin-left: -0.75rem;
     margin-right: -0.75rem;

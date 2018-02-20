@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const simpleLayout = css`
+export const simpleLayout = `
   .uxi_s_row {
     margin-left: auto;
     margin-right: auto;

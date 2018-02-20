@@ -1,3 +1,4 @@
+import { css } from 'styled-components';
 import { lighten } from './colorManipulator';
 /** those are css`` mixins import */
 import grid from './grid';
@@ -17,19 +18,17 @@ import simpleLayout from './simpleLayout';
  */
 /* eslint-disable indent */
 /* eslint-disable prefer-template */
-export const makeGlobalCSSInjector = (injectGlobal, theme) => {
+
+export const makeGlobalCSSInjector = (theme) => {
   if (!theme) return () => console.warn('called `makeGlobalCSSInjector` without passing a theme');
   const {
     palette,
     transition,
   } = theme;
 
-  return () => injectGlobal`
+  return `
     ${fonts}
     ${tooltip}
-
-    * {
-    }
 
     html {
       height: 100%;
@@ -46,7 +45,7 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
       font-size: 14px;
     }
     h1, h2, h3, h4: {
-      color: ${palette.neutral.dark},
+      color: ${palette.neutral.dark};
     }
     ul {
       margin: 0;
@@ -54,30 +53,29 @@ export const makeGlobalCSSInjector = (injectGlobal, theme) => {
       list-style: none;
     }
     a {
-        color: ${palette.accent.main};
-        text-decoration: none;
-        cursor: pointer;
-      &:hover {
-        color: ${lighten(palette.accent.main, 0.1)};
-        text-decoration: underline;
-      }
+      color: ${palette.accent.main};
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a:hover {
+      color: ${lighten(palette.accent.main, 0.1)};
+      text-decoration: underline;
     }
 
     svg {
       transition: ${transition.defaultAll};
     }
     /* little trick relating to SvgIcon: a svg wrapper */
-    svg>svg { fill: inherit }
+    svg>svg { fill: inherit; }
 
     /**
      * Extend using css from styled-components
      */
     ${grid}
-    ${synthaxHighlight}
-    ${markdown}
     ${layout}
     ${simpleLayout}
-`;
+  `;
+  // return injectGlobal`${getGlobaStyles(theme)}`
 };
 
 export default makeGlobalCSSInjector;
