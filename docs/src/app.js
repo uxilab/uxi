@@ -14,7 +14,7 @@ render(
     history={createBrowserHistory()}
   >
     <AppShell>
-      <Menu />
+      {/* <Menu /> */}
       {AppRoutes}
     </AppShell>
   </Router>,

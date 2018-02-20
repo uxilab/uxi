@@ -48,6 +48,8 @@ export const routes = [
   { path: '/globalmenu', label: 'Global Menu' },
   { path: '/widget', label: 'Widget' },
   { path: '/personalizedmenu', label: 'Personalized Menu' },
+  { path: '/panel', label: 'Panel' },
+  { path: '/gallery', label: 'Gallery' },
 ]
 
 const AppShell = ({ children }) => {

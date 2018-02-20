@@ -4,16 +4,26 @@ import {
   Done as SuccessIcon,
   Issue as ErrorIcon,
 } from '../Icons';
-import { palette } from '../Theme/palette';
+// import { palette } from '../Theme/palette';
 import styled from 'styled-components';
+// import default theme in case not themeprovider is used
+import { theme as defaultTheme } from '../Theme';
 
-const { semantic } = palette;
+// const { semantic } = palette;
 
-const InputWrapperUI = styled.div`
+const InputWrapperUI = styled.div.attrs({
+  theme: ({ theme }) => {
+    console.log('theme', theme)
+    console.log('defaultTheme', defaultTheme)
+    return (theme || defaultTheme)
+  },
+})`
   position: relative;
 `;
 
-const InputUI = styled.input`
+const InputUI = styled.input.attrs({
+  theme: ({ theme }) => (theme || defaultTheme),
+})`
   border-radius: 3px;
   font-size: 14px;
   border: 1px solid ${({ theme: { palette: { semantic } } }) => semantic.default};
@@ -31,20 +41,24 @@ const InputUI = styled.input`
   }
 `;
 
-const ErrorWrapperUI = styled.span`
+const ErrorWrapperUI = styled.span.attrs({
+  theme: ({ theme }) => (theme || defaultTheme),
+})`
   padding: 0 6px;
   font-size: 12px;
-  color: ${({ theme: { palette: { semantic } } }) => semantic.error}
+  color: ${({ theme: { palette: { semantic } } }) => semantic.error};
 `;
 
-const StatusIcon = styled.span`
+const StatusIcon = styled.span.attrs({
+  theme: ({ theme }) => (theme || defaultTheme),
+})`
   position: absolute;
   right: 8px;
   top: 9px;
   color: ${({ error, success, theme: { palette: { semantic } } }) => (error
     ? semantic.error
-    : (success ? semantic.success : semantic.default))
-};
+    : (success ? semantic.success : semantic.default)
+  )};
   & > svg,
   & > svg * {
     fill: currentColor !important;
