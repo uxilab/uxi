@@ -91,7 +91,7 @@ class DataGridSorting extends Component {
     const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
     return (
       <TableHeaderColumn style={style}>
-        <div style={{ position: 'relative', cursor: 'pointer', marginLeft: '-24px', marginRight: '-4px', paddingLeft: '24px', paddingRight: '4px', ...styleForButton }}>
+        <div className="sortingGrid" style={{ position: 'relative', cursor: 'pointer', marginLeft: '-24px', marginRight: '-4px', paddingLeft: '24px', paddingRight: '4px', ...styleForButton }}>
           <div
             role="button"
             ref={(ref) => { this.toggler = ref; }}

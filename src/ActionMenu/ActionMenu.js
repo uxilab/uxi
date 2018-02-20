@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Options, Followentities } from '../Icons';
-import { FlatButton, ButtonLink } from '../Button';
 import {
   DropDownMenu,
 } from '../Menu';
@@ -35,7 +34,7 @@ const MenuButtonItemWithStyle = styled.div`
   cursor: pointer;
   color:#212121;
   &:hover {
-    background: #dadada;
+    background: #f6f6f6;
   }
 `;
 
@@ -118,7 +117,7 @@ const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization
             <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} />
           ))
         }
-        <DropDownMenu button={<MenuButtonItem><Options /></MenuButtonItem>} anchor="right">
+        {allMenu && allMenu.length > 0 && <DropDownMenu button={<MenuButtonItem><Options /></MenuButtonItem>} anchor="right">
           {allMenu.map(menuDescriptor => (
             <PersonalizedMenuItem
               withPeronalization={withPeronalization}
@@ -126,7 +125,7 @@ const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization
               {...menuDescriptor}
             />
           ))}
-        </DropDownMenu>
+        </DropDownMenu>}
       </div>
     </MainMenuWrapper>
   );

@@ -113,9 +113,11 @@ class DataGrid extends Component {
       left: 0,
       right: 0,
       paddingLeft: '82px',
-      lineHeight: '49px',
+      lineHeight: '48px',
+      height: '48px',
       display: 'flex',
       justifyContent: 'stretch',
+      borderBottom: '1px solid rgb(224,224,224)',
     };
 
     return (
@@ -143,6 +145,7 @@ class DataGrid extends Component {
       fixedHeight,
       multiSelectable,
       batchActions,
+      actions,
     } = this.props;
     const { getTypeDefinition } = this.context;
     const headers = toHeaderDefinition(data, properties);
@@ -161,7 +164,7 @@ class DataGrid extends Component {
     }
 
     const header = createDataGridHeader(headers, fixedHeight, hideHeader);
-    const body = createDataGridBody(viewModel);
+    const body = createDataGridBody(viewModel, false, actions);
     const batchActionsContent = this.createBatchActions(batchActions || []);
 
     const content = (

@@ -10,21 +10,41 @@ const Tr = styled.tr`
   cursor: ${({ activable }) => (activable ? 'pointer' : '')};
   color: rgba(0, 0, 0, 0.870588);
   height: ${({ condensed }) => (condensed ? 'auto' : '48px')};
-  background-color: ${({ readOnly, activable, isActive, theme, sperateRows, rowNumber }) => {
+  background-color: ${({ readOnly, hasAction, activable, isActive, theme, sperateRows, rowNumber }) => {
     if (activable && isActive) {
       return lighten(theme.palette.accent.light, 0.8);
     }
     if (sperateRows && rowNumber % 2 === 0) {
       return '#f4f4f4';
     }
+    if (hasAction) {
+      return 'inherit';
+    }
     return (readOnly ? '#f6f6f6' : '#fff');
   }};
   opacity: ${({ readOnly }) => (readOnly ? 0.6 : 1)};
+  transition:box-shadow .127s linear;
+  .actionMenuInTableRowColumn {
+    display:none;
+  }
+  &:hover .actionMenuInTableRowColumn {
+    display: block;
+  }
   &:hover {
-    background-color: ${({ readOnly, isTableHeader, locked, theme }) => (isTableHeader
+    box-shadow: ${({ hasAction }) => (
+      hasAction ? '0px 2px 8px 0 rgba(0,0,0,.15)' : 'none'
+    )};
+    background-color: ${({ readOnly, hasAction, isTableHeader, locked, theme }) => {
+      if (hasAction) {
+        return '#fcfcfc';
+      }
+      return isTableHeader
       ? (locked ? '#f6f6f6' : 'transparent')
-      : (readOnly ? '#f6f6f6' : lighten(theme.palette.accent.light, 0.93)))
-    };
+      : (readOnly ? '#f6f6f6' : lighten(theme.palette.accent.light, 0.93));
+    }};
+  }
+  .sortingGrid svg {
+    display: ${({ hideSvg }) => (hideSvg ? 'none' : 'block')};
   }
 `;
 

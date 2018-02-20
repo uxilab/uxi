@@ -12,6 +12,7 @@ const Td = styled.td`
   white-space: nowrap;
   text-overflow: ellipsis;
   background-color: inherit;
+  position: relative;
 `;
 
 class TableRowColumn extends Component {
