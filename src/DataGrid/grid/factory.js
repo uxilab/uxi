@@ -7,9 +7,16 @@ import {
   TableRowColumn,
 } from '../../Table';
 import TableHeaderCheckedAllCell from '../../Table/TableHeaderCheckedAllCell';
-
+import styled from 'styled-components';
 import DataGridSorting from './DataGridSorting';
 import ActiondMenu from '../../ActionMenu';
+
+const ActionMenuWrapper = styled.div`
+  position: absolute;
+  right: 12px;
+  top: 0;
+  bottom: 0;
+`;
 
 export const createDataGridCell = (property, actions) => {
   if (!actions) {
@@ -21,17 +28,27 @@ export const createDataGridCell = (property, actions) => {
   }
 
   return (
-    <TableRowColumn style={{ position: 'relative' }} hasAction={!!actions}>
+    <TableRowColumn hasAction={!!actions}>
       <div>
         {property}
-        {actions && <div style={{ position: 'absolute', right: '10px', top: 0, bottom: 0 }}><ActiondMenu menuDescriptors={actions} /></div>}
+        {
+          actions &&
+          (
+            <ActionMenuWrapper className="actionMenuInTableRowColumn"><ActiondMenu menuDescriptors={actions} /></ActionMenuWrapper>
+          )
+        }
       </div>
     </TableRowColumn>
   );
 };
 
 export const createDataGridColumn = (viewModel, actions) => (
-  <TableRow hasAction={!!actions} key={viewModel.key} data-key={viewModel.key} value={viewModel.key}>
+  <TableRow
+    hasAction={!!actions}
+    key={viewModel.key}
+    data-key={viewModel.key}
+    value={viewModel.key}
+  >
     {
       viewModel.properties.map(
         (property, index) => (

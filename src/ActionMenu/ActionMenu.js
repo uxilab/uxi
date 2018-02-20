@@ -34,7 +34,7 @@ const MenuButtonItemWithStyle = styled.div`
   cursor: pointer;
   color:#212121;
   &:hover {
-    background: #dadada;
+    background: #f6f6f6;
   }
 `;
 
