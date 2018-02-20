@@ -9,6 +9,7 @@ const UXISCThemeProvider = ({ children, theme, palette }) => {
   const theTheme = theme || getThemeWithCustomPalette(palette);
   const injectGlobalCSS = makeGlobalCSSInjector(injectGlobal, theme);
   injectGlobalCSS();
+  console.log('calling injectGlobal')
 
   return (
     <SCThemeProvider theme={theme} >
