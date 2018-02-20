@@ -1,5 +1,8 @@
 import React from 'react';
 import DataGrid from 'uxi/DataGrid';
+import {
+  Keepintheloop,
+} from 'uxi/Icons';
 
 const ExampleSimpleDataGrid = () => {
   const data = [
@@ -9,7 +12,18 @@ const ExampleSimpleDataGrid = () => {
   ];
 
   return (
-      <DataGrid data={data} />
+      <DataGrid
+        data={data}
+        actions={[
+          {
+            displayName: 'Keep in he loop',
+            key: 'Keep in the loop',
+            icon: <Keepintheloop />,
+            onClick: () => { alert('Keep in the loop'); },
+            isPromoted: true,
+          },
+        ]}
+      />
   );
 };
 

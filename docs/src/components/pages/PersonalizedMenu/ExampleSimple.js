@@ -19,6 +19,18 @@ const ExampleSimple = () => (
           onClick: () => { alert('Keep in the loop'); },
           isPromoted: true,
         },
+      ]} />
+    </div>
+    <div style={{marginBottom: '15px'}}>
+      <ActionMenu menuDescriptors={[
+        {
+          displayName: 'Keep in he loop',
+          key: 'Keep in the loop',
+          hasNew: true,
+          icon: <Keepintheloop />,
+          onClick: () => { alert('Keep in the loop'); },
+          isPromoted: true,
+        },
         {
           hasNew: true,
           displayName: 'Users',

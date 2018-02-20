@@ -9,31 +9,45 @@ import {
 import TableHeaderCheckedAllCell from '../../Table/TableHeaderCheckedAllCell';
 
 import DataGridSorting from './DataGridSorting';
+import ActiondMenu from '../../ActionMenu';
 
-export const createDataGridCell = property => (
-  <TableRowColumn>
-    {property}
-  </TableRowColumn>
-);
+export const createDataGridCell = (property, actions) => {
+  if (!actions) {
+    return (
+      <TableRowColumn hasAction={!!actions}>
+        {property}
+      </TableRowColumn>
+    );
+  }
 
-export const createDataGridColumn = viewModel => (
-  <TableRow key={viewModel.key} data-key={viewModel.key} value={viewModel.key}>
+  return (
+    <TableRowColumn style={{ position: 'relative' }} hasAction={!!actions}>
+      <div>
+        {property}
+        {actions && <div style={{ position: 'absolute', right: '10px', top: 0, bottom: 0 }}><ActiondMenu menuDescriptors={actions} /></div>}
+      </div>
+    </TableRowColumn>
+  );
+};
+
+export const createDataGridColumn = (viewModel, actions) => (
+  <TableRow hasAction={!!actions} key={viewModel.key} data-key={viewModel.key} value={viewModel.key}>
     {
       viewModel.properties.map(
-        property => (
-          createDataGridCell(property)
+        (property, index) => (
+          createDataGridCell(property, (index === 0) ? actions : null)
         ),
       )
     }
   </TableRow>
 );
 
-export const createDataGridBody = (viewModels, isHidden) => {
+export const createDataGridBody = (viewModels, isHidden, actions) => {
   const result = [];
 
   viewModels.forEach((viewModel) => {
     result.push(
-      createDataGridColumn(viewModel),
+      createDataGridColumn(viewModel, actions),
     );
   });
 
