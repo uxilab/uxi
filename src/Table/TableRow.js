@@ -43,6 +43,9 @@ const Tr = styled.tr`
       : (readOnly ? '#f6f6f6' : lighten(theme.palette.accent.light, 0.93));
     }};
   }
+  .sortingGrid svg {
+    display: ${({ hideSvg }) => (hideSvg ? 'none' : 'block')};
+  }
 `;
 
 class TableRow extends Component {

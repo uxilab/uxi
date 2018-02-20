@@ -77,7 +77,7 @@ export const createDataGridBody = (viewModels, isHidden, actions) => {
 
 export const createDataGridHeader = (headers = [], fixedHeight, hideHeader, withCheckbox, checkAllHandler) => (
   <TableHeader>
-    <TableRow>
+    <TableRow hideSvg={hideHeader}>
       {withCheckbox && <TableHeaderCheckedAllCell onCheckAll={checkAllHandler} />}
       {
         headers.map((header) => {
