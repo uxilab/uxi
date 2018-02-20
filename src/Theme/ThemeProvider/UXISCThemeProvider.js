@@ -6,30 +6,9 @@ import { theme as UXITheme, getThemeWithCustomPalette } from '../index';
 import { ThemeProvider as UXIContextThemeProvider } from './index';
 import { getGlobaStyles } from '../global';
 
-// const globalStyles = getGlobaStyles(theTheme)
-
-// const AppRoot = styled.div`
-
-// `;
-
 const UXISCThemeProvider = ({ children, theme, palette }) => {
   const theTheme = theme || getThemeWithCustomPalette(palette);
-  // const injectGlobalCSS = makeGlobalCSSInjector(injectGlobal, theme);
   const actualCSSString = makeGlobalCSSInjector(theme);
-  console.log('calling injectGlobal')
-  // console.log('getGlobaStyles(theTheme)', getGlobaStyles(theTheme))
-
-  // const globalStyles = getGlobaStyles(theTheme)
-
-
-  // const styles = (
-  //   <style
-  //     dangerouslySetInnerHTML={{
-  //       // __html: globalStyles.rules().map(rule => rule.cssText).join('\n')
-  //       __html: globalStyles.join('\n')
-  //     }}
-  //   />
-  // )
 
   return (
     <SCThemeProvider theme={theme} >
