@@ -144,7 +144,7 @@ class Button extends Component {
       ...('marginRight' in style ? {  marginRight: style.marginRight } : {}),
       ...('marginBottom' in style ? {  marginBottom: style.marginBottom } : {}),
       ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {}),
-    }
+    };
 
     const styleProps = {
       isFullWidth,
@@ -191,7 +191,7 @@ class Button extends Component {
 }
 
 Button.defaultProps = {
-  style: {}
+  style: {},
 };
 
 export default Button;

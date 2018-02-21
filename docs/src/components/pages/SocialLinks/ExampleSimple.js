@@ -16,12 +16,16 @@ const data = [
 const ExampleSimple = () => (
   <ul>
     <li>
-      <h3>VErtical</h3>
+      <h3>Vertical</h3>
       <SocialLinks socialLinks={data} />
     </li>
     <li>
-      <h3>horizontal</h3>
+      <h3>Horizontal</h3>
       <SocialLinks socialLinks={data} horizontal />
+    </li>
+    <li>
+      <h3>Horizontal with spacing and custom color</h3>
+      <SocialLinks iconColor="#b0b0b0" socialLinks={data} spacing="15px" horizontal />
     </li>
   </ul>
 );
