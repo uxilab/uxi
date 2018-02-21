@@ -1,4 +1,3 @@
-import React from 'react';
 import * as Icons from './index';
 
 const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);

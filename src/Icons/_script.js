@@ -16,7 +16,7 @@
  *
  * require prettier and eslint globally isntalled
  */
-
+/* eslint-disable */
 const fs = require('fs');
 const { exec } = require('child_process');
 
@@ -194,6 +194,7 @@ exec("echo '' > ./index.js", (err, std, stdout) => {
   console.log('start');
   const originalFiles = await Promise.all(
     fs.readdirSync('./svgs')
+      .filter(filename => filename.toLowerCase() !== '.ds_store')
       // .filter(x => x.match('options'))
       .map(writeFile)
       .map(writeFileTest)
