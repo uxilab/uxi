@@ -12,12 +12,12 @@ class GlobalHeader extends ThemeComponent {
 
     const globalHeaderMergedStyle = this.getStyle('GlobalHeader', GlobalHeaderStyle.header);
 
-    const mergedStyle = Object.assign({}, globalHeaderMergedStyle, {
+    const mergedStyle = Object.assign({}, {
       paddingLeft: this.context.uxiTheme.padding.breathPadding,
       paddingRight: this.context.uxiTheme.padding.breathPadding,
       height: this.context.uxiTheme.dimensions.mainHeaderHeight,
       ...this.context.uxiTheme.fontsAndColor.fontsAndColor,
-    }, isDark ? GlobalHeaderStyle.dark : GlobalHeaderStyle.light);
+    }, isDark ? GlobalHeaderStyle.dark : GlobalHeaderStyle.light, globalHeaderMergedStyle);
 
     if (isContainedResult) {
       return (
