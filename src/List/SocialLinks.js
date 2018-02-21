@@ -18,6 +18,9 @@ const SocialLI = styled.li`
   }
   ${({ iconColor }) => (iconColor ?
     `svg { fill: ${iconColor}; }` : '')};
+  &:hover svg {
+    opacity: 0.9;
+  }
 `;
 
 
