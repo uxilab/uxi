@@ -11,7 +11,7 @@ const ExampleSimple = () => (
         you can inspect using reactDEvTool to see this
       </P>
       <h3>container has fixed height of 300px</h3>
-      <div style={{ height: '300px', margin: ' 8px', border: '1px solid black' }}>
+      <div style={{ height: '200px', margin: ' 8px', border: '1px solid black' }}>
         <AppLayout>
           <header style={{ border: '1px solid black', background: 'grey' }} > header </header>
           <main style={{ border: '1px solid black', background: 'grey' }} > main </main>
@@ -19,7 +19,7 @@ const ExampleSimple = () => (
         </AppLayout>
       </div>
       <h3>container has fixed width and height of 300px</h3>
-      <div style={{ width: '300px', height: '300px', margin: ' 8px', border: '1px solid black' }}>
+      <div style={{ width: '200px', height: '300px', margin: ' 8px', border: '1px solid black' }}>
         <AppLayout>
           <div style={{ border: '1px solid black', background: 'grey' }} > div </div>
           <span style={{ border: '1px solid black', background: 'grey' }} > span </span>

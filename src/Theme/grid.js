@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 // TODO: use css grid
-export default css`
+export default `
   .uxi-root {
     height: 100%;
     .uxi_container {
@@ -27,5 +27,4 @@ export default css`
       }
     }
   }
-
 `;

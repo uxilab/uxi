@@ -4,16 +4,19 @@ import { injectGlobal, ThemeProvider as SCThemeProvider } from 'styled-component
 import { makeGlobalCSSInjector } from '../global';
 import { theme as UXITheme, getThemeWithCustomPalette } from '../index';
 import { ThemeProvider as UXIContextThemeProvider } from './index';
+import { getGlobaStyles } from '../global';
 
 const UXISCThemeProvider = ({ children, theme, palette }) => {
   const theTheme = theme || getThemeWithCustomPalette(palette);
-  const injectGlobalCSS = makeGlobalCSSInjector(injectGlobal, theme);
-  injectGlobalCSS();
+  const actualCSSString = makeGlobalCSSInjector(theme);
 
   return (
     <SCThemeProvider theme={theme} >
       <UXIContextThemeProvider>
-        {children}
+        <div>
+          <style dangerouslySetInnerHTML={{ __html: actualCSSString }} />
+          {children}
+        </div>
       </UXIContextThemeProvider>
     </SCThemeProvider>
   );

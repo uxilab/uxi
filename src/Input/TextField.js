@@ -13,8 +13,6 @@ import { theme as defaultTheme } from '../Theme';
 
 const InputWrapperUI = styled.div.attrs({
   theme: ({ theme }) => {
-    console.log('theme', theme)
-    console.log('defaultTheme', defaultTheme)
     return (theme || defaultTheme)
   },
 })`
