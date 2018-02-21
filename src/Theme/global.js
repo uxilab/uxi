@@ -65,6 +65,12 @@ export const makeGlobalCSSInjector = (theme) => {
     svg {
       transition: ${transition.defaultAll};
     }
+    svg.uxi_svg-icon-wrapper {
+      transition: none;
+    }
+    svg.uxi_svg-icon-wrapper svg {
+      transition: ${transition.defaultAll};
+    }
     /* little trick relating to SvgIcon: a svg wrapper */
     svg>svg { fill: inherit; }
 

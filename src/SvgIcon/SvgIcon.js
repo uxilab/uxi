@@ -67,7 +67,8 @@ export class SvgIcon extends Component {
       style,
       viewBox,
       size,
-      ...other
+      className,
+      ...other,
     } = this.props;
 
     const offColor = color || 'currentColor';
@@ -86,6 +87,7 @@ export class SvgIcon extends Component {
     };
     return (
       <svg
+        className={`${className} uxi_svg-icon-wrapper`}
         {...other}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
