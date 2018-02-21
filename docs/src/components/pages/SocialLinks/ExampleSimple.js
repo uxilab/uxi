@@ -24,8 +24,8 @@ const ExampleSimple = () => (
       <SocialLinks socialLinks={data} horizontal />
     </li>
     <li>
-      <h3>Horizontal with spacing</h3>
-      <SocialLinks socialLinks={data} spacing="15px" horizontal />
+      <h3>Horizontal with spacing and custom color</h3>
+      <SocialLinks iconColor="#b0b0b0" socialLinks={data} spacing="15px" horizontal />
     </li>
   </ul>
 );

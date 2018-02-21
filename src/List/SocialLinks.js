@@ -16,13 +16,15 @@ const SocialLI = styled.li`
     margin-left:0;
     margin-top:0;
   }
+  ${({ iconColor }) => (iconColor ?
+    `svg { fill: ${iconColor}; }` : '')};
 `;
 
 
-const SocialLinks = ({ socialLinks, horizontal, spacing, style }) => (
+const SocialLinks = ({ socialLinks, horizontal, spacing, iconColor, style }) => (
   <SocialUL horizontal={horizontal} style={style}>
     {socialLinks.map(({ name, url }) => (
-      <SocialLI horizontal={horizontal} spacing={spacing} key={name}>
+      <SocialLI horizontal={horizontal} iconColor={iconColor} spacing={spacing} key={name}>
         <a href={url}>
           {getAppropriateIcon(name)() }
         </a>
@@ -36,6 +38,7 @@ SocialLinks.propTypes = {
   horizontal: PropTypes.bool,
   style: PropTypes.object,
   spacing: PropTypes.string,
+  iconColor: PropTypes.string,
 };
 
 SocialLinks.defaultProps = {
@@ -43,6 +46,7 @@ SocialLinks.defaultProps = {
   horizontal: false,
   style: {},
   spacing: '',
+  iconColor: 0,
 };
 
 export default SocialLinks;
