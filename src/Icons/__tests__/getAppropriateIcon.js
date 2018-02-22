@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import getAppropriateIcon from '../getAppropriateIcon';
 import Circle from '../Circle';
 import Diagram from '../Diagram';
