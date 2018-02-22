@@ -209,8 +209,7 @@ exec("echo '' > ./index.js", (err, std, stdout) => {
     .map((x) => { console.log(x); return x; });
 
   // eslint-disable-next-line single-quote
-  const gASI = `import React from \'react\';
-import * as Icons from './index';
+  const gASI = `import * as Icons from './index';
 
 const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
 

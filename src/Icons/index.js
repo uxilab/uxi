@@ -17,6 +17,7 @@ export Filearchive from './Filearchive';
 export File from './File';
 export Forbidden from './Forbidden';
 export Gdpr from './Gdpr';
+export Hamburger from './Hamburger';
 export Help from './Help';
 export Idbadge from './Idbadge';
 export Industry from './Industry';
