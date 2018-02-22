@@ -84,13 +84,20 @@ const ButtonContentWrapper = styled.div`
 `;
 
 /* eslint-enable indent */
-const ButtonUI = styled.button`${ButtonBaseMixin};`;
+const ButtonUI = styled.button`
+  line-height: 1;
+  ${ButtonBaseMixin};
+`;
 const ButtonLinkUI = styled.a`
+  line-height: 1;
   ${ButtonBaseMixin};
   text-decoration: none;
   &:hover { text-decoration: none }
 `;
-const ButtonDivUI = styled.div`${ButtonBaseMixin};`;
+const ButtonDivUI = styled.div`
+  line-height: 1;
+  ${ButtonBaseMixin};
+`;
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Button extends Component {
@@ -181,7 +188,7 @@ class Button extends Component {
 
 
     return (
-      <div style={marginStyles}>
+      <div style={{ ...marginStyles, lineHeight: 0 }}>
         <Ripples disabled={disabled} style={rippleStyles}>
           {theButton}
         </Ripples>
