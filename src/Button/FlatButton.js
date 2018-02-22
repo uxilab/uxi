@@ -131,7 +131,7 @@ class Button extends Component {
       },
     };
     const marginStyles = {
-      display: 'inline-block',
+      display: isFullWidth ? 'block' : 'inline-block',
       ...('margin' in style ? { margin: style.margin } : {} ),
       ...('marginTop' in style ? { marginTop: style.marginTop } : {} ),
       ...('marginRight' in style ? { marginRight: style.marginRight } : {} ),
