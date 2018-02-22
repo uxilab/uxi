@@ -24,6 +24,7 @@ const SimpleFlexLayout = ({
   desktopColumnNumber,
   tabletColumnNumber,
   gutter = '0',
+  style,
 }) => {
   const simplayLayoutContent = [];
 
@@ -49,7 +50,7 @@ const SimpleFlexLayout = ({
   });
 
   return (
-    <SimpleFlexLayoutWrapper className="uxi-simple-flex-layout">
+    <SimpleFlexLayoutWrapper style={style} className="uxi-simple-flex-layout">
       {simplayLayoutContent}
     </SimpleFlexLayoutWrapper>
   );
