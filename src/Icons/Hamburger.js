@@ -6,22 +6,16 @@ import SvgIcon from '../SvgIcon';
 const Hamburger = props => (
   <SvgIcon {...props}>
     <svg
-      width="24px"
-      height="24px"
-      viewBox="0 0 24 24"
-      version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns="http://www.w3.org/1999/xlink"
+      viewBox="0 0 16 16"
       width="24px"
       height="24px"
     >
-      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g fill="#6D6C71">
-          <rect x="2" y="4" width="20" height="2" />
-
-          <rect x="2" y="11" width="20" height="2" />
-
-          <rect x="2" y="18" width="20" height="2" />
+      <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+          <rect width="16" height="1.73" />
+          <rect y="7.14" width="16" height="1.73" />
+          <rect y="14.28" width="16" height="1.72" />
         </g>
       </g>
     </svg>
