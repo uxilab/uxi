@@ -31,7 +31,7 @@ export const makeGlobalCSSInjector = (theme) => {
     ${tooltip}
 
     html {
-      height: 100%;
+      min-height: 100%;
       margin: 0;
       padding: 0;
       background: ${palette.white};
@@ -39,7 +39,7 @@ export const makeGlobalCSSInjector = (theme) => {
       color: ${palette.darkGrey};
     }
     body {
-      height: 100%;
+      min-height: 100%;
       margin: 0;
       padding: 0;
       font-size: 14px;
