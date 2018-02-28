@@ -102,6 +102,7 @@ class Button extends Component {
       children,
       inert,
       link,
+      readyLink,
       isFullWidth,
       click,
       onClick,
@@ -158,6 +159,13 @@ class Button extends Component {
     // which element to render div|a|button
     let TheButtonComponent = null;
     if (inert) { TheButtonComponent = ButtonDivUI; }
+    else if (readyLink) {
+      TheButtonComponent = (props) => (
+        <ButtonDivUI {...props}>
+          {readyLink}
+        </ButtonDivUI>
+      )
+    }
     else if (link) { TheButtonComponent = ButtonLinkUI; }
     else { TheButtonComponent = ButtonUI; }
 
