@@ -22,7 +22,7 @@ const UXISCThemeProvider = ({ children, theme, palette }) => {
   );
 };
 
-UXISCThemeProvider.PropTypes = {
+UXISCThemeProvider.propTypes = {
   theme: PropTypes.object,
   palette: PropTypes.object,
 };
