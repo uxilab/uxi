@@ -8,10 +8,12 @@ import { InputGroup } from 'uxi/Input';
 const TextFieldWithIconUI = styled.div`
   disaply: flex;
   align-items: center;
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 `;
 
 const FormUI = styled.form`
   display: flex;
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 `;
 
 class SearchForm extends Component {
@@ -55,6 +57,7 @@ class SearchForm extends Component {
     const {
       icon,
       onChange,
+      fullWidth,
       ...otherProps
     } = this.props;
 
@@ -66,8 +69,8 @@ class SearchForm extends Component {
     const finalIcon = icon || <Search style={{ margin: 0 }} />;
 
     return (
-      <FormUI onSubmit={this.handleSubmit}>
-        <InputGroup>
+      <FormUI fullWidth={fullWidth} onSubmit={this.handleSubmit}>
+        <InputGroup fullWidth={fullWidth}>
           <TextField {...inputProps} />
           <Button
             type="primary"
