@@ -65,7 +65,7 @@ class SearchForm extends Component {
     return (
       <FormUI fullWidth={fullWidth} onSubmit={this.handleSubmit}>
         <InputGroup fullWidth={fullWidth}>
-          <TextField {...inputProps} style={{ width: '100%' }} />
+          <TextField {...inputProps} />
           <Button
             type="primary"
             icon={finalIcon}

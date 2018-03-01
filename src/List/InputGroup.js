@@ -7,6 +7,9 @@ const InputWrapper = styled.div`
   border-radius: 3px;
   border: #dcdcdc;
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  &>div {
+    width: 100%;
+  }
 `;
 
 /**

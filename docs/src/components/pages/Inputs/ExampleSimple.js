@@ -71,7 +71,7 @@ const ExampleSimple = () => (
       </RadioGroup>
     </li>
     <li>
-      <h3>Uncontrolled SearchForm InputGroup</h3>
+      <h3>Uncontrolled SearchForm InputGroup!!!!</h3>
       <SearchForm
         fullWidth
         onChange={(x, y) => console.log(x, y)}
