@@ -6,7 +6,7 @@ const InputWrapper = styled.div`
   display: 'inline-flex',
   borderRadius: '3px',
   border: '#dcdcdc',
-  width: ${({fullWidth}) => (fullWidth ? '100%' : 'auto')};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 `;
 
 /**
@@ -29,7 +29,7 @@ const InputGroup = ({ children, style = {}, fullWidth }) => (
         });
       })
     }
-  </div>
+  </InputWrapper>
 );
 
 export default InputGroup;
