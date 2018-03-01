@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InputWrapper = styled.div`
-  overflow: 'hidden',
-  display: 'inline-flex',
-  borderRadius: '3px',
-  border: '#dcdcdc',
+  overflow: hidden;
+  display: inline-flex;
+  border-radius: 3px;
+  border: #dcdcdc;
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 `;
 
