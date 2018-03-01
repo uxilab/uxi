@@ -1,18 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const styles = {
+const InputWrapper = styled.div`
   overflow: 'hidden',
   display: 'inline-flex',
   borderRadius: '3px',
   border: '#dcdcdc',
-};
+  width: ${({fullWidth}) => (fullWidth ? '100%' : 'auto')};
+`;
 
 /**
  * TODO: what happens when the context/parentDomBox does not provide enough width to render all inline ? -df
  */
 
-const InputGroup = ({ children }) => (
-  <div style={styles}>
+const InputGroup = ({ children, style = {}, fullWidth }) => (
+  <InputWrapper fullWidth={fullWidth} style={style}>
     {
       React.Children.map(children, (child, i, list) => {
         'r';
