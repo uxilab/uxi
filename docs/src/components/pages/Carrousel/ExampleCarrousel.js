@@ -73,36 +73,28 @@ const ExampleCarrousel = () => (
         <img src="https://www.cluedin.net/case-studies/1.png?v=1.0.4" />
         <h3>Hellloooooo</h3>
         <p>
-          that we know who you are, I know who I am. I'm not a mistake! It all makes sense!
-          In a comic, you know how you can tell who the arch-villain's going to be?
-          He's the exact opposite of the hero.
+          that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be?          He's the exact opposite of the hero.
         </p>
       </Card>
       <Card>
         <img src="https://www.cluedin.net/case-studies/1.png?v=1.0.4" />
         <h3>Hellloooooo</h3>
         <p>
-          that we know who you are, I know who I am. I'm not a mistake! It all makes sense!
-          In a comic, you know how you can tell who the arch-villain's going to be?
-          He's the exact opposite of the hero.
+          that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be?          He's the exact opposite of the hero.
         </p>
       </Card>
       <Card>
         <img src="https://www.cluedin.net/case-studies/1.png?v=1.0.4" />
         <h3>Hellloooooo</h3>
         <p>
-          that we know who you are, I know who I am. I'm not a mistake! It all makes sense!
-          In a comic, you know how you can tell who the arch-villain's going to be?
-          He's the exact opposite of the hero.
+          that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be?          He's the exact opposite of the hero.
         </p>
       </Card>
       <Card>
         <img src="https://www.cluedin.net/case-studies/1.png?v=1.0.4" />
         <h3>Hellloooooo</h3>
         <p>
-          that we know who you are, I know who I am. I'm not a mistake! It all makes sense!
-          In a comic, you know how you can tell who the arch-villain's going to be?
-          He's the exact opposite of the hero.
+          that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be?          He's the exact opposite of the hero.
         </p>
       </Card>
     </Carrousel>
