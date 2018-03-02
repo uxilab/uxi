@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import TextField from './TextField';
 import styled from 'styled-components';
-import { IconButton, Button } from 'uxi/Button';
-import { Search } from 'uxi/Icons';
-import { InputGroup } from 'uxi/Input';
-
-const TextFieldWithIconUI = styled.div`
-  disaply: flex;
-  align-items: center;
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
-`;
+import { Button } from '../Button';
+import { Search } from '../Icons';
+import InputGroup from '../List/InputGroup';
 
 const FormUI = styled.form`
   display: flex;
