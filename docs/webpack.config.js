@@ -50,6 +50,12 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.md$/,
+        use: [
+          'raw-loader'
+        ],
+      },
     ],
   },
   resolve: {
