@@ -4,7 +4,7 @@
   "description": "doc for cluedin-ui",
   "main": "./server/index.js",
   "scripts": {
-    "start": "node .",
+    "start": "babel-node .",
     "start:dev": "webpack-dev-server --config webpack.config.js",
     "buildAndBundle": "npm run build && npm run bundle",
     "bundle": "webpack --config webpack.PROD.config.js",
