@@ -9,7 +9,7 @@ const pgk = require('./package.json');
 module.exports = {
   entry: [
     'babel-polyfill',
-    './build/app.js',
+    './src/app.js',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -38,6 +38,12 @@ module.exports = {
           'babel-loader',
         ],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.md$/,
+        use: [
+          'raw-loader'
+        ],
       },
       // {
       //   test: /\.css$/,

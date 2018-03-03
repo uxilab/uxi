@@ -8,11 +8,6 @@
     "start:dev": "webpack-dev-server --config webpack.config.js",
     "buildAndBundle": "npm run build && npm run bundle",
     "bundle": "webpack --config webpack.PROD.config.js && npm run bundle:copy-index",
-    "build": "npm run build:babel && npm run build:copy-files",
-    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore test.js,__tests__,__test__ ",
-    "build:copy-files": "babel-node ./scripts/copy-files.js",
-    "clean:build": "rimraf build",
-    "bundle:copy-index": " cp index.html dist/",
     "deploy-doc": "npm run build && echo '\n\n # now: git push uxilab\n\n' "
   },
   "author": "",
