@@ -1,28 +1,29 @@
-# UXI
+# UXI - React component library
 
-This page is only dedicated to contributors. For documentation around the project, please go >>> here <<<
+
+## Demo: [uxilab.eu](https://www.uxilab.eu)
+
+#### We're looking for contributors!
+
+This page is only dedicated to contributors. For documentation around the project, please go to [uxilab.eu](https://www.uxilab.eu)
+
 
 ## Pre-requirements
-
-- We currently only support React
-- We currently only React > 16.0 (using older verson might work or not)
+- We currently only support React ^16.0.0 (using older verson might work, or not)
 - We currently test only on 'modern' browser (see list) (if you want us to extend our browser support => help us).
 
 
 ## Installing
-
 - Install node.js
-- Clone Repo
-- > npm i
+- > git clone git@github.com:uxilab/uxi.git
+- > cd uxi
+- > npm install
 
-Go to the doc folder:
-
-- > cd docs
-- Install deps for docs
-- > npm i
-- Launch webpack dev server
-- > npm run start
+## start dev
+- > npm run start:dev
 - open browser to http://localhost:3001
+
+----
 
 ## Backlog of things
 
@@ -124,7 +125,7 @@ Go to the doc folder:
 - Create Documentation
 - Create Sketch file
 
-#### TextField 
+#### TextField
 
 - Create tests
 - Write UX guidelines

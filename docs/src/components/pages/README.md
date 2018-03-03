@@ -42,7 +42,7 @@ UXI provides components that are tested and used in production. We also do some 
 
 ### Pierre Derval - Creator
 
-Pierre Derval built many web applications during his (>10 years) careers and led the team which created a UI framework called SPEAK for Sitecore. Having collaborated into multiple large projects as a consultant and involved into full revamp of large application re-writing, Pierre always dreamed to create a unified component 
+Pierre Derval built many web applications during his (>10 years) careers and led the team which created a UI framework called SPEAK for Sitecore. Having collaborated into multiple large projects as a consultant and involved into full revamp of large application re-writing, Pierre always dreamed to create a unified component
 library which would bring best practises from the world of UX and UI into an easy-to-use library. Meanwhile creating the Cluedin application, Pierre started on the journey of creating UXI thinking it could benefit more than a single company.
 
 ### Denis Florkin - Creator
@@ -55,6 +55,5 @@ We are always in need for people helping us to our project. So, do not hesitate 
 
 ## Partners
 
-Currently, our main partners are currently Cluedin, Adorm and Sitecore (//todo need to find more partners, adform and sitecore are examples).
-
+Currently, our main partners are currently Cluedin, Adorm and Sitecore.
 If your company wants to support us, take contact with pierre_at_uxilab.eu.
