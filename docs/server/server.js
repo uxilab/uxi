@@ -1,6 +1,7 @@
-const express = require('express')
-const fs = require('fs')
-const path = require('path');
+import express from 'express'
+import fs from 'fs'
+import path from 'path'
+import AppRootSSR from '../src/AppRootSSR'
 
 const cacheTime = 86400000 * 7; // 7 days
 

@@ -1,17 +1,22 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import AppRoutes from './AppRoutes';
 import AppShell from './AppShell';
 
-export const AppRoot = props => {
+export const AppRootSSR = (props) => {
+  const { url, context } = props;
+
   return (
-    <BrowserRouter>
+    <StaticRouter
+      location={url}
+      context={{}}
+    >
       <AppShell>
         {AppRoutes}
       </AppShell>
-    </BrowserRouter>
+    </StaticRouter>
   )
 }
 
-export default AppRoot;
+export default AppRootSSR;
