@@ -5,6 +5,9 @@ import { SimpleList, ListItem } from 'uxi/List';
 import MarkDownElement from '../MarkdownElement/MarkDownElement';
 import AsyncMarkDown from '../MarkdownElement/AsyncMarkDown';
 import RAWReadme from './README.md';
+import RAWfoo from '!file-loader!isomorphic-loader!./foo.js'; // need manual declaration for .js
+import foo from './foo.js';
+console.log(foo)
 
 const Home = () => (
   <div>
@@ -18,7 +21,8 @@ const Home = () => (
     <br />
     <h3>README.md:</h3>
     <br />
-    <AsyncMarkDown src={`${RAWReadme}`} lang="js" />
+    <AsyncMarkDown src={RAWReadme} lang="js" />
+    <AsyncMarkDown src={RAWfoo} lang="js" />
 
   </div>
 );

@@ -41,12 +41,12 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-      /* {
-        test: /\.md$/,
-        use: [
-          'raw-loader'
-        ],
-      }, */
+      // {
+      //   test: /\.js$/,
+      //   use: [
+      //     'raw-loader'
+      //   ],
+      // },
       {
         test: /\.(gif|png|jpe?g|svg|md)$/i,
         use: [

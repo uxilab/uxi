@@ -1,6 +1,7 @@
 {
   "marked": {
     "src/components/pages/README.md": "d6264ee5ffdf083ea9c4a957675fde69.md",
+    "src/components/pages/foo.js": "bca2ee350fa5441fd031d35cc5f6f46c.js",
     "src/components/pages/Img/240js.png": "34fc2d6ea145ecec55347c2e0aac7297.png"
   },
   "chunks": {
