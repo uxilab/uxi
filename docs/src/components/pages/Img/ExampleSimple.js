@@ -1,5 +1,6 @@
 import React from 'react';
 import Img from '../../../../../src/Img';
+import js240 from './240js.png'
 
 const ExampleSimple = () => (
   <ul>
@@ -11,6 +12,9 @@ const ExampleSimple = () => (
     </li>
     <li>
       <Img contain style={{ width: '160px' }} src="https://tettra.co/wp-content/logos/asana.png" />
+    </li>
+    <li>
+      <Img contain style={{ width: '160px' }} src={js240} />
     </li>
   </ul>
 );

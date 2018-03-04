@@ -20,7 +20,9 @@ module.exports = {
   devtool: 'inline-source-map',
   output: {
     filename: 'app.js',
-    path: __dirname,
+    // path: __dirname,
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/assets/',
   },
   devServer: {
     host: 'localhost',
@@ -50,10 +52,17 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-      {
+      /* {
         test: /\.md$/,
         use: [
           'raw-loader'
+        ],
+      }, */
+      {
+        test: /\.(gif|png|jpe?g|svg|md)$/i,
+        use: [
+          'file-loader',
+          'isomorphic-loader',
         ],
       },
     ],
@@ -74,7 +83,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
-
+    // new IsomorphicLoaderPlugin(), doesn't look necessary in dev mdoe
     new webpack.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
   ],

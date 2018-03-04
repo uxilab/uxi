@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { PageTitle, PageSubTitle } from 'uxi/Page';
 import { SimpleList, ListItem } from 'uxi/List';
 import MarkDownElement from '../MarkdownElement/MarkDownElement';
+import AsyncMarkDown from '../MarkdownElement/AsyncMarkDown';
 import RAWReadme from './README.md';
 
 const Home = () => (
@@ -17,7 +18,7 @@ const Home = () => (
     <br />
     <h3>README.md:</h3>
     <br />
-    <MarkDownElement  text={RAWReadme} lang="js" />
+    <AsyncMarkDown src={`${RAWReadme}`} lang="js" />
 
   </div>
 );

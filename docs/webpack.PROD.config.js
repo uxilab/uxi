@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 // const CompressionPlugin = require('compression-webpack-plugin');
 const pgk = require('./package.json');
+const IsomorphicLoaderPlugin = require('isomorphic-loader/lib/webpack-plugin');
 
 
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: `app.js`,
+    publicPath: '/assets/',
   },
   devtool: 'nosources-source-map',
   resolve: {
@@ -39,10 +41,17 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-      {
+      /* {
         test: /\.md$/,
         use: [
           'raw-loader'
+        ],
+      }, */
+      {
+        test: /\.(gif|png|jpe?g|svg|md)$/i,
+        use: [
+          'file-loader',
+          'isomorphic-loader',
         ],
       },
       // {
@@ -53,6 +62,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new IsomorphicLoaderPlugin(),
+
+
     /*
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
