@@ -20,7 +20,7 @@ app.use('/favicon.png', express.static('images/favicon.png', { maxAge: 604800 })
 //   res.sendFile(`${cwd}/dist/app.js`)
 // })
 
-app.get('/', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(`${cwd}/index.html`)
 })
 

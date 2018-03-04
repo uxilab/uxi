@@ -6,7 +6,6 @@
   "scripts": {
     "start": "babel-node .",
     "start:dev": "webpack-dev-server --config webpack.config.js",
-    "buildAndBundle": "npm run build && npm run bundle",
     "bundle": "webpack --config webpack.PROD.config.js",
     "deploy-doc": "npm run build && echo '\n\n # now: git push uxilab\n\n' "
   },
