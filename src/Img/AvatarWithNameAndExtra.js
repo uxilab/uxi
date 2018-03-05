@@ -19,7 +19,7 @@ const AvatarWithNameAndExtra = ({ src, icon, name, extra, imgSize, isSquare, onC
   const imgContent = src
     ? <Img async width={imgSize || '26'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
     : (icon
-      ? React.cloneElement(icon, { size: imgSize || '26px' })
+      ? React.cloneElement(icon, { size: icon.props.size || imgSize || '26px' })
       : React.createElement(getAppropriateIcon('Circleduser'), { size: imgSize || '26px' })
     );
 
