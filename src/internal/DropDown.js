@@ -195,10 +195,11 @@ export class DropDown extends PureComponent {
   render() {
     const {
       props: {
+        isFullWidth,
         anchor,
         main,
         items: itemsBefore,
-        // style,
+        style,
         itemsStyle,
         // mainStyle,
         // isOpen,
@@ -244,7 +245,7 @@ export class DropDown extends PureComponent {
     };
 
     return (
-      <span style={{ ...styles.wrapper/* , ...style */ }}>
+      <span style={{ ...styles.wrapper, ...style }}>
         <UnstyledButton tabIndex={0} role="menu" style={styles.triggerWrapper} onClick={this.handleToggleVisibility} >
           <div style={styles.triggerInnerWrapper}>
             {dropDownMain}

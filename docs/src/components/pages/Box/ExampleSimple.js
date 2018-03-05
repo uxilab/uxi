@@ -1,5 +1,5 @@
 import React from 'react';
-import { CollapsibleBox, BoxItem } from '../../../../../src/Box';
+import { CollapsibleBox, CollapsibleBox2, BoxItem, BoxItem2 } from '../../../../../src/Box';
 
 const ExampleSimple = () => (
   <div>
@@ -20,6 +20,26 @@ const ExampleSimple = () => (
         TOTO!
       </BoxItem>
     </CollapsibleBox>
+
+    <br />
+
+    <CollapsibleBox2 title="Example">
+      <BoxItem2 padding="S">
+        TOTO!
+      </BoxItem2>
+      <BoxItem2 padding="S">
+        TOTO!
+      </BoxItem2>
+      <BoxItem2 padding="S">
+        TOTO!
+      </BoxItem2>
+      <BoxItem2 padding="S">
+        TOTO!
+      </BoxItem2>
+      <BoxItem2 padding="S" isLast>
+        TOTO!
+      </BoxItem2>
+    </CollapsibleBox2>
   </div>
 );
 
