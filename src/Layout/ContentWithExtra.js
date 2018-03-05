@@ -16,15 +16,15 @@ const ContentUI = styled.div`
   width: 100%;
   min-width: ${({ contentMinWidth }) => contentMinWidth}; */
   min-width: 100%;
-  width: ${({ contentMinWidth }) => contentMinWidth};
+  min-width: ${({ contentMinWidth }) => contentMinWidth};
   max-width: 100%;
 
+  width: auto;
   flex-grow: 99;
   flex-shrink: 0;
-  @media (min-width: 1024px) {
-    width: auto;
+  /* @media (min-width: 1024px) {
     min-width: ${({ contentMinWidth }) => contentMinWidth};
-  }
+  } */
 `;
 
 const ExtraUI = styled.div`
