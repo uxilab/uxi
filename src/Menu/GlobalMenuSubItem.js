@@ -38,31 +38,30 @@ const LinkDecorator = styled.div`
     }
 
     border-bottom:  ${({ isLastSubItem, theme: { palette } }) =>
-      isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, .5)}`
-    };
+    (isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, 0.5)}`)};
 
     overflow: hidden;
     color: #9a9fa5;
     text-align: left;
     padding: 16px 32px 4px 32px;
-    padding: ${({ isParentSelected }) => isParentSelected ? '16px 4px 16px 32px' : '0 32px' };
+    padding: ${({ isParentSelected }) => (isParentSelected ? '16px 4px 16px 32px' : '0 32px')};
     cursor: pointer;
-    background: ${({ theme: { palette } }) => darken(palette.primary.dark) };
+    background: ${({ theme: { palette } }) => darken(palette.primary.dark)};
     color: ${({ isSelected, isActive, theme: { palette } }) => (
-      isSelected || isActive ? palette.accent.light : palette.lightGrey
-    )};
+    isSelected || isActive ? palette.accent.light : palette.lightGrey
+  )};
 
     &,
     /* TODO fix tihs .root a situation */
-    .root & { 
+    .root & {
       color: ${({ isSelected, isActive, theme: { palette } }) => (
-        isSelected || isActive ? palette.accent.light : palette.lightGrey
-      )}
+    isSelected || isActive ? palette.accent.light : palette.lightGrey
+  )}
     };
     height: 0px;
     max-height: 0px;
-    max-height: ${({ isParentSelected }) => isParentSelected ? '60px' : '0px' };
-    height: ${({ isParentSelected }) => isParentSelected ? 'auto' : '0px' };
+    max-height: ${({ isParentSelected }) => (isParentSelected ? '60px' : '0px')};
+    height: ${({ isParentSelected }) => (isParentSelected ? 'auto' : '0px')};
     transition: ${({ theme }) => theme.transition.defaultAll};
 
     &, &:hover {
@@ -74,26 +73,26 @@ const LinkDecorator = styled.div`
       & { color: #fff; }
       transition: inherit;
       background: ${({ isSelected, theme: { palette } }) =>
-        (isSelected ? palette.primary.dark : palette.primary.light)
-      };
+    (isSelected ? palette.primary.dark : palette.primary.light)
+};
       color: ${({ isSelected, isActive, theme: { palette } }) =>
-        (isSelected || isActive) ? palette.accent.light : palette.pureWhite
-      };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
     }
 
     &:hover, &:hover:focus, &:hover:not(:focus) {
       /* color: #fff; */
-      color: ${({ isSelected, isActive, theme: { palette }}) => (
-        isSelected && isActive ? palette.accent.light : palette.pureWhite
-      )};
+      color: ${({ isSelected, isActive, theme: { palette } }) => (
+    isSelected && isActive ? palette.accent.light : palette.pureWhite
+  )};
 
-      background: ${({ isSelected, isActive, theme: { palette }}) => (
-        isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
-      )};
+      background: ${({ isSelected, isActive, theme: { palette } }) => (
+    isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
+  )};
       & {
         color: ${({ isSelected, isActive, theme: { palette } }) => (
-          isSelected && isActive ? palette.accent.light : palette.pureWhite
-        )};
+    isSelected && isActive ? palette.accent.light : palette.pureWhite
+  )};
       }
     }
 
@@ -122,16 +121,16 @@ const GlobalMenuSubItemDiv = styled.a`
   }
 
   border-bottom:  ${({ isLastSubItem, theme: { palette } }) =>
-    isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, .5)}`
-  };
+    (isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, 0.5)}`)
+};
 
   overflow: hidden;
   color: #9a9fa5;
   text-align: left;
   padding: 16px 32px 4px 32px;
-  padding: ${({ isParentSelected }) => isParentSelected ? '16px 4px 16px 32px' : '0 32px' };
+  padding: ${({ isParentSelected }) => (isParentSelected ? '16px 4px 16px 32px' : '0 32px')};
   cursor: pointer;
-  background: ${({ theme: { palette } }) => darken(palette.primary.dark) };
+  background: ${({ theme: { palette } }) => darken(palette.primary.dark)};
   color: ${({ isSelected, isActive, theme: { palette } }) => (
     isSelected || isActive ? palette.accent.light : palette.lightGrey
   )};
@@ -140,13 +139,13 @@ const GlobalMenuSubItemDiv = styled.a`
   /* TODO fix tihs .root a situation */
   .root & { 
     color: ${({ isSelected, isActive, theme: { palette } }) => (
-      isSelected || isActive ? palette.accent.light : palette.lightGrey
-    )}
+    isSelected || isActive ? palette.accent.light : palette.lightGrey
+  )}
   };
   height: 0px;
   max-height: 0px;
-  max-height: ${({ isParentSelected }) => isParentSelected ? '60px' : '0px' };
-  height: ${({ isParentSelected }) => isParentSelected ? 'auto' : '0px' };
+  max-height: ${({ isParentSelected }) => (isParentSelected ? '60px' : '0px')};
+  height: ${({ isParentSelected }) => (isParentSelected ? 'auto' : '0px')};
   transition: ${({ theme }) => theme.transition.defaultAll};
 
   &, &:hover {
@@ -158,26 +157,26 @@ const GlobalMenuSubItemDiv = styled.a`
     & { color: #fff; }
     transition: inherit;
     background: ${({ isSelected, theme: { palette } }) =>
-      (isSelected ? palette.primary.dark : palette.primary.light)
-    };
+    (isSelected ? palette.primary.dark : palette.primary.light)
+};
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected || isActive) ? palette.accent.light : palette.pureWhite
-    };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
   }
 
   &:hover, &:hover:focus, &:hover:not(:focus) {
     /* color: #fff; */
-    color: ${({ isSelected, isActive, theme: { palette }}) => (
-      isSelected && isActive ? palette.accent.light : palette.pureWhite
-    )};
+    color: ${({ isSelected, isActive, theme: { palette } }) => (
+    isSelected && isActive ? palette.accent.light : palette.pureWhite
+  )};
 
-    background: ${({ isSelected, isActive, theme: { palette }}) => (
-      isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
-    )};
+    background: ${({ isSelected, isActive, theme: { palette } }) => (
+    isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
+  )};
     & {
        color: ${({ isSelected, isActive, theme: { palette } }) => (
-        isSelected && isActive ? palette.accent.light : palette.pureWhite
-      )};
+    isSelected && isActive ? palette.accent.light : palette.pureWhite
+  )};
      }
   }
 
@@ -193,7 +192,7 @@ const GlobalMenuSubItemDiv = styled.a`
 // const GlobalMenuItemButton = GlobalMenuSubItemDiv.withComponent('button');
 
 
-const GlobalMenuSubItem = props => {
+const GlobalMenuSubItem = (props) => {
   const {
     content,
     onClick,
@@ -209,12 +208,12 @@ const GlobalMenuSubItem = props => {
     href,
   } = props;
 
-  let linkProps = {}
+  let linkProps = {};
   if (Link !== undefined) {
-    const GlobalMenuItemDivFinal = Link // shadow
-    linkProps = { to }
+    const GlobalMenuItemDivFinal = Link; // shadow
+    linkProps = { to };
   } else if (href) {
-    linkProps = { href }
+    linkProps = { href };
   }
 
   const attributes = {
@@ -261,7 +260,7 @@ const GlobalMenuSubItem = props => {
           {label}
         </Link>
       </LinkDecorator>
-    )
+    );
   }
 
   return resContent;

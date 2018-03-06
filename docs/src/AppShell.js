@@ -62,8 +62,7 @@ const AppShell = ({ children }) => {
   );
 
   return (
-    <UXISCThemeProvider theme={getThemeWithCustomPalette()} >
-      <ThemeProvider palette={{ /* primary: '#663399', secondary: '#7fff00' */ }}>
+    <UXISCThemeProvider>
         <AppLayout>
           <Header isDark>
             <HorizontalMenu isMain>
@@ -91,7 +90,6 @@ const AppShell = ({ children }) => {
             <Flex><H4><strong>uxi</strong></H4></Flex>
           </ThemedBox>
         </AppLayout>
-      </ThemeProvider>
     </UXISCThemeProvider>
   );
 };
