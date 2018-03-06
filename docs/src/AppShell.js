@@ -50,6 +50,7 @@ export const routes = [
   { path: '/personalizedmenu', label: 'Personalized Menu' },
   { path: '/panel', label: 'Panel' },
   { path: '/gallery', label: 'Gallery' },
+  { path: '/carrousel', label: 'Carrousel' },
 ]
 
 const AppShell = ({ children }) => {
