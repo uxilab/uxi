@@ -1,14 +1,10 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
+import { ListPage } from 'uxi/Layout';
 
-const ListPage = () => (
-  <div>
-    <Title text="List" />
-    <P>
-      This is a simple table without interaction.
-    </P>
-  </div>
+const ListPageEx = () => (
+    <ListPage />
 );
 
-export default ListPage;
+export default ListPageEx;
