@@ -15,10 +15,20 @@ const Root = styled.div`
     height: 40px;
     lineHeight: 40px;
     cursor: pointer;
+    box-sizing:border-box;
     color: ${props => (props.menuColor)};
+    margin: 0 6px;
     &:hover {
       color: ${props => (props.menuColorHover)};
+      border-bottom: 3px solid #ccc;
     }
+  }
+  div.uxi-menu-item.uxi-active {
+    border-bottom: 3px solid ${props => (props.menuColorHover)};
+    color: ${props => (props.menuColorHover)};
+  }
+  div.uxi-menu-item.uxi-active:hover {
+    border-bottom: 3px solid #ccc;
   }
   div.uxi-menu-item a {
     text-decoration: none;
