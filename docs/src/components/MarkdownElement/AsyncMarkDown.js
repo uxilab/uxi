@@ -45,13 +45,16 @@ class MarkdownElement extends Component {
     if ('fetch' in window) {
       fetch(src)
         .then(response => {
+          console.log(response)
+          console.log(response.html)
           const fileTextContent = response.text()
+          console.log(fileTextContent)
           return fileTextContent
         })
         .then(text => {
           this.setState({ text: text })
         })
-        .catch(err => console.warn(error));
+        .catch(error => console.warn(error));
     }
   }
 

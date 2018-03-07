@@ -2,10 +2,10 @@ import React from 'react';
 import CodeExample from '../../CodeExample';
 
 import ExampleSimple from './ExampleSimple';
-import RAWExampleSimple from '!raw-loader!./ExampleSimple';
+import RAWExampleSimple from '!file-loader!isomorphic-loader!./ExampleSimple.js'
 
 import ExampleContentWithExtra from './ExampleContentWithExtra';
-import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
+import RAWExampleContentWithExtra from '!file-loader!isomorphic-loader!./ExampleContentWithExtra.js'
 
 const Layouts = () => (
   <div>

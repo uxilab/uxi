@@ -30,7 +30,7 @@ class CodeExample extends Component {
  render() {
    const {
      children,
-     code,
+     code: codeSrc,
      component,
      exampleBlockStyle,
      layoutSideBySide,
@@ -59,8 +59,9 @@ class CodeExample extends Component {
        <CodeBlock
          title={this.props.title}
          description={this.props.description}
+         codeSrc={codeSrc}
        >
-         {code}
+         {/* {code} */}
        </CodeBlock>
        <div style={Object.assign(styles.exampleBlock, exampleBlockStyle)}>{children}</div >
      </DivPadding>

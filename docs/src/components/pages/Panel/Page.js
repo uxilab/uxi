@@ -3,7 +3,7 @@ import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 import PanelExample from './PanelExample';
-import RAWPanelExample from '!raw-loader!./PanelExample';
+import RAWPanelExample from '!file-loader!isomorphic-loader!./PanelExample.js'
 
 
 const ButtonPage = () => (

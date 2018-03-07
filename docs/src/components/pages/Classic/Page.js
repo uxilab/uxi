@@ -1,10 +1,10 @@
 import React from 'react';
 import CodeExample from '../../CodeExample';
 import ExampleSimpleHeadings from './ExampleSimpleHeadings';
-import RAWExampleSimpleHeadings from '!raw-loader!./ExampleSimpleHeadings';
+import RAWExampleSimpleHeadings from '!file-loader!isomorphic-loader!./ExampleSimpleHeadings.js'
 
 import ExampleSimpleP from './ExampleSimpleP';
-import RAWExampleSimpleP from '!raw-loader!./ExampleSimpleP';
+import RAWExampleSimpleP from '!file-loader!isomorphic-loader!./ExampleSimpleP.js'
 
 
 const ClassicPage = () => (

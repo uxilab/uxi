@@ -4,28 +4,28 @@ import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 
 import ExampleSimpleTable from './ExampleSimpleTable';
-import RAWExampleSimpleTable from '!raw-loader!./ExampleSimpleTable';
+import RAWExampleSimpleTable from '!file-loader!isomorphic-loader!./ExampleSimpleTable.js'
 
 import ExampleSimpleTableWithSpecialCell from './ExampleSimpleTableWithSpecialCell';
-import RAWExampleSimpleTableWithSpecialCell from '!raw-loader!./ExampleSimpleTableWithSpecialCell';
+import RAWExampleSimpleTableWithSpecialCell from '!file-loader!isomorphic-loader!./ExampleSimpleTableWithSpecialCell.js'
 
 import ExampleSimpleTableWithReadOnly from './ExampleSimpleTableWithReadOnly';
 import RAWExampleSimpleTableWithReadOnly from '!raw-loader!./ExampleSimpleTableWithReadOnly'
 
 import ExampleSimpleTableWithSeparateRow from './ExampleSimpleTableWithSeparateRow.js';
-import RAWExampleSimpleTableWithSeparateRow from '!raw-loader!./ExampleSimpleTableWithSeparateRow.js';
+import RAWExampleSimpleTableWithSeparateRow from '!file-loader!isomorphic-loader!./ExampleSimpleTableWithSeparateRow.js'
 
 import ExampleSelectableTable from './ExampleSelectableTable';
-import RAWExampleSelectableTable from '!raw-loader!./ExampleSelectableTable';
+import RAWExampleSelectableTable from '!file-loader!isomorphic-loader!./ExampleSelectableTable.js'
 
 import ExampleSelectableTableValues from './ExampleSelectableTableValues';
-import RAWExampleSelectableTableValues from '!raw-loader!./ExampleSelectableTableValues';
+import RAWExampleSelectableTableValues from '!file-loader!isomorphic-loader!./ExampleSelectableTableValues.js'
 
 import ExampleMuiltSelectableTableValues from './ExampleMuiltSelectableTableValues';
 import RAWExampleMuiltSelectableTableValues from '!raw-loader!./ExampleMuiltSelectableTableValues'
 
 import ExampleSelectableTableWithDelete from './ExampleSelectableTableWithDelete';
-import RAWExampleSelectableTableWithDelete from '!raw-loader!./ExampleSelectableTableWithDelete';
+import RAWExampleSelectableTableWithDelete from '!file-loader!isomorphic-loader!./ExampleSelectableTableWithDelete.js'
 
 const TablePage = () => (
   <div>

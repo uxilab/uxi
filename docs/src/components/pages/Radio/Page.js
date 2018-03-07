@@ -1,13 +1,13 @@
 import React from 'react';
 import CodeExample from '../../CodeExample';
 import ExampleSimpleRadioGroup from './ExampleSimpleRadioGroup';
-import RAWExampleSimpleRadioGroup from '!raw-loader!./ExampleSimpleRadioGroup';
+import RAWExampleSimpleRadioGroup from '!file-loader!isomorphic-loader!./ExampleSimpleRadioGroup.js'
 
 import ExampleControlledRadioGroup from './ExampleControlledRadioGroup';
-import RAWExampleControlledRadioGroup from '!raw-loader!./ExampleControlledRadioGroup';
+import RAWExampleControlledRadioGroup from '!file-loader!isomorphic-loader!./ExampleControlledRadioGroup.js'
 
 import ExampleDefaultValueRadioGroup from './ExampleDefaultValueRadioGroup';
-import RAWExampleDefaultValueRadioGroup from '!raw-loader!./ExampleDefaultValueRadioGroup';
+import RAWExampleDefaultValueRadioGroup from '!file-loader!isomorphic-loader!./ExampleDefaultValueRadioGroup.js'
 
 const ButtonPage = () => (
   <ul>

@@ -4,10 +4,10 @@ import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 
 import SimpleGallery from './SimpleGallery';
-import RAWSimpleGallery from '!raw-loader!./SimpleGallery';
+import RAWSimpleGallery from '!file-loader!isomorphic-loader!./SimpleGallery.js'
 
 import ResponsiveGalleryExample from './ResponsiveGallery';
-import RAWResponsiveGallery from '!raw-loader!./ResponsiveGallery';
+import RAWResponsiveGallery from '!file-loader!isomorphic-loader!./ResponsiveGallery.js'
 
 
 const GalleryPage = () => (

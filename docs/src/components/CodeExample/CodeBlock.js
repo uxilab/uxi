@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MarkDownElement from '../MarkdownElement/MarkDownElement';
+import AsyncMarkDown from '../MarkdownElement/AsyncMarkDown';
 // import transitions from 'material-ui/styles/transitions';
 import CodeBlockTitle from './CodeBlockTitle';
 
@@ -18,6 +19,7 @@ const styles = {
   },
   markdownRetracted: {
     maxHeight: 0,
+    overflow: 'hidden',
   },
   description: {
     background: '#ffffff',
@@ -48,10 +50,12 @@ class CodeBlock extends Component {
    });
  };
 
- render() {
-   const text = `\`\`\`js
-${this.props.children}
-    \`\`\``;
+  render() {
+    const { codeSrc } = this.props;
+
+//    const text = `\`\`\`js
+// ${this.props.children}
+//     \`\`\``;
 
    const descriptionStyle = styles.description;
    let codeStyle = Object.assign({}, styles.markdown, styles.markdownRetracted);
@@ -67,10 +71,13 @@ ${this.props.children}
        <div onClick={this.handleClick} style={styles.codeBlockTitle}>
          <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
        </div>
-       <MarkDownElement style={codeStyle} text={text} lang="js" />
+       {/* <MarkDownElement style={codeStyle} text={text} lang="js" /> */}
+       <AsyncMarkDown style={descriptionStyle} src={codeSrc} />
       {
-        this.props.description &&
-        <MarkDownElement style={descriptionStyle} text={this.props.description} />
+        this.props.description
+        // &&
+        // <MarkDownElement style={descriptionStyle} text={this.props.description} />
+        //<AsyncMarkDown style={descriptionStyle} src={this.props.description} />
       }
      </div>
    );

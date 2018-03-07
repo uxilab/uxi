@@ -5,7 +5,7 @@ import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 
 import ExampleCarrousel from './ExampleCarrousel';
-import RAWExampleCarrousel from '!raw-loader!./ExampleCarrousel';
+import RAWExampleCarrousel from '!file-loader!isomorphic-loader!./ExampleCarrousel.js'
 
 const ButtonPage = () => (
   <div>

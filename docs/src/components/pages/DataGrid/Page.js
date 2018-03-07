@@ -4,16 +4,16 @@ import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 
 import ExampleSimpleDataGrid from './ExampleSimpleDataGrid';
-import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid'; 
+import RAWExampleSimpleDataGrid from '!file-loader!isomorphic-loader!./ExampleSimpleDataGrid.js'
 
 import ExampleSimpleDataGridOnlySomeKey from './ExampleSimpleDataGridOnlySomeKey';
-import RAWExampleSimpleDataGridOnlySomeKey from '!raw-loader!./ExampleSimpleDataGridOnlySomeKey';
+import RAWExampleSimpleDataGridOnlySomeKey from '!file-loader!isomorphic-loader!./ExampleSimpleDataGridOnlySomeKey.js'
 
 import ExampleSimpleDataGridWithCustomType from './ExampleSimpleDataGridWithCustomType';
-import RAWExampleSimpleDataGridWithCustomType from '!raw-loader!./ExampleSimpleDataGridWithCustomType';
+import RAWExampleSimpleDataGridWithCustomType from '!file-loader!isomorphic-loader!./ExampleSimpleDataGridWithCustomType.js'
 
 import ExampleSimpleDataGridComputedProperty from './ExampleSimpleDataGridComputedProperty';
-import RAWExampleSimpleDataGridComputedProperty from '!raw-loader!./ExampleSimpleDataGridComputedProperty';
+import RAWExampleSimpleDataGridComputedProperty from '!file-loader!isomorphic-loader!./ExampleSimpleDataGridComputedProperty.js'
 
 const TablePage = () => (
   <div>
@@ -41,7 +41,7 @@ const TablePage = () => (
       code={RAWExampleSimpleDataGridWithCustomType}
       title="Data Grid with custom type renderer"
     >
-      
+
     </CodeExample>
 
     <ExampleSimpleDataGridWithCustomType />
@@ -58,8 +58,8 @@ const TablePage = () => (
 export default TablePage;
 
 /**
- * 
- * 
+ *
+ *
  * const person = {
   firstName: "Denis",
   lastName: 'Florkin',
@@ -82,7 +82,7 @@ UX Guideliens :
 
 - Dashboard Multiple Widget
 
-- List 1 Entity Type 
+- List 1 Entity Type
 - Detail 1 Entity Type
 - Quickview 1 Entity Type
 
@@ -106,7 +106,7 @@ class PersonMetaData extends MetaData {
     },
   ],
   static grid = {
-    
+
   };
   staic quickView = {
 

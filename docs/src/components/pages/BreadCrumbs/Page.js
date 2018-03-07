@@ -2,10 +2,10 @@ import React from 'react';
 import CodeExample from '../../CodeExample';
 
 import ExampleBreadCrumbsSimple from './ExampleBreadCrumbsSimple';
-import RAWExampleBreadCrumbsSimple from '!raw-loader!./ExampleBreadCrumbsSimple';
+import RAWExampleBreadCrumbsSimple from '!file-loader!isomorphic-loader!./ExampleBreadCrumbsSimple.js'
 
 import ExampleBreadCrumbs from './ExampleBreadCrumbs';
-import RAWExampleBreadCrumbs from '!raw-loader!./ExampleBreadCrumbs';
+import RAWExampleBreadCrumbs from '!file-loader!isomorphic-loader!./ExampleBreadCrumbs.js'
 
 const BreadCrumbsPage = () => (
   <ul>

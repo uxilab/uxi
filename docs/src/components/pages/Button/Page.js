@@ -4,28 +4,28 @@ import { Title } from 'uxi/Text';
 
 import CodeExample from '../../CodeExample';
 import ExampleSimpleFlat from './ExampleSimpleFlat';
-import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
+import RAWExampleSimpleFlat from '!file-loader!isomorphic-loader!./ExampleSimpleFlat.js'
 
 import ExampleButtonLinks from './ExampleButtonLinks';
-import RAWExampleButtonLinks from '!raw-loader!./ExampleButtonLinks';
+import RAWExampleButtonLinks from '!file-loader!isomorphic-loader!./ExampleButtonLinks.js'
 
 import ExampleSimpleSemantic from './ExampleSimpleSemantic';
-import RAWExampleSimpleSemantic from '!raw-loader!./ExampleSimpleSemantic';
+import RAWExampleSimpleSemantic from '!file-loader!isomorphic-loader!./ExampleSimpleSemantic.js'
 
 import ExampleSimpleSemanticDisabled from './ExampleSimpleSemanticDisabled';
-import RAWExampleSimpleSemanticDisabled from '!raw-loader!./ExampleSimpleSemanticDisabled';
+import RAWExampleSimpleSemanticDisabled from '!file-loader!isomorphic-loader!./ExampleSimpleSemanticDisabled.js'
 
 import ExampleSimpleWithIcon from './ExampleSimpleWithIcon';
-import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
+import RAWExampleSimpleWithIcon from '!file-loader!isomorphic-loader!./ExampleSimpleWithIcon.js'
 
 import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
-import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
+import RAWExampleSimpleWithLoaderIcon from '!file-loader!isomorphic-loader!./ExampleSimpleWithLoaderIcon.js'
 
 import ExampleButtonPlayGround from './ExampleButtonPlayGround';
-import RAWExampleButtonPlayGround from '!raw-loader!./ExampleButtonPlayGround';
+import RAWExampleButtonPlayGround from '!file-loader!isomorphic-loader!./ExampleButtonPlayGround.js'
 
 import ExampleSimpleButtonLink from './ExampleSimpleButtonLink';
-import RAWExampleSimpleButtonLink from '!raw-loader!./ExampleSimpleButtonLink';
+import RAWExampleSimpleButtonLink from '!file-loader!isomorphic-loader!./ExampleSimpleButtonLink.js'
 
 const ButtonPage = () => (
   <div>
