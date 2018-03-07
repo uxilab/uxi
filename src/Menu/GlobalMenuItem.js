@@ -12,60 +12,59 @@ const {
 
 const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
-    return palette.accent.light
+    return palette.accent.light;
   }
 
   // if (isSelected) {
   //   return palette.accent.light
   // }
 
-  return palette.lightGrey
+  return palette.lightGrey;
 };
 
 
-
-const LinkDecorator  = styled.div`
+const LinkDecorator = styled.div`
   .root & a,
   & a {
     ${buttonReset};
     ${GlobalMenuItemBase}
 
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-    };
+    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+};
     border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-      `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
-    };
+    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
+};
     background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
     &:hover {
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-        isSelected
-          ? (isActive
-            ? palette.primary.dark
-            : palette.primary.light // child is slelected, means we can navigate there
-          )
-          : palette.primary.light
-      )};
+    isSelected
+      ? (isActive
+        ? palette.primary.dark
+        : palette.primary.light // child is slelected, means we can navigate there
+      )
+      : palette.primary.light
+  )};
       svg {
         fill: #fff;
       }
     }
     &:focus {
       color: ${({ isActive, theme: { palette } }) => (
-        isActive ? 'inherit' : palette.pureWhite
-      )};
+    isActive ? 'inherit' : palette.pureWhite
+  )};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-        (isSelected ? palette.primary.main : palette.primary.light)
-      )};
+    (isSelected ? palette.primary.main : palette.primary.light)
+  )};
       color: ${({ isSelected, isActive, theme: { palette } }) =>
-        (isSelected || isActive) ? palette.accent.light : palette.pureWhite
-      };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
       svg {
         fill: ${({ isSelected, isActive, theme: { palette } }) =>
-          (isSelected || isActive) ? palette.accent.light : palette.pureWhite
-        };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
       }
     }
     svg {
@@ -81,26 +80,26 @@ const GlobalMenuItemDiv = styled.a`
   .root &,
   & {
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-    };
+    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+};
   }
 
   border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-    `${borderThickness} solid #0ea4a5` : `0 solid transparent`)
-  };
+    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
+};
   background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
   .root &:hover, /* TODO solve this .root a  */
   &:hover {
-    color: ${({ theme: { palette } }) => palette.pureWhite };
+    color: ${({ theme: { palette } }) => palette.pureWhite};
     background: ${({ isActive, isSelected, theme: { palette } }) => (
-      isSelected
-        ? (isActive
-          ? palette.primary.dark
-          : palette.primary.light // child is slelected, means we can navigate there
-        )
-        : palette.primary.light
-    )};
+    isSelected
+      ? (isActive
+        ? palette.primary.dark
+        : palette.primary.light // child is slelected, means we can navigate there
+      )
+      : palette.primary.light
+  )};
     svg {
       fill: #fff;
     }
@@ -109,18 +108,18 @@ const GlobalMenuItemDiv = styled.a`
   .root &:focus, /* TODO solve this .root a  */
   &:focus {
     color: ${({ isActive, theme: { palette } }) => (
-      isActive ? 'inherit' : palette.pureWhite
-    )};
+    isActive ? 'inherit' : palette.pureWhite
+  )};
     background: ${({ isActive, isSelected, theme: { palette } }) => (
-      (isSelected ? palette.primary.main : palette.primary.light)
-    )};
+    (isSelected ? palette.primary.main : palette.primary.light)
+  )};
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected || isActive) ? palette.accent.light : palette.pureWhite
-    };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
     svg {
       fill: ${({ isSelected, isActive, theme: { palette } }) =>
-        (isSelected || isActive) ? palette.accent.light : palette.pureWhite
-      };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
     }
   }
 
@@ -156,11 +155,11 @@ const NewInfo = styled.div`
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  right: ${({ isActive, isSelected }) => isActive || isSelected ? '5px' : '9px' };
+  right: ${({ isActive, isSelected }) => (isActive || isSelected ? '5px' : '9px')};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
-const GlobalMenuItem = props => {
+const GlobalMenuItem = (props) => {
   const {
     hasPanel,
     isSelected,
@@ -194,12 +193,12 @@ const GlobalMenuItem = props => {
     }),
   }];
 
-  let linkProps = {}
+  let linkProps = {};
   if (Link !== undefined) {
-    const GlobalMenuItemDivFinal = Link // shadow
-    linkProps = { to }
+    const GlobalMenuItemDivFinal = Link; // shadow
+    linkProps = { to };
   } else if (href) {
-    linkProps = { href }
+    linkProps = { href };
   }
 
   let resContent;
@@ -235,7 +234,7 @@ const GlobalMenuItem = props => {
         <LabelDiv> {label} </LabelDiv>
         {isNewContent}
       </GlobalMenuItemDiv>
-    )
+    );
   }
 
   if (Link !== undefined) {
@@ -256,7 +255,7 @@ const GlobalMenuItem = props => {
           {isNewContent}
         </Link>
       </LinkDecorator>
-    )
+    );
   }
 
   return (
@@ -266,14 +265,14 @@ const GlobalMenuItem = props => {
       trigger={['hover']}
     >
       <Tooltip placement="right" overlay={<span>{label}</span>}>
-      {
+        {
           resContent
-      }
+        }
 
       </Tooltip>
     </PropsMapperMediaQueriesHOC>
   );
-}
+};
 
 GlobalMenuItem.displayName = 'GlobalMenuItem';
 

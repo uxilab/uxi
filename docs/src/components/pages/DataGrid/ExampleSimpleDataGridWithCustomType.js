@@ -82,6 +82,7 @@ const ExampleSimpleDataGridWithCustomType = () => {
           {
             icon: <Pencil />,
             label: 'Edit',
+            displayName:'Edit',
             onClick: deleteSelection,
           }
         ]}

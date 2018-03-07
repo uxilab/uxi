@@ -10,7 +10,7 @@ class BoxItem extends ComponentWithPadding {
     const { children, isLast } = this.props;
 
     return (
-      <div style={this.getStyle(isLast ? {} : BoxItemStyle)}>
+      <div style={{ ...this.getStyle(isLast ? {} : BoxItemStyle), width: '100%' }} >
         {children}
       </div>
     );

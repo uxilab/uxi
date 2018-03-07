@@ -207,7 +207,29 @@ class ExampleSimple extends Component {
       icon: (<Cluedin size={28} />),
       isActive: (location === '/'),
     };
-
+/*
+    menuDescriptors.push({
+      displayName: 'GDPR!',
+      icon: <Settings />,
+      // isActive: (pathname.toLowerCase() === '/gdpr'),
+      isActive: ('location'.toLowerCase().indexOf('/gdpr') > -1),
+      key: 'GDPR',
+      Link,
+      to: '/gdpr',
+      children: [
+        {
+          key: 'viewAllRequest',
+          displayName: 'View all request',
+          content: <a tabIndex="-1" style={{ outline: 'none' }} href="#" >View all request</a>,
+        },
+        {
+          key: 'GDPRConfiguration',
+          displayName: 'GDPR Configuration',
+          content: <a tabIndex="-1" style={{ outline: 'none' }} href="#" >GDPR Configuration</a>,
+        },
+      ],
+    });
+*/
     return (
       // Simulate cluedin rules .root a
       <div className="root">

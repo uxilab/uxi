@@ -18,7 +18,7 @@ const ActionMenuWrapper = styled.div`
   bottom: 0;
 `;
 
-export const createDataGridCell = (property, actions) => {
+export const createDataGridCell = (property, actions, entity) => {
   if (!actions) {
     return (
       <TableRowColumn hasAction={!!actions}>
@@ -34,7 +34,7 @@ export const createDataGridCell = (property, actions) => {
         {
           actions &&
           (
-            <ActionMenuWrapper className="actionMenuInTableRowColumn"><ActiondMenu menuDescriptors={actions} /></ActionMenuWrapper>
+            <ActionMenuWrapper className="actionMenuInTableRowColumn"><ActiondMenu value={entity} menuDescriptors={actions} /></ActionMenuWrapper>
           )
         }
       </div>
@@ -42,21 +42,20 @@ export const createDataGridCell = (property, actions) => {
   );
 };
 
-export const createDataGridColumn = (viewModel, actions) => (
-  <TableRow
-    hasAction={!!actions}
-    key={viewModel.key}
-    data-key={viewModel.key}
-    value={viewModel.key}
-  >
-    {
-      viewModel.properties.map(
-        (property, index) => (
-          createDataGridCell(property, (index === 0) ? actions : null)
-        ),
-      )
-    }
-  </TableRow>
+export const createDataGridColumn = (viewModel, actions) => (<TableRow
+  hasAction={!!actions}
+  key={viewModel.key}
+  data-key={viewModel.key}
+  value={viewModel.key}
+>
+  {
+    viewModel.properties.map(
+      (property, index) => (
+        createDataGridCell(property, (index === 0) ? actions : null, viewModel.original)
+      ),
+    )
+  }
+</TableRow>
 );
 
 export const createDataGridBody = (viewModels, isHidden, actions) => {

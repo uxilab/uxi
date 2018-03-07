@@ -8,11 +8,15 @@ export default {
     boxSizing: 'border-box',
   },
   header: {
-    borderBottom: '1px solid #ccc',
+    border: '1px solid #ccc',
+    borderRadius: '3px',
     display: 'flex',
+    flex: 1,
     alignItems: 'center',
     padding: '5px  15px',
     cursor: 'pointer',
+    // width: '100%',
+    textAlign: 'left',
   },
   container: {
     transition: 'max-height .4s ease-out',

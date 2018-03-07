@@ -50,11 +50,11 @@ class MenuButtonItem extends Component {
   }
 }
 
-const PromotedPersonalizedMenuItem = ({ icon, displayName, onClick }) => {
+const PromotedPersonalizedMenuItem = ({ icon, displayName, onClick, value }) => {
   const content = icon || displayName;
 
   return (
-    <MenuButtonItem onClick={onClick}>
+    <MenuButtonItem onClick={(e) => { onClick(e, value); }}>
       {content}
     </MenuButtonItem>
   );
@@ -67,6 +67,7 @@ const PersonalizedMenuItem = ({
   isPromoted,
   onFavoriteClick,
   withPeronalization,
+  value,
 }) => {
   const content = icon ? (
     <AvatarWithName icon={icon} name={displayName} />
@@ -77,7 +78,7 @@ const PersonalizedMenuItem = ({
   const menuPadding = withPeronalization ? '8px 30px 8px 18px' : '8px 18px';
 
   return (
-    <MenuItem onClick={onClick} style={{ padding: menuPadding, cursor: 'pointer', position: 'relative' }}>
+    <MenuItem onClick={(e) => { onClick(e, value); }} style={{ padding: menuPadding, cursor: 'pointer', position: 'relative' }}>
       {content}
       {
         withPeronalization &&
@@ -92,7 +93,7 @@ const PersonalizedMenuItem = ({
   );
 };
 
-const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization }) => {
+const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization, value }) => {
   const promotedMenuDescriptorsWithIcon = menuDescriptors.filter(
     menuDescriptor => (menuDescriptor.isPromoted && menuDescriptor.icon),
   );
@@ -109,12 +110,12 @@ const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization
       <div style={{ display: 'flex', flex: 1 }}>
         {
           promotedMenuDescriptorsNoIcon.map(promitedMenuDescriptor => (
-            <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} />
+            <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} value={value} />
           ))
         }
         {
           promotedMenuDescriptorsWithIcon.map(promitedMenuDescriptor => (
-            <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} />
+            <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} value={value} />
           ))
         }
         {allMenu && allMenu.length > 0 && <DropDownMenu button={<MenuButtonItem><Options /></MenuButtonItem>} anchor="right">
@@ -123,6 +124,7 @@ const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization
               withPeronalization={withPeronalization}
               onFavoriteClick={(e) => { e.stopPropagation(); onFavoriteClick(menuDescriptor.key); }}
               {...menuDescriptor}
+              value={value}
             />
           ))}
         </DropDownMenu>}
