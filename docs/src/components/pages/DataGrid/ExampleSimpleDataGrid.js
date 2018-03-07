@@ -19,7 +19,9 @@ const ExampleSimpleDataGrid = () => {
             displayName: 'Keep in he loop',
             key: 'Keep in the loop',
             icon: <Keepintheloop />,
-            onClick: (e, value) => { alert(JSON.stringify(data)); },
+            onClick: (e, value) => {
+              alert(JSON.stringify(value));
+            },
             isPromoted: true,
           },
         ]}

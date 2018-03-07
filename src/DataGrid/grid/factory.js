@@ -42,21 +42,20 @@ export const createDataGridCell = (property, actions, entity) => {
   );
 };
 
-export const createDataGridColumn = (viewModel, actions) => (
-  <TableRow
-    hasAction={!!actions}
-    key={viewModel.key}
-    data-key={viewModel.key}
-    value={viewModel.key}
-  >
-    {
-      viewModel.properties.map(
-        (property, index) => (
-          createDataGridCell(property, (index === 0) ? actions : null, viewModel.orignal)
-        ),
-      )
-    }
-  </TableRow>
+export const createDataGridColumn = (viewModel, actions) => (<TableRow
+  hasAction={!!actions}
+  key={viewModel.key}
+  data-key={viewModel.key}
+  value={viewModel.key}
+>
+  {
+    viewModel.properties.map(
+      (property, index) => (
+        createDataGridCell(property, (index === 0) ? actions : null, viewModel.original)
+      ),
+    )
+  }
+</TableRow>
 );
 
 export const createDataGridBody = (viewModels, isHidden, actions) => {
