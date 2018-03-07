@@ -89,8 +89,8 @@ export const toViewModel = (data = [], properties, propertyKey, getTypeDefinitio
     properties,
   ); // same entity
 
-  return data.map(d => entityToViewModel(
-    d,
+  return data.map(entity => entityToViewModel(
+    entity,
     propertiesDefinitions,
     propertyKey,
     getTypeDefinition,
