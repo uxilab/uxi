@@ -13,7 +13,7 @@
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
     "bundle:copy-index": " cp index.html dist/",
-    "deploy-doc": "npm run build && echo '\n\n # now: git push uxilab\n\n' "
+    "deploy-doc": "npm run buildAndBundle && echo '\n\n # now: git push uxilab\n\n' "
   },
   "author": "",
   "license": "ISC",

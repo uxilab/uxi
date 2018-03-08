@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PageTitle, PageSubTitle } from 'uxi/Page';
 import { SimpleList, ListItem } from 'uxi/List';
 import MarkDownElement from '../MarkdownElement/MarkDownElement';
-import RAWReadme from '!raw-loader!./README.md';
+// import RAWReadme from '!raw-loader!./README.md';
 
 const Home = () => (
   <div>
@@ -17,7 +17,7 @@ const Home = () => (
     <br />
     <h3>README.md:</h3>
     <br />
-    <MarkDownElement  text={RAWReadme} lang="js" />
+    {/* <MarkDownElement  text={RAWReadme} lang="js" /> */}
 
   </div>
 );
