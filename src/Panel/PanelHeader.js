@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import { IconButton } from '../Button';
 
 const PanelHeaderUI = styled.div`
+  box-sizing: border-box;
   background-color: ${({ theme: { palette } }) => palette.accent.main};
   padding: 16px;
   color: ${({ theme: { palette } }) => palette.pureWhite};
   display: flex;
   align-items: center;
   font-weight: bold;
+  min-height: 50px;
 `;
 
 const CloseWrapperUI = styled.div`

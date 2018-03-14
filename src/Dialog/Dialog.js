@@ -3,11 +3,12 @@ import Modal from '../internal/Modal';
 
 const DialogStyle = {
   root: {
-    zIndex: '14',
+    zIndex: '100',
     position: 'fixed',
     top: '10vh',
     width: 'calc(100% - 20vw)',
     maxWidth: '700px',
+    maxHeight: '80vh',
     margin: '0 auto',
     bottom: 'auto',
     left: '10vw',

@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { Button } from '../Button';
 
 const PanelFooterUI = styled.div`
+  box-sizing: border-box;
   background-color: ${({ theme: { palette } }) => palette.white};
   border-top: 1px solid ${({ theme: { palette } }) => palette.lightGrey};
   padding: 8px 16px;
   display: flex;
   justify-content: flex-end;
+  min-height: 50px;
 `;
 
 const PanelFooter = (props) => {

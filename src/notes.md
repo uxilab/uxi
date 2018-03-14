@@ -11,4 +11,4 @@ z-index map :
 ___
 (* 100 and above popup, modal etc.)
 
-* 200-150 Dialog
+* 100-150 Dialog
