@@ -49,6 +49,7 @@ const getWrapperStyles = props => ({
   backgroundSize: props.contain ? 'contain' : 'cover',
   backgroundPosition: 'center',
   // opacity: (loaded ? 1 : 0),
+  lineHeight: 0,
 });
 
 
