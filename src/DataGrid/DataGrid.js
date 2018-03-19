@@ -94,6 +94,14 @@ class DataGrid extends Component {
       onChange(e, indexes, values);
     }
   }
+
+  clearSelectedEntities() {
+    this.setState({
+      selectedEntities: [],
+    });
+    this.tableRef.clearSelection();
+  }
+
   checkAll() {
     this.setState({
       allChecked: !this.state.allChecked,
@@ -129,7 +137,12 @@ class DataGrid extends Component {
           <ButtonLink
             text={action.label}
             icon={action.icon}
-            onClick={(e) => { action.onClick(e, selectedEntities); }}
+            onClick={(e) => {
+              action.onClick(e, selectedEntities);
+              if (action.clearSelection) {
+                this.clearSelectedEntities();
+              }
+            }}
           />
         ))}
       </List>
@@ -170,7 +183,11 @@ class DataGrid extends Component {
     const content = (
       <div style={{ position: 'relative' }}>
         {batchActionsContent}
-        <Table onChange={this.onChange.bind(this)} multiSelectable={selectable} selectable={selectable}>
+        <Table
+          onChange={this.onChange.bind(this)}
+          multiSelectable={selectable}
+          selectable={selectable}
+        >
           {header}
           {body}
         </Table>
@@ -192,7 +209,13 @@ class DataGrid extends Component {
           {headerWithCheckbox}
         </Table>
         <div style={{ height: `${fixedHeight}px`, overflowY: 'scroll' }}>
-          <Table allRowsSelected={allChecked} onChange={this.onChange.bind(this)} selectable={selectable} multiSelectable={multiSelectable}>
+          <Table
+            ref={(tableRef) => { this.tableRef = tableRef; }}
+            allRowsSelected={allChecked}
+            onChange={this.onChange.bind(this)}
+            selectable={selectable}
+            multiSelectable={multiSelectable}
+          >
             {body}
           </Table>
         </div>

@@ -70,6 +70,7 @@ const ExampleSimpleDataGridWithCustomType = () => {
           {
             icon: <Delete />,
             label: 'Delete',
+            clearSelection: true,
             onClick: deleteSelection,
           },
           {

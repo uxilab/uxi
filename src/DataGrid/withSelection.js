@@ -200,6 +200,10 @@ export const withSelection = Comp => class WithSelection extends Component {
     });
   }
 
+  clearSelection() {
+    this.onRowSelection('none');
+  }
+
   isRowSelected(rowIndex) {
     if (this.state.selectedRows.indexOf(rowIndex) > -1) {
       return true;
