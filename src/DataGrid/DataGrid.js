@@ -129,7 +129,7 @@ class DataGrid extends Component {
           <ButtonLink
             text={action.label}
             icon={action.icon}
-            onClick={action.onClick}
+            onClick={(e) => { action.onClick(e, selectedEntities); }}
           />
         ))}
       </List>

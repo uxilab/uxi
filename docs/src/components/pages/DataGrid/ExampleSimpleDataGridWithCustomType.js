@@ -24,13 +24,13 @@ const QuantityViewer = ({ value }) => {
 
 const ExampleSimpleDataGridWithCustomType = () => {
   const data = [
-      { id: 1, make: "Toyota", model: "Celica", price: 35000, isSold: true, quantity: 0 },
-      { id: 2, make: "Ford", model: "Mondeo", price: 32000, isSold: true,  quantity: 2 },
-      { id: 3, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
-      { id: 4, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
-      { id: 5, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
-      { id: 6, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
-      { id: 7, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
+      { id: 3242341, make: "Toyota", model: "Celica", price: 35000, isSold: true, quantity: 0 },
+      { id: 435345432, make: "Ford", model: "Mondeo", price: 32000, isSold: true,  quantity: 2 },
+      { id: 65653, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
+      { id: 4234234, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
+      { id: 5787, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
+      { id: 6843, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
+      { id: 54647, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
       { id: 8, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
       { id: 9, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
       { id: 10, make: "Porsche", model: "Boxter", price: 72000, isSold: false,  quantity: 9 },
