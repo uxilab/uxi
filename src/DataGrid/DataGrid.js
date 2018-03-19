@@ -99,7 +99,10 @@ class DataGrid extends Component {
     this.setState({
       selectedEntities: [],
     });
-    this.tableRef.clearSelection();
+
+    if (this.tableRef) { // if not new table
+      this.tableRef.clearSelection();
+    }
   }
 
   checkAll() {
