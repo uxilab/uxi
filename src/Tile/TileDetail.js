@@ -18,12 +18,12 @@ const TileImageWrapper = styled.div`
 
 const TileContentWrapper = styled.div`
   flex:1;
-  min-width:700px;
+  min-width:658px;
 `;
 
 const TileExtra = styled.div`
   min-width: 200px
-  max-width:700px;
+  max-width:658px;
 `;
 
 const TileContentWrapperTitle = styled.div`
@@ -58,9 +58,14 @@ const TileDetail = ({ title, imageUrl, icon, extra, children }) => {
           {children}
         </div>
       </TileContentWrapper>
-      <TileExtra className="uxi-titleDetail-extra">
-        {extra}
-      </TileExtra>
+      {
+        extra &&
+        (
+          <TileExtra className="uxi-titleDetail-extra">
+            {extra}
+          </TileExtra>
+        )
+      }
     </TileDetailWrapper>
   );
 };
