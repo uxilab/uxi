@@ -6,3 +6,4 @@ export List from './List';
 export SocialLinks from './SocialLinks';
 export InputGroup from './InputGroup';
 export Gallery from '../Img/Gallery';
+export TileList from './TileList';

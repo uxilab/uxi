@@ -33,6 +33,7 @@ import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 import PanbelPage from './components/pages/Panel/Page';
 import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
+import TilePage from './components/pages/Tile/Page';
 
 const AppRoutes = (
   <Switch>
@@ -69,6 +70,7 @@ const AppRoutes = (
     <Route path="/Panel" component={PanbelPage} />
     <Route path="/Gallery" component={GalleryPage} />
     <Route path="/Carrousel" component={CarrouselPage} />
+    <Route path="/Tile" component={TilePage} />
   </Switch>
 );
 

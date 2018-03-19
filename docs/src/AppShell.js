@@ -51,6 +51,7 @@ export const routes = [
   { path: '/panel', label: 'Panel' },
   { path: '/gallery', label: 'Gallery' },
   { path: '/carrousel', label: 'Carrousel' },
+  { path: '/tile', label: 'Tile' },
 ]
 
 const AppShell = ({ children }) => {

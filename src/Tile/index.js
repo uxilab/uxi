@@ -1,0 +1,1 @@
+export TileDetail from './TileDetail';
