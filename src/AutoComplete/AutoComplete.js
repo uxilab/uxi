@@ -8,6 +8,8 @@ const AutoCompleteStyle = {
   popover: {
     position: 'absolute',
     top: '30px',
+    maxHeight: '60vh',
+    overflowY: 'scroll',
     border: '1px solid #ccc',
     left: 0,
     right: 0,
@@ -15,6 +17,7 @@ const AutoCompleteStyle = {
     margin: 0,
     padding: 0,
     zIndex: 2,
+    background: 'white',
   },
 };
 
@@ -124,30 +127,37 @@ class AutoComplete extends ThemeComponent {
 
   render() {
     const { items, placeholder, itemComponent } = this.props;
-    const { index, escape } = this.state;
+    const { index, escape, valueForInput } = this.state;
+
+    const filterer = item =>
+      item.name.toLowerCase().replace(/\s/g, '')
+        .indexOf(valueForInput.toLowerCase().replace(/\s/g, '')) > -1;
+
     const autoComplete = !escape ? (
       <VerticalMenu style={AutoCompleteStyle.popover} ref={(ref) => { this.autoComplete = ref; }}>
-        { items && items.map((item, currentIndex) => {
-          const nameToRender = item.name;
-          const selectedClass = '';
-          let liStyle = {};
-          if (index === (currentIndex)) {
-            liStyle = Object.assign({}, {
-              color: this.context.uxiTheme.palette.accent.main,
-              background: '#eee',
-            });
-          }
+        {items && items
+          .filter(filterer)
+          .map((item, currentIndex) => {
+            const nameToRender = item.name;
+            const selectedClass = '';
+            let liStyle = {};
+            if (index === (currentIndex)) {
+              liStyle = Object.assign({}, {
+                color: this.context.uxiTheme.palette.accent.main,
+                background: '#eee',
+              });
+            }
 
-          return (
-            <MenuItem
-              key={currentIndex}
-              onClick={this.onItemClick.bind(this, currentIndex)}
-              style={liStyle}
-            >
-              {nameToRender}
-            </MenuItem>
-          );
-        })}
+            return (
+              <MenuItem
+                key={currentIndex}
+                onClick={this.onItemClick.bind(this, currentIndex)}
+                style={liStyle}
+              >
+                {nameToRender}
+              </MenuItem>
+            );
+          })}
       </VerticalMenu>) : null;
 
     return (
