@@ -126,12 +126,13 @@ class AutoComplete extends ThemeComponent {
   }
 
   render() {
-    const { items, placeholder, itemComponent } = this.props;
+    const { items, placeholder, itemComponent, defaultValue } = this.props;
     const { index, escape, valueForInput } = this.state;
 
-    const filterer = item =>
+    const filterer = item => (
       item.name.toLowerCase().replace(/\s/g, '')
-        .indexOf(valueForInput.toLowerCase().replace(/\s/g, '')) > -1;
+        .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
+    );
 
     const autoComplete = !escape ? (
       <VerticalMenu style={AutoCompleteStyle.popover} ref={(ref) => { this.autoComplete = ref; }}>
