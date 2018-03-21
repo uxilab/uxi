@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
-import big from './bigArray.json';
+import big from './bigArray';
 
 class ExampleSimple extends Component {
   constructor(props) {
