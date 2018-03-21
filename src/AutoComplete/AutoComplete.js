@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import debounce from 'lodash/debounce';
 import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';
+import styled from 'styled-components';
 import ThemeComponent from '../Base/ThemeComponent';
+
+const Highlighted = styled.span`
+  font-weight: 600;
+  background: #fff9d6;
+`;
 
 const AutoCompleteStyle = {
   popover: {
@@ -21,12 +27,38 @@ const AutoCompleteStyle = {
   },
 };
 
+
+const getHighlightedName = (nameToRender, valueForInput) => {
+  if (!nameToRender || !valueForInput) {
+    return nameToRender;
+  }
+
+  const startAt = nameToRender.toLowerCase().indexOf(valueForInput.toLowerCase());
+  const length = valueForInput.length;
+  const endAt = startAt + length;
+
+  const preMatch = nameToRender.slice(0, startAt);
+  const theMatch = nameToRender.slice(startAt, endAt);
+  const postMatched = nameToRender.slice(endAt, nameToRender.length);
+
+  return (
+    <div>
+      {preMatch}
+      <Highlighted>{theMatch }</Highlighted>
+      {postMatched }
+    </div>
+  );
+};
+
+/* eslint-disable react/jsx-no-bind */
 class AutoComplete extends ThemeComponent {
   constructor(props) {
     super(props);
     this.state = {
       index: -1,
       value: props.defaultValue,
+      // filteredSet: this.props.items,
+      filteredSet: [],
     };
     this.onQuerychangeDebounced = debounce(this.onQuerychange, 300);
   }
@@ -57,10 +89,11 @@ class AutoComplete extends ThemeComponent {
   }
 
   onItemClick(index) {
-    const { items } = this.props;
+    // const { items } = this.props;
+    const { filteredSet } = this.state;
 
     this.setState({ index: -1, escape: true });
-    this.onEnter(items[index].name);
+    this.onEnter(filteredSet[index].name);
   }
 
   clickHandlerForDom(e) {
@@ -77,7 +110,10 @@ class AutoComplete extends ThemeComponent {
       valueForInput: value,
     });
 
-    onchange && onchange(value);
+
+    const consumerNotifierCallback = () => (onchange && onchange(value));
+
+    this.asyncUpdateFilteredSet(consumerNotifierCallback);
   }
 
   onChangeWrap(e) {
@@ -85,6 +121,19 @@ class AutoComplete extends ThemeComponent {
     this.setState({ valueForInput: value });
 
     this.onQuerychangeDebounced(value);
+  }
+
+  handleMouseEnterList() {
+    this.setState({ index: -1 });
+  }
+  handleMouseLeaveList() {
+    this.setState({ index: -1 });
+  }
+  handleMouseEnterListItem() {
+    this.setState({ index: -1 });
+  }
+  handleMouseLeaveListItem() {
+    this.setState({ index: -1 });
   }
 
   onEnter(value) {
@@ -99,19 +148,19 @@ class AutoComplete extends ThemeComponent {
 
   updateSearchValue(e) {
     const { items } = this.props;
-    const { index, valueForInput } = this.state;
+    const { index, valueForInput, filteredSet } = this.state;
 
     if (e.key === 'Enter') {
       if (index < 0) {
         this.onEnter(valueForInput || '*', true);
       } else {
-        this.onEnter(items[index].name, true);
+        this.onEnter(filteredSet[index].name, true);
       }
       this.setState({ index: -1, escape: true });
     } else if (e.key === 'Escape') {
       this.setState({ index: -1, escape: true });
     } else if (e.key === 'ArrowDown') {
-      if (this.state.index === items.length) {
+      if (this.state.index === filteredSet.length) {
         this.setState({ index: 0, escape: false });
       } else {
         this.setState({ index: (this.state.index + 1), escape: false });
@@ -125,28 +174,51 @@ class AutoComplete extends ThemeComponent {
     }
   }
 
-  render() {
-    const { items, placeholder, itemComponent, defaultValue } = this.props;
-    const { index, escape, valueForInput } = this.state;
+  asyncUpdateFilteredSet(consumerNotifierCallback) { // eslint-disable-line class-methods-use-this
+    const { items, defaultValue, filterOn } = this.props;
+    const { valueForInput } = this.state;
 
-    const filterer = item => (
-      item.name.toLowerCase().replace(/\s/g, '')
-        .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
-    );
+    const filterCallBack = () => {
+      const filterFn = item => (
+        item[filterOn].toLowerCase().replace(/\s/g, '')
+          .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
+      );
+
+      const filteredSet = (items && items.filter(filterFn)) || [];
+
+      this.setState({
+        filteredSet,
+      }, consumerNotifierCallback);
+    };
+
+    setTimeout(filterCallBack, 1);
+  }
+
+  render() {
+    const { items, placeholder, itemComponent, defaultValue, filterOn } = this.props;
+    const { index, escape, valueForInput, filteredSet } = this.state;
 
     const autoComplete = !escape ? (
-      <VerticalMenu style={AutoCompleteStyle.popover} ref={(ref) => { this.autoComplete = ref; }}>
-        {items && items
-          .filter(filterer)
+      <VerticalMenu
+        style={AutoCompleteStyle.popover}
+        ref={(ref) => { this.autoComplete = ref; }}
+        onMouseOver={this.handleMouseEnterList.bind(this)}
+        onMouseOut={this.handleMouseLeaveList.bind(this)}
+      >
+        {filteredSet
           .map((item, currentIndex) => {
-            const nameToRender = item.name;
+            const nameToRender = item[filterOn] || item.name;
+            const nameToRenderWithHightlight = getHighlightedName(nameToRender, valueForInput);
+
             const selectedClass = '';
             let liStyle = {};
             if (index === (currentIndex)) {
               liStyle = Object.assign({}, {
                 color: this.context.uxiTheme.palette.accent.main,
-                background: '#eee',
+                background: 'rgb(233,245,244)',
               });
+            } else {
+              liStyle = {};
             }
 
             return (
@@ -154,11 +226,14 @@ class AutoComplete extends ThemeComponent {
                 key={currentIndex}
                 onClick={this.onItemClick.bind(this, currentIndex)}
                 style={liStyle}
+                onMouseOver={this.handleMouseEnterListItem.bind(this)}
+                onMouseOut={this.handleMouseLeaveListItem.bind(this)}
               >
-                {nameToRender}
+                {nameToRenderWithHightlight}
               </MenuItem>
             );
-          })}
+          })
+        }
       </VerticalMenu>) : null;
 
     return (
@@ -181,4 +256,8 @@ class AutoComplete extends ThemeComponent {
   }
 }
 
+AutoComplete.defaultProps = {
+  items: [],
+  placeholder: 'Type to search...',
+};
 export default AutoComplete;

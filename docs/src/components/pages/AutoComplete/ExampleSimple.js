@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
+import big from './bigArray.json';
 
 class ExampleSimple extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class ExampleSimple extends Component {
       value: '',
     };
   }
+
   render() {
     const { value } = this.state;
 
@@ -15,11 +17,12 @@ class ExampleSimple extends Component {
       <div>
       {value}
       <AutoComplete
+        filterOn={'name'}
         onChange={
           (value)=> {
             this.setState({value});
           }}
-        items={[{name:'tetet'}, {name:'oekfoekfeokf'}]}
+        items={big}
       />
     </div>
     );

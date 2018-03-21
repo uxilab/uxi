@@ -37,6 +37,7 @@ class MenuItem extends ThemeComponent {
 
     return (
       <div
+        {...this.props}
         role="listitem"
         className={className}
         style={mainItemMergedStyle}

@@ -62,7 +62,10 @@ class VerticalMenu extends ThemeComponent {
     });
 
     return (
-      <VerticalMenuUI style={{ ...verticalMergedStyle, ...style }}>
+      <VerticalMenuUI
+        {...this.props}
+        style={{ ...verticalMergedStyle, ...style }}
+      >
         {menuItems}
       </VerticalMenuUI>
     );
