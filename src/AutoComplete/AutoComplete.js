@@ -47,7 +47,7 @@ const getHighlightedName = (nameToRender, valueForInput, postFix) => {
       <span>{preMatch}</span>
       <span><Highlighted>{theMatch}</Highlighted></span>
       {postMatched}
-      {postFix}
+      <span style={{ marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
 };
@@ -193,7 +193,6 @@ class AutoComplete extends ThemeComponent {
           filteredSet,
         }, consumerNotifierCallback);
       };
-
 
       setTimeout(filterCallBack, 1);
     }

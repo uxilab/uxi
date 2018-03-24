@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
 import big from './bigArray';
 
+const bigList = big.map(x => ({
+  ...x,
+  postFix: <span>{x.company}</span>
+}))
+
 class ExampleSimple extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +23,8 @@ class ExampleSimple extends Component {
       {value}
       <AutoComplete
         filterOn={'name'}
-        onChange={
-          (value)=> {
-            this.setState({value});
-          }}
-        items={big}
+        onChange={ (value)=> { this.setState({value}) }}
+        items={bigList}
       />
     </div>
     );
