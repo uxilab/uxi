@@ -1,8 +1,9 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
+import styled from 'styled-components';
 import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';
-import styled from 'styled-components';
+import { Flex } from '../Layout';
 import ThemeComponent from '../Base/ThemeComponent';
 
 const Highlighted = styled.span`
@@ -28,7 +29,7 @@ const AutoCompleteStyle = {
 };
 
 
-const getHighlightedName = (nameToRender, valueForInput) => {
+const getHighlightedName = (nameToRender, valueForInput, postFix) => {
   if (!nameToRender || !valueForInput) {
     return nameToRender;
   }
@@ -42,11 +43,12 @@ const getHighlightedName = (nameToRender, valueForInput) => {
   const postMatched = nameToRender.slice(endAt, nameToRender.length);
 
   return (
-    <div>
-      {preMatch}
-      <Highlighted>{theMatch }</Highlighted>
-      {postMatched }
-    </div>
+    <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
+      <span>{preMatch}</span>
+      <span><Highlighted>{theMatch}</Highlighted></span>
+      {postMatched}
+      {postFix}
+    </Flex>
   );
 };
 
@@ -178,20 +180,23 @@ class AutoComplete extends ThemeComponent {
     const { items, defaultValue, filterOn } = this.props;
     const { valueForInput } = this.state;
 
-    const filterCallBack = () => {
-      const filterFn = item => (
-        item[filterOn].toLowerCase().replace(/\s/g, '')
-          .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
-      );
+    if (valueForInput && valueForInput.length >= 2) {
+      const filterCallBack = () => {
+        const filterFn = item => (
+          item[filterOn].toLowerCase().replace(/\s/g, '')
+            .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
+        );
 
-      const filteredSet = (items && items.filter(filterFn)) || [];
+        const filteredSet = (items && items.filter(filterFn)) || [];
 
-      this.setState({
-        filteredSet,
-      }, consumerNotifierCallback);
-    };
+        this.setState({
+          filteredSet,
+        }, consumerNotifierCallback);
+      };
 
-    setTimeout(filterCallBack, 1);
+
+      setTimeout(filterCallBack, 1);
+    }
   }
 
   render() {
@@ -207,8 +212,11 @@ class AutoComplete extends ThemeComponent {
       >
         {filteredSet
           .map((item, currentIndex) => {
+            const { postFix } = item;
+
             const nameToRender = item[filterOn] || item.name;
-            const nameToRenderWithHightlight = getHighlightedName(nameToRender, valueForInput);
+            const nameToRenderWithHightlight =
+              getHighlightedName(nameToRender, valueForInput, postFix);
 
             const selectedClass = '';
             let liStyle = {};
@@ -229,7 +237,7 @@ class AutoComplete extends ThemeComponent {
                 onMouseOver={this.handleMouseEnterListItem.bind(this)}
                 onMouseOut={this.handleMouseLeaveListItem.bind(this)}
               >
-                {nameToRenderWithHightlight}
+               {nameToRenderWithHightlight}
               </MenuItem>
             );
           })
