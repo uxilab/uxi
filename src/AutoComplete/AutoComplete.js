@@ -232,7 +232,7 @@ class AutoComplete extends ThemeComponent {
           getMatchesResult(item[filterOn], (valueForInput || defaultValue || '').toLowerCase()).some(x => x.matches)
         );
 
-        const filteredSet = (items && items.filter(filterFnPermissive)) || [];
+        const filteredSet = (items && items.filter(filterFnStrict)) || [];
         resolve(filteredSet)
 
       }).then(filteredSet =>
