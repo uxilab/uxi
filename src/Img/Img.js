@@ -23,6 +23,7 @@ const styles = {
     margin: '0',
     opacity: 0,
     opacity: 1,
+    display: 'inline-block',
   },
 };
 
