@@ -1,3 +1,21 @@
+/*
+
+const big = [
+  {
+    "name": "Mccarthy Moore",
+    "company": "ECLIPSENT",
+    "email": "mccarthymoore@eclipsent.com"
+  }, {
+    "name": "Fern Dawson",
+    "company": "ASSISTIX",
+    "email": "ferndawson@assistix.com"
+  },
+]
+
+export default big
+*/
+
+
 const big = [{
   "name": "Mccarthy Moore",
   "company": "ECLIPSENT",
