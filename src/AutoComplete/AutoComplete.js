@@ -5,7 +5,7 @@ import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';
 import { Flex } from '../Layout';
 import ThemeComponent from '../Base/ThemeComponent';
-import { getMatchesResult } from './utils';
+import { getMatchesResult, getFilteredSetWithScore } from './utils';
 
 const Highlighted = styled.span`
   font-weight: 600;
@@ -29,27 +29,28 @@ const AutoCompleteStyle = {
   },
 };
 
-const getHighlightedNameComplex = (nameToRenderParam, valueForInputParam, postFix) => {
-  if (!nameToRenderParam || !valueForInputParam) {
-    return nameToRenderParam;
-  }
+const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) => {
+  // console.log('item', item)
+  const nameToRenderParam = item[filterOn]
+  // if (!nameToRenderParam || !valueForInputParam) {
+  //   console.log('!nameToRenderParam || !valueForInputParam :', !nameToRenderParam || !valueForInputParam)
+  //   return nameToRenderParam;
+  // }
 
-  const matches = getMatchesResult(nameToRenderParam, valueForInputParam)
+  // const matches = getMatchesResult(nameToRenderParam, valueForInputParam)
+  // console.log(matchesNode)
+  const matchesNode = (item || []).map(({ matches, string }) => {
+    // console.log(string)
+    return (
+      matches
+        ? (<span data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
+        : (<span data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
+    )
+  })
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
-      {
-        matches.map(({ matches, string }) => (
-          matches
-            ? (<span data-theMatch ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
-            : <span data-preMatch dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />
-        ))
-      }
-      {/*
-      <span data-nameToRenderParam dangerouslySetInnerHTML={{ __html: `${valueForInput}` }} style={{ display: 'none' }} />
-      <span data-preMatch dangerouslySetInnerHTML={{ __html: `${preMatch}` }} />
-      <span data-theMatch ><Highlighted dangerouslySetInnerHTML={{ __html: `${theMatch}` }} /></span>
-      <span data-postMatched dangerouslySetInnerHTML={{ __html: `${postMatched}` }} /> */}
+      {matchesNode}
       <span data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
@@ -228,12 +229,68 @@ class AutoComplete extends ThemeComponent {
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
         );
 
-        const filterFnPermissive = item => (
-          getMatchesResult(item[filterOn], (valueForInput || defaultValue || '').toLowerCase()).some(x => x.matches)
+        const matchMapper = item => (
+          getMatchesResult(item[filterOn], (valueForInput || defaultValue || ''))
         );
 
-        const filteredSet = (items && items.filter(filterFnStrict)) || [];
-        resolve(filteredSet)
+        const filterFnPermissive = (mappedMatch) => {
+          // console.log("it's not x.match", mappedMatch)
+          const isMatch = mappedMatch.some(x => x.matches)
+          // console.log('isMatch', isMatch)
+          return isMatch;
+        };
+
+        const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
+
+        const filteredSet = (mappedUNfilteredSet.filter(filterFnPermissive ||  filterFnStrict));
+        // console.log('filteredSet', filteredSet)
+
+        const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
+
+        const finalSortedResult = filteredSetWithScore.sort((a, b) => {
+          if (a.scrore > b.scrore) { return -1 }
+          if (a.scrore < b.scrore) { return 1 }
+          return 0
+        }).map(({ matchList }) => matchList)
+
+        /*
+        const finalSortedResult = [...filteredSet].sort((a, b) => {
+          const bestMatchLengthInA = a.reduce((accu, x) => {
+            // console.log('A: x.length', x.length)
+            // console.log('A: x', x)
+
+            if (a.matches) {
+              return x.length > accu ? x.length : accu;
+            }
+            return accu
+          }, 0)
+
+          const bestMatchLengthInB = b.reduce((accu, x) => {
+            // console.log('B: x.length', x.length)
+            // console.log('B: x', x)
+            if (b.matches) {
+              return x.length > accu ? x.length : accu;
+            }
+            return accu
+          }, 0)
+
+
+          if (bestMatchLengthInA > bestMatchLengthInB) { return 1 }
+          if (bestMatchLengthInA < bestMatchLengthInB) { return -1 }
+          return 0
+        })
+        */
+
+        // console.log('finalSortedResult ', finalSortedResult )
+
+        // const sortedFilteredSet = [...filteredSet].sort((a, b) => {
+        //   if (x.string.length > y.string.length) { return -1 }
+        //   if (x.string.length < y.string.length) { return 1 }
+        //   return 0
+        // })
+
+        resolve(finalSortedResult)
+        // resolve(filteredSet)
 
       }).then(filteredSet =>
         this.setState({
@@ -275,7 +332,7 @@ class AutoComplete extends ThemeComponent {
 
             const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =
-              getHighlightedNameComplex(nameToRender, valueForInput, postFix);
+              getHighlightedNameComplex(item, valueForInput, postFix, filterOn);
 
             const selectedClass = '';
             let liStyle = {};

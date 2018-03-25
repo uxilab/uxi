@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
 import big from './bigArray';
+import small from './small';
 
 const bigList = big.map(x => ({
   ...x,

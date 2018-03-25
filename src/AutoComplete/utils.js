@@ -58,7 +58,6 @@ export const getMatchesResult = (source, target) => {
   }
 
   const finalResult = result.reduce((accu, x, i) => {
-    console.log(i, x, accu)
     if (i === 0) { return accu }
 
     const currentItem = accu.result[accu.result.length - 1]
@@ -77,6 +76,29 @@ export const getMatchesResult = (source, target) => {
     }
   }, initialAccu)
 
+  // console.log('finalResult.result', finalResult.result)
+
+  // add match score for later sorting
+/*
+  const finalResultWithScore = finalResult.reduce((finalResult, match) => {
+    console.log('match', match);
+
+    // const score = match.reduce((accu, x) => {
+    //   // console.log('A: x.length', x.length)
+    //   // console.log('A: x', x)
+
+    //   if (a.matches) {
+    //     return x.length > accu ? x.length : accu;
+    //   }
+    //   return accu
+    // }, 0)
+
+    return {
+      ...match,
+      // score,
+    }
+  }, finalResult)
+  */
   // const sortedFinalResult = finalResult.result.sort((x, y) => {
   //   if (x.string.length > y.string.length) { return -1 }
   //   if (x.string.length < y.string.length) { return 1 }
@@ -105,6 +127,27 @@ export const getMatchesResult = (source, target) => {
   // console.log(JSON.stringify(result, 2, 2))
   // console.log(JSON.stringify(finalResult.result, 2, 2))
 
-  // return sortedFinalResult
+  // return finalResultWithScore
   return finalResult.result
+}
+
+
+const addScore = (accu, { string, matches }) => {
+  if (matches) {
+    return string.length > accu ? string.length : accu;
+  }
+  return accu
+}
+
+export function getFilteredSetWithScore(filteredSet) {
+  // console.log('filteredSet in sortFinaleResult', filteredSet)
+
+  const filteredSetWithScore = filteredSet.map(x => ({
+    matchList: x,
+    scrore: x.reduce(addScore, 0),
+  }))
+
+  // console.log(filteredSetWithScore)
+
+  return filteredSetWithScore;
 }
