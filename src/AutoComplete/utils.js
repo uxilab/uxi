@@ -13,6 +13,15 @@ export const getMatchesResult = (source, target) => {
   // const source = 'Fernando Dawson'
   // const target = 'fernd'
 
+  // shorcut in case of perfect match
+  if (source.indexOf(target) === 0) {
+    // ! perfect match, from the start worth a 100
+    return [
+      { matches: true, string: source.slice(0, target.length) },
+      { matches: false, string: source.slice(target.length) },
+    ]
+  }
+
   const result = [];
 
 

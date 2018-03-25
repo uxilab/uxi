@@ -93,6 +93,7 @@ const getHighlightedName = (nameToRenderParam, valueForInputParam, postFix) => {
   );
 };
 */
+const recomposeStringValueReducer = (accu = '', { string }) => (accu += string);
 
 /* eslint-disable react/jsx-no-bind */
 class AutoComplete extends ThemeComponent {
@@ -104,7 +105,7 @@ class AutoComplete extends ThemeComponent {
       // filteredSet: this.props.items,
       filteredSet: [],
     };
-    this.onQuerychangeDebounced = debounce(this.onQuerychange, 300);
+    this.onQuerychangeDebounced = debounce(this.onQuerychange, 100);
   }
 
   componentDidMount() {
@@ -125,7 +126,7 @@ class AutoComplete extends ThemeComponent {
 
   onButtonClick() {
     const currentInput = this.currentInput;
-    const value = currentInput.value || '*';
+    const value = currentInput.value || '';
 
     this.setState({ index: -1, escape: true });
 
@@ -137,7 +138,7 @@ class AutoComplete extends ThemeComponent {
     const { filteredSet } = this.state;
 
     this.setState({ index: -1, escape: true });
-    this.onEnter(filteredSet[index].name);
+    this.onEnter(filteredSet[index].reduce(recomposeStringValueReducer));
   }
 
   clickHandlerForDom(e) {
@@ -198,7 +199,7 @@ class AutoComplete extends ThemeComponent {
       if (index < 0) {
         this.onEnter(valueForInput || '*', true);
       } else {
-        this.onEnter(filteredSet[index].name, true);
+        this.onEnter(filteredSet[index].reduce(recomposeStringValueReducer) /* , true */);
       }
       this.setState({ index: -1, escape: true });
     } else if (e.key === 'Escape') {
@@ -327,6 +328,10 @@ class AutoComplete extends ThemeComponent {
         onMouseOut={this.handleMouseLeaveList.bind(this)}
       >
         {filteredSet
+          // more than a hundreds search results is not
+          // actually helpfull anyway, neither is it reasonnable to ask that to the dom
+          // let's cut it at 10
+          .slice(0, 10)
           .map((item, currentIndex) => {
             const { postFix } = item;
 
@@ -358,6 +363,20 @@ class AutoComplete extends ThemeComponent {
             );
           })
         }
+        {(filteredSet.length > 20
+          ? (<MenuItem
+              key={`not-currentIndex`}
+              onClick={() => { } /* this.onItemClick.bind(this, currentIndex) */}
+              // onMouseOver={this.handleMouseEnterListItem.bind(this)}
+              // onMouseOut={this.handleMouseLeaveListItem.bind(this)}
+              style={{
+                textAlign: 'center', opacity: .8,
+              }}
+            >
+              {'Some results were omitted, try a more specific query'}
+            </MenuItem>)
+          : null
+        )}
       </VerticalMenu>) : null;
 
     return (
