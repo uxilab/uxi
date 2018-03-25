@@ -93,7 +93,11 @@ const getHighlightedName = (nameToRenderParam, valueForInputParam, postFix) => {
   );
 };
 */
-const recomposeStringValueReducer = (accu = '', { string }) => (accu += string);
+const recomposeStringValueReducer = (accu = '', { string }) => {
+  if (!accu || typeof accu !== 'string') { accu = string }
+  console.log('accu', accu)
+  return (accu += string)
+};
 
 /* eslint-disable react/jsx-no-bind */
 class AutoComplete extends ThemeComponent {
@@ -125,20 +129,34 @@ class AutoComplete extends ThemeComponent {
   }
 
   onButtonClick() {
+    const { filteredSet } = this.state;
     const currentInput = this.currentInput;
     const value = currentInput.value || '';
 
+    this.onEnter(filteredSet[index].reduce(
+      (accu = '', { string }) => {
+        // if (!accu || typeof accu !== 'string') { accu = string }
+        // console.log('accu', accu)
+        return (accu += string)
+      }, '')
+    )
     this.setState({ index: -1, escape: true });
 
-    this.onEnter(value);
   }
 
   onItemClick(index) {
     // const { items } = this.props;
     const { filteredSet } = this.state;
-
+    this.onEnter(filteredSet[index].reduce(
+      (accu = '', { string }) => {
+        // if (!accu || typeof accu !== 'string') { accu = string }
+        // console.log('accu', accu)
+        return (accu += string)
+      }, '')
+    )
+    console.log('theValue', theValue)
+    this.onEnter(theValue);
     this.setState({ index: -1, escape: true });
-    this.onEnter(filteredSet[index].reduce(recomposeStringValueReducer));
   }
 
   clickHandlerForDom(e) {
@@ -182,6 +200,8 @@ class AutoComplete extends ThemeComponent {
   }
 
   onEnter(value) {
+
+    console.log('value passed to onEnter', value)
     const { onChange } = this.props;
 
     this.setState({
@@ -197,9 +217,15 @@ class AutoComplete extends ThemeComponent {
 
     if (e.key === 'Enter') {
       if (index < 0) {
-        this.onEnter(valueForInput || '*', true);
+        this.onEnter(valueForInput || '', true);
       } else {
-        this.onEnter(filteredSet[index].reduce(recomposeStringValueReducer) /* , true */);
+        this.onEnter(filteredSet[index].reduce(
+          (accu = '', { string }) => {
+            // if (!accu || typeof accu !== 'string') { accu = string }
+            // console.log('accu', accu)
+            return (accu += string)
+          }, '')
+        )
       }
       this.setState({ index: -1, escape: true });
     } else if (e.key === 'Escape') {
