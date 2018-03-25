@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
 import Button from 'uxi/Button';
-import medium from './medium-8000-array';
+import big from './bigArray';
 
-const bigList = medium.map(x => ({
+const bigList = big.map(x => ({
   ...x,
   postFix: <span>{x.company}</span>
 }))
 
-class ExampleMediumList extends Component {
+class ExampleBigList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,11 +30,11 @@ class ExampleMediumList extends Component {
           onChange={ (value)=> { this.setState({value}) }}
           items={bigList}
         />
-        <Button onClick={() => console.log(medium)} text="log list to console"/>
+        <Button onClick={() => console.log(big)} text="log list to console"/>
       </div>
     );
   }
 }
 
 
-export default ExampleMediumList;
+export default ExampleBigList;

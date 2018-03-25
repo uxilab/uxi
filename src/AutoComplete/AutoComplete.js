@@ -154,8 +154,6 @@ class AutoComplete extends ThemeComponent {
         return (accu += string)
       }, '')
     )
-    console.log('theValue', theValue)
-    this.onEnter(theValue);
     this.setState({ index: -1, escape: true });
   }
 
