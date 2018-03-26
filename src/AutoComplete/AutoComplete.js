@@ -5,6 +5,7 @@ import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';
 import { Flex } from '../Layout';
 import ThemeComponent from '../Base/ThemeComponent';
+import { getMatchesResult } from './utils';
 
 const Highlighted = styled.span`
   font-weight: 600;
@@ -28,12 +29,50 @@ const AutoCompleteStyle = {
   },
 };
 
-
-const getHighlightedName = (nameToRender, valueForInput, postFix) => {
-  if (!nameToRender || !valueForInput) {
-    return nameToRender;
+const getHighlightedNameComplex = (nameToRenderParam, valueForInputParam, postFix) => {
+  if (!nameToRenderParam || !valueForInputParam) {
+    return nameToRenderParam;
   }
 
+  const matches = getMatchesResult(nameToRenderParam, valueForInputParam)
+
+  return (
+    <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
+      {
+        matches.map(({ matches, string }) => (
+          matches
+            ? (<span data-theMatch ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
+            : <span data-preMatch dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />
+        ))
+      }
+      {/*
+      <span data-nameToRenderParam dangerouslySetInnerHTML={{ __html: `${valueForInput}` }} style={{ display: 'none' }} />
+      <span data-preMatch dangerouslySetInnerHTML={{ __html: `${preMatch}` }} />
+      <span data-theMatch ><Highlighted dangerouslySetInnerHTML={{ __html: `${theMatch}` }} /></span>
+      <span data-postMatched dangerouslySetInnerHTML={{ __html: `${postMatched}` }} /> */}
+      <span data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
+    </Flex>
+  );
+
+}
+
+/*
+const getHighlightedName = (nameToRenderParam, valueForInputParam, postFix) => {
+  if (!nameToRenderParam || !valueForInputParam) {
+    return nameToRenderParam;
+  }
+
+  if (nameToRenderParam.toLowerCase().indexOf(valueForInputParam.toLowerCase()) === -1) {
+    console.log('unperfect match brecause of ignord space');
+    return getHighlightedNameComplex(nameToRenderParam, valueForInputParam, postFix)
+  }
+
+  let nameToRender = nameToRenderParam;
+  let valueForInput = valueForInputParam;
+  // if (valueForInputParam.includes(' ')) {
+  nameToRender = nameToRenderParam.replace(/\s/g, '&nbsp;');
+  valueForInput = valueForInputParam.replace(/\s/g, '&nbsp;');
+  // }
   const startAt = nameToRender.toLowerCase().indexOf(valueForInput.toLowerCase());
   const length = valueForInput.length;
   const endAt = startAt + length;
@@ -44,13 +83,15 @@ const getHighlightedName = (nameToRender, valueForInput, postFix) => {
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
-      <span>{preMatch}</span>
-      <span><Highlighted>{theMatch}</Highlighted></span>
-      {postMatched}
-      <span style={{ marginLeft: 'auto' }}>{postFix}</span>
+      <span data-nameToRenderParam dangerouslySetInnerHTML={{ __html: `${valueForInput}` }} style={{ display: 'none' }} />
+      <span data-preMatch dangerouslySetInnerHTML={{ __html: `${preMatch}` }} />
+      <span data-theMatch ><Highlighted dangerouslySetInnerHTML={{ __html: `${theMatch}` }} /></span>
+      <span data-postMatched dangerouslySetInnerHTML={{ __html: `${postMatched}` }} />
+      <span data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
 };
+*/
 
 /* eslint-disable react/jsx-no-bind */
 class AutoComplete extends ThemeComponent {
@@ -181,20 +222,39 @@ class AutoComplete extends ThemeComponent {
     const { valueForInput } = this.state;
 
     if (valueForInput && valueForInput.length >= 2) {
-      const filterCallBack = () => {
-        const filterFn = item => (
+      new Promise((resolve, reject) => {
+        const filterFnStrict = item => (
           item[filterOn].toLowerCase().replace(/\s/g, '')
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
         );
 
-        const filteredSet = (items && items.filter(filterFn)) || [];
+        const filterFnPermissive = item => (
+          getMatchesResult(item[filterOn], (valueForInput || defaultValue || '').toLowerCase()).some(x => x.matches)
+        );
 
+        const filteredSet = (items && items.filter(filterFnStrict)) || [];
+        resolve(filteredSet)
+
+      }).then(filteredSet =>
         this.setState({
           filteredSet,
-        }, consumerNotifierCallback);
-      };
+        }, consumerNotifierCallback)
+      )
+      // const filterCallBack = () => {
+      //   const filterFn = item => (
+      //     getMatchesResult(item[filterOn], (valueForInput || defaultValue || '').toLowerCase()).some(x => x.matches)
+      //     // item[filterOn].toLowerCase().replace(/\s/g, '')
+      //     //   .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
+      //   );
 
-      setTimeout(filterCallBack, 1);
+      //   const filteredSet = (items && items.filter(filterFn)) || [];
+
+      //   this.setState({
+      //     filteredSet,
+      //   }, consumerNotifierCallback);
+      // };
+
+      // setTimeout(filterCallBack, 1);
     }
   }
 
@@ -215,7 +275,7 @@ class AutoComplete extends ThemeComponent {
 
             const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =
-              getHighlightedName(nameToRender, valueForInput, postFix);
+              getHighlightedNameComplex(nameToRender, valueForInput, postFix);
 
             const selectedClass = '';
             let liStyle = {};
