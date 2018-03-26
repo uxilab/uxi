@@ -24,6 +24,7 @@ export Idbadge from './Idbadge';
 export Industry from './Industry';
 export Integration from './Integration';
 export Iteration from './Iteration';
+export Language from './Language';
 export License from './License';
 export List from './List';
 export Listul from './Listul';
