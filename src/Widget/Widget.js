@@ -10,7 +10,7 @@ const WidgetWrapper = styled.div`
 
 const WidgetContainer = styled.div`
   min-height: 150px;
-  
+
   height: ${({ fixedHeight }) => (fixedHeight ? `${fixedHeight}px` : 'none')};
   overflow-y: ${({ fixedHeight }) => (fixedHeight ? 'auto' : 'hidden')};
 `;
@@ -59,6 +59,7 @@ class Widget extends Component {
       menu,
       emptyText,
       fixedHeight,
+      style: styleProp,
     } = this.props;
 
     let content;
@@ -84,7 +85,7 @@ class Widget extends Component {
     }
 
     return (
-      <WidgetWrapper>
+      <WidgetWrapper style={styleProp}>
         {
           title &&
           (
