@@ -117,7 +117,7 @@ class Carrousel extends Component {
     const { scrollableTowardsNext, scrollableTowardsPrevious } = this.state;
     const color = '#26a29a';
 
-    const shouldDisplayNavArrows = scrollableTowardsNext > 0 || scrollableTowardsPrevious > 0
+    const shouldDisplayNavArrows = scrollableTowardsNext > 0 || scrollableTowardsPrevious > 0;
 
     const prev = shouldDisplayNavArrows && (
       <NavigationUI onClick={this.handlePrevious}>
@@ -141,11 +141,11 @@ class Carrousel extends Component {
           ))} */}
 
           {
-            React.Children.map(children, child => {
+            React.Children.map(children, (child) => {
               if (child.type === 'CarrouselItem') {
-                return React.cloneElement(child)
+                return React.cloneElement(child);
               }
-              return <CarrouselItem> { React.cloneElement(child) } </CarrouselItem>
+              return <CarrouselItem> { React.cloneElement(child) } </CarrouselItem>;
             })
           }
         </WrapperUI>

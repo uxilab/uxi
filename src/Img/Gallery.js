@@ -91,32 +91,32 @@ const GalleryButtonUI = styled.button`
 
 class Gallery extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.listRef = null;
-    this.handleNext = this.handleNext.bind(this)
-    this.handlePrevious = this.handlePrevious.bind(this)
+    this.handleNext = this.handleNext.bind(this);
+    this.handlePrevious = this.handlePrevious.bind(this);
   }
 
   handleNext() {
     const { listRef } = this;
     if (listRef) {
-      const width = listRef.getBoundingClientRect().width
-      listRef.scrollLeft = listRef.scrollLeft + width
+      const width = listRef.getBoundingClientRect().width;
+      listRef.scrollLeft += width;
     }
   }
 
   handlePrevious() {
     const { listRef } = this;
     if (listRef) {
-      const width = listRef.getBoundingClientRect().width
-      listRef.scrollLeft = listRef.scrollLeft - width
+      const width = listRef.getBoundingClientRect().width;
+      listRef.scrollLeft -= width;
     }
   }
 
   render() {
-    const { galleryDescriptor, imgHeight } = this.props
-    console.log('imgHeight', imgHeight)
+    const { galleryDescriptor, imgHeight } = this.props;
+    console.log('imgHeight', imgHeight);
 
     return (
       <GalleryContainerUI>
@@ -132,15 +132,15 @@ class Gallery extends Component {
 
         <GalleryButtonUI data-action="next" onClick={this.handleNext} />
       </GalleryContainerUI>
-    )
+    );
   }
-};
+}
 
 Gallery.displayName = 'Gallery';
 
 Gallery.defaultProps = {
   galleryDescriptor: [],
   imgHeight: 60,
-}
+};
 
 export default Gallery;

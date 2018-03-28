@@ -19,7 +19,7 @@ const getWidth = ({ isOpen, panelWidth, fullWidth, attachToViewport, fullViewpor
 
   if (fullWidth) {
     // if (fullViewportWidthPanel) {
-      // return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
+    // return `calc(100vw - ${theMenuWidth})` // yep it's weird, layout context stuff...
     // }
     // return '100%';
     return `calc(100${unit} - ${theMenuWidth})`;
@@ -41,7 +41,7 @@ const getTransform = ({ panelWidth, fullWidth, isOpen }, breakpoint) => {
     }
   } else if (fullWidth) {
     // x = `calc(-100vh - ${theMenuWidth})`;
-    x = `-100vw`;
+    x = '-100vw';
   } else {
     // x = `calc(-${width}px)`;
     x = `-${panelWidth}px`;
@@ -73,7 +73,7 @@ const GlobalMenuPanelWrapper = styled.div`
   overflow-y: scroll;
   width: ${({ panelWidth }) => `${panelWidth}px`}; /* in case 680 was passed */
   width: ${({ panelWidth }) => panelWidth}; /* in case auto was passed */
-  width: ${ props => getWidth(props)};
+  width: ${props => getWidth(props)};
   will-change: transform;
   transform: ${props => getTransform(props)};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
@@ -144,7 +144,7 @@ class GlobalMenuPanel extends Component {
     const attributes = {
       ...(!isOpen
         ? { tabIndex: -1, 'aria-hidden': 'true' }
-        : { tabIndex: 0, autofocus: "true"}
+        : { tabIndex: 0, autofocus: 'true' }
       ),
     };
 

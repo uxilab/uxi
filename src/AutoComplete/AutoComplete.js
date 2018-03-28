@@ -34,7 +34,7 @@ const getHighlightedNameComplex = (nameToRenderParam, valueForInputParam, postFi
     return nameToRenderParam;
   }
 
-  const matches = getMatchesResult(nameToRenderParam, valueForInputParam)
+  const matches = getMatchesResult(nameToRenderParam, valueForInputParam);
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
@@ -53,8 +53,7 @@ const getHighlightedNameComplex = (nameToRenderParam, valueForInputParam, postFi
       <span data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
-
-}
+};
 
 /*
 const getHighlightedName = (nameToRenderParam, valueForInputParam, postFix) => {
@@ -233,13 +232,12 @@ class AutoComplete extends ThemeComponent {
         );
 
         const filteredSet = (items && items.filter(filterFnStrict)) || [];
-        resolve(filteredSet)
-
+        resolve(filteredSet);
       }).then(filteredSet =>
         this.setState({
           filteredSet,
-        }, consumerNotifierCallback)
-      )
+        }, consumerNotifierCallback),
+      );
       // const filterCallBack = () => {
       //   const filterFn = item => (
       //     getMatchesResult(item[filterOn], (valueForInput || defaultValue || '').toLowerCase()).some(x => x.matches)
@@ -296,7 +294,7 @@ class AutoComplete extends ThemeComponent {
                 onMouseOver={this.handleMouseEnterListItem.bind(this)}
                 onMouseOut={this.handleMouseLeaveListItem.bind(this)}
               >
-               {nameToRenderWithHightlight}
+                {nameToRenderWithHightlight}
               </MenuItem>
             );
           })

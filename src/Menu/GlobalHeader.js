@@ -17,7 +17,7 @@ export const GlobalHeader = (props) => {
   } = props;
 
   return (
-    <GlobalHeaderUI style={ style }>
+    <GlobalHeaderUI style={style}>
       <FlexRightCol>
         <div>{search}</div>
         <div>{menu}</div>

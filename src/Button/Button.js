@@ -167,11 +167,11 @@ class Button extends Component {
     let TheButtonComponent = null;
     if (inert) { TheButtonComponent = ButtonDivUI; }
     else if (readyLink) {
-      TheButtonComponent = (props) => (
+      TheButtonComponent = props => (
         <ButtonDivUI {...props}>
           {readyLink}
         </ButtonDivUI>
-      )
+      );
     }
     else if (link) { TheButtonComponent = ButtonLinkUI; }
     else { TheButtonComponent = ButtonUI; }

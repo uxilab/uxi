@@ -91,7 +91,7 @@ class TableBody extends Component {
   render() {
     const { style } = this.props;
     return (
-      <tbody style={ style }>
+      <tbody style={style}>
         {this.createRows()}
       </tbody>
     );

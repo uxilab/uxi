@@ -11,14 +11,14 @@ const {
 
 const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
-    return palette.accent.light
+    return palette.accent.light;
   }
 
   // if (isSelected) {
   //   return palette.accent.light
   // }
 
-  return palette.lightGrey
+  return palette.lightGrey;
 };
 
 
@@ -31,10 +31,10 @@ const LinkDecorator = styled.div`
     align-items: center;
     justify-content: center;
     color: ${({ isSelected, isActive, theme }) =>
-      (isSelected || isActive)
-        ? theme.palette.pureWhite
-        : theme.palette.lightGrey
-    };
+    ((isSelected || isActive)
+      ? theme.palette.pureWhite
+      : theme.palette.lightGrey)
+};
     width: 100%;
     box-sizing: border-box;
     cursor: pointer;
@@ -46,8 +46,8 @@ const LinkDecorator = styled.div`
     &:hover {
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) =>
-      (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
-      };
+    (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
+};
       transition: inherit;
       svg {
         fill: #fff;
@@ -57,8 +57,8 @@ const LinkDecorator = styled.div`
       color: ${({ theme: { palette } }) => palette.pureWhite};
       transition: inherit;
       background: ${({ isActive, isSelected, theme: { palette } }) =>
-        (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
-      };
+    (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
+};
       svg {
         fill: #fff;
       }
@@ -83,10 +83,10 @@ const GlobalMenuLogoDiv = styled.a`
   align-items: center;
   justify-content: center;
   color: ${({ isSelected, isActive, theme }) =>
-    (isSelected || isActive)
+    ((isSelected || isActive)
       ? theme.palette.pureWhite
-      : theme.palette.lightGrey
-  };
+      : theme.palette.lightGrey)
+};
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
@@ -99,7 +99,7 @@ const GlobalMenuLogoDiv = styled.a`
     color: ${({ theme: { palette } }) => palette.pureWhite};
     background: ${({ isActive, isSelected, theme: { palette } }) =>
     (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
-    };
+};
     transition: inherit;
     svg {
       fill: #fff;
@@ -109,8 +109,8 @@ const GlobalMenuLogoDiv = styled.a`
     color: ${({ theme: { palette } }) => palette.pureWhite};
     transition: inherit;
     background: ${({ isActive, isSelected, theme: { palette } }) =>
-      (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
-    };
+    (!isActive && !isSelected ? palette.primary.light : palette.primary.dark)
+};
     svg {
       fill: #fff;
     }
@@ -149,12 +149,12 @@ const GlobalMenuLogo = ({
   let containerStyle;
   let isNewContent;
 
-  let linkProps = {}
+  let linkProps = {};
   if (Link !== undefined) {
-    const GlobalMenuItemDivFinal = Link // shadow
-    linkProps = { to }
+    const GlobalMenuItemDivFinal = Link; // shadow
+    linkProps = { to };
   } else if (href) {
-    linkProps = { href }
+    linkProps = { href };
   }
 
 
@@ -176,7 +176,7 @@ const GlobalMenuLogo = ({
       {icon}
       <LabelDiv> {label} </LabelDiv>
     </GlobalMenuLogoDiv>
-  )
+  );
 
   if (Link) {
     resContent = (

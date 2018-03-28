@@ -17,8 +17,8 @@ export const getMatchesResult = (source, target) => {
 
 
   // this can probalby be refactored into a nice looking map + reducer:
-  let i = 0
-  let j = 0
+  let i = 0;
+  let j = 0;
   while (i < source.length) {
     const sourceChar = source[i];
     const targetChar = target[j];
@@ -26,27 +26,26 @@ export const getMatchesResult = (source, target) => {
     let currentRunMatchObj = {
       matches: false,
       string: sourceChar,
-    }
+    };
 
     // console.log('sourceChar === targetChar')
     // console.log(`${sourceChar} === ${targetChar} : ${sourceChar === targetChar}`)
 
     if (sourceChar.toLowerCase() === targetChar && targetChar.toLowerCase()) {
-      currentRunMatchObj.matches = true
+      currentRunMatchObj.matches = true;
       // currentRunMatchObj.string += sourceChar
-      result.push(currentRunMatchObj)
+      result.push(currentRunMatchObj);
       // result.push(currentRunMatchObj)
-      j++
-
+      j++;
     } else {
       // currentRunMatchObj.string += sourceChar
-      result.push(currentRunMatchObj)
+      result.push(currentRunMatchObj);
       currentRunMatchObj = {
         matches: false,
         string: sourceChar,
-      }
+      };
     }
-    i++
+    i++;
   }
 
   const initialAccu = {
@@ -54,28 +53,27 @@ export const getMatchesResult = (source, target) => {
     result: [{
       matches: result[0].matches,
       string: result[0].string,
-    }]
-  }
+    }],
+  };
 
   const finalResult = result.reduce((accu, x, i) => {
-    console.log(i, x, accu)
-    if (i === 0) { return accu }
+    console.log(i, x, accu);
+    if (i === 0) { return accu; }
 
-    const currentItem = accu.result[accu.result.length - 1]
+    const currentItem = accu.result[accu.result.length - 1];
 
     if (x.matches === accu.isCurrentlyMatching) {
-      accu.result[accu.result.length - 1].string += x.string
-      return accu
-    } else {
-      return {
-        isCurrentlyMatching: x.matches,
-        result: [
-          ...accu.result,
-          { ...x }
-        ]
-      }
+      accu.result[accu.result.length - 1].string += x.string;
+      return accu;
     }
-  }, initialAccu)
+    return {
+      isCurrentlyMatching: x.matches,
+      result: [
+        ...accu.result,
+        { ...x },
+      ],
+    };
+  }, initialAccu);
 
   // const sortedFinalResult = finalResult.result.sort((x, y) => {
   //   if (x.string.length > y.string.length) { return -1 }
@@ -106,5 +104,5 @@ export const getMatchesResult = (source, target) => {
   // console.log(JSON.stringify(finalResult.result, 2, 2))
 
   // return sortedFinalResult
-  return finalResult.result
-}
+  return finalResult.result;
+};

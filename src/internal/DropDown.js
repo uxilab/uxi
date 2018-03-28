@@ -37,7 +37,7 @@ const styles = {
     height: '100%',
     display: 'flex',
     alignItems: 'stretch',
-  }
+  },
   // itemsWrapperString: `
   //   z-index: 1,
   //   min-width: 180px,
@@ -126,7 +126,7 @@ export class DropDown extends PureComponent {
     const ItemsLeft = cRectMain.left - (cRectItems.width - cRectMain.width);
 
     let left = '';
-    let right = '';
+    const right = '';
     if (anchor === 'left') {
     } else if (anchor === 'right') {
       left = `${ItemsLeft}px`;
