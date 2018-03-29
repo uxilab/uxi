@@ -13,7 +13,7 @@ const UXISCThemeProvider = ({ children, theme, palette }) => {
   return (
     <SCThemeProvider theme={theme} >
       <UXIContextThemeProvider>
-        <div>
+        <div style={{ height: '100%' }}>
           <style dangerouslySetInnerHTML={{ __html: actualCSSString }} />
           {children}
         </div>
