@@ -9,7 +9,7 @@ import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 import { ThemedBox } from 'uxi/Box';
 
-const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff' }
+const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff', overflow: 'visible' }
 
 const isActive = (path, currentLocation) =>
   path.toLowerCase() === currentLocation.toLowerCase();
@@ -52,6 +52,7 @@ export const routes = [
   { path: '/gallery', label: 'Gallery' },
   { path: '/carrousel', label: 'Carrousel' },
   { path: '/tile', label: 'Tile' },
+  { path: '/Motion', label: 'Motion' },
 ]
 
 const AppShell = ({ children }) => {
