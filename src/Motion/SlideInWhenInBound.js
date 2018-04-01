@@ -1,9 +1,20 @@
 
 import React, { Component } from 'react';
-import SlideUpInWhenInBoundUI from './SlideUpInWhenInBoundUI';
+import PropTypes from 'prop-types';
+import SlideInWhenInBoundUI from './SlideInWhenInBoundUI';
 import debounce from 'lodash/debounce';
 
-class SlideUpInWhenInBound extends Component {
+class SlideInWhenInBound extends Component {
+  static defaultProps = {
+    anchor: 'bottom',
+  }
+
+  static propTypes = {
+    anchor: PropTypes.oneOf([
+      'bottom', 'top', 'left', 'right'
+    ])
+  }
+
   constructor(props) {
     super(props);
 
@@ -78,18 +89,20 @@ class SlideUpInWhenInBound extends Component {
 
   render() {
     const { className } = this.state;
+    const { anchor } = this.props;
 
     return (
-      <SlideUpInWhenInBoundUI>
+      <SlideInWhenInBoundUI anchor={anchor} >
         <div
           className={`${className}`}
           ref={this.storeRef}
         >
           {React.Children.only(this.props.children)}
         </div>
-      </SlideUpInWhenInBoundUI>
+      </SlideInWhenInBoundUI>
     );
   }
 }
 
-export default SlideUpInWhenInBound;
+
+export default SlideInWhenInBound;

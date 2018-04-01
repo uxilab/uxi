@@ -1,10 +1,13 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
-
 import CodeExample from '../../CodeExample';
-import SlideUpInWhenInBoundExample from './SlideUpInWhenInBoundExample';
-import RAWSlideUpInWhenInBoundExample from '!raw-loader!./SlideUpInWhenInBoundExample';
+
+import SlideInWhenInBoundExample from './SlideInWhenInBoundExample';
+import RAWSlideInWhenInBoundExample from '!raw-loader!./SlideInWhenInBoundExample';
+
+import SlideInWhenInBoundOutOftheBox from './SlideInWhenInBoundOutOftheBox';
+import RAWSlideInWhenInBoundOutOftheBox from '!raw-loader!./SlideInWhenInBoundOutOftheBox';
 
 const MotionPage = () => (
   <div>
@@ -15,12 +18,25 @@ const MotionPage = () => (
     <ul>
       <li>
         <CodeExample
-          code={RAWSlideUpInWhenInBoundExample}
+          code={RAWSlideInWhenInBoundOutOftheBox}
           component
-          title="SlideUpInWhenInBoundExample"
+          title="SlideInWhenInBound"
+          description={' out of the box, no props, default "slideUpIn"'}
           hasPadding
         >
-          <SlideUpInWhenInBoundExample />
+          <SlideInWhenInBoundOutOftheBox />
+        </CodeExample>
+      </li>
+      <br />
+      <li>
+        <CodeExample
+          code={RAWSlideInWhenInBoundExample}
+          component
+          title="SlideInWhenInBound"
+          description={'specifying `anchor` props'}
+          hasPadding
+        >
+          <SlideInWhenInBoundExample />
         </CodeExample>
       </li>
     </ul>
