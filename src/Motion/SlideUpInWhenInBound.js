@@ -44,6 +44,10 @@ class SlideUpInWhenInBound extends Component {
   }
 
   readDOMPosition(viewportHeightParam) {
+    const { node } = this;
+    if (!node) {
+      return null;
+    }
     const viewportHeight = (
       this.state.viewportHeight || viewportHeightParam || 2000
     );
