@@ -27,7 +27,7 @@ class SlideInWhenInBound extends Component {
 
     this.state = {
       viewportHeight: null,
-      className: 'scroll-anim-before load-anim'
+      className: 'scroll-anim-before load-anim animIn'
     };
   }
 
