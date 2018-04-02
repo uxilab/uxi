@@ -20,8 +20,10 @@ class SlideInWhenInBound extends Component {
 
     this.node = null;
     this.storeRef = this.storeRef.bind(this);
-    this.handleScroll = debounce(this.handleScroll.bind(this), 8);
-    this.handleResize = debounce(this.handleResize.bind(this), 80);
+    this.handleScrollDebounced = debounce(this.handleScroll, 8);
+    this.handleResizeDebounced = debounce(this.handleResize, 80);
+    this.attachListeners = this.attachListeners.bind(this);
+    this.removeListeners = this.removeListeners.bind(this);
 
     this.state = {
       viewportHeight: null,
@@ -29,29 +31,12 @@ class SlideInWhenInBound extends Component {
     };
   }
 
-  componentDidMount() { this.attachListeners() }
-
-  componentWillUnmount() { this.removeListeners() }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.className !== nextState.className) {
       return true;
     }
     return false;
-  }
-
-  attachListeners() {
-    if (window && window.document) {
-      window.addEventListener('resize', this.handleResize)
-      document.addEventListener('scroll', this.handleScroll)
-    }
-  }
-
-  removeListeners() {
-    if (window && window.document) {
-      window.removeEventListener('resize', this.handleResize)
-      document.removeEventListener('scroll', this.handleScroll)
-    }
   }
 
   readDOMPosition(viewportHeightParam) {
@@ -86,6 +71,33 @@ class SlideInWhenInBound extends Component {
       viewportHeight: e.target.innerHeight,
     })
   }
+
+  attachListeners() {
+    if (window && window.document) {
+      const { scrollElementSelector } = this.props;
+      const theElementToWatchScrollOn = (
+        document.querySelector(scrollElementSelector) || window.document
+      );
+      window.addEventListener('resize', this.handleResizeDebounced.bind(this))
+      theElementToWatchScrollOn.addEventListener('scroll', this.handleScrollDebounced.bind(this))
+    }
+  }
+
+  removeListeners() {
+    if (window && window.document) {
+      const { scrollElementSelector } = this.props;
+      const theElementToWatchScrollOn = (
+        document.querySelector(scrollElementSelector) || window.document
+      );
+      window.removeEventListener('resize', this.handleResizeDebounced.bind(this))
+      theElementToWatchScrollOn.removeEventListener('scroll', this.handleScrollDebounced.bind(this))
+    }
+  }
+
+  componentDidMount() { this.attachListeners() }
+
+  componentWillUnmount() { this.removeListeners() }
+
 
   render() {
     const { className } = this.state;
