@@ -354,7 +354,7 @@ class AutoComplete extends ThemeComponent {
           // more than a hundreds search results is not
           // actually helpfull anyway, neither is it reasonnable to ask that to the dom
           // let's cut it at 10
-          .slice(0, 10)
+          .slice(0, 20)
           .map((item, currentIndex) => {
             const { postFix } = item;
 
