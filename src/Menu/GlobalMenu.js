@@ -21,9 +21,13 @@ class GlobalMenu extends Component {
       return menuDescriptor.isActive === true
     });
 
-
     if (firstActiveFound) {
-      const activeChild = firstActiveFound && firstActiveFound.children && firstActiveFound.children.find(child => child.isActive)
+      const activeChild = (
+        firstActiveFound
+        && firstActiveFound.children
+        && firstActiveFound.children.find(child => child.isActive)
+      );
+
       if (activeChild) {
         this.changeSelected(activeChild.key)
       } else {

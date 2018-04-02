@@ -27,7 +27,7 @@ const AvatarWithNameAndExtra = ({ src, icon, name, extra, imgSize, isSquare, onC
     <div style={styles.wrapper} onClick={onClick || null}>
       { imgContent }
       <div style={styles.nameWrapper}>
-        <div style={{ fontSize: '16px'}}>{name}</div>
+        <div style={{ fontSize: '16px' }}>{name}</div>
         <div style={{ fontSize: '11px' }}>{extra}</div>
       </div>
     </div>

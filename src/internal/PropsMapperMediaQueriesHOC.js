@@ -42,7 +42,6 @@ const applyRules = (props, rules, width, height) => {
   });
 
 
-
   return result;
 };
 

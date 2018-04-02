@@ -47,8 +47,8 @@ const ContentWithExtra = (props) => {
 
   const contentItems = [
     <ExtraUI key="extra" extraMinWidth={extraMinWidth}>{extra}</ExtraUI>,
-    <ContentUI key="content" contentMinWidth={contentMinWidth}>{children}</ContentUI>
-  ]
+    <ContentUI key="content" contentMinWidth={contentMinWidth}>{children}</ContentUI>,
+  ];
 
   return (
     <ContentWithExtraUI isAfter={extraPosition === 'after'} extraPosition={extraPosition}>

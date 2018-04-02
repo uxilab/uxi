@@ -66,7 +66,7 @@ const SimpleFlexLayout = ({
         desktopColumnNumber={desktopColumnNumber}
       >
         {child}
-      </SimpleFlexLayoutItem>
+      </SimpleFlexLayoutItem>,
     );
   });
 
@@ -85,6 +85,6 @@ const SimpleFlexLayout = ({
 SimpleFlexLayout.defaultProps = {
   tabletBreakPoint: '768px',
   desktopBreakPoint: '992px',
-}
+};
 
 export default SimpleFlexLayout;

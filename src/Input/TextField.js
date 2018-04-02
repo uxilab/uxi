@@ -12,9 +12,7 @@ import { theme as defaultTheme } from '../Theme';
 // const { semantic } = palette;
 
 const InputWrapperUI = styled.div.attrs({
-  theme: ({ theme }) => {
-    return (theme || defaultTheme)
-  },
+  theme: ({ theme }) => (theme || defaultTheme),
 })`
   position: relative;
 `;

@@ -24,7 +24,7 @@ const UnstyledButton = ({ children, style, onClick, inline }) => {
           {children}
         </UnstyledButtonUI>
       </div>
-    )
+    );
   }
 
   return (

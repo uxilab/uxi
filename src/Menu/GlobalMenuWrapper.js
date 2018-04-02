@@ -36,8 +36,8 @@ const GlobalMenuWrapper = ({
       <GlobalMenuItem
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
-        isActive={menuDescriptor.key === selectedKey || (selectedKey ===  '' && menuDescriptor.isActive)}
-        onClick={() => { console.log('clicked on GlobalMenuItem'); menuDescriptor.onClick && menuDescriptor.onClick() } }
+        isActive={menuDescriptor.key === selectedKey || (selectedKey === '' && menuDescriptor.isActive)}
+        onClick={() => { console.log('clicked on GlobalMenuItem'); menuDescriptor.onClick && menuDescriptor.onClick(); }}
         hasNew={menuDescriptor.hasNew}
         label={menuDescriptor.displayName}
         index={menuDescriptor.key}
@@ -52,7 +52,6 @@ const GlobalMenuWrapper = ({
 
     if (menuDescriptor.children && menuDescriptor.children.length > 0) {
       menuDescriptor.children.forEach((child, idx, list) => {
-
         menuDescriptorsContent.push(
           <GlobalMenuSubItem
             isFirstSubItem={idx === 0}
@@ -92,13 +91,12 @@ const GlobalMenuWrapper = ({
             attachToViewport={attachToViewport}
             fullViewportWidthPanel={fullViewportWidthPanel}
           />
-        </div>
-      )
+        </div>,
+      );
     }
-
   });
 
-  const gapFiller = <FlexExtended />
+  const gapFiller = <FlexExtended />;
   // menuDescriptorsContent.push(gapFiller);
 
   return (

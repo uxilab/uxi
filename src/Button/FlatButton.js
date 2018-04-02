@@ -140,12 +140,12 @@ class Button extends Component {
     };
     const marginStyles = {
       display: isFullWidth ? 'block' : 'inline-block',
-      ...('margin' in style ? { margin: style.margin } : {} ),
-      ...('marginTop' in style ? { marginTop: style.marginTop } : {} ),
-      ...('marginRight' in style ? { marginRight: style.marginRight } : {} ),
-      ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {} ),
-      ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {} ),
-    }
+      ...('margin' in style ? { margin: style.margin } : {}),
+      ...('marginTop' in style ? { marginTop: style.marginTop } : {}),
+      ...('marginRight' in style ? { marginRight: style.marginRight } : {}),
+      ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {}),
+      ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {}),
+    };
 
     const styleProps = {
       isFullWidth,
@@ -160,11 +160,11 @@ class Button extends Component {
     let TheButtonComponent = null;
     if (inert) { TheButtonComponent = ButtonDivUI; }
     else if (readyLink) {
-      TheButtonComponent = (props) => (
+      TheButtonComponent = props => (
         <ButtonDivUI {...props}>
           {readyLink}
         </ButtonDivUI>
-      )
+      );
     }
     else if (link) { TheButtonComponent = ButtonLinkUI; }
     else { TheButtonComponent = ButtonUI; }
@@ -198,7 +198,7 @@ class Button extends Component {
 }
 
 Button.defaultProps = {
-  style: {}
+  style: {},
 };
 
 export default Button;
