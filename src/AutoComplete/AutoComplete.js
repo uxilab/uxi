@@ -39,7 +39,7 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) 
 
   // const matches = getMatchesResult(nameToRenderParam, valueForInputParam)
   // console.log(matchesNode)
-  const matchesNode = (item || []).map(({ matches, string }) => {
+  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => {
     // console.log(string)
     return (
       matches
@@ -105,6 +105,10 @@ class AutoComplete extends ThemeComponent {
     this.state = {
       index: -1,
       value: props.defaultValue,
+      originalItems: this.props.items.map((x, i) => ({
+        ...x,
+        originalIndex: i,
+      })) || [],
       // filteredSet: this.props.items,
       filteredSet: [],
     };
@@ -116,6 +120,15 @@ class AutoComplete extends ThemeComponent {
   }
 
   componentWillReceiveProps(nextProp) {
+    if (this.props.items.length !== nextProps.items.length) {
+      this.setState({
+        originalItems: this.props.items.map((x, i) => ({
+          ...x,
+          originalIndex: i,
+        })) || [],
+      })
+    }
+
     if (this.props.defaultValue !== nextProp.defaultValue) {
       this.setState({
         valueForInput: nextProp.defaultValue,
@@ -205,7 +218,12 @@ class AutoComplete extends ThemeComponent {
       valueForInput: value,
     });
 
-    onChange && onChange(value);
+
+
+    onChange && onChange({
+      value,
+      originalValue,
+    });
   }
 
   updateSearchValue(e) {
@@ -253,13 +271,14 @@ class AutoComplete extends ThemeComponent {
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
         );
 
-        const matchMapper = item => (
-          getMatchesResult(item[filterOn], (valueForInput || defaultValue || ''))
-        );
+        const matchMapper = (item) => ({
+          ...item,
+          matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
+        });
 
         const filterFnPermissive = (mappedMatch) => {
           // console.log("it's not x.match", mappedMatch)
-          const isMatch = mappedMatch.some(x => x.matches)
+          const isMatch = mappedMatch.matchesResults.some(x => x.matches)
           // console.log('isMatch', isMatch)
           return isMatch;
         };
@@ -275,7 +294,7 @@ class AutoComplete extends ThemeComponent {
           if (a.scrore > b.scrore) { return -1 }
           if (a.scrore < b.scrore) { return 1 }
           return 0
-        }).map(({ matchList }) => matchList)
+        })//.map(({ matchList }) => matchList)
 
         /*
         const finalSortedResult = [...filteredSet].sort((a, b) => {
