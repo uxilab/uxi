@@ -13,6 +13,7 @@ const Highlighted = styled.span`
 `;
 
 const AutoCompleteStyle = {
+  boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px',
   popover: {
     position: 'absolute',
     top: '30px',
@@ -21,7 +22,6 @@ const AutoCompleteStyle = {
     border: '1px solid #ccc',
     left: 0,
     right: 0,
-    boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px',
     margin: 0,
     padding: 0,
     zIndex: 2,
@@ -343,9 +343,16 @@ class AutoComplete extends ThemeComponent {
     const { items, placeholder, itemComponent, defaultValue, filterOn } = this.props;
     const { index, escape, valueForInput, filteredSet } = this.state;
 
+    const shadowStyle = {
+      ...(filteredSet.length && filteredSet.length > 0
+        ? { boxShadow: AutoCompleteStyle.boxShadow }
+        : {}
+      )
+    }
+
     const autoComplete = !escape ? (
       <VerticalMenu
-        style={AutoCompleteStyle.popover}
+        style={{ ...AutoCompleteStyle.popover, ...shadowStyle }}
         ref={(ref) => { this.autoComplete = ref; }}
         onMouseOver={this.handleMouseEnterList.bind(this)}
         onMouseOut={this.handleMouseLeaveList.bind(this)}
