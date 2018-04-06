@@ -29,7 +29,10 @@ const Dialog = ({ show, modal, onClose, children, style }) => {
   const extendedChildren = React.Children.map(children, (c, index) => {
 
     const childExtendedChildren = React.Children.map(c.props.children, childChildren => {
-      if (childChildren.type.displayName === 'PanelContent') {
+      if (childChildren
+        && childChildren.type
+        && childChildren.type.displayName === 'PanelContent'
+      ) {
         return React.cloneElement(childChildren, {
           ...childChildren.props,
           style: { maxHeight: 'calc(80vh - calc( 2 * 50px ))', ...childChildren.props.style },
