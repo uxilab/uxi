@@ -53,7 +53,7 @@ const ActionDisplayNameWrapper = styled.div`
   color: #2F2F32;
   font-weight: 600;
   font-size: 16px;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Open sans', sans-serif;
   margin-top:20px;
   flex-grow: 99;
   display: flex;
