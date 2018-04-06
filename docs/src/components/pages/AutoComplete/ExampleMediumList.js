@@ -36,7 +36,6 @@ class ExampleMediumList extends Component {
             }}
             items={bigList}
           />
-        </form>
         <Button onClick={() => console.log(medium)} text="log list to console"/>
       </div>
     );
