@@ -67,7 +67,7 @@ class AutoComplete extends ThemeComponent {
     };
 
     this.onQuerychangeDebounced = debounce(this.onQuerychange, 100);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeWrap = this.onChangeWrap.bind(this);
   }
 
   componentDidMount() {
@@ -95,17 +95,12 @@ class AutoComplete extends ThemeComponent {
     document.removeEventListener('click', this.clickHandlerForDom);
   }
 
-  handleSubmit(e) {
-    console.log(e.preventDefault)
-    console.log(e.stopPropagation)
-  }
-
   onItemClick(index) {
     const { filteredSet } = this.state;
 
     const originalValue = filteredSet[index];
 
-
+    console.log('in onItemClick original value:')
     this.onEnter(
       originalValue.matchesResults.reduce((accu = '', { string }) => (accu += string), ''),
       originalValue
@@ -134,13 +129,6 @@ class AutoComplete extends ThemeComponent {
   }
 
   onChangeWrap(e) {
-    console.log('onChangeWrap')
-    console.log('e.key', e.key)
-    if (e.key && e.key === 'Enter') {
-      console.log('onChangeWrap: e.key && e.key === \'Enter\'')
-      e.stopPropagation()
-      e.preventDefault()
-    }
     const value = e.target.value;
     this.setState({ valueForInput: value });
 
@@ -177,25 +165,10 @@ class AutoComplete extends ThemeComponent {
   }
 
   updateSearchValue(e) {
-    console.log('updateSearchValue')
-    if (e.key === 'Enter') {
-      console.log(e.preventDefault)
-      console.log(e.stopPropagation)
-    }
-
     const { items } = this.props;
     const { index, valueForInput, filteredSet } = this.state;
 
     if (e.key === 'Enter') {
-      // we're in a text field,
-      // if wrapped in a form, this submit the form, let's prevent that
-      console.log('e.preventDefault', e.preventDefault)
-      console.log('e.stopPropagation', e.stopPropagation)
-      if (e.preventDefault && e.stopPropagation) {
-        console.log('preventing event default behaviour')
-        e.preventDefault()
-        e.stopPropagation();
-      }
       if (index < 0) {
         this.onEnter(valueForInput || '', true);
       } else {
@@ -344,7 +317,7 @@ class AutoComplete extends ThemeComponent {
           style={{ zIndex: 3 }}
           placeholder={placeholder}
           ref={(ref) => { this.currentInput = ref; }}
-          onChange={this.onChangeWrap.bind(this)}
+          onChange={this.onChangeWrap}
           value={this.state.valueForInput || ''}
           type="text"
         />
