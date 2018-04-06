@@ -150,8 +150,9 @@ export function getFilteredSetWithScore(filteredSet) {
   // console.log('filteredSet in sortFinaleResult', filteredSet)
 
   const filteredSetWithScore = filteredSet.map(x => ({
-    matchList: x,
-    scrore: x.reduce(addScore, 0),
+    ...x,
+    // matchList: x,
+    scrore: x.matchesResults.reduce(addScore, 0),
   }))
 
   // console.log(filteredSetWithScore)

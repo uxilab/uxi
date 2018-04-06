@@ -27,7 +27,10 @@ class ExampleBigList extends Component {
         </div>
         <AutoComplete
           filterOn={'name'}
-          onChange={ (value)=> { this.setState({value}) }}
+          onChange={({ value, originalValue }) => {
+            console.log('originalValue', originalValue);
+            this.setState({ value });
+          }}
           items={bigList}
         />
         <Button onClick={() => console.log(big)} text="log list to console"/>

@@ -30,17 +30,8 @@ const AutoCompleteStyle = {
 };
 
 const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) => {
-  // console.log('item', item)
   const nameToRenderParam = item[filterOn]
-  // if (!nameToRenderParam || !valueForInputParam) {
-  //   console.log('!nameToRenderParam || !valueForInputParam :', !nameToRenderParam || !valueForInputParam)
-  //   return nameToRenderParam;
-  // }
-
-  // const matches = getMatchesResult(nameToRenderParam, valueForInputParam)
-  // console.log(matchesNode)
-  const matchesNode = (item || []).map(({ matches, string }) => {
-    // console.log(string)
+  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => {
     return (
       matches
         ? (<span data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
@@ -56,45 +47,8 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) 
   );
 };
 
-/*
-const getHighlightedName = (nameToRenderParam, valueForInputParam, postFix) => {
-  if (!nameToRenderParam || !valueForInputParam) {
-    return nameToRenderParam;
-  }
-
-  if (nameToRenderParam.toLowerCase().indexOf(valueForInputParam.toLowerCase()) === -1) {
-    console.log('unperfect match brecause of ignord space');
-    return getHighlightedNameComplex(nameToRenderParam, valueForInputParam, postFix)
-  }
-
-  let nameToRender = nameToRenderParam;
-  let valueForInput = valueForInputParam;
-  // if (valueForInputParam.includes(' ')) {
-  nameToRender = nameToRenderParam.replace(/\s/g, '&nbsp;');
-  valueForInput = valueForInputParam.replace(/\s/g, '&nbsp;');
-  // }
-  const startAt = nameToRender.toLowerCase().indexOf(valueForInput.toLowerCase());
-  const length = valueForInput.length;
-  const endAt = startAt + length;
-
-  const preMatch = nameToRender.slice(0, startAt);
-  const theMatch = nameToRender.slice(startAt, endAt);
-  const postMatched = nameToRender.slice(endAt, nameToRender.length);
-
-  return (
-    <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
-      <span data-nameToRenderParam dangerouslySetInnerHTML={{ __html: `${valueForInput}` }} style={{ display: 'none' }} />
-      <span data-preMatch dangerouslySetInnerHTML={{ __html: `${preMatch}` }} />
-      <span data-theMatch ><Highlighted dangerouslySetInnerHTML={{ __html: `${theMatch}` }} /></span>
-      <span data-postMatched dangerouslySetInnerHTML={{ __html: `${postMatched}` }} />
-      <span data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
-    </Flex>
-  );
-};
-*/
 const recomposeStringValueReducer = (accu = '', { string }) => {
   if (!accu || typeof accu !== 'string') { accu = string }
-  console.log('accu', accu)
   return (accu += string)
 };
 
@@ -105,20 +59,34 @@ class AutoComplete extends ThemeComponent {
     this.state = {
       index: -1,
       value: props.defaultValue,
-      // filteredSet: this.props.items,
+      originalItems: this.props.items.map((x, i) => ({
+        ...x,
+        originalIndex: i,
+      })) || [],
       filteredSet: [],
     };
+
     this.onQuerychangeDebounced = debounce(this.onQuerychange, 100);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('click', this.clickHandlerForDom.bind(this), true);
   }
 
-  componentWillReceiveProps(nextProp) {
-    if (this.props.defaultValue !== nextProp.defaultValue) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.items.length !== nextProps.items.length) {
       this.setState({
-        valueForInput: nextProp.defaultValue,
+        originalItems: this.props.items.map((x, i) => ({
+          ...x,
+          originalIndex: i,
+        })) || [],
+      })
+    }
+
+    if (this.props.defaultValue !== nextProps.defaultValue) {
+      this.setState({
+        valueForInput: nextProps.defaultValue,
       });
     }
   }
@@ -127,31 +95,20 @@ class AutoComplete extends ThemeComponent {
     document.removeEventListener('click', this.clickHandlerForDom);
   }
 
-  onButtonClick() {
-    const { filteredSet } = this.state;
-    const currentInput = this.currentInput;
-    const value = currentInput.value || '';
-
-    this.onEnter(filteredSet[index].reduce(
-      (accu = '', { string }) => {
-        // if (!accu || typeof accu !== 'string') { accu = string }
-        // console.log('accu', accu)
-        return (accu += string)
-      }, '')
-    )
-    this.setState({ index: -1, escape: true });
-
+  handleSubmit(e) {
+    console.log(e.preventDefault)
+    console.log(e.stopPropagation)
   }
 
   onItemClick(index) {
-    // const { items } = this.props;
     const { filteredSet } = this.state;
-    this.onEnter(filteredSet[index].reduce(
-      (accu = '', { string }) => {
-        // if (!accu || typeof accu !== 'string') { accu = string }
-        // console.log('accu', accu)
-        return (accu += string)
-      }, '')
+
+    const originalValue = filteredSet[index];
+
+
+    this.onEnter(
+      originalValue.matchesResults.reduce((accu = '', { string }) => (accu += string), ''),
+      originalValue
     )
     this.setState({ index: -1, escape: true });
   }
@@ -177,6 +134,13 @@ class AutoComplete extends ThemeComponent {
   }
 
   onChangeWrap(e) {
+    console.log('onChangeWrap')
+    console.log('e.key', e.key)
+    if (e.key && e.key === 'Enter') {
+      console.log('onChangeWrap: e.key && e.key === \'Enter\'')
+      e.stopPropagation()
+      e.preventDefault()
+    }
     const value = e.target.value;
     this.setState({ valueForInput: value });
 
@@ -196,32 +160,48 @@ class AutoComplete extends ThemeComponent {
     this.setState({ index: -1 });
   }
 
-  onEnter(value) {
-
-    console.log('value passed to onEnter', value)
+  onEnter(value, originalValue) {
+    const { filteredSet, index } = this.state;
     const { onChange } = this.props;
+
+    // const originalValue = filteredSet[index];
 
     this.setState({
       valueForInput: value,
     });
 
-    onChange && onChange(value);
+    onChange && onChange({
+      value,
+      originalValue,
+    });
   }
 
   updateSearchValue(e) {
+    console.log('updateSearchValue')
+    if (e.key === 'Enter') {
+      console.log(e.preventDefault)
+      console.log(e.stopPropagation)
+    }
+
     const { items } = this.props;
     const { index, valueForInput, filteredSet } = this.state;
 
     if (e.key === 'Enter') {
+      // we're in a text field,
+      // if wrapped in a form, this submit the form, let's prevent that
+      console.log('e.preventDefault', e.preventDefault)
+      console.log('e.stopPropagation', e.stopPropagation)
+      if (e.preventDefault && e.stopPropagation) {
+        console.log('preventing event default behaviour')
+        e.preventDefault()
+        e.stopPropagation();
+      }
       if (index < 0) {
         this.onEnter(valueForInput || '', true);
       } else {
-        this.onEnter(filteredSet[index].reduce(
-          (accu = '', { string }) => {
-            // if (!accu || typeof accu !== 'string') { accu = string }
-            // console.log('accu', accu)
-            return (accu += string)
-          }, '')
+        this.onEnter(
+          filteredSet[index].matchesResults.reduce((accu, { string }) => (accu += string), ''),
+          filteredSet[index]
         )
       }
       this.setState({ index: -1, escape: true });
@@ -253,21 +233,19 @@ class AutoComplete extends ThemeComponent {
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
         );
 
-        const matchMapper = item => (
-          getMatchesResult(item[filterOn], (valueForInput || defaultValue || ''))
-        );
+        const matchMapper = (item) => ({
+          ...item,
+          matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
+        });
 
         const filterFnPermissive = (mappedMatch) => {
-          // console.log("it's not x.match", mappedMatch)
-          const isMatch = mappedMatch.some(x => x.matches)
-          // console.log('isMatch', isMatch)
+          const isMatch = mappedMatch.matchesResults.some(x => x.matches)
           return isMatch;
         };
 
         const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
 
         const filteredSet = (mappedUNfilteredSet.filter(filterFnPermissive ||  filterFnStrict));
-        // console.log('filteredSet', filteredSet)
 
         const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
 
@@ -275,67 +253,14 @@ class AutoComplete extends ThemeComponent {
           if (a.scrore > b.scrore) { return -1 }
           if (a.scrore < b.scrore) { return 1 }
           return 0
-        }).map(({ matchList }) => matchList)
-
-        /*
-        const finalSortedResult = [...filteredSet].sort((a, b) => {
-          const bestMatchLengthInA = a.reduce((accu, x) => {
-            // console.log('A: x.length', x.length)
-            // console.log('A: x', x)
-
-            if (a.matches) {
-              return x.length > accu ? x.length : accu;
-            }
-            return accu
-          }, 0)
-
-          const bestMatchLengthInB = b.reduce((accu, x) => {
-            // console.log('B: x.length', x.length)
-            // console.log('B: x', x)
-            if (b.matches) {
-              return x.length > accu ? x.length : accu;
-            }
-            return accu
-          }, 0)
-
-
-          if (bestMatchLengthInA > bestMatchLengthInB) { return 1 }
-          if (bestMatchLengthInA < bestMatchLengthInB) { return -1 }
-          return 0
         })
-        */
-
-        // console.log('finalSortedResult ', finalSortedResult )
-
-        // const sortedFilteredSet = [...filteredSet].sort((a, b) => {
-        //   if (x.string.length > y.string.length) { return -1 }
-        //   if (x.string.length < y.string.length) { return 1 }
-        //   return 0
-        // })
-
         resolve(finalSortedResult)
-        // resolve(filteredSet)
 
       }).then(filteredSet =>
         this.setState({
           filteredSet,
         }, consumerNotifierCallback),
       );
-      // const filterCallBack = () => {
-      //   const filterFn = item => (
-      //     getMatchesResult(item[filterOn], (valueForInput || defaultValue || '').toLowerCase()).some(x => x.matches)
-      //     // item[filterOn].toLowerCase().replace(/\s/g, '')
-      //     //   .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
-      //   );
-
-      //   const filteredSet = (items && items.filter(filterFn)) || [];
-
-      //   this.setState({
-      //     filteredSet,
-      //   }, consumerNotifierCallback);
-      // };
-
-      // setTimeout(filterCallBack, 1);
     }
   }
 
