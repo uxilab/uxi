@@ -16,8 +16,8 @@ function isDOMTypeElement(element) {
 const styles = {
   trigerrer: {
     minWidth: '180px',
+    width: '100%',
     minHeight: '30px',
-    maxWidth: '180px',
     border: '1px solid #cecece',
     display: 'flex',
     alignItems: 'center',
@@ -148,7 +148,10 @@ class SelectInput extends PureComponent {
         if (!isDOMTypeElement(child)) {
           return (
             <div onClick={e => this.clickHandler(e)} data-index={i} {...child.props} >
-              <Option selected={isTheOne} style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}>
+              <Option
+                selected={isTheOne}
+                style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+              >
                 {React.cloneElement(child, {
                   value,
                 })}
@@ -158,7 +161,10 @@ class SelectInput extends PureComponent {
         }
 
         return (
-          <Option selected={isTheOne} style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}>
+          <Option
+            selected={isTheOne}
+            style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+          >
             {React.cloneElement(child, {
               value,
               'data-index': i,
@@ -201,6 +207,7 @@ class SelectInput extends PureComponent {
 
   render() {
     const { isOpen } = this.state;
+    const { isFullWidth } = this.props;
 
     const optionsItems = this.getOptionsItem();
 
@@ -208,12 +215,12 @@ class SelectInput extends PureComponent {
 
     return (
       <DropDown
+        isFullWidth={isFullWidth}
         isOpen={isOpen}
         main={trigerer}
         items={optionsItems}
         itemsStyle={{
           maxHeight: '200px',
-          maxWidth: '200px',
           overflowY: 'auto',
           overflowX: 'hidden',
         }}

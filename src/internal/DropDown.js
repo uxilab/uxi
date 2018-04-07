@@ -3,6 +3,16 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import { UnstyledButton } from '../Button';
+import styled from 'styled-components';
+
+
+const WrapperUI = styled.div`
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  ${({ isFullWidth }) => isFullWidth ? 'width: 100%' : '' };
+`
+
 
 /**
  * DropDown
@@ -10,11 +20,6 @@ import { UnstyledButton } from '../Button';
  * default to right aligning the droped down part
  */
 const styles = {
-  wrapper: {
-    position: 'relative',
-    display: 'inline-block',
-    height: '100%',
-  },
   triggerWrapper: {
     cursor: 'pointer',
   },
@@ -109,7 +114,7 @@ export class DropDown extends PureComponent {
 
   getDynamicItemsStyles() {
     const { isOpen, mainRef, itemsRef } = this.state;
-    const { itemsStyle, anchor } = this.props;
+    const { itemsStyle, anchor, isFullWidth } = this.props;
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
     let itemsHeight;
@@ -124,6 +129,7 @@ export class DropDown extends PureComponent {
     const cRectItems = itemsRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
     const ItemsLeft = cRectMain.left - (cRectItems.width - cRectMain.width);
+    const width = cRectMain.width;
 
     let left = '';
     const right = '';
@@ -137,6 +143,7 @@ export class DropDown extends PureComponent {
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
 
+      width: isFullWidth ? `${width}px` : 'auto',
       left,
       right,
 
@@ -245,8 +252,14 @@ export class DropDown extends PureComponent {
     };
 
     return (
-      <span style={{ ...styles.wrapper, ...style }}>
-        <UnstyledButton tabIndex={0} role="menu" style={styles.triggerWrapper} onClick={this.handleToggleVisibility} >
+      <WrapperUI style={style} isFullWidth={isFullWidth}>
+        <UnstyledButton
+          role="menu"
+          tabIndex={0}
+          isFullWidth={isFullWidth}
+          style={styles.triggerWrapper}
+          onClick={this.handleToggleVisibility}
+        >
           <div style={styles.triggerInnerWrapper}>
             {dropDownMain}
           </div>
@@ -257,7 +270,7 @@ export class DropDown extends PureComponent {
         >
           {items}
         </div>
-      </span>
+      </WrapperUI>
     );
   }
 }

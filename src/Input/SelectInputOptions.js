@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const OptionsUI = styled.div`
-  display: border-box;
   cursor: pointer;
   padding: 2px 2px 2px 6px;
   background: white;

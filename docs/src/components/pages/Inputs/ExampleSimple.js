@@ -147,7 +147,24 @@ const ExampleSimple = () => (
       <TimeInput defaultValue={Date.now() - 10e9} />
     </li>
     <li>
-      <h3>Select (next to a button) :</h3>
+      <h3>Select (fullWidth) :</h3>
+      <SelectInput isFullWidth={true} onChange={(x) => { console.log('onChange called with :', x); }}>
+        <div>Hi</div>
+        <div>Hey</div>
+        <Separator label="separator" />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Img
+            style={{ width: '30px' }}
+            src="https://i.pinimg.com/originals/51/cd/7b/51cd7bce077ddd20cf09f3654d8d0eb1.png"
+            alt="ersf"
+          />
+          Billy the kid
+        </div>
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+      </SelectInput>
+    </li>
+    <li>
+      <h3>Select (not fullWidth — default) :</h3>
       <SelectInput onChange={(x) => { console.log('onChange called with :', x); }}>
         <div>Hi</div>
         <div>Hey</div>
