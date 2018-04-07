@@ -11,6 +11,10 @@ import { ErrorText } from '../../../../../src/Text';
 const FontPage = () => (
   <div>
     <Title text="Font" />
+    <Text type="paragraph">
+      uxi uses Open Sans.
+    </Text>
+    { /*
     <ErrorText text="Error text" />
     <Text>
       Cluedin uses two types of font famillies Source Sans and Fyra Sans.
@@ -20,9 +24,6 @@ const FontPage = () => (
       Cluedin uses two types of font famillies Source Sans and Fyra Sans.
     </Text>
 
-    <Text type="paragraph">
-      Cluedin uses two types of font famillies Source Sans and Fyra Sans.
-    </Text>
     <Title text="Size and style" />
     <Text type="paragraph">
       For our website we use both Fira Sans and Source Sans, this was done in order to create visual separation between titles, headings and body text.
@@ -45,6 +46,7 @@ const FontPage = () => (
         <ColorDarkTheme />
       </Box>
     </SimpleLayout>
+    */ }
   </div>
 );
 
