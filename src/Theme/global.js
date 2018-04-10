@@ -36,6 +36,7 @@ export const makeGlobalCSSInjector = (theme) => {
       padding: 0;
       background: ${palette.white};
       font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
       color: ${palette.darkGrey};
     }
     body {
