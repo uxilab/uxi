@@ -132,7 +132,7 @@ class GlobalMenu extends Component {
         to={logoDescriptor.to}
         href={logoDescriptor.href}
         // primaryColor={'red'}
-        logoTooltipLabel={logoDescriptor.displayName || ''}
+        logoTooltipLabel={logoDescriptor.tooltipLabel || logoDescriptor.displayName || ''}
         activeKey={active}
         isActive={(active === logoDescriptor.key || active === 'GlobalMenuMainLogo')}
         onClick={logoDescriptor.onClick}
