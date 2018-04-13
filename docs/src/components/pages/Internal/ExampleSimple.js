@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Backdrop from 'uxi/internal/Backdrop';
 import Dialog, { DialogHeader, DialogFooter, ConfirmDialog } from 'uxi/Dialog';
+import { ButtonWithConfirm } from 'uxi/Button';
 import Button from 'uxi/Button';
 import SlidePanel, { SlidePanelHeader, SlidePanelFooter } from 'uxi/SlidePanel';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
@@ -29,12 +30,23 @@ class ExampleSimple extends Component {
   render() {
     return (
       <div>
-        <ConfirmDialog
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
+        <ButtonWithConfirm text={'bar'} confirmText={'foo'} onClick={() => console.log('rrr')} />
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog"/>
+        <br />
+        <br />
+        <br />
+        <br />
+        {/* <ConfirmDialog
           show={this.state.showConfim}
           text="Are you sure to ?"
           onConfirm={() => { this.setState({ showConfim: false }); }}
           onCancel={() => { this.setState({ showConfim: false }); }}
-        />
+        /> */}
 
         <Button onClick={() => { this.setState({ show: true }); }}>
          Show Dialog
