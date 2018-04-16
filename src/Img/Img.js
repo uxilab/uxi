@@ -75,7 +75,7 @@ class Img extends PureComponent {
     // const { loaded } = this.state;
     return (
       <figure
-        style={{ ...props.style, ...getWrapperStyles(props/* , loaded */) }}
+        style={{ ...getWrapperStyles(props/* , loaded */), ...props.style }}
         // onLoad={this.onLoadHandler.bind(this)}
       >
         <img src={props.src} alt={props.alt} style={styles.img} async={props.async} />
