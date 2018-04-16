@@ -38,17 +38,40 @@ const SidePanelUI = styled.div`
 `;
 
 class SidePanel extends React.Component {
-  state = {
-    // Let's assume that the Drawer will always be rendered on user space.
-    // We use that state is order to skip the appear transition during the
-    // initial mount of the component.
-    firstMount: true,
-  };
+  constructor(props) {
+    super(props);
+    this.handleEsc = this.handleEsc.bind(this);
+    this.state = {
+      // Let's assume that the Drawer will always be rendered on user space.
+      // We use that state is order to skip the appear transition during the
+      // initial mount of the component.
+      firstMount: true,
+    };
+  }
+
+  componentDidMount() {
+    if (window) {
+      window.addEventListener('keyup', this.handleEsc);
+    }
+  }
 
   componentWillReceiveProps() {
     this.setState({
       firstMount: false,
     });
+  }
+
+  componentDidUnmount() {
+    if (window) {
+      window.removeEventListener('keyup', this.handleEsc);
+    }
+  }
+
+  handleEsc(/* e */) {
+    const { onClose } = this.props;
+    if (onClose) {
+      onClose();
+    }
   }
 
   render() {

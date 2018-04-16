@@ -16,6 +16,7 @@ const PanelHeaderUI = styled.div`
 
 const CloseWrapperUI = styled.div`
   margin-left: auto;
+  cursor: pointer;
 `;
 
 const PanelHeader = (props) => {
