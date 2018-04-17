@@ -85,6 +85,10 @@ const SimpleFlexLayout = ({
 SimpleFlexLayout.defaultProps = {
   tabletBreakPoint: '768px',
   desktopBreakPoint: '992px',
+  gutter: '0',
+  columnNumber: 1,
+  tabletColumnNumber: 1,
+  desktopColumnNumber: 1,
 };
 
 export default SimpleFlexLayout;
