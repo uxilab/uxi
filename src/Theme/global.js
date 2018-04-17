@@ -43,7 +43,7 @@ export const makeGlobalCSSInjector = (theme) => {
       min-height: 100%;
       margin: 0;
       padding: 0;
-      font-size: 14px;
+      font-size: 16px;
     }
     h1, h2, h3, h4: {
       color: ${palette.neutral.dark};
