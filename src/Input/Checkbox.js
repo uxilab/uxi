@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import IconButton from '../Button/IconButton';
+import {
+  Checkbox as CheckBoxIcon,
+  Checkboxoutline,
+} from '../Icons';
+
+const Wrapper = styled.div`
+  ${({ checker, theme: { palette } }) => (checker
+    ? `svg { fill: ${palette.accent} !important; }`
+    : '')}
+`;
 
 const posAbs = {
   position: 'absolute',
@@ -80,7 +91,7 @@ class Checkbox extends React.PureComponent {
     // eslint-disable-next-line no-nested-ternary
     const iconIdentifier = disabled
       ? (checker ? 'Padlock' : 'Padlock')
-      : (checker ? 'Checkbox' : 'Checkboxoutline');
+      : (checker ? <CheckBoxIcon size={22} color="#26a29a" /> : <Checkboxoutline size={22} />);
 
     /* eslint-disable jsx-a11y/label-has-for */
     const checkboxWrapperStyle = Object.assign({}, {
@@ -89,7 +100,7 @@ class Checkbox extends React.PureComponent {
 
     return (
       <div style={checkboxWrapperStyle}>
-        <div style={this.getWrapperStyles()}>
+        <Wrapper checker={checker} style={this.getWrapperStyles()}>
           <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px', display: 'flex', alignItems: 'center' }}>
             <input
               id={name}
@@ -105,7 +116,7 @@ class Checkbox extends React.PureComponent {
           <label htmlFor={name} style={styles.label} >
             {label}
           </label>
-        </div>
+        </Wrapper>
       </div>
     );
   }
