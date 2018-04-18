@@ -116,7 +116,6 @@ class Gallery extends Component {
 
   render() {
     const { galleryDescriptor, imgHeight } = this.props;
-    console.log('imgHeight', imgHeight);
 
     return (
       <GalleryContainerUI>

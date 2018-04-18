@@ -33,10 +33,7 @@ const applyRules = (props, rules, width, height) => {
      */
     .filter(({ minWidth }) => width >= minWidth);
 
-  console.log('rules afgter filtering', rules);
-
   rules.forEach(({ minWidth, mapper }) => {
-    console.log('mapper(result)', mapper(result));
     result = {
       ...result,
       ...mapper(result),
@@ -95,9 +92,6 @@ export class PropsMapperContainerQueries extends Component {
     };
 
     const mappedProps = applyRules(props, rules, width, height);
-
-    console.log(props);
-    console.log(mappedProps);
 
     const type = inline ? 'span' : 'div';
 

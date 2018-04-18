@@ -36,8 +36,6 @@ class DashboardItem extends Component {
         if (!React.isValidElement(child)) return;
 
         const { componentName } = child.type;
-        console.log('console.log(componentName);');
-        console.log(componentName);
 
         if (componentName === 'Widget') {
           content = this.createFixedHeightWidget(child);

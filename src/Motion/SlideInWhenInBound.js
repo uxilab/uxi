@@ -44,8 +44,6 @@ class SlideInWhenInBound extends Component {
   componentWillUnmount() { this.removeListeners(); }
 
   readDOMPosition(viewportHeightParam) {
-    console.log('readDOMPosition (viewportHeightParam)', viewportHeightParam);
-
     const { node } = this;
     if (!node) {
       return null;
@@ -56,8 +54,6 @@ class SlideInWhenInBound extends Component {
     const { top, height } = this.node.getBoundingClientRect();
     const isInBound = (viewportHeight - top) >= (height / 10);
     // const isOutBound = top >= viewportHeight * 1.5;
-    console.log('top, height', top, height);
-    console.log('isInBound', isInBound);
     const className = `scroll-anim-before load-anim ${isInBound ? ' animIn ' : ''}`;
 
     this.setState({ className });
@@ -72,28 +68,21 @@ class SlideInWhenInBound extends Component {
   }
 
   handleScroll() {
-    console.log('handleScroll');
-
     this.readDOMPosition();
   }
 
   handleResize(e) {
-    console.log('handleResize');
-
     this.setState({
       viewportHeight: e.target.innerHeight,
     });
   }
 
   attachListeners() {
-    console.log('attachListener');
     if (window && window.document) {
-      console.log('found a window and a window.document');
       const { scrollElementSelector } = this.props;
       const theElementToWatchScrollOn = (
         document.querySelector(scrollElementSelector) || window.document
       );
-      console.log('theElementToWatchScrollOn', theElementToWatchScrollOn);
       window.addEventListener('resize', this.handleResizeDebounced.bind(this));
       theElementToWatchScrollOn.addEventListener('scroll', this.handleScrollDebounced.bind(this));
     }

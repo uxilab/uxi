@@ -40,7 +40,6 @@ const getGlowAnimation = (type, theme) => {
 
   const t = keyframes`
       0% {
-        user-select: ${props => console.log(props, color)};
         box-shadow: 0 0 4px transparent;
         filter: brightness(98%);
       }

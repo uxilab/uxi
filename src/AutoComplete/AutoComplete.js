@@ -30,14 +30,12 @@ const AutoCompleteStyle = {
 };
 
 const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) => {
-  const nameToRenderParam = item[filterOn]
-  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => {
-    return (
+  const nameToRenderParam = item[filterOn];
+  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
       matches
         ? (<span data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
         : (<span data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
-    )
-  })
+    ));
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
@@ -48,8 +46,8 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) 
 };
 
 const recomposeStringValueReducer = (accu = '', { string }) => {
-  if (!accu || typeof accu !== 'string') { accu = string }
-  return (accu += string)
+  if (!accu || typeof accu !== 'string') { accu = string; }
+  return (accu += string);
 };
 
 /* eslint-disable react/jsx-no-bind */
@@ -81,7 +79,7 @@ class AutoComplete extends ThemeComponent {
           ...x,
           originalIndex: i,
         })) || [],
-      })
+      });
     }
 
     if (this.props.defaultValue !== nextProps.defaultValue) {
@@ -100,11 +98,10 @@ class AutoComplete extends ThemeComponent {
 
     const originalValue = filteredSet[index];
 
-    console.log('in onItemClick original value:')
     this.onEnter(
       originalValue.matchesResults.reduce((accu = '', { string }) => (accu += string), ''),
-      originalValue
-    )
+      originalValue,
+    );
     this.setState({ index: -1, escape: true });
   }
 
@@ -174,8 +171,8 @@ class AutoComplete extends ThemeComponent {
       } else {
         this.onEnter(
           filteredSet[index].matchesResults.reduce((accu, { string }) => (accu += string), ''),
-          filteredSet[index]
-        )
+          filteredSet[index],
+        );
       }
       this.setState({ index: -1, escape: true });
     } else if (e.key === 'Escape') {
@@ -206,13 +203,13 @@ class AutoComplete extends ThemeComponent {
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
         );
 
-        const matchMapper = (item) => ({
+        const matchMapper = item => ({
           ...item,
           matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
         });
 
         const filterFnPermissive = (mappedMatch) => {
-          const isMatch = mappedMatch.matchesResults.some(x => x.matches)
+          const isMatch = mappedMatch.matchesResults.some(x => x.matches);
           return isMatch;
         };
 
@@ -223,12 +220,11 @@ class AutoComplete extends ThemeComponent {
         const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
 
         const finalSortedResult = filteredSetWithScore.sort((a, b) => {
-          if (a.scrore > b.scrore) { return -1 }
-          if (a.scrore < b.scrore) { return 1 }
-          return 0
-        })
-        resolve(finalSortedResult)
-
+          if (a.scrore > b.scrore) { return -1; }
+          if (a.scrore < b.scrore) { return 1; }
+          return 0;
+        });
+        resolve(finalSortedResult);
       }).then(filteredSet =>
         this.setState({
           filteredSet,
@@ -245,8 +241,8 @@ class AutoComplete extends ThemeComponent {
       ...(filteredSet.length && filteredSet.length > 0
         ? { boxShadow: AutoCompleteStyle.boxShadow }
         : {}
-      )
-    }
+      ),
+    };
 
     const autoComplete = !escape ? (
       <VerticalMenu
@@ -293,16 +289,16 @@ class AutoComplete extends ThemeComponent {
         }
         {(filteredSet.length > 20
           ? (<MenuItem
-              key={`not-currentIndex`}
-              onClick={() => { } /* this.onItemClick.bind(this, currentIndex) */}
-              // onMouseOver={this.handleMouseEnterListItem.bind(this)}
-              // onMouseOut={this.handleMouseLeaveListItem.bind(this)}
-              style={{
-                textAlign: 'center', opacity: .8,
-              }}
-            >
-              {'Some results were omitted, try a more specific query'}
-            </MenuItem>)
+            key={'not-currentIndex'}
+            onClick={() => { } /* this.onItemClick.bind(this, currentIndex) */}
+            // onMouseOver={this.handleMouseEnterListItem.bind(this)}
+            // onMouseOut={this.handleMouseLeaveListItem.bind(this)}
+            style={{
+              textAlign: 'center', opacity: 0.8,
+            }}
+          >
+            {'Some results were omitted, try a more specific query'}
+          </MenuItem>)
           : null
         )}
       </VerticalMenu>) : null;
