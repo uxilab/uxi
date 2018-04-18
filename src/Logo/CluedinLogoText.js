@@ -6,6 +6,8 @@ const CluedinLogoText = props => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 50.38 11.69"
+    width="50.38"
+    height="11.69"
   >
     <g id="Layer_2" data-name="Layer 2">
       <g id="Layer_1-2" data-name="Layer 1">
