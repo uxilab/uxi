@@ -13,10 +13,9 @@ const Circledcheckmark = props => (
     >
       <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_1-2" data-name="Layer 1">
-          <circle cx="39.5" cy="39.5" r="39.5" style="fill:#26a29a" />
+          <circle cx="39.5" cy="39.5" r="39.5" />
           <path
             d="M34,55.07h0a4,4,0,0,1-2.82-1.18L19,41.69A4,4,0,1,1,24.66,36L34,45.41l20.31-20.3A4,4,0,1,1,60,30.76L36.86,53.89A4,4,0,0,1,34,55.07Z"
-            style="fill:#f3f3f2"
           />
         </g>
       </g>
