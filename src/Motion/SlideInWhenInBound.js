@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SlideInWhenInBoundUI from './SlideInWhenInBoundUI';
 import debounce from 'lodash/debounce';
+import SlideInWhenInBoundUI from './SlideInWhenInBoundUI';
 
 class SlideInWhenInBound extends Component {
   static defaultProps = {
@@ -11,8 +11,8 @@ class SlideInWhenInBound extends Component {
 
   static propTypes = {
     anchor: PropTypes.oneOf([
-      'bottom', 'top', 'left', 'right'
-    ])
+      'bottom', 'top', 'left', 'right',
+    ]),
   }
 
   constructor(props) {
@@ -27,9 +27,11 @@ class SlideInWhenInBound extends Component {
 
     this.state = {
       viewportHeight: null,
-      className: 'scroll-anim-before load-anim animIn'
+      className: 'scroll-anim-before load-anim animIn',
     };
   }
+
+  componentDidMount() { this.attachListeners(); }
 
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -39,7 +41,11 @@ class SlideInWhenInBound extends Component {
     return false;
   }
 
+  componentWillUnmount() { this.removeListeners(); }
+
   readDOMPosition(viewportHeightParam) {
+    console.log('readDOMPosition (viewportHeightParam)', viewportHeightParam);
+
     const { node } = this;
     if (!node) {
       return null;
@@ -48,38 +54,48 @@ class SlideInWhenInBound extends Component {
       this.state.viewportHeight || viewportHeightParam || 2000
     );
     const { top, height } = this.node.getBoundingClientRect();
-    const isInBound = (viewportHeight - top) >= (height / 10)
-    const isOutBound = top >= viewportHeight * 1.5;
-
+    const isInBound = (viewportHeight - top) >= (height / 10);
+    // const isOutBound = top >= viewportHeight * 1.5;
+    console.log('top, height', top, height);
+    console.log('isInBound', isInBound);
     const className = `scroll-anim-before load-anim ${isInBound ? ' animIn ' : ''}`;
 
     this.setState({ className });
+
+    return null;
   }
 
   storeRef(node) {
     this.node = node;
-    this.setState({ viewportHeight: window.innerHeight })
-    this.readDOMPosition(window.innerHeight)
+    this.setState({ viewportHeight: window.innerHeight });
+    this.readDOMPosition(window.innerHeight);
   }
 
   handleScroll() {
-    this.readDOMPosition()
+    console.log('handleScroll');
+
+    this.readDOMPosition();
   }
 
   handleResize(e) {
+    console.log('handleResize');
+
     this.setState({
       viewportHeight: e.target.innerHeight,
-    })
+    });
   }
 
   attachListeners() {
+    console.log('attachListener');
     if (window && window.document) {
+      console.log('found a window and a window.document');
       const { scrollElementSelector } = this.props;
       const theElementToWatchScrollOn = (
         document.querySelector(scrollElementSelector) || window.document
       );
-      window.addEventListener('resize', this.handleResizeDebounced.bind(this))
-      theElementToWatchScrollOn.addEventListener('scroll', this.handleScrollDebounced.bind(this))
+      console.log('theElementToWatchScrollOn', theElementToWatchScrollOn);
+      window.addEventListener('resize', this.handleResizeDebounced.bind(this));
+      theElementToWatchScrollOn.addEventListener('scroll', this.handleScrollDebounced.bind(this));
     }
   }
 
@@ -89,15 +105,10 @@ class SlideInWhenInBound extends Component {
       const theElementToWatchScrollOn = (
         document.querySelector(scrollElementSelector) || window.document
       );
-      window.removeEventListener('resize', this.handleResizeDebounced.bind(this))
-      theElementToWatchScrollOn.removeEventListener('scroll', this.handleScrollDebounced.bind(this))
+      window.removeEventListener('resize', this.handleResizeDebounced.bind(this));
+      theElementToWatchScrollOn.removeEventListener('scroll', this.handleScrollDebounced.bind(this));
     }
   }
-
-  componentDidMount() { this.attachListeners() }
-
-  componentWillUnmount() { this.removeListeners() }
-
 
   render() {
     const { className } = this.state;
