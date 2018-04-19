@@ -69,7 +69,7 @@ class SearchForm extends Component {
           <Button
             type="primary"
             icon={finalIcon}
-            // style={{ height: '34px'}}
+            // style={{ minHeight: '32px' }}
           />
         </InputGroup>
       </FormUI>

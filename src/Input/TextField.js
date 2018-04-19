@@ -21,7 +21,7 @@ const InputUI = styled.input.attrs({
   theme: ({ theme }) => (theme || defaultTheme),
 })`
   border-radius: 3px;
-  min-height: 32px;
+  /* min-height: 32px; */
   box-sizing: border-box;
   font-size: 14px;
   border: 1px solid ${({ theme: { palette: { semantic } } }) => semantic.default};
