@@ -27,7 +27,13 @@ const InputGroup = ({ children, style = {}, fullWidth }) => (
         if (i === React.Children.count(children) - 1) { rules = ' 0 3px 3px 0'; }
 
         return React.cloneElement(child, {
-          style: { ...child.props.style, borderRadius: rules },
+          style: {
+            ...child.props.style,
+            borderRadius: rules,
+            minHeight: '34px',
+            maxHeihgt: '34px',
+            heihgt: '34px',
+          },
           key: i,
         });
       })
