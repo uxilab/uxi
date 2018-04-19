@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TextField from './TextField';
 import styled from 'styled-components';
+import TextField from './TextField';
 import { Button } from '../Button';
 import { Search } from '../Icons';
 import InputGroup from '../List/InputGroup';
@@ -65,7 +65,7 @@ class SearchForm extends Component {
     return (
       <FormUI fullWidth={fullWidth} onSubmit={this.handleSubmit}>
         <InputGroup fullWidth={fullWidth}>
-          <TextField {...inputProps} />
+          <TextField {...inputProps} style={{ margin: 0 }} />
           <Button
             type="primary"
             icon={finalIcon}
