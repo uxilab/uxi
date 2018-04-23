@@ -11,6 +11,7 @@ import {
   Switch,
   InputGroup,
   SearchForm,
+  RangeInput,
 } from '../../../../../src/Input';
 import { Separator } from 'uxi/Menu';
 import Img from '../../../../../src/Img';
@@ -22,6 +23,12 @@ const selectInputDefaultValueRef = 'fooooobar';
 
 const ExampleSimple = () => (
   <ul>
+    <li>
+      <h3>RangeInput</h3>
+      <RangeInput defaultValue={12} min={0} max={20} onChange={(e, val) => console.log(val)} />
+      <br />
+      <RangeInput defaultValue={50} onChange={(e, val) => console.log(val)} />
+    </li>
     <li>
       <h3>Select</h3>
       <SelectInput defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>

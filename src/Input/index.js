@@ -9,3 +9,4 @@ export { default as DateInput } from './DateInput';
 export { default as TimeInput } from './TimeInput';
 export { default as Switch } from './Switch';
 export { default as SearchForm } from './SearchForm';
+export { default as RangeInput } from './RangeInput';
