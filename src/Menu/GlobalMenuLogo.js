@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
 import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
-import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
+import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQueries';
 
 const {
   breakpoint,
@@ -13,10 +13,6 @@ const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
     return palette.accent.light;
   }
-
-  // if (isSelected) {
-  //   return palette.accent.light
-  // }
 
   return palette.lightGrey;
 };
@@ -160,7 +156,7 @@ const GlobalMenuLogo = ({
 
   // render the tooltip inert above window width of 699px
   const rules = [{
-    minWidth: 700,
+    minWidth: 100,
     mapper: ({ trigger }) => ({ trigger: [] }),
   }];
 
@@ -199,11 +195,11 @@ const GlobalMenuLogo = ({
   }
 
   return (
-    <PropsMapperMediaQueriesHOC rules={rules} trigger={['hover']} debounceDelay={400} >
+    <PropsMapperContainerQueries rules={rules} trigger={['hover']} debounceDelay={120} >
       <Tooltip placement="right" overlay={<span>{logoTooltipLabel || label || ''}</span>}>
         {resContent}
       </Tooltip>
-    </PropsMapperMediaQueriesHOC>
+    </PropsMapperContainerQueries>
   );
 };
 

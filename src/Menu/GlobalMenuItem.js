@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled, { keyframes } from 'styled-components';
 import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
-import { PropsMapperMediaQueriesHOC } from '../internal/PropsMapperMediaQueriesHOC';
+import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQueries';
 
 const {
   borderThickness,
@@ -14,11 +14,6 @@ const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
     return palette.accent.light;
   }
-
-  // if (isSelected) {
-  //   return palette.accent.light
-  // }
-
   return palette.lightGrey;
 };
 
@@ -31,42 +26,42 @@ const LinkDecorator = styled.div`
     text-decoration: none;
 
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-    };
+    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+};
     border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-      `${borderThickness} solid #0ea4a5` : '0 solid transparent')
-    };
+    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
+};
     background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
     &:hover {
       text-decoration: none;
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-        isSelected
-          ? (isActive
-            ? palette.primary.dark
-            : palette.primary.light // child is slelected, means we can navigate there
-          )
-          : palette.primary.light
-        )};
+    isSelected
+      ? (isActive
+        ? palette.primary.dark
+        : palette.primary.light // child is slelected, means we can navigate there
+      )
+      : palette.primary.light
+  )};
       svg {
         fill: #fff;
       }
     }
     &:focus {
       color: ${({ isActive, theme: { palette } }) => (
-          isActive ? 'inherit' : palette.pureWhite
-        )};
+    isActive ? 'inherit' : palette.pureWhite
+  )};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-          (isSelected ? palette.primary.main : palette.primary.light)
-        )};
+    (isSelected ? palette.primary.main : palette.primary.light)
+  )};
       color: ${({ isSelected, isActive, theme: { palette } }) =>
-          ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-        };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
       svg {
         fill: ${({ isSelected, isActive, theme: { palette } }) =>
-          ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-        };
+    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+};
       }
     }
     svg {
@@ -84,13 +79,13 @@ const GlobalMenuItemDiv = styled.a`
   .root &,
   & {
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-    };
+    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+};
   }
 
   border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-      `${borderThickness} solid #0ea4a5` : '0 solid transparent')
-    };
+    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
+};
   background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
   .root &:hover, /* TODO solve this .root a  */
@@ -189,9 +184,9 @@ const GlobalMenuItem = (props) => {
     );
   }
 
-  // render the tooltip inert above window width of 699px
+  // render the tooltip inert when menu is in "wide" mode (labels are present, tooltip is useless)
   const rules = [{
-    minWidth: 700,
+    minWidth: 100,
     mapper: ({ trigger }) => ({
       trigger: [],
       visible: false, // inject inexisting props
@@ -264,8 +259,8 @@ const GlobalMenuItem = (props) => {
   }
 
   return (
-    <PropsMapperMediaQueriesHOC
-      debounceDelay={400}
+    <PropsMapperContainerQueries
+      debounceDelay={80}
       rules={rules}
       trigger={['hover']}
     >
@@ -275,7 +270,7 @@ const GlobalMenuItem = (props) => {
         }
 
       </Tooltip>
-    </PropsMapperMediaQueriesHOC>
+    </PropsMapperContainerQueries>
   );
 };
 

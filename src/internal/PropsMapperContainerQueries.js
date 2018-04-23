@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 
 /**
@@ -44,10 +44,17 @@ const applyRules = (props, rules, width, height) => {
 };
 
 export class PropsMapperContainerQueries extends Component {
+  static propTypes = {
+    // rules: PropTypes.arrayOf Rules:
+    // Rules => { minWidth: Number, css: Function(result of css``)}
+  }
+
   constructor(props) {
     super(props);
+    const { debounceDelay } = this.props;
 
-    this.handleResize = debounce(this.handleResize.bind(this), 180).bind(this);
+    const delay = debounceDelay !== undefined ? debounceDelay : 180;
+    this.handleResize = debounce(this.handleResize.bind(this), delay).bind(this);
 
     this.ref = null;
 
@@ -55,11 +62,6 @@ export class PropsMapperContainerQueries extends Component {
       width: null,
       height: null,
     };
-  }
-
-  static propTypes = {
-    // rules: PropTypes.arrayOf Rules:
-    // Rules => { minWidth: Number, css: Function(result of css``)}
   }
 
   componentDidMount() {
