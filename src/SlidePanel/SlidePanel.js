@@ -61,7 +61,7 @@ class SidePanel extends React.Component {
     });
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     if (window) {
       window.removeEventListener('keyup', this.handleEsc);
     }
