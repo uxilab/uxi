@@ -32,10 +32,10 @@ const AutoCompleteStyle = {
 const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) => {
   const nameToRenderParam = item[filterOn];
   const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
-      matches
-        ? (<span data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
-        : (<span data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
-    ));
+    matches
+      ? (<span data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
+      : (<span data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
+  ));
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>

@@ -14,13 +14,27 @@ export const getMatchesResult = (source, target) => {
   // const target = 'fernd'
 
   // shorcut in case of perfect match
-  if (source.indexOf(target) === 0) {
+  if (source.toLowerCase().indexOf(target.toLowerCase()) === 0) {
     // ! perfect match, from the start worth a 100
     return [
       { matches: true, string: source.slice(0, target.length) },
       { matches: false, string: source.slice(target.length) },
-    ]
+    ];
   }
+
+  // shorcut in case of perfect match
+  if (source.toLowerCase().indexOf(target.toLowerCase()) > -1) {
+    // ! perfect match, from the middle worth a plenty
+    const idx = source.toLowerCase().indexOf(target.toLowerCase());
+
+    return [
+      { matches: false, string: source.slice(0, idx) },
+      { matches: true, string: source.slice(idx, idx + target.length) },
+      { matches: false, string: source.slice(idx + target.length) },
+    ];
+  }
+
+  // return [];
 
   const result = [];
 
@@ -40,7 +54,7 @@ export const getMatchesResult = (source, target) => {
     // console.log('sourceChar === targetChar')
     // console.log(`${sourceChar} === ${targetChar} : ${sourceChar === targetChar}`)
 
-    if (sourceChar.toLowerCase() === targetChar && targetChar.toLowerCase()) {
+    if (sourceChar.toLowerCase() === (targetChar && targetChar.toLowerCase())) {
       currentRunMatchObj.matches = true;
       // currentRunMatchObj.string += sourceChar
       result.push(currentRunMatchObj);
@@ -66,7 +80,7 @@ export const getMatchesResult = (source, target) => {
   };
 
   const finalResult = result.reduce((accu, x, i) => {
-    if (i === 0) { return accu }
+    if (i === 0) { return accu; }
 
     const currentItem = accu.result[accu.result.length - 1];
 
@@ -86,7 +100,7 @@ export const getMatchesResult = (source, target) => {
   // console.log('finalResult.result', finalResult.result)
 
   // add match score for later sorting
-/*
+  /*
   const finalResultWithScore = finalResult.reduce((finalResult, match) => {
     console.log('match', match);
 
@@ -135,16 +149,16 @@ export const getMatchesResult = (source, target) => {
   // console.log(JSON.stringify(finalResult.result, 2, 2))
 
   // return finalResultWithScore
-  return finalResult.result
-}
+  return finalResult.result;
+};
 
 
 const addScore = (accu, { string, matches }) => {
   if (matches) {
     return string.length > accu ? string.length : accu;
   }
-  return accu
-}
+  return accu;
+};
 
 export function getFilteredSetWithScore(filteredSet) {
   // console.log('filteredSet in sortFinaleResult', filteredSet)
@@ -153,7 +167,7 @@ export function getFilteredSetWithScore(filteredSet) {
     ...x,
     // matchList: x,
     scrore: x.matchesResults.reduce(addScore, 0),
-  }))
+  }));
 
   // console.log(filteredSetWithScore)
 
