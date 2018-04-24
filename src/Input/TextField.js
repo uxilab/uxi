@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { palette } from '../Theme/palette';
+import styled from 'styled-components';
 import {
   Done as SuccessIcon,
   Issue as ErrorIcon,
 } from '../Icons';
-// import { palette } from '../Theme/palette';
-import styled from 'styled-components';
 // import default theme in case not themeprovider is used
 import { theme as defaultTheme } from '../Theme';
+import StatusIcon from './utils/StatusIcon';
+import ErrorWrapperUI from './utils/ErrorWrapperUI';
 
 // const { semantic } = palette;
 
@@ -38,30 +40,30 @@ const InputUI = styled.input.attrs({
   }
 `;
 
-const ErrorWrapperUI = styled.span.attrs({
-  theme: ({ theme }) => (theme || defaultTheme),
-})`
-  padding: 0 6px;
-  font-size: 12px;
-  color: ${({ theme: { palette: { semantic } } }) => semantic.error};
-`;
+// const ErrorWrapperUI = styled.span.attrs({
+//   theme: ({ theme }) => (theme || defaultTheme),
+// })`
+//   padding: 0 6px;
+//   font-size: 12px;
+//   color: ${({ theme: { palette: { semantic } } }) => semantic.error};
+// `;
 
-const StatusIcon = styled.span.attrs({
-  theme: ({ theme }) => (theme || defaultTheme),
-})`
-  position: absolute;
-  right: 8px;
-  top: 9px;
-  color: ${({ error, success, theme: { palette: { semantic } } }) => (error
-    ? semantic.error
-    : (success ? semantic.success : semantic.default)
-  )};
-  & > svg,
-  & > svg * {
-    fill: currentColor !important;
-    color: currentColor !important;
-  }
-`;
+// const StatusIcon = styled.span.attrs({
+//   theme: ({ theme }) => (theme || defaultTheme),
+// })`
+//   position: absolute;
+//   right: 8px;
+//   top: 9px;
+//   color: ${({ error, success, theme: { palette: { semantic } } }) => (error
+//     ? semantic.error
+//     : (success ? semantic.success : semantic.default)
+//   )};
+//   & > svg,
+//   & > svg * {
+//     fill: currentColor !important;
+//     color: currentColor !important;
+//   }
+// `;
 
 // eslint-disable-next-line react/prefer-stateless-function
 class TextField extends Component {
@@ -103,10 +105,10 @@ class TextField extends Component {
       ...attributes
     } = this.props;
 
-    const stateIcon = error // eslint-disable-line no-nested-ternary
-      ? <ErrorIcon size="16" />
-      : (success ? <SuccessIcon size="16" /> : null
-      );
+    // const stateIcon = error // eslint-disable-line no-nested-ternary
+    //   ? <ErrorIcon size="16" />
+    //   : (success ? <SuccessIcon size="16" /> : null
+    //   );
 
     const inputAttributes = {
       ...attributes,
@@ -125,9 +127,7 @@ class TextField extends Component {
           success={success}
         />
 
-        <StatusIcon error={error} success={success}>
-          {stateIcon}
-        </StatusIcon>
+        <StatusIcon error={error} success={success} />
 
         <ErrorWrapperUI>
           {error}

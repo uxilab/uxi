@@ -3,6 +3,8 @@ import DropDown from '../internal/DropDown';
 import { Arrowdown } from '../Icons';
 import { Button, ButtonWithoutRipple } from '../Button';
 import Option from './SelectInputOptions';
+import StatusIcon from './utils/StatusIcon';
+import ErrorWrapperUI from './utils/ErrorWrapperUI';
 
 function isElement(element) {
   return React.isValidElement(element);
@@ -95,6 +97,9 @@ class SelectInput extends PureComponent {
         selectedIndex,
         optionsNode,
       },
+      props: {
+        error, success,
+      },
     } = this;
 
     let mainContent = null;
@@ -120,6 +125,7 @@ class SelectInput extends PureComponent {
       <span style={styles.trigerrer}>
         <div>
           {mainContent}
+          <StatusIcon success={success} error={error} style={{ top: '8px', right: '48px' }} />
         </div>
         <div style={styles.trigerrerIcon}>
           <Button
@@ -207,24 +213,27 @@ class SelectInput extends PureComponent {
 
   render() {
     const { isOpen } = this.state;
-    const { isFullWidth } = this.props;
+    const { isFullWidth, error } = this.props;
 
     const optionsItems = this.getOptionsItem();
 
     const trigerer = this.getTrigerrerLabel();
 
     return (
-      <DropDown
-        isFullWidth={isFullWidth}
-        isOpen={isOpen}
-        main={trigerer}
-        items={optionsItems}
-        itemsStyle={{
-          maxHeight: '200px',
-          overflowY: 'auto',
-          overflowX: 'hidden',
-        }}
-      />
+      <div>
+        <DropDown
+          isFullWidth={isFullWidth}
+          isOpen={isOpen}
+          main={trigerer}
+          items={optionsItems}
+          itemsStyle={{
+            maxHeight: '200px',
+            overflowY: 'auto',
+            overflowX: 'hidden',
+          }}
+        />
+        <ErrorWrapperUI>{error}</ErrorWrapperUI>
+      </div>
     );
   }
 }
