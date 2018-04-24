@@ -9,6 +9,9 @@ import RAWSlideInWhenInBoundExample from '!raw-loader!./SlideInWhenInBoundExampl
 import SlideInWhenInBoundOutOftheBox from './SlideInWhenInBoundOutOftheBox';
 import RAWSlideInWhenInBoundOutOftheBox from '!raw-loader!./SlideInWhenInBoundOutOftheBox';
 
+import LoaderExample from './LoaderExample';
+import RAWLoaderExample from '!raw-loader!./LoaderExample';
+
 const MotionPage = () => (
   <div>
     <Title text="Motion" />
@@ -16,6 +19,17 @@ const MotionPage = () => (
       Element with Motion (animation/transition).
     </P>
     <ul>
+      <li>
+        <CodeExample
+          code={RAWLoaderExample}
+          component
+          title="Loader"
+          description={'loaders'}
+          hasPadding
+        >
+          <LoaderExample />
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWSlideInWhenInBoundOutOftheBox}
@@ -39,6 +53,7 @@ const MotionPage = () => (
           <SlideInWhenInBoundExample />
         </CodeExample>
       </li>
+
     </ul>
   </div>
 );
