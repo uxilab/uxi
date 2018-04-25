@@ -31,6 +31,7 @@ const styles = {
   },
   label: {
     cursor: 'pointer',
+    marginLeft: '8px',
   },
   input: {
     opacity: 0,
