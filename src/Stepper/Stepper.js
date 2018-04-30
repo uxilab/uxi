@@ -55,9 +55,18 @@ class Stepper extends Component {
         : null;
 
       return [
-        connector && index > 0 &&
-        React.cloneElement(connector, { key: `connect-${stepIndex - 1}-to-${stepIndex}`}),
-        React.cloneElement(step, props)
+        (
+          connector && index > 0 &&
+          React.cloneElement(connector, { key: `connect-${stepIndex - 1}-to-${stepIndex}` })
+        ),
+        React.cloneElement(step, {
+          ...props,
+          children: React.cloneElement(props.children, {
+            ...props.children.props,
+            // remove event handler for disabled step button:
+            onClick: (props.disabled ? () => {} : props.children.props.onClick)
+           }),
+        })
       ]
     })
 
