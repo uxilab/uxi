@@ -78,9 +78,9 @@ const GlobalMenuWrapper = ({
     if (menuDescriptor && menuDescriptor.panel) {
       menuDescriptorsContent.push(
         /* this wrapper div required for layout context */
-        <div>
+        <div key={menuDescriptor.panel.key}>
           <GlobalMenuPanel
-            key={menuDescriptor.key}
+            key={menuDescriptor.panel.key}
             onClickOutside={() => { handlePanelClickOutside(menuDescriptor.key); }}
             Title={menuDescriptor.panel.Title}
             Content={menuDescriptor.panel.Content}
