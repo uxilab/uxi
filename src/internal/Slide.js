@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const SlideUI = styled.div`
   z-index: 200;
   transition: all 1s linear;
-  transform: ${({ in: isIn, dir }) => {
+  transform: ${({ inAttr: isIn, dir }) => {
     if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0'; }
     else {
       if (dir === 'left') return 'translate3d(-100%, 0, 0)'
@@ -17,7 +17,7 @@ const SlideUI = styled.div`
       if (dir === 'bottom') return 'translate3d(0, 100%, 0)'
     }
   }};
-  transition: all ${({ in: isIn, timeout, timeout: { enter, exit }, theme: { transition } }) => isIn
+  transition: all ${({ inAttr: isIn, timeout, timeout: { enter, exit }, theme: { transition } }) => isIn
     ? transition.durationIn + transition.easing
     : transition.durationOut + transition.easing
   };
@@ -65,21 +65,21 @@ class Slide extends React.Component {
       onExited,
       style: styleProp,
       timeout,
-      in: isIn,
+      inAttr,
       direction,
       ...other
     } = this.props;
 
     const handlers = {
-      onAnimationStart: isIn ? this.handleEntering : this.handleExit,
-      onAnimationEnd: isIn ? this.handleEntered : this.handleExited,
+      onAnimationStart: inAttr ? this.handleEntering : this.handleExit,
+      onAnimationEnd: inAttr ? this.handleEntered : this.handleExited,
     }
 
     return (
       <SlideUI
         timeout={timeout}
         className="SlideUI"
-        in={isIn}
+        inAttr={inAttr}
         dir={direction}
         {...handlers}
       >
@@ -92,7 +92,7 @@ class Slide extends React.Component {
 Slide.propTypes = {
   children: PropTypes.element,
   direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
-  in: PropTypes.bool,
+  inAttr: PropTypes.bool,
   onEnter: PropTypes.func,
   onEntered: PropTypes.func,
   onEntering: PropTypes.func,

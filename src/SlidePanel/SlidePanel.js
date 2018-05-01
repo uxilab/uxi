@@ -27,7 +27,7 @@ const SidePanelUI = styled.div`
   background: #fff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0) , 0px 3px 10px rgba(0, 0, 0, 0);
   };
-  ${({ in: isIn }) => (isIn ?
+  ${({ inAttr: isIn }) => (isIn ?
     'box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16) , 0px 3px 10px rgba(0, 0, 0, 0.23)' : '')};
   /* height | width */
   ${({ dir }) => (slidesHorizontaly(dir) ? 'height: 100vh' : 'width: 100vw')};
@@ -89,11 +89,15 @@ class SidePanel extends React.Component {
     return (
       <div>
         <Slide
-          in={open}
+          inAttr={open}
           direction={getSlideDirection(anchor)}
           appear={!this.state.firstMount}
         >
-          <SidePanelUI in={open} dir={getSlideDirection(anchor)} style={style}>
+          <SidePanelUI
+            inAttr={open}
+            dir={getSlideDirection(anchor)}
+            style={style}
+          >
             {
               React.Children.map(children, (c, index) => React.isValidElement(c) && React.cloneElement(c, {
                 key: `sidePanel-${index}`,
