@@ -1,12 +1,12 @@
 import React from 'react';
 import MarkdownElement from './components/MarkdownElement/MarkdownElement';
-import getStarted from './getStartedDoc.md';
+/*import getStarted from './getStartedDoc.md';*/
 
 const GetStarted = props => {
   return (
     <div>
       <h2>Get started</h2>
-      <MarkdownElement text={getStarted} />
+      <MarkdownElement text={"getStarted"} />
     </div>
   )
 }
