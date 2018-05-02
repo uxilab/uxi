@@ -38,7 +38,6 @@ import MotionPage from './components/pages/Motion/Page';
 
 const AppRoutes = (
   <Switch>
-    <Route path="/" exact component={Home} />
     <Route path="/Font" exact component={FontPage} />
     <Route path="/color" component={ColorPage} />
     <Route path="/button" component={ButtonPage} />
