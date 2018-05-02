@@ -1,5 +1,7 @@
 import React from 'react';
+import AppShell from './AppShell';
 import { Route, Switch } from 'react-router-dom';
+
 import Home from './components/pages/Home';
 import ButtonPage from './components/pages/Button/Page';
 import FontPage from './components/pages/Font/Page';
@@ -38,40 +40,42 @@ import MotionPage from './components/pages/Motion/Page';
 
 const AppRoutes = (
   <Switch>
-    <Route path="/Font" exact component={FontPage} />
-    <Route path="/color" component={ColorPage} />
-    <Route path="/button" component={ButtonPage} />
-    <Route path="/box" component={BoxPage} />
-    <Route path="/sociallinks" component={SocialLinksPage} />
-    <Route path="/inputs" component={InputsPage} />
-    <Route path="/icons" component={IconsPage} />
-    <Route path="/layouts" component={LayoutPage} />
-    <Route path="/list" component={ListPage} />
-    <Route path="/table" component={TablePage} />
-    <Route path="/switch" component={SwitchPage} />
-    <Route path="/alert" component={AlertPage} />
-    <Route path="/autocomplete" exact component={AutoCompletePage} />
-    <Route path="/loader" component={LoaderPage} />
-    <Route path="/img" component={ImgPage} />
-    <Route path="/menu" component={MenuPage} />
-    <Route path="/internal" exact component={InternalPage} />
-    <Route path="/badge" component={BadgePage} />
-    <Route path="/indicator" component={IndicatorPage} />
-    <Route path="/dashboard" component={DashboardPage} />
-    <Route path="/stepper" component={StepperPage} />
-    <Route path="/DialogDropDown" component={DialogDropDownPage} />
-    <Route path="/BreadCrumbs" component={BreadCrumbsPage} />
-    <Route path="/radio" component={RadioPage} />
-    <Route path="/classic" component={ClassicPage} />
-    <Route path="/datagrid" component={DataGridPage} />
-    <Route path="/globalMenu" component={GlobalMenuPage} />
-    <Route path="/widget" component={WidgetPage} />
-    <Route path="/personalizedmenu" component={PesonalizedMenuPage} />
-    <Route path="/Panel" component={PanbelPage} />
-    <Route path="/Gallery" component={GalleryPage} />
-    <Route path="/Carrousel" component={CarrouselPage} />
-    <Route path="/Tile" component={TilePage} />
-    <Route path="/motion" component={MotionPage} />
+    <Route path="/components" component={AppShell} >
+      <Route path="/Font" exact component={FontPage} />
+      <Route path="/color" component={ColorPage} />
+      <Route path="/button" component={ButtonPage} />
+      <Route path="/box" component={BoxPage} />
+      <Route path="/sociallinks" component={SocialLinksPage} />
+      <Route path="/inputs" component={InputsPage} />
+      <Route path="/icons" component={IconsPage} />
+      <Route path="/layouts" component={LayoutPage} />
+      <Route path="/list" component={ListPage} />
+      <Route path="/table" component={TablePage} />
+      <Route path="/switch" component={SwitchPage} />
+      <Route path="/alert" component={AlertPage} />
+      <Route path="/autocomplete" exact component={AutoCompletePage} />
+      <Route path="/loader" component={LoaderPage} />
+      <Route path="/img" component={ImgPage} />
+      <Route path="/menu" component={MenuPage} />
+      <Route path="/internal" exact component={InternalPage} />
+      <Route path="/badge" component={BadgePage} />
+      <Route path="/indicator" component={IndicatorPage} />
+      <Route path="/dashboard" component={DashboardPage} />
+      <Route path="/stepper" component={StepperPage} />
+      <Route path="/DialogDropDown" component={DialogDropDownPage} />
+      <Route path="/BreadCrumbs" component={BreadCrumbsPage} />
+      <Route path="/radio" component={RadioPage} />
+      <Route path="/classic" component={ClassicPage} />
+      <Route path="/datagrid" component={DataGridPage} />
+      <Route path="/globalMenu" component={GlobalMenuPage} />
+      <Route path="/widget" component={WidgetPage} />
+      <Route path="/personalizedmenu" component={PesonalizedMenuPage} />
+      <Route path="/Panel" component={PanbelPage} />
+      <Route path="/Gallery" component={GalleryPage} />
+      <Route path="/Carrousel" component={CarrouselPage} />
+      <Route path="/Tile" component={TilePage} />
+      <Route path="/motion" component={MotionPage} />
+    </Route>
   </Switch>
 );
 

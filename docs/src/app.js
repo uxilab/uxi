@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Router, Route } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes';
-import AppShell from './AppShell';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Menu from './Menu';
 
@@ -16,12 +15,11 @@ render(
   <Router
     history={createBrowserHistory()}
   >
-    <AppShell>
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/get-started" component={GetStarted} />
-      {/* <Menu /> */}
-      {AppRoutes}
-    </AppShell>
+    <div>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/get-started" component={GetStarted} />
+        {AppRoutes}
+    </div>
   </Router>,
   document.getElementById('app'),
 );
