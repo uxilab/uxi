@@ -15,7 +15,7 @@ const isActive = (path, currentLocation) =>
   path.toLowerCase() === currentLocation.toLowerCase();
 
 const makeMenuItem = ({ path, label }, currentLocation) => (
-  <MenuItem isActive={isActive(path, currentLocation)} key={`${path}`}> <Link to={path.toString()}>{label}</Link></MenuItem>
+  <MenuItem isActive={isActive(path, currentLocation)} key={`/components/${path}`}> <Link to={`/components${path.toString()}`}>{label}</Link></MenuItem>
 );
 
 export const routes = [
@@ -55,7 +55,7 @@ export const routes = [
   { path: '/components/Motion', label: 'Motion' },
 ]
 
-const AppShell = ({ children }) => {
+const ComponentShell = ({ children }) => {
   const pathname = window.location.pathname;
   const mainMenu = (
     <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
@@ -96,4 +96,4 @@ const AppShell = ({ children }) => {
   );
 };
 
-export default AppShell;
+export default ComponentShell;
