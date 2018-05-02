@@ -66,7 +66,7 @@ const AppShell = ({ children }) => {
   return (
     <UXISCThemeProvider>
         <AppLayout>
-          <Header isDark>
+          <Header isDark style={{ minHeight: '80px' }}>
             <HorizontalMenu isMain>
               <MenuItem>
                 <Link to="/">Home</Link>
