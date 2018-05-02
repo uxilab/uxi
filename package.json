@@ -4,7 +4,7 @@
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "scripts": {
-    "postinstall": "cd docs/ && npm i && npm run buildAndBundle",
+    "heroku-postbuild": "cd docs/ && npm i && npm run buildAndBundle",
     "start": "cd docs/ && npm start",
     "start:dev": "cd docs/ && npm run start:dev",
     "flow": "flow",
