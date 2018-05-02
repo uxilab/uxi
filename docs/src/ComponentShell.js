@@ -64,35 +64,13 @@ const ComponentShell = ({ children }) => {
   );
 
   return (
-    <UXISCThemeProvider>
-        <AppLayout>
-          <Header isDark style={{ minHeight: '80px' }}>
-            <HorizontalMenu isMain>
-              <MenuItem>
-                <Link to="/">Home</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/">Components</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/">Contact</Link>
-              </MenuItem>
-            </HorizontalMenu>
-          </Header>
-          <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
-            <Layout>
-              <Row>
-                <Col>
-                  {children}
-                </Col>
-              </Row>
-            </Layout>
-          </PageWithMenu>
-          <ThemedBox isDark>
-            <Flex><H4><strong>uxi</strong></H4></Flex>
-          </ThemedBox>
-        </AppLayout>
-    </UXISCThemeProvider>
+    <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
+      <Layout>
+        <Row>
+          <Col>{children}</Col>
+        </Row>
+      </Layout>
+    </PageWithMenu>
   );
 };
 
