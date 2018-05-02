@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectGlobal, ThemeProvider as SCThemeProvider } from 'styled-components';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { makeGlobalCSSInjector } from '../global';
-import { theme as UXITheme, getThemeWithCustomPalette } from '../index';
-import { ThemeProvider as UXIContextThemeProvider } from './index';
-import { getGlobaStyles } from '../global';
+import main, { theme as UXITheme, getThemeWithCustomPalette } from '../';
+import { ThemeProvider as UXIContextThemeProvider } from './ContextThemeProvider';
+
+console.log('main', main);
+console.log('UXITheme', UXITheme);
+console.log('getThemeWithCustomPalette', getThemeWithCustomPalette);
 
 const UXISCThemeProvider = ({ children, theme, palette }) => {
   const theTheme = theme || getThemeWithCustomPalette(palette);
