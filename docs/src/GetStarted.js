@@ -1,6 +1,6 @@
 import React from 'react';
 import MarkdownElement from './components/MarkdownElement/MarkdownElement';
-import getStarted from '!raw-loader!./getStarted.md';
+import getStarted from './getStartedDoc.md';
 
 const GetStarted = props => {
   return (

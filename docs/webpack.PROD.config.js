@@ -33,6 +33,13 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.md$/,
+        use: [
+          'raw-loader'
+        ],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.jsx?$/,
         use: [
           'babel-loader',

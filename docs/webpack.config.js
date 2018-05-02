@@ -43,6 +43,10 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      // {
+      //   test: /\.md?$/,
+      //   exclude: /node_modules/,
+      // },
       {
         test: /\.jsx?$/,
         use: [
