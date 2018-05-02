@@ -21,7 +21,7 @@ const Appshell = ({ children }) => {
                 <Link to="/">Home</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/">Components</Link>
+                <Link to="/components">Components</Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/">Contact</Link>
