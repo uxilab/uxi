@@ -2,7 +2,7 @@
 
 
 ## Install
-`$ npm i uxi --save`
+    $ npm i uxi --save
 
 
 ## Set Up uxi ThemeProvider to use uxi components
@@ -26,8 +26,7 @@ It's a package providing a few utils to build, test, lint and dev (hot-reload)
 
 Once installed
 
-`npm i uxi-cli --save`
-
+    npm i uxi-cli --save
 
 you can use it in your package.json as such:
 
