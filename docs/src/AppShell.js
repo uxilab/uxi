@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import ThemeProvider, { getThemeWithCustomPalette } from '../../src/Theme';
 import Header from 'uxi/Header';
@@ -7,9 +7,21 @@ import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
 import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
+import styled from 'styled-components';
+import AutoComplete from 'uxi/AutoComplete';
 import { ThemedBox } from 'uxi/Box';
+import { withRouter } from "react-router-dom";
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
+import { routes } from './ComponentShell';
+
+const AutoCompleteWrapper = styled.div`
+  & > *,
+  & *,
+  & span {
+    color: grey;
+  }
+`;
 
 const mainStyles = {
   width: '250px',
@@ -22,9 +34,12 @@ const mainStyles = {
   justifyContent: 'center',
 }
 
-const Appshell = ({ children }) => {
-  return (
-    <div>
+class Appshell extends Component {
+  render() {
+    const { children } = this.props;
+
+    return (
+      <div>
         <AppLayout>
           <Header isDark style={{ minHeight: '80px' }}>
             <div style={{ maxWidth: '1280px', margin: '0 auto'}}>
@@ -46,6 +61,15 @@ const Appshell = ({ children }) => {
                 <MenuItem>
                   <Link to="/">Contact</Link>
                 </MenuItem>
+                <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
+                  <AutoCompleteWrapper>
+                    <AutoComplete
+                      items={routes}
+                      filterOn="path"
+                      onChange={({ value }) => this.props.history.push(`/components${value}`)}
+                    />
+                  </AutoCompleteWrapper>
+                </MenuItem>
               </HorizontalMenu>
             </div>
           </Header>
@@ -61,7 +85,8 @@ const Appshell = ({ children }) => {
         }}
       />
       </div>
-  );
-};
+    );
+  }
+}
 
-export default Appshell;
+export default withRouter(Appshell);
