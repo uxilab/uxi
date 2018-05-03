@@ -24,6 +24,9 @@ const Appshell = ({ children }) => {
                 <Link to="/components">Components</Link>
               </MenuItem>
               <MenuItem>
+                <Link to="/get-started">Get Started</Link>
+              </MenuItem>
+              <MenuItem>
                 <Link to="/">Contact</Link>
               </MenuItem>
             </HorizontalMenu>
