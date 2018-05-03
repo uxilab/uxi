@@ -66,11 +66,13 @@ const ComponentShell = ({ children }) => {
   return (
     <div style={{ maxWidth: '1280px', margin: '0 auto'}} >
       <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
-        <Layout>
-          <Row>
-            <Col>{children}</Col>
-          </Row>
-        </Layout>
+        <div style={{ padding: '16px' }}>
+          <Layout>
+            <Row>
+              <Col>{children}</Col>
+            </Row>
+          </Layout>
+        </div>
       </PageWithMenu>
     </div>
   );
