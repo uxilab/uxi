@@ -5,7 +5,7 @@ import UXISCThemeProvider from 'uxi/Theme/ThemeProvider/UXISCThemeProvider';
 import ComponentRoutes from './ComponentRoutes';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Menu from './Menu';
-import Appshell from './Appshell';
+import AppShell from './AppShell';
 import GetStarted from './GetStarted'
 import Landing from './Landing'
 import { ThemeProvider  } from 'styled-components';
@@ -18,11 +18,11 @@ render(
   <Router
     history={createBrowserHistory()}
   >
-    <div>
+    <AppShell>
       <Route exact path="/" component={Landing} />
       <Route exact path="/get-started" component={GetStarted} />
       <Route path="/components" component={ComponentRoutes} />
-    </div>
+    </AppShell>
   </Router>
   </UXISCThemeProvider>,
   document.getElementById('app'),
