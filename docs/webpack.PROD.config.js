@@ -17,7 +17,7 @@ module.exports = {
   },
   devtool: 'nosources-source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.md'],
     alias: {
       // material-ui requires will be searched in src folder, not in node_modules
       uxi: path.resolve(__dirname, '../src'),
@@ -26,17 +26,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        use: [
-          'babel-loader',
-        ],
-        exclude: /node_modules/,
-      },
-      {
         test: /\.md$/,
-        use: [
-          'raw-loader'
-        ],
+        use: 'raw-loader',
         exclude: /node_modules/,
       },
       {
@@ -46,6 +37,14 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+
+      // {
+      //   test: /\.jsx?$/,
+      //   use: [
+      //     'babel-loader',
+      //   ],
+      //   exclude: /node_modules/,
+      // },
       // {
       //   test: /\.css$/,
       //   use: ['style', 'css?module'],
