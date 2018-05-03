@@ -3,7 +3,7 @@
 
 
 ## Install
-`$ npm i uxi --save`
+`npm i uxi --save`
 
 
 ## Set Up uxi ThemeProvider to use uxi components

@@ -208,7 +208,7 @@ export default css`
 }
 
 .markdown-body .octicon-link:before {
-  content: '\f05c';
+  /* content: '\f05c'; */
 }
 
 .markdown-body > *:first-child {
@@ -445,10 +445,10 @@ export default css`
   border-radius: 3px;
 }
 
-.markdown-body code:before,
-.markdown-body code:after {
-  letter-spacing: -0.2em;
-  content: "\00a0";
+.markdown-body code:before {
+  /* letter-spacing: -0.2em;
+  content: "\00a0"; */
+  content: '$ ';
 }
 
 .markdown-body pre > code {
