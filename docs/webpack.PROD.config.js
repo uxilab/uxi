@@ -7,6 +7,7 @@ const pgk = require('./package.json');
 
 
 module.exports = {
+  mode: 'production',
   entry: [
     'babel-polyfill',
     './build/app.js',

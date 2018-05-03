@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownElement from './components/MarkdownElement/MarkdownElement';
+import MarkdownElement from './components/MarkdownElement/MarkDownElement';
 import getStarted from './getStartedDoc.md';
 
 const GetStarted = props => {
