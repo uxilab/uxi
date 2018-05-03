@@ -6,7 +6,7 @@ const GetStarted = props => {
   return (
     <div>
       <h2>Get started</h2>
-      <MarkdownElement text={"getStarted"} />
+      <MarkdownElement text={getStarted} />
     </div>
   )
 }
