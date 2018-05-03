@@ -64,12 +64,16 @@ const Landing = props => {
     <div style={{ position: 'relative' }}>
       <LandingBackgroundComponent />
 
-      <div style={{display: 'flex', color:'#fff', height: '760px', alignItems: 'center'}}>
+      <div style={{display: 'flex', color:'#fff', height: '760px', alignItems: 'center', padding: '0 32px'}}>
         <div style={{maxWidth:'1040px',  width:'100%', margin: '0 auto', marginTop: '-7%'}}>
             <h1 style={{fontSize: '40px'}}>Welcome</h1>
             <p style={{color:'#fff'}}>UXI is a UI/UX framework to build web application faster.</p>
             <div>
-              <Button type="primary" text="SUBMIT" />
+            <Button
+              type="primary"
+              text="Get Started"
+              readyLink={<Link to="/get-started">Get Started</Link>}
+            />
             </div>
         </div>
       </div>
