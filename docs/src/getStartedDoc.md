@@ -1,10 +1,9 @@
 
-
 # uxi
 
 
 ## Install
-    $ npm i uxi --save
+`$ npm i uxi --save`
 
 
 ## Set Up uxi ThemeProvider to use uxi components
@@ -22,13 +21,14 @@ const App = () => (
 
 ___
 
-## Starting a NEW PROJECT using uxi
-You can use uxi-cli to get started faster.
+## Starting a NEW PROJECT using uxi and uxi-cli
+You can use [uxi-cli](https://github.com/uxilab/uxi-cli) to get started faster.
 It's a package providing a few utils to build, test, lint and dev (hot-reload)
 
 Once installed
 
-    npm i uxi-cli --save
+`npm i uxi-cli --save`
+
 
 you can use it in your package.json as such:
 

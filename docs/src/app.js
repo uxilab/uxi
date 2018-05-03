@@ -6,8 +6,8 @@ import ComponentRoutes from './ComponentRoutes';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Menu from './Menu';
 import AppShell from './AppShell';
-import GetStarted from './GetStarted'
-import Landing from './Landing'
+import GetStarted from './GetStarted';
+import Landing from './Landing';
 
 window.React = React;
 
