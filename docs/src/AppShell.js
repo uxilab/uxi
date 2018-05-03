@@ -1,5 +1,5 @@
 import React from 'react';
-import UXISCThemeProvider from 'uxi/Theme/ThemeProvider/UXISCThemeProvider';
+
 import ThemeProvider, { getThemeWithCustomPalette } from '../../src/Theme';
 import Header from 'uxi/Header';
 import { H4 } from 'uxi/Classic';
@@ -13,7 +13,7 @@ import markdown from './styles/markdown';
 
 const Appshell = ({ children }) => {
   return (
-    <UXISCThemeProvider>
+    <div>
         <AppLayout>
           <Header isDark style={{ minHeight: '80px' }}>
             <HorizontalMenu isMain>
@@ -28,7 +28,9 @@ const Appshell = ({ children }) => {
               </MenuItem>
             </HorizontalMenu>
           </Header>
+          <div>
             {children}
+          </div>
       </AppLayout>
       <style dangerouslySetInnerHTML={{
         __html: [
@@ -37,7 +39,7 @@ const Appshell = ({ children }) => {
           ].join('\n')
         }}
       />
-    </UXISCThemeProvider>
+      </div>
   );
 };
 
