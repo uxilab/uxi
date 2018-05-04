@@ -1,5 +1,5 @@
 
-export Anonymize from './Anonymize';
+export { Anonymize } from './Anonymize';
 export Archive from './Archive';
 export Barchart from './Barchart';
 export Businessinteligence from './Businessinteligence';

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Hamburger /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  size={24}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    height="24px"
+    viewBox="0 0 16 16"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Layer 2"
+      id="Layer_2"
+    >
+      <g
+        data-name="Layer 1"
+        id="Layer_1-2"
+      >
+        <rect
+          height="1.73"
+          width="16"
+        />
+        <rect
+          height="1.73"
+          width="16"
+          y="7.14"
+        />
+        <rect
+          height="1.72"
+          width="16"
+          y="14.28"
+        />
+      </g>
+    </g>
+  </svg>
+</SvgIcon>
+`;

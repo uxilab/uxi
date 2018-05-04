@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Cookie /> match snapshot 1`] = `
+<SvgIcon
+  color="#6d6d71"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  size={24}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    data-name="Layer 1"
+    height="24px"
+    id="Layer_1"
+    viewBox="0 0 24 24"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M.5,12A11.5,11.5,0,1,0,12,.5,11.51,11.51,0,0,0,.5,12Zm2,0A9.49,9.49,0,1,1,12,21.49,9.5,9.5,0,0,1,2.51,12Z"
+    />
+    <circle
+      className="cls-2"
+      cx="10.06"
+      cy="8.01"
+      r="1.5"
+    />
+    <circle
+      className="cls-2"
+      cx="16.06"
+      cy="10.62"
+      r="2.46"
+    />
+  </svg>
+</SvgIcon>
+`;
