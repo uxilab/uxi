@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/uxilab/uxi#readme",
   "dependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1",
     "classnames": "^2.2.5",
     "component-playground": "^3.0.0",
     "keycode": "^2.1.9",
@@ -50,7 +49,7 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
     "simple-assign": "^0.1.0",
-    "uxi-cli": "^1.0.55"
+    "uxi-cli": "^1.0.56"
   },
   "devDependencies": {
     "app-module-path": "^2.1.0",
