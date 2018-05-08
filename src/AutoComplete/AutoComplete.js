@@ -1,5 +1,5 @@
 import React from 'react';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import styled from 'styled-components';
 import { TextField } from '../Input';
 import { VerticalMenu, MenuItem } from '../Menu';

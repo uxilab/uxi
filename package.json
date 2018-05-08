@@ -32,24 +32,15 @@
   "homepage": "https://github.com/uxilab/uxi#readme",
   "dependencies": {
     "classnames": "^2.2.5",
-    "component-playground": "^3.0.0",
     "keycode": "^2.1.9",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.6.0",
+    "lodash.debounce": "^4.0.8",
     "rc-tooltip": "^3.7.0",
-    "react": "^16.2.0",
-    "react-addons-test-utils": "~15.4.0",
     "react-click-outside": "^3.0.0",
-    "react-dom": "^16.0.0",
-    "react-event-listener": "^0.5.2",
-    "react-helmet": "^5.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
-    "simple-assign": "^0.1.0",
-    "uxi-cli": "^1.0.68"
+    "uxi-cli": "^1.0.70"
   },
   "devDependencies": {
+    "prop-types": "^15.6.0",
     "app-module-path": "^2.1.0",
     "cross-env": "^5.1.3",
     "file-loader": "^1.1.8",
@@ -59,6 +50,8 @@
     "image-webpack-loader": "^4.1.0"
   },
   "peerDependencies": {
-    "styled-components": "3.2.0"
+    "styled-components": "3.2.0",
+    "react": "*",
+    "react-dom": "*"
   }
 }
