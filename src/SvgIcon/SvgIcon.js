@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class SvgIcon extends Component {
+class SvgIcon extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -51,8 +51,8 @@ export class SvgIcon extends Component {
       <svg
         className={`${className} uxi_svg-icon-wrapper`}
         {...other}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={(e) => { this.handleMouseEnter(e) }}
+        onMouseLeave={(e) => { this.handleMouseLeave(e) }}
         style={mergedStyles}
         viewBox={viewBox}
       >

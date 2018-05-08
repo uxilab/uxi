@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Organization,
-} from '../../../../../src/Icons';
+} from 'uxi/Icons';
 
 const ExampleSimple = () => (
   <div>

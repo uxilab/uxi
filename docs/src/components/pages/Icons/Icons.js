@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Icons from '../../../../../src/Icons';
+import * as Icons from 'uxi/Icons';
 
 const styles = {
   container: {

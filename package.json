@@ -4,22 +4,20 @@
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "scripts": {
-    "heroku-postbuild": "cd docs/ && npm i && npm run buildAndBundle",
+    "heroku-postbuild": "cd docs/ && npm i && npm run packAndBundle",
     "start": "cd docs/ && npm start",
     "start:dev": "cd docs/ && npm run start:dev",
     "flow": "flow",
     "typecheck": "flow check",
     "lint": "uxi-cli lint",
     "lint:fix": "uxi-cli lint --fix",
-    "build": "uxi-cli pack && npm run build:copy-files",
-    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore test.js,__tests__,__test__ ",
-    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "pack": "uxi-cli pack",
     "clean:build": "rimraf build",
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
     "typeinstall": "flow-typed install",
-    "deploy": "npm version patch && npm run build && npm publish build",
+    "deploy": "npm version patch && npm run pack && npm publish build",
     "deploy-doc": "cd docs/ && npm run deploy-doc"
   },
   "repository": {
@@ -49,7 +47,7 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
     "simple-assign": "^0.1.0",
-    "uxi-cli": "^1.0.65"
+    "uxi-cli": "^1.0.68"
   },
   "devDependencies": {
     "app-module-path": "^2.1.0",

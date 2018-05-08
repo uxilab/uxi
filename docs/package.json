@@ -6,13 +6,10 @@
   "scripts": {
     "start": "node .",
     "dev": "uxi-cli dev",
-    "buildAndBundle": "npm run build && npm run bundle",
-    "bundle": "webpack --config webpack.PROD.config.js && npm run bundle:copy-index",
-    "build": "npm run build:babel && npm run build:copy-files",
-    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore test.js,__tests__,__test__ --copy-files",
-    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "packAndBundle": "npm run pack && npm run build",
+    "build": "uxi-cli build",
+    "pack": "uxi-cli pack",
     "clean:build": "rimraf build",
-    "bundle:copy-index": " cp index.html dist/",
     "deploy-doc": "npm run buildAndBundle && echo '\n\n # now: git push uxilab\n\n' "
   },
   "author": "",
@@ -25,12 +22,11 @@
     "raw-loader": "^0.5.1",
     "react": "^16.2.0",
     "react-docgen": "^2.20.0",
-    "react-dom": "^16.3.2",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
     "styled-components": "^3.2.0"
   },
   "devDependencies": {
-    "uxi-cli": "^1.0.65"
+    "uxi-cli": "^1.0.68"
   }
 }
