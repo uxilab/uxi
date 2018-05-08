@@ -10,19 +10,23 @@ const SimpleFlexLayoutWrapper = styled.div`
 `;
 
 const SimpleFlexLayoutItem = styled.div`
+  position: relative;
   box-sizing:border-box;
   width: ${({ mobileWidth }) => (mobileWidth)}%;
   margin-bottom: ${({ gutterInt }) => `${gutterInt}px;`}};
   margin-bottom: ${({ gutterInt }) => `${gutterInt * 1.15}px;`}};
+  min-height: ${({ itemMinHeight }) => itemMinHeight};
 
   @media screen and (min-width: ${({ tabletBreakPoint }) => tabletBreakPoint}) {
     width: ${({ tabletColumnWidth }) => (tabletColumnWidth)}%;
     width: ${({ tabletColumnWidth, gutterTabletInt }) => `calc(${tabletColumnWidth}% - ${gutterTabletInt}px);`};
     margin-bottom: ${({ gutterInt }) => `${gutterInt}px;`}};
+    min-height: ${({ itemTabletMinHeight }) => itemTabletMinHeight};
   }
   @media screen and (min-width: ${({ desktopBreakPoint }) => desktopBreakPoint}) {
     width: ${({ desktopWidth }) => (desktopWidth)}%;
     width: ${({ desktopWidth, gutterDesktopInt }) => `calc(${desktopWidth}% - ${gutterDesktopInt}px);`};
+    min-height: ${({ itemDesktopMinHeight }) => itemDesktopMinHeight};
   }
 `;
 
@@ -35,6 +39,10 @@ const SimpleFlexLayout = ({
   style,
   tabletBreakPoint,
   desktopBreakPoint,
+  itemMinHeight,
+  itemTabletMinHeight,
+  itemDesktopMinHeight,
+  itemStyle,
 }) => {
   const simplayLayoutContent = [];
 
@@ -64,6 +72,10 @@ const SimpleFlexLayout = ({
         columnNumber={columnNumber}
         tabletColumnNumber={tabletColumnNumber}
         desktopColumnNumber={desktopColumnNumber}
+        itemMinHeight={itemMinHeight}
+        itemTabletMinHeight={itemTabletMinHeight}
+        itemDesktopMinHeight={itemDesktopMinHeight}
+        style={itemStyle}
       >
         {child}
       </SimpleFlexLayoutItem>,
@@ -89,6 +101,10 @@ SimpleFlexLayout.defaultProps = {
   columnNumber: 1,
   tabletColumnNumber: 1,
   desktopColumnNumber: 1,
+  itemMinHeight: '1px',
+  itemTabletMinHeight: '1px',
+  itemDesktopMinHeight: '1px',
+
 };
 
 export default SimpleFlexLayout;
