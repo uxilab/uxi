@@ -36,8 +36,7 @@
     "lodash.debounce": "^4.0.8",
     "rc-tooltip": "^3.7.0",
     "react-click-outside": "^3.0.0",
-    "react-transition-group": "^2.2.1",
-    "uxi-cli": "^1.0.70"
+    "react-transition-group": "^2.2.1"
   },
   "devDependencies": {
     "prop-types": "^15.6.0",
@@ -47,7 +46,8 @@
     "flow-bin": "^0.54.1",
     "flow-types": "^1.0.0",
     "fs-extra": "^4.0.1",
-    "image-webpack-loader": "^4.1.0"
+    "image-webpack-loader": "^4.1.0",
+    "uxi-cli": "^1.0.70"
   },
   "peerDependencies": {
     "styled-components": "3.2.0",
