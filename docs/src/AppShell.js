@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import ThemeProvider, { getThemeWithCustomPalette } from '../../src/Theme';
 import Header from 'uxi/Header';
 import { H4 } from 'uxi/Classic';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';

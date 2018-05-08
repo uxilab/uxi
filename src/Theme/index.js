@@ -1,13 +1,12 @@
 import { css } from 'styled-components';
 import { palette as mainPalette } from './palette';
-import ThemeProvider from './ThemeProvider';
 import { lighten, darken } from './colorManipulator';
-
-export const palette = mainPalette;
 
 const fonts = {
   fontFamily: 'Open sans, sans-serif',
 };
+
+export const palette = mainPalette;
 
 const marketingFontFamilly = '\'Fira Sans\', sans-serif';
 
@@ -326,39 +325,3 @@ export const theme = { // eslint-disable-line no-shadow
     h6: css`font-size: 1.10em; margin: .5em 0;`,
   },
 };
-
-// eslint-disable-next-line no-shadow
-function mergeCustomPalette(mainPalette, customPalette) {
-  let primary = mainPalette.primary.main;
-  let secondary = mainPalette.accent.main;
-
-  if (!customPalette) { return mainPalette; }
-  if (customPalette.primary) { primary = customPalette.primary; }
-  if (customPalette.secondary) { secondary = customPalette.secondary; }
-
-  const palette = { // eslint-disable-line no-shadow
-    ...mainPalette,
-    primary: {
-      main: primary,
-      light: lighten(primary),
-      dark: darken(primary),
-    },
-    accent: {
-      main: secondary,
-      light: lighten(secondary),
-      dark: darken(secondary),
-    },
-  };
-  return palette;
-}
-
-// eslint-disable-next-line no-use-before-define
-export const getThemeWithCustomPalette = (customPalette = {}) => { // eslint-disable-line no-shadow
-  const palette = mergeCustomPalette(mainPalette, customPalette); // eslint-disable-line no-shadow
-  return {
-    ...theme,
-    palette,
-  };
-};
-
-export default ThemeProvider;
