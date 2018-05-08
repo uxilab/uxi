@@ -8,8 +8,8 @@ const CardUI = styled.div`
   border: 1px solid #cecece;
 `;
 
-const Card = ({ children }) => (
-  <CardUI> {children} </CardUI>
+const Card = ({ children, style }) => (
+  <CardUI style={style}> {children} </CardUI>
 );
 
 Card.displayName = 'Card';
