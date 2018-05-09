@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { UnstyledButton } from '../Button';
 import PropTypes from 'prop-types';
 import StepConnector from './StepConnector';
 
@@ -59,14 +60,19 @@ class Stepper extends Component {
           connector && index > 0 &&
           React.cloneElement(connector, { key: `connect-${stepIndex - 1}-to-${stepIndex}` })
         ),
-        React.cloneElement(step, {
-          ...props,
-          children: React.cloneElement(props.children, {
-            ...props.children.props,
-            // remove event handler for disabled step button:
-            onClick: (props.disabled ? () => {} : props.children.props.onClick)
-           }),
-        })
+        <div
+          // remove event handler for disabled step button:
+          onClick={(props.disabled ? () => { } : props.children.props.onClick)}
+        >
+          {
+            React.cloneElement(step, {
+              ...props,
+              children: React.cloneElement(props.children, {
+                ...props.children.props,
+              }),
+            })
+          }
+        </div>
       ]
     })
 
