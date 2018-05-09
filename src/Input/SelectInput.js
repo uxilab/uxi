@@ -213,16 +213,16 @@ class SelectInput extends PureComponent {
 
   render() {
     const { isOpen } = this.state;
-    const { isFullWidth, error } = this.props;
+    const { isFullWidth, error, style } = this.props;
 
     const optionsItems = this.getOptionsItem();
 
     const trigerer = this.getTrigerrerLabel();
 
     return (
-      <div>
+      <div style={style}>
         <DropDown
-          isFullWidth={isFullWidth}
+          isFullWidth={isFullWidth || ('width' in style)}
           isOpen={isOpen}
           main={trigerer}
           items={optionsItems}
@@ -237,5 +237,10 @@ class SelectInput extends PureComponent {
     );
   }
 }
+
+SelectInput.defaultProps = {
+  style: {}
+}
+
 
 export default SelectInput;
