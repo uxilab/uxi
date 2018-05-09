@@ -72,12 +72,33 @@ class SelectInput extends PureComponent {
         const selectedIndex = foundIndex > -1 ? foundIndex : null;
         this.setState({ selectedIndex });
       }
+    } else {
+      const { value } = this.props;
+      const { options } = this.state;
+      // not controlled, use internal state
+      const foundIndex = options.findIndex(o => o === value);
+      const selectedIndex = foundIndex > -1 ? foundIndex : null;
+      this.setState({ selectedIndex });
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const { selectedIndex } = this.state;
-    const { onChange } = this.props;
+    const { selectedIndex, options } = this.state;
+    const { onChange, value: valueProp } = this.props;
+
+    const value = options[nextState.selectedIndex];
+
+    /*
+    TODO: Make controlled selectInkput work!
+    if (valueProp && valueProp !== value) {
+      const newVal = options.findIndex(x => x === value)
+      if (newVal > -1) {
+        this.setState({
+          selectedIndex: newVal,
+        })
+      }
+    } */
+
     if (selectedIndex !== nextState.selectedIndex) {
       if (onChange) {
         const { options } = this.state;
@@ -203,12 +224,14 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
-    const selectedIndex = e.currentTarget.dataset.index;
-    this.setState({
-      selectedIndex,
-      isOpen: false,
-    });
-    this.forceUpdate();
+    if (!this.isControlled) {
+      const selectedIndex = e.currentTarget.dataset.index;
+      this.setState({
+        selectedIndex,
+        isOpen: false,
+      });
+      this.forceUpdate();
+    }
   }
 
   render() {

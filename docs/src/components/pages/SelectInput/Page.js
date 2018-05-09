@@ -9,9 +9,14 @@ import RAWExampleSimple from '!raw-loader!./ExampleSimple';
 import ExampleSimpleWithWidth from './ExampleSimpleWithWidth';
 import RAWExampleSimpleWithWidth from '!raw-loader!./ExampleSimpleWithWidth';
 
-
 import ExampleSimpleFullWidth from './ExampleSimpleFullWidth';
 import RAWExampleSimpleFullWidth from '!raw-loader!./ExampleSimpleFullWidth';
+
+import ExampleSimpleControlled from './ExampleSimpleControlled';
+import RAWExampleSimpleControlled from '!raw-loader!./ExampleSimpleControlled';
+
+import ExampleSimpleUncontrolled from './ExampleSimpleUncontrolled';
+import RAWExampleSimpleUncontrolled from '!raw-loader!./ExampleSimpleUncontrolled';
 
 
 const SelectInputPage = () => (
@@ -49,6 +54,26 @@ const SelectInputPage = () => (
           hasPadding
         >
           <ExampleSimpleFullWidth />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSimpleControlled}
+          component
+          title="Controlled SelectInput (not working)"
+          hasPadding
+        >
+          <ExampleSimpleControlled />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSimpleUncontrolled}
+          component
+          title="Uncontrolled SelectInput with defaultValue"
+          hasPadding
+        >
+          <ExampleSimpleUncontrolled />
         </CodeExample>
       </li>
     </ul>
