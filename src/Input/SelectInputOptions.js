@@ -8,6 +8,9 @@ const OptionsUI = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   user-select: none;
+  display: flex;
+  width: 100%;
+  & > * { width: 100% }
   &:hover {
     background-color: #f4f4f4;
   };

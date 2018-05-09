@@ -105,7 +105,7 @@ class SelectInput extends PureComponent {
     let mainContent = null;
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
       mainContent = (
-        <div style={{ padding: '2px 2px 2px 6px' }} >
+        <div><div style={{ padding: '2px 2px 2px 6px', display: 'flex', width: '100%' }} >
           {
             React.cloneElement(optionsNode[selectedIndex], {
               style: {
@@ -115,7 +115,7 @@ class SelectInput extends PureComponent {
               },
             })
           }
-        </div>
+        </div></div>
       );
     } else {
       mainContent = <div>&nbsp;</div>;

@@ -37,6 +37,7 @@ import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
+import SelectInputPage from './components/pages/SelectInput/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -45,6 +46,7 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/Font`} exact component={FontPage} />
         <Route path={`${match.url}/color`} component={ColorPage} />
         <Route path={`${match.url}/button`} component={ButtonPage} />
+        <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
         <Route path={`${match.url}/box`} component={BoxPage} />
         <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
         <Route path={`${match.url}/inputs`} component={InputsPage} />
