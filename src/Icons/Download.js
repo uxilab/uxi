@@ -19,7 +19,7 @@ const Download = props => (
           />
           <path
             d="M15.75,15.78V9.63H10.8l-1.6,1.6H6.55L5,9.63H0v6.15ZM1.35,11H4.4L6,12.58H9.75l1.6-1.6H14.4v3.45h-13Z"
-            style="fill:#d7d7d8"
+            style={{ fill: '#d7d7d8' }}
           />
         </g>
       </g>
