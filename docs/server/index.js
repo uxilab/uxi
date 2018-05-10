@@ -7,6 +7,10 @@ const cwd = process.cwd();
 const PORT = process.env.PORT || 3333;
 const app = express()
 
+const assetTarget = path.join(process.cwd(), 'public');
+console.log('assetTarget', assetTarget)
+app.use('/public', express.static(assetTarget))
+
 app.get('/app.js', function (req, res) {
   res.sendFile(`${cwd}/dist/app.js`)
 })

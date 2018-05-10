@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { PageTitle, PageSubTitle } from 'uxi/Page';
 import { SimpleList, ListItem } from 'uxi/List';
 import { Button } from 'uxi/Button';
+import LandingVideo from './LandingVideo';
 
 const LandingBackground = styled.div`
   background: linear-gradient(150deg, rgb(27, 60, 79) 15%, #2f546b 70%, #26a29a 94%);
@@ -63,7 +64,8 @@ const LandingBackgroundComponent = () => {
 const Landing = props => {
   return (
     <div style={{ position: 'relative' }}>
-      <LandingBackgroundComponent />
+      {/* <LandingBackgroundComponent /> */}
+      <LandingVideo />
 
       <div style={{display: 'flex', color:'#fff', height: '760px', height: '100vh', alignItems: 'center', padding: '0 32px'}}>
         <div style={{maxWidth:'1040px',  width:'100%', margin: '0 auto', marginTop: '-7%'}}>
