@@ -13,6 +13,29 @@ import { withRouter } from "react-router-dom";
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
 import { routes } from './ComponentShell';
+import UXILogo from './UXILogo';
+
+const LogoWrapper = styled.div`
+  width: 250px;
+  width: 260px;
+  padding: 0 16px;
+  /* borderRight: 1px solid #bababa; */
+  height: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    right: 0;
+    height: 60%;
+    display: inline-block;
+    border-right: 1px solid white;
+  }
+`;
 
 const AutoCompleteWrapper = styled.div`
   & > *,
@@ -28,6 +51,7 @@ const mainStyles = {
   padding: '0 16px',
   borderRight: '1px solid #bababa',
   height: '60%',
+  height: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -42,11 +66,13 @@ class Appshell extends Component {
         <AppLayout>
           <Header isDark style={{ minHeight: '80px' }}>
             <div style={{ maxWidth: '1280px', margin: '0 auto'}}>
-              <HorizontalMenu isMain>
+              <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center', }}>
                 <MenuItem>
-                  <div style={mainStyles}>
-                    <Link to="/" >UXI</Link>
-                  </div>
+                  <LogoWrapper>
+                    <Link to="/" >
+                      <UXILogo />
+                    </Link>
+                  </LogoWrapper>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/">Home</Link>
@@ -61,7 +87,7 @@ class Appshell extends Component {
                   <Link to="/">Contact</Link>
                 </MenuItem>
                 <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
-                  <AutoCompleteWrapper>
+                  <AutoCompleteWrapper style={{ marginTop: '24px' }}>
                     <AutoComplete
                       items={routes}
                       filterOn="path"
