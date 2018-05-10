@@ -12,6 +12,7 @@ export Country from './Country';
 export Datacleaning from './Datacleaning';
 export Directory from './Directory';
 export Document from './Document';
+export Download from './Download';
 export Engagement from './Engagement';
 export Erase from './Erase';
 export Filearchive from './Filearchive';
