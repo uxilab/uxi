@@ -87,6 +87,9 @@ class LandingVideo extends Component {
 
   componentDidMount() {
     if (this.ref) {
+      if (this.paused) {
+        this.load()
+      }
       this.ref.ontimeupdate = function () {
         if (this.currentTime >= 9.99) {
           this.currentTime = 0.0;
