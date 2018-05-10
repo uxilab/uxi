@@ -15,11 +15,9 @@ const Download = props => (
         <g id="Layer_1-2" data-name="Layer 1">
           <polygon
             points="4.29 6.04 7.88 9.63 11.46 6.04 10.51 5.09 8.55 7.04 8.55 0 7.2 0 7.2 7.04 5.24 5.09 4.29 6.04"
-            style={{ fill: '#d7d7d8' }}
           />
           <path
             d="M15.75,15.78V9.63H10.8l-1.6,1.6H6.55L5,9.63H0v6.15ZM1.35,11H4.4L6,12.58H9.75l1.6-1.6H14.4v3.45h-13Z"
-            style={{ fill: '#d7d7d8' }}
           />
         </g>
       </g>
