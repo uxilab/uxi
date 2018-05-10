@@ -81,26 +81,26 @@ const IFrame = styled.iframe`
 
 class LandingVideo extends Component {
   constructor(props) {
-    super(props)
-    this.storeRef = this.storeRef.bind(this)
+    super(props);
+    this.storeRef = this.storeRef.bind(this);
   }
 
   componentDidMount() {
     if (this.ref) {
       if (this.paused) {
-        this.load()
+        this.load();
       }
       this.ref.ontimeupdate = function () {
         if (this.currentTime >= 9.99) {
           this.currentTime = 0.0;
         }
-      }
+      };
     }
   }
 
   storeRef(node) {
-    this.ref = node
-    this.componentDidMount()
+    this.ref = node;
+    this.componentDidMount();
   }
 
   render() {
@@ -111,17 +111,17 @@ class LandingVideo extends Component {
             {/* <IFrame
           src="https://www.youtube.com/embed/q21XwbwtWd8?autoplay=1&modestbranding=1&controls=0&disablekb=1&loop=1&playsinline=1&rel=0?&playlist=q21XwbwtWd8"
         /> */}
-            <video ref={this.storeRef} autoplay="" loop="" src="/public/uxibcg.mp4"></video>
+            <video ref={this.storeRef} autoPlay="" loop="" src="/public/uxibcg.mp4" />
             {/* <video style={{ position: 'absolute', top: 0, zIndex: -1 }} src="/public/uxibcg.mp4"></video> */}
 
           </VideoFg>
         </VideoBg>
       </Wrapper>
-    )
+    );
   }
 }
 
-export default LandingVideo
+export default LandingVideo;
 
 /*
 <iframe src="https://player.vimeo.com/video/202929248?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
