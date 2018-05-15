@@ -13,6 +13,14 @@ const PopOverPage = () => (
     <P>
       PopOver are cool.
     </P>
+    <h4>Known Issues </h4>
+    <ul>
+      <li>
+        the triangle in ie/Edge browsers (clip-path) might overflow over the content of the PopOver
+        if there is not enough padding at the top of the container
+      </li>
+    </ul>
+    <br />
     <ul>
       <li>
         <CodeExample

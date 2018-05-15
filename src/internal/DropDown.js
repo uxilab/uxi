@@ -5,34 +5,40 @@ import enhanceWithClickOutside from 'react-click-outside';
 import { UnstyledButton } from '../Button';
 import styled from 'styled-components';
 
-const ItemsWrapper = styled.div`
-  overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden' };
-  &:before,
+const ItemsWrapper = styled.div``;
+
+const PopOverArrow = styled.div`
+  /* overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden' }; */
+  /* clip: rect(0px 20px 10px 0px); */
+
+    clip: rect(-8px 38px 11px -8px);
+
+        position: absolute;
+    width: 20px;
+    height: 20px;
+    min-height: 29px;
+    background: transparent;
+    top: -11px;
+    left: 20px;
   &:after {
     ${({ isPopOver }) => isPopOver ? 'content: ""' : '' };
     display: block;
-    width: 0px;
-    height: 0px;
+    width: 20px;
+    height: 20px;
     /* min-height: 20px; */
     position: absolute;
-    top: -24px;
-    background: transparent;;
-    transform: rotate(-90deg);
+    /* top: -10px;
+    left: 20px; */
+    box-sizing: border-box;
+    background: white;
+    transform: rotate(-45deg);
     transform-origin: center center;
     border-style: solid;
+    border-color: rgb(206, 206, 206);
+    border-width: 1px;
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%); */
   }
 
-  &:after {
-    left: 10px;
-    border-color: transparent transparent transparent white;
-    border-width: 12px;
-  }
-
-  &:before {
-    left: 10px;
-    border-color: transparent transparent transparent grey;
-    border-width: 12px;
-  }
 `;
 
 const WrapperUI = styled.div`
@@ -299,6 +305,7 @@ export class DropDown extends PureComponent {
           style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
         >
+          <PopOverArrow isPopOver={isPopOver} />
           {items}
         </ItemsWrapper>
       </WrapperUI>
