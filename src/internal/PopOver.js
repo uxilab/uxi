@@ -3,11 +3,11 @@ import DropDown from '../internal/DropDown';
 
 const PopOver = (props) => {
   'r';
-  const { main, content } = props;
+  const { main, children } = props;
 
   return (
     <DropDown
-      items={content}
+      items={children}
       main={main}
       isPopOver
     />

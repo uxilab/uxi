@@ -7,20 +7,15 @@ import CodeExample from '../../CodeExample';
 import ExampleSimplePopOver from './ExampleSimplePopOver';
 import RAWExampleSimplePopOver from '!raw-loader!./ExampleSimplePopOver';
 
+import ExamplePopOverAndPanel from './ExamplePopOverAndPanel';
+import RAWExamplePopOverAndPanel from '!raw-loader!./ExamplePopOverAndPanel';
+
 const PopOverPage = () => (
   <div>
     <Title text="PopOver" />
     <P>
       PopOver are cool.
     </P>
-    <h4>Known Issues </h4>
-    <ul>
-      <li>
-        the triangle in ie/Edge browsers (clip-path) might overflow over the content of the PopOver
-        if there is not enough padding at the top of the container
-      </li>
-    </ul>
-    <br />
     <ul>
       <li>
         <CodeExample
@@ -30,6 +25,16 @@ const PopOverPage = () => (
           hasPadding
         >
           <ExampleSimplePopOver />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExamplePopOverAndPanel}
+          component
+          title="Simple PopOver"
+          hasPadding
+        >
+          <ExamplePopOverAndPanel />
         </CodeExample>
       </li>
     </ul>

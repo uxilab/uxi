@@ -6,10 +6,9 @@ const main = (<div> click me </div>)
 
 const ExampleSimplePopOver = () => (
   <div>
-    <PopOver
-      main={main}
-      content={content}
-    />
+    <PopOver main={main} >
+      {content}
+    </PopOver>
   </div>
 );
 

@@ -60,7 +60,7 @@ const styles = {
   },
   itemsWrapper: {
     zIndex: 1,
-    minWidth: '180px',
+    minWidth: '100px',
     background: 'white',
     position: 'absolute',
     // overflow: 'hidden',
