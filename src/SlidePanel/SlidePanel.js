@@ -69,8 +69,8 @@ class SidePanel extends React.Component {
 
   handleEsc(e) {
     const { key } = e;
-    const { onClose } = this.props;
-    if (onClose && key === 'Escape') {
+    const { onClose, open } = this.props;
+    if (open && onClose && key === 'Escape') {
       onClose();
     }
   }
