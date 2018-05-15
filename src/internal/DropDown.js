@@ -5,6 +5,35 @@ import enhanceWithClickOutside from 'react-click-outside';
 import { UnstyledButton } from '../Button';
 import styled from 'styled-components';
 
+const ItemsWrapper = styled.div`
+  overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden' };
+  &:before,
+  &:after {
+    ${({ isPopOver }) => isPopOver ? 'content: ""' : '' };
+    display: block;
+    width: 0px;
+    height: 0px;
+    /* min-height: 20px; */
+    position: absolute;
+    top: -24px;
+    background: transparent;;
+    transform: rotate(-90deg);
+    transform-origin: center center;
+    border-style: solid;
+  }
+
+  &:after {
+    left: 10px;
+    border-color: transparent transparent transparent white;
+    border-width: 12px;
+  }
+
+  &:before {
+    left: 10px;
+    border-color: transparent transparent transparent grey;
+    border-width: 12px;
+  }
+`;
 
 const WrapperUI = styled.div`
   position: relative;
@@ -28,7 +57,7 @@ const styles = {
     minWidth: '180px',
     background: 'white',
     position: 'absolute',
-    overflow: 'hidden',
+    // overflow: 'hidden',
     border: '1px solid #cecece',
     borderColor: 'transparent',
     marginTop: '1px',
@@ -114,7 +143,7 @@ export class DropDown extends PureComponent {
 
   getDynamicItemsStyles() {
     const { isOpen, mainRef, itemsRef } = this.state;
-    const { itemsStyle, anchor, isFullWidth } = this.props;
+    const { itemsStyle, anchor, isFullWidth, isPopOver } = this.props;
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
     let itemsHeight;
@@ -147,7 +176,7 @@ export class DropDown extends PureComponent {
       left,
       right,
 
-      top: ItemsTop,
+      top: isPopOver ? (ItemsTop + 20) : ItemsTop,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
       pointerEvents: isOpen ? 'all' : 'none',
@@ -208,6 +237,7 @@ export class DropDown extends PureComponent {
         items: itemsBefore,
         style,
         itemsStyle,
+        isPopOver,
         // mainStyle,
         // isOpen,
       },
@@ -264,12 +294,13 @@ export class DropDown extends PureComponent {
             {dropDownMain}
           </div>
         </UnstyledButton>
-        <div
+        <ItemsWrapper
+          isPopOver={isPopOver}
           style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
         >
           {items}
-        </div>
+        </ItemsWrapper>
       </WrapperUI>
     );
   }

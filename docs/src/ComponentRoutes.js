@@ -38,6 +38,7 @@ import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
 import SelectInputPage from './components/pages/SelectInput/Page';
+import PopOverPage from './components/pages/PopOver/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -48,6 +49,7 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/button`} component={ButtonPage} />
         <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
         <Route path={`${match.url}/box`} component={BoxPage} />
+        <Route path={`${match.url}/popover`} component={PopOverPage} />
         <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
         <Route path={`${match.url}/inputs`} component={InputsPage} />
         <Route path={`${match.url}/icons`} component={IconsPage} />

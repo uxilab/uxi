@@ -21,6 +21,7 @@ export const routes = [
   { path: '/color', label: 'Colors' },
   { path: '/selectinput', label: 'SelectInput' },
   { path: '/alert', label: 'Alert' },
+  { path: '/popover', label: 'PopOver' },
   { path: '/autocomplete', label: 'AutoComplete' },
   { path: '/badge', label: 'Badge' },
   { path: '/breadcrumbs', label: 'BreadCrumbs' },
