@@ -10,6 +10,7 @@ const TileDetailWrapper = styled.div`
   border: 1px solid #ccc;
   padding:15px;
   position:relative;
+  flex-flow: row wrap;
 `;
 
 const TileImageWrapper = styled.div`
@@ -18,11 +19,9 @@ const TileImageWrapper = styled.div`
 
 const TileContentWrapper = styled.div`
   flex:1;
-  min-width:658px;
 `;
 
 const TileExtra = styled.div`
-  min-width: 200px
   max-width:658px;
 `;
 
@@ -31,7 +30,7 @@ const TileContentWrapperTitle = styled.div`
   padding-bottom:5px;
 `;
 
-const TileDetail = ({ title, imageUrl, icon, extra, children }) => {
+const TileDetail = ({ title, imageUrl, icon, extra, children, style }) => {
   let imageContent;
 
   if (imageUrl) {
@@ -46,7 +45,7 @@ const TileDetail = ({ title, imageUrl, icon, extra, children }) => {
 
 
   return (
-    <TileDetailWrapper className="uxi-tile-detail">
+    <TileDetailWrapper className="uxi-tile-detail" style={style}>
       <TileImageWrapper>
         {imageContent}
       </TileImageWrapper>
