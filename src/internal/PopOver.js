@@ -1,5 +1,6 @@
 import React from 'react';
 import DropDown from '../internal/DropDown';
+import PopOverBody from './PopOverBody';
 
 const PopOver = (props) => {
   'r';
@@ -7,7 +8,11 @@ const PopOver = (props) => {
 
   return (
     <DropDown
-      items={children}
+      items={(
+        <PopOverBody>
+          {children}
+        </PopOverBody>
+      )}
       main={main}
       isPopOver
     />
