@@ -262,7 +262,7 @@ export class DropDown extends PureComponent {
         ref: ref => this.storeMainRef(ref),
         // this next line is useless
         onClick: () => {
-          this.handleToggleVisibility;
+          this.handleToggleVisibility();
         },
       });
     // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
@@ -275,6 +275,7 @@ export class DropDown extends PureComponent {
           backgroundColor: '#bebebe',
         },
       },
+      onClose: () => { this.handleToggleVisibility(); console.log('onclose from dropdown') }
     }));
 
     const cleanedItemsStyle = {
@@ -286,6 +287,10 @@ export class DropDown extends PureComponent {
       ),
       // ...(!isOpen ? { maxHeight: 0 } : {} ),
     };
+
+    if (isPopOver) {
+      // find the close btn
+    }
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
