@@ -12,6 +12,7 @@ const ButtonLinkWrapper = styled.a`
   cursor: pointer;
   color: ${({ theme, type }) => getTypeColor(theme, type)};
   display: inline-block;
+  ${({ isFullWidth }) => isFullWidth ? 'width: 100%' : ''};
   &:hover {
     text-decoration: underline;
   }
@@ -21,15 +22,26 @@ const ButtonLinkWrapper = styled.a`
   }
 `;
 
-const ButtonLink = ({ onClick, icon, text }) => {
+const ButtonLink = ({ onClick, icon, text, style, isFullWidth }) => {
   const content = icon ? (
-    <AvatarWithName imgSize={16} icon={icon} name={text} />
+    <AvatarWithName
+      imgSize={16}
+      icon={icon}
+      name={text}
+      style={{
+        ...(isFullWidth ? { justifyContent: 'center' } : {} )
+      }}
+    />
   ) : (
     <div>{text}</div>
   );
 
   return (
-    <ButtonLinkWrapper onClick={(e) => { e.preventDefault(); onClick(e); }}>
+    <ButtonLinkWrapper
+      style={style}
+      onClick={(e) => { e.preventDefault(); onClick(e); }}
+      isFullWidth={isFullWidth}
+    >
       {content}
     </ButtonLinkWrapper>
   );
