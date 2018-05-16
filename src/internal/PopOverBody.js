@@ -26,7 +26,7 @@ const PopOverBody = ({ children, style, onClose }) => (
     <CloseBtn onClick={onClose} />
     {React.Children.map(children, (child) => {
       return React.cloneElement(child, {
-        ...(child.props.onClick ? { onClick: () => { onClose && onClose(); child.onClick && child.onClick() } } : {}),
+        ...(child.props.onClick ? { onClick: () => { onClose && onClose(); child.props.onClick && child.props.onClick() } } : {}),
       })
     })}
     {/* {children} */}

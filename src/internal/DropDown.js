@@ -268,6 +268,9 @@ export class DropDown extends PureComponent {
         // this next line is useless
         onClick: () => {
           this.handleToggleVisibility();
+          if (main.props.onClick) {
+            main.props.onClick()
+          }
         },
       });
     // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
