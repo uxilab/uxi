@@ -11,15 +11,16 @@ const PopOverArrow = styled.div`
   /* overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden' }; */
   /* clip: rect(0px 20px 10px 0px); */
 
-    clip: rect(-8px 38px 11px -8px);
+  clip: rect(-8px 38px 11px -8px);
 
-        position: absolute;
-    width: 20px;
-    height: 20px;
-    min-height: 29px;
-    background: transparent;
-    top: -11px;
-    left: 20px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  min-height: 29px;
+  background: transparent;
+  top: -11px;
+  ${({ anchor }) => anchor === 'right' ? 'right: 20px;' : 'left: 20px;' };
+
   &:after {
     ${({ isPopOver }) => isPopOver ? 'content: ""' : '' };
     display: block;
@@ -175,6 +176,10 @@ export class DropDown extends PureComponent {
     } else if (anchor === 'top') {
     }
 
+    const top = isPopOver
+      ? (ItemsTop + 20)
+      : ItemsTop;
+
     const res = {
       maxHeight: isOpen ? itemsHeight : 0,
 
@@ -182,7 +187,7 @@ export class DropDown extends PureComponent {
       left,
       right,
 
-      top: isPopOver ? (ItemsTop + 20) : ItemsTop,
+      top,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
       pointerEvents: isOpen ? 'all' : 'none',
@@ -310,7 +315,7 @@ export class DropDown extends PureComponent {
           style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
         >
-          <PopOverArrow isPopOver={isPopOver} />
+          <PopOverArrow isPopOver={isPopOver} anchor={anchor}/>
           {items}
         </ItemsWrapper>
       </WrapperUI>

@@ -4,7 +4,7 @@ import PopOverBody from './PopOverBody';
 
 const PopOver = (props) => {
   'r';
-  const { main, children } = props;
+  const { main, children, anchor, target } = props;
 
   return (
     <DropDown
@@ -15,6 +15,7 @@ const PopOver = (props) => {
       )}
       main={main}
       isPopOver
+      anchor={anchor}
     />
   );
 };
