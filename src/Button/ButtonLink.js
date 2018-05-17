@@ -22,7 +22,7 @@ const ButtonLinkWrapper = styled.a`
   }
 `;
 
-const ButtonLink = ({ onClick, icon, text, style, isFullWidth }) => {
+const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth }) => {
   const content = icon ? (
     <AvatarWithName
       imgSize={16}
@@ -33,7 +33,7 @@ const ButtonLink = ({ onClick, icon, text, style, isFullWidth }) => {
       }}
     />
   ) : (
-    <div>{text}</div>
+      <div style={{ textAlign: isFullWidth ? 'center' : 'left' }}>{text || message || children}</div>
   );
 
   return (
