@@ -14,7 +14,9 @@ const PopOverPage = () => (
   <div>
     <Title text="PopOver" />
     <P>
-      PopOver are cool.
+      PopOver are cool. <br />
+      Things to note: <br />
+      • don't pass a string as children to PopOver, always wrap in an actual element (span, div...)
     </P>
     <ul>
       <li>
