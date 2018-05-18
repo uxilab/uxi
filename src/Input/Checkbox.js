@@ -5,12 +5,52 @@ import IconButton from '../Button/IconButton';
 import {
   Checkbox as CheckBoxIcon,
   Checkboxoutline,
+  Padlock,
 } from '../Icons';
+
+const LabeLUI = styled.label`
+  cursor: pointer;
+  ${({ label, labelBefore }) => (
+    label
+      ? (labelBefore ? 'margin-right: 8px' : ' margin-left: 8px')
+      : ''
+  )};
+
+`;
+
+const InputUI = styled.input`
+  position: absolute
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  cursor: inherit;
+  box-sizing: border-box;
+  margin: 0;
+`;
 
 const Wrapper = styled.div`
   ${({ checker, theme: { palette } }) => (checker
     ? `svg { fill: ${palette.accent} !important; }`
-    : '')}
+    : '')
+  };
+  padding: 4px;
+  display: flex ;
+  align-items: center;
+
+  /* waiting for Edge to support focus-within */
+  ${({ hasFocus }) => hasFocus ? (`
+    outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
+    outline: 5px auto -webkit-focus-ring-color !important;
+  `) : ''};
+
+  &:focus-within {
+    outline: 2px solid #7AACFE !important;
+    outline: 5px auto -webkit-focus-ring-color !important;
+  }
 `;
 
 const posAbs = {
@@ -29,23 +69,20 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
   },
-  label: {
-    cursor: 'pointer',
-    marginLeft: '8px',
-  },
-  input: {
-    opacity: 0,
-    ...posAbs,
-    cursor: 'inherit',
-    boxSizing: 'border-box',
-    margin: 0,
-  },
 };
-// eslint-disable-next-line react/prefer-stateless-function
+
 class Checkbox extends React.PureComponent {
-  // state = {
-  //   checked: this.props.checked,
-  // }
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      hasFocus: false,
+    }
+
+    this.onFocus = this.onFocus.bind(this)
+    this.onBlur = this.onBlur.bind(this)
+  }
+
   componentWillMount() {
     this.isControlled = this.props.checked !== undefined;
     if (!this.isControlled) {
@@ -76,6 +113,18 @@ class Checkbox extends React.PureComponent {
     if (onChange) { onChange(event, checked, name); }
   }
 
+  onBlur() {
+    this.setState({
+      hasFocus: false,
+    })
+  }
+
+  onFocus() {
+    this.setState({
+      hasFocus: true,
+    })
+  }
+
   render() {
     const {
       name,
@@ -83,15 +132,20 @@ class Checkbox extends React.PureComponent {
       checked,
       defaultChecked,
       label,
+      labelBefore,
       style,
+      inputStyle,
+      labelStyle,
       // ...restOfProps
     } = this.props;
+
+    const { hasFocus } = this.state
 
     const checker = this.isControlled ? checked : this.state.checked;
 
     // eslint-disable-next-line no-nested-ternary
     const iconIdentifier = disabled
-      ? (checker ? 'Padlock' : 'Padlock')
+      ? (checker ? <Padlock /> : <Padlock />)
       : (checker ? <CheckBoxIcon size={22} color="#26a29a" /> : <Checkboxoutline size={22} />);
 
     /* eslint-disable jsx-a11y/label-has-for */
@@ -101,24 +155,26 @@ class Checkbox extends React.PureComponent {
 
     return (
       <div style={checkboxWrapperStyle}>
-        <Wrapper checker={checker} style={this.getWrapperStyles()}>
-          <IconButton icon={iconIdentifier} size="20" style={{ padding: '4px', display: 'flex', alignItems: 'center' }}>
-            <input
-              id={name}
-              style={styles.input}
-              checked={checker}
-              defaultChecked={defaultChecked}
-              name={name}
-              type="checkbox"
-              disabled={disabled}
-              onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
-            />
-          </IconButton>
-          <label htmlFor={name} style={styles.label} >
+        <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
+          {iconIdentifier}
+          <InputUI
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            hasFocus
+            id={name}
+            style={inputStyle}
+            checked={checker}
+            defaultChecked={defaultChecked}
+            name={name}
+            type="checkbox"
+            disabled={disabled}
+            onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
+          />
+          <LabeLUI htmlFor={name} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
             {label}
-          </label>
+          </LabeLUI>
         </Wrapper>
-      </div>
+      </div >
     );
   }
 }
@@ -131,6 +187,8 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   name: PropTypes.string, // .isRequired,
   defaultChecked: PropTypes.bool,
+  inputStyle: PropTypes.object,
+  labelStyle: PropTypes.object,
 };
 
 Checkbox.defaultProps = {
@@ -138,6 +196,8 @@ Checkbox.defaultProps = {
   onChange: () => { },
   icon: 'Checkboxoutline',
   checkedIcon: 'Checkbox',
+  inputStyle: {},
+  labelStyle: {},
 };
 
 export default Checkbox;
