@@ -7,7 +7,6 @@ import {
 
 /* eslint-disable no-nested-ternary */
 const StatusIconUI = styled.span`
-  background: white;
   position: absolute;
   right: 8px;
   top: 9px;
