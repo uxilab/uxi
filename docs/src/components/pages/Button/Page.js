@@ -1,7 +1,7 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
-
+import { Switch } from 'uxi/Input';
 import CodeExample from '../../CodeExample';
 import ExampleSimpleFlat from './ExampleSimpleFlat';
 import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
@@ -33,6 +33,8 @@ const ButtonPage = () => (
     <P>
       Button are used to emphasizes important functions on your page.
     </P>
+    <Switch name="foobar6" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
+
     <ul>
       <li>
         <CodeExample

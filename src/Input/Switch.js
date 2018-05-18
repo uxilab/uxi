@@ -1,7 +1,17 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
+const InputUI = styled.input`
+  opacity: 0;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+`;
+
 const LabelWrapper = styled.label`
+position: relative;
   display: flex;
   align-items: center;
   user-select: none;
@@ -9,6 +19,12 @@ const LabelWrapper = styled.label`
   flex-direction: ${({ labelBefore }) => (labelBefore ? 'row-reverse' : 'row')};
   opacity: ${props => (props.disabled ? '.7' : 1)};
   filter: ${props => (props.disabled ? 'grayscale(35%) opacity(70%)' : 'none')};
+
+  ${({ hasFocus }) => hasFocus ? (`
+    outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
+    outline: 5px auto -webkit-focus-ring-color !important;
+  `) : ''};
+
 `;
 
 const SwitchOutterWrapper = styled.div`
@@ -67,18 +83,18 @@ const styles = {
   outterWrapper: {
     display: 'inline-block',
   },
-  input: {
-    display: 'none',
-  },
 };
 
 class Switch extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      hasfocus: false,
       checked: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
   componentWillMount() {
@@ -104,17 +120,39 @@ class Switch extends PureComponent {
     if (onChange) { onChange({ checked: newState }, event); }
   }
 
+  onBlur() {
+    this.setState({
+      hasFocus: false,
+    })
+  }
+
+  onFocus() {
+    this.setState({
+      hasFocus: true,
+    })
+  }
+
   render() {
-    const { label, name, id, labelBefore, checked, disabled } = this.props;
+    const {
+      label,
+      name,
+      id,
+      labelBefore,
+      checked,
+      disabled,
+      inputStyle,
+    } = this.props;
+
+    const { hasFocus } = this.state;
 
     const checker = this.isControlled ? checked : this.state.checked;
 
     return (
       <div style={styles.outterWrapper} >
         <LabelWrapper
+          hasFocus={hasFocus}
           labelBefore={labelBefore}
           htmlFor={name || 'myAwesomeCheckBox'}
-          onClick={this.handleChange}
           disabled={disabled}
         >
           <SwitchOutterWrapper checked={checker} disabled={disabled}>
@@ -123,11 +161,22 @@ class Switch extends PureComponent {
           <LabelTextWrapper label={label} labelBefore={labelBefore}>
             {label}
           </LabelTextWrapper>
+          <InputUI
+            onBlur={this.onBlur}
+            onFocus={this.onFocus}
+            id={name || 'myAwesomeCheckBox'}
+            style={inputStyle}
+            type="checkbox"
+            onChange={this.handleChange}
+          />
         </LabelWrapper>
-        <input id={name || 'myAwesomeCheckBox'} style={styles.input} type="checkbox" />
       </div>
     );
   }
+}
+
+Switch.defaultProps = {
+  inputStyle: {},
 }
 
 export default Switch;
