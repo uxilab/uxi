@@ -11,6 +11,11 @@ const assetTarget = path.join(process.cwd(), 'public');
 console.log('assetTarget', assetTarget)
 app.use('/public', express.static(assetTarget))
 
+// let's encrypt verif file
+app.get('/.well-known/acme-challenge/nUlrYCwuJLq2elQmM_BIQH8JZxPay2M62UCSNqSWWGE', function (req, res) {
+  res.send(`nUlrYCwuJLq2elQmM_BIQH8JZxPay2M62UCSNqSWWGE.1i_usMSyX762w21vp30VgBzAhlLFl_VweWHM61bQAJc`)
+})
+
 app.get('/app.js', function (req, res) {
   res.sendFile(`${cwd}/dist/app.js`)
 })
