@@ -49,6 +49,7 @@ class SelectInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      idOpen: false,
       options: [],
       optionsNode: [],
       // TODO: handle multi select
@@ -56,6 +57,7 @@ class SelectInput extends PureComponent {
     };
 
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
+    this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
   }
 
   componentWillMount() {
@@ -84,12 +86,29 @@ class SelectInput extends PureComponent {
     }
   }
 
+  preventScrollingOnSpace(e) {
+    console.log('preventScrollingOnSpace')
+    console.log("e.key === ' '", e.key === ' ' )
+    if (e.key === ' ') {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+  }
+
   componentWillUpdate(nextProps, nextState) {
     const { selectedIndex, options } = this.state;
     const { onChange, value: valueProp } = this.props;
 
     const value = options[nextState.selectedIndex];
 
+    const { isOpen } = nextState;
+    if (isOpen) {
+      console.log('addingListener')
+      window.addEventListener('keydown', this.preventScrollingOnSpace)
+    } else {
+      console.log('removingListener')
+      window.removeEventListener('keydown', this.preventScrollingOnSpace)
+    }
     /*
     TODO: Make controlled selectInkput work!
     if (valueProp && valueProp !== value) {
@@ -119,6 +138,7 @@ class SelectInput extends PureComponent {
       state: {
         selectedIndex,
         optionsNode,
+        isOpen,
       },
       props: {
         error, success,
@@ -153,7 +173,6 @@ class SelectInput extends PureComponent {
         <div style={styles.trigerrerIcon}>
           <Button
             inert
-            tabIndex="-1"
             type="primary"
             style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
             icon={<Arrowdown />}
@@ -182,7 +201,8 @@ class SelectInput extends PureComponent {
               <Option
                 onClick={e => this.clickHandler(e)}
                 onEsc={() => this.clickHandler(null)}
-                data-index={i} {...child.props}
+              data-index={i}
+              {...child.props}
                 isOpen={isOpen}
                 // tabIndex={0}
                 // aria-hidden={isOpen ? false : true }
@@ -198,14 +218,20 @@ class SelectInput extends PureComponent {
 
         return (
           <Option
+            onClick={e => this.clickHandler(e)}
+            onEsc={() => this.clickHandler(null)}
+            data-index={i}
+            {...child.props}
+            isOpen={isOpen}
+            // tabIndex={0}
+            // aria-hidden={isOpen ? false : true }
             selected={isTheOne}
             style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
-            isOpen={isOpen}
           >
             {React.cloneElement(child, {
               value,
-              'data-index': i,
-              onClick: e => this.clickHandler(e),
+              // 'data-index': i,
+              // onClick: e => this.clickHandler(e),
             })}
           </Option>
         );

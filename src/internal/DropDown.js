@@ -136,11 +136,37 @@ export class DropDown extends PureComponent {
     });
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    const { isOpen } = this.state;
+    const { isOpen: willBeOpenState } = nextState;
+    const { isOpen: willBeOpenProps } = nextProps;
+
+    const willBeOpen = willBeOpenState ||  willBeOpenProps
+    let shouldFocusTrigerrer = false;
+
+    if (!willBeOpen) {
+      shouldFocusTrigerrer = true
+    }
+    // } else if (isOpen && willBeOpen) {
+    //   shouldFocusTrigerrer
+    // }
+
+    this.setState({
+      shouldFocusTrigerrer,
+    })
+  }
+
   componentWillReceiveProps(nextProps) {
+    const { onIsOpenChange } = this.props;
+
     if (nextProps.isOpen !== undefined) {
       this.setState({
         isOpen: nextProps.isOpen,
-      });
+      }, () => {
+        if (onIsOpenChange) {
+          onIsOpenChange(nextProps.isOpen)
+        }
+      } );
     }
   }
 
@@ -210,11 +236,18 @@ export class DropDown extends PureComponent {
   }
   handleClickOutside() {
     const { isOpen } = this.state;
+    const { onIsOpenChange } = this.props;
+
     if (isOpen) {
+      const newOpen = false
       const { leaveOpenOnClickOutside } = this.props;
       if (!leaveOpenOnClickOutside) {
         this.setState({
-          isOpen: false,
+          isOpen: newOpen,
+        }, () => {
+          if (onIsOpenChange) {
+            onIsOpenChange(newOpen)
+          }
         });
       }
     }
@@ -267,8 +300,11 @@ export class DropDown extends PureComponent {
       },
       state: {
         isOpen,
+        shouldFocusTrigerrer,
       },
     } = this;
+
+    console.log('shouldFocusTrigerrer', shouldFocusTrigerrer)
 
     // quikc dirty check
     // if (!(main && main.prototype && main.prototype.render)) {
@@ -313,6 +349,9 @@ export class DropDown extends PureComponent {
       // find the close btn
     }
 
+    const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: "0" } : {})
+    console.log('tabIndexButtonattr', tabIndexButtonattr)
+
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
         <UnstyledButton
@@ -320,6 +359,7 @@ export class DropDown extends PureComponent {
           isFullWidth={isFullWidth}
           style={styles.triggerWrapper}
           onClick={this.handleToggleVisibility}
+          {...tabIndexButtonattr}
         >
           <div style={styles.triggerInnerWrapper}>
             {dropDownMain}

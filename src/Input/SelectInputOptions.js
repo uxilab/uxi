@@ -31,20 +31,26 @@ const Options = props => {
 
   return <OptionsUI
     {...rest}
-    onClick={onClick}
+    onClick={(e) => { e.target.blur(); onClick && onClick() }}
     onKeyUp={(e) => {
-      console.log('e.key', e.key)
-      console.log('e.key === "Escape"', e.key === "Escape")
+      // if (e.target === document.body) {
+        // e.preventDefault()
+        // e.stopPropagation()
+      // }
+
       if (e.key === 'Escape') {
+        e.target.blur();
+        e.target.tabIndex = -1
+
+
         if (onEsc) {
-          console.log('calling onEsc')
           onEsc()
         }
-      } else if (e.key === ' ' || e.key === 'Enter' ) {
+      } else if (e.key === ' ' || e.key === 'Enter') {
+        e.target.blur();
+        e.target.tabIndex= -1
+
         if (onClick) {
-          console.log('calling onClick')
-          console.log('e', e)
-          console.log('e.currentTarget.dataset.index', e.currentTarget.dataset.index)
           const fakeEvent = {
             currentTarget: {
               dataset: { index: e.currentTarget.dataset.index }

@@ -14,13 +14,13 @@ const UnstyledButtonUI = styled.button`
   min-height: 100%;
 `;
 
-const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles }) => {
+const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles, ...attr }) => {
   'r';
 
   if (inline) {
     return (
       <div style={{ minWidth: '100%', minHeight: '100%', ...wrapperStyles }}>
-        <UnstyledButtonUI onClick={onClick} style={style}>
+        <UnstyledButtonUI {...attr} onClick={onClick} style={style}>
           {children}
         </UnstyledButtonUI>
       </div>
@@ -29,7 +29,7 @@ const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles }) => 
 
   return (
     <div style={{ minWidth: '100%', minHeight: '100%', display: 'flex', ...wrapperStyles }}>
-      <UnstyledButtonUI onClick={onClick} style={style}>
+      <UnstyledButtonUI {...attr} onClick={onClick} style={style}>
         {children}
       </UnstyledButtonUI>
     </div>
