@@ -1,5 +1,9 @@
 import React from 'react';
 import CodeExample from '../../CodeExample';
+
+import ExampleSimpleRadio from './ExampleSimpleRadio';
+import RAWExampleSimpleRadio from '!raw-loader!./ExampleSimpleRadio';
+
 import ExampleSimpleRadioGroup from './ExampleSimpleRadioGroup';
 import RAWExampleSimpleRadioGroup from '!raw-loader!./ExampleSimpleRadioGroup';
 
@@ -11,6 +15,11 @@ import RAWExampleDefaultValueRadioGroup from '!raw-loader!./ExampleDefaultValueR
 
 const ButtonPage = () => (
   <ul>
+    <li>
+      <CodeExample code={RAWExampleSimpleRadio} component description="simple radio">
+        <ExampleSimpleRadio />
+      </CodeExample>
+    </li>
     <li>
       <CodeExample code={RAWExampleSimpleRadioGroup} component description="Radio Group with no `value` and no `defaultValue`">
         <ExampleSimpleRadioGroup />

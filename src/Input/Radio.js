@@ -30,6 +30,11 @@ const styles = {
 };
 // eslint-disable-next-line react/prefer-stateless-function
 class Radio extends React.PureComponent {
+  constructor(props) {
+    super(props)
+
+    this.handleChange = this.handleChange.bind(this);
+  }
   // state = {
   //   checked: this.props.checked,
   // }
@@ -72,9 +77,12 @@ class Radio extends React.PureComponent {
       // ...restOfProps
     } = this.props;
 
-    const checker = this.isControlled ? this.props.checked : this.state.checked;
+    const isChecked = this.isControlled ? this.props.checked : this.state.checked
+    const checker = this.isControlled
+      ? { checked: this.props.checked }
+      : { defaultChecked: this.state.checked }
 
-    const iconIdentifier = checker ? 'radioInput' : 'RadioInputOutline';
+    const iconIdentifier = isChecked ? 'radioInput' : 'RadioInputOutline';
 
     /* eslint-disable jsx-a11y/label-has-for */
     return (
@@ -83,12 +91,13 @@ class Radio extends React.PureComponent {
           <input
             id={id}
             style={styles.input}
-            checked={checker}
+            // checked={checker}
+            {...checker}
             name={name}
             value={value}
             type="radio"
             disabled={disabled}
-            onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
+            onChange={this.handleChange} // eslint-disable-line react/jsx-no-bind
           />
         </IconButton>
         <label htmlFor={name} style={styles.label} >{label}</label>

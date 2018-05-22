@@ -46,7 +46,8 @@ class RadioGroup extends Component {
     this.setState({
       selectedValue: event.target.value,
     });
-    if (checked && this.props.onChange) {
+
+    if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }
   };
@@ -64,7 +65,10 @@ class RadioGroup extends Component {
             return null;
           }
 
+          const checked = selectedValue === child.props.value
+
           return React.cloneElement(child, {
+            ...child.props,
             key: index,
             name,
             inputRef: (node) => {
@@ -72,8 +76,8 @@ class RadioGroup extends Component {
                 this.radios.push(node);
               }
             },
-            checked: selectedValue === child.props.value,
-            onChange: this.handleRadioChange,
+            checked: checked,
+            onChange: (e) => { this.handleRadioChange(e); child.props.onChange && child.props.onChange(e) },
           });
         })}
       </form>
