@@ -32,6 +32,7 @@ const ExampleSimple = () => (
     <li>
       <h3>Select</h3>
       <SelectInput
+        style={{ width: '250px' }}
         defaultValue={selectInputDefaultValueRef}
         onChange={(x) => { console.log('onChange called with :', x); }}
         error={<span>error node</span>}

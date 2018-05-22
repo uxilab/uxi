@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
+import { Separator } from '../Menu';
 import { UnstyledButton } from '../Button';
 import styled from 'styled-components';
 
@@ -220,8 +221,19 @@ export class DropDown extends PureComponent {
   }
 
   handleToggleVisibility() {
+    const { onIsOpenChange } = this.props;
+    const isOpen = !this.state.isOpen
+    console.log('handleToggleVisibility in dropdown')
     if (this.props.main.props.onClick) { this.props.main.props.onClick(); }
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState(
+      { isOpen, },
+      () => {
+        if (onIsOpenChange) {
+          onIsOpenChange(isOpen)
+        }
+      }
+    );
+
   }
 
   storeMainRef(ref) {
@@ -249,6 +261,7 @@ export class DropDown extends PureComponent {
         style,
         itemsStyle,
         isPopOver,
+        handleDropDownChange,
         // mainStyle,
         // isOpen,
       },
@@ -304,7 +317,6 @@ export class DropDown extends PureComponent {
       <WrapperUI style={style} isFullWidth={isFullWidth}>
         <UnstyledButton
           role="menu"
-          tabIndex={0}
           isFullWidth={isFullWidth}
           style={styles.triggerWrapper}
           onClick={this.handleToggleVisibility}
@@ -314,12 +326,27 @@ export class DropDown extends PureComponent {
           </div>
         </UnstyledButton>
         <ItemsWrapper
+          // aria-hidden={isOpen ? false : true}
+          // autoFocus={isOpen}
+          // tabIndex={isOpen ? 1 : -1}
           isPopOver={isPopOver}
           style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
         >
-          <PopOverArrow isPopOver={isPopOver} anchor={anchor}/>
-          {items}
+          {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
+          {/* {items} */}
+          {
+            React.Children.map(items, (child) => {
+              // console.log('child.type', child.type)
+              return React.cloneElement(child, {
+                ...child.props,
+              //   tabIndex: isOpen ? 0 : -1,
+              //   'aria-hidden': isOpen
+              //     ? (child.type === Separator ? false : true)
+              //     : false
+              })
+            })
+          }
         </ItemsWrapper>
       </WrapperUI>
     );

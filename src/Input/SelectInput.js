@@ -54,6 +54,8 @@ class SelectInput extends PureComponent {
       // TODO: handle multi select
       selectedIndex: null,
     };
+
+    this.handleDropDownChange = this.handleDropDownChange.bind(this);
   }
 
   componentWillMount() {
@@ -150,6 +152,8 @@ class SelectInput extends PureComponent {
         </div>
         <div style={styles.trigerrerIcon}>
           <Button
+            inert
+            tabIndex="-1"
             type="primary"
             style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
             icon={<Arrowdown />}
@@ -163,6 +167,7 @@ class SelectInput extends PureComponent {
     const {
       children,
     } = this.props;
+    const { isOpen } = this.state
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
@@ -174,8 +179,13 @@ class SelectInput extends PureComponent {
       if (React.isValidElement(child)) {
         if (!isDOMTypeElement(child)) {
           return (
-            <div onClick={e => this.clickHandler(e)} data-index={i} {...child.props} >
               <Option
+                onClick={e => this.clickHandler(e)}
+                onEsc={() => this.clickHandler(null)}
+                data-index={i} {...child.props}
+                isOpen={isOpen}
+                // tabIndex={0}
+                // aria-hidden={isOpen ? false : true }
                 selected={isTheOne}
                 style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
               >
@@ -183,7 +193,6 @@ class SelectInput extends PureComponent {
                   value,
                 })}
               </Option>
-            </div>
           );
         }
 
@@ -191,6 +200,7 @@ class SelectInput extends PureComponent {
           <Option
             selected={isTheOne}
             style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+            isOpen={isOpen}
           >
             {React.cloneElement(child, {
               value,
@@ -224,6 +234,16 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
+    console.log('in click handler in select input, e', e)
+    if (!e) {
+      this.setState({
+        selectedIndex: this.state.selectedIndex || null,
+        isOpen: false,
+     })
+      this.forceUpdate();
+      return
+    }
+
     if (!this.isControlled) {
       const selectedIndex = e.currentTarget.dataset.index;
       this.setState({
@@ -232,6 +252,11 @@ class SelectInput extends PureComponent {
       });
       this.forceUpdate();
     }
+  }
+
+  handleDropDownChange(isOpen) {
+    console.log('isOpen in selectInput', isOpen)
+    this.setState({ isOpen })
   }
 
   render() {
@@ -245,6 +270,7 @@ class SelectInput extends PureComponent {
     return (
       <div style={style}>
         <DropDown
+          onIsOpenChange={this.handleDropDownChange}
           isFullWidth={isFullWidth || ('width' in style)}
           isOpen={isOpen}
           main={trigerer}
