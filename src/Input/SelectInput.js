@@ -92,6 +92,30 @@ class SelectInput extends PureComponent {
     if (e.key === ' ') {
       e.preventDefault()
       e.stopPropagation()
+
+      this.setState({
+        isOpen: false,
+      })
+    } else if (e.key === 'Escape') {
+      this.setState({
+        isOpen: false,
+      })
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      e.stopPropagation()
+
+      const event = document.createEvent('Event');
+      event.initEvent('keydown', true, true);
+      event.keyCode = 76;
+
+      // event.key = 'Tab';
+      var canceled = !document.body.dispatchEvent(event);
+
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      e.stopPropagation()
+
+
     }
   }
 
@@ -165,7 +189,10 @@ class SelectInput extends PureComponent {
     }
 
     return (
-      <span style={styles.trigerrer}>
+      <span
+        style={styles.trigerrer}
+        onEsc={() => this.clickHandler(null)}
+      >
         <div>
           {mainContent}
           <StatusIcon success={success} error={error} style={{ top: '8px', right: '48px' }} />
@@ -201,8 +228,8 @@ class SelectInput extends PureComponent {
               <Option
                 onClick={e => this.clickHandler(e)}
                 onEsc={() => this.clickHandler(null)}
-              data-index={i}
-              {...child.props}
+                data-index={i}
+                {...child.props}
                 isOpen={isOpen}
                 // tabIndex={0}
                 // aria-hidden={isOpen ? false : true }
