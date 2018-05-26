@@ -99,25 +99,32 @@ class SelectInput extends PureComponent {
         isOpen: false,
       })
     } else if (e.key === 'Tab') {
-      if (!document.activeElement.nodeName === 'BUTTON') {
-
+      if (!(document.activeElement.nodeName === 'BUTTON')) {
         const { activeElement } = document
         const lastOptionItem = document.activeElement.parentNode.lastChild;
-        const firstChildItem = document.activeElement.parentNode.firstChild;
+        const firstOptionItem = document.activeElement.parentNode.firstChild;
 
         console.log('activeElement', activeElement)
+        console.log('firstOptionItem', firstOptionItem)
         console.log('lastOptionItem', lastOptionItem)
-        console.log('activeElement === lastOptionItem', activeElement === lastOptionItem)
-        if (
-          activeElement === lastOptionItem &&
-          firstChildItem && firstChildItem.focus
-        ) {
-          firstChildItem.focus()
-          e.preventDefault()
+
+        if (e.shiftKey) {
+          if (activeElement === firstOptionItem && lastOptionItem && lastOptionItem.focus) {
+            lastOptionItem.focus()
+            e.preventDefault()
+          }
+        } else {
+          console.log('activeElement === lastOptionItem', activeElement === lastOptionItem)
+          if (activeElement === lastOptionItem && firstOptionItem && firstOptionItem.focus) {
+            firstOptionItem.focus()
+            e.preventDefault()
+          }
         }
         // this.setState({
         //   isOpen: false,
         // })
+
+
 
       }
     } else if (e.key === 'Escape') {
