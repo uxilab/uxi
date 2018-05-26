@@ -256,7 +256,6 @@ export class DropDown extends PureComponent {
   handleToggleVisibility() {
     const { onIsOpenChange } = this.props;
     const isOpen = !this.state.isOpen
-    console.log('handleToggleVisibility in dropdown')
     if (this.props.main.props.onClick) { this.props.main.props.onClick(); }
     this.setState(
       { isOpen, },
@@ -266,7 +265,6 @@ export class DropDown extends PureComponent {
         }
       }
     );
-
   }
 
   storeMainRef(ref) {
@@ -304,7 +302,6 @@ export class DropDown extends PureComponent {
       },
     } = this;
 
-    console.log('shouldFocusTrigerrer', shouldFocusTrigerrer)
 
     // quikc dirty check
     // if (!(main && main.prototype && main.prototype.render)) {
@@ -332,7 +329,7 @@ export class DropDown extends PureComponent {
           backgroundColor: '#bebebe',
         },
       },
-      onClose: () => { this.handleToggleVisibility(); console.log('onclose from dropdown') }
+      onClose: () => { this.handleToggleVisibility() }
     }));
 
     const cleanedItemsStyle = {
@@ -350,7 +347,6 @@ export class DropDown extends PureComponent {
     }
 
     const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: "0" } : {})
-    console.log('tabIndexButtonattr', tabIndexButtonattr)
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
@@ -377,7 +373,6 @@ export class DropDown extends PureComponent {
           {/* {items} */}
           {
             React.Children.map(items, (child) => {
-              // console.log('child.type', child.type)
               return React.cloneElement(child, {
                 ...child.props,
               //   tabIndex: isOpen ? 0 : -1,

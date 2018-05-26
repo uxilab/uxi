@@ -87,10 +87,6 @@ class SelectInput extends PureComponent {
   }
 
   preventScrollingOnSpace(e) {
-    console.log('e.target')
-    console.log('preventScrollingOnSpace')
-    console.log("e.key === ' '", e.key === ' ' )
-    console.log('e.key', e.key)
     if (e.key === ' ') {
       e.preventDefault()
       e.stopPropagation()
@@ -104,17 +100,12 @@ class SelectInput extends PureComponent {
         const lastOptionItem = document.activeElement.parentNode.lastChild;
         const firstOptionItem = document.activeElement.parentNode.firstChild;
 
-        console.log('activeElement', activeElement)
-        console.log('firstOptionItem', firstOptionItem)
-        console.log('lastOptionItem', lastOptionItem)
-
         if (e.shiftKey) {
           if (activeElement === firstOptionItem && lastOptionItem && lastOptionItem.focus) {
             lastOptionItem.focus()
             e.preventDefault()
           }
         } else {
-          console.log('activeElement === lastOptionItem', activeElement === lastOptionItem)
           if (activeElement === lastOptionItem && firstOptionItem && firstOptionItem.focus) {
             firstOptionItem.focus()
             e.preventDefault()
@@ -123,16 +114,12 @@ class SelectInput extends PureComponent {
         // this.setState({
         //   isOpen: false,
         // })
-
-
-
       }
     } else if (e.key === 'Escape') {
       this.setState({
         isOpen: false,
       })
     } else if (e.key === 'ArrowDown') {
-      console.log('Arrowdown')
       e.preventDefault()
       e.stopPropagation()
 
@@ -188,10 +175,8 @@ class SelectInput extends PureComponent {
 
     const { isOpen } = nextState;
     if (isOpen) {
-      console.log('addingListener')
       window.addEventListener('keydown', this.preventScrollingOnSpace)
     } else {
-      console.log('removingListener')
       window.removeEventListener('keydown', this.preventScrollingOnSpace)
     }
     /*
@@ -348,7 +333,6 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
-    console.log('in click handler in select input, e', e)
     if (!e) {
       this.setState({
         selectedIndex: this.state.selectedIndex || null,
@@ -369,7 +353,6 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
-    console.log('isOpen in selectInput', isOpen)
     this.setState({ isOpen })
   }
 
