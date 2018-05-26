@@ -99,9 +99,7 @@ class SelectInput extends PureComponent {
         isOpen: false,
       })
     } else if (e.key === 'Tab') {
-      if (document.activeElement.nodeName === 'BUTTON') {
-        // document.activeElement.nodeName === 'BUTTON'
-      } else {
+      if (!document.activeElement.nodeName === 'BUTTON') {
 
         const { activeElement } = document
         const lastOptionItem = document.activeElement.parentNode.lastChild;
@@ -150,12 +148,7 @@ class SelectInput extends PureComponent {
         }
       }
 
-      // var canceled = !document.body.dispatchEvent(event);
-
-
-
     } else if (e.key === 'ArrowUp') {
-      console.log('ArrowUp')
       e.preventDefault()
       e.stopPropagation()
 
@@ -170,16 +163,13 @@ class SelectInput extends PureComponent {
             lastOptionItem.focus()
           }
         } else {
-          // go back to first option element
+          // go back to last option element
           const lastOption = document.activeElement.parentNode.lastChild
           if (lastOption && lastOption.focus) {
             lastOption.focus()
           }
         }
       }
-
-
-
     }
   }
 
