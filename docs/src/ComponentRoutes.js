@@ -46,13 +46,13 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/`} exact component={Home} />
         <Route path={`${match.url}/Typography`} exact component={Typography} />
         <Route path={`${match.url}/color`} component={ColorPage} />
+        <Route path={`${match.url}/icons`} component={IconsPage} />
         <Route path={`${match.url}/button`} component={ButtonPage} />
         <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
         <Route path={`${match.url}/box`} component={BoxPage} />
         <Route path={`${match.url}/popover`} component={PopOverPage} />
         <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
         <Route path={`${match.url}/inputs`} component={InputsPage} />
-        <Route path={`${match.url}/icons`} component={IconsPage} />
         <Route path={`${match.url}/layouts`} component={LayoutPage} />
         <Route path={`${match.url}/list`} component={ListPage} />
         <Route path={`${match.url}/table`} component={TablePage} />

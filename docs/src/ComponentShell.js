@@ -27,6 +27,7 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 export const routes = [
   { path: '/typography', label: 'Typography' },
   { path: '/color', label: 'Colors' },
+  { path: '/icons', label: 'Iconography' },
   { path: '/selectinput', label: 'SelectInput' },
   { path: '/alert', label: 'Alert' },
   { path: '/popover', label: 'PopOver' },
@@ -38,7 +39,6 @@ export const routes = [
   { path: '/classic', label: 'Classic' },
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/datagrid', label: 'Data Grid' },
-  { path: '/icons', label: 'Icons' },
   { path: '/indicator', label: 'Indicator' },
   { path: '/inputs', label: 'Inputs' },
   { path: '/internal', label: 'Internal' },

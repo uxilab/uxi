@@ -13,25 +13,25 @@ class Box extends IsDarkComponent {
 
     if (margin.toLowerCase() === 'xs') {
       return {
-        margin: '5px',
+        margin: '4px',
       };
     }
 
     if (margin.toLowerCase() === 's') {
       return {
-        margin: '15px',
+        margin: '16px',
       };
     }
 
     if (margin.toLowerCase() === 'm') {
       return {
-        margin: '30px',
+        margin: '32px',
       };
     }
 
     if (margin.toLowerCase() === 'l') {
       return {
-        margin: '60px',
+        margin: '64px',
       };
     }
 
@@ -47,25 +47,25 @@ class Box extends IsDarkComponent {
 
     if (padding.toLowerCase() === 'xs') {
       return {
-        padding: '5px',
+        padding: '4px',
       };
     }
 
     if (padding.toLowerCase() === 's') {
       return {
-        padding: '15px',
+        padding: '16px',
       };
     }
 
     if (padding.toLowerCase() === 'm') {
       return {
-        padding: '30px',
+        padding: '32px',
       };
     }
 
     if (padding.toLowerCase() === 'l') {
       return {
-        padding: '60px',
+        padding: '64px',
       };
     }
 

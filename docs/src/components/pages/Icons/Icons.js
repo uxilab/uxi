@@ -1,21 +1,26 @@
 import React from 'react';
+import { Spacer } from 'uxi/Base';
 import * as Icons from 'uxi/Icons';
+import {
+  Text,
+} from 'uxi/Classic';
 
 const styles = {
   container: {
+    width:'100%',
     display: 'flex',
-    flexDirection: 'column',
-    margin: '1.5em',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   item: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '8px',
+    boxSizing:'border-box',
+    width:'25%',
   },
   icon: {
-    width: '40px',
+    width: '32px',
   },
 };
 
@@ -25,13 +30,22 @@ const IconsExample = () => {
   return (
     <div style={styles.container} >
       {
-        mappedKeys.map((x, i) => {
+        mappedKeys.sort((a,b) => {
+          if(a < b) {
+            return -1;
+          }
+          if(a > b) {
+            return 1;
+          }
+
+          return 0;
+        }).map((x, i) => {
           const Element = Icons[x] || <div />;
           return (
-            <div key={i} style={styles.item} >
+            <Spacer padding="s" key={i} style={styles.item} >
               <div style={styles.icon}><Element /></div>
-              {x}
-            </div>
+              <Text size="s">{x}</Text>
+            </Spacer>
           );
         })
       }
