@@ -87,8 +87,10 @@ class SelectInput extends PureComponent {
   }
 
   preventScrollingOnSpace(e) {
+    console.log('e.target')
     console.log('preventScrollingOnSpace')
     console.log("e.key === ' '", e.key === ' ' )
+    console.log('e.key', e.key)
     if (e.key === ' ') {
       e.preventDefault()
       e.stopPropagation()
@@ -96,24 +98,86 @@ class SelectInput extends PureComponent {
       this.setState({
         isOpen: false,
       })
+    } else if (e.key === 'Tab') {
+      if (document.activeElement.nodeName === 'BUTTON') {
+        // document.activeElement.nodeName === 'BUTTON'
+      } else {
+
+        const { activeElement } = document
+        const lastOptionItem = document.activeElement.parentNode.lastChild;
+        const firstChildItem = document.activeElement.parentNode.firstChild;
+
+        console.log('activeElement', activeElement)
+        console.log('lastOptionItem', lastOptionItem)
+        console.log('activeElement === lastOptionItem', activeElement === lastOptionItem)
+        if (
+          activeElement === lastOptionItem &&
+          firstChildItem && firstChildItem.focus
+        ) {
+          firstChildItem.focus()
+          e.preventDefault()
+        }
+        // this.setState({
+        //   isOpen: false,
+        // })
+
+      }
     } else if (e.key === 'Escape') {
       this.setState({
         isOpen: false,
       })
     } else if (e.key === 'ArrowDown') {
+      console.log('Arrowdown')
       e.preventDefault()
       e.stopPropagation()
 
-      const event = document.createEvent('Event');
-      event.initEvent('keydown', true, true);
-      event.keyCode = 76;
+      const nextSiblingMaybe = document.activeElement.nextElementSibling
+      if (nextSiblingMaybe && nextSiblingMaybe.focus) {
+        nextSiblingMaybe.focus()
+      } else {
+        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling
+        if (optionsWrapperDiv) {
+          const firstOptionItem = optionsWrapperDiv.firstChild
+          if (firstOptionItem && firstOptionItem.focus) {
+            firstOptionItem.focus()
+          }
+        } else {
+          // go back to first option element
+          const firstOption = document.activeElement.parentNode.firstChild
+          if (firstOption && firstOption.focus) {
+            firstOption.focus()
+          }
+        }
+      }
 
-      // event.key = 'Tab';
-      var canceled = !document.body.dispatchEvent(event);
+      // var canceled = !document.body.dispatchEvent(event);
+
+
 
     } else if (e.key === 'ArrowUp') {
+      console.log('ArrowUp')
       e.preventDefault()
       e.stopPropagation()
+
+      const previousSiblingMaybe = document.activeElement.previousElementSibling
+      if (previousSiblingMaybe && previousSiblingMaybe.focus) {
+        previousSiblingMaybe.focus()
+      } else {
+        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling
+        if (optionsWrapperDiv) {
+          const lastOptionItem = document.activeElement.parentNode.nextElementSibling.lastChild
+          if (lastOptionItem && lastOptionItem.focus) {
+            lastOptionItem.focus()
+          }
+        } else {
+          // go back to first option element
+          const lastOption = document.activeElement.parentNode.lastChild
+          if (lastOption && lastOption.focus) {
+            lastOption.focus()
+          }
+        }
+      }
+
 
 
     }
