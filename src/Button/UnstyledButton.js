@@ -12,6 +12,10 @@ const UnstyledButtonUI = styled.button`
   background: transparent;
   min-width: 100%;
   min-height: 100%;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px #719ECE;
+  }
 `;
 
 const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles, ...attr }) => {

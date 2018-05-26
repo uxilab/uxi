@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { SelectInput } from 'uxi/Input'
 import { AvatarWithName } from 'uxi/Img';
+import { Flex } from 'uxi/Layout';
 
 const options = [
   {
@@ -33,12 +34,12 @@ class ExampleSimple extends Component {
         <SelectInput
           onChange={(event, value) => this.setState({ selectedValue: value })}
         >
-          <div value={null}>None</div>
+          <Flex value={null}>None</Flex>
           {
             options.map(({ name, pic }) => (
-              <div value={name}>
+              <Flex value={name}>
                 <AvatarWithName src={pic} name={name} />
-              </div>
+              </Flex>
             ))
           }
         </SelectInput>

@@ -291,6 +291,7 @@ export class DropDown extends PureComponent {
         items: itemsBefore,
         style,
         itemsStyle,
+        triggerWrapperStyle,
         isPopOver,
         handleDropDownChange,
         // mainStyle,
@@ -353,7 +354,7 @@ export class DropDown extends PureComponent {
         <UnstyledButton
           role="menu"
           isFullWidth={isFullWidth}
-          style={styles.triggerWrapper}
+          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
           onClick={this.handleToggleVisibility}
           {...tabIndexButtonattr}
         >

@@ -12,10 +12,13 @@ const OptionsUI = styled.div`
   display: flex;
   width: 100%;
   min-height: 32px;
-  & > * { width: 100% }
+  border: 1px solid transparent;
   &:hover,
   &:focus {
+    outline: none;
     background-color: #f4f4f4;
+    &:not(:first-child) { border-top-color: #a3a3a3; }
+    &:not(:last-child) { border-bottom-color: #a3a3a3; }
   };
   &:active {
     background-color: #fff;

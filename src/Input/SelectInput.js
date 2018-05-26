@@ -377,6 +377,9 @@ class SelectInput extends PureComponent {
             overflowY: 'auto',
             overflowX: 'hidden',
           }}
+          triggerWrapperStyle={{
+            borderRadius: '3px',
+          }}
         />
         <ErrorWrapperUI>{error}</ErrorWrapperUI>
       </div>
