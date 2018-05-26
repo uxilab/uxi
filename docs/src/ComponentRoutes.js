@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/pages/Home';
 import ButtonPage from './components/pages/Button/Page';
-import FontPage from './components/pages/Font/Page';
+import Typography from './components/pages/Typography/Page';
 import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
 import SocialLinksPage from './components/pages/SocialLinks/Page';
@@ -44,7 +44,7 @@ const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
         <Route path={`${match.url}/`} exact component={Home} />
-        <Route path={`${match.url}/Font`} exact component={FontPage} />
+        <Route path={`${match.url}/Typography`} exact component={Typography} />
         <Route path={`${match.url}/color`} component={ColorPage} />
         <Route path={`${match.url}/button`} component={ButtonPage} />
         <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />

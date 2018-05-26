@@ -41,11 +41,11 @@ class CodeExample extends Component {
     root: {
       backgroundColor: 'white',
       border: '1px solid lightGrey',
-      marginBottom: 32,
-      borderRadius: '3px',
+      marginBottom: '32px',
+      borderRadius: '2px',
     },
     exampleBlock: {
-      padding: hasPadding ? '14px' : 0,
+      padding: hasPadding ? '12px' : 0,
       margin: 0,
       width: layoutSideBySide ? '45%' : null,
       float: layoutSideBySide ? 'right' : null,

@@ -7,7 +7,15 @@ import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 import { ThemedBox } from 'uxi/Box';
 
-const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff', overflow: 'visible' }
+const pageWithMenuStyles = {
+  marginTop: '110px',
+  marginLeft: '45px',
+  marginRight: '45px',
+  borderRadius: '5px',
+  padding: '0 16px',
+  background: '#fff',
+  overflow: 'visible',
+};
 
 const isActive = (path, currentLocation) =>
   path.toLowerCase() === currentLocation.toLowerCase();
@@ -17,7 +25,7 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 );
 
 export const routes = [
-  { path: '/font', label: 'Fonts' },
+  { path: '/typography', label: 'Typography' },
   { path: '/color', label: 'Colors' },
   { path: '/selectinput', label: 'SelectInput' },
   { path: '/alert', label: 'Alert' },
@@ -58,7 +66,7 @@ export const routes = [
 const ComponentShell = ({ children }) => {
   const pathname = window.location.pathname;
   const mainMenu = (
-    <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
+    <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', marginTop:'16px', height: '100%' }}>
       {routes.map(x => makeMenuItem(x, pathname)) }
     </VerticalMenu>
   );
@@ -66,13 +74,13 @@ const ComponentShell = ({ children }) => {
   return (
     <div style={{ maxWidth: '1280px', margin: '0 auto'}} >
       <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
-        <div style={{ padding: '16px' }}>
           <Layout>
             <Row>
-              <Col>{children}</Col>
+              <div style={{ margin: '16px' }}>
+                <Col>{children}</Col>
+              </div>
             </Row>
           </Layout>
-        </div>
       </PageWithMenu>
     </div>
   );

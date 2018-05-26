@@ -22,7 +22,7 @@ const styles = {
   description: {
     background: '#ffffff',
     overflow: 'auto',
-    padding: '10px 20px 10px',
+    padding: '12px 16px 16px',
     marginTop: 0,
     marginBottom: 0,
   },

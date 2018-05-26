@@ -1,10 +1,10 @@
 import React from 'react';
-import Text from '../Text';
+import styled from 'styled-components';
 
-const P = ({ children, style }) => (
-  <p style={{ padding: '15px 0', margin: 0, ...style }}>
-    <Text>{children}</Text>
-  </p>
-);
+const P = styled.p`
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
+  margin: ${({ theme: { spacing } }) => spacing.m} 0px;
+  color: ${({ theme: { fontColors }}) => fontColors.body };
+`;
 
 export default P;

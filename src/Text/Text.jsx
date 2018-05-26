@@ -15,8 +15,8 @@ class Text extends Component {
     const { type = 'body', children, style = {} } = this.props;
     const typeLowerCase = type.toLowerCase();
     const isDark = this.context.isDarkTheme ? this.context.isDarkTheme() : false;
-    const correctStyling = isDark ? theme.fontsAndColor.dark[typeLowerCase] : theme.fontsAndColor.light[typeLowerCase];
-    const defaultStyle = isDark ? theme.fontsAndColor.dark.body : theme.fontsAndColor.light.body;
+    const correctStyling = theme.fontsAndColor.light[typeLowerCase];
+    const defaultStyle = theme.fontsAndColor.light.body;
 
     const mergedStyle = Object.assign({}, correctStyling || defaultStyle, style);
 

@@ -14,7 +14,7 @@ const Title = ({ text, isHeading, children, style = {} }) => {
   if (isHeading) {
     titleType = 'heading';
     titleStyle = {
-      padding: theme.padding.heading,
+      padding: theme.margin.heading,
     };
   }
 

@@ -76,9 +76,6 @@ export const theme = { // eslint-disable-line no-shadow
       padding: '5px 10px',
     },
   },
-  root: {
-    fontSize: '14p',
-  },
   border: {
     default: '1px solid #e9e9e9',
   },
@@ -87,10 +84,12 @@ export const theme = { // eslint-disable-line no-shadow
     light: palette.purewhite,
     dark: palette.primary.main,
   },
+  margin: {
+    title: '16px 0',
+  },
   padding: {
     breathPadding: '1em',
     defaultPadding: '24px',
-    title: '15px 0',
     heading: '10px 0',
   },
   dimensions: {
@@ -300,6 +299,31 @@ export const theme = { // eslint-disable-line no-shadow
   shadow: {
     base: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px ',
   },
+  spacing: {
+    xs: '4px',
+    s: '8px',
+    m: '16px',
+    l: '32px',
+    xl: '64px',
+  },
+  fontColors: {
+    title: lighten('#000000', 0.11),
+    body: lighten('#000000', 0.21),
+    caption:  lighten('#000000', 0.45),
+    disabled: lighten('#000000', 0.40),
+  },
+  fontSizes: {
+    body: '16px',
+    h1: '28px',
+    h2: '22px',
+    h3: '20px',
+    h4: '18px',
+    h5: '16px',
+    h6: '14px',
+    l: '16px',
+    m: '14px',
+    s: '12px',
+  },
   transition: {
     default: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     defaultAll: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) ',
@@ -313,12 +337,15 @@ export const theme = { // eslint-disable-line no-shadow
     // titleColor: 'red',
     // titleFontSize: '2em',
     // OR title: { color: '', 'font-size': }
-    title: css`
+    title: `
       color: palette.darkGrey;
       font-weight: bold;
     `,
-    h1: css`font-size: 1.85em; margin: .67em 0;`,
-    h2: css`font-size: 1.70em; margin: .6em 0;`,
+    h1: `
+    font-size: 1.85em;
+    margin: .67em 0;
+    `,
+    h2: `font-size: 1.70em; margin: .6em 0;`,
     h3: css`font-size: 1.50em; margin: .5em 0;`,
     h4: css`font-size: 1.40em; margin: .5em 0;`,
     h5: css`font-size: 1.30em; margin: .5em 0;`,
