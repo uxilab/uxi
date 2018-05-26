@@ -104,6 +104,10 @@ export class DropDown extends PureComponent {
     items: PropTypes.array,
   }
 
+  static defaultProps = {
+    anchor: 'left',
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -131,6 +135,7 @@ export class DropDown extends PureComponent {
     const { style } = this.props;
     window.addEventListener('resize', this.handleWindowResize);
     window.addEventListener('scroll', this.handleWindowScroll);
+    this.htmlNodeRef = document.querySelector('html')
     this.setState({
       initalStyleValue: style,
     });
@@ -188,17 +193,19 @@ export class DropDown extends PureComponent {
         .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
     }
 
+    const leftScrollOffset = this.htmlNodeRef.scrollLeft
     const cRectMain = mainRef.getBoundingClientRect();
     const cRectItems = itemsRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
-    const ItemsLeft = cRectMain.left - (cRectItems.width - cRectMain.width);
+    const ItemsLeft = cRectMain.left// - (cRectItems.width - cRectMain.width);
     const width = cRectMain.width;
 
-    let left = '';
+    let left = 'sdrgqerg';
     const right = '';
     if (anchor === 'left') {
-    } else if (anchor === 'right') {
       left = `${ItemsLeft}px`;
+    } else if (anchor === 'right') {
+      left = `${ItemsLeft - (cRectItems.width - cRectMain.width)}px`;
     } else if (anchor === 'bottom') {
     } else if (anchor === 'top') {
     }
@@ -211,7 +218,7 @@ export class DropDown extends PureComponent {
       maxHeight: isOpen ? itemsHeight : 0,
 
       width: isFullWidth ? `${width}px` : 'auto',
-      left,
+      left: left,
       right,
 
       top,
@@ -349,6 +356,10 @@ export class DropDown extends PureComponent {
 
     const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: "0" } : {})
 
+    const GDDynamicstyles = this.getDynamicItemsStyles()
+
+    console.log('GDDynamicstyles.left', GDDynamicstyles.left)
+
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
         <UnstyledButton
@@ -363,11 +374,12 @@ export class DropDown extends PureComponent {
           </div>
         </UnstyledButton>
         <ItemsWrapper
+          data-is-the-one='true'
           // aria-hidden={isOpen ? false : true}
           // autoFocus={isOpen}
           // tabIndex={isOpen ? 1 : -1}
           isPopOver={isPopOver}
-          style={{ ...styles.itemsWrapper, ...this.getDynamicItemsStyles(), ...cleanedItemsStyle }}
+          style={{ ...styles.itemsWrapper, ...GDDynamicstyles, ...cleanedItemsStyle }}
           ref={ref => this.storeItemsRef(ref)}
         >
           {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
