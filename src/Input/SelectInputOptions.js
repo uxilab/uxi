@@ -31,7 +31,7 @@ const Options = props => {
 
   return <OptionsUI
     {...rest}
-    onClick={(e) => { e.target.blur(); onClick && onClick() }}
+    onClick={(e) => { e.target.blur(); onClick && onClick(e) }}
     onKeyUp={(e) => {
       // if (e.target === document.body) {
         // e.preventDefault()
