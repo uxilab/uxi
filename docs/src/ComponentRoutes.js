@@ -39,6 +39,7 @@ import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
 import SelectInputPage from './components/pages/SelectInput/Page';
 import PopOverPage from './components/pages/PopOver/Page';
+import ShellPage from './components/pages/Shell/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -47,13 +48,14 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/Typography`} exact component={Typography} />
         <Route path={`${match.url}/color`} component={ColorPage} />
         <Route path={`${match.url}/icons`} component={IconsPage} />
+        <Route path={`${match.url}/shell`} component={ShellPage} />
+        <Route path={`${match.url}/layouts`} component={LayoutPage} />
         <Route path={`${match.url}/button`} component={ButtonPage} />
         <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
         <Route path={`${match.url}/box`} component={BoxPage} />
         <Route path={`${match.url}/popover`} component={PopOverPage} />
         <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
         <Route path={`${match.url}/inputs`} component={InputsPage} />
-        <Route path={`${match.url}/layouts`} component={LayoutPage} />
         <Route path={`${match.url}/list`} component={ListPage} />
         <Route path={`${match.url}/table`} component={TablePage} />
         <Route path={`${match.url}/switch`} component={SwitchPage} />
