@@ -23,7 +23,7 @@ const Badge = styled.div`
   margin-right: 4px;
   padding: 0;
   background-color: ${({ theme, type }) =>
-    (type === 'success' ? theme.palette.accent.main : theme.palette.lightGrey)}
+    (type === 'success' ? theme.palette.accent.main : theme.palette.lightGrey)};
 `;
 
 const StepWrapperUI = styled.div`
@@ -38,7 +38,7 @@ const StepWrapperUI = styled.div`
   ${({ disabled }) => (disabled ? 'background: white' : '')};
   &:hover {
     background: ${({ disabled }) => (disabled ? 'inherit' : '#efefef')};
-  }
+  };
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   /* this next line is a tad too agressive: */
   /* pointer-events: ${({ disabled }) => (disabled ? 'none' : 'inherit')}; */
