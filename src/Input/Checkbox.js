@@ -75,21 +75,34 @@ class Checkbox extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    this.state = {
+    let state = {
       hasFocus: false,
+    }
+
+    this.isControlled = this.props.checked !== undefined;
+    if (!this.isControlled) {
+      // not controlled, use internal state
+      state = {
+        ...state,
+        checked: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
+      }
+    }
+
+    this.state = {
+      ...state,
     }
 
     this.onFocus = this.onFocus.bind(this)
     this.onBlur = this.onBlur.bind(this)
   }
 
-  componentWillMount() {
-    this.isControlled = this.props.checked !== undefined;
+  componentWillReceiveProps(nextProps) {
+    this.isControlled = nextProps.checked !== undefined;
     if (!this.isControlled) {
       // not controlled, use internal state
       this.setState({
-        checked: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
-      });
+        checked: nextProps.defaultChecked !== undefined ? nextProps.defaultChecked : false,
+      })
     }
   }
 
