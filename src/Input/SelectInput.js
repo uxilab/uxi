@@ -34,6 +34,9 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     padding: 0,
+    maxHeight: '32px',
+    height: '32px',
+    boxSizing: 'border-box',
   },
   button: {
     // border: 'none',

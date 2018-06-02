@@ -15,9 +15,8 @@ const ButtonBaseStyles = css`
   white-space: nowrap;
   padding: 6px 12px;
   font-size: 14px;
+  line-height: 18px;
   text-transform: uppercase;
-  line-height: 1.42857143;
-  line-height: 1.3;
   box-sizing: border-box;
   min-height: 32px;
   border-radius: 2px;

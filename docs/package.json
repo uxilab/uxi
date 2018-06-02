@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node .",
     "dev": "uxi-cli dev",
+    "dev:public": "uxi-cli dev --host 0.0.0.0 --port 8989",
     "packAndBundle": "npm run pack && npm run build",
     "build": "uxi-cli build",
     "pack": "uxi-cli pack",
@@ -28,6 +29,6 @@
     "styled-components": "^3.2.0"
   },
   "devDependencies": {
-    "uxi-cli": "^1.0.71"
+    "uxi-cli": "^1.0.72"
   }
 }
