@@ -1,9 +1,11 @@
 import React from 'react';
-import ExampleSimple from './ExampleSimple';
+/*import ExampleSimple from './ExampleSimple';*/
+
+import CheckBoxExample from './CheckBoxExample';
 
 const InputsPage = () => (
   <div>
-    <ExampleSimple />
+    <CheckBoxExample handleFormChange={() => { alert('test')}} />
   </div>
 );
 
