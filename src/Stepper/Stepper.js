@@ -63,6 +63,7 @@ class Stepper extends Component {
         <div
           // remove event handler for disabled step button:
           onClick={(props.disabled ? () => { } : props.children.props.onClick)}
+          style={(nowrap ? { width: '100%' } : {})}
         >
           {
             React.cloneElement(step, {
