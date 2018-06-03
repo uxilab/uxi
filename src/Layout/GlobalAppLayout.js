@@ -51,7 +51,7 @@ const InnerAppLayoutUI = AppLayout.extend`
   /* overflow-y: scroll; *//* applies to same elem as line 34 */
 	&>*:nth-child(1) {
     flex-grow: 99;
-    flex-shrink: 1;
+    flex-shrink: 0;
   }
 	&>*:nth-child(2) {
 		flex-grow: 1;
