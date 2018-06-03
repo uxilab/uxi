@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const StepConnectorWrapperUI = styled.div`
-  height: 100%;
+  max-height: 20px;
   position: relative;
   flex-grow: 2;
   flex-shrink: 9;
