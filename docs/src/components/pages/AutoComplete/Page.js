@@ -9,6 +9,9 @@ import RAWExampleMediumList from '!raw-loader!./ExampleMediumList';
 import ExampleBigList from './ExampleBigList';
 import RAWExampleBigList from '!raw-loader!./ExampleBigList';
 
+import ExampleLongValues from './ExampleLongValues';
+import RAWExampleLongValues from '!raw-loader!./ExampleLongValues';
+
 const AutoCompletePage = () => (
   <div style={{ padding: '16px' }} >
     <Title text="AutoComplete" />
@@ -26,7 +29,7 @@ const AutoCompletePage = () => (
           <ExampleMediumList />
         </CodeExample>
       </li>
-      <li>
+    {/*   <li>
         <CodeExample
           code={RAWExampleBigList}
           component
@@ -34,6 +37,16 @@ const AutoCompletePage = () => (
           hasPadding
         >
           <ExampleBigList />
+        </CodeExample>
+      </li> */}
+      <li>
+        <CodeExample
+          code={RAWExampleLongValues}
+          component
+          title="AutoComplete with long values (layout and search perf)"
+          hasPadding
+        >
+          <ExampleLongValues />
         </CodeExample>
       </li>
     </ul>

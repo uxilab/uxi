@@ -29,18 +29,22 @@ const AutoCompleteStyle = {
   },
 };
 
+const MatchesPart = styled.span`
+  white-space: nowrap;
+`;
+
 const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) => {
   const nameToRenderParam = item[filterOn];
   const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
     matches
-      ? (<span data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></span>)
-      : (<span data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
+      ? (<MatchesPart data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></MatchesPart>)
+      : (<MatchesPart data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
   ));
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
-      {matchesNode}
-      <span data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
+      <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
+      <span style={{ margin: '0 6px' }} data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
 };
