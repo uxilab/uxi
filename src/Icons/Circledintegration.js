@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Circledintegration = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 36.94 36.94"
       width="24px"

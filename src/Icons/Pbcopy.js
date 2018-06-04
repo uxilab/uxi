@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Pbcopy = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       aria-hidden="true"
       version="1.1"
       viewBox="0 0 14 16"

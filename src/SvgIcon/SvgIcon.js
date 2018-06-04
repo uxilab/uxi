@@ -47,6 +47,7 @@ class SvgIcon extends Component {
       userSelect: 'none',
       ...style,
     };
+
     return (
       <svg
         className={`${className} uxi_svg-icon-wrapper`}
@@ -55,8 +56,16 @@ class SvgIcon extends Component {
         onMouseLeave={(e) => { this.handleMouseLeave(e) }}
         style={mergedStyles}
         viewBox={viewBox}
+        focusable="false" // IE11 is so dope
       >
         {children}
+        {/* {React.Children.map(children, (child) => {
+          return React.cloneElement(child, {
+            ...child.props,
+            focusable: "false", // IE11 is so dope
+          });
+        })
+        } */}
       </svg>
     );
   }

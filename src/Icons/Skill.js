@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Skill = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 19.31 15.75"
       width="24px"

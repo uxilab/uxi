@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Directoryopen = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 19.26 13.84"
       width="24px"

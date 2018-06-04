@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Notification = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 14.86 16"
       width="24px"

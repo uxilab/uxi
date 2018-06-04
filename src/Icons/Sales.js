@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Sales = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 14.07 17.2"
       width="24px"

@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Cluedin = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       id="Layer_1"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"

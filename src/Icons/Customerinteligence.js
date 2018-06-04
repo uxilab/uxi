@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Customerinteligence = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 13.51 15.97"
       width="24px"

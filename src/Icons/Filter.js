@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 const Filter = props => (
   <SvgIcon {...props}>
-    <svg
+    <svg focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 15.25 17.5"
       width="24px"
