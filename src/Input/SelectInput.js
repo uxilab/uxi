@@ -90,14 +90,14 @@ class SelectInput extends PureComponent {
   }
 
   preventScrollingOnSpace(e) {
-    if (e.key === ' ') {
+    if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
       e.preventDefault()
       e.stopPropagation()
 
       this.setState({
         isOpen: false,
       })
-    } else if (e.key === 'Tab') {
+    } else if (e.key === 'Tab' || e.keyCode === 9) {
       if (!(document.activeElement.nodeName === 'BUTTON')) {
         const { activeElement } = document
         const lastOptionItem = document.activeElement.parentNode.lastChild;
@@ -118,11 +118,11 @@ class SelectInput extends PureComponent {
         //   isOpen: false,
         // })
       }
-    } else if (e.key === 'Escape') {
+    } else if (e.key === 'Escape' || e.keyCode === 27) {
       this.setState({
         isOpen: false,
       })
-    } else if (e.key === 'ArrowDown') {
+    } else if (e.key === 'ArrowDown' || e.keyCode === 40) {
       e.preventDefault()
       e.stopPropagation()
 
@@ -145,7 +145,7 @@ class SelectInput extends PureComponent {
         }
       }
 
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowUp' || e.keyCode === 38) { console.log("e.key === 'ArrowUp'")
       e.preventDefault()
       e.stopPropagation()
 
