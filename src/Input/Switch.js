@@ -85,6 +85,8 @@ const styles = {
   },
 };
 
+let counter = 0;
+
 class Switch extends PureComponent {
   constructor(props) {
     super(props);
@@ -164,7 +166,8 @@ class Switch extends PureComponent {
           <InputUI
             onBlur={this.onBlur}
             onFocus={this.onFocus}
-            id={name || 'myAwesomeCheckBox'}
+            id={id || name}
+            name={name || id || counter++}
             style={inputStyle}
             type="checkbox"
             onChange={this.handleChange}

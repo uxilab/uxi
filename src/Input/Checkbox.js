@@ -71,6 +71,8 @@ const styles = {
   },
 };
 
+let counter = 0;
+
 class Checkbox extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -149,6 +151,7 @@ class Checkbox extends React.PureComponent {
       style,
       inputStyle,
       labelStyle,
+      id,
       // ...restOfProps
     } = this.props;
 
@@ -174,11 +177,11 @@ class Checkbox extends React.PureComponent {
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             hasFocus
-            id={name}
+            id={id || name}
             style={inputStyle}
             checked={checker}
             defaultChecked={defaultChecked}
-            name={name}
+            name={name || id || counter++}
             type="checkbox"
             disabled={disabled}
             onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
