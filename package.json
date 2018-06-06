@@ -50,7 +50,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "styled-components": "^3.3.2",
-    "uxi-cli": "^1.0.70"
+    "uxi-cli": "^1.0.73"
   },
   "peerDependencies": {
     "styled-components": "3.2.0",
