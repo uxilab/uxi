@@ -4,9 +4,13 @@ import { mountWithTheme } from '../../../test/utils';
 
 it('should render a Button', () => {
   const testValue = 'YO!';
-  const wrapper = shallow(mountWithTheme(<Button onClick={() => {}} text={testValue} />));
+  const wrapper = shallow(
+    mountWithTheme(
+      <Button onClick={() => { }} text={testValue} />
+    )
+  );
   expect(wrapper).toMatchSnapshot();
-  const button = wrapper.find('Button');
+  const button = wrapper.find(Button);
   expect(button.length).toEqual(1);
   expect(button.props().text).toContain(testValue);
 });

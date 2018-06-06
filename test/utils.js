@@ -1,10 +1,10 @@
 import React from 'react';
-import ThemProvider from '../src/Theme';
+import ThemeProvider from '../src/Theme/ThemeProvider';
 
 export const mountWithTheme = component => (
-  <ThemProvider>
+  <ThemeProvider>
     {component}
-  </ThemProvider>
+  </ThemeProvider>
 );
 
 export default {
