@@ -24,6 +24,11 @@ const SelectInputPage = () => (
     <Title text="SelectInput" />
     <P>
       {'Custom Select Input allowing anything to be used as <option>'}
+      <br />
+      <strong>{'IMPORTANT!'}</strong>
+      {'You have to pass a `mainScrollingElementSelector` props if window.document is not the main scrolling element'}
+      <br />
+      {'e.g. `mainScrollingElementSelector={"#my-main-scrolling-element-string-selector"}`'}
     </P>
     <ul>
       <li>

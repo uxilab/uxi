@@ -361,7 +361,7 @@ class SelectInput extends PureComponent {
 
   render() {
     const { isOpen } = this.state;
-    const { isFullWidth, error, style } = this.props;
+    const { isFullWidth, error, style, mainScrollingElementSelector } = this.props;
 
     const optionsItems = this.getOptionsItem();
 
@@ -370,6 +370,7 @@ class SelectInput extends PureComponent {
     return (
       <div style={style}>
         <DropDown
+          mainScrollingElementSelector={mainScrollingElementSelector}
           onIsOpenChange={this.handleDropDownChange}
           isFullWidth={isFullWidth || ('width' in style)}
           isOpen={isOpen}
@@ -391,7 +392,7 @@ class SelectInput extends PureComponent {
 }
 
 SelectInput.defaultProps = {
-  style: {}
+  style: {},
 }
 
 

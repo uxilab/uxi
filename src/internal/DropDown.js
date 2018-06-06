@@ -119,6 +119,8 @@ export class DropDown extends PureComponent {
     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
     this.handleWindowResize = this.handleWindowResize.bind(this);
     this.handleWindowScroll = this.handleWindowScroll.bind(this);
+    this.attachListeners = this.attachListeners.bind(this);
+    this.detachListeners = this.detachListeners.bind(this);
   }
 
   componentWillMount() {
@@ -132,13 +134,25 @@ export class DropDown extends PureComponent {
   }
 
   componentDidMount() {
-    const { style } = this.props;
-    window.addEventListener('resize', this.handleWindowResize);
-    window.addEventListener('scroll', this.handleWindowScroll);
-    this.htmlNodeRef = document.querySelector('html')
+    const { style, mainScrollingElementSelector } = this.props;
+
+    this.htmlNodeRef = document
+    if (mainScrollingElementSelector) {
+      const htmlNodeRef = document.querySelector(mainScrollingElementSelector)
+      if (htmlNodeRef) {
+        this.htmlNodeRef = htmlNodeRef
+      }
+    }
+
     this.setState({
       initalStyleValue: style,
     });
+
+    const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
+
+    if (isOpen)  {
+      this.attachListeners()
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -175,9 +189,32 @@ export class DropDown extends PureComponent {
     }
   }
 
-  componentWillUnmount() {
+  attachListeners() {
+    window.addEventListener('resize', this.handleWindowResize);
+    if (this.props.mainScrollingElementSelector) {
+      if (this.htmlNodeRef) {
+        console.log('this.htmlNodeRef', this.htmlNodeRef)
+        this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
+      }
+    } else {
+      window.addEventListener('scroll', this.handleWindowScroll);
+    }
+  }
+
+  detachListeners() {
     window.removeEventListener('resize', this.handleWindowResize);
-    window.removeEventListener('scroll', this.handleWindowScroll);
+    if (this.props.mainScrollingElementSelector) {
+      console.log('this.htmlNodeRef', this.htmlNodeRef)
+      if (this.htmlNodeRef) {
+        this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
+      }
+    } else {
+      window.removeEventListener('scroll', this.handleWindowScroll);
+    }
+  }
+
+  componentWillUnmount() {
+    this.detachListeners()
   }
 
   getDynamicItemsStyles() {
@@ -235,12 +272,15 @@ export class DropDown extends PureComponent {
   }
 
 
-  handleWindowResize() {
+  handleWindowResize(e) {
+    console.log('§', e)
     this.forceUpdate();
   }
-  handleWindowScroll() {
+  handleWindowScroll(e) {
+    console.log('§', e)
     this.forceUpdate();
   }
+
   handleClickOutside() {
     const { isOpen } = this.state;
     const { onIsOpenChange } = this.props;
@@ -257,6 +297,7 @@ export class DropDown extends PureComponent {
           }
         });
       }
+      this.detachListeners()
     }
   }
 
@@ -272,6 +313,11 @@ export class DropDown extends PureComponent {
         }
       }
     );
+    if (isOpen) {
+      this.attachListeners()
+    } else {
+      this.detachListeners()
+    }
   }
 
   storeMainRef(ref) {
@@ -357,8 +403,6 @@ export class DropDown extends PureComponent {
     const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: "0" } : {})
 
     const GDDynamicstyles = this.getDynamicItemsStyles()
-
-    console.log('GDDynamicstyles.left', GDDynamicstyles.left)
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>

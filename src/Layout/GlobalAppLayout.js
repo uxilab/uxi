@@ -87,7 +87,7 @@ const GlobalAppLayout = (props) => {
       <div style={{ minHeight: '100%' }}>{menu}</div>
       <AppLayoutExtended style={{ ...innerWrapperStyle }}>
         <div>{header}</div>
-        <InnerAppLayoutUI>
+        <InnerAppLayoutUI className="uxi_GAL-main-scrolling-element" >
           {content}
           {footer}
         </InnerAppLayoutUI>
