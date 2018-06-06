@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon : <Checkboxoutline /> match snapshot 1`] = `
+exports[`Icon : <Download /> match snapshot 1`] = `
 <SvgIcon
   color="#6d6d71"
   onMouseEnter={[Function]}
@@ -12,7 +12,7 @@ exports[`Icon : <Checkboxoutline /> match snapshot 1`] = `
   <svg
     focusable="false"
     height="24px"
-    viewBox="0 0 16 16"
+    viewBox="0 0 15.75 15.78"
     width="24px"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -24,8 +24,11 @@ exports[`Icon : <Checkboxoutline /> match snapshot 1`] = `
         data-name="Layer 1"
         id="Layer_1-2"
       >
+        <polygon
+          points="4.29 6.04 7.88 9.63 11.46 6.04 10.51 5.09 8.55 7.04 8.55 0 7.2 0 7.2 7.04 5.24 5.09 4.29 6.04"
+        />
         <path
-          d="M16,1.6A1.6,1.6,0,0,0,14.4,0H1.6A1.6,1.6,0,0,0,0,1.6V14.4A1.6,1.6,0,0,0,1.6,16H14.4A1.6,1.6,0,0,0,16,14.4Zm-14.63,13V1.37H14.63V14.63Z"
+          d="M15.75,15.78V9.63H10.8l-1.6,1.6H6.55L5,9.63H0v6.15ZM1.35,11H4.4L6,12.58H9.75l1.6-1.6H14.4v3.45h-13Z"
         />
       </g>
     </g>

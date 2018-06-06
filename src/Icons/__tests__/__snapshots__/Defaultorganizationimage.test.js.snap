@@ -10,6 +10,7 @@ exports[`Icon : <Defaultorganizationimage /> match snapshot 1`] = `
   viewBox="0 0 24 24"
 >
   <svg
+    focusable="false"
     height="24px"
     viewBox="0 0 36.94 36.94"
     width="24px"
