@@ -193,7 +193,6 @@ export class DropDown extends PureComponent {
     window.addEventListener('resize', this.handleWindowResize);
     if (this.props.mainScrollingElementSelector) {
       if (this.htmlNodeRef) {
-        console.log('this.htmlNodeRef', this.htmlNodeRef)
         this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
       }
     } else {
@@ -204,7 +203,6 @@ export class DropDown extends PureComponent {
   detachListeners() {
     window.removeEventListener('resize', this.handleWindowResize);
     if (this.props.mainScrollingElementSelector) {
-      console.log('this.htmlNodeRef', this.htmlNodeRef)
       if (this.htmlNodeRef) {
         this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
       }
@@ -273,11 +271,9 @@ export class DropDown extends PureComponent {
 
 
   handleWindowResize(e) {
-    console.log('§', e)
     this.forceUpdate();
   }
   handleWindowScroll(e) {
-    console.log('§', e)
     this.forceUpdate();
   }
 

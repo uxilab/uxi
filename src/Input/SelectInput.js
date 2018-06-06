@@ -145,7 +145,7 @@ class SelectInput extends PureComponent {
         }
       }
 
-    } else if (e.key === 'ArrowUp' || e.keyCode === 38) { console.log("e.key === 'ArrowUp'")
+    } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
       e.preventDefault()
       e.stopPropagation()
 

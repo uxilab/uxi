@@ -6,9 +6,6 @@ import { getThemeWithCustomPalette } from '../utils';
 import { theme as UXITheme } from '../index';
 import { ThemeProvider as UXIContextThemeProvider } from './ContextThemeProvider';
 
-console.log('UXITheme', UXITheme);
-console.log('getThemeWithCustomPalette', getThemeWithCustomPalette);
-
 const UXISCThemeProvider = ({ children, theme, palette }) => {
   const theTheme = theme || getThemeWithCustomPalette(palette);
   const actualCSSString = makeGlobalCSSInjector(theme);

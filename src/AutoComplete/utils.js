@@ -10,9 +10,6 @@ A:
 */
 
 export const getMatchesResult = (source, target) => {
-  // const source = 'Fernando Dawson'
-  // const target = 'fernd'
-
   // shorcut in case of perfect match
   if (source.toLowerCase().indexOf(target.toLowerCase()) === 0) {
     // ! perfect match, from the start worth a 100
@@ -34,10 +31,7 @@ export const getMatchesResult = (source, target) => {
     ];
   }
 
-  // return [];
-
   const result = [];
-
 
   // this can probalby be refactored into a nice looking map + reducer:
   let i = 0;
@@ -51,17 +45,11 @@ export const getMatchesResult = (source, target) => {
       string: sourceChar,
     };
 
-    // console.log('sourceChar === targetChar')
-    // console.log(`${sourceChar} === ${targetChar} : ${sourceChar === targetChar}`)
-
     if (sourceChar.toLowerCase() === (targetChar && targetChar.toLowerCase())) {
       currentRunMatchObj.matches = true;
-      // currentRunMatchObj.string += sourceChar
       result.push(currentRunMatchObj);
-      // result.push(currentRunMatchObj)
       j++;
     } else {
-      // currentRunMatchObj.string += sourceChar
       result.push(currentRunMatchObj);
       currentRunMatchObj = {
         matches: false,
@@ -97,58 +85,6 @@ export const getMatchesResult = (source, target) => {
     };
   }, initialAccu);
 
-  // console.log('finalResult.result', finalResult.result)
-
-  // add match score for later sorting
-  /*
-  const finalResultWithScore = finalResult.reduce((finalResult, match) => {
-    console.log('match', match);
-
-    // const score = match.reduce((accu, x) => {
-    //   // console.log('A: x.length', x.length)
-    //   // console.log('A: x', x)
-
-    //   if (a.matches) {
-    //     return x.length > accu ? x.length : accu;
-    //   }
-    //   return accu
-    // }, 0)
-
-    return {
-      ...match,
-      // score,
-    }
-  }, finalResult)
-  */
-  // const sortedFinalResult = finalResult.result.sort((x, y) => {
-  //   if (x.string.length > y.string.length) { return -1 }
-  //   if (x.string.length < y.string.length) { return 1 }
-  //   return 0
-  // })
-
-  /*
-  for (let i = 0; i < source.length; i++) {
-    const sourceChar = source[i];
-
-    for (let j = 0; j < target.length; j++) {
-      const targetChar = target[j];
-      if (sourceChar === targetChar) {
-        currentRunMatchObj.matches = true
-        currentRunMatchObj.string += sourceChar
-        // result.push(currentRunMatchObj)
-      } else {
-        // currentRunMatchObj.string += sourceChar
-        result.push(currentRunMatchObj)
-        // continue;
-      }
-    }
-  }
-  */
-  // result
-  // console.log(JSON.stringify(result, 2, 2))
-  // console.log(JSON.stringify(finalResult.result, 2, 2))
-
-  // return finalResultWithScore
   return finalResult.result;
 };
 
@@ -161,15 +97,11 @@ const addScore = (accu, { string, matches }) => {
 };
 
 export function getFilteredSetWithScore(filteredSet) {
-  // console.log('filteredSet in sortFinaleResult', filteredSet)
 
   const filteredSetWithScore = filteredSet.map(x => ({
     ...x,
-    // matchList: x,
     scrore: x.matchesResults.reduce(addScore, 0),
   }));
-
-  // console.log(filteredSetWithScore)
 
   return filteredSetWithScore;
 }

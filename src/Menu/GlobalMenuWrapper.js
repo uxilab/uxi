@@ -37,7 +37,7 @@ const GlobalMenuWrapper = ({
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
         isActive={menuDescriptor.key === selectedKey || (selectedKey === '' && menuDescriptor.isActive)}
-        onClick={() => { console.log('clicked on GlobalMenuItem'); menuDescriptor.onClick && menuDescriptor.onClick(); }}
+        onClick={() => { menuDescriptor.onClick && menuDescriptor.onClick(); }}
         hasNew={menuDescriptor.hasNew}
         label={menuDescriptor.displayName}
         index={menuDescriptor.key}
