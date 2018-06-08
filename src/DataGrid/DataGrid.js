@@ -141,7 +141,7 @@ class DataGrid extends Component {
             text={action.label}
             icon={action.icon}
             onClick={(e) => {
-              action.onClick(e, selectedEntities);
+              action.onClick(e, selectedEntities, this.clearSelectedEntities);
               if (action.clearSelection) {
                 this.clearSelectedEntities();
               }
