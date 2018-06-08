@@ -4,6 +4,7 @@
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "scripts": {
+    "heroku-prebuild": "npm run lint && npm run test",
     "heroku-postbuild": "cd docs/ && npm i && npm run packAndBundle",
     "start": "cd docs/ && npm start",
     "start:dev": "cd docs/ && npm run start:dev",
@@ -11,14 +12,15 @@
     "typecheck": "flow check",
     "lint": "uxi-cli lint",
     "lint:fix": "uxi-cli lint --fix",
-    "pack": "uxi-cli pack",
+    "pack": "npm run lint && npm run test && uxi-cli pack",
+    "packNOCHECKDANGEROUS": "uxi-cli pack",
     "clean:build": "rimraf build",
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
     "typeinstall": "flow-typed install",
-    "deploy": "npm version patch && npm run pack && npm publish build",
-    "deploy-doc": "cd docs/ && npm run deploy-doc"
+    "deploy": "npm run lint && npm run test && npm version patch && npm run packNOCHECKDANGEROUS && npm publish build",
+    "deploy-doc": "npm run lint && npm run test && cd docs/ && npm run deploy-doc"
   },
   "repository": {
     "type": "git",
