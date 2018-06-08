@@ -1,6 +1,252 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render a Button 1`] = `
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type default (none) 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type error 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+      type="error"
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type info 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+      type="info"
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type primary 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+      type="primary"
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type secondary 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+      type="secondary"
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type success 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+      type="success"
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> handles various types ([none], primary, secondary, error, warning, info, success) type warning 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+      type="warning"
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> match snapshot 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+      "lineHeight": 0,
+    }
+  }
+>
+  <Ripples
+    color="rgba(0, 0, 0, .3)"
+    during={600}
+    style={Object {}}
+  >
+    <styled.button
+      onClick={null}
+      style={
+        Object {
+          "margin": 0,
+          "marginBottom": 0,
+          "marginLeft": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+        }
+      }
+    />
+  </Ripples>
+</div>
+`;
+
+exports[`<Button /> should render a Button 1`] = `
 <UXISCThemeProvider
   palette={
     Object {
