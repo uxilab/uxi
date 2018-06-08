@@ -187,6 +187,7 @@ class DataGrid extends Component {
       <div style={{ position: 'relative' }}>
         {batchActionsContent}
         <Table
+          ref={(tableRef) => { this.tableRef = tableRef; }}
           onChange={this.onChange.bind(this)}
           multiSelectable={selectable}
           selectable={selectable}
