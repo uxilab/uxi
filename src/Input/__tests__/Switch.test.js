@@ -1,19 +1,7 @@
-import Switch from '../Switch';
 import React from 'react';
-import { mountWithTheme } from '../../../test/utils';
+import Switch from '../Switch';
 
 const defaultProps = { };
-
-const getCompo = props => (
-  shallow(
-    // mountWithTheme(
-    <Switch
-      {...defaultProps}
-      {...props}
-    />
-    // )
-  )
-)
 
 describe('<Switch />', () => {
   it('exists', () => {
@@ -21,38 +9,86 @@ describe('<Switch />', () => {
   })
 
   it('matches snapshot', () => {
-    const wrapper = getCompo();
-    expect(wrapper).toMatchSnapshot();
+    const sut = shallow(
+      <Switch />
+    );
+
+    expect(sut).toMatchSnapshot();
   })
 
   describe('Uncontrolled', () => {
     it('handles its own state', () => {
-      const wrapper = getCompo({});
-      const instance = wrapper.instance()
+      const spy = jest.fn()
 
-      expect(instance.isControlled).toBe(false);
-      expect(instance.state.checked).toBe(false);
-      expect(instance.props.checked).toBeUndefined();
+      const sut = shallow(
+        <Switch onChange={spy} />
+      );
+
+      expect(sut.instance().isControlled).toBe(false);
+      expect(sut.instance().state.checked).toBe(false);
+      expect(sut.instance().props.checked).toBeUndefined();
+      expect(sut.instance().props.onChange).toBe(spy);
+    })
+
+    it('its state toggle itself', () => {
+      const spy = jest.fn()
+
+      let sut = shallow(
+        <Switch onChange={spy} />
+      );
+
+      expect(sut.instance().isControlled).toBe(false);
+      expect(sut.instance().props.checked).toBeUndefined();
+      expect(sut.instance().props.onChange).toEqual(spy);
+      expect(sut.instance().state.checked).toBe(false);
+
+      sut.instance().handleChange() // simualte click (kinda)
+
+      expect(sut.instance().props.checked).toBeUndefined();
+      expect(sut.instance().state.checked).toBe(true);
     })
   })
 
   describe('Controlled', () => {
-    it('respect the props passed down no matter what', () => {
-      const wrapper = getCompo({ checked: false });
-      const instance = wrapper.instance()
+    it('respect the props passed down no matter what (false)', () => {
+      const spy = jest.fn()
 
-      expect(instance.isControlled).toBe(true);
-      expect(instance.state.checked).toBe(false);
-      expect(instance.props.checked).toBe(false);
+      let sut = shallow(
+        <Switch onChange={spy} checked={false} />
+      );
+
+      expect(sut.instance().isControlled).toBe(true);
+      expect(sut.instance().props.checked).toBe(false);
     })
 
-    it('respect the props passed down no matter what', () => {
-      const wrapper = getCompo({ checked: true });
-      const instance = wrapper.instance()
+    it('respect the props passed down no matter what (true)', () => {
+      const spy = jest.fn()
 
-      expect(instance.isControlled).toBe(true);
-      // expect(instance.state.checked).toBe(true); // TODO fix the compo behaviour
-      expect(instance.props.checked).toBe(true);
+      let sut = shallow(
+        <Switch onChange={spy} checked={true} />
+      );
+
+      expect(sut.instance().isControlled).toBe(true);
+      // expect(sut.instance().state.checked).toBe(true); // TODO fix the compo behaviour
+      expect(sut.instance().props.checked).toBe(true);
+    })
+
+    it('its state does not change when it is controlled', () => {
+      const spy = jest.fn()
+
+      let sut = shallow(
+        <Switch onChange={spy} checked={true} />
+      );
+
+      expect(sut.instance().isControlled).toBe(true);
+
+      const initialState = sut.instance().state.checked;
+
+      expect(sut.instance().props.checked).toBe(true);
+
+      sut.instance().handleChange()
+
+      expect(sut.instance().state.checked).toEqual(initialState)
     })
   })
 })
