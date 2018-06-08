@@ -28,22 +28,31 @@ describe('<Switch />', () => {
   describe('Uncontrolled', () => {
     it('handles its own state', () => {
       const wrapper = getCompo({});
+      const instance = wrapper.instance()
 
-      expect(wrapper.instance().isControlled).toBe(false);
-      expect(wrapper.state().checked).toBe(false);
-      expect(wrapper.props().checked).toBeUndefined();
+      expect(instance.isControlled).toBe(false);
+      expect(instance.state.checked).toBe(false);
+      expect(instance.props.checked).toBeUndefined();
     })
   })
 
   describe('Controlled', () => {
     it('respect the props passed down no matter what', () => {
-      const wrapper = shallow(<Switch checked />);
-      console.log(wrapper)
-      console.log(wrapper.props().checked)
+      const wrapper = getCompo({ checked: false });
+      const instance = wrapper.instance()
 
-      expect(wrapper.instance().isControlled).toBe(true);
-      // expect(wrapper.props().checked).toBe(true);
-      // expect(wrapper.props().checked).toBe(true);
+      expect(instance.isControlled).toBe(true);
+      expect(instance.state.checked).toBe(false);
+      expect(instance.props.checked).toBe(false);
+    })
+
+    it('respect the props passed down no matter what', () => {
+      const wrapper = getCompo({ checked: true });
+      const instance = wrapper.instance()
+
+      expect(instance.isControlled).toBe(true);
+      // expect(instance.state.checked).toBe(true); // TODO fix the compo behaviour
+      expect(instance.props.checked).toBe(true);
     })
   })
 })
