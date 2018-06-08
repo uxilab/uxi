@@ -141,7 +141,7 @@ class DataGrid extends Component {
             text={action.label}
             icon={action.icon}
             onClick={(e) => {
-              action.onClick(e, selectedEntities);
+              action.onClick(e, selectedEntities, this.clearSelectedEntities);
               if (action.clearSelection) {
                 this.clearSelectedEntities();
               }
@@ -187,6 +187,7 @@ class DataGrid extends Component {
       <div style={{ position: 'relative' }}>
         {batchActionsContent}
         <Table
+          ref={(tableRef) => { this.tableRef = tableRef; }}
           onChange={this.onChange.bind(this)}
           multiSelectable={selectable}
           selectable={selectable}

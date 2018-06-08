@@ -33,7 +33,7 @@ const createCheckbox = (rowProps) => {
       // ref="rowSelectCB" // ref have to be fn
         name={key}
         disabled={false}
-        checked={selected}
+        defaultChecked={selected}
         onChange={event => onRowSelect(rowProps, event, rowNumber)}
       />
     </div>
