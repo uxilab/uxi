@@ -10,8 +10,14 @@ This page is only dedicated to contributors. For documentation around the projec
 
 
 ## Pre-requirements
-- We currently only support React ^16.0.0 (using older verson might work, or not)
-- We currently test only on 'modern' browser (see list) (if you want us to extend our browser support => help us).
+- peerDependecies:
+  - react@^16
+  - styled-components@3.2.0
+  - react-dom@^16
+
+- Browser support:
+  - IE11 (in progress)
+  - all evergreen browser
 
 
 ## Installing
@@ -21,8 +27,8 @@ This page is only dedicated to contributors. For documentation around the projec
 - > npm install
 
 ## start dev
-- > npm run start:dev
-- open browser to http://localhost:3001
+- > npm run dev
+- open browser to http://localhost:8989
 
 ----
 
@@ -208,7 +214,3 @@ TODO
 - Create Sketch File
 - Create UX guideline
 - Create tests
-
-### Browser
-
-Define list of targeted browser (can be restrictive, just need to be clear)
