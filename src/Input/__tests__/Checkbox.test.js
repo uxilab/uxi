@@ -1,14 +1,15 @@
 import React from 'react';
-import Switch from '../Switch';
+import { shallowWithTheme, mountWithTheme } from '../../../test/utils';
+import Checkbox from '../Checkbox';
 
-describe('<Switch />', () => {
+describe('<Checkbox />', () => {
   it('exists', () => {
-    expect(Switch).toBeDefined()
+    expect(Checkbox).toBeDefined()
   })
 
   it('matches snapshot', () => {
     const sut = shallow(
-      <Switch />
+      <Checkbox />
     );
 
     expect(sut).toMatchSnapshot();
@@ -19,7 +20,7 @@ describe('<Switch />', () => {
       const spy = jest.fn()
 
       const sut = shallow(
-        <Switch onChange={spy} />
+        <Checkbox onChange={spy} />
       );
 
       expect(sut.instance().isControlled).toBe(false);
@@ -32,7 +33,7 @@ describe('<Switch />', () => {
       const spy = jest.fn()
 
       let sut = shallow(
-        <Switch onChange={spy} />
+        <Checkbox onChange={spy} />
       );
 
       expect(sut.instance().isControlled).toBe(false);
@@ -40,7 +41,8 @@ describe('<Switch />', () => {
       expect(sut.instance().props.onChange).toEqual(spy);
       expect(sut.instance().state.checked).toBe(false);
 
-      sut.instance().handleChange() // simualte click (kinda)
+      const fakeEvent = { target: { checked: true } }
+      sut.instance().handleChange(fakeEvent) // simualte click (kinda)
 
       expect(sut.instance().props.checked).toBeUndefined();
       expect(sut.instance().state.checked).toBe(true);
@@ -52,7 +54,7 @@ describe('<Switch />', () => {
       const spy = jest.fn()
 
       let sut = shallow(
-        <Switch onChange={spy} checked={false} />
+        <Checkbox onChange={spy} checked={false} />
       );
 
       expect(sut.instance().isControlled).toBe(true);
@@ -63,7 +65,7 @@ describe('<Switch />', () => {
       const spy = jest.fn()
 
       let sut = shallow(
-        <Switch onChange={spy} checked={true} />
+        <Checkbox onChange={spy} checked={true} />
       );
 
       expect(sut.instance().isControlled).toBe(true);
@@ -75,7 +77,7 @@ describe('<Switch />', () => {
       const spy = jest.fn()
 
       let sut = shallow(
-        <Switch onChange={spy} checked={true} />
+        <Checkbox onChange={spy} checked={true} />
       );
 
       expect(sut.instance().isControlled).toBe(true);
@@ -83,8 +85,8 @@ describe('<Switch />', () => {
       const initialState = sut.instance().state.checked;
 
       expect(sut.instance().props.checked).toBe(true);
-
-      sut.instance().handleChange()
+      const fakeEvent = { target: { checked: true } }
+      sut.instance().handleChange(fakeEvent)
 
       expect(sut.instance().state.checked).toEqual(initialState)
     })

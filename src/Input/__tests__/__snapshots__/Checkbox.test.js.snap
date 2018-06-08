@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> matches snapshot 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <styled.div
+    checker={false}
+    hasFocus={false}
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "position": "relative",
+      }
+    }
+  >
+    <Checkboxoutline
+      color="#6d6d71"
+      size={22}
+    />
+    <styled.input
+      checked={false}
+      hasFocus={true}
+      id="myawesomecheckbox"
+      name="myawesomecheckbox"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      style={Object {}}
+      type="checkbox"
+    />
+    <styled.label
+      htmlFor="myawesomecheckbox"
+      labelStyle={Object {}}
+    />
+  </styled.div>
+</div>
+`;
