@@ -6,12 +6,20 @@ import { getThemeWithCustomPalette } from '../utils';
 import { theme as UXITheme } from '../index';
 import { ThemeProvider as UXIContextThemeProvider } from './ContextThemeProvider';
 
-const UXISCThemeProvider = ({ children, theme, palette }) => {
-  const theTheme = theme || getThemeWithCustomPalette(palette);
+const UXISCThemeProvider = (props) => {
+  const {
+    children,
+    customTheme,
+    palette,
+    theme,
+  } = props;
+
+  console.log('children, customTheme, theme, palette', children, customTheme, theme, palette)
+  const theTheme = customTheme || getThemeWithCustomPalette(palette);
   const actualCSSString = makeGlobalCSSInjector(theme);
 
   return (
-    <SCThemeProvider theme={theme} >
+    <SCThemeProvider theme={theTheme || theme} >
       <UXIContextThemeProvider>
         <div style={{ height: '100%' }}>
           <style dangerouslySetInnerHTML={{ __html: actualCSSString }} />

@@ -1,10 +1,12 @@
 
 import { palette } from './palette';
+import { theme } from './'
+import { lighten, darken } from './colorManipulator';
 
 // eslint-disable-next-line no-shadow
 function mergeCustomPalette(mainPalette, customPalette) {
-  let primary = mainPalette.primary.main;
-  let secondary = mainPalette.accent.main;
+  let secondary = mainPalette.primary.main;
+  let primary = mainPalette.accent.main;
 
   if (!customPalette) { return mainPalette; }
   if (customPalette.primary) { primary = customPalette.primary; }
@@ -13,14 +15,14 @@ function mergeCustomPalette(mainPalette, customPalette) {
   const palette = { // eslint-disable-line no-shadow
     ...mainPalette,
     primary: {
-      main: primary,
-      light: lighten(primary),
-      dark: darken(primary),
-    },
-    accent: {
       main: secondary,
       light: lighten(secondary),
       dark: darken(secondary),
+    },
+    accent: {
+      main: primary,
+      light: lighten(primary),
+      dark: darken(primary),
     },
   };
   return palette;
@@ -28,8 +30,12 @@ function mergeCustomPalette(mainPalette, customPalette) {
 
 // eslint-disable-next-line no-use-before-define
 export const getThemeWithCustomPalette = (customPalette = {}) => { // eslint-disable-line no-shadow
-  return {
+  const themeWithCustomPalette = {
     ...theme,
     palette: mergeCustomPalette(palette, customPalette),
   };
+
+  console.log(themeWithCustomPalette)
+
+  return themeWithCustomPalette
 };

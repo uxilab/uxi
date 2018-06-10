@@ -26,42 +26,42 @@ const LinkDecorator = styled.div`
     text-decoration: none;
 
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-};
+      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+    };
     border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
-};
+      `${borderThickness} solid #0ea4a5` : '0 solid transparent')
+    };
     background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
     &:hover {
       text-decoration: none;
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-    isSelected
-      ? (isActive
-        ? palette.primary.dark
-        : palette.primary.light // child is slelected, means we can navigate there
-      )
-      : palette.primary.light
-  )};
+        isSelected
+          ? (isActive
+            ? palette.primary.dark
+            : palette.primary.light // child is slelected, means we can navigate there
+          )
+          : palette.primary.light
+      )};
       svg {
         fill: #fff;
       }
     }
     &:focus {
       color: ${({ isActive, theme: { palette } }) => (
-    isActive ? 'inherit' : palette.pureWhite
-  )};
+        isActive ? 'inherit' : palette.pureWhite
+      )};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-    (isSelected ? palette.primary.main : palette.primary.light)
-  )};
+        (isSelected ? palette.primary.main : palette.primary.light)
+      )};
       color: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+        ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+      };
       svg {
         fill: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+          ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+        };
       }
     }
     svg {
@@ -79,13 +79,13 @@ const GlobalMenuItemDiv = styled.a`
   .root &,
   & {
     color: ${({ isSelected, isActive, theme: { palette } }) =>
-    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-};
+      (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+    };
   }
 
-  border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
-};
+  border-right: ${({ isSelected, isActive, theme: { palette } }) => (isSelected && isActive ?
+    `${borderThickness} solid ${palette.accent.main}` : '0 solid transparent')
+  };
   background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
   .root &:hover, /* TODO solve this .root a  */
