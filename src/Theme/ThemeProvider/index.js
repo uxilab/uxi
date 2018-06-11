@@ -41,7 +41,6 @@ const UXISCThemeProvider = (props) => {
     theme,
   } = props;
 
-  console.log('children, customTheme, theme, customPalette', children, customTheme, theme, customPalette)
   const theTheme = customTheme || getThemeWithCustomPalette(customPalette);
   const actualCSSString = makeGlobalCSSInjector(theTheme);
 
