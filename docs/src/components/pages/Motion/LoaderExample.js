@@ -6,7 +6,9 @@ const LoaderExample = () => (
     <MiniLoader />
     <Loader/>
     <Loader type="error" />
-    <Loader type="error" size={80} />
+    <Loader type="success" />
+    <Loader type="warning" size={80} />
+    <MiniLoader type="info" size={40} />
     <MiniLoader type="warning" size={40} />
   </div>
 );

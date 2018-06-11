@@ -1,11 +1,11 @@
 import React from 'react';
 import { SlideInWhenInBound } from 'uxi/Motion';
-import { routes } from '../../../AppShell';
+import { routes } from '../../../ComponentShell';
 
 const SlideInWhenInBoundExample = () => (
   <div>
     {
-      routes.map((route, i) => {
+      routes && routes.map((route, i) => {
         return (
           <SlideInWhenInBound anchor={i % 2 === 0 ? 'right' : 'left' }>
             <div style={{ border: '1px solid #bababa', marginBottom: '16px', padding: '32px' }}>

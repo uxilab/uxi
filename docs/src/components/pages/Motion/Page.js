@@ -42,7 +42,7 @@ const MotionPage = () => (
         </CodeExample>
       </li>
       <br />
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWSlideInWhenInBoundExample}
           component
@@ -52,7 +52,7 @@ const MotionPage = () => (
         >
           <SlideInWhenInBoundExample />
         </CodeExample>
-      </li>
+      </li> */}
 
     </ul>
   </div>
