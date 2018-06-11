@@ -14,15 +14,22 @@ const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   if (isActive && isSelected) {
     return palette.accent.light;
   }
-  return palette.lightGrey;
+  return palette.white;
 };
 
 
 const LinkDecorator = styled.div`
+  html body & svg,
+  html body & svg > svg {
+    /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
+    fill: ${({ isSelected, isActive, theme: { palette } }) =>
+    (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
+    };
+  }
   .root & a,
   & a {
     ${buttonReset};
-    ${GlobalMenuItemBase}
+    ${GlobalMenuItemBase};
     text-decoration: none;
 
     color: ${({ isSelected, isActive, theme: { palette } }) =>
@@ -72,8 +79,14 @@ const LinkDecorator = styled.div`
 
 const GlobalMenuItemDiv = styled.a`
   ${buttonReset};
-  ${GlobalMenuItemBase}
-
+  ${GlobalMenuItemBase};
+  html body & svg,
+  html body & svg > svg {
+    /* fill: ${({ theme: { palette } }) => palette.extraLightGrey }; */
+    fill: ${({ isSelected, isActive, theme: { palette } }) =>
+      (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
+    };
+  }
   text-decoration: none;
 
   .root &,

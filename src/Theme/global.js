@@ -45,14 +45,6 @@ export const makeGlobalCSSInjector = (theme) => {
       padding: 0;
       font-size: 16px;
     }
-    h1, h2, h3, h4 {
-      color: ${palette.neutral.dark};
-    }
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
     a {
       color: ${palette.accent.main};
       text-decoration: none;
@@ -62,7 +54,6 @@ export const makeGlobalCSSInjector = (theme) => {
       color: ${lighten(palette.accent.main, 0.1)};
       text-decoration: underline;
     }
-
     svg {
       transition: ${transition.defaultAll};
     }
@@ -72,8 +63,9 @@ export const makeGlobalCSSInjector = (theme) => {
     svg.uxi_svg-icon-wrapper svg {
       transition: ${transition.defaultAll};
     }
+
     /* little trick relating to SvgIcon: a svg wrapper */
-    svg>svg { fill: inherit; }
+    // svg>svg { fill: inherit; }
 
     /**
      * Extend using css from styled-components

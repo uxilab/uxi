@@ -19,6 +19,14 @@ const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
 
 
 const LinkDecorator = styled.div`
+  html body & svg,
+  html body & svg > svg {
+    /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
+    fill: ${({ isSelected, isActive, theme: { palette } }) =>
+    (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
+    };
+  }
+
   & a {
     ${buttonReset};
     z-index: 99;
@@ -73,6 +81,14 @@ const LinkDecorator = styled.div`
 
 const GlobalMenuLogoDiv = styled.a`
   ${buttonReset};
+  html body & svg,
+  html body & svg > svg {
+    /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
+    fill: ${({ isSelected, isActive, theme: { palette } }) =>
+    (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
+    };
+  }
+
   z-index: 99;
   height: 48px; /* harcoding height because */
   display: flex;

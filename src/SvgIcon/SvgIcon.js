@@ -50,7 +50,7 @@ class SvgIcon extends Component {
 
     return (
       <svg
-        className={`${className} uxi_svg-icon-wrapper`}
+        className={`${className || ''} uxi_svg-icon-wrapper`}
         {...other}
         onMouseEnter={(e) => { this.handleMouseEnter(e) }}
         onMouseLeave={(e) => { this.handleMouseLeave(e) }}

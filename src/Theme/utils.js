@@ -11,7 +11,6 @@ function mergeCustomPalette(mainPalette, customPalette) {
   if (!customPalette) { return mainPalette; }
   if (customPalette.primary) { primary = customPalette.primary; }
   if (customPalette.secondary) { secondary = customPalette.secondary; }
-
   const palette = { // eslint-disable-line no-shadow
     ...mainPalette,
     primary: {
