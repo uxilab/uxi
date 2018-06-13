@@ -16,6 +16,7 @@ const UnstyledButtonUI = styled.button`
     outline: none;
     box-shadow: 0 0 10px #719ECE;
   }
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
 
 const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles, ...attr }) => {

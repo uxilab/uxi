@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
 
 const ButtonBaseStyles = css`
+  min-height: 32px;
   outline: 0 !important;
   display: flex;
   align-items: center;

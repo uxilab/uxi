@@ -5,6 +5,18 @@ import { Button, ButtonWithoutRipple } from '../Button';
 import Option from './SelectInputOptions';
 import StatusIcon from './utils/StatusIcon';
 import ErrorWrapperUI from './utils/ErrorWrapperUI';
+import styled from 'styled-components';
+
+const TrigererWrapper = styled.span`
+  min-width: 180px;
+  width: 100%;
+  min-height: 30px;
+  border: 1px solid #cecece;
+  display: flex;
+  align-items: center;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden;
+`;
 
 function isElement(element) {
   return React.isValidElement(element);
@@ -17,14 +29,14 @@ function isDOMTypeElement(element) {
 // TODO show default value if any
 const styles = {
   trigerrer: {
-    minWidth: '180px',
-    width: '100%',
-    minHeight: '30px',
-    border: '1px solid #cecece',
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: '3px',
-    overflow: 'hidden',
+    // minWidth: '180px',
+    // width: '100%',
+    // minHeight: '30px',
+    // border: '1px solid #cecece',
+    // display: 'flex',
+    // alignItems: 'center',
+    // borderRadius: '3px',
+    // overflow: 'hidden',
   },
   trigerrerIcon: {
     position: 'absolute',
@@ -41,10 +53,13 @@ const styles = {
   button: {
     // border: 'none',
     // borderColor: 'transparent',
-    borderRadius: '0 3px 3px 0',
+    // borderRadius: '0 3px 3px 0',
+    borderTopLeftRadius: '0',
+    borderBottomLeftRadius: '0',
     padding: '0 8px',
-    minHeight: '100%',
-    minHeight: 'calc(100% - 2px)',
+    // borderight: '100%',
+    // minHeight: 'calc(100% - 2px)',
+    // minHeight: 32px;
   },
 };
 
@@ -238,8 +253,7 @@ class SelectInput extends PureComponent {
     }
 
     return (
-      <span
-        style={styles.trigerrer}
+      <TrigererWrapper
         onEsc={() => this.clickHandler(null)}
       >
         <div>
@@ -250,11 +264,11 @@ class SelectInput extends PureComponent {
           <Button
             inert
             type="primary"
-            style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
+            style={{ ...styles.ButtonWithoutRipple, ...styles.button }}
             icon={<Arrowdown />}
           />
         </div>
-      </span>
+      </TrigererWrapper>
     );
   }
 
@@ -381,9 +395,9 @@ class SelectInput extends PureComponent {
             overflowY: 'auto',
             overflowX: 'hidden',
           }}
-          triggerWrapperStyle={{
-            borderRadius: '3px',
-          }}
+          // triggerWrapperStyle={{
+          //   borderRadius: '3px',
+          // }}
         />
         <ErrorWrapperUI>{error}</ErrorWrapperUI>
       </div>

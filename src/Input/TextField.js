@@ -11,8 +11,11 @@ import { theme as defaultTheme } from '../Theme';
 import StatusIcon from './utils/StatusIcon';
 import ErrorWrapperUI from './utils/ErrorWrapperUI';
 
-// const { semantic } = palette;
 
+// TODO: This everywhere: `styled.<tag>.attrs({ theme: ({ theme }) => (theme || defaultTheme),`
+// This looks bad but actully the intent is to pack the theme
+// with each compo so that they can be used withouth the theme provider
+// without breaking, altho this has some drawabck(not using the THmeeProvider)
 const InputWrapperUI = styled.div.attrs({
   theme: ({ theme }) => (theme || defaultTheme),
 })`
@@ -21,8 +24,8 @@ const InputWrapperUI = styled.div.attrs({
 
 const InputUI = styled.input.attrs({
   theme: ({ theme }) => (theme || defaultTheme),
-})`
-  border-radius: 3px;
+}) `
+  border-radius: ${({ theme }) => theme.borderRadius};
   /* min-height: 32px; */
   box-sizing: border-box;
   font-size: 14px;

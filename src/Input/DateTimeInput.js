@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const InputUI = styled.input`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  border: 1px solid #dcdcdc;
+  padding: 6.75px 6.75px 6.75px 6.75px;
+`;
 
 const pad = v => (v < 10 ? `0${v}` : v);
 
-const styles = {
-  width: '100%',
-  boxSizing: 'border-box',
-  padding: '8px',
-  borderRadius: '3px',
-  border: '1px solid #dcdcdc',
-  padding: '6.75px 6.75px 6.75px 6.75px',
 
-};
 const DateTimeInput = (props) => {
   let intialDateValue = null;
   const { inputType } = props;
@@ -26,11 +28,11 @@ const DateTimeInput = (props) => {
   }
 
   return (
-    <input
+    <InputUI
       type={inputType || 'date'}
       {...props}
       defaultValue={intialDateValue}
-      style={{ ...styles, ...('style' in props ? props.style : {}) }}
+      style={{ ...('style' in props ? props.style : {}) }}
     />
   );
 };

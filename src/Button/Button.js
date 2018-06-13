@@ -86,16 +86,19 @@ const ButtonContentWrapper = styled.div`
 const ButtonUI = styled.button`
   line-height: 1;
   ${ButtonBaseMixin};
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
 const ButtonLinkUI = styled.a`
   line-height: 1;
   ${ButtonBaseMixin};
   text-decoration: none;
   &:hover { text-decoration: none }
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
 const ButtonDivUI = styled.div`
   line-height: 1;
   ${ButtonBaseMixin};
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
 
 // eslint-disable-next-line react/prefer-stateless-function
