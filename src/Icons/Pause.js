@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Pause = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 12.29 16"
       width="24px"
@@ -22,11 +23,11 @@ const Pause = props => (
 );
 
 Pause.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Pause.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Pause;

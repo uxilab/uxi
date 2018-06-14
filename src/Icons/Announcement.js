@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Announcement = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 13.57"
       width="24px"
@@ -21,11 +22,11 @@ const Announcement = props => (
 );
 
 Announcement.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Announcement.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Announcement;

@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Arrowup = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 9.3"
       width="24px"
@@ -21,11 +22,11 @@ const Arrowup = props => (
 );
 
 Arrowup.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Arrowup.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Arrowup;

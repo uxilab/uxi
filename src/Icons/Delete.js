@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Delete = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 11.73 16"
       width="24px"
@@ -24,11 +25,11 @@ const Delete = props => (
 );
 
 Delete.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Delete.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Delete;

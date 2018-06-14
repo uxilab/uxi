@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Customerinteligence = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 13.51 15.97"
       width="24px"
@@ -22,11 +23,11 @@ const Customerinteligence = props => (
 );
 
 Customerinteligence.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Customerinteligence.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Customerinteligence;

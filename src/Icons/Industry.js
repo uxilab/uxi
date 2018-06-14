@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Industry = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 18.57 15.75"
       width="24px"
@@ -24,11 +25,11 @@ const Industry = props => (
 );
 
 Industry.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Industry.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Industry;

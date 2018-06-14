@@ -1,3 +1,4 @@
+
 export Anonymize from './Anonymize';
 export Archive from './Archive';
 export Barchart from './Barchart';
@@ -81,6 +82,7 @@ export Competitoropportunity from './Competitoropportunity';
 export Consent from './Consent';
 export Contact from './Contact';
 export Copylink from './Copylink';
+export Creditcard from './Creditcard';
 export Crunchbase from './Crunchbase';
 export Customerinteligence from './Customerinteligence';
 export Database from './Database';

@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Backlogitem = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 12.48 16"
       width="24px"
@@ -25,11 +26,11 @@ const Backlogitem = props => (
 );
 
 Backlogitem.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Backlogitem.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Backlogitem;

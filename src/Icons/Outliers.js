@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Outliers = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 18.08 18.1"
       width="24px"
@@ -25,11 +26,11 @@ const Outliers = props => (
 );
 
 Outliers.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Outliers.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Outliers;

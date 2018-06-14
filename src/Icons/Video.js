@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Video = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 15.19 10.57"
       width="24px"
@@ -21,11 +22,11 @@ const Video = props => (
 );
 
 Video.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Video.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Video;

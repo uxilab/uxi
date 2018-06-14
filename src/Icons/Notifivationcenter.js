@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Notifivationcenter = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 14.86 16"
       width="24px"
@@ -21,11 +22,11 @@ const Notifivationcenter = props => (
 );
 
 Notifivationcenter.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Notifivationcenter.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Notifivationcenter;

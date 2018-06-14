@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Visibilityunabled = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 17.62 11.35"
       width="24px"
@@ -31,11 +32,11 @@ const Visibilityunabled = props => (
 );
 
 Visibilityunabled.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Visibilityunabled.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Visibilityunabled;

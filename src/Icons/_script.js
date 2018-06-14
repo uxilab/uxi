@@ -49,6 +49,8 @@ const cleanSVGContent = x => (x
   .replace(/(<[^>]+>)/g, addLinFeedToOpenningTag)
   // .replace(/(viewBox=".*")/, '$& style={styles.svg} width="24px" height="24px"')
   .replace(/(viewBox=".*")/, '$& width="24px" height="24px"')
+  .replace(/(<svg)/, '<svg focusable="false" ') // IE 11 is the best
+  .replace(/(style=".*")/g, ' ') // IE 11 is the best
 );
 
 const getRatio = (string) => { // this is so unstable

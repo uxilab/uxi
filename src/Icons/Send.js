@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Send = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 21.25 21.25"
       width="24px"
@@ -21,11 +22,11 @@ const Send = props => (
 );
 
 Send.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Send.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Send;

@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Diagram = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 17.4 17.4"
       width="24px"
@@ -21,11 +22,11 @@ const Diagram = props => (
 );
 
 Diagram.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Diagram.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Diagram;

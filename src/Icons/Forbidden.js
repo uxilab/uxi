@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Forbidden = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       id="Layer_1"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
@@ -20,11 +21,11 @@ const Forbidden = props => (
 );
 
 Forbidden.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Forbidden.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Forbidden;

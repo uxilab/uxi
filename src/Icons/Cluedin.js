@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Cluedin = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       id="Layer_1"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
@@ -26,11 +27,11 @@ const Cluedin = props => (
 );
 
 Cluedin.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Cluedin.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Cluedin;

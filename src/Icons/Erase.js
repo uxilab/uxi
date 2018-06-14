@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Erase = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       id="Layer_1"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
@@ -19,11 +20,11 @@ const Erase = props => (
 );
 
 Erase.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Erase.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Erase;

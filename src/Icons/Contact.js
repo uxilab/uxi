@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Contact = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16.73 16"
       width="24px"
@@ -23,11 +24,11 @@ const Contact = props => (
 );
 
 Contact.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Contact.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Contact;

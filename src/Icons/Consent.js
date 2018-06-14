@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Consent = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16.55 15.75"
       width="24px"
@@ -24,11 +25,11 @@ const Consent = props => (
 );
 
 Consent.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Consent.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Consent;

@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Padlock = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 12.39 16"
       width="24px"
@@ -22,11 +23,11 @@ const Padlock = props => (
 );
 
 Padlock.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Padlock.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Padlock;

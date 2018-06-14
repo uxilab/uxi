@@ -5,10 +5,13 @@ import SvgIcon from '../SvgIcon';
 
 const Pbcopy = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       aria-hidden="true"
+      height="14"
       version="1.1"
       viewBox="0 0 14 16"
+      width="14"
       width="24px"
       height="24px"
     >
@@ -21,11 +24,11 @@ const Pbcopy = props => (
 );
 
 Pbcopy.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Pbcopy.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Pbcopy;

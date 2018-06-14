@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Keepintheloop = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 18.47 16"
       width="24px"
@@ -24,11 +25,11 @@ const Keepintheloop = props => (
 );
 
 Keepintheloop.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Keepintheloop.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Keepintheloop;

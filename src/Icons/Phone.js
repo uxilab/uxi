@@ -5,7 +5,8 @@ import SvgIcon from '../SvgIcon';
 
 const Phone = props => (
   <SvgIcon {...props}>
-    <svg focusable="false"
+    <svg
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 9.6 16.25"
       width="24px"
@@ -21,11 +22,11 @@ const Phone = props => (
 );
 
 Phone.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string
 };
 
 Phone.defaultProps = {
-  color: '#6d6d71',
+  color: '#6d6d71'
 };
 
 export default Phone;
