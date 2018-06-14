@@ -87,13 +87,13 @@ const ButtonUI = styled.button`
   line-height: 1;
   ${ButtonBaseMixin};
 `;
-const ButtonLinkUI = styled.a`
+export const ButtonLinkUI = styled.a`
   line-height: 1;
   ${ButtonBaseMixin};
   text-decoration: none;
   &:hover { text-decoration: none }
 `;
-const ButtonDivUI = styled.div`
+export const ButtonDivUI = styled.div`
   line-height: 1;
   ${ButtonBaseMixin};
 `;
