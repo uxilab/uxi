@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Flex, FlexLeftCol, AppLayout } from 'uxi/Layout';
+import { FlexLeftCol, AppLayout } from './';
 import defaults from '../Menu/defaults'; // TODO bring into theme
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?

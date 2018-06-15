@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from 'uxi/Img';
+import Img from '../Img';
 import {
   Circle,
-} from 'uxi/Icons';
+} from '../Icons';
 
 const TileDetailWrapper = styled.div`
   display:flex;

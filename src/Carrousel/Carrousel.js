@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   Arrowleft,
   Arrowright,
-} from 'uxi/Icons';
+} from '../Icons';
 import CarrouselItem from './CarrouselItem';
 
 const NavigationUI = styled.button`

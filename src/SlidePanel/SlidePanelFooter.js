@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeComponent from '../Base/ThemeComponent';
-import Button from 'uxi/Button';
+import Button from '../Button';
 
 const SlidePanelFooterStyle = {
   root: {
