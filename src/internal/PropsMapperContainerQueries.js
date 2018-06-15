@@ -30,13 +30,14 @@ const applyRules = (props, rules, width, height) => {
      * is wider or equal than the 'minWidth' condition
      * if you order you rules correcty you get a nice
      * logical, ascending, flow of overwrite
+     * !!!avoid cyclic dependent constraint!!
      */
     .filter(({ minWidth }) => width >= minWidth);
 
   rules.forEach(({ minWidth, mapper }) => {
     result = {
       ...result,
-      ...mapper(result),
+      ...mapper({ ...result, containerWidth: width, containerHeight: height }),
     };
   });
 
@@ -55,6 +56,7 @@ export class PropsMapperContainerQueries extends Component {
 
     const delay = debounceDelay !== undefined ? debounceDelay : 180;
     this.handleResize = debounce(this.handleResize.bind(this), delay).bind(this);
+    this.storeRef = this.storeRef.bind(this)
 
     this.ref = null;
 
@@ -62,6 +64,12 @@ export class PropsMapperContainerQueries extends Component {
       width: null,
       height: null,
     };
+  }
+
+  componentWillMount() {
+    window && window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+    this.forceUpdate();
   }
 
   componentDidMount() {
@@ -72,6 +80,12 @@ export class PropsMapperContainerQueries extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+  }
+
+  storeRef(node) {
+    this.ref = node
+    this.handleResize();
+    this.forceUpdate();
   }
 
   handleResize() {
@@ -89,7 +103,7 @@ export class PropsMapperContainerQueries extends Component {
     const { width, height } = this.state;
 
     const props = {
-      ...React.Children.only(children).props,
+      ...(children && children.props ? children.props : {}),
       ...restOfProps,
     };
 
@@ -97,13 +111,15 @@ export class PropsMapperContainerQueries extends Component {
 
     const type = inline ? 'span' : 'div';
 
+    const extendedChildren = React.Children.map(
+      children,
+      (child) => React.cloneElement(child, applyRules(child.props, rules, width, height))
+    )
+
     return React.createElement(
       type,
-      { ref: node => this.ref = node },
-      React.cloneElement(
-        React.Children.only(children),
-        mappedProps,
-      ),
+      { ref: this.storeRef },
+      extendedChildren,
     );
   }
 }
