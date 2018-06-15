@@ -22,11 +22,11 @@ const Sitemap = props => (
 );
 
 Sitemap.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Sitemap.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Sitemap;

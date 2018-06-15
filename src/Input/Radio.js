@@ -31,7 +31,7 @@ const styles = {
 // eslint-disable-next-line react/prefer-stateless-function
 class Radio extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -77,10 +77,10 @@ class Radio extends React.PureComponent {
       // ...restOfProps
     } = this.props;
 
-    const isChecked = this.isControlled ? this.props.checked : this.state.checked
+    const isChecked = this.isControlled ? this.props.checked : this.state.checked;
     const checker = this.isControlled
       ? { checked: this.props.checked }
-      : { defaultChecked: this.state.checked }
+      : { defaultChecked: this.state.checked };
 
     const iconIdentifier = isChecked ? 'radioInput' : 'RadioInputOutline';
 

@@ -22,11 +22,11 @@ const Graphql = props => (
 );
 
 Graphql.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Graphql.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Graphql;

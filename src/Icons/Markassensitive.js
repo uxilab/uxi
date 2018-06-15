@@ -23,11 +23,11 @@ const Markassensitive = props => (
 );
 
 Markassensitive.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Markassensitive.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Markassensitive;

@@ -27,11 +27,11 @@ const Listul = props => (
 );
 
 Listul.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Listul.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Listul;

@@ -24,11 +24,11 @@ const Sortingdown = props => (
 );
 
 Sortingdown.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Sortingdown.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Sortingdown;

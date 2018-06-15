@@ -56,7 +56,7 @@ export class PropsMapperContainerQueries extends Component {
 
     const delay = debounceDelay !== undefined ? debounceDelay : 180;
     this.handleResize = debounce(this.handleResize.bind(this), delay).bind(this);
-    this.storeRef = this.storeRef.bind(this)
+    this.storeRef = this.storeRef.bind(this);
 
     this.ref = null;
 
@@ -83,7 +83,7 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   storeRef(node) {
-    this.ref = node
+    this.ref = node;
     this.handleResize();
     this.forceUpdate();
   }
@@ -113,8 +113,8 @@ export class PropsMapperContainerQueries extends Component {
 
     const extendedChildren = React.Children.map(
       children,
-      (child) => React.cloneElement(child, applyRules(child.props, rules, width, height))
-    )
+      child => React.cloneElement(child, applyRules(child.props, rules, width, height))
+    );
 
     return React.createElement(
       type,

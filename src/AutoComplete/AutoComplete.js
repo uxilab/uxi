@@ -294,7 +294,7 @@ class AutoComplete extends ThemeComponent {
         {(filteredSet.length > 20
           ? (<MenuItem
             key={'not-currentIndex'}
-            onClick={() => { } /* this.onItemClick.bind(this, currentIndex) */}
+            onClick={() => { }}
             // onMouseOver={this.handleMouseEnterListItem.bind(this)}
             // onMouseOut={this.handleMouseLeaveListItem.bind(this)}
             style={{

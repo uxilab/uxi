@@ -24,11 +24,11 @@ const Topic = props => (
 );
 
 Topic.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Topic.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Topic;

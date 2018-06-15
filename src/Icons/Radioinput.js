@@ -23,11 +23,11 @@ const Radioinput = props => (
 );
 
 Radioinput.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Radioinput.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Radioinput;

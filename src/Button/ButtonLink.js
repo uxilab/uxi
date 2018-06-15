@@ -29,11 +29,11 @@ const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth
       icon={icon}
       name={text}
       style={{
-        ...(isFullWidth ? { justifyContent: 'center' } : {} )
+        ...(isFullWidth ? { justifyContent: 'center' } : {}),
       }}
     />
   ) : (
-      <div style={{ textAlign: isFullWidth ? 'center' : 'left' }}>{text || message || children}</div>
+    <div style={{ textAlign: isFullWidth ? 'center' : 'left' }}>{text || message || children}</div>
   );
 
   return (

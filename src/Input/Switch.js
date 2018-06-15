@@ -125,13 +125,13 @@ class Switch extends PureComponent {
   onBlur() {
     this.setState({
       hasFocus: false,
-    })
+    });
   }
 
   onFocus() {
     this.setState({
       hasFocus: true,
-    })
+    });
   }
 
   render() {
@@ -180,6 +180,6 @@ class Switch extends PureComponent {
 
 Switch.defaultProps = {
   inputStyle: {},
-}
+};
 
 export default Switch;

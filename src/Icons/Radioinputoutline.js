@@ -22,11 +22,11 @@ const Radioinputoutline = props => (
 );
 
 Radioinputoutline.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Radioinputoutline.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Radioinputoutline;

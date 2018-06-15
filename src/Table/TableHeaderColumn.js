@@ -49,12 +49,13 @@ class TableHeaderColumn extends Component {
         {...handlers}
         style={style}
       >
-        <div style={{
-          paddingLeft: noPadding ? 0 : '24px',
-          paddingRight: noPadding ? 0 : '24px',
-          height: '100%',
-          lineHeight: '46px',
-        }}
+        <div
+          style={{
+            paddingLeft: noPadding ? 0 : '24px',
+            paddingRight: noPadding ? 0 : '24px',
+            height: '100%',
+            lineHeight: '46px',
+          }}
         >
           {children}
         </div>

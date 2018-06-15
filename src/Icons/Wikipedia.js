@@ -22,11 +22,11 @@ const Wikipedia = props => (
 );
 
 Wikipedia.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Wikipedia.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Wikipedia;

@@ -23,11 +23,11 @@ const Workspace = props => (
 );
 
 Workspace.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Workspace.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Workspace;

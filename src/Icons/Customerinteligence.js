@@ -23,11 +23,11 @@ const Customerinteligence = props => (
 );
 
 Customerinteligence.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Customerinteligence.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Customerinteligence;

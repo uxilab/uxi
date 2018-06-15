@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const ItemsWrapper = styled.div``;
 
 const PopOverArrow = styled.div`
-  /* overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden' }; */
+  /* overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden'}; */
   /* clip: rect(0px 20px 10px 0px); */
 
   clip: rect(-8px 38px 11px -8px);
@@ -20,10 +20,10 @@ const PopOverArrow = styled.div`
   min-height: 29px;
   background: transparent;
   top: -11px;
-  ${({ anchor }) => anchor === 'right' ? 'right: 20px;' : 'left: 20px;' };
+  ${({ anchor }) => anchor === 'right' ? 'right: 20px;' : 'left: 20px;'};
 
   &:after {
-    ${({ isPopOver }) => isPopOver ? 'content: ""' : '' };
+    ${({ isPopOver }) => isPopOver ? 'content: ""' : ''};
     display: block;
     width: 20px;
     height: 20px;
@@ -47,8 +47,8 @@ const WrapperUI = styled.div`
   position: relative;
   display: inline-block;
   height: 100%;
-  ${({ isFullWidth }) => isFullWidth ? 'width: 100%' : '' };
-`
+  ${({ isFullWidth }) => isFullWidth ? 'width: 100%' : ''};
+`;
 
 
 /**
@@ -136,11 +136,11 @@ export class DropDown extends PureComponent {
   componentDidMount() {
     const { style, mainScrollingElementSelector } = this.props;
 
-    this.htmlNodeRef = document
+    this.htmlNodeRef = document;
     if (mainScrollingElementSelector) {
-      const htmlNodeRef = document.querySelector(mainScrollingElementSelector)
+      const htmlNodeRef = document.querySelector(mainScrollingElementSelector);
       if (htmlNodeRef) {
-        this.htmlNodeRef = htmlNodeRef
+        this.htmlNodeRef = htmlNodeRef;
       }
     }
 
@@ -151,7 +151,7 @@ export class DropDown extends PureComponent {
     const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
 
     if (isOpen)  {
-      this.attachListeners()
+      this.attachListeners();
     }
   }
 
@@ -160,11 +160,11 @@ export class DropDown extends PureComponent {
     const { isOpen: willBeOpenState } = nextState;
     const { isOpen: willBeOpenProps } = nextProps;
 
-    const willBeOpen = willBeOpenState ||  willBeOpenProps
+    const willBeOpen = willBeOpenState ||  willBeOpenProps;
     let shouldFocusTrigerrer = false;
 
     if (!willBeOpen) {
-      shouldFocusTrigerrer = true
+      shouldFocusTrigerrer = true;
     }
     // } else if (isOpen && willBeOpen) {
     //   shouldFocusTrigerrer
@@ -172,7 +172,7 @@ export class DropDown extends PureComponent {
 
     this.setState({
       shouldFocusTrigerrer,
-    })
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -183,9 +183,9 @@ export class DropDown extends PureComponent {
         isOpen: nextProps.isOpen,
       }, () => {
         if (onIsOpenChange) {
-          onIsOpenChange(nextProps.isOpen)
+          onIsOpenChange(nextProps.isOpen);
         }
-      } );
+      });
     }
   }
 
@@ -212,7 +212,7 @@ export class DropDown extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.detachListeners()
+    this.detachListeners();
   }
 
   getDynamicItemsStyles() {
@@ -228,11 +228,11 @@ export class DropDown extends PureComponent {
         .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
     }
 
-    const leftScrollOffset = this.htmlNodeRef.scrollLeft
+    const leftScrollOffset = this.htmlNodeRef.scrollLeft;
     const cRectMain = mainRef.getBoundingClientRect();
     const cRectItems = itemsRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
-    const ItemsLeft = cRectMain.left// - (cRectItems.width - cRectMain.width);
+    const ItemsLeft = cRectMain.left;// - (cRectItems.width - cRectMain.width);
     const width = cRectMain.width;
 
     let left = 'sdrgqerg';
@@ -253,7 +253,7 @@ export class DropDown extends PureComponent {
       maxHeight: isOpen ? itemsHeight : 0,
 
       width: isFullWidth ? `${width}px` : 'auto',
-      left: left,
+      left,
       right,
 
       top,
@@ -282,37 +282,37 @@ export class DropDown extends PureComponent {
     const { onIsOpenChange } = this.props;
 
     if (isOpen) {
-      const newOpen = false
+      const newOpen = false;
       const { leaveOpenOnClickOutside } = this.props;
       if (!leaveOpenOnClickOutside) {
         this.setState({
           isOpen: newOpen,
         }, () => {
           if (onIsOpenChange) {
-            onIsOpenChange(newOpen)
+            onIsOpenChange(newOpen);
           }
         });
       }
-      this.detachListeners()
+      this.detachListeners();
     }
   }
 
   handleToggleVisibility() {
     const { onIsOpenChange } = this.props;
-    const isOpen = !this.state.isOpen
+    const isOpen = !this.state.isOpen;
     if (this.props.main.props.onClick) { this.props.main.props.onClick(); }
     this.setState(
-      { isOpen, },
+      { isOpen },
       () => {
         if (onIsOpenChange) {
-          onIsOpenChange(isOpen)
+          onIsOpenChange(isOpen);
         }
       }
     );
     if (isOpen) {
-      this.attachListeners()
+      this.attachListeners();
     } else {
-      this.detachListeners()
+      this.detachListeners();
     }
   }
 
@@ -365,7 +365,7 @@ export class DropDown extends PureComponent {
         onClick: () => {
           this.handleToggleVisibility();
           if (main.props.onClick) {
-            main.props.onClick()
+            main.props.onClick();
           }
         },
       });
@@ -379,7 +379,7 @@ export class DropDown extends PureComponent {
           backgroundColor: '#bebebe',
         },
       },
-      onClose: () => { this.handleToggleVisibility() }
+      onClose: () => { this.handleToggleVisibility(); },
     }));
 
     const cleanedItemsStyle = {
@@ -396,9 +396,9 @@ export class DropDown extends PureComponent {
       // find the close btn
     }
 
-    const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: "0" } : {})
+    const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: '0' } : {});
 
-    const GDDynamicstyles = this.getDynamicItemsStyles()
+    const GDDynamicstyles = this.getDynamicItemsStyles();
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
@@ -414,7 +414,7 @@ export class DropDown extends PureComponent {
           </div>
         </UnstyledButton>
         <ItemsWrapper
-          data-is-the-one='true'
+          data-is-the-one="true"
           // aria-hidden={isOpen ? false : true}
           // autoFocus={isOpen}
           // tabIndex={isOpen ? 1 : -1}
@@ -425,15 +425,13 @@ export class DropDown extends PureComponent {
           {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
           {/* {items} */}
           {
-            React.Children.map(items, (child) => {
-              return React.cloneElement(child, {
-                ...child.props,
+            React.Children.map(items, child => React.cloneElement(child, {
+              ...child.props,
               //   tabIndex: isOpen ? 0 : -1,
               //   'aria-hidden': isOpen
               //     ? (child.type === Separator ? false : true)
               //     : false
-              })
-            })
+            }))
           }
         </ItemsWrapper>
       </WrapperUI>

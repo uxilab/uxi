@@ -22,11 +22,11 @@ const Book = props => (
 );
 
 Book.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Book.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Book;

@@ -26,11 +26,11 @@ const Backlogitem = props => (
 );
 
 Backlogitem.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Backlogitem.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Backlogitem;

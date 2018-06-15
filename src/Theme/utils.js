@@ -1,6 +1,6 @@
 
 import { palette } from './palette';
-import { theme } from './'
+import { theme } from './';
 import { lighten, darken } from './colorManipulator';
 
 // eslint-disable-next-line no-shadow
@@ -34,5 +34,5 @@ export const getThemeWithCustomPalette = (customPalette = {}) => { // eslint-dis
     palette: mergeCustomPalette(palette, customPalette),
   };
 
-  return themeWithCustomPalette
+  return themeWithCustomPalette;
 };

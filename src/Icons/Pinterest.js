@@ -22,11 +22,11 @@ const Pinterest = props => (
 );
 
 Pinterest.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Pinterest.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Pinterest;

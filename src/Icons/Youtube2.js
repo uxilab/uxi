@@ -23,11 +23,11 @@ const Youtube2 = props => (
 );
 
 Youtube2.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Youtube2.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Youtube2;

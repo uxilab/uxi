@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 /**
  *
  * a client forms wrap a component in form that is
  * preventd from event reloading the page
  */
-const wrapInClientFormHOC = Component => (props) => (
+const wrapInClientFormHOC = Component => props => (
   <form
     onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); } }}
     onSumbit={(e) => { e.preventDefault(); e.stopPropagation(); }}
@@ -14,4 +14,4 @@ const wrapInClientFormHOC = Component => (props) => (
   </form>
 );
 
-export default wrapInClientFormHOC
+export default wrapInClientFormHOC;

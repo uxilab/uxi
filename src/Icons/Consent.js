@@ -25,11 +25,11 @@ const Consent = props => (
 );
 
 Consent.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Consent.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Consent;

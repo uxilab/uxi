@@ -27,8 +27,7 @@ const DialogStyle = {
  */
 const Dialog = ({ show, modal, onClose, children, style }) => {
   const extendedChildren = React.Children.map(children, (c, index) => {
-
-    const childExtendedChildren = React.Children.map(c.props.children, childChildren => {
+    const childExtendedChildren = React.Children.map(c.props.children, (childChildren) => {
       if (childChildren
         && childChildren.type
         && childChildren.type.displayName === 'PanelContent'
@@ -36,17 +35,17 @@ const Dialog = ({ show, modal, onClose, children, style }) => {
         return React.cloneElement(childChildren, {
           ...childChildren.props,
           style: { maxHeight: 'calc(80vh - calc( 2 * 50px ))', ...childChildren.props.style },
-        })
+        });
       }
-      return childChildren
-    })
+      return childChildren;
+    });
 
     return React.cloneElement(c, {
       key: `dialogContent-${index}`,
       onClose,
       children: childExtendedChildren,
-    })
-  })
+    });
+  });
 
   return (
     <Modal
@@ -57,7 +56,7 @@ const Dialog = ({ show, modal, onClose, children, style }) => {
         {extendedChildren}
       </div>
     </Modal>
-  )
-}
+  );
+};
 
 export default Dialog;

@@ -21,11 +21,11 @@ const Forbidden = props => (
 );
 
 Forbidden.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Forbidden.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Forbidden;

@@ -22,11 +22,11 @@ const Gift = props => (
 );
 
 Gift.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Gift.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Gift;

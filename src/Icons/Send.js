@@ -22,11 +22,11 @@ const Send = props => (
 );
 
 Send.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Send.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Send;

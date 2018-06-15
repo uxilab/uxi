@@ -22,11 +22,11 @@ const Cloud = props => (
 );
 
 Cloud.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Cloud.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Cloud;

@@ -23,11 +23,11 @@ const User = props => (
 );
 
 User.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 User.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default User;

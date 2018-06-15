@@ -22,11 +22,11 @@ const Filter = props => (
 );
 
 Filter.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Filter.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Filter;

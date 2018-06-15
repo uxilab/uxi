@@ -25,11 +25,11 @@ const Idea = props => (
 );
 
 Idea.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Idea.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Idea;

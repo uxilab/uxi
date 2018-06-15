@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Separator} from '../Menu';
+import { Separator } from '../Menu';
 
 const OptionsUI = styled.div`
   cursor: pointer;
@@ -25,16 +25,16 @@ const OptionsUI = styled.div`
   };
 `;
 
-const Options = props => {
+const Options = (props) => {
   const {
     onEsc,
     onClick,
     ...rest
-  } = props
+  } = props;
 
-  return <OptionsUI
+  return (<OptionsUI
     {...rest}
-    onClick={(e) => { e.target.blur(); onClick && onClick(e) }}
+    onClick={(e) => { e.target.blur(); onClick && onClick(e); }}
     onKeyUp={(e) => {
       // if (e.target === document.body) {
         // e.preventDefault()
@@ -43,29 +43,29 @@ const Options = props => {
 
       if (e.key === 'Escape') {
         e.target.blur();
-        e.target.tabIndex = -1
+        e.target.tabIndex = -1;
 
 
         if (onEsc) {
-          onEsc()
+          onEsc();
         }
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.target.blur();
-        e.target.tabIndex= -1
+        e.target.tabIndex = -1;
 
         if (onClick) {
           const fakeEvent = {
             currentTarget: {
-              dataset: { index: e.currentTarget.dataset.index }
-            }
-          }
-          onClick(fakeEvent)
+              dataset: { index: e.currentTarget.dataset.index },
+            },
+          };
+          onClick(fakeEvent);
         }
       }
     }}
-    aria-hidden={props.isOpen ? false : true}
+    aria-hidden={!props.isOpen}
     tabIndex={props.isOpen ? 0 : -1}
-  />
+  />);
   // console.log(props.children.type)
   // console.log('props.children.type', props.children.type)
   // return (props.children.type === Separator

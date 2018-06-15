@@ -74,11 +74,11 @@ let counter = 0;
 
 class Checkbox extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
 
     let state = {
       hasFocus: false,
-    }
+    };
 
     this.isControlled = this.props.checked !== undefined;
     if (!this.isControlled) {
@@ -86,15 +86,15 @@ class Checkbox extends React.PureComponent {
       state = {
         ...state,
         checked: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
-      }
+      };
     }
 
     this.state = {
       ...state,
-    }
+    };
 
-    this.onFocus = this.onFocus.bind(this)
-    this.onBlur = this.onBlur.bind(this)
+    this.onFocus = this.onFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,7 +103,7 @@ class Checkbox extends React.PureComponent {
       // not controlled, use internal state
       this.setState({
         checked: nextProps.defaultChecked !== undefined ? nextProps.defaultChecked : false,
-      })
+      });
     }
   }
 
@@ -130,13 +130,13 @@ class Checkbox extends React.PureComponent {
   onBlur() {
     this.setState({
       hasFocus: false,
-    })
+    });
   }
 
   onFocus() {
     this.setState({
       hasFocus: true,
-    })
+    });
   }
 
   render() {
@@ -154,7 +154,7 @@ class Checkbox extends React.PureComponent {
       // ...restOfProps
     } = this.props;
 
-    const { hasFocus } = this.state
+    const { hasFocus } = this.state;
 
     const checker = this.isControlled ? checked : this.state.checked;
 

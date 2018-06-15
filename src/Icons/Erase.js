@@ -20,11 +20,11 @@ const Erase = props => (
 );
 
 Erase.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Erase.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Erase;

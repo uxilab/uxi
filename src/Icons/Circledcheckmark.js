@@ -23,11 +23,11 @@ const Circledcheckmark = props => (
 );
 
 Circledcheckmark.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Circledcheckmark.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Circledcheckmark;

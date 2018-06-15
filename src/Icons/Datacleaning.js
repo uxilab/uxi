@@ -22,11 +22,11 @@ const Datacleaning = props => (
 );
 
 Datacleaning.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Datacleaning.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Datacleaning;

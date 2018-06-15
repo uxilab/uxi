@@ -82,7 +82,7 @@ const GlobalMenuItemDiv = styled.a`
   ${GlobalMenuItemBase};
   html body & svg,
   html body & svg > svg {
-    /* fill: ${({ theme: { palette } }) => palette.extraLightGrey }; */
+    /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
     fill: ${({ isSelected, isActive, theme: { palette } }) =>
       (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
     };

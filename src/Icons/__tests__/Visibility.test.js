@@ -7,4 +7,3 @@ describe('Icon : <Visibility />', () => {
   });
 });
 
-

@@ -22,11 +22,11 @@ const Domain = props => (
 );
 
 Domain.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Domain.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Domain;

@@ -22,11 +22,11 @@ const Arrowright = props => (
 );
 
 Arrowright.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Arrowright.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Arrowright;

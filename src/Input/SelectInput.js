@@ -91,28 +91,26 @@ class SelectInput extends PureComponent {
 
   preventScrollingOnSpace(e) {
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
-      e.preventDefault()
-      e.stopPropagation()
+      e.preventDefault();
+      e.stopPropagation();
 
       this.setState({
         isOpen: false,
-      })
+      });
     } else if (e.key === 'Tab' || e.keyCode === 9) {
       if (!(document.activeElement.nodeName === 'BUTTON')) {
-        const { activeElement } = document
+        const { activeElement } = document;
         const lastOptionItem = document.activeElement.parentNode.lastChild;
         const firstOptionItem = document.activeElement.parentNode.firstChild;
 
         if (e.shiftKey) {
           if (activeElement === firstOptionItem && lastOptionItem && lastOptionItem.focus) {
-            lastOptionItem.focus()
-            e.preventDefault()
+            lastOptionItem.focus();
+            e.preventDefault();
           }
-        } else {
-          if (activeElement === lastOptionItem && firstOptionItem && firstOptionItem.focus) {
-            firstOptionItem.focus()
-            e.preventDefault()
-          }
+        } else if (activeElement === lastOptionItem && firstOptionItem && firstOptionItem.focus) {
+          firstOptionItem.focus();
+          e.preventDefault();
         }
         // this.setState({
         //   isOpen: false,
@@ -121,49 +119,48 @@ class SelectInput extends PureComponent {
     } else if (e.key === 'Escape' || e.keyCode === 27) {
       this.setState({
         isOpen: false,
-      })
+      });
     } else if (e.key === 'ArrowDown' || e.keyCode === 40) {
-      e.preventDefault()
-      e.stopPropagation()
+      e.preventDefault();
+      e.stopPropagation();
 
-      const nextSiblingMaybe = document.activeElement.nextElementSibling
+      const nextSiblingMaybe = document.activeElement.nextElementSibling;
       if (nextSiblingMaybe && nextSiblingMaybe.focus) {
-        nextSiblingMaybe.focus()
+        nextSiblingMaybe.focus();
       } else {
-        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling
+        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling;
         if (optionsWrapperDiv) {
-          const firstOptionItem = optionsWrapperDiv.firstChild
+          const firstOptionItem = optionsWrapperDiv.firstChild;
           if (firstOptionItem && firstOptionItem.focus) {
-            firstOptionItem.focus()
+            firstOptionItem.focus();
           }
         } else {
           // go back to first option element
-          const firstOption = document.activeElement.parentNode.firstChild
+          const firstOption = document.activeElement.parentNode.firstChild;
           if (firstOption && firstOption.focus) {
-            firstOption.focus()
+            firstOption.focus();
           }
         }
       }
-
     } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
-      e.preventDefault()
-      e.stopPropagation()
+      e.preventDefault();
+      e.stopPropagation();
 
-      const previousSiblingMaybe = document.activeElement.previousElementSibling
+      const previousSiblingMaybe = document.activeElement.previousElementSibling;
       if (previousSiblingMaybe && previousSiblingMaybe.focus) {
-        previousSiblingMaybe.focus()
+        previousSiblingMaybe.focus();
       } else {
-        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling
+        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling;
         if (optionsWrapperDiv) {
-          const lastOptionItem = document.activeElement.parentNode.nextElementSibling.lastChild
+          const lastOptionItem = document.activeElement.parentNode.nextElementSibling.lastChild;
           if (lastOptionItem && lastOptionItem.focus) {
-            lastOptionItem.focus()
+            lastOptionItem.focus();
           }
         } else {
           // go back to last option element
-          const lastOption = document.activeElement.parentNode.lastChild
+          const lastOption = document.activeElement.parentNode.lastChild;
           if (lastOption && lastOption.focus) {
-            lastOption.focus()
+            lastOption.focus();
           }
         }
       }
@@ -178,9 +175,9 @@ class SelectInput extends PureComponent {
 
     const { isOpen } = nextState;
     if (isOpen) {
-      window.addEventListener('keydown', this.preventScrollingOnSpace)
+      window.addEventListener('keydown', this.preventScrollingOnSpace);
     } else {
-      window.removeEventListener('keydown', this.preventScrollingOnSpace)
+      window.removeEventListener('keydown', this.preventScrollingOnSpace);
     }
     /*
     TODO: Make controlled selectInkput work!
@@ -262,7 +259,7 @@ class SelectInput extends PureComponent {
     const {
       children,
     } = this.props;
-    const { isOpen } = this.state
+    const { isOpen } = this.state;
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
@@ -274,21 +271,21 @@ class SelectInput extends PureComponent {
       if (React.isValidElement(child)) {
         if (!isDOMTypeElement(child)) {
           return (
-              <Option
-                onClick={e => this.clickHandler(e)}
-                onEsc={() => this.clickHandler(null)}
-                data-index={i}
-                {...child.props}
-                isOpen={isOpen}
+            <Option
+              onClick={e => this.clickHandler(e)}
+              onEsc={() => this.clickHandler(null)}
+              data-index={i}
+              {...child.props}
+              isOpen={isOpen}
                 // tabIndex={0}
                 // aria-hidden={isOpen ? false : true }
-                selected={isTheOne}
-                style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
-              >
-                {React.cloneElement(child, {
-                  value,
-                })}
-              </Option>
+              selected={isTheOne}
+              style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+            >
+              {React.cloneElement(child, {
+                value,
+              })}
+            </Option>
           );
         }
 
@@ -340,9 +337,9 @@ class SelectInput extends PureComponent {
       this.setState({
         selectedIndex: this.state.selectedIndex || null,
         isOpen: false,
-     })
+      });
       this.forceUpdate();
-      return
+      return;
     }
 
     if (!this.isControlled) {
@@ -356,7 +353,7 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
-    this.setState({ isOpen })
+    this.setState({ isOpen });
   }
 
   render() {
@@ -393,7 +390,7 @@ class SelectInput extends PureComponent {
 
 SelectInput.defaultProps = {
   style: {},
-}
+};
 
 
 export default SelectInput;

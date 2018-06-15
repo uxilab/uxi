@@ -22,11 +22,11 @@ const Merge = props => (
 );
 
 Merge.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Merge.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Merge;

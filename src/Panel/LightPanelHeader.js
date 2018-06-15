@@ -28,9 +28,7 @@ const LightPanelHeader = (props) => {
   const close = (hasClose || closeLabel)
     ? (
       <CloseWrapperUI tabindex="0" onClick={onClose}>
-        {closeLabel
-          ? closeLabel
-          : <Close size="14px" color="#d7d7d7" hoverColor="#fff" />
+        {closeLabel || <Close size="14px" color="#d7d7d7" hoverColor="#fff" />
         }
       </CloseWrapperUI>
     )

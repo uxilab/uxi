@@ -24,11 +24,11 @@ const Pbcopy = props => (
 );
 
 Pbcopy.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Pbcopy.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Pbcopy;

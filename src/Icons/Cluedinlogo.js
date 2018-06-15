@@ -30,11 +30,11 @@ const Cluedinlogo = props => (
 );
 
 Cluedinlogo.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Cluedinlogo.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Cluedinlogo;

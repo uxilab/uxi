@@ -22,11 +22,11 @@ const Phone = props => (
 );
 
 Phone.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Phone.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Phone;

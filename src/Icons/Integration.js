@@ -22,11 +22,11 @@ const Integration = props => (
 );
 
 Integration.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Integration.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Integration;

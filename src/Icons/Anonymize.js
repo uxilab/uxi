@@ -24,11 +24,11 @@ const Anonymize = props => (
 );
 
 Anonymize.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Anonymize.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Anonymize;

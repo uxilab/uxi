@@ -23,11 +23,11 @@ const Iteration = props => (
 );
 
 Iteration.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Iteration.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Iteration;

@@ -97,7 +97,6 @@ const addScore = (accu, { string, matches }) => {
 };
 
 export function getFilteredSetWithScore(filteredSet) {
-
   const filteredSetWithScore = filteredSet.map(x => ({
     ...x,
     scrore: x.matchesResults.reduce(addScore, 0),

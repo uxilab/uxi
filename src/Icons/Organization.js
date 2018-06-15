@@ -22,11 +22,11 @@ const Organization = props => (
 );
 
 Organization.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Organization.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Organization;

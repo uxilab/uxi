@@ -106,10 +106,11 @@ class DataGridSorting extends Component {
             </div>
           </div>
           <div style={mergedStyle} ref={(ref) => { this.node = ref; }}>
-            <div style={{
-              background: 'rgb(255, 255, 255)',
-              borderBottom: '1px solid rgb(204, 204, 204)',
-            }}
+            <div
+              style={{
+                background: 'rgb(255, 255, 255)',
+                borderBottom: '1px solid rgb(204, 204, 204)',
+              }}
             >
 
               <VerticalMenu>

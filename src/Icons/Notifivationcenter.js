@@ -22,11 +22,11 @@ const Notifivationcenter = props => (
 );
 
 Notifivationcenter.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Notifivationcenter.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Notifivationcenter;

@@ -3,14 +3,13 @@ import Button from '../Button';
 import { mountWithTheme, shallowWithTheme } from '../../../test/utils';
 
 
-
 describe('<Button />', () => {
   it('should render a Button', () => {
     const testValue = 'YO!';
     const wrapper =
       shallowWithTheme(
         <Button onClick={() => { }} text={testValue} />
-      )
+      );
 
     expect(wrapper).toMatchSnapshot();
     const button = wrapper.find(Button);
@@ -19,38 +18,38 @@ describe('<Button />', () => {
   });
 
   it('exists', () => {
-    expect(Button).not.toBeUndefined()
-  })
+    expect(Button).not.toBeUndefined();
+  });
 
   it('match snapshot', () => {
-    const wrapper = shallow(<Button />)
+    const wrapper = shallow(<Button />);
 
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 
   describe('handles various types ([none], primary, secondary, error, warning, info, success)', () => {
     it('type default (none)', () => {
       expect(shallow(<Button />)).toMatchSnapshot();
-    })
+    });
     it('type primary', () => {
       expect(shallow(<Button type="primary" />)).toMatchSnapshot();
-    })
+    });
     it('type secondary', () => {
       expect(shallow(<Button type="secondary" />)).toMatchSnapshot();
-    })
+    });
     it('type error', () => {
       expect(shallow(<Button type="error" />)).toMatchSnapshot();
-    })
+    });
     it('type warning', () => {
       expect(shallow(<Button type="warning" />)).toMatchSnapshot();
-    })
+    });
     it('type info', () => {
       expect(shallow(<Button type="info" />)).toMatchSnapshot();
-    })
+    });
     it('type success', () => {
       expect(shallow(<Button type="success" />)).toMatchSnapshot();
-    })
-  })
+    });
+  });
 
   // TODO fid those GD tests
   /*
@@ -81,16 +80,16 @@ describe('<Button />', () => {
 
   describe('Handles click events', () => {
     it('call `onClick`(Func) props, IF ANY passed, when clicked', () => {
-      const spy = jest.fn()
+      const spy = jest.fn();
 
-      const wrapper = shallowWithTheme(<Button onClick={spy} />)
+      const wrapper = shallowWithTheme(<Button onClick={spy} />);
 
-      const button = wrapper.find(Button)
+      const button = wrapper.find(Button);
 
-      expect(button.length).toEqual(1)
-      button.props().onClick()
-      expect(spy).toHaveBeenCalledTimes(1)
-    })
-  })
-})
+      expect(button.length).toEqual(1);
+      button.props().onClick();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+});
 

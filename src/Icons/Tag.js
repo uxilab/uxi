@@ -23,11 +23,11 @@ const Tag = props => (
 );
 
 Tag.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Tag.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Tag;

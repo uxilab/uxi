@@ -28,11 +28,11 @@ const Patterns = props => (
 );
 
 Patterns.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Patterns.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Patterns;

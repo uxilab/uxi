@@ -27,11 +27,11 @@ const Cluedin = props => (
 );
 
 Cluedin.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Cluedin.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Cluedin;

@@ -22,11 +22,11 @@ const Department = props => (
 );
 
 Department.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Department.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Department;

@@ -32,11 +32,11 @@ const Visibilityunabled = props => (
 );
 
 Visibilityunabled.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Visibilityunabled.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Visibilityunabled;

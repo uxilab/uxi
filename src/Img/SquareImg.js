@@ -24,10 +24,11 @@ const makeHeightStylePropIfNeeded = (props) => {
 };
 
 const SquareImg = props => (
-  <RatioBox style={{
-    width: makeHeightStylePropIfNeeded(props).style.width,
-    height: makeHeightStylePropIfNeeded(props).style.height,
-  }}
+  <RatioBox
+    style={{
+      width: makeHeightStylePropIfNeeded(props).style.width,
+      height: makeHeightStylePropIfNeeded(props).style.height,
+    }}
   >
     <Img {...makeHeightStylePropIfNeeded(props)} />
   </RatioBox>

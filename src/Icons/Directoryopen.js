@@ -22,11 +22,11 @@ const Directoryopen = props => (
 );
 
 Directoryopen.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Directoryopen.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Directoryopen;

@@ -24,11 +24,11 @@ const Sales = props => (
 );
 
 Sales.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Sales.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Sales;

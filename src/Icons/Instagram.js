@@ -25,11 +25,11 @@ const Instagram = props => (
 );
 
 Instagram.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Instagram.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Instagram;

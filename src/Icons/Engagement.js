@@ -23,11 +23,11 @@ const Engagement = props => (
 );
 
 Engagement.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 
 Engagement.defaultProps = {
-  color: '#6d6d71'
+  color: '#6d6d71',
 };
 
 export default Engagement;
