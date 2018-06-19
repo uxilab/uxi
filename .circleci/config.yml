@@ -113,6 +113,7 @@ jobs:
           key: source-v1-{{ .Branch }}-{{ .Revision }}-dist
           paths:
             - "./dist"
+      - run: unexistingCommand
 
       - run: echo "//registry.npmjs.org/:_authToken=$CICIMAINTAINER_NPM_TOKEN" >> ~/.npmrc
       - run: git config --global user.name $CICIMAINTAINER_NAME
@@ -175,13 +176,13 @@ workflows:
       - pack:
           requires:
             - install
-      # - publish:
-      #     requires:
-      #       - test
-      #       - pack
-      #     filters:
-      #       branches:
-      #         only: master
+      - publish:
+          requires:
+            - test
+            - pack
+          filters:
+            branches:
+              only: master
   # uxi-documentation-publish:
   #   jobs:
   #     - install
