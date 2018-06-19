@@ -1,5 +1,4 @@
 version: 2
-
 jobs:
   install:
     docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
@@ -164,7 +163,6 @@ jobs:
       # - git push git@heroku.com:cluedintest.git $CIRCLE_SHA1:refs/heads/master
       # - git push git@heroku.com:cluedintest.git $LATEST_SHA1:refs/heads/master
       - run: git push -f git@heroku.com:uxilab.git master:master
-
 
 workflows:
   version: 2
