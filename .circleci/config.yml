@@ -75,7 +75,7 @@ jobs:
       - run: npm dedupe             # because reasons, without that zopfli(jest>request) fails and all goes to hell
       - run: npm run test
 
-  deploy:
+  publish:
     docker:
       - image: circleci/node
     steps:
@@ -133,9 +133,42 @@ jobs:
       - run: git diff-index --quiet HEAD || git commit --no-verify -m "published $(node -pe "require('./package.json').version") [ci skip]"
       - run: git push https://github.com/uxilab/uxi.git HEAD:master --follow-tags
 
+  deployDocumentation:
+    docker:
+      - image: circleci/node
+    steps:
+      ## checkout ##
+      - restore_cache:
+          keys:
+            - source-v1-{{ .Branch }}-{{ .Revision }}
+      - checkout
+      # deploy can save cache becaue nothing is gonna run un parallele with it
+      - save_cache:
+          key: source-v1-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ".git"
+
+      - run: LATEST_SHA1=$(git rev-parse HEAD)
+      - run: echo "$LATEST_SHA1"
+      - run: |
+        cat >~/.netrc <<EOF
+        machine api.heroku.com
+          login $HEROKU_EMAIL
+          password $HEROKU_TOKEN
+        machine git.heroku.com
+          login $HEROKU_EMAIL
+          password $HEROKU_TOKEN
+        EOF
+      - run: chmod 600 ~/.netrc # Heroku cli complains about permissions without this
+      # - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+      # - git push git@heroku.com:cluedintest.git $CIRCLE_SHA1:refs/heads/master
+      # - git push git@heroku.com:cluedintest.git $LATEST_SHA1:refs/heads/master
+      - run: git push -f git@heroku.com:uxilab.git master:master
+
+
 workflows:
   version: 2
-  uxi-publish-workflow:
+  uxi-npm-publish:
     jobs:
       - install
       - test:
@@ -144,12 +177,26 @@ workflows:
       - pack:
           requires:
             - install
-      - deploy:
+      # - publish:
+      #     requires:
+      #       - test
+      #       - pack
+      #     filters:
+      #       branches:
+      #         only: master
+  uxi-documentation-publish:
+    jobs:
+      - install
+      - test:
           requires:
-            - test
-            - pack
-          filters:
-            branches:
-              # only: master
-              ## DEV ONLY ##:
-              only: master
+            - install
+      - pack:
+          requires:
+            - install
+      # - deployDocumentation:
+      #     requires:
+      #       - test
+      #       - pack
+      #     filters:
+      #       branches:
+      #         only: master
