@@ -132,7 +132,6 @@ jobs:
       - run: git diff-index --quiet HEAD || git commit --no-verify -m "published $(node -pe "require('./package.json').version") [ci skip]"
       - run: git push https://github.com/uxilab/uxi.git HEAD:master --follow-tags
 
-
   deployDocumentation:
     docker:
       - image: circleci/node
@@ -183,15 +182,15 @@ workflows:
       #     filters:
       #       branches:
       #         only: master
-  uxi-documentation-publish:
-    jobs:
-      - install
-      - test:
-          requires:
-            - install
-      - pack:
-          requires:
-            - install
+  # uxi-documentation-publish:
+  #   jobs:
+  #     - install
+  #     - test:
+  #         requires:
+  #           - install
+  #     - pack:
+  #         requires:
+  #           - install
       # - deployDocumentation:
       #     requires:
       #       - test
