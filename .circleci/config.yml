@@ -130,7 +130,7 @@ jobs:
 
       - run: echo '§ pushing back to github remote...'
       - run: git add .
-      - run: git diff-index --quiet HEAD || git commit --no-verify -m "published $(node -pe "require('./package.json').version") to test [ci skip]"
+      - run: git diff-index --quiet HEAD || git commit --no-verify -m "published $(node -pe "require('./package.json').version") [ci skip]"
       - run: git push https://github.com/uxilab/uxi.git HEAD:master --follow-tags
 
 workflows:
@@ -141,13 +141,13 @@ workflows:
       - test:
           requires:
             - install
-      - build:
+      - pack:
           requires:
             - install
       - deploy:
           requires:
             - test
-            - build
+            - pack
           filters:
             branches:
               # only: master
