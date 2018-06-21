@@ -29,7 +29,7 @@ class TableBody extends Component {
 
     const rowChildren = React.Children.map(this.props.children, (child) => {
       if (!React.isValidElement(child)) {
-        return;
+        return undefined; // consistent-return
       }
 
       const isSelected = isRowSelected(rowNumber);
@@ -105,7 +105,9 @@ TableBody.propTypes = {
 };
 
 TableBody.defaultProps = {
-
+  selectable: false,
+  onRowSelection: () => { },
+  children: null,
 };
 
 export default TableBody;

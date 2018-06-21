@@ -4,7 +4,7 @@ import { theme } from './';
 import { lighten, darken } from './colorManipulator';
 
 // eslint-disable-next-line no-shadow
-function mergeCustomPalette(mainPalette, customPalette) {
+export function mergeCustomPalette(mainPalette, customPalette) {
   let secondary = mainPalette.primary.main;
   let primary = mainPalette.accent.main;
 

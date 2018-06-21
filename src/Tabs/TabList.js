@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import cx from 'classnames';
@@ -45,10 +45,10 @@ const TabListStyle = {
   },
 };
 
-export default React.createClass({
-  displayName: 'TabList',
+export class TabList extends Component {
+  static displayName = 'TabList'
 
-  propTypes: {
+  static propTypes = {
     className: PropTypes.string,
     activeTabClassName: PropTypes.string,
     disabledTabClassName: PropTypes.string,
@@ -57,7 +57,15 @@ export default React.createClass({
       PropTypes.object,
       PropTypes.array,
     ]),
-  },
+  }
+
+  static defaultProps = {
+    className: '',
+    activeTabClassName: '',
+    disabledTabClassName: '',
+    isMainStyle: false,
+    children: null,
+  }
 
   render() {
     const {
@@ -86,5 +94,7 @@ export default React.createClass({
         {renderChildren({ activeTabClassName, isMainStyle, disabledTabClassName, children })}
       </ul>
     );
-  },
-});
+  }
+}
+
+export default TabList;

@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider as SCThemeProvider } from 'styled-components';
+import styled, { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { makeGlobalCSSInjector } from '../global';
 import { getThemeWithCustomPalette } from '../utils';
 import { theme as UXITheme } from '../index';
 import { ThemeProvider as UXIContextThemeProvider } from './ContextThemeProvider';
-import styled from 'styled-components';
-import { lighten } from '../colorManipulator';
 
 const GlobalStyles = styled.div`
   & {
@@ -48,7 +46,7 @@ const UXISCThemeProvider = (props) => {
     <SCThemeProvider theme={theTheme || theme} >
       <GlobalStyles data-globalStyles>
         <UXIContextThemeProvider>
-          <div style={{ height: '100%' }}>
+          <div style={{ height: '100%' }}>
             <style dangerouslySetInnerHTML={{ __html: actualCSSString }} />
             {children}
           </div>
@@ -65,6 +63,7 @@ UXISCThemeProvider.propTypes = {
 
 UXISCThemeProvider.defaultProps = {
   theme: UXITheme || {},
+  palette: {},
 };
 
 UXISCThemeProvider.displayName = 'UXISCThemeProvider';

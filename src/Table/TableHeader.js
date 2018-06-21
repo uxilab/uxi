@@ -25,7 +25,7 @@ class TableHeader extends Component {
     /**
      * Controls whether or not the select all checkbox is displayed.
      */
-    displaySelectAll: PropTypes.bool,
+    // displaySelectAll: PropTypes.bool, // commented out because it is never used
     /**
      * If set to true, the select all button will be interactable.
      * If set to false, the button will not be interactable.
@@ -41,7 +41,7 @@ class TableHeader extends Component {
      * @ignore
      * True when select all has been checked.
      */
-    selectAllSelected: PropTypes.bool,
+    // selectAllSelected: PropTypes.bool, // commented out because it is never used
     /**
      * Override the inline-styles of the root element.
      */
@@ -50,9 +50,22 @@ class TableHeader extends Component {
 
   static defaultProps = {
     adjustForCheckbox: true,
-    displaySelectAll: true,
+    // displaySelectAll: true,  // commented out because it is never used
     enableSelectAll: true,
-    selectAllSelected: false,
+    // selectAllSelected: false, // commented out because it is never used
+    /**
+      * Controls whether or not header rows should be
+      * adjusted for a checkbox column. If the select all
+      * checkbox is true, this property will not influence
+      * the number of columns. This is mainly useful for
+      * "super header" rows so that the checkbox column
+      * does not create an offset that needs to be accounted
+      * for manually.
+      */
+    children: null,
+    className: '',
+    onSelectAll: () => { },
+    style: {},
   };
 
 
@@ -61,10 +74,10 @@ class TableHeader extends Component {
     if (numChildren === 1) return undefined;
 
     const superHeaders = [];
-    for (let index = 0; index < numChildren - 1; index++) {
+    for (let index = 0; index < numChildren - 1; index += 1) {
       const child = this.props.children[index];
 
-      if (!React.isValidElement(child)) continue;
+      if (!React.isValidElement(child)) continue; // eslint-disable-line no-continue
 
       const props = {
         ...child.props,
@@ -125,7 +138,7 @@ class TableHeader extends Component {
       noBorder,
       allRowsSelected,
       enableSelectAll,
-      rowNumber,
+      // rowNumber, // never used
       onSelectAll,
     } = this.props;
 

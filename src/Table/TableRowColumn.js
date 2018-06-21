@@ -26,12 +26,24 @@ class TableRowColumn extends Component {
     columnNumber: PropTypes.number,
     hoverable: PropTypes.bool,
     onClick: PropTypes.func,
+    onClickHandler: PropTypes.func, // is this correct name ? -df
     style: PropTypes.object,
     className: PropTypes.string,
   };
 
   static defaultProps = {
+    children: null,
+    /**
+     * @ignore
+     * Number to identify the header row. This property
+     * is automatically populated when used with TableHeader.
+     */
+    columnNumber: 0,
     hoverable: false,
+    onClick: () => { },
+    onClickHandler: () => { }, // is this correct name ? -df
+    style: {},
+    className: '',
   };
 
   state = {

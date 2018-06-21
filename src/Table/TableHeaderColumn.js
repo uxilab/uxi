@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TableHeaderColumnStyle from './TableHeaderColumn.style';
 import styled from 'styled-components';
 
 const Th = styled.td`
@@ -14,7 +13,6 @@ const Th = styled.td`
   text-transform: uppercase;
   padding:0;
 `;
-
 
 class TableHeaderColumn extends Component {
   state = {
@@ -81,6 +79,7 @@ TableHeaderColumn.propTypes = {
    */
   hoverable: PropTypes.bool,
   onClick: PropTypes.func,
+  onClickHandler: PropTypes.func, // what is this ?
   /**
    * Override the inline-styles of the root element.
    */
@@ -89,6 +88,34 @@ TableHeaderColumn.propTypes = {
   allRowsSelected: PropTypes.bool,
   multiSelectable: PropTypes.bool,
   onRowSelection: PropTypes.func,
+};
+
+TableHeaderColumn.defaultProps = {
+  children: null,
+  /**
+   * The css class name of the root element.
+   */
+  className: '',
+  /**
+   * Number to identify the header row. This property
+   * is automatically populated when used with TableHeader.
+   */
+  columnNumber: 0,
+  /**
+   * @ignore
+   * Not used here but we need to remove it from the root element.
+   */
+  hoverable: false,
+  onClick: () => { },
+  onClickHandler: () => { }, // what is this ?
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: {},
+  selectable: false,
+  allRowsSelected: false,
+  multiSelectable: false,
+  onRowSelection: () => { },
 };
 
 export default TableHeaderColumn;

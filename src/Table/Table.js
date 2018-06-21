@@ -97,9 +97,13 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
+  children: null,
   multiSelectable: false,
   allRowsSelected: false,
+  onRowSelection: () => { },
   selectable: false,
+  height: '',
+  sperateRows: false,
 };
 
 export default Table;

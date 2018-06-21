@@ -67,6 +67,7 @@ class TableRow extends Component {
       ...other
     } = this.props;
 
+    // eslint-disable-next-line consistent-return
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
@@ -113,7 +114,22 @@ TableRow.propTypes = {
 };
 
 TableRow.defaultProps = {
+  children: null,
   displayBorder: true,
+  onCellClick: () => {},
+  onRowClick: () => {},
+  /**
+   * Number to identify the row. This property is
+   * automatically populated when used with the TableBody component.
+   */
+  rowNumber: 0,
+  style: {},
+  className: '',
+  readOnly: false,
+  readOnlyText: null,
+  locked: false,
+  activable: false,
+  isActive: false,
 };
 
 export default TableRow;

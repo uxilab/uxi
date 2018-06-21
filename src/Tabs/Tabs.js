@@ -18,10 +18,11 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-export default React.createClass({
-  displayName: 'Tabs',
+// export default React.createClass({
+class Tabs extends Component {
+  displayName = 'Tabs';
 
-  propTypes: {
+  static propTypes = {
     className: PropTypes.string,
     selectedIndex: PropTypes.number,
     onSelect: PropTypes.func,
@@ -30,11 +31,11 @@ export default React.createClass({
     children: PropTypes.node,
     forceRenderTabPanel: PropTypes.bool,
     isMainStyle: PropTypes.bool,
-  },
+  }
 
-  childContextTypes: {
+  static childContextTypes = {
     forceRenderTabPanel: PropTypes.bool,
-  },
+  }
 
   getDefaultProps() {
     return {
@@ -42,24 +43,24 @@ export default React.createClass({
       focus: false,
       forceRenderTabPanel: false,
     };
-  },
+  }
 
   getInitialState() {
     return this.copyPropsToState(this.props, this.state);
-  },
+  }
 
   getChildContext() {
     return {
       forceRenderTabPanel: this.props.forceRenderTabPanel,
     };
-  },
+  }
 
   componentWillReceiveProps(newProps) {
     // Use a transactional update to prevent race conditions
     // when reading the state in copyPropsToState
     // See https://github.com/reactjs/react-tabs/issues/51
     this.setState(state => this.copyPropsToState(newProps, state));
-  },
+  }
 
   setSelected(index, focus) {
     // Don't do anything if nothing has changed
@@ -82,7 +83,7 @@ export default React.createClass({
       // Update selected index
       this.setState({ selectedIndex: index, focus: focus === true });
     }
-  },
+  }
 
   getNextTab(index) {
     const count = this.getTabsCount();
@@ -105,7 +106,7 @@ export default React.createClass({
 
     // No tabs are disabled, return index
     return index;
-  },
+  }
 
   getPrevTab(index) {
     let i = index;
@@ -129,29 +130,29 @@ export default React.createClass({
 
     // No tabs are disabled, return index
     return index;
-  },
+  }
 
   getTabsCount() {
     return this.props.children && this.props.children[0] ?
       React.Children.count(this.props.children[0].props.children) :
       0;
-  },
+  }
 
   getPanelsCount() {
     return React.Children.count(this.props.children.slice(1));
-  },
+  }
 
   getTabList() {
     return this.refs.tablist;
-  },
+  }
 
   getTab(index) {
     return this.refs[`tabs-${index}`];
-  },
+  }
 
   getPanel(index) {
     return this.refs[`panels-${index}`];
-  },
+  }
 
   getChildren() {
     let index = 0;
@@ -238,7 +239,7 @@ export default React.createClass({
 
       return result;
     });
-  },
+  }
 
   handleKeyDown(e) {
     if (this.isTabFromContainer(e.target)) {
@@ -264,7 +265,7 @@ export default React.createClass({
 
       this.setSelected(index, true);
     }
-  },
+  }
 
   handleClick(e) {
     let node = e.target;
@@ -279,7 +280,7 @@ export default React.createClass({
         return;
       }
     } while ((node = node.parentNode) !== null);
-  },
+  }
 
   // This is an anti-pattern, so sue me
   copyPropsToState(props, state) {
@@ -305,7 +306,7 @@ export default React.createClass({
       selectedIndex,
       focus: props.focus,
     };
-  },
+  }
 
   /**
    * Determine if a node from event.target is a Tab element for the current Tabs container.
@@ -329,7 +330,7 @@ export default React.createClass({
     } while (nodeAncestor);
 
     return false;
-  },
+  }
 
   render() {
     // This fixes an issue with focus management.
@@ -378,5 +379,5 @@ export default React.createClass({
         {this.getChildren()}
       </div>
     );
-  },
-});
+  }
+}

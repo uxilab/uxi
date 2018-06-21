@@ -16,6 +16,14 @@ export class ThemeProvider extends Component {
     palette: PropTypes.object,
   };
 
+  static defaultProps = {
+    children: null,
+    theme: {},
+    extendTheme: {},
+    isContained: false,
+    palette: {},
+  };
+
   static childContextTypes = {
     uxiTheme: PropTypes.object.isRequired,
     isFixedWidth: PropTypes.func,
@@ -34,7 +42,7 @@ export class ThemeProvider extends Component {
     };
   }
 
-  isDarkTheme() {
+  isDarkTheme() { // eslint-disable-line class-methods-use-this
     return false;
   }
 
