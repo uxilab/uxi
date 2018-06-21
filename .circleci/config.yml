@@ -42,6 +42,11 @@ jobs:
           paths:
             - ".git"
 
+      # Write creds
+      - run: echo "//registry.npmjs.org/:_authToken=$CICIMAINTAINER_NPM_TOKEN" >> ~/.npmrc
+      - run: git config --global user.name $CICIMAINTAINER_NAME
+      - run: git config --global user.email $CICIMAINTAINER_EMAIL
+
       - run: npm version patch -m "bump to v %s for release [ci skip]" ## creates the "tagged release commit"
 
       ## npm i ##
@@ -57,11 +62,6 @@ jobs:
 
       - run: npm run pack
 
-      # - run: unexistingCommand
-
-      - run: echo "//registry.npmjs.org/:_authToken=$CICIMAINTAINER_NPM_TOKEN" >> ~/.npmrc
-      - run: git config --global user.name $CICIMAINTAINER_NAME
-      - run: git config --global user.email $CICIMAINTAINER_EMAIL
 
       - run: echo '§ publishing to npm registry...'
       # - run: npm run copy-files
