@@ -1,7 +1,7 @@
 version: 2
 jobs:
-  install:
-    docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
+  test:
+    docker:
       - image: circleci/node
     steps:
       ## checkout ##
@@ -14,62 +14,15 @@ jobs:
           paths:
             - ".git"
 
-      ## npm i ##
+      # npm i ##
       - restore_cache:
           keys:
-            - source-v1-{{ .Branch }}-node_modules{{ checksum "package-lock.json" }}
+            - source-v1-{{ .Branch }}-node_modules{{ checksum "package.json" }}
       - run: npm i
-      # only save cache here (insatll step) to avoid race condition on cache
       - save_cache:
-          key: source-v1-{{ .Branch }}-node_modules{{ checksum "package-lock.json" }}
+          key: source-v1-{{ .Branch }}-node_modules{{ checksum "package.json" }}
           paths:
             - "./node_modules"
-
-  pack:
-    docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
-      - image: circleci/node
-    steps:
-      ## checkout ##
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-      - checkout
-
-      ## npm i ##
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-node_modules{{ checksum "package-lock.json" }}
-      - run: npm i
-
-      ## npm run prod ##
-      # Caching build might seems ridiculous, but in case of (later in worflow)
-      # stupid network fail, it might end up usefull
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}-dist
-      - run: npm run pack
-
-      # build can save cache IN THIS KEY becaue he's the ONLY one using it when running in parrallel with test
-      - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}-dist
-          paths:
-            - "./dist"
-
-  test:
-    docker:
-      - image: circleci/node
-    steps:
-      ## checkout ##
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-      - checkout
-
-      ## npm i ##
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-node_modules{{ checksum "package-lock.json" }}
-      - run: npm i
 
       - run: npm dedupe             # because reasons, without that zopfli(jest>request) fails and all goes to hell
       - run: npm run test
@@ -89,40 +42,26 @@ jobs:
           paths:
             - ".git"
 
+      - run: npm version patch -m "bump to v %s for release [ci skip]" ## creates the "tagged release commit"
+
       ## npm i ##
       - restore_cache:
           keys:
-            - source-v1-{{ .Branch }}-node_modules{{ checksum "package-lock.json" }}
+            - source-v1-{{ .Branch }}-node_modules{{ checksum "package.json" }}
       - run: npm i
       # deploy can save cache becaue nothing is gonna run un parallele with it
       - save_cache:
-          key: source-v1-{{ .Branch }}-node_modules{{ checksum "package-lock.json" }}
+          key: source-v1-{{ .Branch }}-node_modules{{ checksum "package.json" }}
           paths:
             - "./node_modules"
 
-      # - run: npm run prod
-      ## npm run prod ##
-      # Caching build might seems ridiculous, but in case of (later in worflow)
-      # stupid network fail, like npm/git failling it might end up usefull
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}-dist
-      - run: npm run pack          # DEV ONLY build faster BUT should be `npm run prod`  !!!
-      # deploy can save cache becaue nothing is gonna run un parallele with it
-      - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}-dist
-          paths:
-            - "./dist"
-      - run: unexistingCommand
+      - run: npm run pack
+
+      # - run: unexistingCommand
 
       - run: echo "//registry.npmjs.org/:_authToken=$CICIMAINTAINER_NPM_TOKEN" >> ~/.npmrc
       - run: git config --global user.name $CICIMAINTAINER_NAME
       - run: git config --global user.email $CICIMAINTAINER_EMAIL
-
-      - run: echo '§ publishing assets to cdn...'
-      # - run: npm run gulppublish
-      # - run: npm run __gulppublishprod
-
 
       - run: echo '§ publishing to npm registry...'
       # - run: npm run copy-files
@@ -169,17 +108,10 @@ workflows:
   version: 2
   uxi-npm-publish:
     jobs:
-      - install
-      - test:
-          requires:
-            - install
-      - pack:
-          requires:
-            - install
+      - test
       - publish:
           requires:
             - test
-            - pack
           filters:
             branches:
               only: master
