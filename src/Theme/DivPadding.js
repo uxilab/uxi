@@ -1,5 +1,5 @@
 import React from 'react';
-import ComponentWithPadding from './ComponentWithPadding';
+import ComponentWithPadding from '../Base/ComponentWithPadding';
 
 class DivPadding extends ComponentWithPadding {
   render() {

@@ -1,13 +1,13 @@
-import { css } from 'styled-components';
+// import { css } from 'styled-components';
 import { lighten } from './colorManipulator';
 /** those are css`` mixins import */
 import grid from './grid';
-import fonts from './fonts';
+import fonts from './fonts'; // eslint-disable-line import/no-named-as-default
 import tooltip from './tooltip';
-import synthaxHighlight from './synthaxHighlight';
-import markdown from './markdown';
+// import synthaxHighlight from './synthaxHighlight';
+// import markdown from './markdown';
 import layout from './layout';
-import simpleLayout from './simpleLayout';
+import simpleLayout from './simpleLayout'; // eslint-disable-line import/no-named-as-default
 /**
  * injectGlobal: A helper method to write global CSS.
  * It does not return a component,

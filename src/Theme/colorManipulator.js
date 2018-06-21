@@ -1,3 +1,6 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-mixed-operators */
 /**
  * Returns a number whose value is limited to the given range.
  *

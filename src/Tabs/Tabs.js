@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 

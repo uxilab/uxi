@@ -102,16 +102,33 @@ export default React.createClass({
     let mergedStyle = Object.assign({}, TabStyle.li, isFirst ? {} : {});
 
     if (isMainStyle) {
-      mergedStyle = Object.assign({}, TabStyle.liMainStyle, isFirst ? TabStyle.borderFirst : TabStyle.border);
+      mergedStyle = Object.assign(
+        {},
+        TabStyle.liMainStyle,
+        isFirst
+          ? TabStyle.borderFirst
+          : TabStyle.border
+      );
     }
 
     delete attributes.focus;
 
     if (selected) {
       if (!isMainStyle) {
-        mergedStyle = Object.assign({}, mergedStyle, TabStyle.liSelected, isFirst ? TabStyle.borderFirst : TabStyle.border);
+        mergedStyle = Object.assign(
+          {},
+          mergedStyle,
+          TabStyle.liSelected, isFirst
+            ? TabStyle.borderFirst
+            : TabStyle.border
+        );
       } else {
-        mergedStyle = Object.assign({}, mergedStyle, TabStyle.liMainStyleSelected, isFirst ? {} : {});
+        mergedStyle = Object.assign(
+          {},
+          mergedStyle,
+          TabStyle.liMainStyleSelected,
+          isFirst ? {} : {}
+        );
       }
     }
 
