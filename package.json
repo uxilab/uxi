@@ -32,7 +32,9 @@
   },
   "homepage": "https://github.com/uxilab/uxi#readme",
   "dependencies": {
+    "babel-eslint": "^8.2.3",
     "classnames": "^2.2.5",
+    "eslint": "^4.19.1",
     "keycode": "^2.1.9",
     "lodash.debounce": "^4.0.8",
     "rc-tooltip": "^3.7.0",
@@ -51,7 +53,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "styled-components": "^3.3.2",
-    "uxi-cli": "^1.0.78"
+    "uxi-cli": "^1.0.79"
   },
   "peerDependencies": {
     "styled-components": "3.2.0",
