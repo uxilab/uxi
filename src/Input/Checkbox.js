@@ -35,16 +35,16 @@ const Wrapper = styled.div`
   ${({ checker, theme: { palette } }) => (checker
     ? `svg { fill: ${palette.accent} !important; }`
     : '')
-  };
+};
   padding: 4px;
   display: flex ;
   align-items: center;
 
   /* waiting for Edge to support focus-within */
-  ${({ hasFocus }) => hasFocus ? (`
+  ${({ hasFocus }) => (hasFocus ? (`
     outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
     outline: 5px auto -webkit-focus-ring-color !important;
-  `) : ''};
+  `) : '')};
 
   &:focus-within {
     outline: 2px solid #7AACFE !important;

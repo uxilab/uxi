@@ -12,7 +12,7 @@ const ButtonLinkWrapper = styled.a`
   cursor: pointer;
   color: ${({ theme, type }) => getTypeColor(theme, type)};
   display: inline-block;
-  ${({ isFullWidth }) => isFullWidth ? 'width: 100%' : ''};
+  ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
   &:hover {
     text-decoration: underline;
   }

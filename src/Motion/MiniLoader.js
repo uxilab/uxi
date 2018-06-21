@@ -7,14 +7,14 @@ const Svg = styled.svg`
   background: none;
   rect {
     fill: ${({ theme: { palette }, type, colorProp }) => {
-      if (type) {
-        return palette.semantic[type] || palette.accent;
-      }
-      if (colorProp) {
-        return colorProp;
-      }
-      return palette.accent.main;
-    }}
+    if (type) {
+      return palette.semantic[type] || palette.accent;
+    }
+    if (colorProp) {
+      return colorProp;
+    }
+    return palette.accent.main;
+  }}
   };
 `;
 
@@ -69,7 +69,7 @@ const MiniLoader = ({ size, color: colorProp, type }) => (
       </rect>
     </g>
   </Svg>
-  );
+);
 
 MiniLoader.defaultProps = {
   // color: '#25bcbc',

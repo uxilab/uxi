@@ -20,10 +20,10 @@ position: relative;
   opacity: ${props => (props.disabled ? '.7' : 1)};
   filter: ${props => (props.disabled ? 'grayscale(35%) opacity(70%)' : 'none')};
 
-  ${({ hasFocus }) => hasFocus ? (`
+  ${({ hasFocus }) => (hasFocus ? (`
     outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
     outline: 5px auto -webkit-focus-ring-color !important;
-  `) : ''};
+  `) : '')};
 
 `;
 

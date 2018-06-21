@@ -24,7 +24,7 @@ const LinkDecorator = styled.div`
     /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
     fill: ${({ isSelected, isActive, theme: { palette } }) =>
     (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
-    };
+};
   }
 
   & a {
@@ -86,7 +86,7 @@ const GlobalMenuLogoDiv = styled.a`
     /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
     fill: ${({ isSelected, isActive, theme: { palette } }) =>
     (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
-    };
+};
   }
 
   z-index: 99;

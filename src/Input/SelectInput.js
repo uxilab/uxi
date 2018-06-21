@@ -277,8 +277,8 @@ class SelectInput extends PureComponent {
               data-index={i}
               {...child.props}
               isOpen={isOpen}
-                // tabIndex={0}
-                // aria-hidden={isOpen ? false : true }
+              // tabIndex={0}
+              // aria-hidden={isOpen ? false : true }
               selected={isTheOne}
               style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
             >

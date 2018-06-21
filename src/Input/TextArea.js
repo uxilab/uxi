@@ -35,7 +35,7 @@ const InputUI = styled.textarea.attrs({
   border: 1px solid ${({ error, success, theme: { palette: { semantic } } }) => (error
     ? semantic.error
     : (success ? semantic.success : semantic.default))
-  };
+};
   &:focus {
     outline: none;
     border: 1px solid ${({ theme }) => theme.palette.accent.main};

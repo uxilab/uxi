@@ -25,8 +25,8 @@ const WithConfirmDialogHOC = (Comp) => {
       this.setState({ showDialog: false });
       if (onCancel) {
         (
-        onCancel()
-      );
+          onCancel()
+        );
       }
     }
 

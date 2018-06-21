@@ -23,12 +23,12 @@ const SlideInWhenInBoundUI = styled.div`
     will-change: opacity, transform;
     opacity: 0;
     transform: ${({ anchor }) => {
-      if (anchor === 'bottom') { return 'translateY(16vh)'; }
-      if (anchor === 'right') { return 'translateX(16vh)'; }
-      if (anchor === 'top') { return 'translateY(-16vh)'; }
-      if (anchor === 'left') { return 'translateX(-16vh)'; }
-    }
-    };
+    if (anchor === 'bottom') { return 'translateY(16vh)'; }
+    if (anchor === 'right') { return 'translateX(16vh)'; }
+    if (anchor === 'top') { return 'translateY(-16vh)'; }
+    if (anchor === 'left') { return 'translateX(-16vh)'; }
+  }
+};
     transition: transform 0.6s cubic-bezier(0.3, 0.8, 0.4, 1), opacity 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
   }
 

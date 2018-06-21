@@ -40,11 +40,11 @@ const ProgressIndicatorWrapperUI = styled.div`
 const LabelWrapperUI = styled.div`
   display: inline-block;
     margin: ${({ labelPosition }) => {
-      if (labelPosition === 'left') { return '0 6px 0 0'; }
-      if (labelPosition === 'top') { return 0; }
-      if (labelPosition === 'bottom') { return '4px 0 0 0'; }
-      return '0';
-    }};
+    if (labelPosition === 'left') { return '0 6px 0 0'; }
+    if (labelPosition === 'top') { return 0; }
+    if (labelPosition === 'bottom') { return '4px 0 0 0'; }
+    return '0';
+  }};
 `;
 
 const ProgressIndicatorUI = styled.div`

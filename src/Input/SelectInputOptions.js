@@ -37,8 +37,8 @@ const Options = (props) => {
     onClick={(e) => { e.target.blur(); onClick && onClick(e); }}
     onKeyUp={(e) => {
       // if (e.target === document.body) {
-        // e.preventDefault()
-        // e.stopPropagation()
+      // e.preventDefault()
+      // e.stopPropagation()
       // }
 
       if (e.key === 'Escape') {

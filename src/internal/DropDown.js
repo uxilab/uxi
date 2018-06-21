@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const ItemsWrapper = styled.div``;
 
 const PopOverArrow = styled.div`
-  /* overflow: ${({ isPopOver }) => isPopOver ? 'visible' : 'hidden'}; */
+  /* overflow: ${({ isPopOver }) => (isPopOver ? 'visible' : 'hidden')}; */
   /* clip: rect(0px 20px 10px 0px); */
 
   clip: rect(-8px 38px 11px -8px);
@@ -20,10 +20,10 @@ const PopOverArrow = styled.div`
   min-height: 29px;
   background: transparent;
   top: -11px;
-  ${({ anchor }) => anchor === 'right' ? 'right: 20px;' : 'left: 20px;'};
+  ${({ anchor }) => (anchor === 'right' ? 'right: 20px;' : 'left: 20px;')};
 
   &:after {
-    ${({ isPopOver }) => isPopOver ? 'content: ""' : ''};
+    ${({ isPopOver }) => (isPopOver ? 'content: ""' : '')};
     display: block;
     width: 20px;
     height: 20px;
@@ -47,7 +47,7 @@ const WrapperUI = styled.div`
   position: relative;
   display: inline-block;
   height: 100%;
-  ${({ isFullWidth }) => isFullWidth ? 'width: 100%' : ''};
+  ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
 `;
 
 
