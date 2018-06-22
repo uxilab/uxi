@@ -33,26 +33,31 @@ const MatchesPart = styled.span`
   white-space: nowrap;
 `;
 
-const getHighlightedNameComplex = (item, valueForInputParam, postFix, filterOn) => {
-  const nameToRenderParam = item[filterOn];
+const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterOn */) => {
+  // const nameToRenderParam = item[filterOn];
   const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
     matches
-      ? (<MatchesPart data-matches ><Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} /></MatchesPart>)
-      : (<MatchesPart data-not-matches dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />)
+      ? (<MatchesPart data-matches >
+        <Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />
+      </MatchesPart>)
+      : (<MatchesPart
+        data-not-matches
+        dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }}
+      />)
   ));
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
       <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
-      <span style={{ margin: '0 6px' }} data-postFix style={{ marginLeft: 'auto' }}>{postFix}</span>
+      <span data-postFix style={{ margin: '0 6px', marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
 };
 
-const recomposeStringValueReducer = (accu = '', { string }) => {
-  if (!accu || typeof accu !== 'string') { accu = string; }
-  return (accu += string);
-};
+// const recomposeStringValueReducer = (accu = '', { string }) => {
+//   if (!accu || typeof accu !== 'string') { accu = string; }
+//   return (accu += string);
+// };
 
 /* eslint-disable react/jsx-no-bind */
 class AutoComplete extends ThemeComponent {

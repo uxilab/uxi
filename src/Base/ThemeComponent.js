@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 /**
  * TODO: Some of thos compos still use context or import the theme directly, fix it
@@ -62,13 +62,21 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
     const theme = this.context.uxiTheme;
     const themeForComponent = theme[name] || {};
 
-    return Object.assign({}, themeForComponent, stylesFromComponent, (fromParentStyle || {}), (style || {}));
+    return Object.assign(
+      {},
+      themeForComponent,
+      stylesFromComponent,
+      (fromParentStyle || {}),
+      (style || {})
+    );
   }
 
   isDarkThemeFromTheme() {
     const { isDark } = this.props;
     const isDarkFromRoot = this.context.isDarkTheme();
-    const isDarkFromTheme = this.context.isDarkThemeFromTheme ? this.context.isDarkThemeFromTheme() : false;
+    const isDarkFromTheme = this.context.isDarkThemeFromTheme
+      ? this.context.isDarkThemeFromTheme()
+      : false;
 
     return isDark || isDarkFromRoot || isDarkFromTheme;
   }

@@ -48,7 +48,7 @@ export const getMatchesResult = (source, target) => {
     if (sourceChar.toLowerCase() === (targetChar && targetChar.toLowerCase())) {
       currentRunMatchObj.matches = true;
       result.push(currentRunMatchObj);
-      j++;
+      j++; // eslint-disable-line no-plusplus
     } else {
       result.push(currentRunMatchObj);
       currentRunMatchObj = {
@@ -56,7 +56,7 @@ export const getMatchesResult = (source, target) => {
         string: sourceChar,
       };
     }
-    i++;
+    i++; // eslint-disable-line no-plusplus
   }
 
   const initialAccu = {
@@ -67,12 +67,13 @@ export const getMatchesResult = (source, target) => {
     }],
   };
 
-  const finalResult = result.reduce((accu, x, i) => {
+  const finalResult = result.reduce((accu, x/* , i */) => {
     if (i === 0) { return accu; }
 
-    const currentItem = accu.result[accu.result.length - 1];
+    // const currentItem = accu.result[accu.result.length - 1];
 
     if (x.matches === accu.isCurrentlyMatching) {
+      // eslint-disable-next-line no-param-reassign
       accu.result[accu.result.length - 1].string += x.string;
       return accu;
     }

@@ -76,7 +76,11 @@ const Options = (props) => {
   // console.log('props.children.type', props.children.type)
   // return (props.children.type === Separator
   //   ? <OptionsUI {...props} aria-hidden={true} tabIndex={-1} />
-  //   : <OptionsUI {...props} aria-hidden={props.isOpen ? false : true} tabIndex={props.isOpen ? 0 : -1} />
+  // : <OptionsUI
+  //   {...props}
+  //   aria-hidden={props.isOpen ? false : true}
+  //   tabIndex={props.isOpen ? 0 : -1}
+  // />
   // )
 };
 

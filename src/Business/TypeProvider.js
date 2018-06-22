@@ -16,9 +16,10 @@ class TypeProvider extends Component {
 
   getTypeDefinition(value) {
     const { types } = this.props;
+    // eslint-disable-next-line valid-typeof
     const converter = (types || []).find(t => typeof value === t.type);
     if (!converter) {
-      return;
+      return undefined;
     }
     return converter.Component;
   }
