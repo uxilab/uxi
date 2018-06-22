@@ -12,6 +12,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -42,6 +43,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -73,6 +75,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -104,6 +107,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -135,6 +139,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -166,6 +171,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -197,6 +203,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -228,6 +235,7 @@ exports[`<Button /> match snapshot 1`] = `
   <Ripples
     color="rgba(0, 0, 0, .3)"
     during={600}
+    onClick={[Function]}
     style={Object {}}
   >
     <styled.button
@@ -619,7 +627,12 @@ exports[`<Button /> should render a Button 1`] = `
   <styled.div
     data-globalStyles={true}
   >
-    <ThemeProvider>
+    <ThemeProvider
+      extendTheme={Object {}}
+      isContained={false}
+      palette={Object {}}
+      theme={Object {}}
+    >
       <div
         style={
           Object {

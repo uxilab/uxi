@@ -3,6 +3,7 @@
 exports[`Icon : <Cluedinlogo /> match snapshot 1`] = `
 <SvgIcon
   color="#6d6d71"
+  hoverColor="#6d6d71"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   size={24}
