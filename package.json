@@ -11,14 +11,13 @@
     "typecheck": "flow check",
     "lint": "uxi-cli lint ./src",
     "lint:fix": "uxi-cli lint --fix",
-    "pack": "npm run lint && npm run test && uxi-cli pack",
-    "packNOCHECKDANGEROUS": "uxi-cli pack",
+    "pack": "uxi-cli pack",
     "clean:build": "rimraf build",
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
     "typeinstall": "flow-typed install",
-    "deploy": "npm run lint && npm run test && npm version patch && npm run packNOCHECKDANGEROUS && npm publish build",
+    "deploy": "npm run lint && npm run test && npm version patch && npm run pack && npm publish build",
     "deploy-doc": "npm run lint && npm run test && cd docs/ && npm run deploy-doc"
   },
   "repository": {
