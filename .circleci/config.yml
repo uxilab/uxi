@@ -44,8 +44,8 @@ jobs:
 
       # Write creds
       - run: echo "//registry.npmjs.org/:_authToken=$DFLO_NPM_TOKEN" >> ~/.npmrc
-      - run: git config --global user.name $CICIMAINTAINER_NAME
-      - run: git config --global user.email $CICIMAINTAINER_EMAIL
+      - run: git config --global user.name $CI_BOT_GH_NAME
+      - run: git config --global user.email $CI_BOT_GH_EMAIL
 
       - run: npm version patch -m "bump to v %s for release [ci skip]" ## creates the "tagged release commit"
 
