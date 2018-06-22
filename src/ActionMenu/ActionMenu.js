@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { Options, Followentities } from '../Icons';
 import {
   DropDownMenu,
 } from '../Menu';
 import MenuItem from '../Menu/MenuItem';
 import AvatarWithName from '../Img/AvatarWithName';
-import styled from 'styled-components';
 
 const MainMenuWrapper = styled.div`
   display: flex;
@@ -38,6 +38,7 @@ const MenuButtonItemWithStyle = styled.div`
   }
 `;
 
+// eslint-disable-next-line react/prefer-stateless-function
 class MenuButtonItem extends Component {
   render() {
     const { children, onClick } = this.props;

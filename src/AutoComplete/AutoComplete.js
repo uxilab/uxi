@@ -108,7 +108,9 @@ class AutoComplete extends ThemeComponent {
     const originalValue = filteredSet[index];
 
     this.onEnter(
-      originalValue.matchesResults.reduce((accu = '', { string }) => (accu += string), ''),
+      originalValue.matchesResults
+        // eslint-disable-next-line no-return-assign
+        .reduce((accu = '', { string }) => (accu += string), ''), // eslint-disable-line no-param-reassign
       originalValue,
     );
     this.setState({ index: -1, escape: true });
@@ -155,7 +157,7 @@ class AutoComplete extends ThemeComponent {
   }
 
   onEnter(value, originalValue) {
-    const { filteredSet, index } = this.state;
+    // const { filteredSet, index } = this.state;
     const { onChange } = this.props;
 
     // const originalValue = filteredSet[index];
@@ -164,14 +166,16 @@ class AutoComplete extends ThemeComponent {
       valueForInput: value,
     });
 
-    onChange && onChange({
-      value,
-      originalValue,
-    });
+    if (onChange) {
+      onChange({
+        value,
+        originalValue,
+      });
+    }
   }
 
   updateSearchValue(e) {
-    const { items } = this.props;
+    // const { items } = this.props;
     const { index, valueForInput, filteredSet } = this.state;
 
     if (e.key === 'Enter') {
@@ -179,7 +183,9 @@ class AutoComplete extends ThemeComponent {
         this.onEnter(valueForInput || '', true);
       } else {
         this.onEnter(
-          filteredSet[index].matchesResults.reduce((accu, { string }) => (accu += string), ''),
+          filteredSet[index].matchesResults
+            // eslint-disable-next-line no-return-assign
+            .reduce((accu = '', { string }) => (accu += string), ''), // eslint-disable-line no-param-reassign
           filteredSet[index],
         );
       }
@@ -206,7 +212,7 @@ class AutoComplete extends ThemeComponent {
     const { valueForInput } = this.state;
 
     if (valueForInput && valueForInput.length >= 2) {
-      new Promise((resolve, reject) => {
+      new Promise((resolve/* , reject */) => {
         const filterFnStrict = item => (
           item[filterOn].toLowerCase().replace(/\s/g, '')
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
@@ -224,7 +230,7 @@ class AutoComplete extends ThemeComponent {
 
         const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
 
-        const filteredSet = (mappedUNfilteredSet.filter(filterFnPermissive ||  filterFnStrict));
+        const filteredSet = (mappedUNfilteredSet.filter(filterFnPermissive || filterFnStrict));
 
         const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
 
@@ -243,7 +249,7 @@ class AutoComplete extends ThemeComponent {
   }
 
   render() {
-    const { items, placeholder, itemComponent, defaultValue, filterOn } = this.props;
+    const { /* items, */ placeholder, /* itemComponent, defaultValue, */ filterOn } = this.props;
     const { index, escape, valueForInput, filteredSet } = this.state;
 
     const shadowStyle = {
@@ -268,11 +274,11 @@ class AutoComplete extends ThemeComponent {
           .map((item, currentIndex) => {
             const { postFix } = item;
 
-            const nameToRender = item[filterOn] || item.name;
+            // const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =
               getHighlightedNameComplex(item, valueForInput, postFix, filterOn);
 
-            const selectedClass = '';
+            // const selectedClass = '';
             let liStyle = {};
             if (index === (currentIndex)) {
               liStyle = Object.assign({}, {
