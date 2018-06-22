@@ -212,7 +212,7 @@ const ExampleSimple = () => (
     </li>
     <li>
       <h3>Select (fullWidth) :</h3>
-      <SelectInput isFullWidth={true} onChange={(x) => { console.log('onChange called with :', x); }}>
+      <SelectInput isFullWidth onChange={(x) => { console.log('onChange called with :', x); }}>
         <div>Hi</div>
         <div>Hey</div>
         <Separator label="separator" />
@@ -320,19 +320,19 @@ const ExampleSimple = () => (
     </li>
     <li>
       <h3>Uncontrolled Checkbox with labelBefore</h3>
-      <Checkbox name="d"  labelBefore label={<div><span>Push Notifications :</span></div>} />
+      <Checkbox name="d" labelBefore label={<div><span>Push Notifications :</span></div>} />
     </li>
     <li>
       <h3>Uncontrolled Checkbox with label before and defaultChecked = true</h3>
-      <Checkbox name="e"  defaultChecked lablBefore label={<div><span>Push Notifications :</span></div>} />
+      <Checkbox name="e" defaultChecked lablBefore label={<div><span>Push Notifications :</span></div>} />
     </li>
     <li>
       <h3>Uncontrolled Checkbox</h3>
-      <Checkbox name="f"  />
+      <Checkbox name="f" />
     </li>
     <li>
       <h3>Uncontrolled Checkbox (defaultChecked: true):</h3>
-      <Checkbox name="g"  onChange={(e, checked) => console.log(e, checked)} defaultChecked />
+      <Checkbox name="g" onChange={(e, checked) => console.log(e, checked)} defaultChecked />
     </li>
     <li>
       <h3>Controlled Checkbox (checked: true):</h3>
@@ -340,7 +340,7 @@ const ExampleSimple = () => (
     </li>
     <li>
       <h3>Controlled Checkbox (checked: false):</h3>
-      <Checkbox name="i"  onChange={(e, checked) => console.log(e, checked)} checked={false} />
+      <Checkbox name="i" onChange={(e, checked) => console.log(e, checked)} checked={false} />
     </li>
 
   </ul>

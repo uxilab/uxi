@@ -6,7 +6,7 @@ import Button from 'uxi/Button';
 import SlidePanel, { SlidePanelHeader, SlidePanelFooter } from 'uxi/SlidePanel';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import Slide from 'uxi/internal/Slide';
-import Alert from 'uxi/Alert'
+import Alert from 'uxi/Alert';
 import { Flex } from 'uxi/Layout';
 
 class ExampleSimple extends Component {
@@ -36,7 +36,7 @@ class ExampleSimple extends Component {
         <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
         <ButtonWithConfirm text={'bar'} confirmText={'foo'} onClick={() => console.log('rrr')} />
         <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog"/>
+        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
         <br />
         <br />
         <br />
@@ -51,15 +51,16 @@ class ExampleSimple extends Component {
         <Button onClick={() => { this.setState({ show: true }); }}>
          Show Dialog
         </Button>
-        <br/>
-        <Button onClick={() => { this.setState({ showSidePanelTop: true }); }}> Show SidePanel Top </Button><br/>
-        <Button onClick={() => { this.setState({ showSidePanelTop2: !this.state.showSidePanelTop2 }); }}> Show SidePanel Top 2 </Button><br/>
-        <Button onClick={() => { this.setState({ showSidePanelTop3: !this.state.showSidePanelTop3 }); }}> Show SidePanel Top 3 </Button><br/>
-        <Button onClick={() => { this.setState({ showSidePanelRight: true }); }}> Show SidePanel Right </Button><br/>
-        <Button onClick={() => { this.setState({ showSidePanelRight2: true }); }}> Show SidePanel Right 2 </Button><br/>
-        <Button onClick={() => { this.setState({ showSidePanelBottom: true }); }}> Show SidePanel Bottom </Button><br/>
-        <Button onClick={() => { this.setState({ showSidePanelLeft: true }); }}> Show SidePanel Left </Button><br/>
-        <Button onClick={() => { this.setState({ showPanelDialog: true }); }}> Show PanelDialog </Button><br/>
+        <br />
+        <Button onClick={() => { this.setState({ showSidePanelTop: true }); }}> Show SidePanel Top </Button><br />
+        <Button onClick={() => { this.setState({ showSidePanelTop2: !this.state.showSidePanelTop2 }); }}> Show SidePanel Top 2 </Button><br />
+        {'This is not a good idea like implemented right now (`Slide>stuff`):'}<br />
+        <Button onClick={() => { this.setState({ showSidePanelTop3: !this.state.showSidePanelTop3 }); }}> Show SidePanel Top 3 </Button><br />
+        <Button onClick={() => { this.setState({ showSidePanelRight: true }); }}> Show SidePanel Right </Button><br />
+        <Button onClick={() => { this.setState({ showSidePanelRight2: true }); }}> Show SidePanel Right 2 </Button><br />
+        <Button onClick={() => { this.setState({ showSidePanelBottom: true }); }}> Show SidePanel Bottom </Button><br />
+        <Button onClick={() => { this.setState({ showSidePanelLeft: true }); }}> Show SidePanel Left </Button><br />
+        <Button onClick={() => { this.setState({ showPanelDialog: true }); }}> Show PanelDialog </Button><br />
         <SlidePanel
           onClose={() => { this.setState({ showSidePanelRight: false }); }}
           open={this.state.showSidePanelRight}
@@ -113,28 +114,27 @@ class ExampleSimple extends Component {
             <Button type="primary">Save</Button>
           </SlidePanelFooter>
         </SlidePanel>
-      <SlidePanel
+        <SlidePanel
           anchor="top"
           direction="bottom"
           onClose={() => { console.log(this); this.setState({ showSidePanelTop2: false }); }}
           in={this.state.showSidePanelTop2}
           open={this.state.showSidePanelTop2}
         >
-            <Alert
-              type="error"
-              title="Some SlidePanel Title"
-              onClose={() => { console.log(this); this.setState({ showSidePanelTop2: false }); }}
-            >
+          <Alert
+            type="error"
+            title="Some SlidePanel Title"
+            onClose={() => { console.log(this); this.setState({ showSidePanelTop2: false }); }}
+          >
               Snap! An error occured... <br />
               in a {'<SlidePanel />'}, we get shaodws and full width
-            </Alert>
+          </Alert>
         </SlidePanel>
-       <Slide
+        <Slide
           anchor="top"
           direction="bottom"
           onClose={() => { console.log(this); this.setState({ showSidePanelTop3: false }); }}
-          in={this.state.showSidePanelTop3}
-          open={this.state.showSidePanelTop3}
+          inAttr={this.state.showSidePanelTop3}
         >
           <Flex>
             <Alert
@@ -185,7 +185,7 @@ class ExampleSimple extends Component {
               title="Some Title"
               onClose={() => { console.log(this); this.setState({ showPanelDialog: false }); }}
             />
-            <PanelContent style={{ padding: '15px', maxHeight: 'calc(80vh - calc( 2 * 50px ))', }}>
+            <PanelContent style={{ padding: '15px', maxHeight: 'calc(80vh - calc( 2 * 50px ))' }}>
               Some PanelDialog content.
               Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
             </PanelContent>
