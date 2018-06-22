@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 class ComponentWithPadding extends Component {
   static propTypes = {
-    margin: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']),
-    padding: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']),
+    margin: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']).isRequired,
+    padding: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']).isRequired,
     style: PropTypes.object,
   };
 
   static defaultProps = {
-    margin: 'm',
-    padding: 'm',
+    // margin: 'm',
+    // padding: 'm',
     style: {},
   };
 
