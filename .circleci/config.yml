@@ -43,7 +43,7 @@ jobs:
             - ".git"
 
       # Write creds
-      - run: echo "//registry.npmjs.org/:_authToken=$CICIMAINTAINER_NPM_TOKEN" >> ~/.npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=$DFLO_NPM_TOKEN" >> ~/.npmrc
       - run: git config --global user.name $CICIMAINTAINER_NAME
       - run: git config --global user.email $CICIMAINTAINER_EMAIL
 
