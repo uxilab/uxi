@@ -27,7 +27,7 @@ jobs:
       - run: npm dedupe             # because reasons, without that zopfli(jest>request) fails and all goes to hell
       - run: npm run test
 
-  publish:
+  publish-release:
     docker:
       - image: circleci/node
     steps:
@@ -44,7 +44,7 @@ jobs:
 
       # Write creds
       - run: echo "//registry.npmjs.org/:_authToken=$DFLO_NPM_TOKEN" >> ~/.npmrc
-      - run: git config --global user.name $DFLO_GH_USERNAME
+      - run: git config --global user.name $CI_BOT_GH_NAME
       - run: git config --global user.email $DFLO_GH_EMAIL
 
       - run: npm version patch -m "bump to v %s for release [ci skip]" ## creates the "tagged release commit"
@@ -72,7 +72,7 @@ jobs:
       - run: git diff-index --quiet HEAD || git commit --no-verify -m "published $(node -pe "require('./package.json').version") [ci skip]"
       - run: git push https://github.com/uxilab/uxi.git HEAD:master --follow-tags
 
-  deployDocumentation:
+  deploy-documentation:
     docker:
       - image: circleci/node
     steps:
@@ -112,16 +112,16 @@ jobs:
 
 workflows:
   version: 2
-  uxi-npm-publish:
+  uxi-publish-deploy:
     jobs:
       - test
-      - publish:
+      - publish-release:
           requires:
             - test
           filters:
             branches:
               only: master
-      - deployDocumentation:
+      - deploy-documentation:
           requires:
             - test
           filters:
