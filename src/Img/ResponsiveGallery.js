@@ -1,19 +1,20 @@
 import React from 'react';
 import Gallery from './Gallery';
+// eslint-disable-next-line import/no-named-as-default
 import PropsMapperContainerQueries from '../internal/PropsMapperContainerQueries';
 
 const defaultRules = [
   {
     minWidth: 0,
-    mapper: ({ imgHeight }) => ({ imgHeight: 90 }),
+    mapper: (/* { imgHeight } */) => ({ imgHeight: 90 }),
   },
   {
     minWidth: 600,
-    mapper: ({ imgHeight }) => ({ imgHeight: 135 }),
+    mapper: (/* { imgHeight } */) => ({ imgHeight: 135 }),
   },
   {
     minWidth: 900,
-    mapper: ({ imgHeight }) => ({ imgHeight: 160 }),
+    mapper: (/* { imgHeight } */) => ({ imgHeight: 160 }),
   },
 ];
 

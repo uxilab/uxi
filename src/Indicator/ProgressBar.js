@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// eslint-disable-next-line no-mixed-operators
 const lt = (x, a, b, c, d) => (x - a) / (b - c) * (d - c) + c;
 
 const ProgressBarWrapperUI = styled.div`

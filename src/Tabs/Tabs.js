@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import React, { cloneElement } from 'react';
+import React, { Component, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { findDOMNode } from 'react-dom';
@@ -19,18 +19,27 @@ function isTabDisabled(node) {
 }
 
 // export default React.createClass({
-class Tabs extends Component {
-  displayName = 'Tabs';
+export class Tabs extends Component {
+  static displayName = 'Tabs';
 
   static propTypes = {
     className: PropTypes.string,
     selectedIndex: PropTypes.number,
     onSelect: PropTypes.func,
     focus: PropTypes.bool,
-    // children: childrenPropType,
     children: PropTypes.node,
     forceRenderTabPanel: PropTypes.bool,
     isMainStyle: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    className: '',
+    selectedIndex: 0,
+    onSelect: () => { },
+    focus: false,
+    children: null,
+    forceRenderTabPanel: false,
+    isMainStyle: false,
   }
 
   static childContextTypes = {
@@ -143,15 +152,15 @@ class Tabs extends Component {
   }
 
   getTabList() {
-    return this.refs.tablist;
+    return this.refs.tablist; // eslint-disable-line react/no-string-refs
   }
 
   getTab(index) {
-    return this.refs[`tabs-${index}`];
+    return this.refs[`tabs-${index}`]; // eslint-disable-line react/no-string-refs
   }
 
   getPanel(index) {
-    return this.refs[`panels-${index}`];
+    return this.refs[`panels-${index}`]; // eslint-disable-line react/no-string-refs
   }
 
   getChildren() {
@@ -160,8 +169,8 @@ class Tabs extends Component {
     const children = this.props.children;
     const isMainStyle = this.props.isMainStyle;
     const state = this.state;
-    const tabIds = this.tabIds = this.tabIds || [];
-    const panelIds = this.panelIds = this.panelIds || [];
+    const tabIds = this.tabIds = this.tabIds || []; // eslint-disable-line no-multi-assign
+    const panelIds = this.panelIds = this.panelIds || []; // eslint-disable-line no-multi-assign
     let diff = this.tabIds.length - this.getTabsCount();
 
     // Add ids if new tabs have been added
@@ -283,7 +292,7 @@ class Tabs extends Component {
   }
 
   // This is an anti-pattern, so sue me
-  copyPropsToState(props, state) {
+  copyPropsToState(props, state) { // eslint-disable-line class-methods-use-this
     let selectedIndex = props.selectedIndex;
 
     // If no selectedIndex prop was supplied, then try
@@ -381,3 +390,5 @@ class Tabs extends Component {
     );
   }
 }
+
+export default Tabs;

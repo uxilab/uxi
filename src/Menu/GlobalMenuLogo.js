@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
+// eslint-disable-next-line import/no-named-as-default
 import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
 import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQueries';
 
@@ -159,11 +160,9 @@ const GlobalMenuLogo = ({
   isActive,
 }) => {
   let containerStyle;
-  let isNewContent;
 
   let linkProps = {};
   if (Link !== undefined) {
-    const GlobalMenuItemDivFinal = Link; // shadow
     linkProps = { to };
   } else if (href) {
     linkProps = { href };
@@ -173,7 +172,7 @@ const GlobalMenuLogo = ({
   // render the tooltip inert above window width of 699px
   const rules = [{
     minWidth: 100,
-    mapper: ({ trigger }) => ({ trigger: [] }),
+    mapper: () => ({ trigger: [] }),
   }];
 
   let resContent = (
@@ -222,14 +221,25 @@ const GlobalMenuLogo = ({
 GlobalMenuLogo.displayName = 'GlobalMenuLogo';
 
 GlobalMenuLogo.propTypes = {
-  isSelected: PropTypes.bool,
+  // isSelected: PropTypes.bool,
   icon: PropTypes.any,
-  index: PropTypes.string,
-  hasNew: PropTypes.bool,
+  // index: PropTypes.string,
+  // hasNew: PropTypes.bool,
   label: PropTypes.node,
   onClick: PropTypes.func,
   isActive: PropTypes.bool,
   primaryColor: PropTypes.string,
+};
+
+GlobalMenuLogo.defaultProps = {
+  // isSelected: false,
+  icon: null,
+  // index: '',
+  // hasNew: false,
+  label: null,
+  onClick: () => { },
+  isActive: false,
+  primaryColor: '',
 };
 
 export default GlobalMenuLogo;

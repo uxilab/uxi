@@ -1,11 +1,11 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
+import styled from 'styled-components';
+// eslint-disable-next-line import/no-named-as-default
+import defaults, { buttonReset } from './defaults';
 import { darken } from '../Theme/colorManipulator';
 
 const {
   breakpoint,
-  borderThickness,
 } = defaults;
 
 const getAccessibilityRules = ({ isParentSelected }) => {
@@ -14,11 +14,6 @@ const getAccessibilityRules = ({ isParentSelected }) => {
   }
   return 'pointer-events: none; visibility: collapse';
 };
-
-// const fadeIn = keyframes`
-//   0%   { opacity: 0 }
-//   100% { opacity: 1 }
-// `;
 
 
 const LinkDecorator = styled.div`
@@ -137,7 +132,7 @@ const GlobalMenuSubItemDiv = styled.a`
 
   &,
   /* TODO fix tihs .root a situation */
-  .root & { 
+  .root & {
     color: ${({ isSelected, isActive, theme: { palette } }) => (
     isSelected || isActive ? palette.accent.light : palette.lightGrey
   )}
@@ -194,7 +189,7 @@ const GlobalMenuSubItemDiv = styled.a`
 
 const GlobalMenuSubItem = (props) => {
   const {
-    content,
+    // content,
     onClick,
     isSelected,
     isActive,
@@ -210,24 +205,23 @@ const GlobalMenuSubItem = (props) => {
 
   let linkProps = {};
   if (Link !== undefined) {
-    const GlobalMenuItemDivFinal = Link; // shadow
+    // const GlobalMenuItemDivFinal = Link; // shadow
     linkProps = { to };
   } else if (href) {
     linkProps = { href };
   }
 
-  const attributes = {
-    ...(!isParentSelected
-      ? { tabIndex: -1, 'aria-hidden': 'true', role: 'navigation' }
-      : { tabIndex: 0, 'aria-hidden': 'false', role: 'navigation' }
-    ),
-  };
+  // const attributes = {
+  //   ...(!isParentSelected
+  //     ? { tabIndex: -1, 'aria-hidden': 'true', role: 'navigation' }
+  //     : { tabIndex: 0, 'aria-hidden': 'false', role: 'navigation' }
+  //   ),
+  // };
 
   let resContent = (
     <GlobalMenuSubItemDiv
       isFirstSubItem={isFirstSubItem}
       isLastSubItem={isLastSubItem}
-      isFirstSubItem={isFirstSubItem}
       primaryColor={primaryColor}
       isSelected={isSelected}
       isActive={isActive}

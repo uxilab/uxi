@@ -1,7 +1,8 @@
 import React from 'react';
-import SimpleLayoutObject from './SimpleLayout.style';
 
-const SimpleLayout = ({ columnNumber = 1, children = [], desktopColumnNumber, tabletColumnNumber }) => {
+const SimpleLayout = (
+  { columnNumber = 1, children = [], desktopColumnNumber, tabletColumnNumber }
+) => {
   const simplayLayoutContent = [];
   const mobileSize = parseInt(12 / columnNumber, 10);
   const tabletSize = parseInt(12 / tabletColumnNumber, 10);
@@ -15,7 +16,10 @@ const SimpleLayout = ({ columnNumber = 1, children = [], desktopColumnNumber, ta
     const classNameDesktop = desktopColumnNumber ? `uxi_l_col l${desktopSize}` : '';
 
     simplayLayoutContent.push(
-      <div key={`simpleLayout-row-${index}`} className={`${classNameMobile} ${classNameTablet} ${classNameDesktop}`}>
+      <div
+        key={`simpleLayout-row-${index}`}
+        className={`${classNameMobile} ${classNameTablet} ${classNameDesktop}`}
+      >
         {child}
       </div>,
     );

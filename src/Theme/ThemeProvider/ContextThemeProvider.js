@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
  */
 // import { theme } from '../index';
 import getTheme from './getTheme';
-import { getThemeWithCustomPalette } from '../index';
+import { getThemeWithCustomPalette } from '../utils';
 
 export class ThemeProvider extends Component {
   static propTypes = {

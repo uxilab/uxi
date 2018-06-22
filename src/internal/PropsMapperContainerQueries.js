@@ -23,7 +23,7 @@ const applyRules = (props, rules, width, height) => {
 
   let result = { ...props };
 
-  rules = rules
+  const internalRules = rules
     // .filter(rule => 'minWidth' in rule)  // TODO improve
     /**
      * we only apply the mapper if the available width
@@ -34,7 +34,7 @@ const applyRules = (props, rules, width, height) => {
      */
     .filter(({ minWidth }) => width >= minWidth);
 
-  rules.forEach(({ minWidth, mapper }) => {
+  internalRules.forEach(({ mapper }) => {
     result = {
       ...result,
       ...mapper({ ...result, containerWidth: width, containerHeight: height }),
@@ -67,19 +67,25 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   componentWillMount() {
-    window && window.addEventListener('resize', this.handleResize);
+    if (window && window.addEventListener) {
+      window.addEventListener('resize', this.handleResize);
+    }
     this.handleResize();
     this.forceUpdate();
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
+    if (window && window.addEventListener) {
+      window.addEventListener('resize', this.handleResize);
+    }
     this.handleResize();
     this.forceUpdate();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    if (window && window.removeEventListener) {
+      window.removeEventListener('resize', this.handleResize);
+    }
   }
 
   storeRef(node) {
@@ -99,15 +105,9 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   render() {
-    const { rules, children, inline, ...restOfProps } = this.props;
+    const { rules, children, inline/* , ...restOfProps */ } = this.props;
     const { width, height } = this.state;
 
-    const props = {
-      ...(children && children.props ? children.props : {}),
-      ...restOfProps,
-    };
-
-    const mappedProps = applyRules(props, rules, width, height);
 
     const type = inline ? 'span' : 'div';
 

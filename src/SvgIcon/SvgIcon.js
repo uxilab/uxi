@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 
 class SvgIcon extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       hovered: false,
-    }
+    };
   }
 
   handleMouseLeave(event) {
     this.setState({ hovered: false });
     this.props.onMouseLeave(event);
-  };
+  }
 
   handleMouseEnter(event) {
     this.setState({ hovered: true });
     this.props.onMouseEnter(event);
-  };
+  }
 
   render() {
     const {
@@ -30,7 +30,7 @@ class SvgIcon extends Component {
       viewBox,
       size,
       className,
-      ...other,
+      ...other
     } = this.props;
 
     const offColor = color || 'currentColor';
@@ -52,8 +52,8 @@ class SvgIcon extends Component {
       <svg
         className={`${className || ''} uxi_svg-icon-wrapper`}
         {...other}
-        onMouseEnter={(e) => { this.handleMouseEnter(e) }}
-        onMouseLeave={(e) => { this.handleMouseLeave(e) }}
+        onMouseEnter={(e) => { this.handleMouseEnter(e); }}
+        onMouseLeave={(e) => { this.handleMouseLeave(e); }}
         style={mergedStyles}
         viewBox={viewBox}
         focusable="false" // IE11 is so dope
@@ -104,10 +104,12 @@ SvgIcon.propTypes = {
 };
 
 SvgIcon.defaultProps = {
+  children: null,
   onMouseEnter: () => { },
   onMouseLeave: () => { },
   viewBox: '0 0 24 24',
   color: '#6d6d71',
+  hoverColor: '#6d6d71',
   style: {},
   size: 24,
 };

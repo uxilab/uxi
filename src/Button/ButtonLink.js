@@ -1,6 +1,6 @@
 import React from 'react';
-import AvatarWithName from '../Img/AvatarWithName';
 import styled from 'styled-components';
+import AvatarWithName from '../Img/AvatarWithName';
 
 const getTypeColor = ({ palette }, type) => {
   if (!type) { return palette.accent.main; }
@@ -33,7 +33,7 @@ const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth
       }}
     />
   ) : (
-    <div style={{ textAlign: isFullWidth ? 'center' : 'left' }}>{text || message || children}</div>
+    <div style={{ textAlign: isFullWidth ? 'center' : 'left' }}>{text || message || children}</div>
   );
 
   return (

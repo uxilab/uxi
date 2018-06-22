@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ThemeComponent from '../Base/ThemeComponent';
 import ThemedBoxStyle from './ThemedBox.style';
 
 class ThemeBox extends ThemeComponent {
   render() {
-    const { children, isContained } = this.props;
+    const { children/* , isContained */ } = this.props;
     const isDark = this.isDarkThemeFromTheme();
 
     const globalHeaderMergedStyle = this.getStyle('GlobalHeader', {});

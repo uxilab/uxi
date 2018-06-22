@@ -11,7 +11,7 @@ const reflow = node => node.scrollTop;
  */
 class Fade extends React.Component {
   handleEnter = (node) => {
-    node.style.opacity = '0';
+    node.style.opacity = '0'; // eslint-disable-line no-param-reassign
     reflow(node);
 
     if (this.props.onEnter) {
@@ -21,13 +21,13 @@ class Fade extends React.Component {
 
   handleEntering = (node) => {
     const { timeout } = this.props;
-    node.style.transition = transitions.create('opacity', {
+    node.style.transition = transitions.create('opacity', { // eslint-disable-line no-param-reassign
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    node.style.webkitTransition = transitions.create('opacity', {
+    node.style.webkitTransition = transitions.create('opacity', { // eslint-disable-line no-param-reassign
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    node.style.opacity = '1';
+    node.style.opacity = '1'; // eslint-disable-line no-param-reassign
 
     if (this.props.onEntering) {
       this.props.onEntering(node);
@@ -36,13 +36,13 @@ class Fade extends React.Component {
 
   handleExit = (node) => {
     const { timeout } = this.props;
-    node.style.transition = transitions.create('opacity', {
+    node.style.transition = transitions.create('opacity', { // eslint-disable-line no-param-reassign
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    node.style.webkitTransition = transitions.create('opacity', {
+    node.style.webkitTransition = transitions.create('opacity', { // eslint-disable-line no-param-reassign
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    node.style.opacity = '0';
+    node.style.opacity = '0'; // eslint-disable-line no-param-reassign
 
     if (this.props.onExit) {
       this.props.onExit(node);
@@ -101,6 +101,11 @@ Fade.defaultProps = {
     enter: 225,
     exit: 195,
   },
+  children: null,
+  onEnter: () => {},
+  onEntering: () => {},
+  onExit: () => {},
+  style: {},
 };
 
 export default Fade;

@@ -35,7 +35,7 @@ const SwitchOutterWrapper = styled.div`
   position: relative;
   transition: background-color .3s ease-out;
   margin:${({ label, labelBefore }) => (
-    label ? (labelBefore ? '0 0 0 6px' : '0 6px 0 0') : 0
+    label ? (labelBefore ? '0 0 0 6px' : '0 6px 0 0') : 0 // eslint-disable-line no-nested-ternary
   )};
   background-color: ${({ checked }) => (!checked ? '#9a9a9a' : '#26a29a')};
   background-color: ${({ theme, checked }) => (!checked ? theme.palette.grey : theme.palette.accent.main)};
@@ -75,6 +75,7 @@ const SwitchInnerWrapper = styled.div`
 
 const LabelTextWrapper = styled.div`
   margin:${({ label, labelBefore }) => (
+    // eslint-disable-next-line no-nested-ternary
     label ? (labelBefore ? '0 6px 0 0' : '0 0 0 6px') : 0
   )};
 `;
@@ -109,6 +110,18 @@ class Switch extends PureComponent {
     }
   }
 
+  onBlur() {
+    this.setState({
+      hasFocus: false,
+    });
+  }
+
+  onFocus() {
+    this.setState({
+      hasFocus: true,
+    });
+  }
+
   handleChange(event) {
     if (this.props.disabled) { return; }
     const { checked } = this.state;
@@ -120,18 +133,6 @@ class Switch extends PureComponent {
       });
     }
     if (onChange) { onChange({ checked: newState }, event); }
-  }
-
-  onBlur() {
-    this.setState({
-      hasFocus: false,
-    });
-  }
-
-  onFocus() {
-    this.setState({
-      hasFocus: true,
-    });
   }
 
   render() {
@@ -167,7 +168,9 @@ class Switch extends PureComponent {
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             id={id || name}
-            name={name || id || counter++}
+            name={
+              (name || id || counter++) // eslint-disable-line no-plusplus
+            }
             style={inputStyle}
             type="checkbox"
             onChange={this.handleChange}

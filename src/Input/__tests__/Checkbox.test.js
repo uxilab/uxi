@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallowWithTheme, mountWithTheme } from '../../../test/utils';
 import Checkbox from '../Checkbox';
 
 describe('<Checkbox />', () => {

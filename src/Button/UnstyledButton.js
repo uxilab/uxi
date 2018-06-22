@@ -1,8 +1,7 @@
 /* @flow */
 /* eslint-disable brace-style */
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Ripples from '../Motion/Ripples';
 
 
 const UnstyledButtonUI = styled.button`

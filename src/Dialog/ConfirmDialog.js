@@ -1,7 +1,7 @@
 import React from 'react';
 import Dialog from './Dialog';
 import DivPadding from '../Base/DivPadding';
-import Button from '../Button';
+import Button from '../Button'; // eslint-disable-line  import/no-named-as-default
 
 const ConfirmDialog = ({
   show,

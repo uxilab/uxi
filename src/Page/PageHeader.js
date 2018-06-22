@@ -51,4 +51,10 @@ PageHeader.propTypes = {
   icon: PropTypes.node,
 };
 
+PageHeader.defaultProps = {
+  children: null,
+  title: '',
+  icon: null,
+};
+
 export default PageHeader;

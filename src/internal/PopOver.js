@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-named-as-default
 import DropDown from '../internal/DropDown';
 
 const PopOver = (props) => {
@@ -8,7 +9,7 @@ const PopOver = (props) => {
     main,
     children,
     anchor,
-    target,
+    // target,
     itemsStyle,
   } = props;
 

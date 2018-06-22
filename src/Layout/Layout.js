@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutObject from './Layout.style';
+// import LayoutObject from './Layout.style';
 
 const Layout = ({ children, style = {} }) => (
   <div style={style}>

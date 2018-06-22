@@ -1,4 +1,4 @@
-import Flex from './Flex';
+import Flex from './Flex'; // eslint-disable-line import/no-named-as-default
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
 const FlexRightCol = Flex.extend`

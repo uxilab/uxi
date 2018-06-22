@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import defaults from './defaults';
+import defaults from './defaults'; // eslint-disable-line import/no-named-as-default
 
 const {
   menuWidth,
@@ -39,7 +39,7 @@ const GlobalMenuDiv = styled.div`
   }
 `;
 
-const GlobalMenuContainer = ({ backgroundColor, children, attachToViewport, innerStyle }) => (
+const GlobalMenuContainer = ({ /* backgroundColor,  */children, attachToViewport, innerStyle }) => (
   <div style={{ position: 'relative' }}>
     <GlobalMenuDiv attachToViewport={attachToViewport} style={innerStyle}>
       {children}
@@ -49,6 +49,10 @@ const GlobalMenuContainer = ({ backgroundColor, children, attachToViewport, inne
 
 GlobalMenuContainer.propTypes = {
   children: PropTypes.node,
+};
+
+GlobalMenuContainer.defaultProps = {
+  children: null,
 };
 
 export default GlobalMenuContainer;

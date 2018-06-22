@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { palette } from '../Theme/palette';
 import styled from 'styled-components';
 
 const Svg = styled.svg`
@@ -72,8 +71,8 @@ const MiniLoader = ({ size, color: colorProp, type }) => (
 );
 
 MiniLoader.defaultProps = {
-  // color: '#25bcbc',
-  // type: 'success',
+  color: '#25bcbc',
+  type: 'success',
 };
 
 MiniLoader.propTypes = {
@@ -82,6 +81,5 @@ MiniLoader.propTypes = {
     'default', 'success', 'error', 'warning',
   ]),
 };
-
 
 export default MiniLoader;

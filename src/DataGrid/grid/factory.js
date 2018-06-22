@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   TableBody,
   TableRow,
@@ -7,7 +8,6 @@ import {
   TableRowColumn,
 } from '../../Table';
 import TableHeaderCheckedAllCell from '../../Table/TableHeaderCheckedAllCell';
-import styled from 'styled-components';
 import DataGridSorting from './DataGridSorting';
 import ActiondMenu from '../../ActionMenu';
 
@@ -74,7 +74,13 @@ export const createDataGridBody = (viewModels, isHidden, actions) => {
   );
 };
 
-export const createDataGridHeader = (headers = [], fixedHeight, hideHeader, withCheckbox, checkAllHandler) => (
+export const createDataGridHeader = (
+  headers = [],
+  fixedHeight,
+  hideHeader,
+  withCheckbox,
+  checkAllHandler
+) => (
   <TableHeader>
     <TableRow hideSvg={hideHeader}>
       {withCheckbox && <TableHeaderCheckedAllCell onCheckAll={checkAllHandler} />}

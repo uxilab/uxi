@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeComponent from '../Base/ThemeComponent';
-import Button from '../Button';
+import Button from '../Button'; // eslint-disable-line import/no-named-as-default
 
 const DialogFooterStyle = {
   root: {

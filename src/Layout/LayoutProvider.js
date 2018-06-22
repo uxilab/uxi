@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Style } from 'radium';
-import LayoutObject from './Layout.style';
+// import LayoutObject from './Layout.style';
 
 class LayoutProvider extends Component {
   getChildContext() {
@@ -17,7 +16,7 @@ class LayoutProvider extends Component {
 
     return (
       <div>
-        <Style rules={LayoutObject} />
+        {/* <Style rules={LayoutObject} /> */}
         {children}
       </div>
     );

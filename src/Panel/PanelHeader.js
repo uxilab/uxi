@@ -1,7 +1,6 @@
 import React from 'react';
-import { Close } from '../Icons';
 import styled from 'styled-components';
-import { IconButton } from '../Button';
+import { Close } from '../Icons';
 
 const PanelHeaderUI = styled.div`
   box-sizing: border-box;

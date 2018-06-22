@@ -41,14 +41,6 @@ const GalleryListItemUI = styled.li`
   position: relative;
 `;
 
-const GalleryImageUI = styled.img`
-  /*
-  background-color: black;
-  width: auto;
-  height: var(--height);
-  */
-`;
-
 const GalleryButtonUI = styled.button`
   z-index: 1;
   display: flex;
@@ -121,10 +113,10 @@ class Gallery extends Component {
       <GalleryContainerUI>
         <GalleryButtonUI data-action="prev" onClick={this.handlePrevious} />
 
-        <GalleryListUI innerRef={node => this.listRef = node} imgHeight={imgHeight} >
+        <GalleryListUI innerRef={(node) => { this.listRef = node; }} imgHeight={imgHeight} >
           {galleryDescriptor.map(image => (
             <GalleryListItemUI>
-              <img tabIndex="0" src={image.url} />
+              <img tabIndex="0" src={image.url} alt="" />
             </GalleryListItemUI>
           ))}
         </GalleryListUI>

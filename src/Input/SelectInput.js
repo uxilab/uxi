@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
+// eslint-disable-next-line import/no-named-as-default
 import DropDown from '../internal/DropDown';
 import { Arrowdown } from '../Icons';
-import { Button, ButtonWithoutRipple } from '../Button';
+import { Button } from '../Button';
 import Option from './SelectInputOptions';
 import StatusIcon from './utils/StatusIcon';
 import ErrorWrapperUI from './utils/ErrorWrapperUI';
@@ -43,7 +44,6 @@ const styles = {
     // borderColor: 'transparent',
     borderRadius: '0 3px 3px 0',
     padding: '0 8px',
-    minHeight: '100%',
     minHeight: 'calc(100% - 2px)',
   },
 };
@@ -88,6 +88,153 @@ class SelectInput extends PureComponent {
       this.setState({ selectedIndex });
     }
   }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { selectedIndex/* , options */ } = this.state;
+    const { onChange/* , value: valueProp */ } = this.props;
+
+    // const value = options[nextState.selectedIndex];
+
+    const { isOpen } = nextState;
+    if (isOpen) {
+      window.addEventListener('keydown', this.preventScrollingOnSpace);
+    } else {
+      window.removeEventListener('keydown', this.preventScrollingOnSpace);
+    }
+    /*
+    TODO: Make controlled selectInkput work!
+    if (valueProp && valueProp !== value) {
+      const newVal = options.findIndex(x => x === value)
+      if (newVal > -1) {
+        this.setState({
+          selectedIndex: newVal,
+        })
+      }
+    } */
+
+    if (selectedIndex !== nextState.selectedIndex) {
+      if (onChange) {
+        const { options } = this.state;
+        const value = options[nextState.selectedIndex];
+        const fakeEvent = {
+          target: { value },
+          currentTarget: { value },
+        };
+        onChange(fakeEvent, value);
+      }
+    }
+  }
+
+  getTrigerrerLabel() {
+    const {
+      state: {
+        selectedIndex,
+        optionsNode,
+        // isOpen,
+      },
+      props: {
+        error, success,
+      },
+    } = this;
+
+    let mainContent = null;
+    if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
+      mainContent = (
+        <div><div style={{ padding: '2px 2px 2px 6px', display: 'flex', width: '100%' }} >
+          {
+            React.cloneElement(optionsNode[selectedIndex], {
+              style: {
+                ...optionsNode[selectedIndex].props.style,
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+              },
+            })
+          }
+        </div></div>
+      );
+    } else {
+      mainContent = <div>&nbsp;</div>;
+    }
+
+    return (
+      <span
+        style={styles.trigerrer}
+        onEsc={() => this.clickHandler(null)}
+      >
+        <div>
+          {mainContent}
+          <StatusIcon success={success} error={error} style={{ top: '8px', right: '48px' }} />
+        </div>
+        <div style={styles.trigerrerIcon}>
+          <Button
+            inert
+            type="primary"
+            style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
+            icon={<Arrowdown />}
+          />
+        </div>
+      </span>
+    );
+  }
+
+  getOptionsItem() {
+    const {
+      children,
+    } = this.props;
+    const { isOpen } = this.state;
+
+    return React.Children.map(children, (child, i) => {
+      const value = child.props.value ? child.props.value : i;
+      const isTheOne = this.state.selectedIndex === i;
+      // const selectedStyles = isTheOne
+      //   ? { backgroundColor: '#3e53c1', color: 'white' }
+      //   : {};
+
+      if (React.isValidElement(child)) {
+        if (!isDOMTypeElement(child)) {
+          return (
+            <Option
+              onClick={e => this.clickHandler(e)}
+              onEsc={() => this.clickHandler(null)}
+              data-index={i}
+              {...child.props}
+              isOpen={isOpen}
+              // tabIndex={0}
+              // aria-hidden={isOpen ? false : true }
+              selected={isTheOne}
+              style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+            >
+              {React.cloneElement(child, {
+                value,
+              })}
+            </Option>
+          );
+        }
+
+        return (
+          <Option
+            onClick={e => this.clickHandler(e)}
+            onEsc={() => this.clickHandler(null)}
+            data-index={i}
+            {...child.props}
+            isOpen={isOpen}
+            // tabIndex={0}
+            // aria-hidden={isOpen ? false : true }
+            selected={isTheOne}
+            style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+          >
+            {React.cloneElement(child, {
+              value,
+              // 'data-index': i,
+              // onClick: e => this.clickHandler(e),
+            })}
+          </Option>
+        );
+      }
+      return null;
+    });
+  }
+
 
   preventScrollingOnSpace(e) {
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
@@ -167,152 +314,6 @@ class SelectInput extends PureComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    const { selectedIndex, options } = this.state;
-    const { onChange, value: valueProp } = this.props;
-
-    const value = options[nextState.selectedIndex];
-
-    const { isOpen } = nextState;
-    if (isOpen) {
-      window.addEventListener('keydown', this.preventScrollingOnSpace);
-    } else {
-      window.removeEventListener('keydown', this.preventScrollingOnSpace);
-    }
-    /*
-    TODO: Make controlled selectInkput work!
-    if (valueProp && valueProp !== value) {
-      const newVal = options.findIndex(x => x === value)
-      if (newVal > -1) {
-        this.setState({
-          selectedIndex: newVal,
-        })
-      }
-    } */
-
-    if (selectedIndex !== nextState.selectedIndex) {
-      if (onChange) {
-        const { options } = this.state;
-        const value = options[nextState.selectedIndex];
-        const fakeEvent = {
-          target: { value },
-          currentTarget: { value },
-        };
-        onChange(fakeEvent, value);
-      }
-    }
-  }
-
-  getTrigerrerLabel() {
-    const {
-      state: {
-        selectedIndex,
-        optionsNode,
-        isOpen,
-      },
-      props: {
-        error, success,
-      },
-    } = this;
-
-    let mainContent = null;
-    if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
-      mainContent = (
-        <div><div style={{ padding: '2px 2px 2px 6px', display: 'flex', width: '100%' }} >
-          {
-            React.cloneElement(optionsNode[selectedIndex], {
-              style: {
-                ...optionsNode[selectedIndex].props.style,
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-              },
-            })
-          }
-        </div></div>
-      );
-    } else {
-      mainContent = <div>&nbsp;</div>;
-    }
-
-    return (
-      <span
-        style={styles.trigerrer}
-        onEsc={() => this.clickHandler(null)}
-      >
-        <div>
-          {mainContent}
-          <StatusIcon success={success} error={error} style={{ top: '8px', right: '48px' }} />
-        </div>
-        <div style={styles.trigerrerIcon}>
-          <Button
-            inert
-            type="primary"
-            style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
-            icon={<Arrowdown />}
-          />
-        </div>
-      </span>
-    );
-  }
-
-  getOptionsItem() {
-    const {
-      children,
-    } = this.props;
-    const { isOpen } = this.state;
-
-    return React.Children.map(children, (child, i) => {
-      const value = child.props.value ? child.props.value : i;
-      const isTheOne = this.state.selectedIndex === i;
-      const selectedStyles = isTheOne
-        ? { backgroundColor: '#3e53c1', color: 'white' }
-        : {};
-
-      if (React.isValidElement(child)) {
-        if (!isDOMTypeElement(child)) {
-          return (
-            <Option
-              onClick={e => this.clickHandler(e)}
-              onEsc={() => this.clickHandler(null)}
-              data-index={i}
-              {...child.props}
-              isOpen={isOpen}
-              // tabIndex={0}
-              // aria-hidden={isOpen ? false : true }
-              selected={isTheOne}
-              style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
-            >
-              {React.cloneElement(child, {
-                value,
-              })}
-            </Option>
-          );
-        }
-
-        return (
-          <Option
-            onClick={e => this.clickHandler(e)}
-            onEsc={() => this.clickHandler(null)}
-            data-index={i}
-            {...child.props}
-            isOpen={isOpen}
-            // tabIndex={0}
-            // aria-hidden={isOpen ? false : true }
-            selected={isTheOne}
-            style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
-          >
-            {React.cloneElement(child, {
-              value,
-              // 'data-index': i,
-              // onClick: e => this.clickHandler(e),
-            })}
-          </Option>
-        );
-      }
-      return null;
-    });
-  }
-
   storeOptions(children) {
     const options = [];
     const optionsNode = [];
@@ -353,7 +354,7 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
-    this.setState({ isOpen });
+    this.setState({ isOpen });
   }
 
   render() {

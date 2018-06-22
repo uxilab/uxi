@@ -30,23 +30,29 @@ const ButtonBaseMixin = css`
   /* TYPE STYLES: */
   background-color: transparent;
   border-color: transparent;
-  color: ${({ theme, type, disabled }) => (disabled
+  color: ${({ theme, type, disabled }) => (
+  // eslint-disable-next-line no-nested-ternary
+    disabled
       ? theme.palette.grey
-      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey))};
+    : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
+)};
 
   /* those next line overwritte the '.root a' selector rules from uxi NON-StyledComponent theme/css
   * TODO: remove the overwrite once the .root a rules doesn't interfere anymore */
   * { color: inherit }
-  svg { fill: ${({ theme, type, disabled }) => (disabled
+  svg { fill: ${({ theme, type, disabled }) => (
+    // eslint-disable-next-line no-nested-ternary
+    disabled
       ? theme.palette.grey
-      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey))}}
+    : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
+)}}
 
   &:hover {
     border-color: transparent;
-    color: ${({ theme, type }) => '#ffffff'};
+    color: ${() => '#ffffff'};
     background-color: ${({ type, theme }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
     * { color: inherit; }
-    svg { fill: ${({ type, theme }) => (type ? '#ffffff' : '#ffffff')}
+    svg { fill: ${({ type }) => (type ? '#ffffff' : '#ffffff')}
   }
 
   &:hover {
@@ -139,11 +145,11 @@ class Button extends Component {
     };
     const marginStyles = {
       display: isFullWidth ? 'block' : 'inline-block',
-      ...('margin' in style ? { margin: style.margin } : {}),
-      ...('marginTop' in style ? { marginTop: style.marginTop } : {}),
-      ...('marginRight' in style ? { marginRight: style.marginRight } : {}),
-      ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {}),
-      ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {}),
+      ...('margin' in style ? { margin: style.margin } : {}),
+      ...('marginTop' in style ? { marginTop: style.marginTop } : {}),
+      ...('marginRight' in style ? { marginRight: style.marginRight } : {}),
+      ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {}),
+      ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {}),
     };
 
     const styleProps = {

@@ -85,7 +85,7 @@ class DataGridSorting extends Component {
   }
 
   render() {
-    const { title, key, style } = this.props;
+    const { title/* , key */, style } = this.props;
     const { show } = this.state;
     const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
     const styleForButton = show ? headerWithSort : headerWithSortNotSelected;

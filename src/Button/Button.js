@@ -48,7 +48,7 @@ const ButtonBaseMixin = css`
   cursor: ${({ disabled }) => (disabled ?
     'normal' : 'pointer')};
 
-  ${({ type, disabled, theme }) => (disabled ?
+  ${({ disabled, theme }) => (disabled ?
     `background-color: ${theme.palette.lightGrey};
     color: ${theme.palette.grey};` : '')}
 
@@ -146,10 +146,10 @@ class Button extends Component {
     };
     const marginStyles = {
       display: isFullWidth ? 'block' : 'inline-block',
-      ...('margin' in style ? {  margin: style.margin } : {}),
-      ...('marginTop' in style ? {  marginTop: style.marginTop } : {}),
-      ...('marginRight' in style ? {  marginRight: style.marginRight } : {}),
-      ...('marginBottom' in style ? {  marginBottom: style.marginBottom } : {}),
+      ...('margin' in style ? { margin: style.margin } : {}),
+      ...('marginTop' in style ? { marginTop: style.marginTop } : {}),
+      ...('marginRight' in style ? { marginRight: style.marginRight } : {}),
+      ...('marginBottom' in style ? { marginBottom: style.marginBottom } : {}),
       ...('marginLeft' in style ? { marginLeft: style.marginLeft } : {}),
     };
 

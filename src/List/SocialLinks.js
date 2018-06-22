@@ -28,7 +28,13 @@ const SocialLI = styled.li`
 const SocialLinks = ({ socialLinks, horizontal, spacing, iconColor, iconHoverColor, style }) => (
   <SocialUL horizontal={horizontal} style={style}>
     {socialLinks.map(({ name, url }) => (
-      <SocialLI horizontal={horizontal} iconColor={iconColor} iconHoverColor={iconHoverColor} spacing={spacing} key={name}>
+      <SocialLI
+        horizontal={horizontal}
+        iconColor={iconColor}
+        iconHoverColor={iconHoverColor}
+        spacing={spacing}
+        key={name}
+      >
         <a href={url}>
           {getAppropriateIcon(name)() }
         </a>

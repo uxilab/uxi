@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { UnstyledButton } from '../Button';
 import PropTypes from 'prop-types';
 import StepConnector from './StepConnector';
 

@@ -4,4 +4,4 @@ export MenuItem from './MenuItem';
 export DropDownMenu from './DropDownMenu';
 export Separator from './Separator';
 export GlobalMenu from './GlobalMenu';
-export GlobalHeader from './GlobalHeader';
+export GlobalHeader from './GlobalHeader'; // eslint-disable-line import/no-named-as-default

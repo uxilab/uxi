@@ -20,7 +20,7 @@ import debounce from 'lodash.debounce';
  * it could account for the lateral menu using this
  */
 
-const applyRules = (rules, width, height) => {
+const applyRules = (rules, width/* , height */) => {
   if (!rules || (rules.length === 0)) return '';
   return rules
     .filter(({ minWidth }) => width >= minWidth)
@@ -43,11 +43,6 @@ export class CssContainerQueries extends PureComponent {
       width: null,
       height: null,
     };
-  }
-
-  static propTypes = {
-    // rules: PropTypes.arrayOf Rules:
-    // Rules => { minWidth: Number, css: Function(result of css``)}
   }
 
   componentDidMount() {

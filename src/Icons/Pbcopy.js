@@ -8,10 +8,8 @@ const Pbcopy = props => (
     <svg
       focusable="false"
       aria-hidden="true"
-      height="14"
       version="1.1"
       viewBox="0 0 14 16"
-      width="14"
       width="24px"
       height="24px"
     >

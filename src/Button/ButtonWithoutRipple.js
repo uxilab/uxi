@@ -2,7 +2,6 @@
 /* eslint-disable brace-style */
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
-import Ripples from '../Motion/Ripples';
 import ButtonBaseStyles from './ButtonBaseStyles';
 
 const getTypeColor = ({ palette }, type) => {
@@ -62,7 +61,7 @@ const ButtonIconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: ${({ icon }) => (icon ? '0 4px' : '0')};
+  margin: ${({ icon }) => (icon ? '0 4px' : '0')};
 `;
 
 const ButtonContentWrapper = styled.div`
@@ -86,7 +85,6 @@ class Button extends Component {
       inert,
       link,
       isFullWidth,
-      click,
       onClick,
       disabled,
       icon: iconProp,
@@ -136,7 +134,7 @@ class Button extends Component {
       </TheButtonComponent>
     );
 
-    const rippleStyles = isFullWidth ? { width: '100%' } : {};
+    // const rippleStyles = isFullWidth ? { width: '100%' } : {};
 
     return theButton;
   }

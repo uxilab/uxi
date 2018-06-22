@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-let count = 0;
-const getKey = () => count++;
+// let count = 0;
+// const getKey = () => count++;
 
 const ListWrapper = styled.div`
   margin: 0;
@@ -29,7 +29,7 @@ const List = ({ style, children, type }) => {
     return null;
   }
   const wrappedChildren = React.Children.map(children, (c, i) => {
-    const key = c.key ? `key-${c.key || c.name || c.label}` : `index-${i}`;
+    const key = c.key ? `key-${c.key || c.name || c.label}` : `index-${i}`;
     return (
       <li key={key}>
         {c}

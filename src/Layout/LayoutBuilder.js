@@ -90,7 +90,8 @@ class Layout extends Component {
   getTabContent(tabs) {
     const { layoutName } = this.props;
     return tabs.map((tab) => {
-      const tabConfiguration = this.getTabConfig(tab); // TODO: separate the rendering Context from the Components to render
+      // TODO: separate the rendering Context from the Components to render
+      const tabConfiguration = this.getTabConfig(tab);
       const layoutNameWithTab = `${layoutName}-${tab.name || tab.displayName}`;
       return (
         <TabPanel key={layoutNameWithTab}>
@@ -111,7 +112,7 @@ class Layout extends Component {
 
   findLayout(layoutName) {
     if (!this.context && !this.context.layouts) {
-      return;
+      return undefined;
     }
 
     return this.context.layouts.find(l => l.code === layoutName);
@@ -133,7 +134,8 @@ class Layout extends Component {
     const { renderingContext, ComponentRenderer } = this.props;
     const currentPlaceholderName = parentPlaceholderName ? `${parentPlaceholderName}.${placeHolderName}` : placeHolderName;
 
-    const filteredComponents = Layout.filterComponents(componentDefinitions, currentPlaceholderName);
+    const filteredComponents = Layout
+      .filterComponents(componentDefinitions, currentPlaceholderName);
 
     return filteredComponents.map(componentDefinition => (
       <ComponentRenderer
@@ -184,7 +186,11 @@ class Layout extends Component {
             <div key={`${layoutName}-mainCol-${index}`}>
               {row.columns.map((col, i) => (
                 <div key={`${layoutName}-mainRow-${i}`}>
-                  {(letTabContent && col.name === tabContentPlaceholder) ? letTabContent : void 0 }
+                  {
+                    (letTabContent && col.name === tabContentPlaceholder)
+                      ? letTabContent
+                      : undefined
+                  }
                   {this.renderComponents(currentPlaceholderName, col.name, componentDefinitions)}
                 </div>
               ))}
@@ -207,11 +213,12 @@ class Layout extends Component {
       return (
         <Row key={`row-${index}`}>
           {
-            Layout.filterComponents(componentDefinitions, gridPlaceHolderName).map((componentDefinition, i) => (
-              <Col key={`col-${i}`}size={(gridSize)}>
-                {this.renderComponent(gridPlaceHolderName, componentDefinition)}
-              </Col>
-            ))
+            Layout.filterComponents(componentDefinitions, gridPlaceHolderName)
+              .map((componentDefinition, i) => (
+                <Col key={`col-${i}`}size={(gridSize)}>
+                  {this.renderComponent(gridPlaceHolderName, componentDefinition)}
+                </Col>
+              ))
           }
         </Row>
       );

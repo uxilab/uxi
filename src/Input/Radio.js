@@ -108,8 +108,8 @@ class Radio extends React.PureComponent {
 
 Radio.propTypes = {
   onChange: PropTypes.func,
-  icon: PropTypes.string,
-  checkedIcon: PropTypes.string,
+  // icon: PropTypes.string,
+  // checkedIcon: PropTypes.string,
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
   name: PropTypes.string, // .isRequired,
@@ -121,6 +121,9 @@ Radio.defaultProps = {
   onChange: () => { },
   icon: 'Checkboxoutline',
   checkedIcon: 'Checkbox',
+  checked: false,
+  disabled: false,
+  defaultChecked: false,
 };
 
 export default Radio;

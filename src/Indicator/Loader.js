@@ -24,7 +24,7 @@ const LoaderUI = styled.div`
   left: 7px;
 `;
 
-const Loader = ({ color, size }) => (
+const Loader = ({ color, size }) => (
   <LoaderUI color={color} >
     <Loading size={size} fill={color} />
   </LoaderUI>

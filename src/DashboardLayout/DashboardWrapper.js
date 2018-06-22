@@ -29,11 +29,11 @@ class DashboardWrapper extends Component {
   }
 
   resizeGridItem(item) {
-    const grid = ReactDom.findDOMNode(this.grid);
+    const grid = ReactDom.findDOMNode(this.grid); // eslint-disable-line react/no-find-dom-node
     const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'), 10);
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'), 10);
     const rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-    item.style.gridRowEnd = `span ${rowSpan}`;
+    item.style.gridRowEnd = `span ${rowSpan}`; // eslint-disable-line no-param-reassign
   }
 
   render() {

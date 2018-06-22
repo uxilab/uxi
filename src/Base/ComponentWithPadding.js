@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ComponentWithPadding extends Component {
@@ -6,6 +6,12 @@ class ComponentWithPadding extends Component {
     margin: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']),
     padding: PropTypes.oneOf(['xs', 's', 'm', 'l', 'XS', 'S', 'M', 'L']),
     style: PropTypes.object,
+  };
+
+  static defaultProps = {
+    margin: 'm',
+    padding: 'm',
+    style: {},
   };
 
   getMargin() {
@@ -79,7 +85,13 @@ class ComponentWithPadding extends Component {
   getStyle(stylesFromComponent = {}) {
     const { style } = this.props;
 
-    return Object.assign({}, (style || {}), this.getPadding(), this.getMargin(), stylesFromComponent);
+    return Object.assign(
+      {},
+      (style || {}),
+      this.getPadding(),
+      this.getMargin(),
+      stylesFromComponent
+    );
   }
 }
 

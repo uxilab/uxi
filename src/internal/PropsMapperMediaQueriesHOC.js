@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import debounce from 'lodash.debounce';
 
 /**
@@ -17,14 +16,14 @@ import debounce from 'lodash.debounce';
  * <PropsContainerQuery rules={rules} />
  */
 
-const applyRules = (props, rules, width, height) => {
+const applyRules = (props, rules, width/* , height */) => {
   if (rules.length === 0) {
     return props;
   }
 
   let result = { ...props };
 
-  rules = rules.filter(rule => 'minWidth' in rule); // TODO improve
+  let internalRules = rules.filter(rule => 'minWidth' in rule); // TODO improve
   /**
      * we only apply the mapper if the available
      * WINDOW/VIEWPORT width
@@ -33,19 +32,33 @@ const applyRules = (props, rules, width, height) => {
      * logical, ascending, flow of overwrite
      * Mobile first FTW
      */
-  rules = rules.filter(({ minWidth }) => (width >= minWidth));
-  rules && rules.forEach(({ minWidth, mapper }) => {
-    result = {
-      ...result,
-      ...mapper(props),
-    };
-  });
+  internalRules = internalRules.filter(({ minWidth }) => (width >= minWidth));
+  if (internalRules && internalRules.length) {
+    internalRules.forEach(({ mapper }) => {
+      result = {
+        ...result,
+        ...mapper(props),
+      };
+    });
+  }
 
 
   return result;
 };
 
 export class PropsMapperMediaQueriesHOC extends Component {
+  static propTypes = {
+    rules: PropTypes.array,
+    children: PropTypes.node,
+    debounceDelay: PropTypes.number,
+  }
+
+  static defaultProps = {
+    rules: [],
+    children: null,
+    debounceDelay: 180,
+  }
+
   constructor(props) {
     super(props);
 
@@ -57,18 +70,6 @@ export class PropsMapperMediaQueriesHOC extends Component {
       width: null,
       height: null,
     };
-  }
-
-  static propTypes = {
-    rules: PropTypes.array,
-    children: PropTypes.node,
-    debounceDelay: PropTypes.number,
-  }
-
-  static defaultProps = {
-    rules: [],
-    children: null,
-    debounceDelay: 180,
   }
 
   componentDidMount() {

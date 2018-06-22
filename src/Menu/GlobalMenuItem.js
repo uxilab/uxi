@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+// eslint-disable-next-line import/no-named-as-default
 import defaults, { buttonReset, GlobalMenuItemBase } from './defaults';
 import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQueries';
 
@@ -38,13 +39,13 @@ const LinkDecorator = styled.div`
     border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
     `${borderThickness} solid #0ea4a5` : '0 solid transparent')
 };
-    background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
+    background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
     &:hover {
       text-decoration: none;
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-    isSelected
+    isSelected // eslint-disable-line no-nested-ternary
       ? (isActive
         ? palette.primary.dark
         : palette.primary.light // child is slelected, means we can navigate there
@@ -59,7 +60,7 @@ const LinkDecorator = styled.div`
       color: ${({ isActive, theme: { palette } }) => (
     isActive ? 'inherit' : palette.pureWhite
   )};
-      background: ${({ isActive, isSelected, theme: { palette } }) => (
+      background: ${({ isSelected, theme: { palette } }) => (
     (isSelected ? palette.primary.main : palette.primary.light)
   )};
       color: ${({ isSelected, isActive, theme: { palette } }) =>
@@ -96,17 +97,17 @@ const GlobalMenuItemDiv = styled.a`
 };
   }
 
-  border-right: ${({ isSelected, isActive, theme: { palette } }) => (isSelected && isActive ?
+  border-right: ${({ isSelected, isActive, theme: { palette } }) => (isSelected && isActive ?
     `${borderThickness} solid ${palette.accent.main}` : '0 solid transparent')
 };
-  background: ${({ isSelected, theme: { palette } }) => palette.primary.dark || '#15303f'};
+  background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
   .root &:hover, /* TODO solve this .root a  */
   &:hover {
     text-decoration: none;
     color: ${({ theme: { palette } }) => palette.pureWhite};
     background: ${({ isActive, isSelected, theme: { palette } }) => (
-    isSelected
+    isSelected // eslint-disable-line no-nested-ternary
       ? (isActive
         ? palette.primary.dark
         : palette.primary.light // child is slelected, means we can navigate there
@@ -123,7 +124,7 @@ const GlobalMenuItemDiv = styled.a`
     color: ${({ isActive, theme: { palette } }) => (
     isActive ? 'inherit' : palette.pureWhite
   )};
-    background: ${({ isActive, isSelected, theme: { palette } }) => (
+    background: ${({ isSelected, theme: { palette } }) => (
     (isSelected ? palette.primary.main : palette.primary.light)
   )};
     color: ${({ isSelected, isActive, theme: { palette } }) =>
@@ -200,7 +201,7 @@ const GlobalMenuItem = (props) => {
   // render the tooltip inert when menu is in "wide" mode (labels are present, tooltip is useless)
   const rules = [{
     minWidth: 100,
-    mapper: ({ trigger }) => ({
+    mapper: (/* { trigger } */) => ({
       trigger: [],
       visible: false, // inject inexisting props
     }),
@@ -208,7 +209,6 @@ const GlobalMenuItem = (props) => {
 
   let linkProps = {};
   if (Link !== undefined) {
-    const GlobalMenuItemDivFinal = Link; // shadow
     linkProps = { to };
   } else if (href) {
     linkProps = { href };
@@ -291,13 +291,22 @@ GlobalMenuItem.displayName = 'GlobalMenuItem';
 
 GlobalMenuItem.propTypes = {
   isSelected: PropTypes.bool,
-  Icon: PropTypes.any,
   index: PropTypes.string,
   hasNew: PropTypes.bool,
   label: PropTypes.node,
   onClick: PropTypes.func,
   isActive: PropTypes.bool,
   primaryColor: PropTypes.string,
+};
+
+GlobalMenuItem.defaultProps = {
+  isSelected: false,
+  index: '',
+  hasNew: false,
+  label: null,
+  onClick: () => { },
+  isActive: false,
+  primaryColor: '',
 };
 
 export default GlobalMenuItem;

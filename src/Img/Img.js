@@ -59,7 +59,7 @@ const getWrapperStyles = props => ({
  * ever stretching it, no matter the context around
  */
 // const Img = props => (
-class Img extends PureComponent {
+class Img extends PureComponent { // eslint-disable-line react/prefer-stateless-function
   // state = {
   //   loaded: false,
   // }
@@ -71,14 +71,14 @@ class Img extends PureComponent {
   // }
 
   render() {
-    const { props } = this;
+    const { src, alt, async, style } = this.props;
     // const { loaded } = this.state;
     return (
       <figure
-        style={{ ...getWrapperStyles(props/* , loaded */), ...props.style }}
+        style={{ ...getWrapperStyles(this.props/* , loaded */), ...style }}
         // onLoad={this.onLoadHandler.bind(this)}
       >
-        <img src={props.src} alt={props.alt} style={styles.img} async={props.async} />
+        <img src={src} alt={alt} style={styles.img} async={async} />
       </figure>
     );
   }

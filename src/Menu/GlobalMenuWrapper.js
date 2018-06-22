@@ -4,7 +4,7 @@ import GlobalMenuContainer from './GlobalMenuContainer';
 import GlobalMenuItem from './GlobalMenuItem';
 import GlobalMenuSubItem from './GlobalMenuSubItem';
 import GlobalMenuPanel from './GlobalMenuPanel';
-import { Flex, FlexLeftCol } from '../Layout';
+import { Flex } from '../Layout';
 
 const FlexExtended = Flex.extend`
   position: absolute;
@@ -37,7 +37,11 @@ const GlobalMenuWrapper = ({
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
         isActive={menuDescriptor.key === selectedKey || (selectedKey === '' && menuDescriptor.isActive)}
-        onClick={() => { menuDescriptor.onClick && menuDescriptor.onClick(); }}
+        onClick={() => {
+          if (menuDescriptor.onClick && menuDescriptor.onClick) {
+            menuDescriptor.onClick();
+          }
+        }}
         hasNew={menuDescriptor.hasNew}
         label={menuDescriptor.displayName}
         index={menuDescriptor.key}
@@ -58,7 +62,7 @@ const GlobalMenuWrapper = ({
             isLastSubItem={idx === list.length - 1}
             key={child.key}
             isSelected={child.isSelected}
-            isActive={child.key === selectedKey || (selectedKey === '' && child.isActive)}
+            // isActive={child.key === selectedKey || (selectedKey === '' && child.isActive)}
             isParentSelected={menuDescriptor.isSelected}
             isActive={child.isActive}
             onClick={child.onClick}
@@ -120,6 +124,15 @@ GlobalMenuWrapper.propTypes = {
   backgroundColor: PropTypes.string,
   primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
+};
+
+GlobalMenuWrapper.defaultProps = {
+  selectedKey: '',
+  activeKey: '',
+  logo: null,
+  backgroundColor: '',
+  primaryColor: '',
+  menuDescriptors: [],
 };
 
 export default GlobalMenuWrapper;

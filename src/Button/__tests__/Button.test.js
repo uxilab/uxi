@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../Button';
-import { mountWithTheme, shallowWithTheme } from '../../../test/utils';
+import { shallowWithTheme } from '../../../test/utils';
 
 
 describe('<Button />', () => {

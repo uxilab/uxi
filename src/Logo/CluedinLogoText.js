@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 /* eslint-disable max-len */
 
-const CluedinLogoText = props => (
+const CluedinLogoText = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 50.38 11.69"

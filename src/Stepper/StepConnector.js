@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StepConnectorWrapperUI = styled.div`
@@ -17,7 +17,7 @@ const StepConnectorIndicatorUI = styled.div`
   right: -5px;
 `;
 
-const StepConnector = ({ children }) => (
+const StepConnector = () => (
   <StepConnectorWrapperUI>
     <StepConnectorIndicatorUI />
   </StepConnectorWrapperUI>

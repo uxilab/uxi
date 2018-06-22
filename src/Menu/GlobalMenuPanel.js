@@ -4,7 +4,7 @@ import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import GlobalMenuPanelStyle from './GlobalMenuPanel.style';
 import { Close } from '../Icons';
-import defaults from './defaults';
+import defaults from './defaults'; // eslint-disable-line import/no-named-as-default
 
 const {
   breakpoint,
@@ -12,8 +12,15 @@ const {
   menuWidth,
 } = defaults;
 
-
-const getWidth = ({ isOpen, panelWidth, fullWidth, attachToViewport, fullViewportWidthPanel }, breakpoint) => {
+// eslint-disable-next-line no-unused-vars
+const getWidth = ({
+  isOpen, // eslint-disable-line no-unused-vars
+  panelWidth,
+  fullWidth,
+  attachToViewport, // eslint-disable-line no-unused-vars
+  fullViewportWidthPanel,
+},
+breakpoint) => { // eslint-disable-line no-shadow
   const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
   const unit = fullViewportWidthPanel ? 'vw' : '%';
 
@@ -29,9 +36,10 @@ const getWidth = ({ isOpen, panelWidth, fullWidth, attachToViewport, fullViewpor
   return `${panelWidth}px`;
 };
 
+// eslint-disable-next-line no-shadow
 const getTransform = ({ panelWidth, fullWidth, isOpen }, breakpoint) => {
   let x = panelWidth;
-  const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
+  // const theMenuWidth = breakpoint === 'desktop' ? bigMenuWidth : menuWidth;
 
   if (isOpen) {
     if (breakpoint === 'desktop') {
@@ -62,8 +70,6 @@ const GlobalMenuPanelWrapper = styled.div`
   top: 0;
   bottom: 0;
   margin-left: 0px;
-  /* opacity: ${({ isOpen, attachToViewport }) => (isOpen ? 1 : (attachToViewport ? 1 : 0))}; */
-  /* opacity: ${({ isOpen, attachToViewport }) => (!attachToViewport ? (isOpen ? 1 : 0) : 1)}; */
   background: #fff;
   border-right: 1px solid #ececec;
   border-left: 1px solid #ececec;
@@ -186,14 +192,15 @@ GlobalMenuPanel.propTypes = {
 };
 
 GlobalMenuPanel.defaultProps = {
-  // onClickOutside: PropTypes.func,
-  // isOpen: PropTypes.bool,
-  // Title: PropTypes.any,
-  // Content: PropTypes.any,
-  // Action: PropTypes.any,
   width: 400,
-  // fullWidth: PropTypes.bool,
   attachToViewport: false,
+  onClickOutside: () => { },
+  isOpen: false,
+  Title: null,
+  Content: null,
+  Action: null,
+  fullWidth: false,
+  fullViewportWidthPanel: false,
 };
 
 export default enhanceWithClickOutside(GlobalMenuPanel);

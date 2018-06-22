@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
   from {
@@ -9,14 +9,14 @@ const fadeIn = keyframes`
   }
 `;
 
-const slideUpIn = keyframes`
-  from {
-    transform: translateY(16vh);
-  }
-  to {
-    transform: translateY(0);
-  }
-`;
+// const slideUpIn = keyframes`
+//   from {
+//     transform: translateY(16vh);
+//   }
+//   to {
+//     transform: translateY(0);
+//   }
+// `;
 
 const SlideInWhenInBoundUI = styled.div`
   .scroll-anim-before {
@@ -27,6 +27,7 @@ const SlideInWhenInBoundUI = styled.div`
     if (anchor === 'right') { return 'translateX(16vh)'; }
     if (anchor === 'top') { return 'translateY(-16vh)'; }
     if (anchor === 'left') { return 'translateX(-16vh)'; }
+    return '';
   }
 };
     transition: transform 0.6s cubic-bezier(0.3, 0.8, 0.4, 1), opacity 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
@@ -41,9 +42,9 @@ const SlideInWhenInBoundUI = styled.div`
   }
 
   .load-anim {
-    -webkit-animation: fadeIn 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
-    -moz-animation: fadeIn 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
-    animation: fadeIn 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
+    -webkit-animation: ${fadeIn} 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
+    -moz-animation: ${fadeIn} 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
+    animation: ${fadeIn} 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
   }
 `;
 export default SlideInWhenInBoundUI;

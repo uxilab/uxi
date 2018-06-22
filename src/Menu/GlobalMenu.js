@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GlobalMenuWrapper from './GlobalMenuWrapper';
-import GlobalMenuPanel from './GlobalMenuPanel';
 import GlobalMenuLogo from './GlobalMenuLogo';
 
 class GlobalMenu extends Component {
@@ -17,9 +16,8 @@ class GlobalMenu extends Component {
       menuDescriptors,
     } = this.props;
 
-    const firstActiveFound = menuDescriptors.find(menuDescriptor => {
-      return menuDescriptor.isActive === true
-    });
+    const firstActiveFound = menuDescriptors
+      .find(menuDescriptor => menuDescriptor.isActive === true);
 
     if (firstActiveFound) {
       const activeChild = (
@@ -29,9 +27,9 @@ class GlobalMenu extends Component {
       );
 
       if (activeChild) {
-        this.changeSelected(activeChild.key)
+        this.changeSelected(activeChild.key);
       } else {
-        this.changeSelected(firstActiveFound.key)
+        this.changeSelected(firstActiveFound.key);
       }
     }
   }
@@ -91,7 +89,7 @@ class GlobalMenu extends Component {
 
           const {
             children, // single sublevel for now
-            ...menuDescriptorProps,
+            ...menuDescriptorProps
           } = menuDescriptor;
 
           menuDescriptorChildren.push({
@@ -135,13 +133,13 @@ class GlobalMenu extends Component {
         logoTooltipLabel={logoDescriptor.tooltipLabel || logoDescriptor.displayName || ''}
         activeKey={active}
         isActive={(active === logoDescriptor.key || active === 'GlobalMenuMainLogo')}
-        onClick={logoDescriptor.onClick}
+        // onClick={logoDescriptor.onClick}
         onClick={() => {
           this.changeSelected(logoDescriptor.key || 'GlobalMenuMainLogo');
-            if (logoDescriptor.onClick) {
-              logoDescriptor.onClick();
-            }
+          if (logoDescriptor.onClick) {
+            logoDescriptor.onClick();
           }
+        }
         }
       />
     );
@@ -171,18 +169,25 @@ class GlobalMenu extends Component {
 }
 
 GlobalMenu.propTypes = {
-  initialActive: PropTypes.string,
+  // initialActive: PropTypes.string,
   initialSelected: PropTypes.string,
   onLogoClick: PropTypes.func,
-  backgroundColor: PropTypes.string,
-  Logo: PropTypes.any,
-  primaryColor: PropTypes.string,
+  // backgroundColor: PropTypes.string,
+  // Logo: PropTypes.any,
+  // primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
   style: PropTypes.object,
 };
 
 GlobalMenu.defaultProps = {
+  // initialActive: '',
+  initialSelected: '',
+  onLogoClick: () => { },
+  // backgroundColor: '',
+  // Logo: PropTypes.any,
+  // primaryColor: '',
   menuDescriptors: [],
+  style: PropTypes.object,
 };
 
 export default GlobalMenu;

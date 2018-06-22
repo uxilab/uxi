@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const styles = {
   main: {
@@ -18,7 +17,6 @@ const styles = {
     height: '1px',
     backgroundColor: '#909090',
     display: 'inline-block',
-    width: '100%',
     width: 'calc(100% - 8px)', // 6 + 2
     margin: '1px 3px 0',
   },

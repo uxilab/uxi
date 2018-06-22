@@ -48,15 +48,18 @@ class Badge extends Component {
     children: PropTypes.node,
     style: PropTypes.object,
     type: PropTypes.oneOf(['error', 'success', 'warning', 'info', 'default']),
-    rounded: PropTypes.bool,
+    // rounded: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'default',
+    children: null,
+    style: {},
+    // rounded: false,
   };
 
   render() {
-    const { type, style, rounded } = this.props;
+    const { type, style/* , rounded */ } = this.props;
     let mergedStyle = Object.assign({}, BadgeStyle.badge, style);
     // const classNames = [mergedStyle];
 

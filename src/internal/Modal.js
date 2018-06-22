@@ -115,6 +115,9 @@ Modal.defaultProps = {
   disableBackdrop: false,
   ignoreBackdropClick: false,
   ignoreEscapeKeyUp: false,
+  onBackdropClick: () => {},
+  onClose: () => {},
+  onEscapeKeyUp: () => { },
 };
 
 export default Modal;

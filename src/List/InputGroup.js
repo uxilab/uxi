@@ -13,13 +13,14 @@ const InputWrapper = styled.div`
 `;
 
 /**
- * TODO: what happens when the context/parentDomBox does not provide enough width to render all inline ? -df
+ * TODO: what happens when the context/parentDomBox
+ * does not provide enough width to render all inline ? -df
  */
 
 const InputGroup = ({ children, style = {}, fullWidth }) => (
   <InputWrapper fullWidth={fullWidth} style={style}>
     {
-      React.Children.map(children, (child, i, list) => {
+      React.Children.map(children, (child, i) => {
         'r';
 
         let rules = 0;

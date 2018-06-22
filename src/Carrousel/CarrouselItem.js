@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../Button';
 
 const WrapperUI = styled.div`
   /* text-align: center; */
@@ -30,7 +29,7 @@ const ImageUI = styled.div`
   height: 140px;
   overflow: hidden;
   position: relative;
-  background: url(${({  src }) => src}) no-repeat;
+  background: url(${({ src }) => src}) no-repeat;
   background-position: center;
   background-size: cover;
   img {

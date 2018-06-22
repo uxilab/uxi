@@ -42,7 +42,7 @@ class RadioGroup extends Component {
     focusRadios[0].focus();
   };
 
-  handleRadioChange = (event, checked) => {
+  handleRadioChange = (event/* , checked */) => {
     this.setState({
       selectedValue: event.target.value,
     });
@@ -77,7 +77,12 @@ class RadioGroup extends Component {
               }
             },
             checked,
-            onChange: (e) => { this.handleRadioChange(e); child.props.onChange && child.props.onChange(e); },
+            onChange: (e) => {
+              this.handleRadioChange(e);
+              if (child.props.onChange) {
+                child.props.onChange(e);
+              }
+            },
           });
         })}
       </form>

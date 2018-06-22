@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ThemeComponent from '../Base/ThemeComponent';
 import { lighten } from '../Theme/colorManipulator';
-import defaults from './defaults';
+import defaults from './defaults'; // eslint-disable-line import/no-named-as-default
 
 const {
   borderThickness,

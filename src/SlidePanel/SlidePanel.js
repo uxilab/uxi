@@ -99,11 +99,14 @@ class SidePanel extends React.Component {
             style={style}
           >
             {
-              React.Children.map(children, (c, index) => React.isValidElement(c) && React.cloneElement(c, {
-                key: `sidePanel-${index}`,
-                onClose,
-                anchor,
-              }))
+              React.Children.map(
+                children,
+                (c, index) => React.isValidElement(c) && React.cloneElement(c, {
+                  key: `sidePanel-${index}`,
+                  onClose,
+                  anchor,
+                })
+              )
             }
           </SidePanelUI>
         </Slide>
@@ -122,16 +125,19 @@ SidePanel.propTypes = {
   onClose: PropTypes.func,
   open: PropTypes.bool,
   showOverlay: PropTypes.bool,
-  transitionDuration: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
-  ]),
+  // transitionDuration: PropTypes.oneOfType([
+  //   PropTypes.number,
+  //   PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  // ]), // not used
 };
 
 SidePanel.defaultProps = {
   anchor: 'right',
   open: false,
   showOverlay: false,
+  children: null,
+  onClose: () => {},
+  // transitionDuration: 0,
 };
 
 export default SidePanel;

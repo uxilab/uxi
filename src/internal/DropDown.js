@@ -2,9 +2,8 @@ import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
-import { Separator } from '../Menu';
-import { UnstyledButton } from '../Button';
 import styled from 'styled-components';
+import { UnstyledButton } from '../Button';
 
 const ItemsWrapper = styled.div``;
 
@@ -105,6 +104,11 @@ export class DropDown extends PureComponent {
   }
 
   static defaultProps = {
+    main: null,
+    items: [],
+  }
+
+  static defaultProps = {
     anchor: 'left',
   }
 
@@ -150,29 +154,9 @@ export class DropDown extends PureComponent {
 
     const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
 
-    if (isOpen)  {
+    if (isOpen) {
       this.attachListeners();
     }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { isOpen } = this.state;
-    const { isOpen: willBeOpenState } = nextState;
-    const { isOpen: willBeOpenProps } = nextProps;
-
-    const willBeOpen = willBeOpenState ||  willBeOpenProps;
-    let shouldFocusTrigerrer = false;
-
-    if (!willBeOpen) {
-      shouldFocusTrigerrer = true;
-    }
-    // } else if (isOpen && willBeOpen) {
-    //   shouldFocusTrigerrer
-    // }
-
-    this.setState({
-      shouldFocusTrigerrer,
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -189,26 +173,23 @@ export class DropDown extends PureComponent {
     }
   }
 
-  attachListeners() {
-    window.addEventListener('resize', this.handleWindowResize);
-    if (this.props.mainScrollingElementSelector) {
-      if (this.htmlNodeRef) {
-        this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
-      }
-    } else {
-      window.addEventListener('scroll', this.handleWindowScroll);
-    }
-  }
+  componentWillUpdate(nextProps, nextState) {
+    const { isOpen: willBeOpenState } = nextState;
+    const { isOpen: willBeOpenProps } = nextProps;
 
-  detachListeners() {
-    window.removeEventListener('resize', this.handleWindowResize);
-    if (this.props.mainScrollingElementSelector) {
-      if (this.htmlNodeRef) {
-        this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
-      }
-    } else {
-      window.removeEventListener('scroll', this.handleWindowScroll);
+    const willBeOpen = willBeOpenState || willBeOpenProps;
+    let shouldFocusTrigerrer = false;
+
+    if (!willBeOpen) {
+      shouldFocusTrigerrer = true;
     }
+    // } else if (isOpen && willBeOpen) {
+    //   shouldFocusTrigerrer
+    // }
+
+    this.setState({
+      shouldFocusTrigerrer,
+    });
   }
 
   componentWillUnmount() {
@@ -228,7 +209,6 @@ export class DropDown extends PureComponent {
         .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
     }
 
-    const leftScrollOffset = this.htmlNodeRef.scrollLeft;
     const cRectMain = mainRef.getBoundingClientRect();
     const cRectItems = itemsRef.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
@@ -241,9 +221,12 @@ export class DropDown extends PureComponent {
       left = `${ItemsLeft}px`;
     } else if (anchor === 'right') {
       left = `${ItemsLeft - (cRectItems.width - cRectMain.width)}px`;
-    } else if (anchor === 'bottom') {
+    }
+    /*
+    else if (anchor === 'bottom') {
     } else if (anchor === 'top') {
     }
+    */
 
     const top = isPopOver
       ? (ItemsTop + 20)
@@ -269,11 +252,32 @@ export class DropDown extends PureComponent {
     };
   }
 
+  attachListeners() {
+    window.addEventListener('resize', this.handleWindowResize);
+    if (this.props.mainScrollingElementSelector) {
+      if (this.htmlNodeRef) {
+        this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
+      }
+    } else {
+      window.addEventListener('scroll', this.handleWindowScroll);
+    }
+  }
 
-  handleWindowResize(e) {
+  detachListeners() {
+    window.removeEventListener('resize', this.handleWindowResize);
+    if (this.props.mainScrollingElementSelector) {
+      if (this.htmlNodeRef) {
+        this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
+      }
+    } else {
+      window.removeEventListener('scroll', this.handleWindowScroll);
+    }
+  }
+
+  handleWindowResize() {
     this.forceUpdate();
   }
-  handleWindowScroll(e) {
+  handleWindowScroll() {
     this.forceUpdate();
   }
 
@@ -342,7 +346,7 @@ export class DropDown extends PureComponent {
         itemsStyle,
         triggerWrapperStyle,
         isPopOver,
-        handleDropDownChange,
+        // handleDropDownChange,
         // mainStyle,
         // isOpen,
       },

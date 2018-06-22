@@ -32,7 +32,7 @@ import React from 'react';
  *  height: (row end - row start) * unit
  *
  */
-const makeGrid = (column, row) => (
+const makeGrid = (column, row) => ( // eslint-disable-line no-unused-vars
   null
 );
 /**
@@ -58,7 +58,7 @@ const makeGrid = (column, row) => (
  * It is up to the developer to make sure there is no conflict.
  */
 
-const Dashboard = ({ children, column = 1, row = 1 }) => (
+const Dashboard = ({ children, column = 1, row = 1 }) => ( // eslint-disable-line no-unused-vars
   <div>
     {children}
   </div>

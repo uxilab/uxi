@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Separator } from '../Menu';
 
 const OptionsUI = styled.div`
   cursor: pointer;
@@ -34,7 +33,14 @@ const Options = (props) => {
 
   return (<OptionsUI
     {...rest}
-    onClick={(e) => { e.target.blur(); onClick && onClick(e); }}
+    onClick={(e) => {
+      if (e.target.blur) {
+        e.target.blur();
+      }
+      if (onClick) {
+        onClick(e);
+      }
+    }}
     onKeyUp={(e) => {
       // if (e.target === document.body) {
       // e.preventDefault()

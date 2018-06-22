@@ -10,7 +10,7 @@ import {
 const LabeLUI = styled.label`
   cursor: pointer;
   ${({ label, labelBefore }) => (
-    label
+    label // eslint-disable-line no-nested-ternary
       ? (labelBefore ? 'margin-right: 8px' : ' margin-left: 8px')
       : ''
   )};
@@ -52,15 +52,15 @@ const Wrapper = styled.div`
   }
 `;
 
-const posAbs = {
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-};
+// const posAbs = {
+//   position: 'absolute',
+//   width: '100%',
+//   height: '100%',
+//   top: 0,
+//   right: 0,
+//   bottom: 0,
+//   left: 0,
+// };
 
 const styles = {
   wrapper: {
@@ -107,6 +107,18 @@ class Checkbox extends React.PureComponent {
     }
   }
 
+  onBlur() {
+    this.setState({
+      hasFocus: false,
+    });
+  }
+
+  onFocus() {
+    this.setState({
+      hasFocus: true,
+    });
+  }
+
   getWrapperStyles() {
     // disabled
     const { disabled, labelBefore } = this.props;
@@ -125,18 +137,6 @@ class Checkbox extends React.PureComponent {
 
     const { onChange, name } = this.props;
     if (onChange) { onChange(event, checked, name); }
-  }
-
-  onBlur() {
-    this.setState({
-      hasFocus: false,
-    });
-  }
-
-  onFocus() {
-    this.setState({
-      hasFocus: true,
-    });
   }
 
   render() {
@@ -180,7 +180,9 @@ class Checkbox extends React.PureComponent {
             style={inputStyle}
             checked={checker}
             defaultChecked={defaultChecked}
-            name={name || id || counter++}
+            name={
+              (name || id || counter++) // eslint-disable-line no-plusplus
+            }
             type="checkbox"
             disabled={disabled}
             onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
@@ -196,8 +198,8 @@ class Checkbox extends React.PureComponent {
 
 Checkbox.propTypes = {
   onChange: PropTypes.func,
-  icon: PropTypes.string,
-  checkedIcon: PropTypes.string,
+  // icon: PropTypes.string,
+  // checkedIcon: PropTypes.string,
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
   name: PropTypes.string, // .isRequired,
@@ -209,10 +211,13 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   name: 'myawesomecheckbox',
   onChange: () => { },
-  icon: 'Checkboxoutline',
-  checkedIcon: 'Checkbox',
+  // icon: 'Checkboxoutline',
+  // checkedIcon: 'Checkbox',
   inputStyle: {},
   labelStyle: {},
+  checked: undefined,
+  defaultChecked: false,
+  disabled: false,
 };
 
 export default Checkbox;

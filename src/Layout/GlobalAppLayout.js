@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexLeftCol, AppLayout } from './';
-import defaults from '../Menu/defaults'; // TODO bring into theme
+import defaults from '../Menu/defaults'; // eslint-disable-line import/no-named-as-default
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
 
@@ -25,37 +25,37 @@ const FlexLeftColExtended = FlexLeftCol.extend`
 `;
 
 const AppLayoutExtended = AppLayout.extend`
- 	min-height: 100vh;
-	height: 100vh;
-	max-height: 100vh;
-	width: auto;
-	display: flex;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  width: auto;
+  display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-	flex-flow: column nowrap;
-	&>* {}
-	&>*:first-child() { }
-	&>*:nth-child(2) {
-		flex-grow: 9;
+  flex-flow: column nowrap;
+  &>* {}
+  &>*:first-child() { }
+  &>*:nth-child(2) {
+    flex-grow: 9;
     overflow-y: scroll; /* applies to same elem as line 44 */
-	}
+  }
   /* TODO: make the entire cluedin content mobile first! */
-	&>* { width: calc(100vw - ${menuWidth}) }
+  &>* { width: calc(100vw - ${menuWidth}) }
   @media (min-width: ${breakpoint}) {
     &>* { width: calc(100vw - ${bigMenuWidth}) }
   }
 `;
 
 const InnerAppLayoutUI = AppLayout.extend`
-  /* overflow-y: scroll; *//* applies to same elem as line 34 */
-	&>*:nth-child(1) {
+/* overflow-y: scroll; *//* applies to same elem as line 34 */
+  &>*:nth-child(1) {
     flex-grow: 99;
     flex-shrink: 0;
   }
-	&>*:nth-child(2) {
-		flex-grow: 1;
+  &>*:nth-child(2) {
+    flex-grow: 1;
     flex-shrink: 0;
-	}
+  }
 `;
 
 const errorMsg = `GlobalAppLayout will only work with all those props:

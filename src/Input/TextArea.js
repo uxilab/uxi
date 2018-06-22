@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 // import { palette } from '../Theme/palette';
 import styled from 'styled-components';
 import {
-  Done as SuccessIcon,
-  Issue as ErrorIcon,
+// Done as SuccessIcon,
+// Issue as ErrorIcon,
 } from '../Icons';
 // import default theme in case not themeprovider is used
 import { theme as defaultTheme } from '../Theme';
@@ -32,9 +32,10 @@ const InputUI = styled.textarea.attrs({
   border: 1px solid ${({ theme: { palette: { semantic } } }) => semantic.default};
   padding: 6.5px 26px 6.5px 6.5px;
   min-width: 100%;
-  border: 1px solid ${({ error, success, theme: { palette: { semantic } } }) => (error
-    ? semantic.error
-    : (success ? semantic.success : semantic.default))
+  border: 1px solid ${({ error, success, theme: { palette: { semantic } } }) => (
+    error // eslint-disable-line no-nested-ternary
+      ? semantic.error
+      : (success ? semantic.success : semantic.default))
 };
   &:focus {
     outline: none;

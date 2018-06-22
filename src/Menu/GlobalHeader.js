@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlexRightCol } from '../Layout';
 import styled from 'styled-components';
+import { FlexRightCol } from '../Layout';
 
 const GlobalHeaderUI = styled.div`
   /* height: 48px; */
-  background: ${({ theme: {  palette } }) => palette.primary.main};
+  background: ${({ theme: { palette } }) => palette.primary.main};
   width: 100%;
 `;
 

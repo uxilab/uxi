@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 /**
  * TODO: Some of thos compos still use context or import the theme directly, fix it
  */
-class Page extends Component {
+class Page extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { children, isContained, style = {} } = this.props;
     const isContainedResult = isContained ? true : this.context.isFixedWidth();

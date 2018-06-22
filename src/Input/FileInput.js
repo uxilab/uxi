@@ -1,24 +1,20 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
-  Done as SuccessIcon,
-  Issue as ErrorIcon,
+  // Done as SuccessIcon,
+  // Issue as ErrorIcon,
   Upload as UploadIcon,
 } from '../Icons';
 import { Button } from '../Button';
-import { palette } from '../Theme/palette';
-
-const { semantic } = palette;
+// import { palette } from '../Theme/palette';
 
 const FileInputWrapperUI = styled.div`
   display: inline-block;
   position: relative;
-  outline: ${({ focussed }) => (focussed ? '-webkit-focus-ring-color auto 5px' : 'none')}
+  outline: ${({ focussed }) => (focussed ? '-webkit-focus-ring-color auto 5px' : 'none')};
 `;
 
 const FileInputLabelUI = styled.label`
-  /* padding: '8px 16px', */
   display: block;
   padding: 0;
   width: 100%;
@@ -63,9 +59,8 @@ class FileInput extends PureComponent {
       props,
       props: {
         onChange,
-        style,
-        success,
-        error,
+        // success,
+        // error,
         label,
       },
       state: {
@@ -73,10 +68,11 @@ class FileInput extends PureComponent {
       },
     } = this;
 
+    /*
     const stateIcon = error // eslint-disable-line no-nested-ternary
       ? <ErrorIcon size="16" color={palette.semantic.error} />
       : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
-
+    */
     const finalLabel = label || 'UPLOAD';
 
     return (

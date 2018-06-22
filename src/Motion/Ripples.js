@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 const rippleStyle = {
   position: 'absolute',
@@ -18,16 +17,6 @@ const wrapStyle = {
   overflow: 'hidden',
 };
 
-const RippleWrapperUI = styled.div`
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`;
-
-
 class Ripples extends Component {
   static propTypes = {
     during: PropTypes.number,
@@ -40,6 +29,9 @@ class Ripples extends Component {
   static defaultProps = {
     during: 600,
     color: 'rgba(0, 0, 0, .3)',
+    onClick: () => { },
+    children: null,
+    style: {},
   };
 
   state = {
@@ -89,6 +81,7 @@ class Ripples extends Component {
     if (typeof onClick === 'function') {
       onClick(ev);
     }
+    return undefined;
   }
 
   render() {
@@ -102,9 +95,7 @@ class Ripples extends Component {
 
     return (
       <div {...props} style={s} onClick={handleClick}>
-        {/* <RippleWrapperUI> */}
         <s style={{ ...rippleStyle, ...state.rippleStyle }} />
-        {/* </RippleWrapperUI> */}
         {children}
       </div>
     );
