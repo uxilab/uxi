@@ -9,7 +9,7 @@ exports[`<Switch /> matches snapshot 1`] = `
   }
 >
   <styled.label
-    htmlFor="myAwesomeCheckBox"
+    htmlFor={1}
   >
     <styled.div
       checked={false}
@@ -20,7 +20,8 @@ exports[`<Switch /> matches snapshot 1`] = `
     </styled.div>
     <styled.div />
     <styled.input
-      name={0}
+      id={1}
+      name={1}
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}

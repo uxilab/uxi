@@ -138,13 +138,18 @@ class Switch extends PureComponent {
   render() {
     const {
       label,
-      name,
-      id,
+      name: nameProp,
+      id: idProp,
       labelBefore,
       checked,
       disabled,
       inputStyle,
     } = this.props;
+
+    const id = idProp || nameProp || (counter + 1);
+    const name = nameProp || idProp || (counter + 1);
+
+    counter++;
 
     const { hasFocus } = this.state;
 
@@ -167,10 +172,8 @@ class Switch extends PureComponent {
           <InputUI
             onBlur={this.onBlur}
             onFocus={this.onFocus}
-            id={id || name}
-            name={
-              (name || id || counter++) // eslint-disable-line no-plusplus
-            }
+            id={id}
+            name={name}
             style={inputStyle}
             type="checkbox"
             onChange={this.handleChange}
