@@ -154,8 +154,8 @@ class Checkbox extends React.PureComponent {
       // ...restOfProps
     } = this.props;
 
-    const id = idProp || nameProp || (counter + 1);
-    const name = nameProp || idProp ||  (counter + 1);
+    const id = idProp || nameProp || (counter + 1);
+    const name = nameProp || idProp || (counter + 1);
 
     counter++; // eslint-disable-line no-plusplus
 

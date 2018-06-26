@@ -75,6 +75,7 @@ class TableRow extends Component {
           onClick: child.props.onClick,
         });
       }
+      return undefined;
     });
 
     const handlers = {
@@ -92,7 +93,7 @@ class TableRow extends Component {
     );
   }
 }
-
+/* eslint-disable react/require-default-props */
 TableRow.propTypes = {
   children: PropTypes.node,
   displayBorder: PropTypes.bool,
@@ -111,6 +112,7 @@ TableRow.propTypes = {
   activable: PropTypes.bool,
   isActive: PropTypes.bool,
 };
+/* eslint-enable react/require-default-props */
 
 TableRow.defaultProps = {
   displayBorder: true,
