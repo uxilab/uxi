@@ -13,6 +13,7 @@ const Td = styled.td`
   text-overflow: ellipsis;
   background-color: inherit;
   position: relative;
+  background-clip: padding-box;
 `;
 
 class TableRowColumn extends Component {

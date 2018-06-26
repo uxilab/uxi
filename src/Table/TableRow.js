@@ -32,7 +32,7 @@ const Tr = styled.tr`
   }
   &:hover {
     box-shadow: ${({ hasAction }) => (
-      hasAction ? '0px 2px 8px 0 rgba(0,0,0,.15)' : 'none'
+      hasAction ? '0px 2px 8px 0px rgba(0,0,0,.15)' : 'none'
     )};
     background-color: ${({ readOnly, hasAction, isTableHeader, locked, theme }) => {
       if (hasAction) {
@@ -67,7 +67,6 @@ class TableRow extends Component {
       ...other
     } = this.props;
 
-    // eslint-disable-next-line consistent-return
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
@@ -114,22 +113,7 @@ TableRow.propTypes = {
 };
 
 TableRow.defaultProps = {
-  children: null,
   displayBorder: true,
-  onCellClick: () => {},
-  onRowClick: () => {},
-  /**
-   * Number to identify the row. This property is
-   * automatically populated when used with the TableBody component.
-   */
-  rowNumber: 0,
-  style: {},
-  className: '',
-  readOnly: false,
-  readOnlyText: null,
-  locked: false,
-  activable: false,
-  isActive: false,
 };
 
 export default TableRow;
