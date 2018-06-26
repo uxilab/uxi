@@ -141,7 +141,7 @@ class Checkbox extends React.PureComponent {
 
   render() {
     const {
-      name,
+      name: nameProp,
       disabled,
       checked,
       defaultChecked,
@@ -150,9 +150,14 @@ class Checkbox extends React.PureComponent {
       style,
       inputStyle,
       labelStyle,
-      id,
+      id: idProp,
       // ...restOfProps
     } = this.props;
+
+    const id = idProp || nameProp || (counter + 1);
+    const name = nameProp || idProp ||  (counter + 1);
+
+    counter++; // eslint-disable-line no-plusplus
 
     const { hasFocus } = this.state;
 
@@ -176,18 +181,16 @@ class Checkbox extends React.PureComponent {
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             hasFocus
-            id={id || name}
+            id={id}
             style={inputStyle}
             checked={checker}
             defaultChecked={defaultChecked}
-            name={
-              (name || id || counter++) // eslint-disable-line no-plusplus
-            }
+            name={name}
             type="checkbox"
             disabled={disabled}
             onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
           />
-          <LabeLUI htmlFor={name} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
+          <LabeLUI htmlFor={id} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
             {label}
           </LabeLUI>
         </Wrapper>
