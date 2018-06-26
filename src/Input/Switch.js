@@ -160,7 +160,7 @@ class Switch extends PureComponent {
         <LabelWrapper
           hasFocus={hasFocus}
           labelBefore={labelBefore}
-          htmlFor={name || 'myAwesomeCheckBox'}
+          htmlFor={id}
           disabled={disabled}
         >
           <SwitchOutterWrapper checked={checker} disabled={disabled}>
