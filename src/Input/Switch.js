@@ -149,7 +149,7 @@ class Switch extends PureComponent {
     const id = idProp || nameProp || (counter + 1);
     const name = nameProp || idProp || (counter + 1);
 
-    counter++;
+    counter++; // eslint-disable-line no-plusplus
 
     const { hasFocus } = this.state;
 
