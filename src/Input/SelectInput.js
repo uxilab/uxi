@@ -52,7 +52,7 @@ class SelectInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      idOpen: false,
+      isOpen: false,
       options: [],
       optionsNode: [],
       // TODO: handle multi select
@@ -78,13 +78,15 @@ class SelectInput extends PureComponent {
         const foundIndex = options.findIndex(o => o === defaultValue);
         const selectedIndex = foundIndex > -1 ? foundIndex : null;
         this.setState({ selectedIndex });
+      } else {
+        this.setState({ selectedIndex: 0 });
       }
     } else {
       const { value } = this.props;
       const { options } = this.state;
       // not controlled, use internal state
       const foundIndex = options.findIndex(o => o === value);
-      const selectedIndex = foundIndex > -1 ? foundIndex : null;
+      const selectedIndex = foundIndex > -1 ? foundIndex : 0;
       this.setState({ selectedIndex });
     }
   }
@@ -343,13 +345,24 @@ class SelectInput extends PureComponent {
       return;
     }
 
-    if (!this.isControlled) {
-      const selectedIndex = e.currentTarget.dataset.index;
-      this.setState({
-        selectedIndex,
-        isOpen: false,
-      });
-      this.forceUpdate();
+    // TODO actually implement an conotrlled input on selectinput
+    if (e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.index !== undefined) {
+      if (this.isControlled) {
+        const selectedIndex = e.currentTarget.dataset.index;
+        // isControlled: should not setState, controlled input state is managed by the consumer !
+        this.setState({
+          selectedIndex,
+          isOpen: false,
+        });
+        this.forceUpdate();
+      } else {
+        const selectedIndex = e.currentTarget.dataset.index;
+        this.setState({
+          selectedIndex,
+          isOpen: false,
+        });
+        this.forceUpdate();
+      }
     }
   }
 

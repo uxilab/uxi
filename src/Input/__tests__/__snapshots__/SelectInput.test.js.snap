@@ -1,0 +1,438 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it comes to being a controlled component 1`] = `
+<div
+  style={Object {}}
+>
+  <clickOutside(DropDown)
+    isFullWidth={false}
+    isOpen={false}
+    items={
+      Array [
+        <Options
+          data-index={0}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap",
+            }
+          }
+          value="foo"
+        >
+          <div
+            value="foo"
+          >
+            foo
+          </div>
+        </Options>,
+        <Options
+          data-index={1}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap",
+            }
+          }
+          value="bar"
+        >
+          <div
+            value="bar"
+          >
+            bar
+          </div>
+        </Options>,
+        <Options
+          data-index={2}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={true}
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap",
+            }
+          }
+          value="baz"
+        >
+          <div
+            value="baz"
+          >
+            baz
+          </div>
+        </Options>,
+      ]
+    }
+    itemsStyle={
+      Object {
+        "maxHeight": "200px",
+        "overflowX": "hidden",
+        "overflowY": "auto",
+      }
+    }
+    main={
+      <span
+        onEsc={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "border": "1px solid #cecece",
+            "borderRadius": "3px",
+            "display": "flex",
+            "minHeight": "30px",
+            "minWidth": "180px",
+            "overflow": "hidden",
+            "width": "100%",
+          }
+        }
+      >
+        <div>
+          <div>
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "padding": "2px 2px 2px 6px",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+                value="baz"
+              >
+                baz
+              </div>
+            </div>
+          </div>
+          <StatusIcon
+            error={undefined}
+            style={
+              Object {
+                "right": "48px",
+                "top": "8px",
+              }
+            }
+            success={undefined}
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": "0",
+              "boxSizing": "border-box",
+              "display": "flex",
+              "height": "32px",
+              "maxHeight": "32px",
+              "padding": 0,
+              "position": "absolute",
+              "right": "0",
+              "top": "0",
+            }
+          }
+        >
+          <Button
+            icon={
+              <Arrowdown
+                color="#6d6d71"
+              />
+            }
+            inert={true}
+            style={
+              Object {
+                "borderRadius": "0 3px 3px 0",
+              }
+            }
+            type="primary"
+          />
+        </div>
+      </span>
+    }
+    onIsOpenChange={[Function]}
+    triggerWrapperStyle={
+      Object {
+        "borderRadius": "3px",
+      }
+    }
+  />
+  <styled.div />
+</div>
+`;
+
+exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an uncontrolled input 1`] = `
+<div
+  style={Object {}}
+>
+  <clickOutside(DropDown)
+    isFullWidth={false}
+    isOpen={false}
+    items={
+      Array [
+        <Options
+          data-index={0}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap",
+            }
+          }
+          value="foo"
+        >
+          <div
+            value="foo"
+          >
+            foo
+          </div>
+        </Options>,
+        <Options
+          data-index={1}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={true}
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap",
+            }
+          }
+          value="bar"
+        >
+          <div
+            value="bar"
+          >
+            bar
+          </div>
+        </Options>,
+        <Options
+          data-index={2}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "textOverflow": "ellipsis",
+              "whiteSpace": "nowrap",
+            }
+          }
+          value="baz"
+        >
+          <div
+            value="baz"
+          >
+            baz
+          </div>
+        </Options>,
+      ]
+    }
+    itemsStyle={
+      Object {
+        "maxHeight": "200px",
+        "overflowX": "hidden",
+        "overflowY": "auto",
+      }
+    }
+    main={
+      <span
+        onEsc={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "border": "1px solid #cecece",
+            "borderRadius": "3px",
+            "display": "flex",
+            "minHeight": "30px",
+            "minWidth": "180px",
+            "overflow": "hidden",
+            "width": "100%",
+          }
+        }
+      >
+        <div>
+          <div>
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "padding": "2px 2px 2px 6px",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+                value="bar"
+              >
+                bar
+              </div>
+            </div>
+          </div>
+          <StatusIcon
+            error={undefined}
+            style={
+              Object {
+                "right": "48px",
+                "top": "8px",
+              }
+            }
+            success={undefined}
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": "0",
+              "boxSizing": "border-box",
+              "display": "flex",
+              "height": "32px",
+              "maxHeight": "32px",
+              "padding": 0,
+              "position": "absolute",
+              "right": "0",
+              "top": "0",
+            }
+          }
+        >
+          <Button
+            icon={
+              <Arrowdown
+                color="#6d6d71"
+              />
+            }
+            inert={true}
+            style={
+              Object {
+                "borderRadius": "0 3px 3px 0",
+              }
+            }
+            type="primary"
+          />
+        </div>
+      </span>
+    }
+    onIsOpenChange={[Function]}
+    triggerWrapperStyle={
+      Object {
+        "borderRadius": "3px",
+      }
+    }
+  />
+  <styled.div />
+</div>
+`;
+
+exports[`<SelectInput /> matches snapshot 1`] = `
+<div
+  style={Object {}}
+>
+  <clickOutside(DropDown)
+    isFullWidth={false}
+    isOpen={false}
+    itemsStyle={
+      Object {
+        "maxHeight": "200px",
+        "overflowX": "hidden",
+        "overflowY": "auto",
+      }
+    }
+    main={
+      <span
+        onEsc={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "border": "1px solid #cecece",
+            "borderRadius": "3px",
+            "display": "flex",
+            "minHeight": "30px",
+            "minWidth": "180px",
+            "overflow": "hidden",
+            "width": "100%",
+          }
+        }
+      >
+        <div>
+          <div>
+             
+          </div>
+          <StatusIcon
+            error={undefined}
+            style={
+              Object {
+                "right": "48px",
+                "top": "8px",
+              }
+            }
+            success={undefined}
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": "0",
+              "boxSizing": "border-box",
+              "display": "flex",
+              "height": "32px",
+              "maxHeight": "32px",
+              "padding": 0,
+              "position": "absolute",
+              "right": "0",
+              "top": "0",
+            }
+          }
+        >
+          <Button
+            icon={
+              <Arrowdown
+                color="#6d6d71"
+              />
+            }
+            inert={true}
+            style={
+              Object {
+                "borderRadius": "0 3px 3px 0",
+              }
+            }
+            type="primary"
+          />
+        </div>
+      </span>
+    }
+    onIsOpenChange={[Function]}
+    triggerWrapperStyle={
+      Object {
+        "borderRadius": "3px",
+      }
+    }
+  />
+  <styled.div />
+</div>
+`;
