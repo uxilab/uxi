@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
-import getAppropriateIcon from '../Icons/getAppropriateIcon';
+import { getAppropriateIcon } from '../Icons/getAppropriateIcon';
 
 /* eslint-disable react/prefer-stateless-function */
 class IconButton extends Component {
@@ -8,7 +8,7 @@ class IconButton extends Component {
     const {
       onClick,
       link,
-      disabled,
+      // disabled,
       icon,
       children,
       style,
@@ -22,7 +22,7 @@ class IconButton extends Component {
       rel,
       target,
       href,
-    }
+    };
 
     let finalIcon;
 
@@ -37,7 +37,6 @@ class IconButton extends Component {
     }
 
     if (link || href) {
-
       return (
         <a href={link} style={style} {...linkPropsAttr} >
           {finalIcon}
@@ -52,7 +51,7 @@ class IconButton extends Component {
       cursor: 'pointer',
       background: 'transparent',
       ...style,
-    }
+    };
 
     return (
       <button style={finalStyles} onClick={onClick}>
@@ -67,6 +66,6 @@ IconButton.defaultProps = {
   rel: null,
   target: null,
   href: null,
-}
+};
 
 export default IconButton;
