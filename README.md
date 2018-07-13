@@ -4,7 +4,6 @@
 ## Demo: [uxilab.eu](https://www.uxilab.eu)
 
 
-
 #### We're looking for contributors!
 
 This page is only dedicated to contributors. For documentation around the project, please go to [uxilab.eu](https://www.uxilab.eu)
