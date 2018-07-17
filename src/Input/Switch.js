@@ -166,7 +166,12 @@ class Switch extends PureComponent {
           htmlFor={id}
           disabled={disabled}
         >
-          <SwitchOutterWrapper checked={checker} disabled={disabled} label={label} labeBefore={labelBefore}>
+          <SwitchOutterWrapper
+            checked={checker}
+            disabled={disabled}
+            label={label}
+            labelBefore={labelBefore}
+          >
             <SwitchInnerWrapper checked={checker} disabled={disabled} />
           </SwitchOutterWrapper>
           <LabelTextWrapper label={label} labelBefore={labelBefore}>
