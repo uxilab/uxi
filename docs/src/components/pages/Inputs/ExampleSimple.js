@@ -163,6 +163,11 @@ const ExampleSimple = () => (
       />
     </li>
     <li>
+      <h3> Switch (without label) </h3>
+      <Switch defaultChecked name="foobar0π" onChange={e => console.log(`checked: ${e.checked}`)} />
+      <Switch defaultChecked labelBefore name="foobar2" onChange={e => console.log(`checked: ${e.checked}`)} />
+    </li>
+    <li>
       <h3> Switch (defaultchecked=true) </h3>
       <Switch defaultChecked labelBefore name="foobar" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>I'm a switch</div>} />
     </li>

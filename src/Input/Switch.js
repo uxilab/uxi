@@ -8,6 +8,8 @@ const InputUI = styled.input`
   right: 0;
   width: 0;
   height: 0;
+  padding: 0;
+  margin: 0;
 `;
 
 const LabelWrapper = styled.label`
@@ -34,8 +36,9 @@ const SwitchOutterWrapper = styled.div`
   border: 1px solid transparent;
   position: relative;
   transition: background-color .3s ease-out;
-  margin:${({ label, labelBefore }) => (
-    label ? (labelBefore ? '0 0 0 6px' : '0 6px 0 0') : 0 // eslint-disable-line no-nested-ternary
+  margin:${({ label, labelBefore }) => (label // eslint-disable-line no-nested-ternary
+    ? (labelBefore ? '0 0 0 6px' : '0 6px 0 0')
+    : 0
   )};
   background-color: ${({ checked }) => (!checked ? '#9a9a9a' : '#26a29a')};
   background-color: ${({ theme, checked }) => (!checked ? theme.palette.grey : theme.palette.accent.main)};
@@ -163,7 +166,7 @@ class Switch extends PureComponent {
           htmlFor={id}
           disabled={disabled}
         >
-          <SwitchOutterWrapper checked={checker} disabled={disabled}>
+          <SwitchOutterWrapper checked={checker} disabled={disabled} label={label} labeBefore={labelBefore}>
             <SwitchInnerWrapper checked={checker} disabled={disabled} />
           </SwitchOutterWrapper>
           <LabelTextWrapper label={label} labelBefore={labelBefore}>
@@ -185,6 +188,7 @@ class Switch extends PureComponent {
 }
 
 Switch.defaultProps = {
+  label: undefined,
   inputStyle: {},
 };
 
