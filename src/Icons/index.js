@@ -24,6 +24,7 @@ export Graphql from './Graphql';
 export Group from './Group';
 export Hamburger from './Hamburger';
 export Help from './Help';
+export History from './History';
 export Idbadge from './Idbadge';
 export Industry from './Industry';
 export Integration from './Integration';

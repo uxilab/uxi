@@ -31,6 +31,17 @@ This page is only dedicated to contributors. For documentation around the projec
 - open browser to http://localhost:8989
 
 ----
+Add an icon:
+- drop the dvg into the src/Icons/svgs foldes (named like the other (Name-ico.svg))
+- cd into src/Icons
+- run _scripts `node _script.js`
+- cd to project root
+- run `node_modules/.bin/eslint --fix src/Icons/`
+- stage your icon (svg, js and test file) AND stage the scr/Icons/index.js file
+- commit
+
+
+----
 
 ## Backlog of things
 
