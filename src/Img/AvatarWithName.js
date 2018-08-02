@@ -14,7 +14,17 @@ const styles = {
   },
 };
 
-const AvatarWithName = ({ src, icon, name, imgSize, isSquare, onClick, contain, style }) => {
+const AvatarWithName = ({
+  src,
+  icon,
+  name,
+  imgSize,
+  isSquare,
+  onClick,
+  contain,
+  style,
+  nameStyle,
+}) => {
   // eslint-disable-next-line no-nested-ternary
   const imgContent = src
     ? <Img contain={contain} async width={imgSize || '26'} style={{ borderRadius: (isSquare ? 0 : '50%') }} src={src} />
@@ -26,7 +36,7 @@ const AvatarWithName = ({ src, icon, name, imgSize, isSquare, onClick, contain, 
   return (
     <div style={{ ...styles.wrapper, ...style }} onClick={onClick || null}>
       { imgContent }
-      <div style={styles.nameWrapper}>
+      <div style={{ ...styles.nameWrapper, ...nameStyle }}>
         {name}
       </div>
     </div>
