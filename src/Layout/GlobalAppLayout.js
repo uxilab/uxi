@@ -37,7 +37,9 @@ const AppLayoutExtended = AppLayout.extend`
   &>*:first-child() { }
   &>*:nth-child(2) {
     flex-grow: 9;
-    overflow-y: scroll; /* applies to same elem as line 44 */
+    overflow-y: scroll; /* applies to same elem as line 49 */
+    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
   }
   /* TODO: make the entire cluedin content mobile first! */
   &>* { width: calc(100vw - ${menuWidth}) }
@@ -47,7 +49,7 @@ const AppLayoutExtended = AppLayout.extend`
 `;
 
 const InnerAppLayoutUI = AppLayout.extend`
-/* overflow-y: scroll; *//* applies to same elem as line 34 */
+/* overflow-y: scroll; *//* applies to same elem as line 40 */
   &>*:nth-child(1) {
     flex-grow: 99;
     flex-shrink: 0;
