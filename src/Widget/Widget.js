@@ -12,7 +12,7 @@ const WidgetContainer = styled.div`
   min-height: 150px;
 
   height: ${({ fixedHeight }) => (fixedHeight ? `${fixedHeight}px` : 'none')};
-  overflow-y: ${({ fixedHeight }) => (fixedHeight ? 'auto' : 'hidden')};
+  ${({ fixedHeight }) => (fixedHeight ? 'overflow-y: auto' : '')};
 `;
 
 const LoaderWrapper = styled.div`
