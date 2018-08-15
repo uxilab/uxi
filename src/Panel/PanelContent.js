@@ -9,7 +9,12 @@ const PanelContentUI = styled.div`
 `;
 
 const PanelContent = ({ children, style }) => (
-  <div style={{ position: 'relative' }}>
+  <div
+    style={{
+      position: 'relative',
+      ...(style && style.maxHeight !== undefined ? { maxHeight: style.maxHeight } : {}),
+    }}
+  >
     <PanelContentUI style={style} >
       {children}
     </PanelContentUI>

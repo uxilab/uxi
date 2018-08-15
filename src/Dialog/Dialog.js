@@ -40,9 +40,17 @@ const Dialog = ({ show, modal, onClose, children, style }) => {
       return childChildren;
     });
 
+    const shadowRuleIfChildIsPanel = (c && c.type && c.type.displayName === 'Panel')
+      ? { boxShadow: 'rgba(0, 0, 0, 0.5) 0px 1px 6px, rgba(0, 0, 0, 0.2) 0px 1px 32px' }
+      : {};
+
     return React.cloneElement(c, {
       key: `dialogContent-${index}`,
       onClose,
+      style: {
+        ...(shadowRuleIfChildIsPanel),
+        ...((c && c.props && c.props.style) ? c.props.style : {}),
+      },
       children: childExtendedChildren,
     });
   });
