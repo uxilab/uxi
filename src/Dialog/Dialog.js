@@ -34,7 +34,10 @@ const Dialog = ({ show, modal, onClose, children, style }) => {
       ) {
         return React.cloneElement(childChildren, {
           ...childChildren.props,
-          style: { maxHeight: 'calc(80vh - calc( 2 * 50px ))', ...childChildren.props.style },
+          style: {
+            maxHeight: 'calc(80vh - (2 * 54px))', // for panel header and footer
+            ...childChildren.props.style,
+          },
         });
       }
       return childChildren;
