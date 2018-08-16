@@ -37,7 +37,7 @@ const AppLayoutExtended = AppLayout.extend`
   &>*:first-child() { }
   &>*:nth-child(2) {
     flex-grow: 9;
-    overflow-y: scroll; /* applies to same elem as line 49 */
+    overflow-y: auto; /* applies to same elem as line 49 */
     overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
   }
