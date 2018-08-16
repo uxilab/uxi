@@ -16,14 +16,14 @@ import debounce from 'lodash.debounce';
  * <PropsContainerQuery rules={rules} />
  */
 
-const applyRules = (props, rules, width/* , height */) => {
+const applyRules = (props, rules, width, height) => {
   if (rules.length === 0) {
     return props;
   }
 
   let result = { ...props };
 
-  let internalRules = rules.filter(rule => 'minWidth' in rule); // TODO improve
+  // let internalRules = rules.filter(rule => 'minWidth' in rule); // TODO improve
   /**
      * we only apply the mapper if the available
      * WINDOW/VIEWPORT width
@@ -32,15 +32,21 @@ const applyRules = (props, rules, width/* , height */) => {
      * logical, ascending, flow of overwrite
      * Mobile first FTW
      */
-  internalRules = internalRules.filter(({ minWidth }) => (width >= minWidth));
-  if (internalRules && internalRules.length) {
-    internalRules.forEach(({ mapper }) => {
-      result = {
-        ...result,
-        ...mapper(props),
-      };
-    });
+  const internalRules = rules
+    .filter(({ minWidth, minHeight }) => (
+      width >= minWidth || height >= minHeight
+    ));
+
+  if (internalRules.length === 0) {
+    return props;
   }
+
+  internalRules.forEach(({ mapper }) => {
+    result = {
+      ...result,
+      ...mapper(props),
+    };
+  });
 
 
   return result;
