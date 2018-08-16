@@ -34,7 +34,13 @@ export const createDataGridCell = (property, actions, entity) => {
         {
           actions &&
           (
-            <ActionMenuWrapper className="actionMenuInTableRowColumn"><ActiondMenu value={entity} menuDescriptors={actions} /></ActionMenuWrapper>
+            <ActionMenuWrapper className="actionMenuInTableRowColumn">
+              <ActiondMenu
+                value={entity}
+                menuDescriptors={actions}
+                mainMenuButtonItemStyle={{ height: '50px' }}
+              />
+            </ActionMenuWrapper>
           )
         }
       </div>

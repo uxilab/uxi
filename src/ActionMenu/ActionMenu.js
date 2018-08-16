@@ -31,6 +31,7 @@ const MenuButtonItemWithStyle = styled.div`
   padding:10px;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   cursor: pointer;
   color:#212121;
   &:hover {
@@ -41,10 +42,10 @@ const MenuButtonItemWithStyle = styled.div`
 // eslint-disable-next-line react/prefer-stateless-function
 class MenuButtonItem extends Component {
   render() {
-    const { children, onClick } = this.props;
+    const { children, onClick, style } = this.props;
 
     return (
-      <MenuButtonItemWithStyle onClick={onClick}>
+      <MenuButtonItemWithStyle onClick={onClick} style={style} >
         {children}
       </MenuButtonItemWithStyle>
     );
@@ -94,7 +95,15 @@ const PersonalizedMenuItem = ({
   );
 };
 
-const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization, value }) => {
+const ActiondMenu = (props) => {
+  const {
+    menuDescriptors = [],
+    onFavoriteClick,
+    withPeronalization,
+    value,
+    mainMenuButtonItemStyle = {},
+  } = props;
+
   const promotedMenuDescriptorsWithIcon = menuDescriptors.filter(
     menuDescriptor => (menuDescriptor.isPromoted && menuDescriptor.icon),
   );
@@ -119,16 +128,23 @@ const ActiondMenu = ({ menuDescriptors = [], onFavoriteClick, withPeronalization
             <PromotedPersonalizedMenuItem {...promitedMenuDescriptor} value={value} />
           ))
         }
-        {allMenu && allMenu.length > 0 && <DropDownMenu button={<MenuButtonItem><Options /></MenuButtonItem>} anchor="right">
-          {allMenu.map(menuDescriptor => (
-            <PersonalizedMenuItem
-              withPeronalization={withPeronalization}
-              onFavoriteClick={(e) => { e.stopPropagation(); onFavoriteClick(menuDescriptor.key); }}
-              {...menuDescriptor}
-              value={value}
-            />
-          ))}
-        </DropDownMenu>}
+        {allMenu && allMenu.length > 0 && (
+          <DropDownMenu
+            button={<MenuButtonItem style={mainMenuButtonItemStyle}><Options /></MenuButtonItem>}
+            anchor="right"
+          >
+            {allMenu.map(menuDescriptor => (
+              <PersonalizedMenuItem
+                withPeronalization={withPeronalization}
+                onFavoriteClick={(e) => {
+                  e.stopPropagation(); onFavoriteClick(menuDescriptor.key);
+                }}
+                {...menuDescriptor}
+                value={value}
+              />
+            ))}
+          </DropDownMenu>
+        )}
       </div>
     </MainMenuWrapper>
   );
