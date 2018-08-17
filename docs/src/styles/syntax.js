@@ -20,7 +20,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   /* color: rgba(200, 200, 200, .8); */
 }
 
-p {
+.hljs p {
   color: black;
 }
 

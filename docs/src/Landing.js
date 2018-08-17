@@ -50,38 +50,34 @@ const LandingBackground = styled.div`
   }
 `;
 
-const LandingBackgroundComponent = () => {
-  return (
-    <LandingBackground>
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-    </LandingBackground>
-  )
-}
-const Landing = props => {
-  return (
-    <div style={{ position: 'relative' }}>
-      {/* <LandingBackgroundComponent /> */}
-      <LandingVideo />
+/* const LandingBackgroundComponent = () => (
+  <LandingBackground>
+    <span />
+    <span />
+    <span />
+    <span />
+    <span />
+  </LandingBackground>
+); */
+const Landing = props => (
+  <div style={{ position: 'relative' }}>
+    {/* <LandingBackgroundComponent /> */}
+    <LandingVideo />
 
-      <div style={{display: 'flex', color:'#fff', height: '760px', height: '100vh', alignItems: 'center', padding: '0 32px'}}>
-        <div style={{maxWidth:'1040px',  width:'100%', margin: '0 auto', marginTop: '-7%'}}>
-            <h1 style={{fontSize: '40px'}}>Welcome</h1>
-            <p style={{color:'#fff'}}>UXI is a UI/UX framework to build web application faster.</p>
-            <div>
-            <Button
-              type="primary"
-              text="Get Started"
-              readyLink={<Link to="/get-started">Get Started</Link>}
-            />
-            </div>
+    <div style={{ display: 'flex', color: '#fff', height: '760px', height: '100vh', alignItems: 'center', padding: '0 32px' }}>
+      <div style={{ maxWidth: '1040px', width: '100%', margin: '0 auto', marginTop: '-7%' }}>
+        <h1 style={{ fontSize: '40px' }}>Welcome</h1>
+        <p>UXI is a UI/UX framework to build web application faster.</p>
+        <div>
+          <Button
+            type="primary"
+            text="Get Started"
+            readyLink={<Link to="/get-started">Get Started</Link>}
+          />
         </div>
       </div>
     </div>
-  )
-}
+  </div>
+);
 
 export default Landing;

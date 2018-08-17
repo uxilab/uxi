@@ -924,6 +924,9 @@ exports[`<Button /> should render a Button 1`] = `
       padding: 0;
       font-size: 16px;
     }
+
+
+    /** Links */
     a {
       color: #26a29a;
       text-decoration: none;
@@ -933,6 +936,23 @@ exports[`<Button /> should render a Button 1`] = `
       color: rgb(59, 171, 164);
       text-decoration: underline;
     }
+
+
+    /** Headings */
+    h1, h2, h3, h4 {
+      color: currentColor;
+    }
+
+
+    /** UL */
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+
+    /** SVG */
     svg {
       transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) ;
     }
@@ -942,9 +962,9 @@ exports[`<Button /> should render a Button 1`] = `
     svg.uxi_svg-icon-wrapper svg {
       transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) ;
     }
-
     /* little trick relating to SvgIcon: a svg wrapper */
     // svg>svg { fill: inherit; }
+
 
     /**
      * Extend using css from styled-components

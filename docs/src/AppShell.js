@@ -9,7 +9,7 @@ import { PageWithMenu } from 'uxi/Page';
 import styled from 'styled-components';
 import AutoComplete from 'uxi/AutoComplete';
 import { ThemedBox } from 'uxi/Box';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
 import { routes } from './ComponentShell';
@@ -55,63 +55,62 @@ const mainStyles = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-}
+};
 
-class Appshell extends Component {
-  render() {
-    const { children } = this.props;
+const Appshell = (props) => {
+  const { children } = props;
 
-    return (
-      <div>
-        <AppLayout>
-          <Header isDark style={{ minHeight: '80px' }}>
-            <div style={{ maxWidth: '1280px', margin: '0 auto'}}>
-              <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center', }}>
-                <MenuItem>
-                  <LogoWrapper>
-                    <Link to="/" >
-                      <UXILogo />
-                    </Link>
-                  </LogoWrapper>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/">Home</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/components">Components</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/get-started">Get Started</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/">Contact</Link>
-                </MenuItem>
-                <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
-                  <AutoCompleteWrapper style={{ marginTop: '24px' }}>
-                    <AutoComplete
-                      items={routes}
-                      filterOn="path"
-                      onChange={({ value }) => this.props.history.push(`/components${value}`)}
-                    />
-                  </AutoCompleteWrapper>
-                </MenuItem>
-              </HorizontalMenu>
-            </div>
-          </Header>
-          <div>
-            {children}
+  return (
+    <div>
+      <AppLayout>
+        <Header isDark style={{ minHeight: '80px' }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+            <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center' }}>
+              <MenuItem>
+                <LogoWrapper>
+                  <Link to="/" >
+                    <UXILogo />
+                  </Link>
+                </LogoWrapper>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/">Home</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/components">Components</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/get-started">Get Started</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/">Contact</Link>
+              </MenuItem>
+              <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
+                <AutoCompleteWrapper style={{ marginTop: '24px' }}>
+                  <AutoComplete
+                    items={routes}
+                    filterOn="path"
+                    onChange={({ value }) => this.props.history.push(`/components${value}`)}
+                  />
+                </AutoCompleteWrapper>
+              </MenuItem>
+            </HorizontalMenu>
           </div>
+        </Header>
+        <div>
+          {children}
+        </div>
       </AppLayout>
-      <style dangerouslySetInnerHTML={{
-        __html: [
+      <style
+        dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+          __html: [
             markdown.join('\n'),
-            syntax.join('\n')
-          ].join('\n')
+            syntax.join('\n'),
+          ].join('\n'),
         }}
       />
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default withRouter(Appshell);
