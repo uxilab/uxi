@@ -27,7 +27,7 @@ const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth
     <AvatarWithName
       imgSize={16}
       icon={icon}
-      name={text}
+      name={text || message || children}
       style={{
         ...(isFullWidth ? { justifyContent: 'center' } : {}),
       }}
