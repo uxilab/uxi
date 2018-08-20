@@ -115,7 +115,7 @@ class TableHeader extends Component {
     React.Children.forEach(child.props.children, (aChild) => {
       if (aChild) {
         const augmentedChildren = React.cloneElement(aChild, {
-          ...aChild.props,
+          ...((aChild && aChild.props) || {}),
           condensed,
           noBorder,
         });
