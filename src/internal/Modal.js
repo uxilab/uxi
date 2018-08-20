@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import Fade from './Fade';
@@ -13,7 +13,27 @@ export const styles = {
   },
 };
 
-class Modal extends React.Component {
+class Modal extends Component {
+  componentDidMount() {
+    const { show } = this.props;
+
+    if (show) {
+      this.attachGlobalEventHandlers();
+    } else {
+      this.detachGlobalEventHandlers();
+    }
+  }
+
+  componentWillUpdate({ show }) {
+    if (show !== this.props.show) {
+      if (show) {
+        this.attachGlobalEventHandlers();
+      } else {
+        this.detachGlobalEventHandlers();
+      }
+    }
+  }
+
   handleDocumentKeyUp = (event) => {
     if (keycode(event) !== 'esc') {
       return;
@@ -29,6 +49,15 @@ class Modal extends React.Component {
       onClose(event);
     }
   };
+
+  attachGlobalEventHandlers = () => {
+    console.log('attachGlobalEventHandlers');
+    window.addEventListener('keyup', this.handleDocumentKeyUp);
+  }
+  detachGlobalEventHandlers = () => {
+    console.log('detachGlobalEventHandlers');
+    window.addEventListener('keyup', this.handleDocumentKeyUp);
+  }
 
   handleBackdropClick = (event) => {
     if (event.target !== event.currentTarget) {
