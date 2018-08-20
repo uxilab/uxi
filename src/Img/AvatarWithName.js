@@ -5,6 +5,7 @@ import Img from './Img';
 
 const styles = {
   wrapper: {
+    maxWidth: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',

@@ -2,11 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const OptionsUI = styled.div`
+  box-sizing: border-box;
   cursor: pointer;
   padding: 2px 2px 2px 6px;
   background: white;
-  white-space: nowrap;
+
   text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  & * {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+
   user-select: none;
   display: flex;
   width: 100%;
@@ -28,11 +37,13 @@ const Options = (props) => {
   const {
     onEsc,
     onClick,
+    style,
     ...rest
   } = props;
 
   return (<OptionsUI
     {...rest}
+    style={style}
     onClick={(e) => {
       if (e.target.blur) {
         e.target.blur();

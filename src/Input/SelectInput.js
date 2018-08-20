@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import DropDown from '../internal/DropDown';
 import { Arrowdown } from '../Icons';
@@ -15,6 +16,18 @@ function isDOMTypeElement(element) {
   return isElement(element) && typeof element.type === 'string';
 }
 
+const TriggererWrapperWithEllispsisChildren = styled.div`
+  min-height: 30px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  * {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
+
 // TODO show default value if any
 const styles = {
   trigerrer: {
@@ -22,8 +35,7 @@ const styles = {
     width: '100%',
     minHeight: '30px',
     border: '1px solid #cecece',
-    display: 'flex',
-    alignItems: 'center',
+    display: 'block',
     borderRadius: '3px',
     overflow: 'hidden',
   },
@@ -142,17 +154,20 @@ class SelectInput extends PureComponent {
     let mainContent = null;
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
       mainContent = (
-        <div><div style={{ padding: '2px 2px 2px 6px', display: 'flex', width: '100%' }} >
-          {
-            React.cloneElement(optionsNode[selectedIndex], {
-              style: {
-                ...optionsNode[selectedIndex].props.style,
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-              },
-            })
-          }
-        </div></div>
+        <TriggererWrapperWithEllispsisChildren>
+          <div style={{ padding: '2px 2px 2px 6px', marginRight: '64px', display: 'flex', width: '100%' }} >
+            {
+              React.cloneElement(optionsNode[selectedIndex], {
+                style: {
+                  ...optionsNode[selectedIndex].props.style,
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                },
+              })
+            }
+          </div>
+        </TriggererWrapperWithEllispsisChildren>
       );
     } else {
       mainContent = <div>&nbsp;</div>;
@@ -165,7 +180,7 @@ class SelectInput extends PureComponent {
       >
         <div>
           {mainContent}
-          <StatusIcon success={success} error={error} style={{ top: '8px', right: '48px' }} />
+          <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
         </div>
         <div style={styles.trigerrerIcon}>
           <Button
@@ -188,9 +203,6 @@ class SelectInput extends PureComponent {
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
       const isTheOne = this.state.selectedIndex === i;
-      // const selectedStyles = isTheOne
-      //   ? { backgroundColor: '#3e53c1', color: 'white' }
-      //   : {};
 
       if (React.isValidElement(child)) {
         if (!isDOMTypeElement(child)) {
@@ -201,10 +213,13 @@ class SelectInput extends PureComponent {
               data-index={i}
               {...child.props}
               isOpen={isOpen}
-              // tabIndex={0}
-              // aria-hidden={isOpen ? false : true }
               selected={isTheOne}
-              style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+              style={{
+                textOverflow: 'ellipsis',
+                overflowX: 'hidden',
+                maxWidth: '100%',
+                foo: 'bar',
+              }}
             >
               {React.cloneElement(child, {
                 value,
@@ -220,15 +235,16 @@ class SelectInput extends PureComponent {
             data-index={i}
             {...child.props}
             isOpen={isOpen}
-            // tabIndex={0}
-            // aria-hidden={isOpen ? false : true }
             selected={isTheOne}
-            style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis'/* , ...selectedStyles */ }}
+            style={{
+              textOverflow: 'ellipsis',
+              overflowX: 'hidden',
+              maxWidth: '100%',
+              foo: 'bar',
+            }}
           >
             {React.cloneElement(child, {
               value,
-              // 'data-index': i,
-              // onClick: e => this.clickHandler(e),
             })}
           </Option>
         );
@@ -261,9 +277,6 @@ class SelectInput extends PureComponent {
           firstOptionItem.focus();
           e.preventDefault();
         }
-        // this.setState({
-        //   isOpen: false,
-        // })
       }
     } else if (e.key === 'Escape' || e.keyCode === 27) {
       this.setState({
@@ -324,7 +337,6 @@ class SelectInput extends PureComponent {
       options[i] = value; // garanties ordering
       optionsNode[i] = React.cloneElement(child, {
         style: {
-          display: 'inline-block',
           ...child.props.style,
         },
       });

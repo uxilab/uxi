@@ -32,13 +32,13 @@ const ExampleSimple = () => (
     <li>
       <h3>Select</h3>
       <SelectInput
-        style={{ width: '250px' }}
-        defaultValue={selectInputDefaultValueRef}
+        style={{ width: '250px' }}
+        defaultValue={'item1'}
         onChange={(x) => { console.log('onChange called with :', x); }}
         error={<span>error node</span>}
       >
         <Separator label="B" />
-        <AvatarWithName value={'item1'} name="Billy Jarvis" icon={<Merge />} />
+        <AvatarWithName value={'item1'} name="Billy Jarvis the Third extra long name" icon={<Merge />} />
         <AvatarWithName value={'item2'} name="Billy Joel" icon={<Slack />} />
         <AvatarWithName value={'item3'} name="Billy Joelle" icon={<Facebook />} />
         <Separator label="C" />
@@ -50,7 +50,7 @@ const ExampleSimple = () => (
           value={'item6'}
           name="Zack Smith"
         />
-        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
+        <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh lizjdbfv" />
         <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
         <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />
         <AvatarWithName value={'sdgsfbg'} name="Zack VonderBorgh" />

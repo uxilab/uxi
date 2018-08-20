@@ -17,8 +17,10 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
           selected={false}
           style={
             Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
               "textOverflow": "ellipsis",
-              "whiteSpace": "nowrap",
             }
           }
           value="foo"
@@ -37,8 +39,10 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
           selected={false}
           style={
             Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
               "textOverflow": "ellipsis",
-              "whiteSpace": "nowrap",
             }
           }
           value="bar"
@@ -57,8 +61,10 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
           selected={true}
           style={
             Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
               "textOverflow": "ellipsis",
-              "whiteSpace": "nowrap",
             }
           }
           value="baz"
@@ -83,10 +89,9 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
         onEsc={[Function]}
         style={
           Object {
-            "alignItems": "center",
             "border": "1px solid #cecece",
             "borderRadius": "3px",
-            "display": "flex",
+            "display": "block",
             "minHeight": "30px",
             "minWidth": "180px",
             "overflow": "hidden",
@@ -95,11 +100,12 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
         }
       >
         <div>
-          <div>
+          <styled.div>
             <div
               style={
                 Object {
                   "display": "flex",
+                  "marginRight": "64px",
                   "padding": "2px 2px 2px 6px",
                   "width": "100%",
                 }
@@ -108,7 +114,7 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
               <div
                 style={
                   Object {
-                    "display": "inline-block",
+                    "overflow": "hidden",
                     "textOverflow": "ellipsis",
                     "whiteSpace": "nowrap",
                   }
@@ -118,13 +124,13 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
                 baz
               </div>
             </div>
-          </div>
+          </styled.div>
           <StatusIcon
             error={undefined}
             style={
               Object {
                 "right": "48px",
-                "top": "8px",
+                "top": "0",
               }
             }
             success={undefined}
@@ -191,8 +197,10 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
           selected={false}
           style={
             Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
               "textOverflow": "ellipsis",
-              "whiteSpace": "nowrap",
             }
           }
           value="foo"
@@ -211,8 +219,10 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
           selected={true}
           style={
             Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
               "textOverflow": "ellipsis",
-              "whiteSpace": "nowrap",
             }
           }
           value="bar"
@@ -231,8 +241,10 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
           selected={false}
           style={
             Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
               "textOverflow": "ellipsis",
-              "whiteSpace": "nowrap",
             }
           }
           value="baz"
@@ -257,10 +269,9 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
         onEsc={[Function]}
         style={
           Object {
-            "alignItems": "center",
             "border": "1px solid #cecece",
             "borderRadius": "3px",
-            "display": "flex",
+            "display": "block",
             "minHeight": "30px",
             "minWidth": "180px",
             "overflow": "hidden",
@@ -269,11 +280,12 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
         }
       >
         <div>
-          <div>
+          <styled.div>
             <div
               style={
                 Object {
                   "display": "flex",
+                  "marginRight": "64px",
                   "padding": "2px 2px 2px 6px",
                   "width": "100%",
                 }
@@ -282,7 +294,7 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
               <div
                 style={
                   Object {
-                    "display": "inline-block",
+                    "overflow": "hidden",
                     "textOverflow": "ellipsis",
                     "whiteSpace": "nowrap",
                   }
@@ -292,13 +304,13 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
                 bar
               </div>
             </div>
-          </div>
+          </styled.div>
           <StatusIcon
             error={undefined}
             style={
               Object {
                 "right": "48px",
-                "top": "8px",
+                "top": "0",
               }
             }
             success={undefined}
@@ -367,10 +379,9 @@ exports[`<SelectInput /> matches snapshot 1`] = `
         onEsc={[Function]}
         style={
           Object {
-            "alignItems": "center",
             "border": "1px solid #cecece",
             "borderRadius": "3px",
-            "display": "flex",
+            "display": "block",
             "minHeight": "30px",
             "minWidth": "180px",
             "overflow": "hidden",
@@ -387,7 +398,7 @@ exports[`<SelectInput /> matches snapshot 1`] = `
             style={
               Object {
                 "right": "48px",
-                "top": "8px",
+                "top": "0",
               }
             }
             success={undefined}
