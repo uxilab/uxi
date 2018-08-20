@@ -9,7 +9,12 @@ import {
 const StatusIconUI = styled.span`
   position: absolute;
   right: 8px;
-  top: 9px;
+  top: 0;
+  height: 32px;
+  max-height: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
   color: ${({ error, success, theme: { palette: { semantic } } }) => (error
     ? semantic.error
     : (success ? semantic.success : semantic.default)
