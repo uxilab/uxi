@@ -51,11 +51,9 @@ class Modal extends Component {
   };
 
   attachGlobalEventHandlers = () => {
-    console.log('attachGlobalEventHandlers');
     window.addEventListener('keyup', this.handleDocumentKeyUp);
   }
   detachGlobalEventHandlers = () => {
-    console.log('detachGlobalEventHandlers');
     window.addEventListener('keyup', this.handleDocumentKeyUp);
   }
 
