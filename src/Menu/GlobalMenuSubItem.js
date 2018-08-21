@@ -184,7 +184,7 @@ const GlobalMenuSubItemDiv = styled.a`
   ${props => getAccessibilityRules(props)};
 `;
 
-// const GlobalMenuItemButton = GlobalMenuSubItemDiv.withComponent('button');
+const GlobalMenuItemButton = GlobalMenuSubItemDiv.withComponent('button');
 
 
 const GlobalMenuSubItem = (props) => {
@@ -219,7 +219,7 @@ const GlobalMenuSubItem = (props) => {
   // };
 
   let resContent = (
-    <GlobalMenuSubItemDiv
+    <GlobalMenuItemButton
       isFirstSubItem={isFirstSubItem}
       isLastSubItem={isLastSubItem}
       primaryColor={primaryColor}
@@ -232,7 +232,7 @@ const GlobalMenuSubItem = (props) => {
       isParentSelected={isParentSelected}
     >
       {label}
-    </GlobalMenuSubItemDiv>
+    </GlobalMenuItemButton>
   );
 
   if (Link) {

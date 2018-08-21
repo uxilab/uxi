@@ -175,7 +175,6 @@ const NewInfo = styled.div`
 
 const GlobalMenuItem = (props) => {
   const {
-    hasPanel,
     isSelected,
     icon,
     index,
@@ -216,39 +215,21 @@ const GlobalMenuItem = (props) => {
 
   let resContent;
 
-  if (hasPanel) {
-    resContent = (
-      <GlobalMenuItemDivFinal
-        primaryColor={primaryColor}
-        isSelected={isSelected}
-        isActive={isActive}
-        key={`mainMenuItemContainer-${index}`}
-        style={containerStyle}
-        {...linkProps}
-        onClick={onClick}
-      >
-        {icon}
-        <LabelDiv> {label} </LabelDiv>
-        {isNewContent}
-      </GlobalMenuItemDivFinal>
-    );
-  } else {
-    resContent = (
-      <GlobalMenuItemDiv
-        primaryColor={primaryColor}
-        isSelected={isSelected}
-        isActive={isActive}
-        key={`mainMenuItemContainer-${index}`}
-        style={containerStyle}
-        {...linkProps}
-        onClick={onClick}
-      >
-        {icon}
-        <LabelDiv> {label} </LabelDiv>
-        {isNewContent}
-      </GlobalMenuItemDiv>
-    );
-  }
+  resContent = (
+    <GlobalMenuItemDivFinal
+      primaryColor={primaryColor}
+      isSelected={isSelected}
+      isActive={isActive}
+      key={`mainMenuItemContainer-${index}`}
+      style={containerStyle}
+      {...linkProps}
+      onClick={onClick}
+    >
+      {icon}
+      <LabelDiv> {label} </LabelDiv>
+      {isNewContent}
+    </GlobalMenuItemDivFinal>
+  );
 
   if (Link !== undefined) {
     resContent = (
