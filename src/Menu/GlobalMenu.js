@@ -6,18 +6,15 @@ import GlobalMenuLogo from './GlobalMenuLogo';
 class GlobalMenu extends Component {
   constructor(props) {
     super(props);
+    const initialSelected = props.initialSelected;
+    const firstActiveMaybe = this.getFirstActiveFoundMaybe();
     this.state = {
-      selected: props.initialSelected ? props.initialSelected : '',
+      selected: initialSelected || (firstActiveMaybe || ''),
     };
   }
 
   componentDidMount() {
-    const {
-      menuDescriptors,
-    } = this.props;
-
-    const firstActiveFound = menuDescriptors
-      .find(menuDescriptor => menuDescriptor.isActive === true);
+    const firstActiveFound = this.getFirstActiveFoundMaybe();
 
     if (firstActiveFound) {
       const activeChild = (
@@ -34,6 +31,36 @@ class GlobalMenu extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { selected } = this.state;
+
+    if (prevProps.menuDescriptors !== this.props.menuDescriptors) {
+      const firstActive = this.getFirstActiveFoundMaybe();
+      if (!firstActive) {
+        this.changeSelected('');
+      } else {
+        if (firstActive.key !== selected) { // eslint-disable-line
+          this.changeSelected(firstActive.key);
+        }
+      }
+    }
+  }
+
+  getFirstActiveFoundMaybe() {
+    const { menuDescriptors } = this.props;
+
+    return menuDescriptors
+      .find((menuDescriptor) => {
+        const hasChildren = menuDescriptor.children;
+        return (
+          menuDescriptor.isActive === true ||
+          (hasChildren && menuDescriptor.children
+            .find(child => child.isActive)
+          )
+        );
+      });
+  }
+
   getSelected(key) {
     const { selected } = this.state;
 
@@ -42,18 +69,15 @@ class GlobalMenu extends Component {
 
   changeSelected(value) {
     this.setState({
-      active: value,
       selected: value,
     });
   }
 
   handleClickOutside(value) {
     const newSelectedKeyValue = (value === this.state.selected) ? '' : this.state.selected;
-    const newSelectedActiveKeyValue = (value === this.state.selected) ? '' : this.state.selected;
 
     this.setState({
       selected: newSelectedKeyValue,
-      active: newSelectedActiveKeyValue,
     });
   }
 
@@ -72,7 +96,6 @@ class GlobalMenu extends Component {
 
     const {
       selected,
-      active,
     } = this.state;
 
     const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
@@ -129,11 +152,8 @@ class GlobalMenu extends Component {
         Link={logoDescriptor.Link}
         to={logoDescriptor.to}
         href={logoDescriptor.href}
-        // primaryColor={'red'}
         logoTooltipLabel={logoDescriptor.tooltipLabel || logoDescriptor.displayName || ''}
-        activeKey={active}
-        isActive={(active === logoDescriptor.key || active === 'GlobalMenuMainLogo')}
-        // onClick={logoDescriptor.onClick}
+        selectedKey={selected}
         onClick={() => {
           this.changeSelected(logoDescriptor.key || 'GlobalMenuMainLogo');
           if (logoDescriptor.onClick) {
@@ -155,7 +175,6 @@ class GlobalMenu extends Component {
             logo={theLogo}
             onLogoClick={onLogoClick}
             selectedKey={selected}
-            activeKey={active}
             menuDescriptors={menuDescriptorWithActiveAndSelected}
             attachToViewport={attachToViewport}
             innerStyle={innerStyle}
@@ -181,7 +200,7 @@ GlobalMenu.propTypes = {
 
 GlobalMenu.defaultProps = {
   // initialActive: '',
-  initialSelected: '',
+  initialSelected: undefined,
   onLogoClick: () => { },
   // backgroundColor: '',
   // Logo: PropTypes.any,

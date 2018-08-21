@@ -84,20 +84,20 @@ const GlobalMenuItemDiv = styled.a`
   html body & svg,
   html body & svg > svg {
     /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
-    fill: ${({ isSelected, isActive, theme: { palette } }) =>
-    (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
+    fill: ${({ isSelected, theme: { palette } }) =>
+    (isSelected ? palette.accent.light : palette.extraLightGrey)
 };
   }
   text-decoration: none;
 
   .root &,
   & {
-    color: ${({ isSelected, isActive, theme: { palette } }) =>
-    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
+    color: ${({ isSelected, theme: { palette } }) =>
+    (isSelected ? palette.accent.light : '#c2c2c2')
 };
   }
 
-  border-right: ${({ isSelected, isActive, theme: { palette } }) => (isSelected && isActive ?
+  border-right: ${({ isSelected, theme: { palette } }) => (isSelected ?
     `${borderThickness} solid ${palette.accent.main}` : '0 solid transparent')
 };
   background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};

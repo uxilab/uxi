@@ -20,7 +20,6 @@ const FlexExtended = Flex.extend`
 const GlobalMenuWrapper = ({
   selectedKey,
   logo,
-  activeKey,
   backgroundColor,
   primaryColor,
   menuDescriptors,
@@ -36,7 +35,6 @@ const GlobalMenuWrapper = ({
       <GlobalMenuItem
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
-        isActive={menuDescriptor.key === selectedKey || (selectedKey === '' && menuDescriptor.isActive)}
         onClick={() => {
           if (menuDescriptor.onClick && menuDescriptor.onClick) {
             menuDescriptor.onClick();
@@ -62,7 +60,6 @@ const GlobalMenuWrapper = ({
             isLastSubItem={idx === list.length - 1}
             key={child.key}
             isSelected={child.isSelected}
-            // isActive={child.key === selectedKey || (selectedKey === '' && child.isActive)}
             isParentSelected={menuDescriptor.isSelected}
             isActive={child.isActive}
             onClick={child.onClick}
@@ -91,7 +88,7 @@ const GlobalMenuWrapper = ({
             Action={menuDescriptor.panel.Action}
             width={menuDescriptor.panel.width}
             fullWidth={menuDescriptor.panel.fullWidth}
-            isOpen={menuDescriptor.key === activeKey}
+            isOpen={menuDescriptor.key === selectedKey}
             attachToViewport={attachToViewport}
             fullViewportWidthPanel={fullViewportWidthPanel}
           />
@@ -101,7 +98,6 @@ const GlobalMenuWrapper = ({
   });
 
   const gapFiller = <FlexExtended />;
-  // menuDescriptorsContent.push(gapFiller);
 
   return (
     <GlobalMenuContainer
@@ -119,7 +115,6 @@ const GlobalMenuWrapper = ({
 
 GlobalMenuWrapper.propTypes = {
   selectedKey: PropTypes.string,
-  activeKey: PropTypes.string,
   logo: PropTypes.node,
   backgroundColor: PropTypes.string,
   primaryColor: PropTypes.string,
