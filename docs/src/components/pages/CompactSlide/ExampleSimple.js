@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/v4';
 import CompactSlide from 'uxi/internal/CompactSlide';
 import Alert from 'uxi/Alert';
 import Button from 'uxi/Button';
-import uuid from 'uuid/v4';
 
 class ExampleSimple extends Component {
   constructor(props) {
     super(props);
-    // const initId = uuid().slice(0, 7);
     this.state = {
-      notifs: [
-        // this.getNotif(initId),
-      ],
+      anchor: 'top',
+      direction: 'bottom',
+      notifs: [],
     };
 
     this.pushNotif = this.pushNotif.bind(this);
@@ -31,144 +30,47 @@ class ExampleSimple extends Component {
   })
 
   pushNotif() {
-    console.log('add notif');
     this.setState({
       notifs: this.state.notifs.concat([this.getNotif(uuid().slice(0, 7))]),
     });
   }
 
   removeNotif(id) {
-    console.log('removing notif');
     this.setState({
       notifs: this.state.notifs.filter(x => x.id !== id),
     });
   }
 
   render() {
-    const { notifs } = this.state;
+    const { notifs, anchor, direction } = this.state;
 
     return (
       <div>
+        <h1>SnackBar kinda of thing</h1>
         <Button text="push notif" onClick={this.pushNotif} />
-        <ul>
+        <Button text="clear all notifs" onClick={() => this.setState({ notifs: [] })} />
 
+        <h3>Set anchor</h3>
+        <Button text="top" onClick={() => this.setState({ anchor: 'top' })} />
+        <Button text="top-left" onClick={() => this.setState({ anchor: 'top-left' })} />
+        <Button text="top-right" onClick={() => this.setState({ anchor: 'top-right' })} />
+        <Button text="bottom" onClick={() => this.setState({ anchor: 'bottom' })} />
+        <Button text="bottom-left" onClick={() => this.setState({ anchor: 'bottom-left' })} />
+        <Button text="bottom-right" onClick={() => this.setState({ anchor: 'bottom-right' })} />
 
-          {/* BOTOM RIGHT Anchor */}
-          {/* <li>
-            <CompactSlide anchor="bottom-right" direction="left" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          <li>
-            <CompactSlide anchor="bottom-right" direction="bottom" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li>
-          {/* <li>
-            <CompactSlide anchor="bottom-right" direction="top" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="bottom-right" direction="right" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
+        <h3>Set direction</h3>
+        <Button text="top" onClick={() => this.setState({ direction: 'top' })} />
+        <Button text="bottom" onClick={() => this.setState({ direction: 'bottom' })} />
+        <Button text="left" onClick={() => this.setState({ direction: 'left' })} />
+        <Button text="right" onClick={() => this.setState({ direction: 'right' })} />
 
+        <h3>Rules</h3>
+        <strong>anchor:</strong> {anchor}<br />
+        <strong>direction:</strong> {direction}
 
-          {/* BOTOM LEFT Anchor */}
-          {/* <li>
-            <CompactSlide anchor="bottom-left" direction="left" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          <li>
-            <CompactSlide anchor="bottom-left" direction="bottom" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li>
-          {/* <li>
-            <CompactSlide anchor="bottom-left" direction="top" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="bottom-left" direction="right" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-
-
-          {/* TOP RIGHT Anchor */}
-          <li>
-            <CompactSlide anchor="top-right" direction="left" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li>
-          {/* <li>
-            <CompactSlide anchor="top-right" direction="bottom" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="top-right" direction="top" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="top-right" direction="right" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-
-
-          {/* TOP LEFT Anchor */}
-          {/* <li>
-            <CompactSlide anchor="top-left" direction="left" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="top-left" direction="bottom" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="top-left" direction="top" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          <li>
-            <CompactSlide anchor="top-left" direction="right" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li>
-
-
-          {/* TOP Anchor */}
-          {/* <li>
-            <CompactSlide anchor="top" direction="left" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="top" direction="bottom" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          {/* <li>
-            <CompactSlide anchor="top" direction="top" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li> */}
-          <li>
-            <CompactSlide anchor="top" direction="right" inAttr={notifs.length > 0}>
-              {notifs.map(({ notif }) => notif)}
-            </CompactSlide>
-          </li>
-
-
-        </ul>
+        <CompactSlide anchor={anchor} direction={direction} inAttr={notifs.length > 0}>
+          {notifs.map(({ notif }) => notif)}
+        </CompactSlide>
       </div>
     );
   }

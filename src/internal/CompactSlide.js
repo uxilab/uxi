@@ -21,11 +21,11 @@ const SlideUI = styled.div`
 
   /* ${({ dir }) => {dir === 'left' || dir === 'right' ? 'height: 100vh' : 'width: 100vw' }}; */
   ${({ anchor }) => {
-    if (anchor === 'top') return 'top: 0; bottom: auto; left: 50%; margin-left: 50%; left: 0'
+    if (anchor === 'top') return 'top: 0; bottom: auto; left: 50%'
     if (anchor === 'top-left') return 'top: 0; bottom: auto; left: 0'
     if (anchor === 'top-right') return 'top: 0; bottom: auto; right: 0'
 
-    if (anchor === 'bottom') return 'top: auto; bottom: 0;  left: 50%; margin-left: 50%; left: 0'
+    if (anchor === 'bottom') return 'top: auto; bottom: 0; left: 50%'
     if (anchor === 'bottom-left') return 'top: auto; bottom: 0; left: 0'
     if (anchor === 'bottom-right') return 'top: auto; bottom: 0; right: 0'
   }};
@@ -37,12 +37,16 @@ const SlideUI = styled.div`
 
     if (isIn === false) {
       if (dir === 'left')   { x = 100 }
-      if (dir === 'right')  { y = -100 }
-      if (dir === 'top')    { x = 100 }
+      if (dir === 'right')  { x = -100 }
+      if (dir === 'top')    { y = 100 }
       if (dir === 'bottom') { y = -100 }
 
       // take care of h centering top and bottom anchored ones
 
+    }
+
+    if (anchor === 'top' || anchor === 'bottom') {
+      x -= 50
     }
 
 
