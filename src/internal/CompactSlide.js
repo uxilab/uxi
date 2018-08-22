@@ -7,19 +7,10 @@ import styled from 'styled-components';
 /* eslint-disable */
 const SlideUI = styled.div`
   overflow-y: auto; /*  not sure about this -df */
-  height: 100%; /*  not sure about this -df */
+  /* height: 100%; */ /*  not sure about this -df */
 
   z-index: 200;
   transition: all 1s linear;
-  transform: ${({ inAttr: isIn, dir }) => {
-    if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0'; }
-    else {
-      if (dir === 'left') return 'translate3d(-100%, 0, 0)'
-      if (dir === 'right') return 'translate3d(100%, 0, 0)'
-      if (dir === 'top') return 'translate3d(-50%, -100%, 0)'
-      if (dir === 'bottom') return 'translate3d(-50%, 100%, 0)'
-    }
-  }};
   transition: all ${({ inAttr: isIn, timeout, timeout: { enter, exit }, theme: { transition } }) => isIn
     ? transition.durationIn + transition.easing
     : transition.durationOut + transition.easing
@@ -27,13 +18,43 @@ const SlideUI = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
+
   /* ${({ dir }) => {dir === 'left' || dir === 'right' ? 'height: 100vh' : 'width: 100vw' }}; */
-  ${({ dir }) => {
-    if (dir === 'left') return 'left: 100%; right: auto; top: 0; bottom: 0'
-    if (dir === 'right') return 'right: 100%; left: auto; top: 0; bottom: 0'
-  if (dir === 'top') return 'top: 100%; bottom: auto; margin-left: 50%;'
-  if (dir === 'bottom') return 'bottom: 100%; top: auto; margin-left: 50%;'
+  ${({ anchor }) => {
+    if (anchor === 'top') return 'top: 0; bottom: auto; left: 50%; margin-left: 50%; left: 0'
+    if (anchor === 'top-left') return 'top: 0; bottom: auto; left: 0'
+    if (anchor === 'top-right') return 'top: 0; bottom: auto; right: 0'
+
+    if (anchor === 'bottom') return 'top: auto; bottom: 0;  left: 50%; margin-left: 50%; left: 0'
+    if (anchor === 'bottom-left') return 'top: auto; bottom: 0; left: 0'
+    if (anchor === 'bottom-right') return 'top: auto; bottom: 0; right: 0'
   }};
+
+  transform: ${({ inAttr: isIn, dir, anchor }) => {
+    let x = 0
+    let y = 0
+    let z = 0
+
+    if (isIn === false) {
+      if (dir === 'left')   { x = 100 }
+      if (dir === 'right')  { y = -100 }
+      if (dir === 'top')    { x = 100 }
+      if (dir === 'bottom') { y = -100 }
+
+      // take care of h centering top and bottom anchored ones
+
+    }
+
+
+    /* else {
+      if (dir === 'left') return 'translate3d(0, 0, 0)'
+      if (dir === 'right') return 'translate3d(0, 0, 0)'
+      if (dir === 'top') return 'translate3d(0, 0, 0)'
+      if (dir === 'bottom') return 'translate3d(0, 0, 0)'
+    } */
+    return `translate3d(${x ? x+'%' : x}, ${y ? y+'%' : y}, 0)`
+  }};
+
 `;
 
 class CompactSlide extends React.Component {
@@ -70,6 +91,7 @@ class CompactSlide extends React.Component {
       timeout,
       inAttr,
       direction,
+      anchor,
       ...other
     } = this.props;
 
@@ -84,6 +106,7 @@ class CompactSlide extends React.Component {
         className="SlideUI"
         inAttr={inAttr}
         dir={direction}
+        anchor={anchor}
         {...handlers}
       >
         { children }
