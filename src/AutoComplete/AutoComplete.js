@@ -316,6 +316,18 @@ class AutoComplete extends ThemeComponent {
           </MenuItem>)
           : null
         )}
+        {(valueForInput && filteredSet.length === 0
+          ? (<MenuItem
+            key={'not-currentIndex-no-results'}
+            onClick={() => { }}
+            style={{
+              textAlign: 'center', opacity: 0.8,
+            }}
+          >
+            {'no match found'}
+          </MenuItem>)
+          : null
+        )}
       </VerticalMenu>) : null;
 
     return (
