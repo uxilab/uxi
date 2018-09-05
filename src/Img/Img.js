@@ -51,6 +51,7 @@ const getWrapperStyles = props => ({
   backgroundPosition: 'center',
   // opacity: (loaded ? 1 : 0),
   lineHeight: 0,
+  overflow: 'hidden',
 });
 
 
