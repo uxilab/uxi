@@ -50,10 +50,11 @@ class Radio extends React.PureComponent {
 
   getWrapperStyles() {
     // disabled
-    const { disabled } = this.props;
+    const { disabled, wrapperStyle } = this.props;
     return {
       ...styles.wrapper,
       ...(disabled ? { opacity: 0.6 } : {}),
+      ...wrapperStyle,
     };
   }
 
@@ -114,6 +115,7 @@ Radio.propTypes = {
   disabled: PropTypes.bool,
   name: PropTypes.string, // .isRequired,
   defaultChecked: PropTypes.bool,
+  wrapperStyle: PropTypes.object,
 };
 
 Radio.defaultProps = {
@@ -124,6 +126,7 @@ Radio.defaultProps = {
   checked: false,
   disabled: false,
   defaultChecked: false,
+  wrapperStyle: {},
 };
 
 export default Radio;
