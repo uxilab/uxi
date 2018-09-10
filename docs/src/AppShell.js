@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Header from 'uxi/Header';
 import { H4 } from 'uxi/Classic';
@@ -9,11 +10,11 @@ import { PageWithMenu } from 'uxi/Page';
 import styled from 'styled-components';
 import AutoComplete from 'uxi/AutoComplete';
 import { ThemedBox } from 'uxi/Box';
-import { withRouter } from 'react-router-dom';
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
 import { routes } from './ComponentShell';
 import UXILogo from './UXILogo';
+import GithubLink from './GithubLink';
 
 const LogoWrapper = styled.div`
   width: 250px;
@@ -93,6 +94,9 @@ const Appshell = (props) => {
                     onChange={({ value }) => this.props.history.push(`/components${value}`)}
                   />
                 </AutoCompleteWrapper>
+              </MenuItem>
+              <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
+                <GithubLink />
               </MenuItem>
             </HorizontalMenu>
           </div>
