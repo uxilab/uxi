@@ -2,6 +2,7 @@
 /* eslint-disable brace-style */
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
+import { Loader } from '../Indicator';
 import Ripples from '../Motion/Ripples';
 import ButtonBaseStyles from './ButtonBaseStyles';
 
@@ -118,6 +119,7 @@ class Button extends Component {
       style,
       className,
       target,
+      loading,
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -133,7 +135,7 @@ class Button extends Component {
     }
 
     const buttonAttr = {
-      onClick: click || onClick || null,
+      onClick: !loading && (click || onClick || null),
       className,
       style: {
         ...style,
@@ -182,8 +184,11 @@ class Button extends Component {
         {...styleProps}
         {...buttonAttr}
       >
-        {icon &&
-          <ButtonIconWrapper {...styleProps}> {icon} </ButtonIconWrapper>
+        {icon && (
+          loading
+            ? <ButtonIconWrapper {...styleProps}> <Loader size="16" /> </ButtonIconWrapper>
+            : <ButtonIconWrapper {...styleProps}> {icon} </ButtonIconWrapper>
+        )
         }
         {textOrMessage &&
           <ButtonContentWrapper {...styleProps}> {textOrMessage} </ButtonContentWrapper>
@@ -206,6 +211,7 @@ class Button extends Component {
 
 Button.defaultProps = {
   style: {},
+  onclick: () => { },
 };
 
 export default Button;

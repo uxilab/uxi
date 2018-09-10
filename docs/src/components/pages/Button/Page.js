@@ -3,6 +3,10 @@ import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import { Switch } from 'uxi/Input';
 import CodeExample from '../../CodeExample';
+
+import ExampleButtonWithLoadingState from './ExampleButtonWithLoadingState';
+import RAWExampleButtonWithLoadingState from '!raw-loader!./ExampleButtonWithLoadingState';
+
 import ExampleSimpleFlat from './ExampleSimpleFlat';
 import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 
@@ -36,6 +40,16 @@ const ButtonPage = () => (
     <Switch name="foobar6" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
 
     <ul>
+      <li>
+        <CodeExample
+          code={RAWExampleButtonWithLoadingState}
+          component
+          title="Playground"
+          hasPadding
+        >
+          <ExampleButtonWithLoadingState />
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWExampleButtonPlayGround}
