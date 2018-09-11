@@ -25,7 +25,6 @@ class ExampleSimpleFlat extends Component {
           onClick={this.onClick}
           message="Send"
           loading={this.state.loading}
-          icon={<Upload />}
         />
         <Button
           onClick={this.onClick}

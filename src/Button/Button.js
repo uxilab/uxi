@@ -188,6 +188,9 @@ class Button extends Component {
           loading
             ? <ButtonIconWrapper {...styleProps}> <Loader size="16" /> </ButtonIconWrapper>
             : <ButtonIconWrapper {...styleProps}> {icon} </ButtonIconWrapper>
+        )}
+        {(!icon && loading) && (
+          <ButtonIconWrapper {...styleProps}> <Loader size="16" /> </ButtonIconWrapper>
         )
         }
         {textOrMessage &&
