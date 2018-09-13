@@ -35,12 +35,12 @@ const TileDetail = ({ title, imageUrl, icon, extra, children, style }) => {
 
   if (imageUrl) {
     imageContent = (
-      <Img style={{ width: '48px', height: '48px' }} alt={title} src={imageUrl} />
+      <Img style={{ width: '42px', height: '42px' }} alt={title} src={imageUrl} />
     );
   } else if (icon) {
-    imageContent = React.cloneElement(icon, { size: '48px' });
+    imageContent = React.cloneElement(icon, { size: '42px' });
   } else {
-    imageContent = <Circle size="48px" />;
+    imageContent = <Circle size="42px" />;
   }
 
 
