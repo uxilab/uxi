@@ -1,23 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const PanelContentUI = styled.div`
-  /* overflow-y: scroll; */
-  /* overflow-x: hidden; */
-  /* max-height: 400px;
-  max-height: 60vh; */
-`;
 
 const PanelContent = ({ children, style }) => (
   <div
     style={{
       position: 'relative',
-      ...(style && style.maxHeight !== undefined ? { maxHeight: style.maxHeight } : {}),
+      ...style,
     }}
   >
-    <PanelContentUI style={style} >
-      {children}
-    </PanelContentUI>
+    {children}
   </div>
 );
 
