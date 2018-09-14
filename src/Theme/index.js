@@ -314,14 +314,14 @@ export const theme = { // eslint-disable-line no-shadow
     // titleFontSize: '2em',
     // OR title: { color: '', 'font-size': }
     title: css`
-      color: palette.darkGrey;
+      color: ${palette.darkGrey};
       font-weight: bold;
     `,
     h1: css`font-size: 1.85em; margin: .67em 0;`,
     h2: css`font-size: 1.70em; margin: .6em 0;`,
-    h3: css`font-size: 1.50em; margin: .5em 0;`,
-    h4: css`font-size: 1.40em; margin: .5em 0;`,
-    h5: css`font-size: 1.30em; margin: .5em 0;`,
-    h6: css`font-size: 1.10em; margin: .5em 0;`,
+    h3: css`font-size: 1.38em; margin: .5em 0;`,
+    h4: css`font-size: 1.2em; margin: .5em 0;`,
+    h5: css`font-size: 1em; margin: .5em 0;`,
+    h6: css`font-size: .86em; margin: .5em 0;`,
   },
 };
