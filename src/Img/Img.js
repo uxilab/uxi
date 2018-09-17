@@ -79,7 +79,7 @@ class Img extends PureComponent { // eslint-disable-line react/prefer-stateless-
         style={{ ...getWrapperStyles(this.props/* , loaded */), ...style }}
         // onLoad={this.onLoadHandler.bind(this)}
       >
-        <img src={src} alt={alt} style={styles.img} async={async} />
+        <img src={src} alt={alt} style={styles.img} async={async ? 'on' : 'off'} />
       </figure>
     );
   }
