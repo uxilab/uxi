@@ -9,17 +9,19 @@ const getTooltip = fullText => (
   </Tooltip>
 );
 
-const TruncatedText = ({ text = '', max = 150 }) => {
+const TruncatedText = ({ text = '', children, max = 150, withViewMoreLink = false, style }) => {
   let tooltip = null;
-  let truncatedText = text;
+  let truncatedText = (children && children instanceof String)
+    ? children
+    : text;
 
   if (text.length > max) {
     truncatedText = text.slice(0, 144);
-    tooltip = getTooltip(text);
+    tooltip = withViewMoreLink ? getTooltip(text) : null;
   }
 
   return (
-    <div>
+    <div style={style}>
       {truncatedText}
       {tooltip}
     </div>

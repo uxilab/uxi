@@ -39,6 +39,8 @@ const TileImageInnerWrapper = styled.div`
 
 const TileContentWrapper = styled.div`
   flex:1;
+  overflow: hidden;
+  margin-right: 16px;
 `;
 
 const TileExtra = styled.div`
