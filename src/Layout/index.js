@@ -8,4 +8,5 @@ export { default as FlexRightCol } from './FlexRightCol';
 export { default as AppLayout } from './AppLayout';
 export { default as GlobalAppLayout } from './GlobalAppLayout';
 export { default as ContentWithExtra } from './ContentWithExtra';
+export { default as ContentWithStickyExtra } from './ContentWithStickyExtra';
 export { default as SimpleFlexLayout } from './SimpleFlexLayout';
