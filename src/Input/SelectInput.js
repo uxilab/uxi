@@ -103,38 +103,38 @@ class SelectInput extends PureComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    const { selectedIndex/* , options */ } = this.state;
-    const { onChange/* , value: valueProp */ } = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.selectedIndex) {
+      const { selectedIndex } = prevState;
+      const { onChange } = prevProps;
 
-    // const value = options[nextState.selectedIndex];
-
-    const { isOpen } = nextState;
-    if (isOpen) {
-      window.addEventListener('keydown', this.preventScrollingOnSpace);
-    } else {
-      window.removeEventListener('keydown', this.preventScrollingOnSpace);
-    }
-    /*
-    TODO: Make controlled selectInkput work!
-    if (valueProp && valueProp !== value) {
-      const newVal = options.findIndex(x => x === value)
-      if (newVal > -1) {
-        this.setState({
-          selectedIndex: newVal,
-        })
+      const { isOpen } = this.state;
+      if (isOpen) {
+        window.addEventListener('keydown', this.preventScrollingOnSpace);
+      } else {
+        window.removeEventListener('keydown', this.preventScrollingOnSpace);
       }
-    } */
+      /*
+      TODO: Make controlled selectInkput work!
+      if (valueProp && valueProp !== value) {
+        const newVal = options.findIndex(x => x === value)
+        if (newVal > -1) {
+          this.setState({
+            selectedIndex: newVal,
+          })
+        }
+      } */
 
-    if (selectedIndex !== nextState.selectedIndex) {
-      if (onChange) {
-        const { options } = this.state;
-        const value = options[nextState.selectedIndex];
-        const fakeEvent = {
-          target: { value },
-          currentTarget: { value },
-        };
-        onChange(fakeEvent, value);
+      if (selectedIndex !== this.state.selectedIndex) {
+        if (onChange) {
+          const { options } = this.state;
+          const value = options[this.state.selectedIndex];
+          const fakeEvent = {
+            target: { value },
+            currentTarget: { value },
+          };
+          onChange(fakeEvent, value);
+        }
       }
     }
   }
