@@ -105,7 +105,7 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   render() {
-    const { rules, children, inline/* , ...restOfProps */ } = this.props;
+    const { rules, children, inline, style /* , ...restOfProps */ } = this.props;
     const { width, height } = this.state;
 
 
@@ -118,7 +118,7 @@ export class PropsMapperContainerQueries extends Component {
 
     return React.createElement(
       type,
-      { ref: this.storeRef },
+      { ref: this.storeRef, style },
       extendedChildren,
     );
   }
