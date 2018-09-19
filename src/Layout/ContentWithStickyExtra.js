@@ -124,7 +124,7 @@ class ContentWithStickyExtra extends Component {
     }
   }
 
-  handleScroll(e) {
+  handleScroll() {
     const { height } = this.extraRef.getBoundingClientRect();
 
     console.log(height);
@@ -188,6 +188,7 @@ class ContentWithStickyExtra extends Component {
           isScrollingBackUp,
           totalOffsetBackupScroll,
         });
+      /* eslint-disable */
       } /* else if (scrollTop <= diff) {
         this.setState({
           sticky: false,
@@ -197,6 +198,7 @@ class ContentWithStickyExtra extends Component {
           totalOffsetBackupScroll,
         });
       } */ else if (scrollTop === 0) {
+      /* eslint-enable */
         this.setState({
           sticky: false,
           top: 0,
