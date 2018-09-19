@@ -21,7 +21,7 @@ const AppLayout = styled.div`
   position: relative;
   &>* {
     box-sizing: border-box;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-shrink: 0;
   }
   &>*:nth-child(2) {
