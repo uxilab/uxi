@@ -15,9 +15,10 @@ const ExtendedFlex = Flex.extend`
 `;
 
 const TileDetailWrapper = styled.div`
+  box-sizing: border-box;
   display:flex;
   border: 1px solid #ccc;
-  padding:15px;
+  padding: 16px;
   position:relative;
   flex-flow: row wrap;
   & + & {
