@@ -5,10 +5,10 @@ const Panel = ({ children, style, onClose }) => (
   <AppLayout style={style}>
     {
       /* Pass Panel's onClose to its children */
-      React.Children.map(children, child => (
+      React.Children.map(children, child => (child &&
         React.cloneElement(
           child,
-          { onClose, ...child.props }, // allow user overwrite
+          { onClose, ...(child.props || {}) }, // allow user overwrite
         )
       ))
     }

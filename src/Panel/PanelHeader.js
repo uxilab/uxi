@@ -29,12 +29,20 @@ const CloseWrapperUI = styled.div`
 `;
 
 const PanelHeader = (props) => {
-  const { children, title, hasClose, onClose, style } = props;
+  const {
+    children,
+    title,
+    hasClose,
+    onClose,
+    style,
+    iconColor = '#ceceec',
+    iconHoverColor = '#ffffff',
+  } = props;
 
   const close = hasClose
     ? (
       <CloseWrapperUI tabindex="0" onClick={onClose}>
-        <Close size="14px" color="#ceceec" hoverColor="#fff" />
+        <Close size="14px" color={iconColor} hoverColor={iconHoverColor} />
       </CloseWrapperUI>
     )
     : null;
