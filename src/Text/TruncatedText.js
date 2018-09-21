@@ -16,7 +16,7 @@ const TruncatedText = ({ text = '', children, max = 150, withViewMoreLink = fals
     : text;
 
   if (text.length > max) {
-    truncatedText = text.slice(0, 144);
+    truncatedText = text.slice(0, (max - 6));
     tooltip = withViewMoreLink ? getTooltip(text) : null;
   }
 
