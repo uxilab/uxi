@@ -60,7 +60,7 @@ const styles = {
     cursor: 'pointer',
   },
   itemsWrapper: {
-    zIndex: 1,
+    zIndex: 9,
     minWidth: '100px',
     background: 'white',
     position: 'absolute',
