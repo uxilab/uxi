@@ -79,6 +79,14 @@ const LinkDecorator = styled.div`
 `;
 
 const GlobalMenuItemDiv = styled.a`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${breakpoint}) {
+    flex-direction: row;
+  }
+
+
   ${buttonReset};
   ${GlobalMenuItemBase};
   html body & svg,
@@ -147,7 +155,17 @@ const GlobalMenuItemDivFinal = GlobalMenuItemDiv.withComponent('button');
 
 const LabelDiv = styled.div`
   display: none;
+  display: block;
+  font-size: 10px;
+  white-space: nowrap;
+  justify-content: flex-start;
+  max-width: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @media (min-width: ${breakpoint}) {
+    font-size: inherit;
+
     padding-left: 10px;
     display: block;
 
