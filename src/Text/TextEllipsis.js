@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const TextEllipsis = styled.div.attrs({
   title: ({ children }) => {
     let title = '';
-    if (children && children instanceof String) {
+    if (children && typeof children === 'string') {
       title = children;
     }
     return title;
