@@ -31,7 +31,7 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
 // TODO show default value if any
 const styles = {
   trigerrer: {
-    minWidth: '106px',
+    minWidth: '180px',
     width: '100%',
     minHeight: '30px',
     border: '1px solid #cecece',

@@ -407,6 +407,7 @@ export class DropDown extends PureComponent {
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
         <UnstyledButton
+          data-drop-down-main
           role="menu"
           isFullWidth={isFullWidth}
           style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
@@ -419,6 +420,7 @@ export class DropDown extends PureComponent {
         </UnstyledButton>
         <ItemsWrapper
           data-is-the-one="true"
+          data-drop-down-items
           // aria-hidden={isOpen ? false : true}
           // autoFocus={isOpen}
           // tabIndex={isOpen ? 1 : -1}

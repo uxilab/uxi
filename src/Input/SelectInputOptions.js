@@ -24,9 +24,9 @@ const OptionsUI = styled.div`
   &:hover,
   &:focus {
     outline: none;
-    background-color: #f4f4f4;
-    &:not(:first-child) { border-top-color: #a3a3a3; }
-    &:not(:last-child) { border-bottom-color: #a3a3a3; }
+    background-color: #cecece;
+    /* &:not(:first-child) { border-top-color: #a3a3a3; }
+    &:not(:last-child) { border-bottom-color: #a3a3a3; } */
   };
   &:active {
     background-color: #fff;
