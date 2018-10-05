@@ -13,14 +13,12 @@ const SimpleFlexLayoutItem = styled.div`
   position: relative;
   box-sizing:border-box;
   width: ${({ mobileWidth }) => (mobileWidth)}%;
-  margin-bottom: ${({ gutterInt }) => `${gutterInt}px;`}};
-  margin-bottom: ${({ gutterInt }) => `${gutterInt * 1.15}px;`}};
+  margin-bottom: ${({ gutterInt }) => `${gutterInt * 1.5}px;`}};
   min-height: ${({ itemMinHeight }) => itemMinHeight};
 
   @media screen and (min-width: ${({ tabletBreakPoint }) => tabletBreakPoint}) {
     width: ${({ tabletColumnWidth }) => (tabletColumnWidth)}%;
     width: ${({ tabletColumnWidth, gutterTabletInt }) => `calc(${tabletColumnWidth}% - ${gutterTabletInt}px);`};
-    margin-bottom: ${({ gutterInt }) => `${gutterInt}px;`}};
     min-height: ${({ itemTabletMinHeight }) => itemTabletMinHeight};
   }
   @media screen and (min-width: ${({ desktopBreakPoint }) => desktopBreakPoint}) {
