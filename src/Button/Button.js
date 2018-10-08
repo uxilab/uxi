@@ -214,7 +214,6 @@ class Button extends Component {
 
 Button.defaultProps = {
   style: {},
-  onclick: () => { },
 };
 
 export default Button;

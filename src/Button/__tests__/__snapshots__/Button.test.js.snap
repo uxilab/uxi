@@ -2144,7 +2144,6 @@ exports[`<Button /> should render a Button 1`] = `
         />
         <Button
           onClick={[Function]}
-          onclick={[Function]}
           style={Object {}}
           text="YO!"
         />

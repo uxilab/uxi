@@ -159,7 +159,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it come
               />
             }
             inert={true}
-            onclick={[Function]}
             style={
               Object {
                 "borderRadius": "0 3px 3px 0",
@@ -340,7 +339,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
               />
             }
             inert={true}
-            onclick={[Function]}
             style={
               Object {
                 "borderRadius": "0 3px 3px 0",
@@ -429,7 +427,6 @@ exports[`<SelectInput /> matches snapshot 1`] = `
               />
             }
             inert={true}
-            onclick={[Function]}
             style={
               Object {
                 "borderRadius": "0 3px 3px 0",
