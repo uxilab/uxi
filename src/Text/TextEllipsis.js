@@ -12,6 +12,7 @@ const TextEllipsis = styled.div.attrs({
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 `;
 
 export default TextEllipsis;
