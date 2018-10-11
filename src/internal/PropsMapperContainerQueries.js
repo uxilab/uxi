@@ -32,7 +32,7 @@ const applyRules = (props, rules, width, height) => {
      * logical, ascending, flow of overwrite
      * !!!avoid cyclic dependent constraint!!
      */
-    .filter(({ minWidth }) => width >= minWidth);
+    .filter(({ minWidth }) => !width || width >= minWidth);
 
   internalRules.forEach(({ mapper }) => {
     result = {
@@ -113,12 +113,29 @@ export class PropsMapperContainerQueries extends Component {
 
     const extendedChildren = React.Children.map(
       children,
-      child => React.cloneElement(child, applyRules(child.props, rules, width, height))
+      child => React.cloneElement(
+        child,
+        applyRules(
+          {
+            ...this.props,
+            ...(child.props || {}),
+          },
+          rules,
+          width,
+          height
+        )
+      )
     );
 
     return React.createElement(
       type,
-      { ref: this.storeRef, style },
+      {
+        ref: this.storeRef,
+        style: {
+          ...(style || {}),
+          ...((this.ref && width && height) ? {} : { opacity: 0 }),
+        },
+      },
       extendedChildren,
     );
   }
