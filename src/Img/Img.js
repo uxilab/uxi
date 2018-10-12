@@ -77,8 +77,8 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
   componentDidMount() {
     const { src } = this.props;
 
-    if (requestIdleCallback) {
-      this.idleCBRef = requestIdleCallback(() => {
+    if (window.requestIdleCallback) {
+      this.idleCBRef = window.requestIdleCallback(() => {
         const img = new Image();
         img.addEventListener('load', this.onLoadHandler);
         img.src = src;
