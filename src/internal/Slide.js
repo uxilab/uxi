@@ -31,6 +31,11 @@ const SlideUI = styled.div`
     if (dir === 'top') return 'top: 100%; bottom: auto; left: 0; right:0'
     if (dir === 'bottom') return 'bottom: 100%; top: auto; left: 0; right:0'
   }};
+
+  ${({ offsetTop }) => offsetTop && `top: ${offsetTop}px`};
+  ${({ offsetBottom }) => offsetBottom && `bottom: ${offsetBottom}px`};
+  ${({ offsetLeft }) => offsetLeft && `left: ${offsetLeft}px`};
+  ${({ offsetRight }) => offsetRight && `right: ${offsetRight}px`};
 `;
 
 class Slide extends React.Component {
@@ -67,6 +72,10 @@ class Slide extends React.Component {
       timeout,
       inAttr,
       direction,
+      offsetBottom,
+      offsetTop,
+      offsetLeft,
+      offsetRight,
       ...other
     } = this.props;
 
@@ -81,6 +90,10 @@ class Slide extends React.Component {
         className="SlideUI"
         inAttr={inAttr}
         dir={direction}
+        offsetTop={offsetTop}
+        offsetBottom={offsetBottom}
+        offsetLeft={offsetLeft}
+        offsetRight={offsetRight}
         {...handlers}
       >
         { children }

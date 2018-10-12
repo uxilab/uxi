@@ -84,6 +84,10 @@ class SidePanel extends React.Component {
       showOverlay,
       style,
       modal,
+      offsetBottom,
+      offsetTop,
+      offsetLeft,
+      offsetRight,
     } = this.props;
 
     return (
@@ -92,6 +96,10 @@ class SidePanel extends React.Component {
           inAttr={open}
           direction={getSlideDirection(anchor)}
           appear={!this.state.firstMount}
+          offsetTop={offsetTop}
+          offsetBottom={offsetBottom}
+          offsetLeft={offsetLeft}
+          offsetRight={offsetRight}
         >
           <SidePanelUI
             inAttr={open}
@@ -129,6 +137,10 @@ SidePanel.propTypes = {
   //   PropTypes.number,
   //   PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   // ]), // not used
+  offsetTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  offsetBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  offsetRight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  offsetLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 SidePanel.defaultProps = {
@@ -138,6 +150,10 @@ SidePanel.defaultProps = {
   children: null,
   onClose: () => {},
   // transitionDuration: 0,
+  offsetTop: 0,
+  offsetBottom: 0,
+  offsetRight: 0,
+  offsetLeft: 0,
 };
 
 export default SidePanel;
