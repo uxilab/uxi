@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const styles = {
@@ -22,12 +22,12 @@ const styles = {
     // height: '100%',
     margin: '0',
     opacity: 0,
-    opacity: 1,
+    // opacity: 1,
     display: 'inline-block',
   },
 };
 
-const getWrapperStyles = props => ({
+const getWrapperStyles = (props, state) => ({
   ...styles.wrapper,
   ...(props.style.width ? {
     width: props.style.width,
@@ -49,9 +49,11 @@ const getWrapperStyles = props => ({
   backgroundRepeat: 'no-repeat',
   backgroundSize: props.contain ? 'contain' : 'cover',
   backgroundPosition: 'center',
-  // opacity: (loaded ? 1 : 0),
   lineHeight: 0,
   overflow: 'hidden',
+  opacity: (state.loaded ? 1 : 0),
+  // opacity: 0,
+  transition: 'opacity 450ms cubic-bezier(0.23, 1, 0.32, 1)',
 });
 
 
@@ -60,26 +62,61 @@ const getWrapperStyles = props => ({
  * ever stretching it, no matter the context around
  */
 // const Img = props => (
-class Img extends PureComponent { // eslint-disable-line react/prefer-stateless-function
-  // state = {
-  //   loaded: false,
-  // }
+class Img extends Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
 
-  // onLoadHandler() {
-  //   this.setState({
-  //     loaded: true,
-  //   });
-  // }
+    this.state = {
+      loaded: false,
+    };
+
+    this.onLoadHandler = this.onLoadHandler.bind(this);
+  }
+
+  componentDidMount() {
+    const { src } = this.props;
+
+    if (requestIdleCallback) {
+      this.idleCBRef = requestIdleCallback(() => {
+        const img = new Image();
+        img.addEventListener('load', this.onLoadHandler);
+        img.src = src;
+      });
+    } else {
+      this.onLoadHandler();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.idleCBRef && !this.state.loaded) {
+      if (cancelIdleCallback) {
+        cancelIdleCallback(this.idleCBRef);
+      }
+    }
+  }
+
+  onLoadHandler() {
+    this.setState({
+      loaded: true,
+    });
+  }
 
   render() {
     const { src, alt, async, style } = this.props;
-    // const { loaded } = this.state;
+
     return (
       <figure
-        style={{ ...getWrapperStyles(this.props/* , loaded */), ...style }}
-        // onLoad={this.onLoadHandler.bind(this)}
+        style={{
+          ...getWrapperStyles(this.props, this.state),
+          ...style,
+        }}
       >
-        <img src={src} alt={alt} style={styles.img} async={async ? 'on' : 'off'} />
+        <img
+          src={src}
+          alt={alt}
+          style={styles.img}
+          async={async ? 'on' : 'off'}
+        />
       </figure>
     );
   }
@@ -97,6 +134,7 @@ Img.defaultProps = {
   alt: '',
   contain: false,
   style: {},
+  async: true,
 };
 
 export default Img;
