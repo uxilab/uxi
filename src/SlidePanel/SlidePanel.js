@@ -23,7 +23,9 @@ const SidePanelUI = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 280px;
   width: 500px;
+  max-width: 100vw;
   background: #fff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0) , 0px 3px 10px rgba(0, 0, 0, 0);
   };
