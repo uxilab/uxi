@@ -1,60 +1,61 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const styles = {
-  img: {
-    width: '100%',
-    height: 'auto',
-    opacity: 0,
-    /* eslint-disable no-dupe-keys */
-    // imageRendering: 'optimizeSpeed',
-    // imageRendering: '-moz-crisp-edges',
-    // imageRendering: '-o-crisp-edges',
-    // imageRendering: '-webkit-optimize-contrast',
-    // imageRendering: 'optimize-contrast',
-    // imageRendering: 'crisp-edges',
-    // imageRendering: 'pixelated',
-    MsInterpolationMode: 'nearest-neighbor',
-  },
-  wrapper: {
-    transition: 'opacity .6s ease-out',
-    width: '100%',
-    // height: '100%',
-    margin: '0',
-    opacity: 0,
-    // opacity: 1,
-    display: 'inline-block',
-  },
-};
+const ImgUI = styled.img`
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  MsInterpolationMode: nearest-neighbor;
+`;
 
-const getWrapperStyles = (props, state) => ({
-  ...styles.wrapper,
-  ...(props.style.width ? {
-    width: props.style.width,
-    minWidth: `${props.style.width}px`,
-    maxWidth: `${props.style.width}px`,
-    height: `${props.style.width}px`,
-    minHeight: `${props.style.width}px`,
-    maxHeight: `${props.style.width}px`,
-  } : {}),
-  ...(props.width ? {
-    width: `${props.width}px`,
-    minWidth: `${props.width}px`,
-    maxWidth: `${props.width}px`,
-    minHeight: `${props.width}px`,
-    height: `${props.width}px`,
-    maxHeight: `${props.width}px`,
-  } : {}),
-  backgroundImage: `url(${props.src})`,
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: props.contain ? 'contain' : 'cover',
-  backgroundPosition: 'center',
-  lineHeight: 0,
-  overflow: 'hidden',
-  opacity: (state.loaded ? 1 : 0),
-  // opacity: 0,
-  transition: 'opacity 450ms cubic-bezier(0.23, 1, 0.32, 1)',
-});
+const FigureUI = styled.figure`
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  display: inline-block;
+  background-image: ${({ src }) => `url(${src})`};
+  background-repeat: no-repeat;
+  background-size: ${({ contain }) => (contain ? 'contain' : 'cover')};
+  background-position: center;
+  line-height: 0;
+  overflow: hidden;
+  opacity: ${({ loaded }) => (loaded ? 1 : 0)};
+
+  ${({ style: { width } }) => width && `
+    width: ${width};
+    min-width: ${width};
+    max-width: ${width};
+    /* height: ${width};
+    min-height: ${width};
+    max-height: ${width};
+    */
+  `};
+
+  /* Thise next bit is there because is would
+   * break img in a lot of places if removed
+   * But enventually, size prop should be prefered to width prop
+   * in order to get a squarely constrained image
+   */
+  ${({ width }) => width && `
+    width: ${width}px;
+    min-width: ${width}px;
+    max-width: ${width}px;
+    height: ${width}px;
+    min-height: ${width}px;
+    max-height: ${width}px;
+  `};
+
+  ${({ size }) => size && `
+    width: ${size}px;
+    min-width: ${size}px;
+    max-width: ${size}px;
+    height: ${size}px;
+    min-height: ${size}px;
+    max-height: ${size}px;
+  `};
+`;
 
 
 /**
@@ -102,22 +103,35 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
   }
 
   render() {
-    const { src, alt, async, style } = this.props;
+    const {
+      src,
+      alt,
+      async,
+      style,
+      imgStyle,
+      contain,
+      width,
+      size,
+    } = this.props;
+
+    const { loaded } = this.state;
 
     return (
-      <figure
-        style={{
-          ...getWrapperStyles(this.props, this.state),
-          ...style,
-        }}
+      <FigureUI
+        contain={contain}
+        loaded={loaded}
+        src={src}
+        style={style}
+        width={width}
+        size={size}
       >
-        <img
+        <ImgUI
           src={src}
           alt={alt}
-          style={styles.img}
+          style={imgStyle}
           async={async ? 'on' : 'off'}
         />
-      </figure>
+      </FigureUI>
     );
   }
 }
@@ -127,6 +141,12 @@ Img.propTypes = {
   alt: PropTypes.string,
   contain: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   style: PropTypes.object,
+  imgStyle: PropTypes.object,
+  async: PropTypes.bool,
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 Img.defaultProps = {
@@ -134,7 +154,9 @@ Img.defaultProps = {
   alt: '',
   contain: false,
   style: {},
+  imgStyle: {},
   async: true,
+  size: undefined,
 };
 
 export default Img;

@@ -15,6 +15,9 @@ const ExampleSimple = () => (
     <li>
       <Img style={{ width: '48px', height: '48px' }} alt={'title'} src={'https://react.semantic-ui.com/logo.png'} />
     </li>
+    <li>
+      <Img size="64" alt={'title'} src={'https://react.semantic-ui.com/logo.png'} />
+    </li>
   </ul>
 );
 
