@@ -7,8 +7,26 @@ import RAWExampleSimple from '!raw-loader!./ExampleSimple';
 import ExampleContentWithExtra from './ExampleContentWithExtra';
 import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
 
+import ExampleSimpleGrid from './ExampleSimpleGrid';
+import RAWExampleSimpleGrid from '!raw-loader!./ExampleSimpleGrid';
+
+import ExampleGrid from './ExampleGrid';
+import RAWExampleGrid from '!raw-loader!./ExampleGrid';
+
 const Layouts = () => (
   <div>
+    <br />
+
+    <CodeExample
+      code={RAWExampleGrid}
+      component
+      title="Grid"
+      hasPadding
+    >
+      <ExampleGrid />
+    </CodeExample>
+
+    <br />
     <CodeExample
       code={RAWExampleContentWithExtra}
       component
@@ -17,7 +35,9 @@ const Layouts = () => (
     >
       <ExampleContentWithExtra />
     </CodeExample>
+
     <br />
+
     <CodeExample
       code={RAWExampleSimple}
       component
@@ -25,6 +45,17 @@ const Layouts = () => (
       hasPadding
     >
       <ExampleSimple />
+    </CodeExample>
+
+    <br />
+
+    <CodeExample
+      code={RAWExampleSimpleGrid}
+      component
+      title="SimpleGrid"
+      hasPadding
+    >
+      <ExampleSimpleGrid />
     </CodeExample>
   </div>
 );

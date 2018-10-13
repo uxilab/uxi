@@ -9,7 +9,7 @@
     "start:dev": "cd docs/ && npm run start:dev",
     "flow": "flow",
     "typecheck": "flow check",
-    "lint": "uxi-cli lint --quiet ./src",
+    "lint": "uxi-cli lint --quiet --fix ./src",
     "lint:fix": "uxi-cli lint --fix",
     "pack": "uxi-cli pack",
     "clean:build": "rimraf build",

@@ -10,3 +10,5 @@ export { default as GlobalAppLayout } from './GlobalAppLayout';
 export { default as ContentWithExtra } from './ContentWithExtra';
 export { default as ContentWithStickyExtra } from './ContentWithStickyExtra';
 export { default as SimpleFlexLayout } from './SimpleFlexLayout';
+export { default as SimpleGrid } from './SimpleGrid';
+export { default as Grid } from './Grid';
