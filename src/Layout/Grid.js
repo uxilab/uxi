@@ -15,7 +15,7 @@ const rules = [
 
 
       const columns = Math.floor(
-        (Math.round(containerWidth - gap) / (itemWidth + (gap * 2)))
+        (Math.floor(containerWidth) / (itemWidth + gap))
       );
 
       console.log('columns');
@@ -23,6 +23,9 @@ const rules = [
 
       return {
         columns,
+        'data-columns': columns,
+        'data-itemWidth': itemWidth,
+        'data-gap': gap,
       };
     },
   },
@@ -48,15 +51,17 @@ const GridUI = styled.div`
    * Target exclusively IE10 and above: */
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     & {
-      padding: 8px;
+      padding: ${({ gap }) => `${gap / 2}px`};
+      margin: 0 auto;
       width: ${({ columns, itemWidth, gap }) => (
-        `${(
-            (columns * (itemWidth + (gap * 2)))
-            + (gap * 2)
-        )}px`
-      )
-    };
-    & > * { margin: 8px; }
+          `${(
+              ((columns) * (itemWidth + gap)) + (gap)
+          )}px;`
+        )
+      };
+      /* width: ${({ columns, itemWidth, gap }) => `calc(${columns} * calc(${itemWidth}px + ${2 * gap}px))`}; */
+    }
+    & > * { margin: ${({ gap }) => `${gap / 2}px`}; }
   }
 `;
 /* eslint-enable indent */
