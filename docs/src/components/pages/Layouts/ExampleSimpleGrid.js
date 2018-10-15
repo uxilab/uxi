@@ -4,7 +4,7 @@ import { SimpleGrid, Flex } from 'uxi/Layout';
 const ExampleSimpleGrid = () => (
   <div>
     <SimpleGrid
-      gap="16"
+      gap={16}
       itemWidth={90}
       itemHeight={180}
     >

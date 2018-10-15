@@ -16,11 +16,16 @@ const GridUI = styled.div`
     ${({ itemHeight }) => `height: ${itemHeight}px`};
   }
 
+  & {
+    padding: ${({ gap }) => `${gap}px`};
+  }
   /**
    * add gap for flax layout, (no margin collapse with flex)
    * Target exclusively IE10 and above: */
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    & { padding: 8px }
+    & {
+      padding: ${({ gap }) => `${gap}px`};
+    }
     & > * { margin: 8px }
   }
 }
