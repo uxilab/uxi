@@ -26,7 +26,11 @@ const GridUI = styled.div`
     & {
       padding: ${({ gap }) => `${gap}px`};
     }
-    & > * { margin: 8px }
+    & > * {
+      margin: 8px;
+      ${({ itemWidth }) => `max-width: ${itemWidth}px`};
+      ${({ itemWidth }) => `width: ${itemWidth}px`};
+    }
   }
 }
 

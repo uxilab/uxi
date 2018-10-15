@@ -52,7 +52,8 @@ const GridUI = styled.div`
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     & {
       padding: ${({ gap }) => `${gap / 2}px`};
-      margin: 0 auto;
+      margin-left: auto !important;
+      margin-right: auto !important;
       width: ${({ columns, itemWidth, gap }) => (
           `${(
               ((columns) * (itemWidth + gap)) + (gap)
@@ -61,7 +62,10 @@ const GridUI = styled.div`
       };
       /* width: ${({ columns, itemWidth, gap }) => `calc(${columns} * calc(${itemWidth}px + ${2 * gap}px))`}; */
     }
-    & > * { margin: ${({ gap }) => `${gap / 2}px`}; }
+    & > * {
+      margin: ${({ gap }) => `${gap / 2}px`};
+      ${({ itemWidth }) => `max-width: ${itemWidth}px`};
+      ${({ itemWidth }) => `width: ${itemWidth}px`};    }
   }
 `;
 /* eslint-enable indent */
