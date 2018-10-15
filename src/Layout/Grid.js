@@ -3,35 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import PropsMapperContainerQueries from '../internal/PropsMapperContainerQueries';
+import { GridUI } from './SimpleGrid';
 
-const rules = [
-  {
-    minWidth: 0,
-    mapper: ({ itemWidth, containerWidth, gap }) => {
-      console.log('itemWidth, containerWidth, gap');
-      console.log(itemWidth, containerWidth, gap);
-      console.log('containerWidth');
-      console.log(Math.ceil(containerWidth));
-
-
-      const columns = Math.floor(
-        (Math.floor(containerWidth) / (itemWidth + gap))
-      );
-
-      console.log('columns');
-      console.log(columns);
-
-      return {
-        columns,
-        'data-columns': columns,
-        'data-itemWidth': itemWidth,
-        'data-gap': gap,
-      };
-    },
-  },
-];
 /* eslint-disable indent */
-const GridUI = styled.div`
+const ExtendedGridUI = GridUI.extend`
   box-sizing: border-box;
   margin: 0 auto;
   display: flex;  /* for IE11 only */
@@ -70,30 +45,31 @@ const GridUI = styled.div`
 `;
 /* eslint-enable indent */
 
-const Grid = (props) => {
-  const {
-    style,
-    children,
-    gap,
-    itemWidth,
-    itemHeight,
-  } = props;
+const rules = [
+  {
+    minWidth: 0,
+    mapper: ({ itemWidth, containerWidth, gap }) => {
+      const columns = Math.floor(
+        (Math.floor(containerWidth) / (itemWidth + gap))
+      );
 
-  return (
-    <PropsMapperContainerQueries
-      rules={rules}
-      itemWidth={itemWidth}
-      gap={gap}
-    >
-      <GridUI
-        itemHeight={itemHeight}
-        style={style}
-      >
-        {children}
-      </GridUI>
-    </PropsMapperContainerQueries>
-  );
-};
+      return {
+        columns,
+      };
+    },
+  },
+];
+
+const Grid = ({ children, ...restOfProps }) => (
+  <PropsMapperContainerQueries
+    {...restOfProps}
+    rules={rules}
+  >
+    <ExtendedGridUI>
+      {children}
+    </ExtendedGridUI>
+  </PropsMapperContainerQueries>
+);
 
 Grid.propTypes = {
   itemWidth: PropTypes.number,
