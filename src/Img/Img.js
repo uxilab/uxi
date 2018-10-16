@@ -67,8 +67,11 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
   constructor(props) {
     super(props);
 
+    const hasIdleCallback = !!(window.requestIdleCallback);
+
     this.state = {
-      loaded: false,
+      loaded: !(hasIdleCallback),
+      hasIdleCallback,
     };
 
     this.onLoadHandler = this.onLoadHandler.bind(this);
@@ -76,15 +79,14 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
 
   componentDidMount() {
     const { src } = this.props;
+    const { hasIdleCallback } = this.state;
 
-    if (window.requestIdleCallback) {
+    if (hasIdleCallback) {
       this.idleCBRef = window.requestIdleCallback(() => {
         const img = new Image();
         img.addEventListener('load', this.onLoadHandler);
         img.src = src;
       });
-    } else {
-      this.onLoadHandler();
     }
   }
 
