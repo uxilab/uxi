@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+const getValueWithUnit = prop => (
+  typeof prop === 'string'
+    ? prop
+    : `${prop}px`
+);
 
 export const GridUI = styled.div`
   box-sizing: border-box;
@@ -6,31 +13,50 @@ export const GridUI = styled.div`
   display: flex;  /* for IE11 only */
   flex-flow: row wrap;  /* for IE11 only */
   display: grid;
-  grid-gap: ${({ gap }) => `${gap}px`};
-  grid-template-columns: ${({ itemWidth }) => `repeat(auto-fill, minmax(${itemWidth}px, 1fr));`};
+  grid-gap: ${({ gap }) => `${getValueWithUnit(gap)}`};
+  grid-template-columns: ${({ itemWidth }) => `repeat(auto-fill, minmax(${getValueWithUnit(itemWidth)}, 1fr));`};
+  grid-template-rows: ${({ itemHeight }) => `repeat(auto-fill, minmax(${getValueWithUnit(itemHeight)}, 1fr));`};
   font-size: inherit;
   & > * {
     box-sizing: border-box;
-    ${({ itemWidth }) => `min-width: ${itemWidth}px`};
-    ${({ itemHeight }) => `height: ${itemHeight}px`};
+    ${({ itemWidth }) => `min-width: ${getValueWithUnit(itemWidth)}`};
+    ${({ itemHeight }) => `height: ${getValueWithUnit(itemHeight)} !important`};
   }
 
-  /* & {
-    padding: ${({ gap }) => `${gap}px`};
-  } */
   /**
    * add gap for flax layout, (no margin collapse with flex)
    * Target exclusively IE10 and above: */
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     & {
-      padding: ${({ gap }) => `${gap}px`};
+      padding: ${({ gap }) => `${getValueWithUnit(gap)}`};
     }
     & > * {
-      margin: 8px;
-      ${({ itemWidth }) => `max-width: ${itemWidth}px`};
-      ${({ itemWidth }) => `width: ${itemWidth}px`};
+      margin: ${({ gap }) => (gap ? getValueWithUnit(gap) : '0')};
+      ${({ itemWidth }) => `max-width: ${getValueWithUnit(itemWidth)}`};
+      ${({ itemWidth }) => `width: ${getValueWithUnit(itemWidth)}`};
+      ${({ itemHeight }) => `max-height: ${getValueWithUnit(itemHeight)}`};
+      ${({ itemHeight }) => `height: ${getValueWithUnit(itemHeight)} !important`};
+      ${({ itemHeight }) => `min-height: ${getValueWithUnit(itemHeight)} !important`};
     }
   }
 `;
+
+GridUI.defaultProps = {
+  style: {},
+  itemWidth: '100%',
+  gap: 0,
+};
+
+GridUI.propTypes = {
+  style: PropTypes.object,
+  itemWidth: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  gap: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+};
 
 export default GridUI;
