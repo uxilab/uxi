@@ -31,9 +31,11 @@ class ExampleSimpleControlled extends Component {
 
   render() {
     return (
-      <div style={{ opacity: 0.4 }}>
+      <div>
         <SelectInput
-          onChange={(event, value) => this.setState({ selectedValue: value })}
+          onChange={(event, value) => {
+            console.log('contorled behaviour ignoring change', value);
+          }}
           value={this.state.selectedValue}
         >
           <div value={null}>None</div>

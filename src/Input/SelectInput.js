@@ -63,6 +63,11 @@ const styles = {
 class SelectInput extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.isOpenControlled = props.open !== undefined;
+
+    this.isControlled = props.value !== undefined;
+
     this.state = {
       isOpen: false,
       options: [],
@@ -81,7 +86,6 @@ class SelectInput extends PureComponent {
   }
 
   componentDidMount() {
-    this.isControlled = this.props.value !== undefined;
     if (!this.isControlled) {
       const { defaultValue } = this.props;
       if (defaultValue !== undefined) {
@@ -104,7 +108,9 @@ class SelectInput extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.selectedIndex) {
+    if (this.isControlled) {
+      // noop
+    } else if (this.state.selectedIndex) {
       const { selectedIndex } = prevState;
       const { onChange } = prevProps;
 
@@ -114,17 +120,6 @@ class SelectInput extends PureComponent {
       } else {
         window.removeEventListener('keydown', this.preventScrollingOnSpace);
       }
-      /*
-      TODO: Make controlled selectInkput work!
-      if (valueProp && valueProp !== value) {
-        const newVal = options.findIndex(x => x === value)
-        if (newVal > -1) {
-          this.setState({
-            selectedIndex: newVal,
-          })
-        }
-      } */
-
       if (selectedIndex !== this.state.selectedIndex) {
         if (onChange) {
           const { options } = this.state;
@@ -142,14 +137,26 @@ class SelectInput extends PureComponent {
   getTrigerrerLabel() {
     const {
       state: {
-        selectedIndex,
+        selectedIndex: selectedIndexState,
         optionsNode,
+        options,
         // isOpen,
       },
       props: {
-        error, success,
+        error,
+        success,
+        value,
       },
     } = this;
+
+    let selectedIndex = selectedIndexState;
+    const selecteIndexMaybe = options.findIndex(x => x === value);
+    if (this.isControlled) {
+      if (selecteIndexMaybe > -1) {
+        selectedIndex = selecteIndexMaybe;
+      }
+    }
+
 
     let mainContent = null;
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
@@ -348,7 +355,9 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
+    console.log('clickHandler');
     if (!e) {
+      console.log('clickHandler: !e path');
       this.setState({
         selectedIndex: this.state.selectedIndex || null,
         isOpen: false,
@@ -356,18 +365,32 @@ class SelectInput extends PureComponent {
       this.forceUpdate();
       return;
     }
+    console.log('clickHandler: continue path');
 
     // TODO actually implement an conotrlled input on selectinput
     if (e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.index !== undefined) {
+      console.log('e.currentTarget.dataset.index', e.currentTarget.dataset.index);
       if (this.isControlled) {
+        const { onChange } = this.props;
         const selectedIndex = e.currentTarget.dataset.index;
         // isControlled: should not setState, controlled input state is managed by the consumer !
-        this.setState({
-          selectedIndex,
-          isOpen: false,
-        });
-        this.forceUpdate();
+        // this.setState({
+        //   selectedIndex,
+        //   isOpen: false,
+        // }, () => console.log('stateupdate after slick on controlled element. selectedIndex is:', selectedIndex));
+        // this.forceUpdate();
+        if (onChange) {
+          const { options } = this.state;
+          const value = options[selectedIndex];
+          const fakeEvent = {
+            target: { value },
+            currentTarget: { value },
+          };
+          onChange(fakeEvent, value);
+        }
       } else {
+        console.log('clickHandler: else path');
+
         const selectedIndex = e.currentTarget.dataset.index;
         this.setState({
           selectedIndex,

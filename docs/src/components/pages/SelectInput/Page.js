@@ -65,7 +65,7 @@ const SelectInputPage = () => (
         <CodeExample
           code={RAWExampleSimpleControlled}
           component
-          title="Controlled SelectInput (not working)"
+          title="Controlled SelectInput"
           hasPadding
         >
           <ExampleSimpleControlled />
