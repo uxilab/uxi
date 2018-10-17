@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
+
 const TextEllipsis = styled.div.attrs({
-  title: ({ children }) => {
-    let title = '';
-    if (children && typeof children === 'string') {
-      title = children;
+  title: ({ children, title }) => {
+    if (title) {
+      if (typeof title === 'string') {
+        return title;
+      }
     }
-    return title;
+    if (children && typeof children === 'string') {
+      return children;
+    }
+    return 'no title';
   },
 })`
   white-space: nowrap;
