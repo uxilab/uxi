@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SelectInput /> controlled/uncontrolled behaviour fakes it when it comes to being a controlled component 1`] = `
+exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled component, no onChange, no change 1`] = `
 <div
   style={Object {}}
 >

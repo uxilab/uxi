@@ -362,9 +362,7 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
-    console.log('clickHandler');
     if (!e) {
-      console.log('clickHandler: !e path');
       this.setState({
         selectedIndex: this.state.selectedIndex || null,
         isOpen: false,
@@ -372,11 +370,9 @@ class SelectInput extends PureComponent {
       this.forceUpdate();
       return;
     }
-    console.log('clickHandler: continue path');
 
     // TODO actually implement an conotrlled input on selectinput
     if (e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.index !== undefined) {
-      console.log('e.currentTarget.dataset.index', e.currentTarget.dataset.index);
       if (this.isControlled) {
         const { onChange } = this.props;
         const selectedIndex = e.currentTarget.dataset.index;
@@ -390,8 +386,6 @@ class SelectInput extends PureComponent {
           onChange(fakeEvent, value);
         }
       } else {
-        console.log('clickHandler: else path');
-
         const selectedIndex = e.currentTarget.dataset.index;
         this.setState({
           selectedIndex,

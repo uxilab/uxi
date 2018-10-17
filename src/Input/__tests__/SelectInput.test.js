@@ -32,7 +32,7 @@ describe('<SelectInput />', () => {
       expect(sut.state('selectedIndex')).toEqual(2);
     });
 
-    it('fakes it when it comes to being a controlled component', () => {
+    it('works as a controlled component, no onChange, no change', () => {
       const sut = shallow(
         <SelectInput value={'baz'} >
           <div value="foo">foo</div>
@@ -47,7 +47,7 @@ describe('<SelectInput />', () => {
       expect(sut.instance().clickHandler).toBeDefined();
       const fakeEvent = { currentTarget: { dataset: { index: 0 } } };
       sut.instance().clickHandler(fakeEvent);
-      expect(sut.state('selectedIndex')).toEqual(0);
+      expect(sut.state('selectedIndex')).toEqual(2);
     });
   });
 });
