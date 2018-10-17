@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
 
 const BadgeStyle = {
   badge: {
@@ -38,6 +40,15 @@ const BadgeStyle = {
     color: '#3a3a3a',
   },
 };
+/* eslint-disable indent */
+const BadgeUI = styled.div`
+  svg * {
+    ${({ type }) => (BadgeStyle[type] && BadgeStyle[type].color) &&
+      `fill: ${BadgeStyle[type].color}`
+  };
+  }
+`;
+/* eslint-enbale indent */
 
 /* eslint-disable react/prefer-stateless-function */
 class Badge extends Component {
@@ -76,9 +87,9 @@ class Badge extends Component {
     }
 
     return (
-      <div style={mergedStyle}>
+      <BadgeUI style={mergedStyle} type={type} >
         {this.props.children}
-      </div>
+      </BadgeUI>
     );
   }
 }
