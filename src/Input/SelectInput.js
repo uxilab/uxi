@@ -162,7 +162,14 @@ class SelectInput extends PureComponent {
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
       mainContent = (
         <TriggererWrapperWithEllispsisChildren>
-          <div style={{ padding: '2px 2px 2px 6px', marginRight: '64px', display: 'flex', width: '100%' }} >
+          <div
+            style={{
+              padding: '2px 2px 2px 6px',
+              marginRight: '64px',
+              display: 'flex',
+              width: '100%',
+            }}
+          >
             {
               React.cloneElement(optionsNode[selectedIndex], {
                 style: {
@@ -373,12 +380,6 @@ class SelectInput extends PureComponent {
       if (this.isControlled) {
         const { onChange } = this.props;
         const selectedIndex = e.currentTarget.dataset.index;
-        // isControlled: should not setState, controlled input state is managed by the consumer !
-        // this.setState({
-        //   selectedIndex,
-        //   isOpen: false,
-        // }, () => console.log('stateupdate after slick on controlled element. selectedIndex is:', selectedIndex));
-        // this.forceUpdate();
         if (onChange) {
           const { options } = this.state;
           const value = options[selectedIndex];
