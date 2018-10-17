@@ -35,7 +35,7 @@ const BadgeStyle = {
   },
   default: {
     backgroundColor: '#cecece',
-    color: '#fff',
+    color: '#3a3a3a',
   },
 };
 
