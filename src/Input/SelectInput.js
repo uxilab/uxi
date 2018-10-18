@@ -114,12 +114,6 @@ class SelectInput extends PureComponent {
       const { selectedIndex } = prevState;
       const { onChange } = prevProps;
 
-      const { isOpen } = this.state;
-      if (isOpen) {
-        window.addEventListener('keydown', this.preventScrollingOnSpace);
-      } else {
-        window.removeEventListener('keydown', this.preventScrollingOnSpace);
-      }
       if (selectedIndex !== this.state.selectedIndex) {
         if (onChange) {
           const { options } = this.state;
@@ -131,6 +125,12 @@ class SelectInput extends PureComponent {
           onChange(fakeEvent, value);
         }
       }
+    }
+
+    if (this.state.isOpen || this.props.isOpen) {
+      window.addEventListener('keydown', this.preventScrollingOnSpace);
+    } else {
+      window.removeEventListener('keydown', this.preventScrollingOnSpace);
     }
   }
 
