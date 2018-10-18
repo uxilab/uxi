@@ -104,7 +104,9 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled
             <div
               style={
                 Object {
+                  "boxSizing": "border-box",
                   "display": "flex",
+                  "height": "30px",
                   "marginRight": "64px",
                   "padding": "2px 2px 2px 6px",
                   "width": "100%",
@@ -114,6 +116,8 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled
               <div
                 style={
                   Object {
+                    "alignItems": "center",
+                    "display": "flex",
                     "overflow": "hidden",
                     "textOverflow": "ellipsis",
                     "whiteSpace": "nowrap",
@@ -284,7 +288,9 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
             <div
               style={
                 Object {
+                  "boxSizing": "border-box",
                   "display": "flex",
+                  "height": "30px",
                   "marginRight": "64px",
                   "padding": "2px 2px 2px 6px",
                   "width": "100%",
@@ -294,6 +300,8 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
               <div
                 style={
                   Object {
+                    "alignItems": "center",
+                    "display": "flex",
                     "overflow": "hidden",
                     "textOverflow": "ellipsis",
                     "whiteSpace": "nowrap",

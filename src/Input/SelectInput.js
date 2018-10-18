@@ -168,6 +168,8 @@ class SelectInput extends PureComponent {
               marginRight: '64px',
               display: 'flex',
               width: '100%',
+              boxSizing: 'border-box',
+              height: '30px',
             }}
           >
             {
@@ -177,6 +179,8 @@ class SelectInput extends PureComponent {
                   whiteSpace: 'nowrap',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center',
                 },
               })
             }
