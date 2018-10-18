@@ -178,6 +178,9 @@ export class DropDown extends PureComponent {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps !== this.props;
+  }
   componentWillUpdate(nextProps, nextState) {
     const { isOpen: willBeOpenState } = nextState;
     const { isOpen: willBeOpenProps } = nextProps;
@@ -195,6 +198,10 @@ export class DropDown extends PureComponent {
     this.setState({
       shouldFocusTrigerrer,
     });
+  }
+
+  componentDidUpdate() {
+    setTimeout(() => this.forceUpdate(), 1);
   }
 
   componentWillUnmount() {
