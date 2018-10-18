@@ -312,11 +312,7 @@ export class DropDown extends PureComponent {
   }
 
   handleToggleVisibility(e) {
-    console.log("dropdown's handleToggleVisibility");
-    console.log("dropdown's handleToggleVisibility this.isOpenControlled", this.isOpenControlled);
-    console.log("dropdown's handleToggleVisibility this.state.isOpen", this.state.isOpen);
     if (this.props.main.props.onClick) {
-      console.log('this.props.main.props.onClick', this.props.main.props.onClick);
       this.props.main.props.onClick(e);
     }
 

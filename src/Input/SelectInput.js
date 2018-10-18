@@ -409,7 +409,6 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
-    console.log('handleDropDownChange', 'isOpen', isOpen);
     this.setState({ isOpen });
   }
 
