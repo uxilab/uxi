@@ -20,6 +20,7 @@ export const routes = [
   { path: '/font', label: 'Fonts' },
   { path: '/color', label: 'Colors' },
   { path: '/selectinput', label: 'SelectInput' },
+  { path: '/dropdown', label: 'Dropdown' },
   { path: '/alert', label: 'Alert' },
   { path: '/popover', label: 'PopOver' },
   { path: '/autocomplete', label: 'AutoComplete' },

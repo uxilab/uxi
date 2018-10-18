@@ -40,6 +40,7 @@ import MotionPage from './components/pages/Motion/Page';
 import SelectInputPage from './components/pages/SelectInput/Page';
 import PopOverPage from './components/pages/PopOver/Page';
 import CompactSlidePage from './components/pages/CompactSlide/Page';
+import DropDownPage from './components/pages/Dropdown/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -49,6 +50,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />
       <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
+      <Route path={`${match.url}/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/box`} component={BoxPage} />
       <Route path={`${match.url}/popover`} component={PopOverPage} />
       <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />

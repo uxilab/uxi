@@ -5,7 +5,9 @@ import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import { UnstyledButton } from '../Button';
 
-const ItemsWrapper = styled.div``;
+const ItemsWrapper = styled.div`
+  ${({ theme: { transition } }) => transition.defaultAll};
+`;
 
 const PopOverArrow = styled.div`
   /* overflow: ${({ isPopOver }) => (isPopOver ? 'visible' : 'hidden')}; */
@@ -69,7 +71,6 @@ const styles = {
     borderColor: 'transparent',
     marginTop: '1px',
     borderRadius: '3px',
-    transition: 'max-height .2s, opacity .2s ease-out',
     opacity: 0,
     display: 'flex',
     flexDirection: 'column',
@@ -100,26 +101,30 @@ const styles = {
 export class DropDown extends PureComponent {
   static propTypes = {
     main: PropTypes.node,
+    inertMain: PropTypes.bool,
     items: PropTypes.array,
   }
 
   static defaultProps = {
     main: null,
     items: [],
-  }
-
-  static defaultProps = {
+    inertMain: false,
     anchor: 'left',
   }
 
+
   constructor(props) {
     super(props);
+
+    this.isOpenControlled = this.props.isOpen !== undefined;
+
     this.state = {
-      isOpen: false,
+      isOpen: this.isOpenControlled ? this.props.isOpen : false,
       windowWidth: (window.innerWidth),
       windowHeight: (window.innerHeight),
       initalStyleValue: null,
     };
+
     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
     this.handleWindowResize = this.handleWindowResize.bind(this);
     this.handleWindowScroll = this.handleWindowScroll.bind(this);
@@ -127,15 +132,15 @@ export class DropDown extends PureComponent {
     this.detachListeners = this.detachListeners.bind(this);
   }
 
-  componentWillMount() {
-    this.isControlled = this.props.isOpen !== undefined;
-    // if (!this.isControlled) {
-    //   // not controlled, use internal state
-    //   this.setState({
-    //     isOpen: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
-    //   });
-    // }
-  }
+  // componentWillMount() {
+  // this.isControlled = this.props.isOpen !== undefined;
+  // if (!this.isControlled) {
+  //   // not controlled, use internal state
+  //   this.setState({
+  //     isOpen: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
+  //   });
+  // }
+  // }
 
   componentDidMount() {
     const { style, mainScrollingElementSelector } = this.props;
@@ -152,7 +157,7 @@ export class DropDown extends PureComponent {
       initalStyleValue: style,
     });
 
-    const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
+    const isOpen = this.isOpenControlled ? this.props.isOpen : this.state.isOpen;
 
     if (isOpen) {
       this.attachListeners();
@@ -197,8 +202,11 @@ export class DropDown extends PureComponent {
   }
 
   getDynamicItemsStyles() {
-    const { isOpen, mainRef, itemsRef } = this.state;
-    const { itemsStyle, anchor, isFullWidth, isPopOver } = this.props;
+    const { isOpen: isOpenState, mainRef, itemsRef } = this.state;
+    const { itemsStyle, anchor, isFullWidth, isPopOver, isOpen: isOpenProp } = this.props;
+
+    const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
+
     if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
 
     let itemsHeight;
@@ -282,8 +290,10 @@ export class DropDown extends PureComponent {
   }
 
   handleClickOutside() {
-    const { isOpen } = this.state;
-    const { onIsOpenChange } = this.props;
+    const { isOpen: isOpenState } = this.state;
+    const { onIsOpenChange, isOpen: isOpenProp } = this.props;
+
+    const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
 
     if (isOpen) {
       const newOpen = false;
@@ -301,22 +311,34 @@ export class DropDown extends PureComponent {
     }
   }
 
-  handleToggleVisibility() {
+  handleToggleVisibility(e) {
+    console.log("dropdown's handleToggleVisibility");
+    console.log("dropdown's handleToggleVisibility this.isOpenControlled", this.isOpenControlled);
+    console.log("dropdown's handleToggleVisibility this.state.isOpen", this.state.isOpen);
+    if (this.props.main.props.onClick) {
+      console.log('this.props.main.props.onClick', this.props.main.props.onClick);
+      this.props.main.props.onClick(e);
+    }
+
+
+    const { isOpen } = this.state;
     const { onIsOpenChange } = this.props;
-    const isOpen = !this.state.isOpen;
-    if (this.props.main.props.onClick) { this.props.main.props.onClick(); }
+    const nextOpenState = !isOpen;
     this.setState(
-      { isOpen },
+      { isOpen: nextOpenState },
       () => {
         if (onIsOpenChange) {
-          onIsOpenChange(isOpen);
+          onIsOpenChange(nextOpenState);
         }
       }
     );
-    if (isOpen) {
-      this.attachListeners();
-    } else {
-      this.detachListeners();
+
+    if (!this.isOpenControlled) {
+      if (nextOpenState) {
+        this.attachListeners();
+      } else {
+        this.detachListeners();
+      }
     }
   }
 
@@ -341,6 +363,7 @@ export class DropDown extends PureComponent {
         isFullWidth,
         anchor,
         main,
+        inertMain,
         items: itemsBefore,
         style,
         itemsStyle,
@@ -348,13 +371,15 @@ export class DropDown extends PureComponent {
         isPopOver,
         // handleDropDownChange,
         // mainStyle,
-        // isOpen,
+        isOpen: isOpenProp,
       },
       state: {
-        isOpen,
+        isOpen: isOpenState,
         shouldFocusTrigerrer,
       },
     } = this;
+
+    const isOpen = isOpenProp || isOpenState;
 
 
     // quikc dirty check
@@ -407,6 +432,7 @@ export class DropDown extends PureComponent {
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
         <UnstyledButton
+          inert={inertMain}
           data-drop-down-main
           role="menu"
           isFullWidth={isFullWidth}

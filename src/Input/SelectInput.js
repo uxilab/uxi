@@ -68,21 +68,20 @@ class SelectInput extends PureComponent {
 
     this.isControlled = props.value !== undefined;
 
+    const { children } = this.props;
+    const storedOptions = (this.mapChildrenForStorage(children) || {});
+
     this.state = {
       isOpen: false,
-      options: [],
-      optionsNode: [],
+      options: storedOptions.options || [],
+      optionsNode: storedOptions.optionsNode || [],
       // TODO: handle multi select
       selectedIndex: null,
     };
 
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
     this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
-  }
-
-  componentWillMount() {
-    const { children } = this.props;
-    this.storeOptions(children);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   componentDidMount() {
@@ -195,6 +194,7 @@ class SelectInput extends PureComponent {
       <span
         style={styles.trigerrer}
         onEsc={() => this.clickHandler(null)}
+        // onClick={this.clickHandler}
       >
         <div>
           {mainContent}
@@ -347,7 +347,7 @@ class SelectInput extends PureComponent {
     }
   }
 
-  storeOptions(children) {
+  mapChildrenForStorage(children) { // eslint-disable-line class-methods-use-this
     const options = [];
     const optionsNode = [];
     React.Children.forEach(children, (child, i) => {
@@ -359,9 +359,17 @@ class SelectInput extends PureComponent {
         },
       });
     });
-    this.setState({
+
+    return {
       options,
       optionsNode,
+    };
+  }
+
+  storeOptions(children) {
+    this.setState({
+      options: this.mapChildrenForStorage(children).options,
+      optionsNode: this.mapChildrenForStorage(children).optionsNode,
     });
   }
 
@@ -401,6 +409,7 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
+    console.log('handleDropDownChange', 'isOpen', isOpen);
     this.setState({ isOpen });
   }
 

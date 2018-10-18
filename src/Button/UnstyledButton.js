@@ -17,24 +17,30 @@ const UnstyledButtonUI = styled.button`
   }
 `;
 
-const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles, ...attr }) => {
+const UnstyledButtonDivUI = UnstyledButtonUI.withComponent('div');
+
+const UnstyledButton = ({ children, style, onClick, inline, wrapperStyles, inert, ...attr }) => {
   'r';
+
+  const UnstyledButtonComponent = inert
+    ? UnstyledButtonDivUI
+    : UnstyledButtonUI;
 
   if (inline) {
     return (
       <div style={{ minWidth: '100%', minHeight: '100%', ...wrapperStyles }}>
-        <UnstyledButtonUI {...attr} onClick={onClick} style={style}>
+        <UnstyledButtonComponent {...attr} onClick={onClick} style={style}>
           {children}
-        </UnstyledButtonUI>
+        </UnstyledButtonComponent>
       </div>
     );
   }
 
   return (
     <div style={{ minWidth: '100%', minHeight: '100%', display: 'flex', ...wrapperStyles }}>
-      <UnstyledButtonUI {...attr} onClick={onClick} style={style}>
+      <UnstyledButtonComponent {...attr} onClick={onClick} style={style}>
         {children}
-      </UnstyledButtonUI>
+      </UnstyledButtonComponent>
     </div>
   );
 };
