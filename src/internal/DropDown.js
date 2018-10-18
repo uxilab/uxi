@@ -421,7 +421,7 @@ export class DropDown extends PureComponent {
       // find the close btn
     }
 
-    const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: '0' } : {});
+    const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: inertMain ? '-1' : '0' } : {});
 
     const GDDynamicstyles = this.getDynamicItemsStyles();
 
@@ -430,7 +430,7 @@ export class DropDown extends PureComponent {
         <UnstyledButton
           inert={inertMain}
           data-drop-down-main
-          role="menu"
+          role={inertMain === false ? undefined : 'menu'}
           isFullWidth={isFullWidth}
           style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
           onClick={this.handleToggleVisibility}

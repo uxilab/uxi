@@ -4,7 +4,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const UnstyledButtonUI = styled.button`
+/* eslint-disable indent */
+const UnstyledButtonUI = styled.button.attrs({
+  tabIndex: ({ inert }) => (inert ? -1 : undefined),
+})`
   border: none;
   padding: 0;
   font-size: inherit;
@@ -12,10 +15,13 @@ const UnstyledButtonUI = styled.button`
   min-width: 100%;
   min-height: 100%;
   &:focus {
-    outline: none;
-    box-shadow: 0 0 10px #719ECE;
+    ${({ inert }) => (inert === false
+      ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
+      : '')
+    };
   }
 `;
+/* eslint-enable indent */
 
 const UnstyledButtonDivUI = UnstyledButtonUI.withComponent('div');
 
