@@ -178,9 +178,10 @@ export class DropDown extends PureComponent {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps !== this.props;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return nextProps !== this.props;
+  // }
+
   componentWillUpdate(nextProps, nextState) {
     const { isOpen: willBeOpenState } = nextState;
     const { isOpen: willBeOpenProps } = nextProps;
@@ -200,8 +201,12 @@ export class DropDown extends PureComponent {
     });
   }
 
-  componentDidUpdate() {
-    setTimeout(() => this.forceUpdate(), 1);
+  componentDidUpdate(prevProps) {
+    if (prevProps.items.length !== this.props.items.length) {
+      setTimeout(() => this.forceUpdate(), 1);
+    } else if (prevProps.items !== this.props.items) {
+      setTimeout(() => this.forceUpdate(), 1);
+    }
   }
 
   componentWillUnmount() {
