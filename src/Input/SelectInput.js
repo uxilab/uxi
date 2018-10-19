@@ -137,6 +137,20 @@ class SelectInput extends PureComponent {
     } else {
       window.removeEventListener('keydown', this.preventScrollingOnSpace);
     }
+
+    const { children } = this.props;
+    const shouldUpdateOptions = (
+      prevProps.children.length !== this.props.children.length ||
+      prevProps.children !== this.props.children
+    );
+
+    if (shouldUpdateOptions) {
+      const storedOptions = (this.mapChildrenForStorage(children) || {});
+      setTimeout(() => this.setState({
+        options: storedOptions.options,
+        optionsNode: storedOptions.optionsNode,
+      }), 1);
+    }
   }
 
   getTrigerrerLabel() {
@@ -226,25 +240,13 @@ class SelectInput extends PureComponent {
 
   getOptionsItem() {
     const {
-      children: childrenProp,
+      children,
       isOpen: isOpenProps,
     } = this.props;
 
     const { isOpen: isOpenState } = this.state;
 
     const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
-
-    let children = childrenProp;
-
-    const count = React.Children.count(childrenProp);
-
-    if (count === 1) {
-      const childrenChildrensCount = React.Children.count(childrenProp.props.child);
-      if (childrenChildrensCount > 1) {
-        children = childrenProp.props.child;
-      }
-    }
-
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
@@ -305,7 +307,7 @@ class SelectInput extends PureComponent {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
         if (onIsOpenChange) {
-          onIsOpenChange(!this.props.isOpen);
+          onIsOpenChange(!this.props.isOpen, e);
         }
       } else {
         e.preventDefault();
@@ -338,7 +340,7 @@ class SelectInput extends PureComponent {
     } else if (e.key === 'Escape' || e.keyCode === 27) {
       if (this.isOpenControlled) {
         if (this.props.onIsOpenChange) {
-          this.props.onIsOpenChange(false);
+          this.props.onIsOpenChange(false, e);
         }
       } else {
         this.setState({
@@ -435,7 +437,7 @@ class SelectInput extends PureComponent {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
         if (onIsOpenChange) {
-          onIsOpenChange(false);
+          onIsOpenChange(false, null);
         }
       } else {
         if (this.isControlled) {
