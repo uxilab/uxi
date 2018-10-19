@@ -80,7 +80,7 @@ const Options = (props) => {
         }
       }
     }}
-    aria-hidden={!props.isOpen}
+    aria-hidden={!(props.isOpen === false)}
     tabIndex={props.isOpen ? 0 : -1}
   />);
   // console.log(props.children.type)

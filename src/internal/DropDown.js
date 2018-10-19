@@ -359,10 +359,16 @@ export class DropDown extends PureComponent {
   }
 
   storeItemsRef(ref) {
+    const { onItemRef } = this.props;
+
     const itemsRef = ReactDOM // eslint-disable-line react/no-find-dom-node
       .findDOMNode(ref);
 
     this.setState({ itemsRef });
+
+    if (onItemRef) {
+      onItemRef(itemsRef);
+    }
   }
 
   render() {

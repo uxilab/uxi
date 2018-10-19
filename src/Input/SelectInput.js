@@ -64,7 +64,7 @@ class SelectInput extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.isOpenControlled = props.open !== undefined;
+    this.isOpenControlled = props.isOpen !== undefined;
 
     this.isControlled = props.value !== undefined;
 
@@ -72,7 +72,7 @@ class SelectInput extends PureComponent {
     const storedOptions = (this.mapChildrenForStorage(children) || {});
 
     this.state = {
-      isOpen: false,
+      isOpen: this.isOpenControlled ? this.props.isOpen : false,
       options: storedOptions.options || [],
       optionsNode: storedOptions.optionsNode || [],
       // TODO: handle multi select
@@ -82,6 +82,7 @@ class SelectInput extends PureComponent {
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
     this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
+    this.storeItemsRef = this.storeItemsRef.bind(this);
   }
 
   componentDidMount() {
@@ -107,6 +108,11 @@ class SelectInput extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { isOpen: isOpenState } = this.state;
+    const { isOpen: isOpenProps } = this.props;
+
+    const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
+
     if (this.isControlled) {
       // noop
     } else if (this.state.selectedIndex) {
@@ -126,7 +132,7 @@ class SelectInput extends PureComponent {
       }
     }
 
-    if (this.state.isOpen || this.props.isOpen) {
+    if (isOpen) {
       window.addEventListener('keydown', this.preventScrollingOnSpace);
     } else {
       window.removeEventListener('keydown', this.preventScrollingOnSpace);
@@ -145,8 +151,14 @@ class SelectInput extends PureComponent {
         error,
         success,
         value,
+        triggerElement,
       },
     } = this;
+
+    if (triggerElement) {
+      console.log('triggerElement', 'returning triggerelement', triggerElement);
+      return triggerElement;
+    }
 
     let selectedIndex = selectedIndexState;
     const selecteIndexMaybe = options.findIndex(x => x === value);
@@ -214,9 +226,25 @@ class SelectInput extends PureComponent {
 
   getOptionsItem() {
     const {
-      children,
+      children: childrenProp,
+      isOpen: isOpenProps,
     } = this.props;
-    const { isOpen } = this.state;
+
+    const { isOpen: isOpenState } = this.state;
+
+    const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
+
+    let children = childrenProp;
+
+    const count = React.Children.count(childrenProp);
+
+    if (count === 1) {
+      const childrenChildrensCount = React.Children.count(childrenProp.props.child);
+      if (childrenChildrensCount > 1) {
+        children = childrenProp.props.child;
+      }
+    }
+
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
@@ -271,15 +299,22 @@ class SelectInput extends PureComponent {
     });
   }
 
-
   preventScrollingOnSpace(e) {
+    console.log('preventScrollingOnSpace', e);
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
-      e.preventDefault();
-      e.stopPropagation();
+      if (this.isOpenControlled) {
+        const { onIsOpenChange } = this.props;
+        if (onIsOpenChange) {
+          onIsOpenChange(!this.props.isOpen);
+        }
+      } else {
+        e.preventDefault();
+        e.stopPropagation();
 
-      this.setState({
-        isOpen: false,
-      });
+        this.setState({
+          isOpen: false,
+        });
+      }
     } else if (e.key === 'Tab' || e.keyCode === 9) {
       if (!(document.activeElement.nodeName === 'BUTTON')) {
         const { activeElement } = document;
@@ -289,42 +324,64 @@ class SelectInput extends PureComponent {
         if (e.shiftKey) {
           if (activeElement === firstOptionItem && lastOptionItem && lastOptionItem.focus) {
             lastOptionItem.focus();
-            e.preventDefault();
+            if (!this.isOpenControlled) {
+              e.preventDefault();
+            }
           }
         } else if (activeElement === lastOptionItem && firstOptionItem && firstOptionItem.focus) {
           firstOptionItem.focus();
-          e.preventDefault();
+          if (!this.isOpenControlled) {
+            e.preventDefault();
+          }
         }
       }
     } else if (e.key === 'Escape' || e.keyCode === 27) {
-      this.setState({
-        isOpen: false,
-      });
+      if (this.isOpenControlled) {
+        if (this.props.onIsOpenChange) {
+          this.props.onIsOpenChange(false);
+        }
+      } else {
+        this.setState({
+          isOpen: false,
+        });
+      }
     } else if (e.key === 'ArrowDown' || e.keyCode === 40) {
-      e.preventDefault();
-      e.stopPropagation();
+      console.log('selectInput arrowDown');
+      console.log('selectInput arrowDown: this.itemRef', this.itemRef);
+      if (!this.isOpenControlled) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
+      // just go to next sigblings:
       const nextSiblingMaybe = document.activeElement.nextElementSibling;
+      console.log('nextSiblingMaybe', nextSiblingMaybe);
       if (nextSiblingMaybe && nextSiblingMaybe.focus) {
         nextSiblingMaybe.focus();
       } else {
-        const optionsWrapperDiv = document.activeElement.parentNode.nextElementSibling;
-        if (optionsWrapperDiv) {
-          const firstOptionItem = optionsWrapperDiv.firstChild;
+      // focus from main triggerer to (first) item:
+        const nextSiblingMaybeItem = document.activeElement.parentNode.nextElementSibling;
+        console.log('nextSiblingMaybeItem', nextSiblingMaybeItem);
+        if (nextSiblingMaybeItem) {
+          const firstOptionItem = nextSiblingMaybeItem.firstChild;
+          console.log('firstOptionItem', firstOptionItem);
           if (firstOptionItem && firstOptionItem.focus) {
             firstOptionItem.focus();
           }
-        } else {
+        } else if (this.itemRef) {
           // go back to first option element
-          const firstOption = document.activeElement.parentNode.firstChild;
+          const firstOption = this.itemRef.firstChild;
+          console.log('firstOption', firstOption);
           if (firstOption && firstOption.focus) {
             firstOption.focus();
           }
         }
       }
     } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
-      e.preventDefault();
-      e.stopPropagation();
+      if (!this.isOpenControlled) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
       const previousSiblingMaybe = document.activeElement.previousElementSibling;
       if (previousSiblingMaybe && previousSiblingMaybe.focus) {
@@ -375,11 +432,23 @@ class SelectInput extends PureComponent {
 
   clickHandler(e) {
     if (!e) {
-      this.setState({
-        selectedIndex: this.state.selectedIndex || null,
-        isOpen: false,
-      });
-      this.forceUpdate();
+      if (this.isOpenControlled) {
+        const { onIsOpenChange } = this.props;
+        if (onIsOpenChange) {
+          onIsOpenChange(false);
+        }
+      } else {
+        if (this.isControlled) {
+          // notify consumer ?
+        } else {
+          this.setState({
+            selectedIndex: this.state.selectedIndex || null,
+            isOpen: false,
+          });
+        }
+        this.forceUpdate();
+      }
+
       return;
     }
 
@@ -409,12 +478,34 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
-    this.setState({ isOpen });
+    if (!this.isOpenControlled) {
+      if (this.state.isOpen !== isOpen) {
+        this.setState({ isOpen });
+      }
+    }
+    if (this.props.onIsOpenChange) {
+      if (this.props.isOpen !== isOpen) {
+        this.props.onIsOpenChange(isOpen);
+      }
+    }
+  }
+
+  storeItemsRef(itemsNode) {
+    this.itemRef = itemsNode;
   }
 
   render() {
-    const { isOpen } = this.state;
-    const { isFullWidth, error, style, mainScrollingElementSelector } = this.props;
+    const { isOpen: isOpenState } = this.state;
+    const {
+      isFullWidth,
+      error,
+      style,
+      mainScrollingElementSelector,
+      inertTrigger,
+      isOpen: isOpenProp,
+    } = this.props;
+
+    const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
 
     const optionsItems = this.getOptionsItem();
 
@@ -423,12 +514,14 @@ class SelectInput extends PureComponent {
     return (
       <div style={style}>
         <DropDown
+          inertMain={inertTrigger}
           mainScrollingElementSelector={mainScrollingElementSelector}
           onIsOpenChange={this.handleDropDownChange}
           isFullWidth={isFullWidth || ('width' in style)}
           isOpen={isOpen}
           main={trigerer}
           items={optionsItems}
+          onItemRef={this.storeItemsRef}
           itemsStyle={{
             maxHeight: '200px',
             overflowY: 'auto',
