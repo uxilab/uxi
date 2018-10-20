@@ -170,7 +170,6 @@ class SelectInput extends PureComponent {
     } = this;
 
     if (triggerElement) {
-      console.log('triggerElement', 'returning triggerelement', triggerElement);
       return triggerElement;
     }
 
@@ -302,7 +301,6 @@ class SelectInput extends PureComponent {
   }
 
   preventScrollingOnSpace(e) {
-    console.log('preventScrollingOnSpace', e);
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -348,8 +346,6 @@ class SelectInput extends PureComponent {
         });
       }
     } else if (e.key === 'ArrowDown' || e.keyCode === 40) {
-      console.log('selectInput arrowDown');
-      console.log('selectInput arrowDown: this.itemRef', this.itemRef);
       if (!this.isOpenControlled) {
         e.preventDefault();
         e.stopPropagation();
@@ -357,23 +353,19 @@ class SelectInput extends PureComponent {
 
       // just go to next sigblings:
       const nextSiblingMaybe = document.activeElement.nextElementSibling;
-      console.log('nextSiblingMaybe', nextSiblingMaybe);
       if (nextSiblingMaybe && nextSiblingMaybe.focus) {
         nextSiblingMaybe.focus();
       } else {
       // focus from main triggerer to (first) item:
         const nextSiblingMaybeItem = document.activeElement.parentNode.nextElementSibling;
-        console.log('nextSiblingMaybeItem', nextSiblingMaybeItem);
         if (nextSiblingMaybeItem) {
           const firstOptionItem = nextSiblingMaybeItem.firstChild;
-          console.log('firstOptionItem', firstOptionItem);
           if (firstOptionItem && firstOptionItem.focus) {
             firstOptionItem.focus();
           }
         } else if (this.itemRef) {
           // go back to first option element
           const firstOption = this.itemRef.firstChild;
-          console.log('firstOption', firstOption);
           if (firstOption && firstOption.focus) {
             firstOption.focus();
           }
