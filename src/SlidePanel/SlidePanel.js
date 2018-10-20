@@ -113,7 +113,12 @@ class SidePanel extends React.Component {
                 children,
                 (c, index) => React.isValidElement(c) && React.cloneElement(c, {
                   key: `sidePanel-${index}`,
-                  onClose,
+                  onClose: (...a) => {
+                    if (c.props && c.props.onClose) {
+                      c.props.onClose(...a);
+                      onClose(...a);
+                    }
+                  },
                   anchor,
                 })
               )
