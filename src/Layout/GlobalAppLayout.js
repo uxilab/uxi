@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { FlexLeftCol, AppLayout } from './';
 import defaults from '../Menu/defaults'; // eslint-disable-line import/no-named-as-default
 
@@ -49,7 +50,6 @@ const AppLayoutExtended = AppLayout.extend`
 `;
 
 const InnerAppLayoutUI = AppLayout.extend`
-/* overflow-y: scroll; *//* applies to same elem as line 40 */
   &>*:nth-child(1) {
     flex-grow: 99;
     flex-shrink: 0;
@@ -58,6 +58,17 @@ const InnerAppLayoutUI = AppLayout.extend`
     flex-grow: 1;
     flex-shrink: 0;
   }
+`;
+
+const FlexLeftColumnInnerWrapper = styled.div`
+  min-height: 100%;
+  box-shadow: 0 53px 1px 2px rgba(72, 72, 72, 0.27), 0 53px 1px 2px rgba(32, 32, 32, 0.22);
+  z-index: 2;
+`;
+
+const HeaderWrapper = styled.div`
+  box-shadow: 0 0 1px 2px rgba(72, 72, 72, .27), 0 0 1px 2px rgba(32, 32, 32, 0.22);
+  z-index: 1;
 `;
 
 const errorMsg = `GlobalAppLayout will only work with all those props:
@@ -85,9 +96,9 @@ const GlobalAppLayout = (props) => {
 
   return (
     <FlexLeftColExtended style={{ ...wrapperStyle }}>
-      <div style={{ minHeight: '100%' }}>{menu}</div>
+      <FlexLeftColumnInnerWrapper>{menu}</FlexLeftColumnInnerWrapper>
       <AppLayoutExtended style={{ ...innerWrapperStyle }}>
-        <div>{header}</div>
+        <HeaderWrapper>{header}</HeaderWrapper>
         <InnerAppLayoutUI className="uxi_GAL-main-scrolling-element" >
           {content}
           {footer}
