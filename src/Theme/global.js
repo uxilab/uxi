@@ -45,6 +45,11 @@ export const makeGlobalCSSInjector = (theme) => {
       padding: 0;
       font-size: 16px;
     }
+    ::selection {
+      color: white;
+      /* text-decoration-color: white; */
+      background-color: rgba(0, 137, 122, 0.9); /* theme.accent.dark for contrast */
+    }
 
 
     /** Links */
