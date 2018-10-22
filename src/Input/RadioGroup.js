@@ -40,7 +40,7 @@ class RadioGroup extends Component {
     }
 
     focusRadios[0].focus();
-  };
+  }
 
   handleRadioChange = (event/* , checked */) => {
     this.setState({
@@ -50,7 +50,7 @@ class RadioGroup extends Component {
     if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }
-  };
+  }
 
   render() {
     const { children, name, value, onChange, ...other } = this.props;
@@ -59,7 +59,10 @@ class RadioGroup extends Component {
     const selectedValue = this.isControlled ? value : this.state.selectedValue;
 
     return (
-      <form role="radiogroup" {...other}>
+      <div
+        role="radiogroup"
+        {...other}
+      >
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) {
             return null;
@@ -85,7 +88,7 @@ class RadioGroup extends Component {
             },
           });
         })}
-      </form>
+      </div>
     );
   }
 }

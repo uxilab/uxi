@@ -114,22 +114,19 @@ const ExampleSimple = () => (
     </li>
     <li>
       <h3>Radio :</h3>
-      <Radio value="foobar" label="foobar" />
+      <Radio value="foobar" label="foobar" name="radio-1" />
     </li>
     <li>
       <h3>RadioGroup Watch out! </h3>
-      <p>
-        do not "block" the radio input by passing a `value` to radiogroup:<br />
-        pass it a defaultChecked instead (check next example)
-      </p>
-      <RadioGroup name="zevzeg" value="val A" onChange={() => { window.alert('radio changed'); }}>
+      <h3>Controlled RadioGroup :</h3>
+      <RadioGroup name="radio-2" value="val A" onChange={() => { console.log('radio changed'); }}>
         <Radio value="val A" label="First Value Label" />
         <Radio value="val B" label="Second Value Label" />
       </RadioGroup>
     </li>
     <li>
-      <h3>RadioGroup :</h3>
-      <RadioGroup name="zevzeg" defaultValue="val A" onChange={() => { window.alert('radio changed'); }}>
+      <h3>Uncontrolled RadioGroup :</h3>
+      <RadioGroup name="radio-3" defaultValue="val A" onChange={() => { console.log('radio changed'); }}>
         <Radio value="val A" label="First Value Label" />
         <Radio value="val B" label="Second Value Label" />
       </RadioGroup>
