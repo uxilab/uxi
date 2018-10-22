@@ -66,7 +66,6 @@ const styles = {
     minWidth: '100px',
     background: 'white',
     position: 'absolute',
-    overflow: 'hidden',
     border: '1px solid #cecece',
     borderColor: 'transparent',
     marginTop: '1px',
