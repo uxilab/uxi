@@ -25,6 +25,7 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
     overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #222222 !important;
   }
 `;
 
@@ -38,6 +39,7 @@ const styles = {
     display: 'block',
     borderRadius: '3px',
     overflow: 'hidden',
+    position: 'relative',
   },
   trigerrerIcon: {
     position: 'absolute',
@@ -47,16 +49,9 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     padding: 0,
-    maxHeight: '32px',
-    height: '32px',
+    maxHeight: '30px',
+    height: '30px',
     boxSizing: 'border-box',
-  },
-  button: {
-    // border: 'none',
-    // borderColor: 'transparent',
-    borderRadius: '0 3px 3px 0',
-    padding: '0 8px',
-    minHeight: 'calc(100% - 2px)',
   },
 };
 
@@ -229,7 +224,11 @@ class SelectInput extends PureComponent {
           <Button
             inert
             type="primary"
-            style={{ ...styles.ButtonWithoutRipple, borderRadius: '0 3px 3px 0' }}
+            style={{
+              borderBottomLeftRadius: 0,
+              borderTopLeftRadius: 0,
+              minHeight: '30px',
+            }}
             icon={<Arrowdown />}
           />
         </div>
