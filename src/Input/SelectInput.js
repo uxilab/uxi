@@ -139,12 +139,39 @@ class SelectInput extends PureComponent {
       prevProps.children !== this.props.children
     );
 
+    let storedOptions = null;
     if (shouldUpdateOptions) {
-      const storedOptions = (this.mapChildrenForStorage(children) || {});
-      setTimeout(() => this.setState({
-        options: storedOptions.options,
-        optionsNode: storedOptions.optionsNode,
-      }), 1);
+      storedOptions = (this.mapChildrenForStorage(children) || {});
+    }
+
+    const shouldClose = (
+      this.isControlled
+      && !this.isOpenControlled
+      && this.props.value !== prevProps.value
+    );
+
+    if (shouldUpdateOptions || shouldClose) {
+      setTimeout(() => {
+        let newStateProps = {};
+
+        if (storedOptions) {
+          newStateProps = {
+            options: storedOptions.options,
+            optionsNode: storedOptions.optionsNode,
+          };
+        }
+
+        if (shouldClose) {
+          newStateProps = {
+            ...newStateProps,
+            isOpen: false,
+          };
+        }
+
+        if (Object.keys(newStateProps).length) {
+          this.setState(newStateProps);
+        }
+      }, 1);
     }
   }
 
