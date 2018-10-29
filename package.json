@@ -3,6 +3,10 @@
   "version": "0.0.344",
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
+  "engine": {
+    "node": "10.12.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "heroku-postbuild": "npm run lint && npm run test && cd docs/ && npm i && npm run packAndBundle",
     "start": "cd docs/ && npm start",
