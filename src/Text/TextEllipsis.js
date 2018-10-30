@@ -20,10 +20,6 @@ export const TextEllipsisUI = styled.div.attrs({
     }
     return 'no title';
   },
-  /* children: ({ children, truncateHead }) => (truncateHead
-    ? [children, () => (<span>{`${children}`}&nbsp;</span>)]
-    : children),
-    */
 })`
   white-space: nowrap;
   overflow: hidden;
@@ -31,12 +27,6 @@ export const TextEllipsisUI = styled.div.attrs({
   max-width: 100%;
   /* truncate tail by default */
   ${({ truncateHead }) => (truncateHead ? 'text-align: left; direction: rtl;' : '')};
-  ${({ truncateHead }) => (truncateHead && `
-    &:after {
-      content: ' ';
-      display: block;
-    }
-  `)};
 `;
 
 const TextEllipsis = (props = {}) => (
