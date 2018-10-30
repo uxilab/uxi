@@ -20,7 +20,7 @@ const ContentUI = styled.div`
   max-width: 100%;
 
   width: auto;
-  flex-grow: 99;
+  flex-grow: 999999999;
   flex-shrink: 0;
   /* @media (min-width: 1024px) {
     min-width: ${({ contentMinWidth }) => contentMinWidth};
