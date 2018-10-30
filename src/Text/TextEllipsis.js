@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const testEllipsisStylesCSSString = `
+export const textEllipsisStylesCSSString = `
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
 `;
 
-const TextEllipsis = styled.div.attrs({
+export const TextEllipsisUI = styled.div.attrs({
   title: ({ children, title }) => {
     if (title) {
       if (typeof title === 'string') {
@@ -20,9 +20,10 @@ const TextEllipsis = styled.div.attrs({
     }
     return 'no title';
   },
-  children: ({ children, truncateHead }) => (truncateHead
+  /* children: ({ children, truncateHead }) => (truncateHead
     ? [children, () => (<span>{`${children}`}&nbsp;</span>)]
     : children),
+    */
 })`
   white-space: nowrap;
   overflow: hidden;
@@ -37,5 +38,12 @@ const TextEllipsis = styled.div.attrs({
     }
   `)};
 `;
+
+const TextEllipsis = (props = {}) => (
+  props.truncateHead
+    ? <TextEllipsisUI {...props}><bdi>{props.children}</bdi></TextEllipsisUI>
+    : <TextEllipsisUI {...props} />
+);
+
 
 export default TextEllipsis;
