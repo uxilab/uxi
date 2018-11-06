@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
 const fs = require('fs');
+const babelConfig = require('./babel.config');
 
 const cwd = process.cwd();
 let hook;
@@ -33,12 +34,19 @@ const prodConfig = {
     './src/index.js',
   ],
   output: {
-    path: path.join(cwd, 'dist'),
+    path: path.join(cwd, 'build'),
     filename: 'app.js',
   },
   devtool: 'nosources-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [
+      'node_modules',
+    ],
+    alias: {
+      'uxi': require('path').resolve(__dirname, '../components/build'),
+    },
+    symlinks: false,
   },
   module: {
     rules: [
@@ -48,12 +56,7 @@ const prodConfig = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            presets: [
-              'env',
-              'react',
-              'stage-0',
-            ],
-            plugins: ['transform-object-rest-spread'],
+            ...babelConfig,
           },
         },
         exclude: /node_modules/,
@@ -69,13 +72,13 @@ const prodConfig = {
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack
-    new CompressionPlugin({
+    /*new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0,
-    }),
+    }),*/
   ],
 };
 

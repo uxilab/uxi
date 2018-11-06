@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
-// const pgk = require('./package.json');
+const babelConfig = require('./babel.config');
+
 const cwd = process.cwd();
 
 module.exports = {
@@ -25,24 +26,12 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react'],
-            // plugins: [require('@babel/plugin-proposal-object-rest-spread')],
-            plugins: ['transform-object-rest-spread'],
+         options: {
+          babelrc: false,
+            ...babelConfig,
           },
         },
       },
-      // {
-      //   test: /\.jsx?$/,
-      //   use: [
-      //     'babel-loader',
-      //   ],
-      //   exclude: /node_modules/,
-      // },
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader', 'css-loader'],
-      // },
     ],
   },
   plugins: [
@@ -52,31 +41,13 @@ module.exports = {
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    /*
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      sourceMap: true,
-      compress: {
-        drop_console: false, // keep logs for debug !!! remove me!
-        warnings: false, // Suppress uglification warnings
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        screw_ie8: true,
-      },
-      output: {
-        comments: false,
-      },
-      exclude: [/\.min\.js$/gi], // skip pre-minified libs
-    }),
-    */
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack
-    new CompressionPlugin({
+    /*new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0,
-    }),
+    }),*/
   ],
 };

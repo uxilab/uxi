@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "uxi-cli build:babel",
     "dev": "uxi-cli dev",
     "pack": "uxi-cli pack",
     "deploy": "npm version patch && npm run pack && npm publish build",

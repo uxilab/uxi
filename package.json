@@ -5,7 +5,6 @@
     "packages/*"
   ],
   "scripts": {
-    "prebuild": "git clean -fdx packages -e packages/*/node_modules",
     "bootstrap": "lerna bootstrap",
     "dev": "concurrently \"yarn watch\" \"lerna run dev --stream\"",
     "lint": "eslint --cache --ignore-path .gitignore ./packages/*/src",
@@ -13,7 +12,7 @@
     "test:coverage": "jest --coverage",
     "build:babel": "lerna run build:babel",
     "build:webpack": "lerna run build:webpack",
-    "build": "yarn build:babel && yarn build:webpack",
+    "build": "lerna run build",
     "release": "yarn lint && yarn build && lerna publish",
     "watch": "yarn build:babel -- -w",
     "predeploy": "yarn build",
