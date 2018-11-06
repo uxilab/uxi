@@ -12,9 +12,9 @@ import {
   InputGroup,
   SearchForm,
   RangeInput,
-} from '../../../../../src/Input';
+} from 'uxi/Input';
 import { Separator } from 'uxi/Menu';
-import Img from '../../../../../src/Img';
+import Img from 'uxi/Img';
 import { Merge, Slack, Facebook } from 'uxi/Icons';
 import { IconButton, Button } from 'uxi/Button';
 import { AvatarWithName } from 'uxi/Img';

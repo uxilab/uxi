@@ -1,6 +1,6 @@
 import React from 'react';
-import { Loader, MiniLoader } from '../../../../../src/Motion';
-import { Button } from '../../../../../src/Button';
+import { Loader, MiniLoader } from 'uxi/Motion';
+import { Button } from 'uxi/Button';
 
 const ExampleSimple = () => (
   <ul>

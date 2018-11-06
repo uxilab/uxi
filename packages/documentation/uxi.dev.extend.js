@@ -8,16 +8,12 @@ module.exports = (config) => {
     exclude: /node_modules/,
   });
 
-  config.devServer.port = 8989;
-  config.entry[1].replace(/(:\d*)$/, ':8989');
+  config.devServer.port = 8997;
+  config.entry[1].replace(/(:\d*)$/, ':8997');
 
   config.resolve.alias = {
-    uxi: path.resolve(__dirname, '../src'),
-    'styled-components': path.resolve(__dirname, 'node_modules/styled-components'),
-    'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-    react: path.resolve(__dirname, 'node_modules/react'),
+    'uxi': path.resolve(__dirname, '../components/build'),
   };
-
 
   return config;
 };

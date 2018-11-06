@@ -6,7 +6,7 @@ import FontDefinition from './FontDefinition';
 import MarketingFontDefinition from './MarketingFontDefinition';
 import ColorLightTheme from './ColorLightTheme';
 import ColorDarkTheme from './ColorDarkTheme';
-import { ErrorText } from '../../../../../src/Text';
+import { ErrorText } from 'uxi/Text';
 
 const FontPage = () => (
   <div>

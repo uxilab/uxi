@@ -1,6 +1,6 @@
 import React from 'react';
-import Alert from '../../../../../src/Alert';
-import { P } from '../../../../../src/Classic';
+import Alert from 'uxi/Alert';
+import { P } from 'uxi/Classic';
 
 const ExampleSimple = () => (
   <div>

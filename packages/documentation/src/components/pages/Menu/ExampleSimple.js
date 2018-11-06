@@ -1,15 +1,15 @@
 import React from 'react';
-import HorizontalMenu from '../../../../../src/Menu/HorizontalMenu';
-import VerticalMenu from '../../../../../src/Menu/VerticalMenu';
+import HorizontalMenu from 'uxi/Menu/HorizontalMenu';
+import VerticalMenu from 'uxi/Menu/VerticalMenu';
 import {
   DropDownMenu,
   Separator,
-} from '../../../../../src/Menu';
+} from 'uxi/Menu';
 import {
   DropDown,
-} from '../../../../../src/internal/DropDown';
-import { Button } from '../../../../../src/Button';
-import { Merge, Arrowdown } from '../../../../../src/Icons';
+} from 'uxi/internal/DropDown';
+import { Button } from 'uxi/Button';
+import { Merge, Arrowdown } from 'uxi/Icons';
 import MenuItem from 'uxi/Menu/MenuItem';
 
 const ExampleSimple = () => (

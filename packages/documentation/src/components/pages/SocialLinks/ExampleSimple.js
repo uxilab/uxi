@@ -1,6 +1,6 @@
 import React from 'react';
 // import { SocialLinks } from 'uxi/List/SocialLinks';
-import { SocialLinks } from '../../../../../src/List';
+import { SocialLinks } from 'uxi/List';
 
 const data = [
   {

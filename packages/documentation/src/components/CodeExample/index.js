@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { parse } from 'react-docgen';
 import CodeBlock from './CodeBlock';
 // import ClearFix from 'material-ui/internal/ClearFix';
-import { DivPadding } from '../../../../src/Base';
+import { DivPadding } from 'uxi/Base';
 /* eslint-disable */
 
 class CodeExample extends Component {

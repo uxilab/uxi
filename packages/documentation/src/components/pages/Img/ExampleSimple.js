@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from '../../../../../src/Img';
+import Img from 'uxi/Img';
 
 const ExampleSimple = () => (
   <ul>

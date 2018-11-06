@@ -1,5 +1,5 @@
 import React from 'react';
-import { CollapsibleBox, CollapsibleBox2, BoxItem, BoxItem2 } from '../../../../../src/Box';
+import { CollapsibleBox, CollapsibleBox2, BoxItem, BoxItem2 } from 'uxi/Box';
 
 const ExampleSimple = () => (
   <div>
