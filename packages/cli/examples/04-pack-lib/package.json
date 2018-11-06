@@ -1,0 +1,14 @@
+{
+  "name": "uxi-lib-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pack": "uxi-cli pack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "uxi-cli": "^1.0.65"
+  }
+}

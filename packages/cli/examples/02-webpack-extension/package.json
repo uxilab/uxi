@@ -1,0 +1,20 @@
+{
+  "name": "uxi-cli-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "uxi-cli dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "uxi-cli": "^1.0.64"
+  },
+  "dependencies": {
+    "marked": "^0.3.19",
+    "raw-loader": "^0.5.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}

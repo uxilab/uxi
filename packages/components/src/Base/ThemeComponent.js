@@ -1,19 +1,11 @@
-/* @flow */
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-/**
- * TODO: Some of thos compos still use context or import the theme directly, fix it
- */
-export type ThemeComponentProps = {
-  style: Object;
-  isDark: Boolean,
-  fromParentStyle: Object;
-}
+
 
 // call context uxiTheme
 // check theme component to see it uses the good one this.context.uxiTheme
 
-class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
+class ThemeComponent extends Component {
   static contextTypes = {
     uxiTheme: PropTypes.object.isRequired,
     isFixedWidth: PropTypes.func,
@@ -31,7 +23,7 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
     };
   }
 
-  getSubStylePseudoElement(name: string, subStyleName: string, pseudoElementName: string) {
+  getSubStylePseudoElement(name, subStyleName, pseudoElementName) {
     const theme = this.context.uxiTheme;
     const result = {};
 
@@ -40,7 +32,7 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
     return result;
   }
 
-  getPseudoElement(name: string, pseudoElement: string) {
+  getPseudoElement(name, pseudoElement) {
     const theme = this.context.uxiTheme;
     const result = {};
     const pseudoElementStyle = theme[`${name}:${pseudoElement}`] || {};
@@ -50,14 +42,14 @@ class ThemeComponent<P:ThemeComponentProps> extends Component<P> {
     return result;
   }
 
-  getSubStyle(name: string, subStyleName: string, stylesFromComponent: Object = {}) {
+  getSubStyle(name, subStyleName, stylesFromComponent) {
     const theme = this.context.uxiTheme;
     const themeForComponent = theme[`${name}:${subStyleName}`] || {};
 
     return Object.assign({}, themeForComponent, stylesFromComponent);
   }
 
-  getStyle(name: string, stylesFromComponent: Object = {}) {
+  getStyle(name, stylesFromComponent) {
     const { style, fromParentStyle } = this.props;
     const theme = this.context.uxiTheme;
     const themeForComponent = theme[name] || {};

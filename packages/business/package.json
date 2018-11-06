@@ -1,0 +1,41 @@
+{
+  "name": "uxi-business",
+  "version": "1.0.18",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "uxi-cli dev",
+    "pack": "uxi-cli pack",
+    "deploy": "npm version patch && npm run pack && npm publish build",
+    "installPeerDeps": "npm i uxi react react-dom react-intl redux-form react-redux styled-components redux --no-save",
+    "postinstall": "npm run installPeerDeps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uxilab/uxi-business.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uxilab/uxi-business/issues"
+  },
+  "homepage": "https://github.com/uxilab/uxi-business#readme",
+  "dependencies": {
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-actions": "^2.6.1"
+  },
+  "devDependencies": {
+    "uxi-cli": "^1.0.71"
+  },
+  "peerDependencies": {
+    "uxi": "*",
+    "react": "^16.3.2",
+    "react-dom": "^16.4.2",
+    "react-intl": "^2.4.0",
+    "redux-form": "^7.1.2",
+    "react-redux": "^5.0.6",
+    "styled-components": "3.2.0",
+    "redux": "^3.6.0"
+  }
+}
