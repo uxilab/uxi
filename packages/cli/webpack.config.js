@@ -20,12 +20,11 @@ if (fs.existsSync(path.resolve(cwd, './uxi.extend.js'))) {
   hook = require(path.resolve(cwd, './uxi.extend.js'));
 }
 
-
-if (!fs.existsSync(path.join(cwd, 'dist'))) {
-  fs.mkdirSync(path.join(cwd, 'dist'));
+if (!fs.existsSync(path.join(cwd, 'build'))) {
+  fs.mkdirSync(path.join(cwd, 'build'));
 }
 
-fs.copyFileSync(templateWebpackPath, path.join(cwd, 'dist/index.html'));
+fs.copyFileSync(templateWebpackPath, path.join(cwd, 'build/index.html'));
 
 const prodConfig = {
   mode: 'production',
@@ -40,18 +39,12 @@ const prodConfig = {
   devtool: 'nosources-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [
-      'node_modules',
-    ],
-    alias: {
-      'uxi': require('path').resolve(__dirname, '../components/build'),
-    },
-    symlinks: false,
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -59,7 +52,6 @@ const prodConfig = {
             ...babelConfig,
           },
         },
-        exclude: /node_modules/,
       },
     ],
   },

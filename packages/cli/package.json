@@ -19,7 +19,7 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint -c 'node_modules/uxi-cli/.eslintrc' ",
     "build:babel": "rimraf ./build && cross-env NODE_ENV=release babel src -d build --config-file ../../.babelrc --copy-files",
-    "build:react": "webpack --config ../../packages/cli/webpack.config.js",
+    "build:webpack": "webpack --config ../../packages/cli/webpack.config.js",
     "dev": "webpack-dev-server --config ../../packages/cli/webpack.dev.config.js",
     "pack": "cross-env NODE_ENV=release babel --no-babelrc ./src --out-dir ./build --presets=env,react,stage-0 --plugins=transform-object-rest-spread,transform-class-properties --ignore '__tests__/**' && babel-node --presets=env,react,stage-0 --plugins=transform-object-rest-spread,transform-class-properties  --no-babelrc -- ./node_modules/uxi-cli/scripts/copy-files.js"
   },
