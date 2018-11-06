@@ -4,13 +4,14 @@
   "description": "doc for cluedin-ui",
   "main": "./server/index.js",
   "scripts": {
-    "start": "node .",
+    "lint:fix": "uxi-cli lint --quiet --fix ",
+    "lint": "uxi-cli lint",
+    "test": "uxi-cli test",
     "dev": "uxi-cli dev",
     "dev:public": "uxi-cli dev --host 0.0.0.0 --port 8989",
-    "packAndBundle": "npm run pack && npm run build",
     "build": "uxi-cli build:webpack",
-    "pack": "uxi-cli pack",
-    "deploy-doc": "npm run buildAndBundle && echo '\n\n # now: git push uxilab\n\n' "
+    "deploy-doc": "npm run buildAndBundle && echo '\n\n # now: git push uxilab\n\n' ",
+    "deploy-doc-from-old-root": "yarn run lint && yarn run test && cd docs/ && npm run deploy-doc"
   },
   "author": "",
   "license": "ISC",

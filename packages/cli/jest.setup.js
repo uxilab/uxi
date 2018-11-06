@@ -1,6 +1,6 @@
 // Make Enzyme functions available in all test files without importing
-var enzyme = require('enzyme');
-var Adapter = require('enzyme-adapter-react-16');
+const enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
 
 enzyme.configure({ adapter: new Adapter() });
 

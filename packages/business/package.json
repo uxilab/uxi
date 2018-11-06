@@ -4,12 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint:fix": "uxi-cli lint --quiet --fix ",
+    "lint": "uxi-cli lint",
     "build": "uxi-cli build:babel",
-    "dev": "uxi-cli dev",
-    "pack": "uxi-cli pack",
-    "deploy": "npm version patch && npm run pack && npm publish build",
-    "installPeerDeps": "npm i uxi react react-dom react-intl redux-form react-redux styled-components redux --no-save",
-    "postinstall": "npm run installPeerDeps"
+    "test": "uxi-cli test"
   },
   "repository": {
     "type": "git",
@@ -27,7 +25,7 @@
     "redux-actions": "^2.6.1"
   },
   "devDependencies": {
-    "uxi-cli": "^1.0.71"
+    "@uxi/cli": "^2.0.0"
   },
   "peerDependencies": {
     "uxi": "*",

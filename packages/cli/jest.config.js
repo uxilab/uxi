@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-    '^.+\\.js$': '<rootDir>/node_modules/uxi-cli/jest.transform.js',
+    '^.+\\.js$': '<rootDir>/packages/cli/jest.transform.js',
   },
   rootDir: '../../',
   moduleDirectories: [
@@ -8,7 +8,7 @@ module.exports = {
     'src',
   ],
   setupFiles: [
-    '<rootDir>/node_modules/uxi-cli/jest.setup.js',
+    '<rootDir>/packages/cli/jest.setup.js',
   ],
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',

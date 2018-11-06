@@ -1,10 +1,3 @@
-const babelOptions = {
-  presets: [
-    'env',
-    'react',
-    'stage-0',
-  ],
-  plugins: ['transform-object-rest-spread', 'transform-class-properties'],
-};
+const babelOptions = require('./babel.config');
 
 module.exports = require('babel-jest').createTransformer(babelOptions);

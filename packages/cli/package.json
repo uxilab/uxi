@@ -10,18 +10,15 @@
     "uxi": "bin/index.js"
   },
   "scripts": {
-    "deploy": "npm version patch && npm publish"
   },
   "commands": {
-    "packAndBundle": "npm run pack && npm run build",
-    "test": "jest --config node_modules/uxi-cli/jest.config.js",
-    "test:watch": "jest  --config node_modules/uxi-cli/jest.config.js --watchAll",
+    "test": "jest --config ../../packages/cli/jest.config.js",
+    "test:watch": "jest  --config ../../packages/cli/jest.config.js --watchAll",
     "test:coverage": "jest --coverage",
-    "lint": "eslint -c 'node_modules/uxi-cli/.eslintrc' ",
+    "lint": "eslint -c ../../packages/cli/.eslintrc ./src",
     "build:babel": "rimraf ./build && cross-env NODE_ENV=release babel src -d build --config-file ../../.babelrc --copy-files",
     "build:webpack": "webpack --config ../../packages/cli/webpack.config.js",
-    "dev": "webpack-dev-server --config ../../packages/cli/webpack.dev.config.js",
-    "pack": "cross-env NODE_ENV=release babel --no-babelrc ./src --out-dir ./build --presets=env,react,stage-0 --plugins=transform-object-rest-spread,transform-class-properties --ignore '__tests__/**' && babel-node --presets=env,react,stage-0 --plugins=transform-object-rest-spread,transform-class-properties  --no-babelrc -- ./node_modules/uxi-cli/scripts/copy-files.js"
+    "dev": "webpack-dev-server --config ../../packages/cli/webpack.dev.config.js"
   },
   "commandsArgs": {
     "test": "[<targetPath>]",
