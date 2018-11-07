@@ -15,6 +15,9 @@ import RAWExampleSimpleFullWidth from '!raw-loader!./ExampleSimpleFullWidth';
 import ExampleSimpleControlled from './ExampleSimpleControlled';
 import RAWExampleSimpleControlled from '!raw-loader!./ExampleSimpleControlled';
 
+import ExampleManagedControlled from './ExampleManagedControlled';
+import RAWExampleManagedControlled from '!raw-loader!./ExampleManagedControlled';
+
 import ExampleSimpleUncontrolled from './ExampleSimpleUncontrolled';
 import RAWExampleSimpleUncontrolled from '!raw-loader!./ExampleSimpleUncontrolled';
 
@@ -65,10 +68,20 @@ const SelectInputPage = () => (
         <CodeExample
           code={RAWExampleSimpleControlled}
           component
-          title="Controlled SelectInput"
+          title="Controlled SelectInput (half managed - button)"
           hasPadding
         >
           <ExampleSimpleControlled />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleManagedControlled}
+          component
+          title="Controlled SelectInput (fully managed)"
+          hasPadding
+        >
+          <ExampleManagedControlled />
         </CodeExample>
       </li>
       <li>

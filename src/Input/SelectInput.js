@@ -477,6 +477,11 @@ class SelectInput extends PureComponent {
       if (this.isControlled) {
         const { onChange } = this.props;
         const selectedIndex = e.currentTarget.dataset.index;
+        if (!this.isOpenControlled) {
+          this.setState({
+            isOpen: false,
+          });
+        }
         if (onChange) {
           const { options } = this.state;
           const value = options[selectedIndex];
