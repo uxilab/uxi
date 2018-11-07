@@ -98,9 +98,11 @@ const GlobalMenuPanelWrapper = styled.div`
 
 class GlobalMenuPanel extends Component {
   handleClickOutside() {
-    const { onClickOutside } = this.props;
-    if (onClickOutside) {
-      onClickOutside();
+    const { onClickOutside, isOpen } = this.props;
+    if (isOpen) {
+      if (onClickOutside) {
+        onClickOutside();
+      }
     }
   }
   render() {
