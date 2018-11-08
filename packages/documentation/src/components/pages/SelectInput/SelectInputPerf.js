@@ -10,21 +10,26 @@ const InputUI = styled.input`
  
 `;
 
-const options = [
-  {
-    name: 'Ava',
-    pic: 'https://randomuser.me/api/portraits/women/82.jpg',
-  }, {
-    name: 'Regina',
-    pic: 'https://randomuser.me/api/portraits/women/37.jpg'
-  }, {
-    name: 'rem',
-    pic: 'https://randomuser.me/api/portraits/men/3.jpg'
-  }, {
-    name: 'Britany',
-    pic: 'https://randomuser.me/api/portraits/women/76.jpg'
+const createOnTheFlyValue = (value) => {
+  if(!value) {
+    return [];
   }
-]
+
+  return [
+    { 
+      name: `${value} - a`,
+      pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+    },
+    {
+      name: `${value} - b`,
+      pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+    },
+    {
+      name: `${value} - c`,
+      pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+    },
+  ];
+}
 
 class SelectPerf extends Component {
   constructor(props) {
@@ -32,20 +37,33 @@ class SelectPerf extends Component {
 
     this.state = {
       selectedValue: "",
-      options: options,
+      options: [
+        {
+          name: 'Ava',
+          pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+        }, {
+          name: 'Regina',
+          pic: 'https://randomuser.me/api/portraits/women/37.jpg'
+        }, {
+          name: 'rem',
+          pic: 'https://randomuser.me/api/portraits/men/3.jpg'
+        }, {
+          name: 'Britany',
+          pic: 'https://randomuser.me/api/portraits/women/76.jpg'
+        }
+      ],
     }
   }
 
 
   render() {
-    const { selectedValue } = this.state;
+    const { selectedValue, options } = this.state;
+    const optionsToUse = createOnTheFlyValue(selectedValue).concat(options);
 
     return (
       <div style={{paddingTop: '300px', height:'100%', minHeight:'200px', paddingLeft:'300px'}}>
-      
-        <br />
-        <div>Selected Value: {this.state.selectedValue} </div>
 
+        <div>Selected Value: {this.state.selectedValue} </div>
 
             {/* <KeyNavigation onChange={(value) => {
               alert(value);
@@ -61,23 +79,24 @@ class SelectPerf extends Component {
             </KeyNavigation> */}
 
         <LookUp
-          main={<InputUI
-            value={this.state.selectedValue}
-            onChange={(e) => {
-              this.setState({
-                selectedValue: e.target.value,
-              })
-            }}
-          />}
+          main={
+            <InputUI
+              value={this.state.selectedValue}
+              onChange={(e) => {
+                this.setState({
+                  selectedValue: e.target.value,
+                })
+              }}
+            />
+          }
         >
-          <KeyNavigation onChange={(e) => {
-              console.log(e);
+          <KeyNavigation onChange={(e, value) => {
               this.setState({
-                selectedValue: e.target.value,
+                selectedValue: value,
               })
             }}>
             {
-              options.filter(function (o) {
+              optionsToUse.filter(function (o) {
                 return (o.name.toLowerCase().indexOf(selectedValue.toLowerCase()) > -1);
               }).map(({ name, pic }) => (
                 <Flex value={name}>

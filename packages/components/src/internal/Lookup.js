@@ -174,11 +174,7 @@ export class DropDown extends PureComponent {
     const wasOpen = this.isOpenControlled ? prevOpen : prevOpenState;
     const { positioning, dynamicStyle } = this.state;
 
-    console.log('componentDidUpdate');
     if(isOpen !== wasOpen) {
-
-      console.log('update dycname');
-
       this.setState({
         dynamicStyle: this.getFullStyle(),
       });
@@ -377,6 +373,7 @@ export class DropDown extends PureComponent {
           onKeyUp={(e) => {
             if(e.key === 'Enter' || e.key === 'Escape') {
               this.handleToggleVisibility();
+              return;
             }
 
             if(e.key === 'ArrowDown') {
@@ -387,6 +384,12 @@ export class DropDown extends PureComponent {
               ) {
                 this.itemsRef.current.firstChild.firstChild.focus();
               }
+              return;
+            }
+
+            const open = this.getOpenState();
+            if(!open) {
+              this.handleToggleVisibility();
             }
           }}
           {...tabIndexButtonattr}

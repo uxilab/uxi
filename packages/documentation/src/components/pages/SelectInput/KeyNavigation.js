@@ -26,7 +26,7 @@ const OptionsUI = styled.li`
     background-color: green;
   }
 `;
-
+/*
 const Options = ({
   onEsc,
   onClick,
@@ -74,7 +74,8 @@ const Options = ({
     />
   );
 };
-
+*/
+//TODO : Map children WHEN the children is changing.
 
 const mapChildrenForStorage = (children) => {
   const values = [];
@@ -95,19 +96,43 @@ const mapChildrenForStorage = (children) => {
   };
 }
 
+const KeyNavigationItem = ({
+  onClick,
+  selected,
+  value,
+  index,
+  children
+}) => {
+  return (
+    <OptionsUI
+      tabIndex={index}
+      onKeyPress={e => {
+        if(e.keyCode === 13 || e.key === 'Enter') {
+          onClick(e, index, value);
+        }
+      }}
+      onClick={e => {
+        onClick(e, index, value);
+      }}
+      onEsc={() => {
+        onClick(e, index, value);
+      }}
+      data-index={index}
+      selected={selected}
+    >
+      {children}
+    </OptionsUI>
+  );
+}
+
 class KeyNavigation extends Component {
   constructor(props) {
     super(props);
-
-    const { children } = props;
-
-    const storedOptions = mapChildrenForStorage(children) || {};
     this.state = {
-      values: storedOptions.values || [],
-      optionsNode: storedOptions.optionsNode || [],
+      selectedIndex: 0,
     };
-
     this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
     this.mainRef = React.createRef();
   }
 
@@ -189,84 +214,34 @@ class KeyNavigation extends Component {
       window.removeEventListener('keydown', this.preventScrollingOnSpace);
   }
 
-  clickHandler(e) {
+  clickHandler(e, index, value) {
     const { onChange } = this.props;
-    let selectedIndex;
-
-    if (!e) {
-      selectedIndex = this.state.selectedIndex || null;
-    } else {
-      selectedIndex = e.currentTarget.dataset.index;
-    }
 
     this.setState({
-      selectedIndex,
+      selectedIndex: index,
     });
 
     if (onChange) {
-      const { values } = this.state;
-      const value = values[selectedIndex];
-      const fakeEvent = {
-        target: { value },
-        currentTarget: { value },
-      };
-      onChange(fakeEvent, value);
+      onChange(e, value);
     }
   }
 
-  getOptionsItem() {
-    const {
-      children,
-    } = this.props;
+  getOptionsItem(optionsNode, values) {
+    const { children } = this.props;
+    const { selectedIndex } = this.state;
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
-      const isTheOne = this.state.selectedIndex === i;
-
-      if (React.isValidElement(child)) {
-        if (!isDOMTypeElement(child)) {
-          return (
-            <OptionsUI
-              tabIndex={i}
-              onKeyPress={(e) => {
-                if(e.keyCode === 13 || e.key === 'Enter') {
-                  this.clickHandler(e)
-                }
-              }}
-              onClick={e => this.clickHandler(e)}
-              onEsc={() => this.clickHandler(null)}
-              data-index={i}
-              {...child.props}
-              selected={isTheOne}
-            >
-              {React.cloneElement(child, {
-                value,
-              })}
-            </OptionsUI>
-          );
-        }
-
-        return (
-          <OptionsUI
-            tabIndex={i}
-            onKeyPress={(e) => {
-              if(e.keyCode === 13 || e.key === 'Enter') {
-                this.clickHandler(e)
-              }
-            }}
-            onClick={e => this.clickHandler(e)}
-            onEsc={() => this.clickHandler(null)}
-            data-index={i}
-            {...child.props}
-            selected={isTheOne}
-          >
-            {React.cloneElement(child, {
-              value,
-            })}
-          </OptionsUI>
-        );
-      }
-      return null;
+      return (
+        <KeyNavigationItem
+          value={value}
+          index={i}
+          selected={selectedIndex === i}
+          onClick={this.clickHandler}
+        >
+          {child}
+        </KeyNavigationItem>
+      )
     });
   }
 
