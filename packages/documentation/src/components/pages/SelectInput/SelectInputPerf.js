@@ -15,6 +15,10 @@ const createOnTheFlyValue = (value) => {
     return [];
   }
 
+  if(value.length < 3) {
+    return [];
+  }
+
   return [
     { 
       name: `${value} - a`,
@@ -84,6 +88,9 @@ class SelectPerf extends Component {
             }}>
             {
               optionsToUse.filter(function (o) {
+                if(selectedValue.length < 3) {
+                  return false;
+                }
                 return (o.name.toLowerCase().indexOf(selectedValue.toLowerCase()) > -1);
               }).map(({ name, pic }) => (
                 <Flex value={name}>

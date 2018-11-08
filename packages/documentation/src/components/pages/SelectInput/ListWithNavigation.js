@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-function isElement(element) {
-  return React.isValidElement(element);
-}
-
-function isDOMTypeElement(element) {
-  return isElement(element) && typeof element.type === 'string';
-}
-
 const OptionsUI = styled.li`
+  background: #fff;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
@@ -26,75 +19,6 @@ const OptionsUI = styled.li`
     background-color: green;
   }
 `;
-/*
-const Options = ({
-  onEsc,
-  onClick,
-  style,
-  isOpen,
-  ...rest
-}) => {
-  return (
-    <li
-      {...rest}
-      style={style}
-      onClick={(e) => {
-        if (e.target.blur) {
-          e.target.blur();
-        }
-        if (onClick) {
-          onClick(e);
-        }
-      }}
-      onKeyUp={(e) => {
-        if (e.key === 'Escape') {
-          e.target.blur();
-          e.target.tabIndex = -1;
-
-
-          if (onEsc) {
-            onEsc();
-          }
-        } else if (e.key === ' ' || e.key === 'Enter') {
-          e.target.blur();
-          e.target.tabIndex = -1;
-
-          if (onClick) {
-            const fakeEvent = {
-              currentTarget: {
-                dataset: { index: e.currentTarget.dataset.index },
-              },
-            };
-            onClick(fakeEvent);
-          }
-        }
-      }}  
-      aria-hidden={!(isOpen === false)}
-      tabIndex={isOpen ? 0 : -1}
-    />
-  );
-};
-*/
-//TODO : Map children WHEN the children is changing.
-
-const mapChildrenForStorage = (children) => {
-  const values = [];
-  const optionsNode = [];
-  React.Children.forEach(children, (child, i) => {
-    const value = child.props.value !== undefined ? child.props.value : i;
-    values[i] = value;
-    optionsNode[i] = React.cloneElement(child, {
-      style: {
-        ...child.props.style,
-      },
-    });
-  });
-
-  return {
-    values,
-    optionsNode,
-  };
-}
 
 const KeyNavigationItem = ({
   onClick,
@@ -246,9 +170,7 @@ class KeyNavigation extends Component {
   }
 
   render() {
-    const { items } = this.props;
     const list = this.getOptionsItem();
-
     return (
       <ul ref={this.mainRef}>
         {list}

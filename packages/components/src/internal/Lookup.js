@@ -8,6 +8,15 @@ import debounce from 'lodash.debounce'
 
 const ItemsWrapper = styled.div`
   pointer-events: none;
+  z-index: 9;
+  min-width: 100px;
+  position: absolute;
+  border-color: transparent;
+  margin-top: 1px;
+  border-radius: 3px;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
   /*transition: ${({ theme: { transition } }) => transition.defaultAll};*/
 `;
 
@@ -82,19 +91,6 @@ const getStyleForIsOpen = (isOpen, itemsHeight) => {
 const styles = {
   triggerWrapper: {
     cursor: 'pointer',
-  },
-  itemsWrapper: {
-    zIndex: 9,
-    minWidth: '100px',
-    background: 'white',
-    position: 'absolute',
-    border: '1px solid #cecece',
-    borderColor: 'transparent',
-    marginTop: '1px',
-    borderRadius: '3px',
-    opacity: 0,
-    display: 'flex',
-    flexDirection: 'column',
   },
   triggerInnerWrapper: {
     height: '100%',
@@ -398,22 +394,22 @@ export class DropDown extends PureComponent {
             {main}
           </div>
         </UnstyledButton>
-        <ItemsWrapper
-          data-drop-down-items
-          isPopOver={isPopOver}
-          style={{ ...styles.itemsWrapper, ...dynamicStyle, ...cleanedItemsStyle }}
-          innerRef={this.itemsRef}
-          onClick={this.handleToggleVisibility}
-          onKeyUp={(e) => {
-            if(e.key === 'Enter' || e.key === 'Escape') {
-              this.handleToggleVisibility();
-              this.mainRef.current.firstChild.focus();
-            }
-          }}
-        >
-          {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
-          {children}
-        </ItemsWrapper>
+          <ItemsWrapper
+            data-drop-down-items
+            isPopOver={isPopOver}
+            style={{...dynamicStyle, ...cleanedItemsStyle }}
+            innerRef={this.itemsRef}
+            onClick={this.handleToggleVisibility}
+            onKeyUp={(e) => {
+              if(e.key === 'Enter' || e.key === 'Escape') {
+                this.handleToggleVisibility();
+                this.mainRef.current.firstChild.focus();
+              }
+            }}
+          >
+            {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
+            {children}
+          </ItemsWrapper>
       </WrapperUI>
     );
   }
