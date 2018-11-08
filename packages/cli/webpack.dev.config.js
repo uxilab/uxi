@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require('fs');
 const babelConfig = require('./babel.config');
 
-const fs = require('fs');
 
 const cwd = process.cwd();
 let hook;
@@ -19,16 +19,15 @@ if (fs.existsSync(path.join(cwd, './uxi.dev.extend.js'))) {
   hook = require(path.join(cwd, './uxi.dev.extend.js'));
 }
 
-const PORT = 3100;
 
 const devConfig = {
   mode: 'development',
   entry: [
     '@babel/polyfill',
-    //'react-hot-loader/patch',
+    // 'react-hot-loader/patch',
     // activate HMR for React
 
-    `webpack-dev-server/client?http://localhost:${PORT}`,
+    'webpack-dev-server/client?http://localhost:3100',
     // bundle the client for webpack-dev-server
     // and connect to the provided endpoint
 
@@ -38,7 +37,7 @@ const devConfig = {
     './src/index.js',
   ],
   devServer: {
-    port: PORT,
+    port: '3100',
     contentBase: './',
     hot: true,
     disableHostCheck: true,

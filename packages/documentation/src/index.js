@@ -7,7 +7,9 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import Menu from './Menu';
 import AppShell from './AppShell';
 import GetStarted from './GetStarted'
-import Landing from './Landing'
+import Landing from './Landing';
+import BusinessPage from './components/pages/Business/index';
+import DropdownPerf from './components/pages/Dropdown/DropdownPerf';
 
 window.React = React;
 
@@ -20,6 +22,8 @@ render(
         <Route exact path="/" component={Landing} />
         <Route exact path="/get-started" component={GetStarted} />
         <Route path="/components" component={ComponentRoutes} />
+        <Route path="/business" component={BusinessPage} />
+        <Route path="/dropdownperf" component={DropdownPerf} />
       </AppShell>
     </Router>
   </ThemeProvider>,

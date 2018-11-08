@@ -9,6 +9,7 @@ module.exports = (config) => {
 
   config.resolve.alias = {
     'uxi': path.resolve(__dirname, '../components/build'),
+    'uxi-business': path.resolve(__dirname, '../business/build'),
   };
 
   return config;

@@ -1,20 +1,17 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import { UnstyledButton } from '../Button';
+import debounce from 'lodash.debounce'
 
 const ItemsWrapper = styled.div`
   ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
 const PopOverArrow = styled.div`
-  /* overflow: ${({ isPopOver }) => (isPopOver ? 'visible' : 'hidden')}; */
-  /* clip: rect(0px 20px 10px 0px); */
-
   clip: rect(-8px 38px 11px -8px);
-
   position: absolute;
   width: 20px;
   height: 20px;
@@ -39,9 +36,7 @@ const PopOverArrow = styled.div`
     border-style: solid;
     border-color: rgb(206, 206, 206);
     border-width: 1px;
-    /* clip-path: polygon(0 0, 100% 0, 100% 100%); */
   }
-
 `;
 
 const WrapperUI = styled.div`
@@ -79,25 +74,10 @@ const styles = {
     display: 'flex',
     alignItems: 'stretch',
   },
-  // itemsWrapperString: `
-  //   z-index: 1,
-  //   min-width: 180px,
-  //   background: white,
-  //   position: absolute,
-  //   overflow: hidden,
-  //   border: 1px solid #cecece,
-  //   border-color: transparent,
-  //   margin-top: 1px,
-  //   border-radius: 3px,
-  //   transition: max-height .3s ease-out, opacity .3,8s ease-out,
-  //   opacity: 0,
-  //   display: flex,
-  //   flex-direction: column,
-  // `,
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
-export class DropDown extends PureComponent {
+export class DropDown extends Component {
   static propTypes = {
     main: PropTypes.node,
     inertMain: PropTypes.bool,
@@ -111,7 +91,6 @@ export class DropDown extends PureComponent {
     anchor: 'left',
   }
 
-
   constructor(props) {
     super(props);
 
@@ -121,49 +100,52 @@ export class DropDown extends PureComponent {
       isOpen: this.isOpenControlled ? this.props.isOpen : false,
       windowWidth: (window.innerWidth),
       windowHeight: (window.innerHeight),
-      initalStyleValue: null,
     };
 
     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
-    this.handleWindowResize = this.handleWindowResize.bind(this);
-    this.handleWindowScroll = this.handleWindowScroll.bind(this);
+    this.handleWindowResize = debounce(this.handleWindowResize, 50).bind(this);
+    this.handleWindowScroll = debounce(this.handleWindowScroll, 50).bind(this);
     this.attachListeners = this.attachListeners.bind(this);
     this.detachListeners = this.detachListeners.bind(this);
+    this.mainRef = React.createRef();
+    this.itemsRef = React.createRef();
   }
 
-  // componentWillMount() {
-  // this.isControlled = this.props.isOpen !== undefined;
-  // if (!this.isControlled) {
-  //   // not controlled, use internal state
-  //   this.setState({
-  //     isOpen: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
-  //   });
-  // }
-  // }
+  getOpenState() {
+    return this.isOpenControlled ? this.props.isOpen : this.state.isOpen;
+  }
 
-  componentDidMount() {
-    const { style, mainScrollingElementSelector } = this.props;
+  getDomElementToListenTo() {
+    const { mainScrollingElementSelector } = this.props;
+    const elToListen = window;
 
-    this.htmlNodeRef = document;
     if (mainScrollingElementSelector) {
       const htmlNodeRef = document.querySelector(mainScrollingElementSelector);
       if (htmlNodeRef) {
-        this.htmlNodeRef = htmlNodeRef;
+        elToListen = htmlNodeRef;
       }
     }
 
-    this.setState({
-      initalStyleValue: style,
-    });
+    return elToListen;
+  }
 
-    const isOpen = this.isOpenControlled ? this.props.isOpen : this.state.isOpen;
+  componentDidMount() {
+    const { style } = this.props;
+
+    this.htmlNodeRef = this.getDomElementToListenTo();
+
+    console.log('componentDidMount');
+
+    const isOpen = this.getOpenState();
 
     if (isOpen) {
       this.attachListeners();
     }
   }
-
+/*
   componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
+
     const { onIsOpenChange } = this.props;
 
     if (nextProps.isOpen !== undefined) {
@@ -175,15 +157,13 @@ export class DropDown extends PureComponent {
         }
       });
     }
-  }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return nextProps !== this.props;
-  // }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { isOpen: willBeOpenState } = nextState;
-    const { isOpen: willBeOpenProps } = nextProps;
+  }*/
+/*
+  componentDidUpdate(
+    { isOpen: prevIsOpen },
+  ) {
+    const { isOpen: nextWillOpen } = this.props;
+    console.log('componentDidUpdate');
 
     const willBeOpen = willBeOpenState || willBeOpenProps;
     let shouldFocusTrigerrer = false;
@@ -191,120 +171,142 @@ export class DropDown extends PureComponent {
     if (!willBeOpen) {
       shouldFocusTrigerrer = true;
     }
-    // } else if (isOpen && willBeOpen) {
-    //   shouldFocusTrigerrer
-    // }
 
     this.setState({
       shouldFocusTrigerrer,
     });
   }
 
+  componentWillUpdate(
+    { isOpen: willBeOpenProps },
+    { isOpen: willBeOpenState }
+  ) {
+
+    console.log('componentWillUpdate');
+
+    const willBeOpen = willBeOpenState || willBeOpenProps;
+    let shouldFocusTrigerrer = false;
+
+    if (!willBeOpen) {
+      shouldFocusTrigerrer = true;
+    }
+
+    this.setState({
+      shouldFocusTrigerrer,
+    });
+  }
+*/
+  /*
   componentDidUpdate(prevProps) {
     if (prevProps.items.length !== this.props.items.length) {
       setTimeout(() => this.forceUpdate(), 1);
     } else if (prevProps.items !== this.props.items) {
       setTimeout(() => this.forceUpdate(), 1);
     }
-  }
+  }*/
 
   componentWillUnmount() {
+
+    console.log('componentWillUnmount');
+
     this.detachListeners();
   }
 
   getDynamicItemsStyles() {
-    const { isOpen: isOpenState, mainRef, itemsRef } = this.state;
-    const { itemsStyle, anchor, isFullWidth, isPopOver, isOpen: isOpenProp } = this.props;
+    const {
+      mainRef,
+      itemsRef
+    } = this;
 
-    const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
+    const {
+      itemsStyle,
+      anchor,
+      isFullWidth,
+      isPopOver,
+    } = this.props;
 
-    if (!mainRef || !itemsRef || !mainRef.getBoundingClientRect) { return {}; }
+    const isOpen = this.getOpenState();
+
+    if (
+      !mainRef ||
+      !itemsRef ||
+      !itemsRef.current ||
+      !mainRef.current ||
+      !mainRef.current.getBoundingClientRect
+    ) {
+      return {};
+    }
 
     let itemsHeight;
     if (itemsStyle && 'maxHeight' in itemsStyle) {
       itemsHeight = itemsStyle.maxHeight;
     } else {
-      itemsHeight = [...itemsRef.children]
+      itemsHeight = [...itemsRef.current.children]
         .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
     }
 
-    const cRectMain = mainRef.getBoundingClientRect();
-    const cRectItems = itemsRef.getBoundingClientRect();
+    const cRectMain = mainRef.current.getBoundingClientRect();
+    const cRectItems = itemsRef.current.getBoundingClientRect();
     const ItemsTop = cRectMain.bottom;
     const ItemsLeft = cRectMain.left;// - (cRectItems.width - cRectMain.width);
     const width = cRectMain.width;
 
-    let left = 'sdrgqerg';
+    let left = '';
     const right = '';
     if (anchor === 'left') {
       left = `${ItemsLeft}px`;
     } else if (anchor === 'right') {
       left = `${ItemsLeft - (cRectItems.width - cRectMain.width)}px`;
     }
-    /*
-    else if (anchor === 'bottom') {
-    } else if (anchor === 'top') {
-    }
-    */
 
     const top = isPopOver
       ? (ItemsTop + 20)
       : ItemsTop;
 
-    const res = {
+    return {
       maxHeight: isOpen ? itemsHeight : 0,
-
       width: isFullWidth ? `${width}px` : 'auto',
       left,
       right,
-
       top,
       borderColor: isOpen ? '#cecece' : 'transparent',
       opacity: isOpen ? 1 : 0,
       pointerEvents: isOpen ? 'all' : 'none',
       position: 'fixed',
     };
-
-
-    return {
-      ...res,
-    };
   }
 
   attachListeners() {
     window.addEventListener('resize', this.handleWindowResize);
-    if (this.props.mainScrollingElementSelector) {
-      if (this.htmlNodeRef) {
-        this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
-      }
-    } else {
-      window.addEventListener('scroll', this.handleWindowScroll);
-    }
+    this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
   }
 
   detachListeners() {
     window.removeEventListener('resize', this.handleWindowResize);
-    if (this.props.mainScrollingElementSelector) {
-      if (this.htmlNodeRef) {
-        this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
-      }
-    } else {
-      window.removeEventListener('scroll', this.handleWindowScroll);
-    }
+    this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
   }
 
   handleWindowResize() {
-    this.forceUpdate();
+    console.log('resize');
+    this.setState(this.state);
   }
+
   handleWindowScroll() {
-    this.forceUpdate();
+    console.log('scroll');
+    this.setState(this.state);
+  }
+
+  shouldComponentUpdate({ isOpen: nextIsOpen, main: nextMain, items: nextItems}) {
+    const isOpen = this.getOpenState();
+    const { main, items } = this.props;
+
+    return (nextIsOpen !== isOpen || nextMain !== main || items !== nextItems );
   }
 
   handleClickOutside() {
-    const { isOpen: isOpenState } = this.state;
-    const { onIsOpenChange, isOpen: isOpenProp } = this.props;
+    const { onIsOpenChange } = this.props;
 
-    const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
+    const isOpen = this.getOpenState();
 
     if (isOpen) {
       const newOpen = false;
@@ -323,123 +325,97 @@ export class DropDown extends PureComponent {
   }
 
   handleToggleVisibility(e) {
-    if (this.props.main.props.onClick) {
+    /*if (this.props.main.props.onClick) {
       this.props.main.props.onClick(e);
+    }*/
+
+    const { onIsOpenChange } = this.props;
+    const isOpen = this.getOpenState();
+
+    const nextOpenState = !isOpen;
+    this.setState({
+        isOpen: nextOpenState
+    });
+
+    if (onIsOpenChange) {
+      onIsOpenChange(nextOpenState);
     }
 
-
-    const { isOpen } = this.state;
-    const { onIsOpenChange } = this.props;
-    const nextOpenState = !isOpen;
-    this.setState(
-      { isOpen: nextOpenState },
-      () => {
-        if (onIsOpenChange) {
-          onIsOpenChange(nextOpenState);
-        }
-      }
-    );
-
-    if (!this.isOpenControlled) {
+    //think this check on controlled is unecessary but OK
+    //if (!this.isOpenControlled) {
       if (nextOpenState) {
         this.attachListeners();
       } else {
         this.detachListeners();
       }
-    }
+   // }
   }
 
-  storeMainRef(ref) {
-    const mainRef = ReactDOM // eslint-disable-line react/no-find-dom-node
-      .findDOMNode(ref);
-      // .getBoundingClientRect(); // outputs <h3> coordinates
+  setupMainElement() {
+    const { main } = this.props;
 
-    this.setState({ mainRef });
+    return React.cloneElement(main, {
+      ref: this.mainRef,
+      //onClick: () => {
+        //alert('setupMainElement Button');
+        //this.handleToggleVisibility();
+        //if (main.props.onClick) {
+          //main.props.onClick();
+        //}
+      //},
+    });
   }
 
-  storeItemsRef(ref) {
-    const { onItemRef } = this.props;
+  setupItems() {
+    const { items } = this.props;
 
-    const itemsRef = ReactDOM // eslint-disable-line react/no-find-dom-node
-      .findDOMNode(ref);
-
-    this.setState({ itemsRef });
-
-    if (onItemRef) {
-      onItemRef(itemsRef);
-    }
-  }
-
-  render() {
-    const {
-      props: {
-        isFullWidth,
-        anchor,
-        main,
-        inertMain,
-        items: itemsBefore,
-        style,
-        itemsStyle,
-        triggerWrapperStyle,
-        isPopOver,
-        // handleDropDownChange,
-        // mainStyle,
-        isOpen: isOpenProp,
-      },
-      state: {
-        isOpen: isOpenState,
-        shouldFocusTrigerrer,
-      },
-    } = this;
-
-    const isOpen = isOpenProp || isOpenState;
-
-
-    // quikc dirty check
-    // if (!(main && main.prototype && main.prototype.render)) {
-    //   console.warn('The `main` element of DropDown cannot be stateless, because it needs a ref')
-    // }
-
-    const dropDownMain = React.cloneElement(main,
-      {
-        ref: ref => this.storeMainRef(ref),
-        // this next line is useless
-        onClick: () => {
-          this.handleToggleVisibility();
-          if (main.props.onClick) {
-            main.props.onClick();
-          }
-        },
-      });
-    // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
-
-
-    const items = React.Children.map(itemsBefore, child => React.cloneElement(child, {
+    return React.Children.map(items, child => React.cloneElement(child, {
+      ...child.props,
       style: {
         ...(child && child.props.style ? child.props.style : {}),
         ':hover': {
           backgroundColor: '#bebebe',
         },
       },
-      onClose: () => { this.handleToggleVisibility(); },
+      onClose: () => {
+        this.handleToggleVisibility();
+      },
     }));
+  }
+
+  render() {
+    const {
+      isFullWidth,
+      anchor,
+      inertMain,
+      style,
+      itemsStyle,
+      triggerWrapperStyle,
+      isPopOver,
+      isOpen: isOpenProp,
+    } = this.props;
+
+    const {
+      isOpen: isOpenState,
+      shouldFocusTrigerrer,
+    } = this.state;
+
+    const isOpen = isOpenProp || isOpenState;
+
+    const dropDownMain = this.setupMainElement();
+    const decoratedItems = this.setupItems();
 
     const cleanedItemsStyle = {
       ...itemsStyle,
-      // maxHeight: isOpen && itemsStyle ? itemsStyle.maxHeight : 0,
       ...(isOpen && itemsStyle && 'maxHeight' in itemsStyle
         ? { maxHeight: itemsStyle.maxHeight }
         : {}
       ),
-      // ...(!isOpen ? { maxHeight: 0 } : {} ),
     };
 
-    if (isPopOver) {
-      // find the close btn
-    }
+    console.log('re-render')
 
     const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: inertMain ? '-1' : '0' } : {});
-
     const GDDynamicstyles = this.getDynamicItemsStyles();
 
     return (
@@ -450,7 +426,9 @@ export class DropDown extends PureComponent {
           role={inertMain === false ? undefined : 'menu'}
           isFullWidth={isFullWidth}
           style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
-          onClick={this.handleToggleVisibility}
+          onClick={() => {
+            this.handleToggleVisibility();
+          }}
           {...tabIndexButtonattr}
         >
           <div style={styles.triggerInnerWrapper}>
@@ -458,26 +436,13 @@ export class DropDown extends PureComponent {
           </div>
         </UnstyledButton>
         <ItemsWrapper
-          data-is-the-one="true"
           data-drop-down-items
-          // aria-hidden={isOpen ? false : true}
-          // autoFocus={isOpen}
-          // tabIndex={isOpen ? 1 : -1}
           isPopOver={isPopOver}
           style={{ ...styles.itemsWrapper, ...GDDynamicstyles, ...cleanedItemsStyle }}
-          ref={ref => this.storeItemsRef(ref)}
+          innerRef={this.itemsRef}
         >
           {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
-          {/* {items} */}
-          {
-            React.Children.map(items, child => React.cloneElement(child, {
-              ...child.props,
-              //   tabIndex: isOpen ? 0 : -1,
-              //   'aria-hidden': isOpen
-              //     ? (child.type === Separator ? false : true)
-              //     : false
-            }))
-          }
+          {decoratedItems}
         </ItemsWrapper>
       </WrapperUI>
     );

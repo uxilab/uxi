@@ -12,7 +12,8 @@ module.exports = (config) => {
   config.entry[1].replace(/(:\d*)$/, ':8997');
 
   config.resolve.alias = {
-    'uxi': path.resolve(__dirname, '../components/build'),
+    'uxi': path.resolve(__dirname, '../components/src'),
+    'uxi-business': path.resolve(__dirname, '../business/build'),
   };
 
   return config;

@@ -86,6 +86,9 @@ const Appshell = (props) => {
               <MenuItem>
                 <Link to="/">Contact</Link>
               </MenuItem>
+              <MenuItem>
+                <Link to="/business">Business</Link>
+              </MenuItem>
               <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
                 <AutoCompleteWrapper style={{ marginTop: '24px' }}>
                   <AutoComplete
