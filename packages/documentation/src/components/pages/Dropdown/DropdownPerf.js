@@ -20,7 +20,24 @@ const items = [
   },
 ];
 
-const test = Array.from(Array(1).keys());
+
+const item2s = [
+  {
+    name: '!!!!!!va',
+    pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+  }, {
+    name: 'R!!!!!!egina',
+    pic: 'https://randomuser.me/api/portraits/women/37.jpg',
+  }, {
+    name: '!!!!rem',
+    pic: 'https://randomuser.me/api/portraits/men/3.jpg',
+  }, {
+    name: '!!!!Britany',
+    pic: 'https://randomuser.me/api/portraits/women/76.jpg',
+  },
+];
+
+const test = Array.from(Array(100).keys());
 
 class ControlledDropdown extends Component {
   constructor(props) {
@@ -33,6 +50,7 @@ class ControlledDropdown extends Component {
     return (
       <div >
         <DropDown
+          name={"controlledd"}
           isOpen={this.state.isOpen}
           items={items.map(({ name, pic }) => (
             <div value={name}>
@@ -68,13 +86,13 @@ class DropdownPerf extends Component {
                     <div>
                       {i}
                         <DropDown
-                        
-                        items={items.map(({ name, pic }) => (
+                          name={i}
+                          items={item2s.map(({ name, pic }) => (
                           <div value={name}>
                             <AvatarWithName src={pic} name={name} />
                           </div>
                         ))}
-                        main={<div>Select</div>}
+                        main={<div>Select {i}</div>}
                     />
                     </div>
                   );

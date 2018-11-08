@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
@@ -7,7 +7,8 @@ import { UnstyledButton } from '../Button';
 import debounce from 'lodash.debounce'
 
 const ItemsWrapper = styled.div`
-  ${({ theme: { transition } }) => transition.defaultAll};
+  pointer-events: none;
+  /*transition: ${({ theme: { transition } }) => transition.defaultAll};*/
 `;
 
 const PopOverArrow = styled.div`
@@ -25,10 +26,7 @@ const PopOverArrow = styled.div`
     display: block;
     width: 20px;
     height: 20px;
-    /* min-height: 20px; */
     position: absolute;
-    /* top: -10px;
-    left: 20px; */
     box-sizing: border-box;
     background: white;
     transform: rotate(-45deg);
@@ -45,6 +43,35 @@ const WrapperUI = styled.div`
   height: 100%;
   ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
 `;
+
+const getPosition = (
+  cRectMain,
+  cRectItems,
+  anchor,
+  isPopOver
+) => {
+  const ItemsLeft = cRectMain.left;
+  const ItemsTop = cRectMain.bottom; 
+  const top = isPopOver
+    ? (ItemsTop + 20)
+    : ItemsTop;
+
+  const left = (anchor === 'left') ?  `${ItemsLeft}px` : `${ItemsLeft - (cRectItems.width - cRectMain.width)}px`;
+
+  return {
+    left,
+    top: `${top}px`,
+  }
+};
+
+const getStyleForIsOpen = (isOpen, itemsHeight) => {
+  return {
+    maxHeight: `${itemsHeight}px`,
+    opacity: isOpen ? 1 : 0,
+    borderColor: isOpen ? '#cecece' : 'transparent',
+    pointerEvents: isOpen ? 'all' : 'none',
+  };
+};
 
 
 /**
@@ -76,8 +103,7 @@ const styles = {
   },
 };
 
-// eslint-disable-next-line react/prefer-stateless-function
-export class DropDown extends Component {
+export class DropDown extends PureComponent {
   static propTypes = {
     main: PropTypes.node,
     inertMain: PropTypes.bool,
@@ -100,11 +126,12 @@ export class DropDown extends Component {
       isOpen: this.isOpenControlled ? this.props.isOpen : false,
       windowWidth: (window.innerWidth),
       windowHeight: (window.innerHeight),
+      position: null,
+      dynamicStyle: null,
     };
 
     this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
-    this.handleWindowResize = debounce(this.handleWindowResize, 50).bind(this);
-    this.handleWindowScroll = debounce(this.handleWindowScroll, 50).bind(this);
+    this.closeDropdown = this.closeDropdown.bind(this);
     this.attachListeners = this.attachListeners.bind(this);
     this.detachListeners = this.detachListeners.bind(this);
     this.mainRef = React.createRef();
@@ -117,7 +144,7 @@ export class DropDown extends Component {
 
   getDomElementToListenTo() {
     const { mainScrollingElementSelector } = this.props;
-    const elToListen = window;
+    const elToListen = document;
 
     if (mainScrollingElementSelector) {
       const htmlNodeRef = document.querySelector(mainScrollingElementSelector);
@@ -134,85 +161,41 @@ export class DropDown extends Component {
 
     this.htmlNodeRef = this.getDomElementToListenTo();
 
-    console.log('componentDidMount');
-
     const isOpen = this.getOpenState();
 
     if (isOpen) {
-      this.attachListeners();
-    }
-  }
-/*
-  componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
-
-    const { onIsOpenChange } = this.props;
-
-    if (nextProps.isOpen !== undefined) {
       this.setState({
-        isOpen: nextProps.isOpen,
-      }, () => {
-        if (onIsOpenChange) {
-          onIsOpenChange(nextProps.isOpen);
-        }
+        dynamicStyle: this.getFullStyle(),
       });
     }
-  }*/
-/*
-  componentDidUpdate(
-    { isOpen: prevIsOpen },
-  ) {
-    const { isOpen: nextWillOpen } = this.props;
-    console.log('componentDidUpdate');
-
-    const willBeOpen = willBeOpenState || willBeOpenProps;
-    let shouldFocusTrigerrer = false;
-
-    if (!willBeOpen) {
-      shouldFocusTrigerrer = true;
-    }
-
-    this.setState({
-      shouldFocusTrigerrer,
-    });
   }
 
-  componentWillUpdate(
-    { isOpen: willBeOpenProps },
-    { isOpen: willBeOpenState }
-  ) {
+  componentDidUpdate({ isOpen: prevOpen }, { isOpen: prevOpenState, positioning: prevPositioning}) {
+    const isOpen = this.getOpenState();
+    const wasOpen = this.isOpenControlled ? prevOpen : prevOpenState;
+    const { positioning, dynamicStyle } = this.state;
 
-    console.log('componentWillUpdate');
-
-    const willBeOpen = willBeOpenState || willBeOpenProps;
-    let shouldFocusTrigerrer = false;
-
-    if (!willBeOpen) {
-      shouldFocusTrigerrer = true;
+    if(isOpen !== wasOpen) {
+      this.setState({
+        dynamicStyle: this.getFullStyle(),
+      });
     }
-
-    this.setState({
-      shouldFocusTrigerrer,
-    });
   }
-*/
-  /*
-  componentDidUpdate(prevProps) {
-    if (prevProps.items.length !== this.props.items.length) {
-      setTimeout(() => this.forceUpdate(), 1);
-    } else if (prevProps.items !== this.props.items) {
-      setTimeout(() => this.forceUpdate(), 1);
-    }
-  }*/
 
   componentWillUnmount() {
-
-    console.log('componentWillUnmount');
-
     this.detachListeners();
   }
 
-  getDynamicItemsStyles() {
+  calculateItemsHeight() {
+    const { itemsStyle } = this.props;
+    const { itemsRef } = this;
+
+    return [...itemsRef.current.children].reduce(
+      (acc, el) => acc + el.getBoundingClientRect().height, 0
+    );
+  }
+
+  getFullStyle() {
     const {
       mainRef,
       itemsRef
@@ -237,98 +220,88 @@ export class DropDown extends Component {
       return {};
     }
 
-    let itemsHeight;
-    if (itemsStyle && 'maxHeight' in itemsStyle) {
-      itemsHeight = itemsStyle.maxHeight;
-    } else {
-      itemsHeight = [...itemsRef.current.children]
-        .reduce((acc, el) => acc + el.getBoundingClientRect().height, 0);
+    let itemsHeight = 0;
+
+    if(isOpen) {
+      itemsHeight = this.calculateItemsHeight();
     }
 
     const cRectMain = mainRef.current.getBoundingClientRect();
     const cRectItems = itemsRef.current.getBoundingClientRect();
-    const ItemsTop = cRectMain.bottom;
-    const ItemsLeft = cRectMain.left;// - (cRectItems.width - cRectMain.width);
+
     const width = cRectMain.width;
 
-    let left = '';
-    const right = '';
-    if (anchor === 'left') {
-      left = `${ItemsLeft}px`;
-    } else if (anchor === 'right') {
-      left = `${ItemsLeft - (cRectItems.width - cRectMain.width)}px`;
-    }
+    const positioning = getPosition(
+      cRectMain,
+      cRectItems,
+      anchor,
+      isPopOver,
+    );
 
-    const top = isPopOver
-      ? (ItemsTop + 20)
-      : ItemsTop;
-
+    const styleChangingWithIsOpen = getStyleForIsOpen(
+      isOpen,
+      itemsHeight
+    );
+  
     return {
-      maxHeight: isOpen ? itemsHeight : 0,
       width: isFullWidth ? `${width}px` : 'auto',
-      left,
-      right,
-      top,
-      borderColor: isOpen ? '#cecece' : 'transparent',
-      opacity: isOpen ? 1 : 0,
-      pointerEvents: isOpen ? 'all' : 'none',
       position: 'fixed',
+      ...styleChangingWithIsOpen,
+      ...positioning
     };
   }
 
   attachListeners() {
-    window.addEventListener('resize', this.handleWindowResize);
-    this.htmlNodeRef.addEventListener('scroll', this.handleWindowScroll);
+    window.addEventListener('resize', this.closeDropdown);
+    document.addEventListener('scroll', this.closeDropdown, true);
   }
 
   detachListeners() {
-    window.removeEventListener('resize', this.handleWindowResize);
-    this.htmlNodeRef.removeEventListener('scroll', this.handleWindowScroll);
+    window.removeEventListener('resize', this.closeDropdown);
+    document.removeEventListener('scroll', this.closeDropdown, true);
   }
 
-  handleWindowResize() {
-    console.log('resize');
-    this.setState(this.state);
-  }
+  closeDropdown() {
+    const { onIsOpenChange } = this.props;
 
-  handleWindowScroll() {
-    console.log('scroll');
-    this.setState(this.state);
-  }
+    if(this.isOpenControlled) {
+      if(onIsOpenChange) {
+        onIsOpenChange(false);
+      }
+    } else {
+      this.setState({
+        isOpen: false,
+      });
+    }
 
-  shouldComponentUpdate({ isOpen: nextIsOpen, main: nextMain, items: nextItems}) {
-    const isOpen = this.getOpenState();
-    const { main, items } = this.props;
-
-    return (nextIsOpen !== isOpen || nextMain !== main || items !== nextItems );
+    this.detachListeners();
   }
 
   handleClickOutside() {
-    const { onIsOpenChange } = this.props;
-
+    const { onClickOutside, onIsOpenChange } = this.props;
     const isOpen = this.getOpenState();
-
-    if (isOpen) {
-      const newOpen = false;
-      const { leaveOpenOnClickOutside } = this.props;
-      if (!leaveOpenOnClickOutside) {
-        this.setState({
-          isOpen: newOpen,
-        }, () => {
-          if (onIsOpenChange) {
-            onIsOpenChange(newOpen);
-          }
-        });
-      }
-      this.detachListeners();
+    if(!isOpen) {
+      return;
     }
+
+    if (this.isOpenControlled && onClickOutside) {
+      onClickOutside();
+    }
+
+    if(!this.isOpenControlled) {
+      this.setState({
+        isOpen: false,
+      });
+
+      if(onIsOpenChange) {
+        onIsOpenChange(false);
+      }
+    }
+
+    this.detachListeners();
   }
 
   handleToggleVisibility(e) {
-    /*if (this.props.main.props.onClick) {
-      this.props.main.props.onClick(e);
-    }*/
-
     const { onIsOpenChange } = this.props;
     const isOpen = this.getOpenState();
 
@@ -341,14 +314,11 @@ export class DropDown extends Component {
       onIsOpenChange(nextOpenState);
     }
 
-    //think this check on controlled is unecessary but OK
-    //if (!this.isOpenControlled) {
       if (nextOpenState) {
         this.attachListeners();
       } else {
         this.detachListeners();
       }
-   // }
   }
 
   setupMainElement() {
@@ -356,13 +326,6 @@ export class DropDown extends Component {
 
     return React.cloneElement(main, {
       ref: this.mainRef,
-      //onClick: () => {
-        //alert('setupMainElement Button');
-        //this.handleToggleVisibility();
-        //if (main.props.onClick) {
-          //main.props.onClick();
-        //}
-      //},
     });
   }
 
@@ -398,6 +361,8 @@ export class DropDown extends Component {
     const {
       isOpen: isOpenState,
       shouldFocusTrigerrer,
+      positioning,
+      dynamicStyle,
     } = this.state;
 
     const isOpen = isOpenProp || isOpenState;
@@ -413,10 +378,7 @@ export class DropDown extends Component {
       ),
     };
 
-    console.log('re-render')
-
     const tabIndexButtonattr = (shouldFocusTrigerrer ? { tabIndex: inertMain ? '-1' : '0' } : {});
-    const GDDynamicstyles = this.getDynamicItemsStyles();
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
@@ -438,7 +400,7 @@ export class DropDown extends Component {
         <ItemsWrapper
           data-drop-down-items
           isPopOver={isPopOver}
-          style={{ ...styles.itemsWrapper, ...GDDynamicstyles, ...cleanedItemsStyle }}
+          style={{ ...styles.itemsWrapper, ...dynamicStyle, ...cleanedItemsStyle }}
           innerRef={this.itemsRef}
         >
           {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
