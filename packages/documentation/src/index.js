@@ -10,6 +10,7 @@ import GetStarted from './GetStarted'
 import Landing from './Landing';
 import BusinessPage from './components/pages/Business/index';
 import DropdownPerf from './components/pages/Dropdown/DropdownPerf';
+import SelectPerf from './components/pages/SelectInput/SelectInputPerf';
 
 window.React = React;
 
@@ -24,6 +25,7 @@ render(
         <Route path="/components" component={ComponentRoutes} />
         <Route path="/business" component={BusinessPage} />
         <Route path="/dropdownperf" component={DropdownPerf} />
+        <Route path="/selectperf" component={SelectPerf} />
       </AppShell>
     </Router>
   </ThemeProvider>,

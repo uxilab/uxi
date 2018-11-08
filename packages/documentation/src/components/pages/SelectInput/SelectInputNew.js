@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-// eslint-disable-next-line import/no-named-as-default
 import DropDown from '../internal/DropDown';
 import { Arrowdown } from '../Icons';
 import { Button } from '../Button';
@@ -514,6 +513,69 @@ class SelectInput extends PureComponent {
 
   storeItemsRef(itemsNode) {
     this.itemRef = itemsNode;
+  }
+
+  getOptionsItem() {
+    const {
+      children,
+      isOpen: isOpenProps,
+    } = this.props;
+
+    const { isOpen: isOpenState } = this.state;
+
+    const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
+
+    return React.Children.map(children, (child, i) => {
+      const value = child.props.value ? child.props.value : i;
+      const isTheOne = this.state.selectedIndex === i;
+
+      if (React.isValidElement(child)) {
+        if (!isDOMTypeElement(child)) {
+          return (
+            <Option
+              onClick={e => this.clickHandler(e)}
+              onEsc={() => this.clickHandler(null)}
+              data-index={i}
+              {...child.props}
+              isOpen={isOpen}
+              selected={isTheOne}
+              style={{
+                textOverflow: 'ellipsis',
+                overflowX: 'hidden',
+                maxWidth: '100%',
+                foo: 'bar',
+              }}
+            >
+              {React.cloneElement(child, {
+                value,
+              })}
+            </Option>
+          );
+        }
+
+        return (
+          <Option
+            onClick={e => this.clickHandler(e)}
+            onEsc={() => this.clickHandler(null)}
+            data-index={i}
+            {...child.props}
+            isOpen={isOpen}
+            selected={isTheOne}
+            style={{
+              textOverflow: 'ellipsis',
+              overflowX: 'hidden',
+              maxWidth: '100%',
+              foo: 'bar',
+            }}
+          >
+            {React.cloneElement(child, {
+              value,
+            })}
+          </Option>
+        );
+      }
+      return null;
+    });
   }
 
   render() {
