@@ -65,13 +65,15 @@ class SelectPerf extends Component {
     const optionsToUse = createOnTheFlyValue(selectedValue).concat(options);
 
     return (
-      <div style={{paddingTop: '300px', height:'100%', minHeight:'200px', paddingLeft:'300px'}}>
+      <div style={{paddingTop: '300px', width: '500px', height:'100%', minHeight:'200px', paddingLeft:'300px'}}>
 
         <div>Selected Value: {this.state.selectedValue} </div>
 
        <LookUp
+          isFullWidth
           main={
             <InputUI
+              style={{width: '100%'}}
               value={this.state.selectedValue}
               onChange={(e) => {
                 this.setState({

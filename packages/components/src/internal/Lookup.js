@@ -17,6 +17,7 @@ const ItemsWrapper = styled.div`
   opacity: 0;
   display: flex;
   flex-direction: column;
+  ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
   /*transition: ${({ theme: { transition } }) => transition.defaultAll};*/
 `;
 
@@ -396,6 +397,7 @@ export class DropDown extends PureComponent {
         </UnstyledButton>
           <ItemsWrapper
             data-drop-down-items
+            isFullWidth={isFullWidth}
             isPopOver={isPopOver}
             style={{...dynamicStyle, ...cleanedItemsStyle }}
             innerRef={this.itemsRef}
