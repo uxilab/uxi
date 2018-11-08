@@ -3,7 +3,7 @@ import { SelectInput } from 'uxi/Input'
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 import styled from 'styled-components';
-import KeyNavigation from './KeyNavigation';
+import ListWithNavigation from './ListWithNavigation';
 import LookUp from 'uxi/internal/Lookup';
 
 const InputUI = styled.input`
@@ -65,20 +65,7 @@ class SelectPerf extends Component {
 
         <div>Selected Value: {this.state.selectedValue} </div>
 
-            {/* <KeyNavigation onChange={(value) => {
-              alert(value);
-              console.log(value);
-            }}>
-            {
-              options.map(({ name, pic }) => (
-                <Flex value={name}>
-                  <AvatarWithName src={pic} name={name} />
-                </Flex>
-              ))
-            }
-            </KeyNavigation> */}
-
-        <LookUp
+       <LookUp
           main={
             <InputUI
               value={this.state.selectedValue}
@@ -90,7 +77,7 @@ class SelectPerf extends Component {
             />
           }
         >
-          <KeyNavigation onChange={(e, value) => {
+          <ListWithNavigation onChange={(e, value) => {
               this.setState({
                 selectedValue: value,
               })
@@ -104,7 +91,7 @@ class SelectPerf extends Component {
                 </Flex>
               ))
             }
-            </KeyNavigation>
+            </ListWithNavigation>
         </LookUp>
       </div>
     )
