@@ -417,7 +417,6 @@ export class DropDown extends PureComponent {
             innerRef={this.itemsRef}
             onClick={this.handleToggleVisibility}
             onKeyUp={(e) => {
-              console.log('onKeyUP');
               if(e.key === 'Enter' || e.key === 'Escape') {
                 this.closeVisibilty();
                 this.mainRef.current.firstChild.focus();
