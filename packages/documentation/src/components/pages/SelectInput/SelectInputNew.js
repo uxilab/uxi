@@ -595,8 +595,6 @@ class SelectInput extends PureComponent {
 
     const trigerer = this.getTrigerrerLabel();
 
-    console.log('Wouhou render!!!!');
-
     return (
       <div style={style}>
         <DropDown

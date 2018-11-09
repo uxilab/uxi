@@ -3,12 +3,8 @@ import { SelectInput } from 'uxi/Input'
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 import styled from 'styled-components';
-import ListWithNavigation from './ListWithNavigation';
-import LookUp from 'uxi/internal/Lookup';
-
-const InputUI = styled.input`
- 
-`;
+import AutoComplete from './AutoComplete';
+import MainSearch from './MainSearch';
 
 const createOnTheFlyValue = (value) => {
   if(!value) {
@@ -21,16 +17,16 @@ const createOnTheFlyValue = (value) => {
 
   return [
     { 
-      name: `${value} - a`,
-      pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+      Name: `${value} - a`,
+      label: 'All'
     },
     {
-      name: `${value} - b`,
-      pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+      Name: `${value} - b`,
+      label: 'Org'
     },
     {
-      name: `${value} - c`,
-      pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+      Name: `${value} - c`,
+      label: 'Person'
     },
   ];
 }
@@ -43,17 +39,17 @@ class SelectPerf extends Component {
       selectedValue: "",
       options: [
         {
-          name: 'Ava',
-          pic: 'https://randomuser.me/api/portraits/women/82.jpg',
+          Name: 'Ava',
+          label: 'all'
         }, {
-          name: 'Regina',
-          pic: 'https://randomuser.me/api/portraits/women/37.jpg'
+          Name: 'Regina',
+          label: 'all'
         }, {
-          name: 'rem',
-          pic: 'https://randomuser.me/api/portraits/men/3.jpg'
+          Name: 'Rem',
+          label: 'all'
         }, {
-          name: 'Britany',
-          pic: 'https://randomuser.me/api/portraits/women/76.jpg'
+          Name: 'Britany',
+          label: 'all'
         }
       ],
     }
@@ -68,26 +64,36 @@ class SelectPerf extends Component {
       <div style={{paddingTop: '300px', width: '500px', height:'100%', minHeight:'200px', paddingLeft:'300px'}}>
 
         <div>Selected Value: {this.state.selectedValue} </div>
+        <div style={{background: 'red'}}>
 
-       <LookUp
-          isFullWidth
-          main={
-            <InputUI
-              style={{width: '100%'}}
-              value={this.state.selectedValue}
-              onChange={(e) => {
-                this.setState({
-                  selectedValue: e.target.value,
-                })
-              }}
-            />
-          }
-        >
-          <ListWithNavigation onChange={(e, value) => {
+          <MainSearch
+            onClick={() => {}}
+            onEntityPoolChange={() => {}}
+            onSuggestionChange={(e, value) => {
               this.setState({
                 selectedValue: value,
               })
-            }}>
+            }}
+            suggestions={optionsToUse.filter(function (o) {
+              if(selectedValue.length < 3) {
+                return false;
+              }
+              return (o.Name.toLowerCase().indexOf(selectedValue.toLowerCase()) > -1);
+            })}
+          />
+
+
+        </div>
+          
+         {/* <AutoComplete
+            isFullWidth
+            style={{ background: 'red'}}
+            onChange={(e, value) => {
+              this.setState({
+                selectedValue: value,
+              })
+            }}
+          >
             {
               optionsToUse.filter(function (o) {
                 if(selectedValue.length < 3) {
@@ -100,8 +106,8 @@ class SelectPerf extends Component {
                 </Flex>
               ))
             }
-            </ListWithNavigation>
-        </LookUp>
+        </AutoComplete> */}
+
       </div>
     )
   }
