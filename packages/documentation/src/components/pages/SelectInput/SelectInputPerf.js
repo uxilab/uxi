@@ -31,7 +31,7 @@ const createOnTheFlyValue = (value) => {
   ];
 }
 
-class SelectPerf extends Component {
+class SearchBarContainer extends Component {
   constructor(props) {
     super(props)
 
@@ -50,38 +50,89 @@ class SelectPerf extends Component {
         }, {
           Name: 'Britany',
           label: 'all'
-        }
+        },
+        {
+          Name: 'Ava',
+          label: 'all'
+        }, {
+          Name: 'Regina',
+          label: 'all'
+        }, {
+          Name: 'Rem',
+          label: 'all'
+        }, {
+          Name: 'Britany',
+          label: 'all'
+        },
+        {
+          Name: 'Ava',
+          label: 'all'
+        }, {
+          Name: 'Regina',
+          label: 'all'
+        }, {
+          Name: 'Rem',
+          label: 'all'
+        }, {
+          Name: 'Britany',
+          label: 'all'
+        },
+        {
+          Name: 'Ava',
+          label: 'all'
+        }, {
+          Name: 'Regina',
+          label: 'all'
+        }, {
+          Name: 'Rem',
+          label: 'all'
+        }, {
+          Name: 'Britany',
+          label: 'all'
+        },
       ],
-    }
+    };
   }
-
-
   render() {
     const { selectedValue, options } = this.state;
-    const optionsToUse = createOnTheFlyValue(selectedValue).concat(options);
+
+    const optionsToUse = options// createOnTheFlyValue(selectedValue).concat(options);
+
+    return (
+      <MainSearch
+        isFetchingSuggestion={false}
+        onClick={() => {}}
+        onEntityPoolChange={() => {}}
+        onSuggestionChange={(e, value) => {
+          this.setState({
+            selectedValue: value,
+          })
+        }}
+        selectedSuggestion={selectedValue}
+        suggestions={optionsToUse.filter(function (o) {
+          if(selectedValue.length < 3) {
+            return false;
+          }
+          return (o.Name.toLowerCase().indexOf(selectedValue.toLowerCase()) > -1);
+        })}
+      />
+
+    )
+  }
+}
+
+class SelectPerf extends Component {
+
+  render() {
+  
 
     return (
       <div style={{paddingTop: '300px', width: '500px', height:'100%', minHeight:'200px', paddingLeft:'300px'}}>
 
-        <div>Selected Value: {this.state.selectedValue} </div>
-        <div style={{background: 'red'}}>
 
-          <MainSearch
-            onClick={() => {}}
-            onEntityPoolChange={() => {}}
-            onSuggestionChange={(e, value) => {
-              this.setState({
-                selectedValue: value,
-              })
-            }}
-            suggestions={optionsToUse.filter(function (o) {
-              if(selectedValue.length < 3) {
-                return false;
-              }
-              return (o.Name.toLowerCase().indexOf(selectedValue.toLowerCase()) > -1);
-            })}
-          />
+        <div style={{background: '#cc00cc'}}>
 
+          <SearchBarContainer />
 
         </div>
           

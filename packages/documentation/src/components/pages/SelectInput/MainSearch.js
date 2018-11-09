@@ -100,6 +100,8 @@ const MainSearch = ({
   suggestions = [],
   onSuggestionChange,
   onClick,
+  isFetchingSuggestion,
+  selectedSuggestion,
 }) => {
   return (
     <SearchBarUI>
@@ -113,14 +115,19 @@ const MainSearch = ({
         onChange={onSuggestionChange}
         Input={InputUI}
         placeholder="Search..."
+        value={selectedSuggestion}
       >
       {
         (suggestions || []).map((suggestion) => (
           <SearchSuggestionItem
+            key={suggestion.Name}
             value={suggestion.Name}
             suggestion={suggestion}
           />
         ))
+      }
+      {
+        isFetchingSuggestion && <div value={null} style={{ minHeight: '32px', height: '32px' }} >loading...</div>
       }
       </AutoComplete>
       <SubmitInputUI onClick={onClick}>

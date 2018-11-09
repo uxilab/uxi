@@ -8,15 +8,15 @@ const OptionsUI = styled.li`
   user-select: none;
   &:hover {
     outline: none;
-    background-color: blue;
+    background-color: rgb(206, 206, 206);
   }
   &:focus {
     outline: none;
-    background-color: red;
+    background-color: rgb(206, 206, 206);
   }
   &:active {
     outline: none;
-    background-color: green;
+    background-color: rgb(206, 206, 206);
   }
 `;
 
@@ -30,15 +30,16 @@ const KeyNavigationItem = ({
   return (
     <OptionsUI
       tabIndex={index}
+      onClick={e => {
+        onClick(e, index, value, true);
+      }}
       onKeyPress={e => {
         if(e.keyCode === 13 || e.key === 'Enter') {
-          onClick(e, index, value);
+          onClick(e, index, value, true);
         }
       }}
-      onClick={e => {
-        onClick(e, index, value);
-      }}
       onEsc={() => {
+        e.persist()
         onClick(e, index, value);
       }}
       data-index={index}
@@ -130,12 +131,12 @@ class KeyNavigation extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.preventScrollingOnSpace);
+    window.addEventListener('keydown', this.preventScrollingOnSpace, true);
     //this.mainRef.current.focus(); 
   }
 
   componentWillUnmount() {
-      window.removeEventListener('keydown', this.preventScrollingOnSpace);
+      window.removeEventListener('keydown', this.preventScrollingOnSpace, true);
   }
 
   clickHandler(e, index, value) {
@@ -155,6 +156,10 @@ class KeyNavigation extends Component {
     const { selectedIndex } = this.state;
 
     return React.Children.map(children, (child, i) => {
+      if(!child) {
+        return null;
+      }
+
       const value = child.props.value ? child.props.value : i;
       return (
         <KeyNavigationItem

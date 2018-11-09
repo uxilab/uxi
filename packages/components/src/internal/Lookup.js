@@ -304,6 +304,20 @@ export class DropDown extends PureComponent {
     this.detachListeners();
   }
 
+  closeVisibilty(e) {
+    const { onIsOpenChange } = this.props;
+
+    if (onIsOpenChange) {
+      onIsOpenChange(nextOpenState);
+    }
+
+    this.setState({
+      isOpen: false,
+    });
+
+    this.detachListeners();
+  }
+
   handleToggleVisibility(e) {
     const { onIsOpenChange } = this.props;
     const isOpen = this.getOpenState();
@@ -369,7 +383,7 @@ export class DropDown extends PureComponent {
           }}
           onKeyUp={(e) => {
             if(e.key === 'Enter' || e.key === 'Escape') {
-              this.handleToggleVisibility();
+              this.closeVisibilty();
               return;
             }
 
@@ -403,8 +417,9 @@ export class DropDown extends PureComponent {
             innerRef={this.itemsRef}
             onClick={this.handleToggleVisibility}
             onKeyUp={(e) => {
+              console.log('onKeyUP');
               if(e.key === 'Enter' || e.key === 'Escape') {
-                this.handleToggleVisibility();
+                this.closeVisibilty();
                 this.mainRef.current.firstChild.focus();
               }
             }}
