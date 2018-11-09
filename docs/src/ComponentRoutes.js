@@ -41,6 +41,7 @@ import SelectInputPage from './components/pages/SelectInput/Page';
 import PopOverPage from './components/pages/PopOver/Page';
 import CompactSlidePage from './components/pages/CompactSlide/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
+import AutoComplete2 from './components/pages/AutoComplete2/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -84,6 +85,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/Tile`} component={TilePage} />
       <Route path={`${match.url}/motion`} component={MotionPage} />
       <Route path={`${match.url}/compactslide`} component={CompactSlidePage} />
+      <Route path={`${match.url}/BETAAutoComplete`} component={AutoComplete2} />
     </Switch>
   </ComponentShell>
 );
