@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import BETAAutoComplete from 'uxi/Input/BETAAutoComplete';
 import Button from 'uxi/Button';
 
+const DecoratedInput = (props) => {
+  return (
+    <div>
+      {props.test}
+      <input type="test" {...props} />
+    </div>
+  )
+};
+
 class ExampleBigList extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +43,23 @@ class ExampleBigList extends Component {
       <div>
         <span>current value: {selectedValue}</span>
         <BETAAutoComplete
+          value={selectedValue}
+          onChange={(e, value) => {
+            this.setState({ selectedValue: value });
+          }}
+        >
+          {
+            values.map(car => (
+              <div value={car.name}>{car.name}</div>
+            ))
+          }
+        </BETAAutoComplete>
+
+        <br/>
+        <br/>
+        <BETAAutoComplete
+          Input={DecoratedInput}
+          test="test"
           value={selectedValue}
           onChange={(e, value) => {
             this.setState({ selectedValue: value });

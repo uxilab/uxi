@@ -18,6 +18,7 @@ const BETAAutoComplete = ({
   Input,
   placeholder,
   onSubmit,
+  ...rest,
 }) => {
   const InputComponent = Input || InputUI;
   return (
@@ -25,6 +26,7 @@ const BETAAutoComplete = ({
       isFullWidth
       main={
         <InputComponent
+          {...rest}
           defaultValue={defaultValue}
           isFullWidth={isFullWidth}
           value={value}
@@ -39,7 +41,10 @@ const BETAAutoComplete = ({
         />
       }
     >
-      <ListWithNavigation onChange={onChange} onSubmit={onSubmit} >
+      <ListWithNavigation
+        onChange={onChange}
+        onSubmit={onSubmit}
+      >
         {children}
       </ListWithNavigation>
     </BETALookUp>
