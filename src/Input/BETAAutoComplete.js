@@ -18,12 +18,14 @@ const BETAAutoComplete = ({
   Input,
   placeholder,
   onSubmit,
-  ...rest,
+  inertMain,
+  ...rest
 }) => {
   const InputComponent = Input || InputUI;
   return (
     <BETALookUp
       isFullWidth
+      inertMain={inertMain}
       main={
         <InputComponent
           {...rest}

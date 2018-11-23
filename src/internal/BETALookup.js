@@ -380,9 +380,11 @@ export class DropDown extends PureComponent {
 
             if (e.key === 'ArrowDown') {
               if (
+                this.itemsRef &&
                 this.itemsRef.current &&
                 this.itemsRef.current.firstChild &&
-                this.itemsRef.current.firstChild
+                this.itemsRef.current.firstChild.firstChild &&
+                this.itemsRef.current.firstChild.firstChild.focus
               ) {
                 this.itemsRef.current.firstChild.firstChild.focus();
               }
@@ -410,7 +412,14 @@ export class DropDown extends PureComponent {
           onKeyUp={(e) => {
             if (e.key === 'Enter' || e.key === 'Escape') {
               this.closeVisibilty();
-              this.mainRef.current.firstChild.focus();
+              if (
+                this.mainRef &&
+                this.mainRef.current &&
+                this.mainRef.current.firstChild &&
+                this.mainRef.current.firstChild.focus
+              ) {
+                this.mainRef.current.firstChild.focus();
+              }
             }
           }}
         >
