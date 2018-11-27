@@ -37,7 +37,7 @@ const BETAAutoComplete = ({
           onChange={(e) => { onChange(e, e.target.value); }}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
-              onSubmit(e.target.value);
+              onSubmit(e, e.target.value);
             }
           }}
         />
