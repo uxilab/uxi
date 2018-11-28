@@ -266,7 +266,6 @@ export class DropDown extends PureComponent {
   }
 
   handleClickOutside() {
-    console.log('handleClickOutside');
     const { onClickOutside, onIsOpenChange } = this.props;
     const isOpen = this.getOpenState();
     if (onClickOutside) {

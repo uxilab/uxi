@@ -504,7 +504,6 @@ class SelectInput extends PureComponent {
   }
 
   handleDropDownChange(isOpen) {
-    console.log('dropDownChange', 'isOpen', isOpen);
     if (!this.isOpenControlled) {
       if (this.state.isOpen !== isOpen) {
         this.setState({ isOpen });
@@ -518,7 +517,6 @@ class SelectInput extends PureComponent {
   }
 
   handleLookupClickOutisde(isOpen) {
-    console.log('dropDownChange', 'isOpen', isOpen);
     if (!this.isOpenControlled) {
       if (this.state.isOpen !== isOpen) {
         this.setState({ isOpen });
