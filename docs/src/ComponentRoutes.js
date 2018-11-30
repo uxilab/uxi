@@ -42,7 +42,7 @@ import PopOverPage from './components/pages/PopOver/Page';
 import CompactSlidePage from './components/pages/CompactSlide/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
 import AutoComplete2 from './components/pages/AutoComplete2/Page';
-
+import Spacer from './components/pages/Spacer/Page';
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
@@ -86,6 +86,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/motion`} component={MotionPage} />
       <Route path={`${match.url}/compactslide`} component={CompactSlidePage} />
       <Route path={`${match.url}/BETAAutoComplete`} component={AutoComplete2} />
+      <Route path={`${match.url}/Spacer`} component={Spacer} />
     </Switch>
   </ComponentShell>
 );
