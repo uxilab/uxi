@@ -56,6 +56,7 @@ export const routes = [
   { path: '/tile', label: 'Tile' },
   { path: '/Motion', label: 'Motion' },
   { path: '/compactslide', label: 'CompactSlide' },
+  { path: '/spacer', label: 'Spacer' },
 ];
 
 const ComponentShell = ({ children }) => {

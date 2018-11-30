@@ -135,8 +135,12 @@ class SelectInput extends PureComponent {
 
     const { children } = this.props;
     const shouldUpdateOptions = (
-      prevProps.children.length !== this.props.children.length ||
-      prevProps.children !== this.props.children
+      prevProps.children &&
+      children &&
+      (
+        prevProps.children.length !== children.length ||
+        prevProps.children !== children
+      )
     );
 
     let storedOptions = null;
