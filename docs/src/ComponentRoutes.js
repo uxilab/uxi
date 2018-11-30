@@ -43,7 +43,9 @@ import CompactSlidePage from './components/pages/CompactSlide/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
 import AutoComplete2 from './components/pages/AutoComplete2/Page';
 import Spacer from './components/pages/Spacer/Page';
-import UserMenuPage from './components/pages/UserMenu/Page';
+import MenuDropDownPage from './components/pages/MenuDropDown/Page';
+
+
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
@@ -88,7 +90,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/compactslide`} component={CompactSlidePage} />
       <Route path={`${match.url}/BETAAutoComplete`} component={AutoComplete2} />
       <Route path={`${match.url}/Spacer`} component={Spacer} />
-      <Route path={`${match.url}/usermenu`} component={UserMenuPage} />
+      <Route path={`${match.url}/MenuDropDown`} component={MenuDropDownPage} />
     </Switch>
   </ComponentShell>
 );

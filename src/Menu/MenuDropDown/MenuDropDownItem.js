@@ -5,7 +5,7 @@ import { Flex } from '../../Layout';
 const height = '38px';
 const iconSize = '18';
 
-const UserMenuItemFlex = Flex.extend`
+const MenuDropDownItemFlex = Flex.extend`
   min-width: 180px;
   max-width: 100vw;
   justify-content: flex-start;
@@ -17,7 +17,7 @@ const UserMenuItemFlex = Flex.extend`
 /**
  * note: can use AvatarWithNameAndExtra if need be to show a 'submenu icon' on the right
  */
-export const UserMenuItem = ({ icon, children, extra, onClick }) => {
+export const MenuDropDownItem = ({ icon, children, extra, onClick }) => {
   let content = children;
 
   if (icon) {
@@ -29,13 +29,13 @@ export const UserMenuItem = ({ icon, children, extra, onClick }) => {
   }
 
   return (
-    <UserMenuItemFlex
+    <MenuDropDownItemFlex
       onClick={onClick}
     >
       {content}
       <div style={{ marginLeft: 'auto' }}>{extra}</div>
-    </UserMenuItemFlex>
+    </MenuDropDownItemFlex>
   );
 };
 
-export default UserMenuItem;
+export default MenuDropDownItem;

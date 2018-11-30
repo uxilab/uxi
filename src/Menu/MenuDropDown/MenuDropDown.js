@@ -1,9 +1,10 @@
+
 import React from 'react';
 import ListWithNavigation from '../../Input/ListWithNavigation';
 import BETALookup from '../../internal/BETALookup';
 
 
-export const UserMenu = ({ children, main = null, onChange, anchor }) => (
+export const MenuDropDown = ({ children, main = null, onChange, anchor }) => (
   <BETALookup
     main={main}
     anchor={anchor}
@@ -13,7 +14,7 @@ export const UserMenu = ({ children, main = null, onChange, anchor }) => (
       listStyle={{
         boxShadow: '0 8px 16px 0 rgba(0,0,0,.1)',
         padding: '4px 0',
-        borderRadius: '3px'
+        borderRadius: '3px',
       }}
     >
       {children}
@@ -21,4 +22,4 @@ export const UserMenu = ({ children, main = null, onChange, anchor }) => (
   </BETALookup>
 );
 
-export default UserMenu;
+export default MenuDropDown;
