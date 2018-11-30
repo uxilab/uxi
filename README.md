@@ -1,7 +1,12 @@
+ [![npm version](https://badge.fury.io/js/uxi.svg)](https://badge.fury.io/js/uxi)
+
+
+---
+
 # UXI - React component library
 
 
-## Demo: [uxilab.eu](https://www.uxilab.eu)
+## Demo (wip): [uxilab.eu](https://www.uxilab.eu)
 
 
 #### We're looking for contributors!
