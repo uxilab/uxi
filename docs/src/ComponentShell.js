@@ -17,6 +17,7 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 );
 
 export const routes = [
+  { path: '/usermenu', label: 'UserMenu' },
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/font', label: 'Fonts' },
   { path: '/color', label: 'Colors' },
