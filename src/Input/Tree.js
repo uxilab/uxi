@@ -8,11 +8,33 @@ import Checkbox from './Checkbox';
 const TreeNodeContainer = styled.div`
   display: flex;
   cursor: pointer;
+  align-items: center;
 `;
 
 const ToogleLink = styled.a`
   width: 30px;
+  display: flex;
+  align-items: center;
 `;
+
+const arrayToTree = (arr, parentId = null) => {
+  return (!arr || !arr.filter) ? [] : arr
+    .filter(n => n.Parent === parentId)
+    .map(n => ({ ...n, childNodes: arrayToTree(arr, n.Id) }));
+}
+
+const forEachTreeElement = (tree, predicate, cb) => {
+  if (tree.childNodes) {
+    tree.childNodes.forEach((n) => {
+      forEachTreeElement(n, predicate, cb);
+    });
+  }
+
+  if (predicate(tree) && cb) {
+    cb(tree);
+  }
+}
+
 class TreeNode extends Component {
   static propTypes = {
     isChecked: PropTypes.bool.isRequired,
@@ -30,21 +52,34 @@ class TreeNode extends Component {
     this.state = {
       visible: true,
       isChecked: props.isChecked || false,
+      node: props.defaultNode || {},
     };
+
     this.select = this.select.bind(this);
     this.toggle = this.toggle.bind(this);
   }
+  onTreeSelectNode(name, tree, valuesFromTree) {
+    const currentValues = this.props.feedValues[name];
+    const checkedStates = {};
 
-  componentWillReceiveProps(nextProp) {
-    this.setState({ isChecked: nextProp.isChecked });
+    forEachTreeElement(
+      valuesFromTree.node,
+      n => n.id === valuesFromTree.node.id,
+      nn => checkedStates[nn.Id] = valuesFromTree.isChecked //eslint-disable-line
+    );
+
+    const nextValues = currentValues.map(cv => ({ ...cv, IsChecked: !!checkedStates[cv.Id] }));
+
   }
 
-  toggle = () => {
+
+  toggle() {
     this.setState({ visible: !this.state.visible });
   }
 
-  select = (event, isChecked) => {
-    const { onSelect, node } = this.props;
+  select (event, isChecked) {
+    const { node } = this.state;
+    const { onSelect } = this.props;
 
     if (onSelect) {
       onSelect({
@@ -54,13 +89,72 @@ class TreeNode extends Component {
     }
   }
 
+  getToggleLink() {
+    const { visible, node } = this.state;
+
+    if (
+      !node ||
+      !node.childNodes ||
+      node.childNodes.length === 0
+    ) {
+      return <span style={{ paddingLeft: '30px' }} />;
+    }
+
+    return (
+      <ToogleLink onClick={this.toggle}>
+        {
+          visible ? (
+          <Arrowdown size={16} style={{ paddingLeft: '5px' }} />
+          ): (
+          <Arrowright size={16} style={{ paddingLeft: '5px' }} />
+          )
+        }
+      </ToogleLink>
+    );
+  }
+
+  getNodeContent() {
+    const { node, visible } = this.state;
+
+    const nodeValue = node.isChecked || false;
+    const title = node.title || node.Name;
+    const expanderIconContent = this.getToggleLink();
+
+    if (visible) {
+     return (
+        <TreeNodeContainer>
+          {expanderIconContent}
+          <Checkbox
+            checked={nodeValue}
+            onChange={this.select}
+            label={title}
+          />
+        </TreeNodeContainer>
+      );
+    }
+
+    return (
+      <TreeNodeContainer>
+        {expanderIconContent}
+        <Checkbox
+          checked={nodeValue}
+          onChange={this.select}
+          label={title}
+        />
+      </TreeNodeContainer>
+    );
+  }
+
   render() {
     const {
-      node,
       onSelect,
       className,
       style,
     } = this.props;
+    const {
+      node,
+      visible
+    } = this.state;
 
     let childNodes;
     let content;
@@ -73,67 +167,32 @@ class TreeNode extends Component {
       );
     }
 
-    const nodeValue = node.IsChecked || false;
-
-    if (node && node.childNodes != null) {
-      childNodes = node.childNodes.map(
-        (n, index) => (
-          <li key={index}>
-            <TreeNode onSelect={onSelect} node={n} />
-          </li>
-        )
-      );
-    }
-
-    const title = node.title || node.Name;
-
-    if (this.state.visible) {
-      let icon;
-
-      if (node.childNodes && node.childNodes.length) {
-        icon = (
-          <ToogleLink onClick={this.toggle}>
-            <Arrowdown />
-          </ToogleLink>
-        );
-      }
-
-      content = (
-        <TreeNodeContainer>
-          {icon}
-          <Checkbox checked={nodeValue} onCheck={this.select} />
-          {title}
-        </TreeNodeContainer>
-      );
-    } else {
-      let iconNotVisible;
-
-      if (node.childNodes && node.childNodes.length) {
-        iconNotVisible = (
-          <ToogleLink onClick={this.toggle}>
-            <Arrowright />
-          </ToogleLink>
-        );
-      }
-
-      content = (
-        <TreeNodeContainer>
-          {iconNotVisible}
-          <Checkbox
-            checked={nodeValue}
-            onCheck={this.select}
-          />
-          {title}
-        </TreeNodeContainer>
-      );
-    }
+    const currentNodeContent = this.getNodeContent();
 
     return (
       <div className={className} style={style || {}}>
-        {content}
-        <ul>
-          {childNodes}
-        </ul>
+        {currentNodeContent}
+        {
+          node &&
+          node.childNodes != null &&
+          visible &&
+          (
+            <ul style={{ marginLeft: '30px' }}>
+              {
+                 node.childNodes.map(
+                  (n, index) => (
+                    <li key={index}>
+                      <TreeNode
+                        onSelect={onSelect}
+                        defaultNode={n}
+                      />
+                    </li>
+                  )
+                )
+              }
+            </ul>
+          )
+        }
       </div>
     );
   }
