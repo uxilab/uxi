@@ -35,6 +35,7 @@ export const routes = [
   { path: '/icons', label: 'Icons' },
   { path: '/indicator', label: 'Indicator' },
   { path: '/inputs', label: 'Inputs' },
+  { path: '/tree', label: 'Tree' },
   { path: '/internal', label: 'Internal' },
   { path: '/img', label: 'Image' },
   { path: '/layouts', label: 'Layout' },

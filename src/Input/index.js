@@ -13,3 +13,4 @@ export { default as Switch } from './Switch';
 export { default as SearchForm } from './SearchForm';
 export { default as RangeInput } from './RangeInput';
 export { default as BETAAutoComplete } from './BETAAutoComplete';
+export { default as Tree } from './Tree';
