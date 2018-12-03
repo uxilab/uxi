@@ -45,7 +45,7 @@ const searchTree = (element, predicate) => {
 };
 
 const updateTree = (node, checked, selectedId) => {
-  const foundNode = searchTree(node, n => n.Id === selectedId);
+  const foundNode = searchTree(node, n => n.id === selectedId);
 
   // when false we chould update the tree backwards
   foundNode.isChecked = checked;
@@ -63,13 +63,21 @@ const updateTree = (node, checked, selectedId) => {
   return node;
 };
 
-const getUpdatedSelection = () => {
+const getUpdatedSelection = (node) => {
+  const result = [];
 
+  forEachTreeElement(node, (n) => {
+    if (n.isChecked) {
+      result.push(n.id);
+    }
+  });
+
+  return result;
 };
 
 const arrayToTree = (arr, parentId = null) => ((!arr || !arr.filter) ? [] : arr
   .filter(n => n.Parent === parentId)
-  .map(n => ({ ...n, childNodes: arrayToTree(arr, n.Id) })));
+  .map(n => ({ ...n, childNodes: arrayToTree(arr, n.id) })));
 
 class TreeNode extends Component {
   static propTypes = {
@@ -93,15 +101,13 @@ class TreeNode extends Component {
 
     this.select = this.select.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.onSelectElement = this.onSelectElement.bind(this);
+    this.onMainChange = this.onMainChange.bind(this);
   }
-
-
-  onSelectElement(selectedNode, isChecked) {
+  onMainChange(selectedNode, isChecked) {
+    const { onChange } = this.props;
     const { node } = this.state;
-    const { onSelect } = this.props;
 
-    const updateNodes = updateTree(node, isChecked, selectedNode.Id);
+    const updateNodes = updateTree(node, isChecked, selectedNode.id);
     const selectedNodes = getUpdatedSelection(updateNodes) || [];
 
     this.setState({
@@ -109,20 +115,19 @@ class TreeNode extends Component {
       selectedNodes,
     });
 
-    if (onSelect) {
-      onSelect(selectedNodes);
+    if (onChange) {
+      onChange(updateNodes, selectedNodes);
     }
   }
 
   getNodeContent() {
     const { node, visible } = this.state;
-    const { onSelectElement, isChild } = this.props;
+    const { onSelectElement, isChild, onMainChange } = this.props;
 
     const nodeValue = node.isChecked || false;
     const title = node.title || node.Name;
     const expanderIconContent = this.getToggleLink();
 
-    if (visible) {
       return (
         <TreeNodeContainer>
           {expanderIconContent}
@@ -130,10 +135,10 @@ class TreeNode extends Component {
             checked={nodeValue}
             onChange={
               (e, isChecked) => {
-                if (isChild) {
-                  onSelectElement(node, isChecked);
+                if(onMainChange) {
+                  onMainChange(node, isChecked);
                 } else {
-                  this.onSelectElement(node, isChecked);
+                  this.onMainChange(node, isChecked);
                 }
               }
             }
@@ -142,25 +147,6 @@ class TreeNode extends Component {
         </TreeNodeContainer>
       );
     }
-
-    return (
-      <TreeNodeContainer>
-        {expanderIconContent}
-        <Checkbox
-          checked={nodeValue}
-          onChange={
-            (e, isChecked) => {
-              if (isChild) {
-                onSelectElement(node, isChecked);
-              } else {
-                this.onSelectElement(node, isChecked);
-              }
-            }
-          }
-          label={title}
-        />
-      </TreeNodeContainer>
-    );
   }
   getToggleLink() {
     const { visible, node } = this.state;
@@ -205,13 +191,15 @@ class TreeNode extends Component {
     const {
       className,
       style,
+      isChild,
+      onMainChange,
     } = this.props;
     const {
       node,
       visible,
     } = this.state;
 
-    if (!node) {
+    if (!node || !node.id) {
       return (
         <div className={className} style={style || {}} />
       );
@@ -234,7 +222,7 @@ class TreeNode extends Component {
                     <li key={index}>
                       <TreeNode
                         isChild={true}
-                        onSelectElement={this.onSelectElement}
+                        onMainChange={onMainChange ? onMainChange : this.onMainChange}
                         defaultNode={n}
                       />
                     </li>

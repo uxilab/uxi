@@ -2,31 +2,31 @@ import React from 'react';
 import { Tree } from 'uxi/Input';
 
 const TreeData = {
-  Id: 1,
+  id: 1,
   title: 'name',
   Name: 'name',
   childNodes: [
     {
       title: 'children 1',
-      Id: 2,
+      id: 2,
       isChecked: true,
     },
     {
       title: 'children 1',
-      Id: 3,
+      id: 3,
       childNodes: [
         {
           title: 'children 4',
-          Id: 4,
+          id: 4,
           isChecked: true,
         },
         {
           title: 'children 5',
-          Id: 5,
+          id: 5,
           childNodes: [
             {
               title: 'children 6',
-              Id: 6,
+              id: 6,
               isChecked: true,
             },
           ]
@@ -40,8 +40,8 @@ const ExampleSimple = () => {
   return (
     <div>
       <Tree
-        onSelect={(n) => {
-          
+        onChange={(n, ids) => {
+          alert(JSON.stringify(ids));
         }}
         defaultNode={TreeData}
       />
