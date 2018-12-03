@@ -18,6 +18,7 @@
     "pack": "uxi-cli pack",
     "clean:build": "rimraf build",
     "test": "npm run lint && uxi-cli test",
+    "jest": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
     "typeinstall": "flow-typed install",
