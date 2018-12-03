@@ -17,20 +17,56 @@ const ToogleLink = styled.a`
   align-items: center;
 `;
 
+const searchTree = (element, predicate) => {
+  if (predicate(element)) {
+    return element;
+  }
+
+  let result = null;
+  (element.childNodes || []).forEach((child) => {
+    if(!result) {
+      result = searchTree(child, predicate);
+    }
+  });
+
+  return result;
+};
+
+const updateTree = (node, checked, selectedId) => {
+  const foundNode = searchTree(node, (n) => n.Id === selectedId);
+
+  //when false we chould update the tree backwards
+  foundNode.isChecked = checked;
+
+  if(foundNode.childNodes) {
+    forEachTreeElement(
+      foundNode,
+      (n) => {
+        n.isChecked = checked;
+      }
+    );
+  }
+
+  return node;
+};
+
+const getUpdatedSelection = (node) => {
+  
+};
 const arrayToTree = (arr, parentId = null) => {
   return (!arr || !arr.filter) ? [] : arr
     .filter(n => n.Parent === parentId)
     .map(n => ({ ...n, childNodes: arrayToTree(arr, n.Id) }));
 }
 
-const forEachTreeElement = (tree, predicate, cb) => {
+const forEachTreeElement = (tree, cb, predicate) => {
   if (tree.childNodes) {
     tree.childNodes.forEach((n) => {
-      forEachTreeElement(n, predicate, cb);
+      forEachTreeElement(n, cb, predicate);
     });
   }
 
-  if (predicate(tree) && cb) {
+  if ((!predicate || predicate(tree)) && cb) {
     cb(tree);
   }
 }
@@ -57,6 +93,8 @@ class TreeNode extends Component {
 
     this.select = this.select.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.onSelectElement = this.onSelectElement.bind(this);
+
   }
   onTreeSelectNode(name, tree, valuesFromTree) {
     const currentValues = this.props.feedValues[name];
@@ -77,15 +115,15 @@ class TreeNode extends Component {
     this.setState({ visible: !this.state.visible });
   }
 
-  select (event, isChecked) {
+  select (currentNode, isChecked) {
     const { node } = this.state;
     const { onSelect } = this.props;
 
     if (onSelect) {
-      onSelect({
-        node,
+      onSelect(
+        currentNode,
         isChecked,
-      });
+      );
     }
   }
 
@@ -115,6 +153,7 @@ class TreeNode extends Component {
 
   getNodeContent() {
     const { node, visible } = this.state;
+    const { onSelectElement, isChild } = this.props;
 
     const nodeValue = node.isChecked || false;
     const title = node.title || node.Name;
@@ -126,7 +165,7 @@ class TreeNode extends Component {
           {expanderIconContent}
           <Checkbox
             checked={nodeValue}
-            onChange={this.select}
+            onChange={(e, isChecked) => { isChild ? onSelectElement(node, isChecked) : this.onSelectElement(node, isChecked); }}
             label={title}
           />
         </TreeNodeContainer>
@@ -138,11 +177,29 @@ class TreeNode extends Component {
         {expanderIconContent}
         <Checkbox
           checked={nodeValue}
-          onChange={this.select}
+          onChange={(e, isChecked) => { isChild ? onSelectElement(node, isChecked) : this.onSelectElement(node, isChecked); }}
           label={title}
         />
       </TreeNodeContainer>
     );
+  }
+
+  onSelectElement(selectedNode, isChecked) {
+    alert('test')
+    const { node } = this.state;
+    const { onSelect } = this.props;
+
+    const updateNodes = updateTree(node, isChecked, selectedNode.Id);
+    const selectedNodes = getUpdatedSelection(updateNodes) || [];
+
+    this.setState({
+      node: updateNodes,
+      selectedNodes,
+    });
+
+    if(onSelect) {
+      onSelect(selectedNodes);
+    }
   }
 
   render() {
@@ -183,7 +240,8 @@ class TreeNode extends Component {
                   (n, index) => (
                     <li key={index}>
                       <TreeNode
-                        onSelect={onSelect}
+                        isChild={true}
+                        onSelectElement={this.onSelectElement}
                         defaultNode={n}
                       />
                     </li>

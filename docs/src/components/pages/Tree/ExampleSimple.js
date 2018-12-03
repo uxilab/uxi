@@ -23,6 +23,13 @@ const TreeData = {
         {
           title: 'children 5',
           Id: 5,
+          childNodes: [
+            {
+              title: 'children 6',
+              Id: 6,
+              isChecked: true,
+            },
+          ]
         },
       ]
     },
