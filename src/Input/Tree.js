@@ -121,8 +121,8 @@ class TreeNode extends Component {
   }
 
   getNodeContent() {
-    const { node, visible } = this.state;
-    const { onSelectElement, isChild, onMainChange } = this.props;
+    const { node } = this.state;
+    const { onMainChange } = this.props;
 
     const nodeValue = node.isChecked || false;
     const title = node.title || node.Name;
@@ -135,7 +135,7 @@ class TreeNode extends Component {
           checked={nodeValue}
           onChange={
             (e, isChecked) => {
-              if(onMainChange) {
+              if (onMainChange) {
                 onMainChange(node, isChecked);
               } else {
                 this.onMainChange(node, isChecked);
@@ -190,7 +190,6 @@ class TreeNode extends Component {
     const {
       className,
       style,
-      isChild,
       onMainChange,
     } = this.props;
     const {
@@ -220,8 +219,7 @@ class TreeNode extends Component {
                   (n, index) => (
                     <li key={index}>
                       <TreeNode
-                        isChild={true}
-                        onMainChange={onMainChange ? onMainChange : this.onMainChange}
+                        onMainChange={onMainChange || this.onMainChange}
                         rootNode={n}
                       />
                     </li>
