@@ -83,7 +83,7 @@ class TreeNode extends Component {
   static propTypes = {
     isChecked: PropTypes.bool.isRequired,
     onSelect: PropTypes.func.isRequired,
-    defaultNode: PropTypes.shape({
+    rootNode: PropTypes.shape({
       Id: PropTypes.string.isRequired,
       Name: PropTypes.string.isRequired,
       IsChecked: PropTypes.bool,
@@ -96,7 +96,7 @@ class TreeNode extends Component {
     this.state = {
       visible: true,
       isChecked: props.isChecked || false,
-      node: props.defaultNode || {},
+      node: props.rootNode || {},
     };
 
     this.select = this.select.bind(this);
@@ -128,25 +128,24 @@ class TreeNode extends Component {
     const title = node.title || node.Name;
     const expanderIconContent = this.getToggleLink();
 
-      return (
-        <TreeNodeContainer>
-          {expanderIconContent}
-          <Checkbox
-            checked={nodeValue}
-            onChange={
-              (e, isChecked) => {
-                if(onMainChange) {
-                  onMainChange(node, isChecked);
-                } else {
-                  this.onMainChange(node, isChecked);
-                }
+    return (
+      <TreeNodeContainer>
+        {expanderIconContent}
+        <Checkbox
+          checked={nodeValue}
+          onChange={
+            (e, isChecked) => {
+              if(onMainChange) {
+                onMainChange(node, isChecked);
+              } else {
+                this.onMainChange(node, isChecked);
               }
             }
-            label={title}
-          />
-        </TreeNodeContainer>
-      );
-    }
+          }
+          label={title}
+        />
+      </TreeNodeContainer>
+    );
   }
   getToggleLink() {
     const { visible, node } = this.state;
@@ -223,7 +222,7 @@ class TreeNode extends Component {
                       <TreeNode
                         isChild={true}
                         onMainChange={onMainChange ? onMainChange : this.onMainChange}
-                        defaultNode={n}
+                        rootNode={n}
                       />
                     </li>
                   )

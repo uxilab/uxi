@@ -43,7 +43,7 @@ const ExampleSimple = () => {
         onChange={(n, ids) => {
           alert(JSON.stringify(ids));
         }}
-        defaultNode={TreeData}
+        rootNode={TreeData}
       />
     </div>
   )
