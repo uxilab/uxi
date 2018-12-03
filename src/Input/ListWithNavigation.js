@@ -39,6 +39,7 @@ const KeyNavigationItem = ({
     }}
     data-index={index}
     selected={selected}
+    role="menuitem"
   >
     {children}
   </OptionsUI>
@@ -175,8 +176,12 @@ class KeyNavigation extends Component {
 
   render() {
     const list = this.getOptionsItem();
+    const {
+      listStyle = {},
+    } = this.props;
+
     return (
-      <ul ref={this.mainRef}>
+      <ul ref={this.mainRef} role="menu" style={{ ...listStyle }}>
         {list}
       </ul>
     );

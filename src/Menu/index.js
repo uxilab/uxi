@@ -5,3 +5,6 @@ export DropDownMenu from './DropDownMenu';
 export Separator from './Separator';
 export GlobalMenu from './GlobalMenu';
 export GlobalHeader from './GlobalHeader'; // eslint-disable-line import/no-named-as-default
+
+export MenuDropDown from './MenuDropDown/MenuDropDown'; // eslint-disable-line import/no-named-as-default
+export MenuDropDownItem from './MenuDropDown/MenuDropDownItem'; // eslint-disable-line import/no-named-as-default
