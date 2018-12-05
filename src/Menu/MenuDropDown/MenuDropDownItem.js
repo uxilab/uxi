@@ -1,17 +1,27 @@
 import React from 'react';
-import { Flex } from '../../Layout';
+import styled from 'styled-components';
+import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
 
 
 const height = '38px';
 const iconSize = '18';
 
-const MenuDropDownItemFlex = Flex.extend`
+const MenuDropDownItemFlex = styled.button`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  ${buttonResetStylesCSSString};
   min-width: 180px;
   max-width: 100vw;
   justify-content: flex-start;
   height: ${height};
+  min-height: ${height};
+  max-height: ${height};
   box-sizing: border-box;
   padding: 0 8px;
+  &:focus, &:hover {
+    background: #ebebeb;
+  }
 `;
 
 /**

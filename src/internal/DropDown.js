@@ -105,7 +105,7 @@ export class DropDown extends PureComponent {
   }
 
   static defaultProps = {
-    main: null,
+    main: <div></div>,
     items: [],
     inertMain: false,
     anchor: 'left',
@@ -471,7 +471,13 @@ export class DropDown extends PureComponent {
           {/* {items} */}
           {
             React.Children.map(items, child => React.cloneElement(child, {
-              ...child.props,
+              ...(child.props || {}),
+              onClick: (e) => {
+                this.handleToggleVisibility();
+                if (child.props && child.props.onClick) {
+                  child.props.onClick(e);
+                }
+              },
               //   tabIndex: isOpen ? 0 : -1,
               //   'aria-hidden': isOpen
               //     ? (child.type === Separator ? false : true)

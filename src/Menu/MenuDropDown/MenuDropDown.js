@@ -1,25 +1,17 @@
 
 import React from 'react';
-import ListWithNavigation from '../../Input/ListWithNavigation';
-import BETALookup from '../../internal/BETALookup';
+import DropDown from '../../internal/DropDown'; // eslint-disable-line
 
-
-export const MenuDropDown = ({ children, main = null, onChange, anchor }) => (
-  <BETALookup
-    main={main}
+export const MenuDropDown = ({ children, main = null, anchor }) => (
+  <DropDown
     anchor={anchor}
-  >
-    <ListWithNavigation
-      onChange={onChange}
-      listStyle={{
-        boxShadow: '0 8px 16px 0 rgba(0,0,0,.1)',
-        padding: '4px 0',
-        borderRadius: '3px',
-      }}
-    >
-      {children}
-    </ListWithNavigation>
-  </BETALookup>
+    main={main}
+    items={children}
+    itemsStyle={{
+      border: '1px solid #dedede',
+      boxShadow: '0 8px 16px 0 rgba(0,0,0,.1)',
+    }}
+  />
 );
 
 export default MenuDropDown;
