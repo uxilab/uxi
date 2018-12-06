@@ -414,7 +414,7 @@ export class DropDown extends PureComponent {
     // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
 
 
-    const items = React.Children.map(itemsBefore, child => React.cloneElement(child, {
+    const items = React.Children.map(itemsBefore, child => child && React.cloneElement(child, {
       style: {
         ...(child && child.props.style ? child.props.style : {}),
         ':hover': {
@@ -470,7 +470,7 @@ export class DropDown extends PureComponent {
           {isPopOver && <PopOverArrow isPopOver={isPopOver} anchor={anchor} />}
           {/* {items} */}
           {
-            React.Children.map(items, child => React.cloneElement(child, {
+            React.Children.map(items, child => child && React.cloneElement(child, {
               ...(child.props || {}),
               onClick: (e) => {
                 this.handleToggleVisibility();
