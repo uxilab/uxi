@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectInput from '../SelectInput'; // eslint-disable-line
+import SelectInput from '../SelectInput';
 
 describe('<SelectInput />', () => {
   it('exists', () => {
