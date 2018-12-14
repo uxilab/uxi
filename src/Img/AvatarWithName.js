@@ -2,6 +2,7 @@ import React from 'react';
 // eslint-disable-next-line import/no-named-as-default
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
 import Img from './Img';
+import { TextEllipsis } from '../Text';
 
 const styles = {
   wrapper: {
@@ -12,6 +13,7 @@ const styles = {
   },
   nameWrapper: {
     marginLeft: '6px',
+    overflow: 'hidden',
   },
 };
 
@@ -38,7 +40,9 @@ const AvatarWithName = ({
     <div style={{ ...styles.wrapper, ...style }} onClick={onClick || null}>
       { imgContent }
       <div style={{ ...styles.nameWrapper, ...nameStyle }}>
-        {name}
+        <TextEllipsis>
+          {name}
+        </TextEllipsis>
       </div>
     </div>
   );
