@@ -296,16 +296,14 @@ export class DropDown extends PureComponent {
   handleWindowResize() {
     // this.forceUpdate();
     if (!this.isOpenControlled) {
-      this.setState({ isOpen: false })
+      this.setState({ isOpen: false });
     }
-
   }
   handleWindowScroll() {
     // this.forceUpdate();
     if (!this.isOpenControlled) {
-      this.setState({ isOpen: false })
+      this.setState({ isOpen: false });
     }
-
   }
 
   handleClickOutside() {
