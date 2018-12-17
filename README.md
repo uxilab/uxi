@@ -41,7 +41,7 @@ Add an icon:
 - cd into src/Icons
 - run _scripts `node _script.js`
 - cd to project root
-- run `node_modules/.bin/eslint --fix src/Icons/`
+- run `npm run lint`
 - stage your icon (svg, js and test file) AND stage the scr/Icons/index.js file
 - commit
 
