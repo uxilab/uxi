@@ -102,6 +102,7 @@ export Event from './Event';
 export Externallink from './Externallink';
 export Facebook from './Facebook';
 export Filter from './Filter';
+export Followactivestate from './Followactivestate';
 export Followentities from './Followentities';
 export Fullscreen from './Fullscreen';
 export Gift from './Gift';
