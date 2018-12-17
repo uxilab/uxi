@@ -202,7 +202,8 @@ exec("echo '' > ./index.js", (err, std, stdout) => {
       .map(writeFileTest)
       // .map(prettifyFile)
       .map(addFileToIndex)
-      .map(prettifyFile));
+      // .map(prettifyFile)
+  );
 
   console.log('originalFiles', originalFiles);
 
