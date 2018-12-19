@@ -20,6 +20,27 @@
 const fs = require('fs');
 const { exec } = require('child_process');
 
+
+const makeReducer = (taskRunner) => (
+  (tasksQueue, task) => (
+    tasksQueue.then(chainResults =>
+      taskRunner(task).then(taskResult =>
+        [
+          ...chainResults,
+          taskResult,
+        ]
+      )
+    )
+  )
+)
+
+const initialValue = Promise.resolve([])
+
+const mapPromiseSequentially = (tasks, taskRunner) => {
+  tasks.reduce(makeReducer(taskRunner), initialValue)
+}
+
+
 const capitalize = x => x.charAt(0).toUpperCase() + x.slice(1);
 const toLowerCase = x => x.toLowerCase();
 const removeDashIco = x => x.replace('-ico', '');
@@ -45,6 +66,9 @@ const cleanSVGContent = x => (x
   .replace(/<defs>.*<\/defs>/g, '')
   .replace(/<title>.*<\/title>/g, '')
   .replace(/(class="cls-1")/g, '')
+  .replace(/(class="cls-1")/g, '')
+  .replace(/(class="cls-2")/g, '')
+  .replace(/(class="cls-2")/g, '')
   // .replace(/(<.*>)/g, '\n$&');
   .replace(/(<[^>]+>)/g, addLinFeedToOpenningTag)
   // .replace(/(viewBox=".*")/, '$& style={styles.svg} width="24px" height="24px"')
@@ -73,6 +97,13 @@ const writeFile = (x) => {
 
 
   const cleanedSvgFileContent = cleanSVGContent(svgFileContent);
+
+  if (x.match(/gdpr/i)) {
+    console.log('BEfore:')
+    console.log(svgFileContent)
+    console.log('after:')
+    console.log(cleanedSvgFileContent)
+  }
 
   // const ratio = getRatio(cleanedSvgFileContent);
 
@@ -115,7 +146,7 @@ const addFileToIndex = (x) => {
   const prettifyString = (x) => prettier.format(x);
 */
 const prettifyFile = x => new Promise((resolve, reject) => {
-  exec(`prettier --single-quote --write ./${x}.js `, (err, stdout, stderr) => {
+  exec(`npx prettier --single-quote --write ./${x}.js `, (err, stdout, stderr) => {
     if (err) { console.log(err); reject(err); }
     console.log(`all good for ${x}.js`);
     resolve(x);
@@ -205,7 +236,9 @@ exec("echo '' > ./index.js", (err, std, stdout) => {
       // .map(prettifyFile)
   );
 
-  console.log('originalFiles', originalFiles);
+  mapPromiseSequentially(originalFiles, prettifyFile)
+
+  console.log('§§ originalFiles', originalFiles);
 
   originalFiles
     .map(addParenthesisBack)
