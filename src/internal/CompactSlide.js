@@ -5,12 +5,28 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 /* eslint-disable */
-const SlideUI = styled.div`
+const CompactSlideUI = styled.div`
   overflow-y: auto; /*  not sure about this -df */
   /* height: 100%; */ /*  not sure about this -df */
+  display: flex;
+  pointer-events: none;
+  & > * {
+    pointer-events: all;
+    display: inline-block;
+    margin: 0 auto;
+  }
 
   z-index: 200;
   transition: all 1s linear;
+  transform: ${({ inAttr: isIn, dir }) => {
+    if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0; overflow: hidden'; }
+    else {
+      if (dir === 'left') return `translate3d(-100%, 0, 0)`
+      if (dir === 'right') return `translate3d(100%, 0, 0)`
+      if (dir === 'top') return `translate3d(0, -100%, 0)`
+      if (dir === 'bottom') return `translate3d(0, 100%, 0)`
+    }
+  }};
   transition: all ${({ inAttr: isIn, timeout, timeout: { enter, exit }, theme: { transition } }) => isIn
     ? transition.durationIn + transition.easing
     : transition.durationOut + transition.easing
@@ -18,47 +34,18 @@ const SlideUI = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-
   /* ${({ dir }) => {dir === 'left' || dir === 'right' ? 'height: 100vh' : 'width: 100vw' }}; */
-  ${({ anchor }) => {
-    if (anchor === 'top') return 'top: 0; bottom: auto; left: 50%'
-    if (anchor === 'top-left') return 'top: 0; bottom: auto; left: 0'
-    if (anchor === 'top-right') return 'top: 0; bottom: auto; right: 0'
-
-    if (anchor === 'bottom') return 'top: auto; bottom: 0; left: 50%'
-    if (anchor === 'bottom-left') return 'top: auto; bottom: 0; left: 0'
-    if (anchor === 'bottom-right') return 'top: auto; bottom: 0; right: 0'
+  ${({ dir }) => {
+    if (dir === 'left') return 'left: 100%; right: auto; top: 0; bottom: 0'
+    if (dir === 'right') return 'right: 100%; left: auto; top: 0; bottom: 0'
+    if (dir === 'top') return 'top: 100%; bottom: auto; left: 0; right:0'
+    if (dir === 'bottom') return 'bottom: 100%; top: auto; left: 0; right:0'
   }};
 
-  transform: ${({ inAttr: isIn, dir, anchor }) => {
-    let x = 0
-    let y = 0
-    let z = 0
-
-    if (isIn === false) {
-      if (dir === 'left')   { x = 100 }
-      if (dir === 'right')  { x = -100 }
-      if (dir === 'top')    { y = 100 }
-      if (dir === 'bottom') { y = -100 }
-
-      // take care of h centering top and bottom anchored ones
-
-    }
-
-    if (anchor === 'top' || anchor === 'bottom') {
-      x -= 50
-    }
-
-
-    /* else {
-      if (dir === 'left') return 'translate3d(0, 0, 0)'
-      if (dir === 'right') return 'translate3d(0, 0, 0)'
-      if (dir === 'top') return 'translate3d(0, 0, 0)'
-      if (dir === 'bottom') return 'translate3d(0, 0, 0)'
-    } */
-    return `translate3d(${x ? x+'%' : x}, ${y ? y+'%' : y}, 0)`
-  }};
-
+  ${({ offsetTop }) => offsetTop && `padding-top: ${offsetTop}px`};
+  ${({ offsetBottom }) => offsetBottom && `padding-bottom: ${offsetBottom}px`};
+  ${({ offsetLeft }) => offsetLeft && `padding-left: ${offsetLeft}px`};
+  ${({ offsetRight }) => offsetRight && `padding-right: ${offsetRight}px`};
 `;
 
 class CompactSlide extends React.Component {
@@ -96,6 +83,10 @@ class CompactSlide extends React.Component {
       inAttr,
       direction,
       anchor,
+      offsetBottom,
+      offsetTop,
+      offsetLeft,
+      offsetRight,
       ...other
     } = this.props;
 
@@ -105,16 +96,21 @@ class CompactSlide extends React.Component {
     }
 
     return (
-      <SlideUI
+      <CompactSlideUI
         timeout={timeout}
-        className="SlideUI"
+        className="CompactSlideUI"
         inAttr={inAttr}
         dir={direction}
         anchor={anchor}
+        offsetTop={offsetTop}
+        offsetBottom={offsetBottom}
+        offsetLeft={offsetLeft}
+        offsetRight={offsetRight}
+        style={styleProp}
         {...handlers}
       >
-        { children }
-      </SlideUI>
+       <div> { children } </div>
+      </CompactSlideUI>
     );
   }
 }
@@ -140,7 +136,11 @@ CompactSlide.defaultProps = {
     enter: 225,
     exit: 195,
   },
-  direction: 'right'
+  direction: 'right',
+  offsetBottom: 0,
+  offsetTop: 0,
+  offsetLeft: 0,
+  offsetRight: 0,
 };
 
 export default CompactSlide;
