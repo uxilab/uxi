@@ -7,6 +7,7 @@ import getAppropriateIcon from '../Icons/getAppropriateIcon';
 const RadioInpuUI = styled.input.attrs({
   type: 'radio',
 })`
+  cursor: pointer;
   opacity: 0;
   position: absolute;
   width: 100%;
@@ -26,7 +27,7 @@ const RadioInpuUI = styled.input.attrs({
 const RadioLabelUI = styled.label`
   display: flex;
   align-items: center;
-  & > *:first-child {
+  & > *:nth-child(2) {
     ${({ label }) => (label
       ? 'margin-right: 6px;'
       : '')
@@ -148,7 +149,7 @@ class Radio extends React.PureComponent {
               this.handleChange(...a);
             }}
           />
-          <Icon style={{ zIndex: 1, background: 'white' }} />
+          <Icon style={{ background: 'white' }} />
           {label}
         </RadioLabelUI>
       </div>
