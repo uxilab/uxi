@@ -31,6 +31,7 @@ const DialogUI = styled.div`
     max-width: 92vw;
     width: calc(100% - 8vw);
     max-height: 92vh;
+    height: 100%;
     left: 4vw;
     right: 4vw;
     top: 4vh;
@@ -62,7 +63,7 @@ const Dialog = ({
         if (isFullScreen) { baseHeight = '92vh'; }
 
         return React.cloneElement(childChildren, {
-          ...childChildren.props,
+          ...(childChildren.props || {}),
           style: {
             maxHeight: `calc(${baseHeight} - (2 * 54px))`, // for panel header and footer
             ...childChildren.props.style,
@@ -78,6 +79,7 @@ const Dialog = ({
       style: {
         ...((c && c.props && c.props.style) ? c.props.style : {}),
       },
+      ...(c.props || {}),
       children: childExtendedChildren,
     });
   });

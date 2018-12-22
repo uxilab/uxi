@@ -11,6 +11,18 @@ import DialogFWExample from './DialogFWExample';
 import RAWDialogFWExample from '!raw-loader!./DialogFWExample';
 import RAWMDDialogFWExample from '!raw-loader!./DialogFWExample.md';
 
+import DialogFSExample from './DialogFSExample';
+import RAWDialogFSExample from '!raw-loader!./DialogFSExample';
+import RAWMDDialogFSExample from '!raw-loader!./DialogFSExample.md';
+
+import DialogPanelExample from './DialogPanelExample';
+import RAWDialogPanelExample from '!raw-loader!./DialogPanelExample';
+import RAWMDDialogPanelExample from '!raw-loader!./DialogPanelExample.md';
+
+import DialogPanelFSExample from './DialogPanelFSExample';
+import RAWDialogPanelFSExample from '!raw-loader!./DialogPanelFSExample';
+import RAWMDDialogPanelFSExample from '!raw-loader!./DialogPanelFSExample.md';
+
 const DialogPage = () => (
   <div>
   <Title text="Panel" />
@@ -35,6 +47,39 @@ const DialogPage = () => (
           hasPadding
         >
           <DialogFWExample />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWDialogFSExample}
+          component
+          title="Dialog full width"
+          description={RAWMDDialogFSExample}
+          hasPadding
+        >
+          <DialogFSExample />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWDialogPanelExample}
+          component
+          title="Dialog with Panel"
+          description={RAWMDDialogPanelExample}
+          hasPadding
+        >
+          <DialogPanelExample />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWDialogPanelFSExample}
+          component
+          title="Fullscreen Dialog with Panel and Table"
+          description={RAWMDDialogPanelFSExample}
+          hasPadding
+        >
+          <DialogPanelFSExample />
         </CodeExample>
       </li>
     </ul>
