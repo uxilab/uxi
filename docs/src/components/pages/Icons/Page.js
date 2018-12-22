@@ -1,35 +1,36 @@
 import React from 'react';
-// import Title from 'react-title-component';
-// import CodeExample from '../../CodeExample';
-// import PropTypeDescription from '../../PropTypeDescription';
-// import MarkdownElement from '../../MarkdownElement/MarkDownElement';
-// import readmeText from './README.md';
-import IconsExample from './Icons';
-import ExampleSimple from './ExampleSimple';
-// import ExampleSimpleCode from '!raw!./ExampleSimple';
-// import IconsCode from '!raw!./ExampleSimple';
-// import OrganizationCode from '!raw!../../../../../src/Icons/Organization';
-// import SvgIconCode from '!raw!../../../../../src/SvgIcon';
+import { H1 } from 'uxi/Classic';
+import CodeExample from '../../CodeExample';
 
+import ExampleIconSimple from './ExampleIconSimple';
+import RAWExampleIconSimple from '!raw-loader!./ExampleIconSimple';
 
-const descriptions = {
-  simple: 'Cluedin-ui Icons. ',
-};
+import IconsList from './IconsList';
+import RAWIconsList from '!raw-loader!./IconsList';
+
 
 export const Page = () => (
   <div>
-    <div>YOOOOO</div>
-    {/* <Title render={(previousTitle) => `Icons - ${previousTitle}`} /> */}
-    {/* <MarkdownElement text={readmeText} /> */}
-    {/* <CodeExample
-      title="Frame"
-      description={descriptions.simple}
-      code={ExampleSimpleCode}
-    > */}
-    <ExampleSimple />
-    {/* </CodeExample> */}
-    <IconsExample />
-    {/* <PropTypeDescription code={SvgIconCode} /> */}
+    <ul>
+      <li>
+        <CodeExample
+          title="Simple icons usage"
+          description={'Usage'}
+          code={RAWExampleIconSimple}
+        >
+          <ExampleIconSimple />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          title="Full list of icons"
+          // description={'All icons'}
+          code={RAWIconsList}
+        >
+          <IconsList />
+        </CodeExample>
+      </li>
+    </ul>
   </div>
 );
 
