@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, StatusBadge } from 'uxi/Badge';
 
-const ExampleSimple = () => (
+const BadgeExample = () => (
   <div>
     <ul>
       <li>
@@ -43,4 +43,4 @@ const ExampleSimple = () => (
   </div>
 );
 
-export default ExampleSimple;
+export default BadgeExample;

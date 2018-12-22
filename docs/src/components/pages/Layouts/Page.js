@@ -17,14 +17,14 @@ const Layouts = () => (
   <div>
     <br />
 
-    <CodeExample
+   {/*  <CodeExample
       code={RAWExampleGrid}
       component
       title="Grid"
       hasPadding
     >
       <ExampleGrid />
-    </CodeExample>
+    </CodeExample> */}
 
     <br />
     <CodeExample
