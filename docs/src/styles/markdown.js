@@ -448,7 +448,7 @@ export default css`
 .markdown-body code:before {
   /* letter-spacing: -0.2em;
   content: "\00a0"; */
-  content: '$ ';
+  /* content: '$ '; */
 }
 
 .markdown-body pre > code {

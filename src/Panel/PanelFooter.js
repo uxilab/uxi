@@ -13,14 +13,19 @@ const PanelFooterUI = styled.div`
 `;
 
 const PanelFooter = (props) => {
-  const { children, hasCancel, cancelLabel, onClose, style } = props;
+  const {
+    children,
+    hasCancel,
+    cancelLabel,
+    onClose,
+    style,
+  } = props;
 
-  const cancel = (
-    hasCancel &&
-      <Button onClick={onClose} style={{ marginLeft: '16px' }}>
+  const cancel = (hasCancel || onClose)
+    ? (<Button onClick={onClose} style={{ marginLeft: '16px' }}>
         {cancelLabel || 'Cancel'}
-      </Button>
-  );
+      </Button>)
+    : null;
 
   return (
     <PanelFooterUI style={style} >

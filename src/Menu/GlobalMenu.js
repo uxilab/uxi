@@ -144,7 +144,7 @@ class GlobalMenu extends Component {
       };
     });
 
-    const theLogo = (
+    const theLogo = logoDescriptor && (
       <GlobalMenuLogo
         key={logoDescriptor.key || 'GlobalMenuMainLogo'}
         label={(logoDescriptor.displayName || '')}

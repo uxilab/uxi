@@ -13,22 +13,15 @@ import LightPanelControlledScrollExample from './LightPanelControlledScrollExamp
 import RAWLightPanelControlledScrollExample from '!raw-loader!./LightPanelControlledScrollExample';
 
 
-const ButtonPage = () => (
+const PanelPage = () => (
   <div>
-  <Title text="Panels" />
-  <P>
-    Panel rocks!
-  </P>
+  <Title text="Panel" />
     <ul>
       <li>
-      <Title text="Panel" />
-      <P>
-        Simple Panel.
-      </P>
         <CodeExample
           code={RAWPanelExample}
           component
-          title="Panel"
+          title="Simple Panel"
           hasPadding
         >
           <PanelExample />
@@ -49,14 +42,13 @@ const ButtonPage = () => (
         </CodeExample>
       </li>
       <li>
-        <Title text="Light Panel controlled height/scroll" />
         <P>
-          Panel with a height and a content that scrolls while keeping the header and footer 'sticky'.
+          LightPanel with a height and a content that scrolls while keeping the header and footer 'sticky'.
         </P>
         <CodeExample
           code={RAWLightPanelControlledScrollExample}
           component
-          title="Light Panel controlled height/scroll"
+          title="Light Panel (controlled height/scroll)"
           hasPadding
         >
           <LightPanelControlledScrollExample />
@@ -66,4 +58,4 @@ const ButtonPage = () => (
   </div>
 );
 
-export default ButtonPage;
+export default PanelPage;

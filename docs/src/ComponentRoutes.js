@@ -32,7 +32,9 @@ import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
-import PanbelPage from './components/pages/Panel/Page';
+import PanelPage from './components/pages/Panel/Page';
+import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
+import PanelFooterPage from './components/pages/Panel/PanelFooter/Page';
 import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
@@ -50,6 +52,9 @@ const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
       <Route path={`${match.url}/`} exact component={Home} />
+      <Route path={`${match.url}/Panel`} exact component={PanelPage} />
+        <Route path={`${match.url}/Panel/PanelHeader`} component={PanelHeaderPage} />
+        <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />
@@ -82,7 +87,6 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/globalMenu`} component={GlobalMenuPage} />
       <Route path={`${match.url}/widget`} component={WidgetPage} />
       <Route path={`${match.url}/personalizedmenu`} component={PesonalizedMenuPage} />
-      <Route path={`${match.url}/Panel`} component={PanbelPage} />
       <Route path={`${match.url}/Gallery`} component={GalleryPage} />
       <Route path={`${match.url}/Carrousel`} component={CarrouselPage} />
       <Route path={`${match.url}/Tile`} component={TilePage} />

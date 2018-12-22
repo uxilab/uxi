@@ -16,6 +16,10 @@ export default css`
   word-wrap: break-word;
 }
 
+.hljs.markdown-body {
+  color: #333;
+}
+
 .markdown-body a {
   background-color: transparent;
 }
@@ -447,8 +451,8 @@ export default css`
 
 .markdown-body code:before,
 .markdown-body code:after {
-  letter-spacing: -0.2em;
-  content: "\00a0";
+  /* letter-spacing: -0.2em;
+  content: "\00a0"; */
 }
 
 .markdown-body pre > code {

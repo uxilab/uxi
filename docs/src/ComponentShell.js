@@ -1,11 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from 'uxi/Header';
 import { H4 } from 'uxi/Classic';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
-import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
+import { AppLayout, Flex, Layout, Col, Row, ContentWithExtra } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 import { ThemedBox } from 'uxi/Box';
+import Menu from './Menu';
+
+const MainContentWrapper = styled.div`
+ padding: 16px;
+ max-width: 960px;
+ margin: 0 auto;
+
+ @media screen and (min-width: 1024px) {
+  padding: 32px;
+ }
+`;
 
 const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff', overflow: 'visible' };
 
@@ -17,6 +29,10 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 );
 
 export const routes = [
+  { path: '/panel', label: 'Panel', childRoutes: [
+      { path: '/panel/PanelHeader', label: 'PanelHeader' }
+      ,{ path: '/panel/PanelFooter', label: 'PanelFooter' }
+  ]},
   { path: '/MenuDropDown', label: 'MenuDropDown' },
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/font', label: 'Fonts' },
@@ -52,7 +68,6 @@ export const routes = [
   { path: '/globalmenu', label: 'Global Menu' },
   { path: '/widget', label: 'Widget' },
   { path: '/personalizedmenu', label: 'Personalized Menu' },
-  { path: '/panel', label: 'Panel' },
   { path: '/gallery', label: 'Gallery' },
   { path: '/carrousel', label: 'Carrousel' },
   { path: '/tile', label: 'Tile' },
@@ -70,8 +85,25 @@ const ComponentShell = ({ children }) => {
   );
 
   return (
+    <div>
+      <ContentWithExtra
+        extraMinWidth="68px"
+        contentMinWidth="200px"
+        extra={<Menu />}
+      >
+      <MainContentWrapper>
+        {children}
+      </MainContentWrapper>
+      </ContentWithExtra>
+    </div>
+  );
+
+  return children
+
+  return (
     <div style={{ maxWidth: '1280px', margin: '0 auto' }} >
-      <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
+
+      {/* <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} > */}
         <div style={{ padding: '16px' }}>
           <Layout>
             <Row>
@@ -79,7 +111,7 @@ const ComponentShell = ({ children }) => {
             </Row>
           </Layout>
         </div>
-      </PageWithMenu>
+      {/* </PageWithMenu> */}
     </div>
   );
 };
