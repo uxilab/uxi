@@ -31,7 +31,9 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 export const routes = [
   { path: '/panel', label: 'Panel', childRoutes: [
       { path: '/panel/PanelHeader', label: 'PanelHeader' }
+      ,{ path: '/panel/PanelContent', label: 'PanelContent' }
       ,{ path: '/panel/PanelFooter', label: 'PanelFooter' }
+      ,{ path: '/panel/LightPanel', label: 'LightPanel' }
   ]},
   { path: '/MenuDropDown', label: 'MenuDropDown' },
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },

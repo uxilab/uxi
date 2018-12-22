@@ -26,6 +26,8 @@ const PanelHeaderTitleWrapper = styled.div`
 const CloseWrapperUI = styled.div`
   margin-left: auto;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   & * {
     fill: currentColor;
   }

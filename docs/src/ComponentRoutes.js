@@ -34,7 +34,9 @@ import WidgetPage from './components/pages/Widget/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 import PanelPage from './components/pages/Panel/Page';
 import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
+import PanelContentPage from './components/pages/Panel/PanelContent/Page';
 import PanelFooterPage from './components/pages/Panel/PanelFooter/Page';
+import LightPanelPage from './components/pages/Panel/LightPanel/Page';
 import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
@@ -54,7 +56,9 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/`} exact component={Home} />
       <Route path={`${match.url}/Panel`} exact component={PanelPage} />
         <Route path={`${match.url}/Panel/PanelHeader`} component={PanelHeaderPage} />
+        <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
         <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
+        <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />

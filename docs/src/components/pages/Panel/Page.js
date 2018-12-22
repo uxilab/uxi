@@ -5,13 +5,7 @@ import CodeExample from '../../CodeExample';
 
 import PanelExample from './PanelExample';
 import RAWPanelExample from '!raw-loader!./PanelExample';
-
-import LightPanelExample from './LightPanelExample';
-import RAWLightPanelExample from '!raw-loader!./LightPanelExample';
-
-import LightPanelControlledScrollExample from './LightPanelControlledScrollExample';
-import RAWLightPanelControlledScrollExample from '!raw-loader!./LightPanelControlledScrollExample';
-
+import RAWMDPanelExample from '!raw-loader!./PanelExample.md';
 
 const PanelPage = () => (
   <div>
@@ -22,36 +16,10 @@ const PanelPage = () => (
           code={RAWPanelExample}
           component
           title="Simple Panel"
+          description={RAWMDPanelExample}
           hasPadding
         >
           <PanelExample />
-        </CodeExample>
-      </li>
-      <li>
-        <Title text="Light Panel" />
-        <P>
-          Panel.
-        </P>
-        <CodeExample
-          code={RAWLightPanelExample}
-          component
-          title="Light Panel"
-          hasPadding
-        >
-          <LightPanelExample />
-        </CodeExample>
-      </li>
-      <li>
-        <P>
-          LightPanel with a height and a content that scrolls while keeping the header and footer 'sticky'.
-        </P>
-        <CodeExample
-          code={RAWLightPanelControlledScrollExample}
-          component
-          title="Light Panel (controlled height/scroll)"
-          hasPadding
-        >
-          <LightPanelControlledScrollExample />
         </CodeExample>
       </li>
     </ul>
