@@ -35,6 +35,7 @@ const GlobalMenuWrapper = ({
       <GlobalMenuItem
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
+        isActive={menuDescriptor.isActive}
         onClick={() => {
           if (menuDescriptor.onClick && menuDescriptor.onClick) {
             menuDescriptor.onClick();

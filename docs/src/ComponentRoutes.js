@@ -31,6 +31,7 @@ import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
+import DialogPage from './components/pages/Dialog/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 import PanelPage from './components/pages/Panel/Page';
 import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
@@ -59,6 +60,7 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
         <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
         <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
+      <Route path={`${match.url}/Dialog`} exact component={DialogPage} />
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />

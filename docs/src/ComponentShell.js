@@ -35,6 +35,7 @@ export const routes = [
       ,{ path: '/panel/PanelFooter', label: 'PanelFooter' }
       ,{ path: '/panel/LightPanel', label: 'LightPanel' }
   ]},
+  { path: '/Dialog', label: 'Dialog' },
   { path: '/MenuDropDown', label: 'MenuDropDown' },
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/font', label: 'Fonts' },

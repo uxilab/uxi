@@ -8,8 +8,11 @@ import { CluedinLogoText } from 'uxi/Logo';
 import {routes} from './ComponentShell'
 
 const getIsActive = key  => (
-  window && window.location && window.location.pathname &&
-  window.location.pathname.indexOf(key) > -1
+  window
+  && window.location
+  && window.location.pathname
+  && window.location.pathname.toLowerCase
+  && window.location.pathname.toLowerCase().indexOf(key.toLowerCase()) > -1
 )
 
 export const GlobalDocAppMenu = props => {
