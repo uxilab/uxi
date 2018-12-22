@@ -9,20 +9,50 @@ import ExampleSimpleTableWithSpecialCell from '../Table/ExampleSimpleTableWithSp
 class DialogExample extends Component {
   constructor(props) {
     super(props)
-    this.state = { show: false }
+    this.state = {
+      show: false,
+      showSmall: false,
+    }
   }
 
   render () {
     return (
       <div>
-        <Button onClick={() => this.setState({ show: true })}>
-          show dialog with panel
+        <Button onClick={() => this.setState({ showSmall: true })}>
+          show fullscreen dialog with panel
         </Button>
-        <Dialog show={this.state.show} isFullScreen>
-          <Panel onClose={() => this.setState({ show: false })} ertg='srg'>
+        <br />
+        <Button onClick={() => this.setState({ show: true })}>
+          show small dialog with panel
+        </Button>
+
+        <Dialog show={this.state.show}>
+          <Panel onClose={() => this.setState({ show: false })}>
             <PanelHeader title="Panel title" />
             <PanelContent style={{ padding: '16px' }}>
 
+              <ExampleSimpleTableWithSpecialCell />
+              <ExampleSimpleTableWithSpecialCell />
+              <ExampleSimpleTableWithSpecialCell />
+              <ExampleSimpleTableWithSpecialCell />
+
+            </PanelContent>
+            <PanelFooter>
+              <Button onClick={() => console.log('clicked')}>
+                action
+              </Button>
+            </PanelFooter>
+          </Panel>
+        </Dialog>
+
+         <Dialog show={this.state.showSmall} isFullScreen>
+          <Panel onClose={() => this.setState({ showSmall: false })} >
+            <PanelHeader title="Panel title" />
+            <PanelContent style={{ padding: '16px' }}>
+
+              <ExampleSimpleTableWithSpecialCell />
+              <ExampleSimpleTableWithSpecialCell />
+              <ExampleSimpleTableWithSpecialCell />
               <ExampleSimpleTableWithSpecialCell />
 
             </PanelContent>
