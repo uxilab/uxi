@@ -115,7 +115,7 @@ class Drawer extends React.Component {
                   key: `Drawer-${index}`,
                   onClose,
                   anchor,
-                  ...(c.props || {})
+                  ...(c.props || {}),
                 })
               )
             }

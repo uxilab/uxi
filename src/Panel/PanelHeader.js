@@ -44,8 +44,6 @@ const PanelHeader = (props) => {
     // iconHoverColor, // = '#ffffff',
   } = props;
 
-  console.log('onClose', onClose)
-
   const close = (hasClose || onClose)
     ? (
       <CloseWrapperUI tabindex="0" onClick={onClose}>

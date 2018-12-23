@@ -38,6 +38,7 @@ class Alert extends Component {
   static defaultProps = {
     type: 'information',
     showClose: undefined,
+    onClose: undefined,
     hideClose: undefined,
     className: '',
     noIcon: false,
