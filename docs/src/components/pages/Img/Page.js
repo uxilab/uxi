@@ -8,13 +8,13 @@ import RAWMDImgExample from '!raw-loader!./ImgExample.md';
 
 const BoxPage = () => (
  <div>
-  <H1>Panel</H1>
+  <H1>Image</H1>
     <ul>
       <li>
         <CodeExample
           code={RAWImgExample}
           component
-          title="Dialog"
+          title="Img"
           description={RAWMDImgExample}
           hasPadding
         >

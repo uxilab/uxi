@@ -3,7 +3,7 @@ import { Stepper, Step, StepButton } from 'uxi/Stepper';
 import { Arrowright } from 'uxi/Icons';
 
 const sayHi = () => console.log('Hi')
-const ExampleSimple = () => (
+const StepperExample = () => (
   <div>
     <ul>
       <li>
@@ -130,4 +130,4 @@ const ExampleSimple = () => (
   </div>
 );
 
-export default ExampleSimple;
+export default StepperExample;
