@@ -24,6 +24,7 @@ import RAWExampleSimpleSemanticDisabled from '!raw-loader!./ExampleSimpleSemanti
 
 import ExampleSimpleWithIcon from './ExampleSimpleWithIcon';
 import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
+import RAWMDExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon.md';
 
 import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
 import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
@@ -57,6 +58,7 @@ const ButtonPage = () => (
           code={RAWExampleSimpleWithIcon}
           component
           title="Button with icon"
+          description={RAWMDExampleSimpleWithIcon}
           hasPadding
         >
           <ExampleSimpleWithIcon />

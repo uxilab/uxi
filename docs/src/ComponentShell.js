@@ -56,9 +56,13 @@ export const routes = [
       // ,{ path: '/inputs/switch', label: 'Switch' }
   ]},
   { path: '/button', label: 'Button' },
+  { path: '/Drawer', label: 'Drawer', childRoutes: [
+    { path: '/Drawer/CompactDrawer', label: 'CompactDrawer' }
+  ]},
   { path: '/alert', label: 'Alert' },
   { path: '/badge', label: 'Badge' },
   { path: '/layouts', label: 'Layout' },
+  // { path: '/internal', label: 'Internal' },
   { path: '/breadcrumbs', label: 'BreadCrumbs' },
   { path: '/classic', label: 'Classic' },
   { path: '/gallery', label: 'Gallery' },
@@ -81,7 +85,6 @@ export const routes = [
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/indicator', label: 'Indicator' },
   { path: '/tree', label: 'Tree' },
-  { path: '/internal', label: 'Internal' },
   { path: '/list', label: 'List' },
   { path: '/loader', label: 'Loader' },
   { path: '/menu', label: 'Menu' },

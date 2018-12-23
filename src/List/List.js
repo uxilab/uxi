@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // let count = 0;
 // const getKey = () => count++;
 
-const ListWrapper = styled.div`
+const ListWrapper = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Backdrop from 'uxi/internal/Backdrop';
-import Dialog, { DialogHeader, DialogFooter, ConfirmDialog } from 'uxi/Dialog';
-import { ButtonWithConfirm } from 'uxi/Button';
 import Button from 'uxi/Button';
 import SlidePanel, { SlidePanelHeader, SlidePanelFooter } from 'uxi/SlidePanel';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
@@ -13,50 +11,25 @@ class ExampleSimple extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
-      showNoModal: false,
-      showPanelDialog: false,
-      showConfim: true,
-      showSidePanel: false,
-      showSidePanelLeft: false,
-      showSidePanelRight: false,
-      showSidePanelRight2: false,
-      showSidePanelTop: false,
-      showSidePanelTop2: false,
-      showSidePanelTop3: false,
-      showSidePanelBottom: false,
+      // show: false,
+      // showNoModal: false,
+      // showPanelDialog: false,
+      // showConfim: true,
+      // showSidePanel: false,
+      // showSidePanelLeft: false,
+      // showSidePanelRight: false,
+      // showSidePanelRight2: false,
+      // showSidePanelTop: false,
+      // showSidePanelTop2: false,
+      // showSidePanelTop3: false,
+      // showSidePanelBottom: false,
     };
   }
 
   render() {
     return (
       <div>
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <ButtonWithConfirm text={'bar'} confirmText={'foo'} onClick={() => console.log('rrr')} />
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <Button style={{ margin: '0 8px' }} text="WithConfirmDialog" />
-        <br />
-        <br />
-        <br />
-        <br />
-        {/* <ConfirmDialog
-          show={this.state.showConfim}
-          text="Are you sure to ?"
-          onConfirm={() => { this.setState({ showConfim: false }); }}
-          onCancel={() => { this.setState({ showConfim: false }); }}
-        /> */}
-
-        <Button onClick={() => { this.setState({ show: true }); }}>
-         Show Dialog
-        </Button>
-        <br />
-        <Button onClick={() => { this.setState({ showNoModal: true }); }}>
-         Show Dialog (no modal)
-        </Button>
-        <br />
+       {/*  <br />
         <Button onClick={() => { this.setState({ showSidePanelTop: true }); }}> Show SidePanel Top </Button><br />
         <Button onClick={() => { this.setState({ showSidePanelTop2: !this.state.showSidePanelTop2 }); }}> Show SidePanel Top 2 </Button><br />
         {'This is not a good idea like implemented right now (`Slide>stuff`):'}<br />
@@ -167,67 +140,7 @@ class ExampleSimple extends Component {
             <Button type="primary">Save</Button>
           </SlidePanelFooter>
         </SlidePanel>
-
-        <Dialog
-          show={this.state.show}
-          onClose={() => { console.log(this); this.setState({ show: false }); }}
-        >
-          <DialogHeader title="Some Title" />
-          <div style={{ padding: '15px', overflowY: 'scroll', maxHeight: '400px' }}>
-            Some Dialog content.
-            Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
-          </div>
-          <DialogFooter>
-            <Button type="primary">Save</Button>
-          </DialogFooter>
-        </Dialog>
-
-        <Dialog
-          modal={false}
-          show={this.state.showNoModal}
-          onClose={() => { console.log(this); this.setState({ showNoModal: false }); }}
-        >
-          <DialogHeader title="Some Title" />
-          <div style={{ padding: '15px', overflowY: 'scroll', maxHeight: '400px' }}>
-            Some Dialog content.
-            Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
-          </div>
-          <DialogFooter>
-            <Button type="primary">Save</Button>
-          </DialogFooter>
-        </Dialog>
-
-
-        <Dialog
-          show={this.state.showPanelDialog}
-          onClose={() => { console.log(this); this.setState({ showPanelDialog: false }); }}
-        >
-          <Panel>
-            <PanelHeader
-              hasClose
-              title="Some Title"
-              onClose={() => { console.log(this); this.setState({ showPanelDialog: false }); }}
-            />
-            <PanelContent style={{ padding: '15px', maxHeight: 'calc(80vh - calc( 2 * 50px ))' }}>
-              Some PanelDialog content.
-              Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
-            </PanelContent>
-            <PanelFooter
-              hasCancel
-              onClose={() => { console.log(this); this.setState({ showPanelDialog: false }); }}
-            >
-              <Button
-                onClick={() => {
-                  console.log('clicked PanelDialog save btn');
-                  this.setState({ showPanelDialog: false });
-                }}
-                type="primary"
-              >
-                Save
-              </Button>
-            </PanelFooter>
-          </Panel>
-        </Dialog>
+ */}
       </div>
     );
   }

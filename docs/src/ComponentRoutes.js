@@ -26,6 +26,8 @@ import LoaderPage from './components/pages/Loader/Page';
 import ImgPage from './components/pages/Img/Page';
 import MenuPage from './components/pages/Menu/Page';
 import InternalPage from './components/pages/Internal/Page';
+import DrawerPage from './components/pages/Drawer/Page';
+import CompactDrawerPage from './components/pages/Drawer/CompactDrawer/Page';
 import BadgePage from './components/pages/Badge/Page';
 import IndicatorPage from './components/pages/Indicator/Page';
 import DashboardPage from './components/pages/DashboardLayout/Page';
@@ -67,12 +69,15 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
         <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
         <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
+
       <Route path={`${match.url}/Dialog`} exact component={DialogPage} />
         <Route path={`${match.url}/Dialog/withConfirmDialog`} exact component={WithConfirmDialogPage} />
 
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />
+      <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
+        <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
       <Route path={`${match.url}/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/box`} component={BoxPage} />
       <Route path={`${match.url}/popover`} component={PopOverPage} />
@@ -87,6 +92,7 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
         <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
         {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
+
       <Route path={`${match.url}/icons`} component={IconsPage} />
       <Route path={`${match.url}/layouts`} component={LayoutPage} />
       <Route path={`${match.url}/list`} component={ListPage} />
@@ -96,7 +102,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/loader`} component={LoaderPage} />
       <Route path={`${match.url}/img`} component={ImgPage} />
       <Route path={`${match.url}/menu`} component={MenuPage} />
-      <Route path={`${match.url}/internal`} component={InternalPage} />
+      {/* <Route path={`${match.url}/internal`} exact component={InternalPage} /> */}
       <Route path={`${match.url}/badge`} component={BadgePage} />
       <Route path={`${match.url}/indicator`} component={IndicatorPage} />
       <Route path={`${match.url}/dashboard`} component={DashboardPage} />

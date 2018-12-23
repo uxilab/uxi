@@ -43,7 +43,7 @@ class Alert extends Component {
     noIcon: false,
     isBanner: false,
     iconSize: 24, // uxi default, src of thruth => SvgIcon
-    onClose: null,
+    // onClose: undefined,
     // in case some text is not evaluated, the comp might appear like it has no children (text node)
     children: null, // we don't require children, alert always has at least 50px of height
     style: {},
@@ -95,7 +95,7 @@ class Alert extends Component {
     let iconContent;
     let IconComp;
     let mainAlertStyle = { ...AlertStyle.alertContent };
-    if (!hideClose && (showClose || onClose || isBanner)) {
+    if ((showClose || onClose || isBanner) && !hideClose) {
       closeContent = (
         <button key="closeIcon" onClick={this.close} style={AlertStyle.closeWrapper}>
           <Close color="white" />
