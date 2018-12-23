@@ -40,8 +40,8 @@ const PanelHeader = (props) => {
     hasClose,
     onClose,
     style,
-    iconColor,// = '#ceceec',
-    iconHoverColor,// = '#ffffff',
+    // iconColor, // = '#ceceec',
+    // iconHoverColor, // = '#ffffff',
   } = props;
 
   const close = (hasClose || onClose)

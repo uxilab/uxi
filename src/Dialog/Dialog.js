@@ -63,7 +63,7 @@ const Dialog = ({
         if (isFullScreen) { baseHeight = '92vh'; }
 
         return React.cloneElement(childChildren, {
-          ...(childChildren.props || {}),
+          ...(childChildren.props || {}),
           style: {
             maxHeight: `calc(${baseHeight} - (2 * 54px))`, // for panel header and footer
             ...childChildren.props.style,

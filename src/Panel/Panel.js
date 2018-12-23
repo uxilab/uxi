@@ -10,7 +10,7 @@ const Panel = ({ children, style, onClose }) => (
           child,
           {
             onClose,
-            ...(child.props || {}),  // allow consumer final overwrite privilege for onClose
+            ...(child.props || {}), // allow consumer final overwrite privilege for onClose
           },
         )
       ))

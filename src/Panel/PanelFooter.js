@@ -23,8 +23,8 @@ const PanelFooter = (props) => {
 
   const cancel = (hasCancel || onClose)
     ? (<Button onClick={onClose} style={{ marginLeft: '16px' }}>
-        {cancelLabel || 'Cancel'}
-      </Button>)
+      {cancelLabel || 'Cancel'}
+    </Button>)
     : null;
 
   return (
