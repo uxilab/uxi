@@ -1,5 +1,6 @@
 import React from 'react';
-import CodeExample from '../../CodeExample';
+import { H1 } from 'uxi/classic';
+import CodeExample from '../../../CodeExample';
 
 import ExampleSimpleRadio from './ExampleSimpleRadio';
 import RAWExampleSimpleRadio from '!raw-loader!./ExampleSimpleRadio';
@@ -15,23 +16,44 @@ import RAWExampleDefaultValueRadioGroup from '!raw-loader!./ExampleDefaultValueR
 
 const RadioPage = () => (
   <ul>
+    <H1>Radio & RadioGroup</H1>
     <li>
-      <CodeExample code={RAWExampleSimpleRadio} component description="simple radio">
+      <CodeExample
+        code={RAWExampleSimpleRadio}
+        component
+        title="Radio"
+        description="simple radio, useless in itself"
+      >
         <ExampleSimpleRadio />
       </CodeExample>
     </li>
     <li>
-      <CodeExample code={RAWExampleSimpleRadioGroup} component description="Radio Group with no `value` and no `defaultValue`">
+      <CodeExample
+        code={RAWExampleSimpleRadioGroup}
+        component
+        title="Radio Group"
+        description="with no `value` and no `defaultValue`"
+      >
         <ExampleSimpleRadioGroup />
       </CodeExample>
     </li>
     <li>
-      <CodeExample code={RAWExampleDefaultValueRadioGroup} component description="Radio Group with `defaultValue` set">
+      <CodeExample
+        code={RAWExampleDefaultValueRadioGroup}
+        component
+        title="Radio Group"
+        description="with `defaultValue` set"
+      >
         <ExampleDefaultValueRadioGroup />
       </CodeExample>
     </li>
     <li>
-      <CodeExample code={RAWExampleControlledRadioGroup} component description="Controlled Radio Group">
+      <CodeExample
+        code={RAWExampleControlledRadioGroup}
+        component
+        title="Radio Group"
+        description="Controlled"
+      >
         <ExampleControlledRadioGroup />
       </CodeExample>
     </li>

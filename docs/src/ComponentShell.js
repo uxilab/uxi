@@ -42,6 +42,17 @@ export const routes = [
   ]},
   { path: '/Dialog', label: 'Dialog' },
   { path: '/icons', label: 'Icons' },
+  { path: '/inputs', label: 'Inputs', childRoutes: [
+      { path: '/inputs/Checkbox', label: 'Checkbox' }
+      ,{ path: '/inputs/radio', label: 'Radio' }
+      ,{ path: '/inputs/selectinput', label: 'SelectInput' }
+      ,{ path: '/inputs/FileInput', label: 'FileInput' }
+      ,{ path: '/inputs/TextField', label: 'TextField' }
+      ,{ path: '/inputs/Range', label: 'Range' }
+      ,{ path: '/inputs/Datetime', label: 'Datetime' }
+      ,{ path: '/inputs/SearchForm', label: 'SearchForm' }
+      // ,{ path: '/inputs/switch', label: 'Switch' }
+  ]},
   { path: '/button', label: 'Button' },
   { path: '/alert', label: 'Alert' },
   { path: '/badge', label: 'Badge' },
@@ -56,11 +67,6 @@ export const routes = [
   { path: '/stepper', label: 'Stepper' },
   { path: '/carrousel', label: 'Carrousel' },
   { path: '/table', label: 'Table' },
-  { path: '/inputs', label: 'Inputs', childRoutes: [
-      { path: '/inputs/radio', label: 'Radio' }
-      ,{ path: '/inputs/selectinput', label: 'SelectInput' }
-      ,{ path: '/inputs/switch', label: 'Switch' }
-  ]},
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/popover', label: 'PopOver' },
   { path: '/compactslide', label: 'CompactSlide' },

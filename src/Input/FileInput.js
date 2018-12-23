@@ -25,7 +25,9 @@ const FileInputLabelUI = styled.label`
   };
 `;
 
-const FileInputUI = styled.input`
+const FileInputUI = styled.input.attrs({
+  type: 'file',
+})`
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -58,7 +60,9 @@ class FileInput extends PureComponent {
     const {
       props,
       props: {
+        id,
         onChange,
+        multiple,
         // success,
         // error,
         label,
@@ -74,19 +78,20 @@ class FileInput extends PureComponent {
       : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
     */
     const finalLabel = label || 'UPLOAD';
+    const finalId = id || finalLabel; // TODO => uuid
 
     return (
       <FileInputWrapperUI focussed={focussed}>
-        <FileInputLabelUI htmlFor={finalLabel}>
+        <FileInputLabelUI htmlFor={finalId}>
           <Button inert>
             <UploadIcon size="16" style={{ paddingRight: '8px', marginBottom: '-2px' }} />
             {finalLabel }
           </Button>
           <FileInputUI
             {...props}
-            type="file"
+            multiple={multiple}
             onChange={onChange}
-            id={finalLabel}
+            id={finalId}
             onFocus={this.setFocus}
             onBlur={this.setBlur}
           />
@@ -101,6 +106,7 @@ FileInput.propTypes = {
 };
 
 FileInput.defaultProps = {
+  multiple: false,
 };
 
 export default FileInput;

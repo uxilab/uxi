@@ -9,10 +9,18 @@ import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
 import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
+  import RadioPage from './components/pages/Inputs/Radio/Page';
+  import SelectInputPage from './components/pages/Inputs/SelectInput/Page';
+  import FileInputPage from './components/pages/Inputs/File/Page';
+  import TextFieldPage from './components/pages/Inputs/TextField/Page';
+  import SearchFormPage from './components/pages/Inputs/SearchForm/Page';
+  import RangePage from './components/pages/Inputs/Range/Page';
+  import DatetimePage from './components/pages/Inputs/Datetime/Page';
+  // import SwitchPage from './components/pages/Inputs/Switch/Page';
+  import CheckboxPage from './components/pages/Inputs/Checkbox/Page';
 import IconsPage from './components/pages/Icons/Page';
 import LayoutPage from './components/pages/Layouts/Page';
 import TablePage from './components/pages/Table/Page';
-import SwitchPage from './components/pages/Switch/Page';
 import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
 import ImgPage from './components/pages/Img/Page';
@@ -25,7 +33,6 @@ import StepperPage from './components/pages/Stepper/Page';
 import DialogDropDownPage from './components/pages/DialogWithDropDown/Page';
 import AutoCompletePage from './components/pages/AutoComplete/Page';
 import BreadCrumbsPage from './components/pages/BreadCrumbs/Page';
-import RadioPage from './components/pages/Radio/Page';
 import ClassicPage from './components/pages/Classic/Page';
 import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
@@ -42,7 +49,6 @@ import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
-import SelectInputPage from './components/pages/SelectInput/Page';
 import PopOverPage from './components/pages/PopOver/Page';
 import CompactSlidePage from './components/pages/CompactSlide/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
@@ -69,9 +75,15 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/popover`} component={PopOverPage} />
       <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
       <Route path={`${match.url}/inputs`} exact component={InputsPage} />
+        <Route path={`${match.url}/inputs/checkbox`} component={CheckboxPage} />
         <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
+        <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
         <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
-        <Route path={`${match.url}/inputs/switch`} component={SwitchPage} />
+        <Route path={`${match.url}/inputs/range`} component={RangePage} />
+        <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
+        <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
+        <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
+        {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
       <Route path={`${match.url}/icons`} component={IconsPage} />
       <Route path={`${match.url}/layouts`} component={LayoutPage} />
       <Route path={`${match.url}/list`} component={ListPage} />
