@@ -7,7 +7,7 @@ const ConfirmDialog = ({
   show,
   onConfirm,
   onCancel,
-  text,
+  text = 'Are you sure ?',
   confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
 }) => (

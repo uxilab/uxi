@@ -21,12 +21,6 @@ class ExampleSimpleFlat extends Component {
     return (
       <List>
         <Button
-          type="primary"
-          onClick={this.onClick}
-          message="Send"
-          loading={this.state.loading}
-        />
-        <Button
           onClick={this.onClick}
           message="Send"
           loading={this.state.loading}
@@ -40,6 +34,12 @@ class ExampleSimpleFlat extends Component {
           loading={this.state.loading}
           icon={<Upload />}
           iconPosition="after"
+        />
+        <Button
+          type="primary"
+          onClick={this.onClick}
+          message="Send"
+          loading={this.state.loading}
         />
       </List>
     );

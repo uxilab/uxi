@@ -1,7 +1,7 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
-import CodeExample from '../../CodeExample';
+import CodeExample from '../../../CodeExample';
 
 import ExampleSimple from './ExampleSimple';
 import RAWExampleSimple from '!raw-loader!./ExampleSimple';

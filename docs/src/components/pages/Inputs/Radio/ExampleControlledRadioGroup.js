@@ -14,7 +14,7 @@ class ExampleControlledRadioGroup extends Component {
   render() {
     const { value } = this.state
     return (
-      <div>
+      <div style={{ padding: '16px' }}>
         <RadioGroup value={value.toString()} name="my-radio-group">
           <Radio value="true" label="Yes" />
           <Radio value="false" label="No" />

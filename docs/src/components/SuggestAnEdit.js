@@ -1,9 +1,11 @@
 import React from 'react'
 import Button from 'uxi/Button'
+import { Github } from 'uxi/Icons'
 
 const SuggestAnEdit = props => {
   return (
     <Button
+      icon={<Github />}
       text="suggest an Edit"
       onClick={(e) => {
         const href = window.location && window.location.href

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox } from '../../../../../src/Input';
+import { Checkbox } from 'uxi/Input';
 
 const ExampleSimple = () => (
   <ul>

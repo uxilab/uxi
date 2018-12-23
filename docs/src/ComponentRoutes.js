@@ -9,15 +9,25 @@ import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
 import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
+  import RadioPage from './components/pages/Inputs/Radio/Page';
+  import SelectInputPage from './components/pages/Inputs/SelectInput/Page';
+  import FileInputPage from './components/pages/Inputs/File/Page';
+  import TextFieldPage from './components/pages/Inputs/TextField/Page';
+  import SearchFormPage from './components/pages/Inputs/SearchForm/Page';
+  import RangePage from './components/pages/Inputs/Range/Page';
+  import DatetimePage from './components/pages/Inputs/Datetime/Page';
+  // import SwitchPage from './components/pages/Inputs/Switch/Page';
+  import CheckboxPage from './components/pages/Inputs/Checkbox/Page';
 import IconsPage from './components/pages/Icons/Page';
 import LayoutPage from './components/pages/Layouts/Page';
 import TablePage from './components/pages/Table/Page';
-import SwitchPage from './components/pages/Switch/Page';
 import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
 import ImgPage from './components/pages/Img/Page';
 import MenuPage from './components/pages/Menu/Page';
 import InternalPage from './components/pages/Internal/Page';
+import DrawerPage from './components/pages/Drawer/Page';
+import CompactDrawerPage from './components/pages/Drawer/CompactDrawer/Page';
 import BadgePage from './components/pages/Badge/Page';
 import IndicatorPage from './components/pages/Indicator/Page';
 import DashboardPage from './components/pages/DashboardLayout/Page';
@@ -25,13 +35,13 @@ import StepperPage from './components/pages/Stepper/Page';
 import DialogDropDownPage from './components/pages/DialogWithDropDown/Page';
 import AutoCompletePage from './components/pages/AutoComplete/Page';
 import BreadCrumbsPage from './components/pages/BreadCrumbs/Page';
-import RadioPage from './components/pages/Radio/Page';
 import ClassicPage from './components/pages/Classic/Page';
 import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
 import DialogPage from './components/pages/Dialog/Page';
+  import WithConfirmDialogPage from './components/pages/Dialog/withConfirmDialog/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 import PanelPage from './components/pages/Panel/Page';
 import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
@@ -42,7 +52,6 @@ import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
-import SelectInputPage from './components/pages/SelectInput/Page';
 import PopOverPage from './components/pages/PopOver/Page';
 import CompactSlidePage from './components/pages/CompactSlide/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
@@ -60,18 +69,30 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
         <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
         <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
+
       <Route path={`${match.url}/Dialog`} exact component={DialogPage} />
+        <Route path={`${match.url}/Dialog/withConfirmDialog`} exact component={WithConfirmDialogPage} />
+
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />
+      <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
+        <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
       <Route path={`${match.url}/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/box`} component={BoxPage} />
       <Route path={`${match.url}/popover`} component={PopOverPage} />
       <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
       <Route path={`${match.url}/inputs`} exact component={InputsPage} />
+        <Route path={`${match.url}/inputs/checkbox`} component={CheckboxPage} />
         <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
+        <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
         <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
-        <Route path={`${match.url}/inputs/switch`} component={SwitchPage} />
+        <Route path={`${match.url}/inputs/range`} component={RangePage} />
+        <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
+        <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
+        <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
+        {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
+
       <Route path={`${match.url}/icons`} component={IconsPage} />
       <Route path={`${match.url}/layouts`} component={LayoutPage} />
       <Route path={`${match.url}/list`} component={ListPage} />
@@ -81,7 +102,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/loader`} component={LoaderPage} />
       <Route path={`${match.url}/img`} component={ImgPage} />
       <Route path={`${match.url}/menu`} component={MenuPage} />
-      <Route path={`${match.url}/internal`} component={InternalPage} />
+      {/* <Route path={`${match.url}/internal`} exact component={InternalPage} /> */}
       <Route path={`${match.url}/badge`} component={BadgePage} />
       <Route path={`${match.url}/indicator`} component={IndicatorPage} />
       <Route path={`${match.url}/dashboard`} component={DashboardPage} />

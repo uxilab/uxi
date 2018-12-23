@@ -15,6 +15,19 @@ const PanelFooterExample = () => (
 
     <br />
 
+    <PanelFooter
+      cancelLabel="close without saving"
+      onClose={() => console.log('closed')}
+    >
+      <Button
+        type="primary"
+        onClick={() => console.log('action clicked')}
+        message={'Save'}
+      />
+    </PanelFooter>
+
+    <br />
+
     <PanelFooter>
       <Button
         type="primary"

@@ -7,6 +7,9 @@ import CodeExample from '../../CodeExample';
 import ExampleButtonWithLoadingState from './ExampleButtonWithLoadingState';
 import RAWExampleButtonWithLoadingState from '!raw-loader!./ExampleButtonWithLoadingState';
 
+import ExampleButtonWithConfirm from './ExampleButtonWithConfirm';
+import RAWExampleButtonWithConfirm from '!raw-loader!./ExampleButtonWithConfirm';
+
 import ExampleSimpleFlat from './ExampleSimpleFlat';
 import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 
@@ -21,6 +24,7 @@ import RAWExampleSimpleSemanticDisabled from '!raw-loader!./ExampleSimpleSemanti
 
 import ExampleSimpleWithIcon from './ExampleSimpleWithIcon';
 import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
+import RAWMDExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon.md';
 
 import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
 import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
@@ -41,24 +45,25 @@ const ButtonPage = () => (
     <ul>
       <li>
         <CodeExample
-          code={RAWExampleButtonWithLoadingState}
+          code={RAWExampleSimpleSemantic}
           component
-          title="Loading state"
+          title="Button using semantic colors"
           hasPadding
         >
-          <ExampleButtonWithLoadingState />
+          <ExampleSimpleSemantic />
         </CodeExample>
       </li>
-      {/* <li>
+      <li>
         <CodeExample
-          code={RAWExampleButtonPlayGround}
+          code={RAWExampleSimpleWithIcon}
           component
-          title="Playground"
+          title="Button with icon"
+          description={RAWMDExampleSimpleWithIcon}
           hasPadding
         >
-          <ExampleButtonPlayGround />
+          <ExampleSimpleWithIcon />
         </CodeExample>
-      </li> */}
+      </li>
       <li>
         <CodeExample
           code={RAWExampleButtonLinks}
@@ -79,6 +84,26 @@ const ButtonPage = () => (
           <ExampleSimpleFlat />
         </CodeExample>
       </li>
+        <li>
+        <CodeExample
+          code={RAWExampleButtonWithConfirm}
+          component
+          title="with confirm dialog"
+          hasPadding
+        >
+          <ExampleButtonWithConfirm />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleButtonWithLoadingState}
+          component
+          title="Loading state"
+          hasPadding
+        >
+          <ExampleButtonWithLoadingState />
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWExampleSimpleSemanticDisabled}
@@ -89,26 +114,7 @@ const ButtonPage = () => (
           <ExampleSimpleSemanticDisabled />
         </CodeExample>
       </li>
-      <li>
-        <CodeExample
-          code={RAWExampleSimpleSemantic}
-          component
-          title="Button using semantic colors"
-          hasPadding
-        >
-          <ExampleSimpleSemantic />
-        </CodeExample>
-      </li>
-      <li>
-        <CodeExample
-          code={RAWExampleSimpleWithIcon}
-          component
-          title="Button with icon"
-          hasPadding
-        >
-          <ExampleSimpleWithIcon />
-        </CodeExample>
-      </li>
+
       <li>
         <CodeExample
           code={RAWExampleSimpleWithLoaderIcon}

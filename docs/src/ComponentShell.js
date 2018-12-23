@@ -13,8 +13,11 @@ import Footer from './Footer';
 
 const MainContentWrapper = styled.div`
  padding: 16px;
+ box-sizing: border-box;
  max-width: 960px;
  margin: 0 auto;
+ max-height: calc(100vh - 80px);
+ overflow-y: auto;
 
  @media screen and (min-width: 1024px) {
   padding: 32px;
@@ -37,12 +40,29 @@ export const routes = [
       ,{ path: '/panel/PanelFooter', label: 'PanelFooter' }
       ,{ path: '/panel/LightPanel', label: 'LightPanel' }
   ]},
-  { path: '/Dialog', label: 'Dialog' },
+  { path: '/Dialog', label: 'Dialog', childRoutes: [
+      { path: '/dialog/withConfirmDialog', label: 'withConfirmDialog' }
+  ]},
   { path: '/icons', label: 'Icons' },
+  { path: '/inputs', label: 'Inputs', childRoutes: [
+      { path: '/inputs/Checkbox', label: 'Checkbox' }
+      ,{ path: '/inputs/radio', label: 'Radio' }
+      ,{ path: '/inputs/selectinput', label: 'SelectInput' }
+      ,{ path: '/inputs/FileInput', label: 'FileInput' }
+      ,{ path: '/inputs/TextField', label: 'TextField' }
+      ,{ path: '/inputs/Range', label: 'Range' }
+      ,{ path: '/inputs/Datetime', label: 'Datetime' }
+      ,{ path: '/inputs/SearchForm', label: 'SearchForm' }
+      // ,{ path: '/inputs/switch', label: 'Switch' }
+  ]},
   { path: '/button', label: 'Button' },
+  { path: '/Drawer', label: 'Drawer', childRoutes: [
+    { path: '/Drawer/CompactDrawer', label: 'CompactDrawer' }
+  ]},
   { path: '/alert', label: 'Alert' },
   { path: '/badge', label: 'Badge' },
   { path: '/layouts', label: 'Layout' },
+  // { path: '/internal', label: 'Internal' },
   { path: '/breadcrumbs', label: 'BreadCrumbs' },
   { path: '/classic', label: 'Classic' },
   { path: '/gallery', label: 'Gallery' },
@@ -53,11 +73,6 @@ export const routes = [
   { path: '/stepper', label: 'Stepper' },
   { path: '/carrousel', label: 'Carrousel' },
   { path: '/table', label: 'Table' },
-  { path: '/inputs', label: 'Inputs', childRoutes: [
-      { path: '/inputs/radio', label: 'Radio' }
-      ,{ path: '/inputs/selectinput', label: 'SelectInput' }
-      ,{ path: '/inputs/switch', label: 'Switch' }
-  ]},
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/popover', label: 'PopOver' },
   { path: '/compactslide', label: 'CompactSlide' },
@@ -70,7 +85,6 @@ export const routes = [
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/indicator', label: 'Indicator' },
   { path: '/tree', label: 'Tree' },
-  { path: '/internal', label: 'Internal' },
   { path: '/list', label: 'List' },
   { path: '/loader', label: 'Loader' },
   { path: '/menu', label: 'Menu' },
@@ -95,7 +109,11 @@ const ComponentShell = ({ children }) => {
       <ContentWithExtra
         extraMinWidth="68px"
         contentMinWidth="200px"
-        extra={<Menu />}
+        extra={(
+          <div style={{ maxHeight: 'calc(100vh - 80px)', overflowY: 'auto' }}>
+            <Menu />
+          </div>
+        )}
       >
         <MainContentWrapper>
           {children}
