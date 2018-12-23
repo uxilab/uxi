@@ -98,11 +98,8 @@ const ComponentShell = ({ children }) => {
         extra={<Menu />}
       >
         <MainContentWrapper>
-          <AppLayout>
-            <div></div>
-            {children}
-            <Footer />
-          </AppLayout>
+          {children}
+          <Footer />
         </MainContentWrapper>
       </ContentWithExtra>
     </div>
