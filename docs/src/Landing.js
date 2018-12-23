@@ -64,7 +64,7 @@ const Landing = props => (
     {/* <LandingBackgroundComponent /> */}
     <LandingVideo />
 
-    <div style={{ display: 'flex', color: '#fff', height: '760px', height: '100vh', alignItems: 'center', padding: '0 32px' }}>
+    <div style={{ display: 'flex', color: '#fff', height: '760px', height: 'calc(100vh - 80px)', alignItems: 'center', padding: '0 32px' }}>
       <div style={{ maxWidth: '1040px', width: '100%', margin: '0 auto', marginTop: '-7%' }}>
         <h1 style={{ fontSize: '40px' }}>Welcome</h1>
         <p>UXI is a UI/UX framework to build web application faster.</p>
