@@ -31,8 +31,13 @@ import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
+import DialogPage from './components/pages/Dialog/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
-import PanbelPage from './components/pages/Panel/Page';
+import PanelPage from './components/pages/Panel/Page';
+import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
+import PanelContentPage from './components/pages/Panel/PanelContent/Page';
+import PanelFooterPage from './components/pages/Panel/PanelFooter/Page';
+import LightPanelPage from './components/pages/Panel/LightPanel/Page';
 import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
@@ -50,20 +55,27 @@ const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
       <Route path={`${match.url}/`} exact component={Home} />
+      <Route path={`${match.url}/Panel`} exact component={PanelPage} />
+        <Route path={`${match.url}/Panel/PanelHeader`} component={PanelHeaderPage} />
+        <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
+        <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
+        <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
+      <Route path={`${match.url}/Dialog`} exact component={DialogPage} />
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />
-      <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
       <Route path={`${match.url}/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/box`} component={BoxPage} />
       <Route path={`${match.url}/popover`} component={PopOverPage} />
       <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
-      <Route path={`${match.url}/inputs`} component={InputsPage} />
+      <Route path={`${match.url}/inputs`} exact component={InputsPage} />
+        <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
+        <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
+        <Route path={`${match.url}/inputs/switch`} component={SwitchPage} />
       <Route path={`${match.url}/icons`} component={IconsPage} />
       <Route path={`${match.url}/layouts`} component={LayoutPage} />
       <Route path={`${match.url}/list`} component={ListPage} />
       <Route path={`${match.url}/table`} component={TablePage} />
-      <Route path={`${match.url}/switch`} component={SwitchPage} />
       <Route path={`${match.url}/alert`} component={AlertPage} />
       <Route path={`${match.url}/autocomplete`} component={AutoCompletePage} />
       <Route path={`${match.url}/loader`} component={LoaderPage} />
@@ -76,13 +88,11 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/stepper`} component={StepperPage} />
       <Route path={`${match.url}/DialogDropDown`} component={DialogDropDownPage} />
       <Route path={`${match.url}/BreadCrumbs`} component={BreadCrumbsPage} />
-      <Route path={`${match.url}/radio`} component={RadioPage} />
       <Route path={`${match.url}/classic`} component={ClassicPage} />
       <Route path={`${match.url}/datagrid`} component={DataGridPage} />
       <Route path={`${match.url}/globalMenu`} component={GlobalMenuPage} />
       <Route path={`${match.url}/widget`} component={WidgetPage} />
       <Route path={`${match.url}/personalizedmenu`} component={PesonalizedMenuPage} />
-      <Route path={`${match.url}/Panel`} component={PanbelPage} />
       <Route path={`${match.url}/Gallery`} component={GalleryPage} />
       <Route path={`${match.url}/Carrousel`} component={CarrouselPage} />
       <Route path={`${match.url}/Tile`} component={TilePage} />

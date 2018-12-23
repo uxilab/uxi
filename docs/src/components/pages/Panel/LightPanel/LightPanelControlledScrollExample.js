@@ -5,7 +5,7 @@ import { List } from 'uxi/List';
 import { Upload } from 'uxi/Icons';
 import { Flex } from 'uxi/Layout';
 import { LightPanel, LightPanelHeader, LightPanelContent, LightPanelFooter } from 'uxi/Panel';
-import data from './data';
+import data from '../data';
 
 const Wrapper = styled.div`
   max-height: ${({ showMore }) => showMore ? '65vh' : '200px'};
@@ -27,7 +27,7 @@ class LightPanelControlledScrollExample extends Component {
 
     return (
       <div>
-        <Wrapper showMore={showMore} style={{/*  height: '400px', */ border: '4px solid rebeccapurple' }}>
+        <Wrapper showMore={showMore}>
           <LightPanel>
             <LightPanelHeader
               hasClose

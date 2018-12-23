@@ -1,11 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from 'uxi/Header';
 import { H4 } from 'uxi/Classic';
 import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
-import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
+import { AppLayout, Flex, Layout, Col, Row, ContentWithExtra } from 'uxi/Layout';
 import { PageWithMenu } from 'uxi/Page';
 import { ThemedBox } from 'uxi/Box';
+import Menu from './Menu';
+import Footer from './Footer';
+
+
+const MainContentWrapper = styled.div`
+ padding: 16px;
+ max-width: 960px;
+ margin: 0 auto;
+
+ @media screen and (min-width: 1024px) {
+  padding: 32px;
+ }
+`;
 
 const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff', overflow: 'visible' };
 
@@ -17,48 +31,55 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 );
 
 export const routes = [
-  { path: '/MenuDropDown', label: 'MenuDropDown' },
+  { path: '/panel', label: 'Panel', childRoutes: [
+      { path: '/panel/PanelHeader', label: 'PanelHeader' }
+      ,{ path: '/panel/PanelContent', label: 'PanelContent' }
+      ,{ path: '/panel/PanelFooter', label: 'PanelFooter' }
+      ,{ path: '/panel/LightPanel', label: 'LightPanel' }
+  ]},
+  { path: '/Dialog', label: 'Dialog' },
+  { path: '/icons', label: 'Icons' },
+  { path: '/button', label: 'Button' },
+  { path: '/alert', label: 'Alert' },
+  { path: '/badge', label: 'Badge' },
+  { path: '/layouts', label: 'Layout' },
+  { path: '/breadcrumbs', label: 'BreadCrumbs' },
+  { path: '/classic', label: 'Classic' },
+  { path: '/gallery', label: 'Gallery' },
+  { path: '/Motion', label: 'Motion' },
+  { path: '/datagrid', label: 'Data Grid' },
+  { path: '/spacer', label: 'Spacer' },
+  { path: '/img', label: 'Image' },
+  { path: '/stepper', label: 'Stepper' },
+  { path: '/carrousel', label: 'Carrousel' },
+  { path: '/table', label: 'Table' },
+  { path: '/inputs', label: 'Inputs', childRoutes: [
+      { path: '/inputs/radio', label: 'Radio' }
+      ,{ path: '/inputs/selectinput', label: 'SelectInput' }
+      ,{ path: '/inputs/switch', label: 'Switch' }
+  ]},
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
+  { path: '/popover', label: 'PopOver' },
+  { path: '/compactslide', label: 'CompactSlide' },
+  { path: '/MenuDropDown', label: 'MenuDropDown' },
   { path: '/font', label: 'Fonts' },
   { path: '/color', label: 'Colors' },
-  { path: '/selectinput', label: 'SelectInput' },
   { path: '/dropdown', label: 'Dropdown' },
-  { path: '/alert', label: 'Alert' },
-  { path: '/popover', label: 'PopOver' },
   { path: '/autocomplete', label: 'AutoComplete' },
-  { path: '/badge', label: 'Badge' },
-  { path: '/breadcrumbs', label: 'BreadCrumbs' },
   { path: '/box', label: 'Box' },
-  { path: '/button', label: 'Button' },
-  { path: '/classic', label: 'Classic' },
   { path: '/dashboard', label: 'Dashboard' },
-  { path: '/datagrid', label: 'Data Grid' },
-  { path: '/icons', label: 'Icons' },
   { path: '/indicator', label: 'Indicator' },
-  { path: '/inputs', label: 'Inputs' },
   { path: '/tree', label: 'Tree' },
   { path: '/internal', label: 'Internal' },
-  { path: '/img', label: 'Image' },
-  { path: '/layouts', label: 'Layout' },
   { path: '/list', label: 'List' },
   { path: '/loader', label: 'Loader' },
   { path: '/menu', label: 'Menu' },
   // {/* { path: '/sublayout', label: 'SubLayout' }, */ },
-  { path: '/radio', label: 'Radio' },
   { path: '/sociallinks', label: 'Sociallinks' },
-  { path: '/stepper', label: 'Stepper' },
-  { path: '/switch', label: 'Switch' },
-  { path: '/table', label: 'Table' },
   { path: '/globalmenu', label: 'Global Menu' },
   { path: '/widget', label: 'Widget' },
   { path: '/personalizedmenu', label: 'Personalized Menu' },
-  { path: '/panel', label: 'Panel' },
-  { path: '/gallery', label: 'Gallery' },
-  { path: '/carrousel', label: 'Carrousel' },
   { path: '/tile', label: 'Tile' },
-  { path: '/Motion', label: 'Motion' },
-  { path: '/compactslide', label: 'CompactSlide' },
-  { path: '/spacer', label: 'Spacer' },
 ];
 
 const ComponentShell = ({ children }) => {
@@ -70,8 +91,29 @@ const ComponentShell = ({ children }) => {
   );
 
   return (
+    <div>
+      <ContentWithExtra
+        extraMinWidth="68px"
+        contentMinWidth="200px"
+        extra={<Menu />}
+      >
+        <MainContentWrapper>
+          <AppLayout>
+            <div></div>
+            {children}
+            <Footer />
+          </AppLayout>
+        </MainContentWrapper>
+      </ContentWithExtra>
+    </div>
+  );
+
+  return children
+
+  return (
     <div style={{ maxWidth: '1280px', margin: '0 auto' }} >
-      <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} >
+
+      {/* <PageWithMenu style={pageWithMenuStyles} menu={mainMenu} > */}
         <div style={{ padding: '16px' }}>
           <Layout>
             <Row>
@@ -79,7 +121,7 @@ const ComponentShell = ({ children }) => {
             </Row>
           </Layout>
         </div>
-      </PageWithMenu>
+      {/* </PageWithMenu> */}
     </div>
   );
 };

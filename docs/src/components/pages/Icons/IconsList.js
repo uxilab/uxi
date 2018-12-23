@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-const IconsExample = () => {
+const IconsList = () => {
   const mappedKeys = Object.keys(Icons);
 
   return (
@@ -39,4 +39,4 @@ const IconsExample = () => {
   );
 };
 
-export default IconsExample;
+export default IconsList;

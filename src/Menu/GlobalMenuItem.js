@@ -20,6 +20,15 @@ const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
 
 
 const LinkDecorator = styled.div`
+  & > * {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: ${breakpoint}) {
+      flex-direction: row;
+    }
+  }
+
   html body & svg,
   html body & svg > svg {
     /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
@@ -206,7 +215,6 @@ const GlobalMenuItem = (props) => {
     href,
   } = props;
 
-  let containerStyle;
   let isNewContent;
 
   if (hasNew) {
@@ -239,7 +247,6 @@ const GlobalMenuItem = (props) => {
       isSelected={isSelected}
       isActive={isActive}
       key={`mainMenuItemContainer-${index}`}
-      style={containerStyle}
       {...linkProps}
       onClick={onClick}
     >
@@ -256,10 +263,10 @@ const GlobalMenuItem = (props) => {
         isSelected={isSelected}
         isActive={isActive}
         key={`mainMenuItemContainer-${index}`}
-        style={containerStyle}
       >
         <Link
           {...linkProps}
+
           onClick={onClick}
         >
           {icon}

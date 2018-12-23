@@ -5,7 +5,7 @@ import grid from './grid';
 import fonts from './fonts'; // eslint-disable-line import/no-named-as-default
 import tooltip from './tooltip';
 // import synthaxHighlight from './synthaxHighlight';
-// import markdown from './markdown';
+import markdown from './markdown';
 import layout from './layout';
 import simpleLayout from './simpleLayout'; // eslint-disable-line import/no-named-as-default
 /**
@@ -27,6 +27,7 @@ export const makeGlobalCSSInjector = (theme) => {
   } = theme;
 
   return `
+    ${markdown}
     ${fonts}
     ${tooltip}
 

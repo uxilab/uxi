@@ -1,0 +1,1 @@
+dialog containing a Panel

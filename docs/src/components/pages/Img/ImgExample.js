@@ -1,7 +1,8 @@
 import React from 'react';
 import Img from '../../../../../src/Img';
 
-const ExampleSimple = () => (
+
+const ImgExample = () => (
   <ul>
     <li>
       <Img style={{ width: '200px' }} src="https://luna1.co/232620.png" />
@@ -21,4 +22,4 @@ const ExampleSimple = () => (
   </ul>
 );
 
-export default ExampleSimple;
+export default ImgExample;

@@ -25,8 +25,8 @@ import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
 import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
 import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
 
-import ExampleButtonPlayGround from './ExampleButtonPlayGround';
-import RAWExampleButtonPlayGround from '!raw-loader!./ExampleButtonPlayGround';
+// import ExampleButtonPlayGround from './ExampleButtonPlayGround';
+// import RAWExampleButtonPlayGround from '!raw-loader!./ExampleButtonPlayGround';
 
 import ExampleSimpleButtonLink from './ExampleSimpleButtonLink';
 import RAWExampleSimpleButtonLink from '!raw-loader!./ExampleSimpleButtonLink';
@@ -37,20 +37,19 @@ const ButtonPage = () => (
     <P>
       Button are used to emphasizes important functions on your page.
     </P>
-    <Switch name="foobar6" onChange={e => console.log(`checked: ${e.checked}`)} label={<div>Notifications</div>} />
-
+    <br />
     <ul>
       <li>
         <CodeExample
           code={RAWExampleButtonWithLoadingState}
           component
-          title="Playground"
+          title="Loading state"
           hasPadding
         >
           <ExampleButtonWithLoadingState />
         </CodeExample>
       </li>
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWExampleButtonPlayGround}
           component
@@ -59,7 +58,7 @@ const ButtonPage = () => (
         >
           <ExampleButtonPlayGround />
         </CodeExample>
-      </li>
+      </li> */}
       <li>
         <CodeExample
           code={RAWExampleButtonLinks}

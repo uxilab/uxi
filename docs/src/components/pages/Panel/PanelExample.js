@@ -6,7 +6,7 @@ import { Panel, PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 
 const PanelExample = () => (
   <div>
-    <div style={{ height: '400px' }}>
+    <div style={{ height: '200px' }}>
       <Panel>
         <PanelHeader hasClose title="Panel rocks!" onClose={() => console.log('closed')}/>
 

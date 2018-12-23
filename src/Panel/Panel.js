@@ -8,7 +8,10 @@ const Panel = ({ children, style, onClose }) => (
       React.Children.map(children, child => (child &&
         React.cloneElement(
           child,
-          { onClose, ...(child.props || {}) }, // allow user overwrite
+          {
+            onClose,
+            ...(child.props || {}), // allow consumer final overwrite privilege for onClose
+          },
         )
       ))
     }

@@ -64,7 +64,7 @@ const Appshell = (props) => {
   return (
     <div>
       <AppLayout>
-        <Header isDark style={{ minHeight: '80px' }}>
+        <Header isDark style={{ width: '100%', minHeight: '80px', position: 'sticky', zIndex: 100 }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center' }}>
               <MenuItem>
@@ -75,16 +75,10 @@ const Appshell = (props) => {
                 </LogoWrapper>
               </MenuItem>
               <MenuItem>
-                <Link to="/">Home</Link>
-              </MenuItem>
-              <MenuItem>
                 <Link to="/components">Components</Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/get-started">Get Started</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/">Contact</Link>
               </MenuItem>
               <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
                 <AutoCompleteWrapper style={{ marginTop: '24px' }}>
@@ -101,9 +95,7 @@ const Appshell = (props) => {
             </HorizontalMenu>
           </div>
         </Header>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </AppLayout>
       <style
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
