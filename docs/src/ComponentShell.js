@@ -13,8 +13,11 @@ import Footer from './Footer';
 
 const MainContentWrapper = styled.div`
  padding: 16px;
+ box-sizing: border-box;
  max-width: 960px;
  margin: 0 auto;
+ max-height: calc(100vh - 80px);
+ overflow-y: auto;
 
  @media screen and (min-width: 1024px) {
   padding: 32px;
@@ -95,7 +98,11 @@ const ComponentShell = ({ children }) => {
       <ContentWithExtra
         extraMinWidth="68px"
         contentMinWidth="200px"
-        extra={<Menu />}
+        extra={(
+          <div style={{ maxHeight: 'calc(100vh - 80px)', overflowY: 'auto' }}>
+            <Menu />
+          </div>
+        )}
       >
         <MainContentWrapper>
           {children}

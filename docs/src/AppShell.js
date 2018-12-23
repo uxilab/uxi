@@ -60,10 +60,26 @@ const mainStyles = {
 
 const Appshell = (props) => {
   const { children } = props;
+  console.log('props', props)
+
+  let appLayoutContentStyle = {}
+  let appLayoutStyle = {}
+
+  if (props.location.pathname.indexOf('/components/') === 0) {
+    appLayoutContentStyle = {
+      maxHeight: 'calc(100% - 80px)',
+      // overflowY: 'auto',
+    }
+
+    appLayoutStyle = {
+      maxHeight: '100vh',
+      // overflowY: 'auto',
+    }
+  }
 
   return (
     <div>
-      <AppLayout>
+      <AppLayout style={appLayoutStyle}>
         <Header isDark style={{ width: '100%', minHeight: '80px', position: 'sticky', zIndex: 100 }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center' }}>
@@ -95,7 +111,7 @@ const Appshell = (props) => {
             </HorizontalMenu>
           </div>
         </Header>
-        <div>{children}</div>
+        <div style={appLayoutContentStyle}>{children}</div>
       </AppLayout>
       <style
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
