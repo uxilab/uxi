@@ -15,7 +15,6 @@ import markdown from './styles/markdown';
 import { routes } from './ComponentShell';
 import UXILogo from './UXILogo';
 import GithubLink from './GithubLink';
-import SuggestAnEdit from './components/SuggestAnEdit';
 
 const LogoWrapper = styled.div`
   width: 250px;
@@ -96,12 +95,7 @@ const Appshell = (props) => {
             </HorizontalMenu>
           </div>
         </Header>
-        <div>
-          {children}
-        </div>
-        <footer>
-          <SuggestAnEdit />
-        </footer>
+        <div>{children}</div>
       </AppLayout>
       <style
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger

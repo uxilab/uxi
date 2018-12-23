@@ -8,6 +8,8 @@ import { AppLayout, Flex, Layout, Col, Row, ContentWithExtra } from 'uxi/Layout'
 import { PageWithMenu } from 'uxi/Page';
 import { ThemedBox } from 'uxi/Box';
 import Menu from './Menu';
+import Footer from './Footer';
+
 
 const MainContentWrapper = styled.div`
  padding: 16px;
@@ -37,7 +39,6 @@ export const routes = [
   ]},
   { path: '/Dialog', label: 'Dialog' },
   { path: '/icons', label: 'Icons' },
-  { path: '/selectinput', label: 'SelectInput' },
   { path: '/button', label: 'Button' },
   { path: '/alert', label: 'Alert' },
   { path: '/badge', label: 'Badge' },
@@ -52,10 +53,14 @@ export const routes = [
   { path: '/stepper', label: 'Stepper' },
   { path: '/carrousel', label: 'Carrousel' },
   { path: '/table', label: 'Table' },
+  { path: '/inputs', label: 'Inputs', childRoutes: [
+      { path: '/inputs/radio', label: 'Radio' }
+      ,{ path: '/inputs/selectinput', label: 'SelectInput' }
+      ,{ path: '/inputs/switch', label: 'Switch' }
+  ]},
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/popover', label: 'PopOver' },
   { path: '/compactslide', label: 'CompactSlide' },
-  { path: '/inputs', label: 'Inputs' },
   { path: '/MenuDropDown', label: 'MenuDropDown' },
   { path: '/font', label: 'Fonts' },
   { path: '/color', label: 'Colors' },
@@ -70,9 +75,7 @@ export const routes = [
   { path: '/loader', label: 'Loader' },
   { path: '/menu', label: 'Menu' },
   // {/* { path: '/sublayout', label: 'SubLayout' }, */ },
-  { path: '/radio', label: 'Radio' },
   { path: '/sociallinks', label: 'Sociallinks' },
-  { path: '/switch', label: 'Switch' },
   { path: '/globalmenu', label: 'Global Menu' },
   { path: '/widget', label: 'Widget' },
   { path: '/personalizedmenu', label: 'Personalized Menu' },
@@ -94,9 +97,13 @@ const ComponentShell = ({ children }) => {
         contentMinWidth="200px"
         extra={<Menu />}
       >
-      <MainContentWrapper>
-        {children}
-      </MainContentWrapper>
+        <MainContentWrapper>
+          <AppLayout>
+            <div></div>
+            {children}
+            <Footer />
+          </AppLayout>
+        </MainContentWrapper>
       </ContentWithExtra>
     </div>
   );

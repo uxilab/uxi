@@ -64,17 +64,18 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} component={ButtonPage} />
-      <Route path={`${match.url}/SelectInput`} component={SelectInputPage} />
       <Route path={`${match.url}/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/box`} component={BoxPage} />
       <Route path={`${match.url}/popover`} component={PopOverPage} />
       <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
-      <Route path={`${match.url}/inputs`} component={InputsPage} />
+      <Route path={`${match.url}/inputs`} exact component={InputsPage} />
+        <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
+        <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
+        <Route path={`${match.url}/inputs/switch`} component={SwitchPage} />
       <Route path={`${match.url}/icons`} component={IconsPage} />
       <Route path={`${match.url}/layouts`} component={LayoutPage} />
       <Route path={`${match.url}/list`} component={ListPage} />
       <Route path={`${match.url}/table`} component={TablePage} />
-      <Route path={`${match.url}/switch`} component={SwitchPage} />
       <Route path={`${match.url}/alert`} component={AlertPage} />
       <Route path={`${match.url}/autocomplete`} component={AutoCompletePage} />
       <Route path={`${match.url}/loader`} component={LoaderPage} />
@@ -87,7 +88,6 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/stepper`} component={StepperPage} />
       <Route path={`${match.url}/DialogDropDown`} component={DialogDropDownPage} />
       <Route path={`${match.url}/BreadCrumbs`} component={BreadCrumbsPage} />
-      <Route path={`${match.url}/radio`} component={RadioPage} />
       <Route path={`${match.url}/classic`} component={ClassicPage} />
       <Route path={`${match.url}/datagrid`} component={DataGridPage} />
       <Route path={`${match.url}/globalMenu`} component={GlobalMenuPage} />
