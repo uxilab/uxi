@@ -14,8 +14,11 @@ import Footer from './Footer';
 const MainContentWrapper = styled.div`
  padding: 16px;
  box-sizing: border-box;
- max-width: 960px;
- margin: 0 auto;
+ width: 100%;
+ & > * {
+  max-width: 960px;
+  margin: 0 auto;
+ }
  max-height: calc(100vh - 80px);
  overflow-y: auto;
 
@@ -116,8 +119,10 @@ const ComponentShell = ({ children }) => {
         )}
       >
         <MainContentWrapper>
-          {children}
-          <Footer />
+          <div>
+            {children}
+            <Footer />
+          </div>
         </MainContentWrapper>
       </ContentWithExtra>
     </div>
