@@ -40,7 +40,9 @@ export const routes = [
       ,{ path: '/panel/PanelFooter', label: 'PanelFooter' }
       ,{ path: '/panel/LightPanel', label: 'LightPanel' }
   ]},
-  { path: '/Dialog', label: 'Dialog' },
+  { path: '/Dialog', label: 'Dialog', childRoutes: [
+      { path: '/dialog/withConfirmDialog', label: 'withConfirmDialog' }
+  ]},
   { path: '/icons', label: 'Icons' },
   { path: '/inputs', label: 'Inputs', childRoutes: [
       { path: '/inputs/Checkbox', label: 'Checkbox' }
