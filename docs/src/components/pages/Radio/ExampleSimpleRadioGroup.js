@@ -2,7 +2,7 @@ import React from 'react';
 import { RadioGroup, Radio } from 'uxi/Input';
 
 const ExampleSimpleRadioGroup = () => (
-  <div>
+  <div style={{ padding: '16px' }}>
     <RadioGroup
       name="isPayingCustomer"
       onChange={(event, val) => {  }}

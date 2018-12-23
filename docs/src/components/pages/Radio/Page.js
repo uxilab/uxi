@@ -13,7 +13,7 @@ import RAWExampleControlledRadioGroup from '!raw-loader!./ExampleControlledRadio
 import ExampleDefaultValueRadioGroup from './ExampleDefaultValueRadioGroup';
 import RAWExampleDefaultValueRadioGroup from '!raw-loader!./ExampleDefaultValueRadioGroup';
 
-const ButtonPage = () => (
+const RadioPage = () => (
   <ul>
     <li>
       <CodeExample code={RAWExampleSimpleRadio} component description="simple radio">
@@ -38,4 +38,4 @@ const ButtonPage = () => (
   </ul>
 );
 
-export default ButtonPage;
+export default RadioPage;
