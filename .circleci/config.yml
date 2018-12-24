@@ -90,7 +90,7 @@ jobs:
       - run: LATEST_SHA1=$(git rev-parse HEAD)
       - run: echo "$LATEST_SHA1"
       - run: |
-          cat >~/.netrc <<EOF
+          cat > ~/.netrc << EOF
           machine api.heroku.com
             login $HEROKU_EMAIL
             password $HEROKU_TOKEN
