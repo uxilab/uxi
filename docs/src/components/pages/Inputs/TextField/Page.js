@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1 } from 'uxi/classic';
+import { H1 } from 'uxi/Classic';
 import CodeExample from '../../../CodeExample';
 
 import ExampleTextField from './ExampleTextField';
