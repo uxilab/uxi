@@ -17,6 +17,7 @@ const PanelHeaderUI = styled.div`
   display: flex;
   align-items: center;
   min-height: 50px;
+  border-radius: ${({ rounded, theme: { radius } }) => rounded && `${radius} ${radius} 0 0`};
 `;
 
 const PanelHeaderTitleWrapper = styled.div`
@@ -40,6 +41,7 @@ const PanelHeader = (props) => {
     hasClose,
     onClose,
     style,
+    rounded,
     // iconColor, // = '#ceceec',
     // iconHoverColor, // = '#ffffff',
   } = props;
@@ -53,7 +55,7 @@ const PanelHeader = (props) => {
     : null;
 
   return (
-    <PanelHeaderUI style={style} >
+    <PanelHeaderUI style={style} rounded={rounded}>
       <HorizontalAppLayout>
         <PanelHeaderTitleWrapper>{title}</PanelHeaderTitleWrapper>
         <div>{children}</div>

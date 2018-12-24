@@ -15,8 +15,9 @@ const DialogUI = styled.div`
   right: 10vw;
   backface-visibility: hidden;
   background: #fff;
-  border-radius: 3px;
-  overflow: hidden;
+  border-radius: ${({ theme: { radius } }) => radius};
+
+  /* overflow: hidden; */
   box-shadow:
     rgba(0, 0, 0, 0.5) 0px 1px 6px,
     rgba(0, 0, 0, 0.2) 0px 4px 16px;
@@ -76,6 +77,10 @@ const Dialog = ({
     return React.cloneElement(c, {
       key: `dialogContent-${index}`,
       onClose,
+      ...(c.type.displayName === 'Panel'
+        ? { rounded: true }
+        : {}
+      ),
       style: {
         ...((c && c.props && c.props.style) ? c.props.style : {}),
       },

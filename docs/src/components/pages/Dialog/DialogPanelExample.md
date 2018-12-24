@@ -1,1 +1,1 @@
-dialog containing a Panel
+dialog containing a <Panel />

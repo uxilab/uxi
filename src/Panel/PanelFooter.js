@@ -10,6 +10,7 @@ const PanelFooterUI = styled.div`
   display: flex;
   justify-content: flex-end;
   min-height: 50px;
+  border-radius: ${({ rounded, theme: { radius } }) => rounded && `0 0 ${radius} ${radius}`};
 `;
 
 const PanelFooter = (props) => {
@@ -19,6 +20,7 @@ const PanelFooter = (props) => {
     cancelLabel,
     onClose,
     style,
+    rounded,
   } = props;
 
   const cancel = (hasCancel || onClose)
@@ -28,7 +30,7 @@ const PanelFooter = (props) => {
     : null;
 
   return (
-    <PanelFooterUI style={style} >
+    <PanelFooterUI style={style} rounded={rounded}>
       {children}
       {cancel}
     </PanelFooterUI>

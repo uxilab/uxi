@@ -23,6 +23,10 @@ import DialogPanelFSExample from './DialogPanelFSExample';
 import RAWDialogPanelFSExample from '!raw-loader!./DialogPanelFSExample';
 import RAWMDDialogPanelFSExample from '!raw-loader!./DialogPanelFSExample.md';
 
+import DialogPanelOverflowExample from './DialogPanelOverflowExample';
+import RAWDialogPanelOverflowExample from '!raw-loader!./DialogPanelOverflowExample';
+import RAWMDDialogPanelOverflowExample from '!raw-loader!./DialogPanelOverflowExample.md';
+
 const DialogPage = () => (
   <div>
   <Title text="Panel" />
@@ -80,6 +84,17 @@ const DialogPage = () => (
           hasPadding
         >
           <DialogPanelFSExample />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWDialogPanelOverflowExample}
+          component
+          title="Fullscreen Dialog with Panel and AutoComplete overflowing"
+          description={RAWMDDialogPanelOverflowExample}
+          hasPadding
+        >
+          <DialogPanelOverflowExample />
         </CodeExample>
       </li>
     </ul>

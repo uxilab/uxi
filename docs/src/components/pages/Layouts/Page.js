@@ -1,8 +1,9 @@
 import React from 'react';
+import { H1 } from 'uxi/Classic';
 import CodeExample from '../../CodeExample';
 
-import ExampleSimple from './ExampleSimple';
-import RAWExampleSimple from '!raw-loader!./ExampleSimple';
+import ExampleAppLayout from './ExampleAppLayout';
+import RAWExampleAppLayout from '!raw-loader!./ExampleAppLayout';
 
 import ExampleContentWithExtra from './ExampleContentWithExtra';
 import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
@@ -15,22 +16,11 @@ import RAWExampleGrid from '!raw-loader!./ExampleGrid';
 
 const Layouts = () => (
   <div>
-    <br />
-
-   {/*  <CodeExample
-      code={RAWExampleGrid}
-      component
-      title="Grid"
-      hasPadding
-    >
-      <ExampleGrid />
-    </CodeExample> */}
-
-    <br />
+    <H1>Layouts </H1>
     <CodeExample
       code={RAWExampleContentWithExtra}
       component
-      title="Layout"
+      title="ContentWithExtra"
       hasPadding
     >
       <ExampleContentWithExtra />
@@ -39,12 +29,12 @@ const Layouts = () => (
     <br />
 
     <CodeExample
-      code={RAWExampleSimple}
+      code={RAWExampleAppLayout}
       component
-      title="Layout"
+      title="AppLayout"
       hasPadding
     >
-      <ExampleSimple />
+      <ExampleAppLayout />
     </CodeExample>
 
     <br />
