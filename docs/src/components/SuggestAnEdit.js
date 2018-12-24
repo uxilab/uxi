@@ -10,7 +10,7 @@ const SuggestAnEdit = props => {
       onClick={(e) => {
         const href = window.location && window.location.href
 
-        window.location.assign(
+        window.open(
           encodeURI(
             `https://github.com/uxilab/uxi/issues/new?title=Suggestion&body=${href}`
           )
