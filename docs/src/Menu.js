@@ -5,7 +5,7 @@ import { Circle, Cluedin } from 'uxi/Icons';
 import { H4, P } from 'uxi/Classic';
 import Button from 'uxi/Button';
 import { CluedinLogoText } from 'uxi/Logo';
-import {routes} from './ComponentShell'
+import { routes } from './routes';
 
 const getIsActive = key  => (
   window

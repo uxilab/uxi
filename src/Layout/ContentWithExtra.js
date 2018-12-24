@@ -43,15 +43,26 @@ const ContentWithExtra = (props) => {
     children,
     extraMinWidth,
     contentMinWidth,
+    contentStyle,
+    extraStyle,
+    style,
   } = props;
 
   const contentItems = [
-    <ExtraUI key="extra" extraMinWidth={extraMinWidth}>{extra}</ExtraUI>,
-    <ContentUI key="content" contentMinWidth={contentMinWidth}>{children}</ContentUI>,
+    <ExtraUI key="extra" extraMinWidth={extraMinWidth} style={extraStyle}>
+      {extra}
+    </ExtraUI>,
+    <ContentUI key="content" contentMinWidth={contentMinWidth} style={contentStyle}>
+      {children}
+    </ContentUI>,
   ];
 
   return (
-    <ContentWithExtraUI isAfter={extraPosition === 'after'} extraPosition={extraPosition}>
+    <ContentWithExtraUI
+      isAfter={extraPosition === 'after'}
+      extraPosition={extraPosition}
+      style={style}
+    >
       { extraPosition === 'after' ? contentItems.reverse() : contentItems }
     </ContentWithExtraUI>
   );
@@ -62,6 +73,7 @@ ContentWithExtra.displayName = 'ContentWithExtra';
 ContentWithExtra.defaultProps = {
   extraPosition: 'before',
   extraMinWidth: '200px',
+  contentStyle: {},
 };
 
 ContentWithExtra.propTypes = {

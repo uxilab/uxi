@@ -12,9 +12,11 @@ import AutoComplete from 'uxi/AutoComplete';
 import { ThemedBox } from 'uxi/Box';
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
-import { routes } from './ComponentShell';
+import { routes } from './routes';
 import UXILogo from './UXILogo';
 import GithubLink from './GithubLink';
+
+console.log('routes in appshel', routes)
 
 const LogoWrapper = styled.div`
   width: 250px;
@@ -96,7 +98,7 @@ const Appshell = (props) => {
               <MenuItem style={{ display: 'flex' }}>
                 <Link to="/get-started">Get Started</Link>
               </MenuItem>
-              <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
+             {/*  <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
                 <AutoCompleteWrapper style={{ marginTop: '24px' }}>
                   <AutoComplete
                     items={routes}
@@ -104,7 +106,7 @@ const Appshell = (props) => {
                     onChange={({ value }) => this.props.history.push(`/components${value}`)}
                   />
                 </AutoCompleteWrapper>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
                 <GithubLink />
               </MenuItem>
