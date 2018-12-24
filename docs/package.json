@@ -23,14 +23,14 @@
     "prop-types": "^15.6.0",
     "raw-loader": "^0.5.1",
     "react": "16.7.0",
-    "react-docgen": "^2.20.0",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^6.0.0",
     "react-router": "4.3.1",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.1",
-    "styled-components": "^3.2.0"
+    "styled-components": "^3.2.0",
+    "react-docgen": "^2.21.0"
   },
   "devDependencies": {
     "uxi-cli": "^1.0.82"

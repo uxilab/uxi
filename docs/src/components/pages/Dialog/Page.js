@@ -1,7 +1,10 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
+import RAWDialog from '!raw-loader!uxi/Dialog/Dialog';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
+import { componentInfoToMD } from '../../componentInfoToMD';
+
 
 import DialogExample from './DialogExample';
 import RAWDialogExample from '!raw-loader!./DialogExample';
@@ -27,15 +30,34 @@ import DialogPanelOverflowExample from './DialogPanelOverflowExample';
 import RAWDialogPanelOverflowExample from '!raw-loader!./DialogPanelOverflowExample';
 import RAWMDDialogPanelOverflowExample from '!raw-loader!./DialogPanelOverflowExample.md';
 
+console.log('RAWDialog', RAWDialog)
+
 const DialogPage = () => (
   <div>
-  <Title text="Panel" />
+    <Title text="Dialog" />
     <ul>
+     {/*  <li>
+        <ComponentInfo
+          code={RAWDialog}
+        />
+      </li> */}
+       <li>
+        <CodeExample
+          code={RAWDialog}
+          component
+          title="Dialog"
+          description={componentInfoToMD(RAWDialog)}
+          hasPadding
+        >
+          {/* <DialogExample /> */}
+        </CodeExample>
+      </li>
+      <li><Title text="Dialog examples" /></li>
       <li>
         <CodeExample
           code={RAWDialogExample}
           component
-          title="Dialog"
+          title="Dialog Example"
           description={RAWMDDialogExample}
           hasPadding
         >
@@ -46,7 +68,7 @@ const DialogPage = () => (
         <CodeExample
           code={RAWDialogFWExample}
           component
-          title="Dialog full width"
+          title="Dialog example full width"
           description={RAWMDDialogFWExample}
           hasPadding
         >
@@ -57,7 +79,7 @@ const DialogPage = () => (
         <CodeExample
           code={RAWDialogFSExample}
           component
-          title="Dialog full width"
+          title="Dialog example full screen"
           description={RAWMDDialogFSExample}
           hasPadding
         >
@@ -68,7 +90,7 @@ const DialogPage = () => (
         <CodeExample
           code={RAWDialogPanelExample}
           component
-          title="Dialog with Panel"
+          title="Dialog example with Panel"
           description={RAWMDDialogPanelExample}
           hasPadding
         >
@@ -79,7 +101,7 @@ const DialogPage = () => (
         <CodeExample
           code={RAWDialogPanelFSExample}
           component
-          title="Fullscreen Dialog with Panel and Table"
+          title="Fullscreen Dialog with Panel and Table example"
           description={RAWMDDialogPanelFSExample}
           hasPadding
         >
@@ -90,7 +112,7 @@ const DialogPage = () => (
         <CodeExample
           code={RAWDialogPanelOverflowExample}
           component
-          title="Fullscreen Dialog with Panel and AutoComplete overflowing"
+          title="Fullscreen Dialog with Panel and AutoComplete overflowing example"
           description={RAWMDDialogPanelOverflowExample}
           hasPadding
         >

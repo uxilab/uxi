@@ -32,7 +32,7 @@ class TableBody extends Component {
         return undefined; // consistent-return
       }
 
-      const isSelected = isRowSelected(rowNumber);
+      const isSelected = isRowSelected && isRowSelected(rowNumber);
 
       const handlers = {
         onClick: (event, rowIndex) => {
