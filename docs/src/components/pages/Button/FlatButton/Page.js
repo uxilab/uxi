@@ -9,6 +9,9 @@ import { componentInfoToMD } from '../../../componentInfoToMD';
 import ExampleSimpleFlat from './ExampleSimpleFlat';
 import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 
+import ExampleSimpleSemantic from './ExampleSimpleSemantic';
+import RAWExampleSimpleSemantic from '!raw-loader!./ExampleSimpleSemantic';
+
 const ButtonPage = () => (
   <div>
     <Title text="FlatButton" />
@@ -30,6 +33,16 @@ const ButtonPage = () => (
           hasPadding
         >
           <ExampleSimpleFlat />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSimpleSemantic}
+          component
+          title="FlatButton using semantic colors"
+          hasPadding
+        >
+          <ExampleSimpleSemantic />
         </CodeExample>
       </li>
     </ul>

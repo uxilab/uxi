@@ -28,8 +28,8 @@ import ExampleSimpleWithIcon from './ExampleSimpleWithIcon';
 import RAWExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon';
 import RAWMDExampleSimpleWithIcon from '!raw-loader!./ExampleSimpleWithIcon.md';
 
-import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
-import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
+// import ExampleSimpleWithLoaderIcon from './ExampleSimpleWithLoaderIcon';
+// import RAWExampleSimpleWithLoaderIcon from '!raw-loader!./ExampleSimpleWithLoaderIcon';
 
 // import ExampleButtonPlayGround from './ExampleButtonPlayGround';
 // import RAWExampleButtonPlayGround from '!raw-loader!./ExampleButtonPlayGround';
@@ -62,6 +62,16 @@ const ButtonPage = () => (
           hasPadding
         >
           <ExampleSimpleWithIcon />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSimpleSemantic}
+          component
+          title="using semantic color or theme palette"
+          hasPadding
+        >
+          <ExampleSimpleSemantic />
         </CodeExample>
       </li>
       <li>
@@ -115,7 +125,7 @@ const ButtonPage = () => (
         </CodeExample>
       </li>
 
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWExampleSimpleWithLoaderIcon}
           component
@@ -124,7 +134,7 @@ const ButtonPage = () => (
         >
           <ExampleSimpleWithLoaderIcon />
         </CodeExample>
-      </li>
+      </li> */}
     </ul>
   </div>
 );
