@@ -1,6 +1,8 @@
 import React from 'react';
 import { H1 } from 'uxi/Classic';
 import CodeExample from '../../CodeExample';
+import RAWDrawer from '!raw-loader!uxi/Drawer/Drawer';
+import { componentInfoToMD } from '../../componentInfoToMD';
 
 import Example from './Example';
 import RAWExample from '!raw-loader!./Example';
@@ -17,8 +19,18 @@ import RAWMDExampleWithAlert from '!raw-loader!./ExampleWithAlert.md';
 const Page = () => (
   <div>
     <ul>
-      <H1>Drawer</H1>
       <li>
+        <H1>Drawer</H1>
+        <CodeExample
+          code={RAWDrawer}
+          component
+          title="Drawer"
+          description={componentInfoToMD(RAWDrawer)}
+        >
+        </CodeExample>
+      </li>
+      <li>
+        <H1>Drawer example</H1>
         <CodeExample
           code={RAWExample}
           component
