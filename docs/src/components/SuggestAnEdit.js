@@ -1,10 +1,10 @@
 import React from 'react'
-import Button from 'uxi/Button'
+import { FlatButton } from 'uxi/Button'
 import { Github } from 'uxi/Icons'
 
 const SuggestAnEdit = props => {
   return (
-    <Button
+    <FlatButton
       icon={<Github />}
       text="suggest an Edit"
       onClick={(e) => {

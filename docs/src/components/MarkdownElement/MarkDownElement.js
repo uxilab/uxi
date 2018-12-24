@@ -47,14 +47,12 @@ class MarkdownElement extends Component {
     } = this.props;
     /* eslint-disable react/no-danger */
     return (
-      <div>
-        <div
-          ref={ref => this.ref = ref}
-          style={Object.assign({}, styles.root, style)}
-          className="hljs markdown-body"
-          dangerouslySetInnerHTML={{ __html: marked(text) }}
-        />
-      </div>
+      <div
+        ref={ref => this.ref = ref}
+        style={Object.assign({}, styles.root, style)}
+        className="hljs markdown-body"
+        dangerouslySetInnerHTML={{ __html: marked(text) }}
+      />
     );
     /* eslint-enable */
   }
