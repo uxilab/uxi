@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 import AutoComplete from 'uxi/AutoComplete';
 import { routes } from './routes';
 
-console.log('routes insearch ', routes)
-
 const Wrapper = styled.div` ul { top: 40px !important } `;
 
-const searchData = routes.map(route => ({
+// flatMap
+const flattenRoutes = routes.reduce((routes, route) => {
+  routes.push(route)
+  if (route.childRoutes) {
+    routes = routes.concat(route.childRoutes)
+  }
+  return routes
+},[])
+
+const searchData = flattenRoutes.map(route => ({
   ...route,
   // searchValue: `${route.label} • ${route.path}`,
 }))
@@ -27,8 +36,10 @@ class Search extends Component {
         <AutoComplete
           items={searchData}
           filterOn="label"
-          onChange={(...a) => {
-            console.log('changed', ...a)
+          onChange={(data) => {
+            if (data.originalValue && data.originalValue.path) {
+              this.props.goTo(data.originalValue.path)
+            }
           }}
         />
       </Wrapper>
@@ -49,4 +60,12 @@ class Search extends Component {
   }
 }
 
-export default Search;
+const state = (state) => ({})
+const dispatch = dispatch => ({
+  goTo: pathname => dispatch(push(`/components${pathname}`))
+})
+
+export default connect(
+  state,
+  dispatch
+)(Search);
