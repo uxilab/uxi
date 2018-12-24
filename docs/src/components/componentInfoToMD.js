@@ -15,7 +15,7 @@ import { 
 
 export const componentInfoToMD = (rawCode) => {
   const componentInfo = parse(rawCode);
-  return `
+  return componentInfo.props && `
 | name  | default value | required  |
 | ----- | ------------- | --------- |
 ${
@@ -26,12 +26,11 @@ ${
 }
 
   ${componentInfo.description}
-
-  \`\`\`js
-  ${JSON.stringify(componentInfo, 2, 2)}
-  \`\`\`
-
-  `
+`;
+//   \`\`\`js
+//   ${JSON.stringify(componentInfo, 2, 2)}
+//   \`\`\`
+//   `;
 
   return (
     <div style={{ border: '1px solid #cacaca' }}>
