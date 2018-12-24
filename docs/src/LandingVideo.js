@@ -3,6 +3,14 @@ import { RatioBox } from 'uxi/Box';
 import styled from 'styled-components';
 import bcg from './bcg.base64';
 
+const Video = styled.video.attrs({
+  loop: true,
+  autoPlay: true,
+})`
+  width: 100%;
+  height: 100%;
+`;
+
 const Wrapper = styled.div`
   z-index: -1;
   height:100%;
@@ -111,9 +119,11 @@ class LandingVideo extends Component {
             {/* <IFrame
           src="https://www.youtube.com/embed/q21XwbwtWd8?autoplay=1&modestbranding=1&controls=0&disablekb=1&loop=1&playsinline=1&rel=0?&playlist=q21XwbwtWd8"
         /> */}
-            <video ref={this.storeRef} autoPlay="" loop="" src="/public/uxibcg.mp4" />
+            <Video
+              ref={this.storeRef}
+              src="/public/uxibcg.mp4"
+            />
             {/* <video style={{ position: 'absolute', top: 0, zIndex: -1 }} src="/public/uxibcg.mp4"></video> */}
-
           </VideoFg>
         </VideoBg>
       </Wrapper>
