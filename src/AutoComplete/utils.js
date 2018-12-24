@@ -67,14 +67,18 @@ export const getMatchesResult = (source, target) => {
     }],
   };
 
-  const finalResult = result.reduce((accu, x/* , i */) => {
+  const finalResult = result.reduce((accu, x, i) => {
     if (i === 0) { return accu; }
 
     // const currentItem = accu.result[accu.result.length - 1];
 
     if (x.matches === accu.isCurrentlyMatching) {
-      // eslint-disable-next-line no-param-reassign
-      accu.result[accu.result.length - 1].string += x.string;
+      if (i === 0) {
+        accu.result[0] = x.string;
+      } else {
+        // eslint-disable-next-line no-param-reassign
+        accu.result[accu.result.length - 1].string += x.string;
+      }
       return accu;
     }
     return {
