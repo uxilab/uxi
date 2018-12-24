@@ -30,7 +30,6 @@ const MainContentWrapper = styled.div`
     margin-left: -16px;
     margin-right: -16px;
     @media screen and (min-width: 1024px) {
-      margin-bottom: 92px;
       margin-top: -32px;
       margin-left: -32px;
       margin-right: -32px;
@@ -90,7 +89,9 @@ const ComponentShell = ({ children }) => {
             <Search />
           </div>
           <div>
-            <div>{children}</div>
+            <div
+            style={{ minHeight: 'calc(100vh - 80px - 43px - 128px - 128px)' }}
+            >{children}</div>
             <Footer />
           </div>
         </MainContentWrapper>

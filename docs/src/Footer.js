@@ -11,7 +11,7 @@ const ExtendedFlex = Flex.extend`
 `;
 
 const Footer = props => (
-  <footer style={{ marginTop: '20vh' }}>
+  <footer style={{ marginTop: '128px' }}>
     <hr />
     <Flex>
       <ExtendedFlex>
