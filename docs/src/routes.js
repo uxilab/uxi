@@ -7,7 +7,7 @@ export const routes = [
       ,{ path: '/panel/LightPanel', label: 'LightPanel' }
   ]},
   { path: '/Dialog', label: 'Dialog', childRoutes: [
-      { path: '/dialog/withConfirmDialog', label: 'withConfirmDialog' }
+      { path: '/dialog/withConfirmDialog', label: 'withConfirmDialog', isHOC: true }
   ]},
   { path: '/icons', label: 'Icons' },
   { path: '/inputs', label: 'Inputs', childRoutes: [
@@ -43,8 +43,8 @@ export const routes = [
   { path: '/popover', label: 'PopOver' },
   { path: '/compactslide', label: 'CompactSlide' },
   { path: '/MenuDropDown', label: 'MenuDropDown' },
-  { path: '/font', label: 'Fonts' },
-  { path: '/color', label: 'Colors' },
+  // { path: '/font', label: 'Fonts' },
+  // { path: '/color', label: 'Colors' },
   { path: '/dropdown', label: 'Dropdown' },
   { path: '/autocomplete', label: 'AutoComplete' },
   { path: '/box', label: 'Box' },

@@ -67,4 +67,8 @@ const PanelHeader = (props) => {
 
 PanelHeader.displayName = 'PanelHeader';
 
+PanelHeader.defaultProps = {
+  title: null,
+}
+
 export default PanelHeader;

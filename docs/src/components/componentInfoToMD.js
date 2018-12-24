@@ -27,6 +27,10 @@ ${
 
   ${componentInfo.description}
 
+  \`\`\`js
+  ${JSON.stringify(componentInfo, 2, 2)}
+  \`\`\`
+
   `
 
   return (

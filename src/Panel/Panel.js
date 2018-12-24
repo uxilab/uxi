@@ -21,4 +21,8 @@ const Panel = ({ children, style, onClose, rounded }) => (
 
 Panel.displayName = 'Panel';
 
+Panel.defaultProps = {
+  rounded: false,
+}
+
 export default Panel;
