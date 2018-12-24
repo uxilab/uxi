@@ -3,33 +3,33 @@ import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import { Switch } from 'uxi/Input';
 import CodeExample from '../../../CodeExample';
-import RAWFlatButton from '!raw-loader!uxi/Button/FlatButton';
+import RAWButtonLink from '!raw-loader!uxi/Button/ButtonLink';
 import { componentInfoToMD } from '../../../componentInfoToMD';
 
-import ExampleSimpleFlat from './ExampleSimpleFlat';
-import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
+import ExampleSimpleButtonLink from './ExampleSimpleButtonLink';
+import RAWExampleSimpleButtonLink from '!raw-loader!./ExampleSimpleButtonLink';
 
 const ButtonPage = () => (
   <div>
-    <Title text="FlatButton" />
+    <Title text="ButtonLink" />
     <ul>
       <li>
         <CodeExample
-          code={RAWFlatButton}
+          code={RAWButtonLink}
           component
-          title="FlatButton"
-          description={componentInfoToMD(RAWFlatButton)}
+          title="ButtonLink"
+          description={componentInfoToMD(RAWButtonLink)}
           hasPadding
         />
       </li>
       <li>
         <CodeExample
-          code={RAWExampleSimpleFlat}
+          code={RAWExampleSimpleButtonLink}
           component
-          title="FlatButton"
+          title="ButtonLink"
           hasPadding
         >
-          <ExampleSimpleFlat />
+          <ExampleSimpleButtonLink />
         </CodeExample>
       </li>
     </ul>

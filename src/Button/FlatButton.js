@@ -1,6 +1,7 @@
 /* @flow */
 /* eslint-disable brace-style */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Ripples from '../Motion/Ripples';
 import ButtonBaseStyles from './ButtonBaseStyles';
@@ -98,7 +99,7 @@ const ButtonDivUI = styled.div`
 `;
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Button extends Component {
+class FlatButton extends Component {
   render() {
     const {
       message,
@@ -202,8 +203,22 @@ class Button extends Component {
   }
 }
 
-Button.defaultProps = {
-  style: {},
+FlatButton.propTypes = {
+  style: PropTypes.object,
+  type: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'danger',
+    'warning',
+    'success',
+    'information',
+    'default',
+  ])
 };
 
-export default Button;
+FlatButton.defaultProps = {
+  style: {},
+  // type: 'default',
+};
+
+export default FlatButton;

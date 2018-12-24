@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AvatarWithName from '../Img/AvatarWithName';
 
@@ -46,5 +47,27 @@ const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth
     </ButtonLinkWrapper>
   );
 };
+
+ButtonLink.displayName = 'ButtonLink';
+
+ButtonLink.defaultProps = {
+  onClick: () => {},
+  icon: null,
+  text: '',
+  message: '',
+  children: null,
+  style: {},
+  isFullWidth: false,
+}
+
+ButtonLink.propTypes = {
+  onClick: PropTypes.func,
+  icon: PropTypes.node,
+  text: PropTypes.any,
+  message: PropTypes.any,
+  children: PropTypes.any,
+  style: PropTypes.object,
+  isFullWidth: PropTypes.bool,
+}
 
 export default ButtonLink;

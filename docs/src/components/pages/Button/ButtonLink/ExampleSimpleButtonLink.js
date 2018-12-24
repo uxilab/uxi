@@ -3,7 +3,7 @@ import { ButtonLink } from 'uxi/Button';
 import { Delete, Pencil, Merge } from 'uxi/Icons';
 import { List } from 'uxi/List';
 
-const ExampleSimpleFlat = () => (
+const ExampleSimpleButtonLink = () => (
   <List>
     <ButtonLink icon={<Delete />} onClick={() => { alert('test'); }} message="Delete" />
     <ButtonLink icon={<Pencil />} onClick={() => { alert('test'); }} text="Edit" />
@@ -14,4 +14,4 @@ const ExampleSimpleFlat = () => (
   </List>
 );
 
-export default ExampleSimpleFlat;
+export default ExampleSimpleButtonLink;

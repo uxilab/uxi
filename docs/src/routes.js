@@ -23,6 +23,7 @@ export const routes = [
   ]},
   { path: '/button', label: 'Button', childRoutes: [
     { path: '/button/FlatButton', label: 'FlatButton' }
+    ,{ path: '/button/ButtonLink', label: 'ButtonLink' }
   ]},
   { path: '/Drawer', label: 'Drawer', childRoutes: [
     { path: '/Drawer/CompactDrawer', label: 'CompactDrawer' }
@@ -43,7 +44,7 @@ export const routes = [
   { path: '/table', label: 'Table' },
   { path: '/BETAAutoComplete', label: 'BETAAutoComplete' },
   { path: '/popover', label: 'PopOver' },
-  { path: '/compactslide', label: 'CompactSlide' },
+  // { path: '/compactslide', label: 'CompactSlide' },
   { path: '/MenuDropDown', label: 'MenuDropDown' },
   // { path: '/font', label: 'Fonts' },
   // { path: '/color', label: 'Colors' },

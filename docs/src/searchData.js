@@ -3,6 +3,8 @@ import RAWPanel from '!raw-loader!uxi/Panel/Panel'
 import RAWPanelHeader from '!raw-loader!uxi/Panel/PanelHeader'
 import RAWPanelContent from '!raw-loader!uxi/Panel/PanelContent'
 import RAWPanelFooter from '!raw-loader!uxi/Panel/PanelFooter'
+import RAWButton from '!raw-loader!uxi/Button/Button'
+import RAWFlatButton from '!raw-loader!uxi/Button/FlatButton'
 
 import { parse } from 'react-docgen';
 
@@ -19,13 +21,16 @@ export const componentsData = [
     path: '/Panel',
   }, {
     componentInfo: parse(RAWPanelHeader),
-    path: '/PanelHeader',
+    path: '/Panel/PanelHeader',
   }, {
     componentInfo: parse(RAWPanelContent),
-    path: '/PanelContent',
+    path: '/Panel/PanelContent',
   }, {
-    componentInfo: parse(RAWPanelFooter),
-    path: '/PanelFooter',
+    componentInfo: parse(RAWButton),
+    path: '/Button',
+  }, {
+    componentInfo: parse(RAWFlatButton),
+    path: '/Button/FlatButton',
   }
 ]
 

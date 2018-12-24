@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ButtonPage from './components/pages/Button/Page';
   import FlatButtonPage from './components/pages/Button/FlatButton/Page';
+  import ButtonLinkPage from './components/pages/Button/ButtonLink/Page';
 import FontPage from './components/pages/Font/Page';
 import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
@@ -54,7 +55,7 @@ import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
 import PopOverPage from './components/pages/PopOver/Page';
-import CompactSlidePage from './components/pages/CompactSlide/Page';
+// import CompactSlidePage from './components/pages/CompactSlide/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
 import AutoComplete2 from './components/pages/AutoComplete2/Page';
 import Spacer from './components/pages/Spacer/Page';
@@ -78,6 +79,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} exact component={ButtonPage} />
         <Route path={`${match.url}/button/FlatButton`} component={FlatButtonPage} />
+        <Route path={`${match.url}/button/ButtonLink`} component={ButtonLinkPage} />
 
       <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
         <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
@@ -121,7 +123,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/Carrousel`} component={CarrouselPage} />
       <Route path={`${match.url}/Tile`} component={TilePage} />
       <Route path={`${match.url}/motion`} component={MotionPage} />
-      <Route path={`${match.url}/compactslide`} component={CompactSlidePage} />
+      {/* <Route path={`${match.url}/compactslide`} component={CompactSlidePage} /> */}
       <Route path={`${match.url}/BETAAutoComplete`} component={AutoComplete2} />
       <Route path={`${match.url}/Spacer`} component={Spacer} />
       <Route path={`${match.url}/Tree`} component={Tree} />
