@@ -83,17 +83,17 @@ const Appshell = (props) => {
         <Header isDark style={{ width: '100%', minHeight: '80px', position: 'sticky', zIndex: 100 }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center' }}>
-              <MenuItem>
+              <MenuItem style={{ display: 'flex' }}>
                 <LogoWrapper>
                   <Link to="/" >
                     <UXILogo />
                   </Link>
                 </LogoWrapper>
               </MenuItem>
-              <MenuItem>
+              <MenuItem style={{ display: 'flex' }}>
                 <Link to="/components">Components</Link>
               </MenuItem>
-              <MenuItem>
+              <MenuItem style={{ display: 'flex' }}>
                 <Link to="/get-started">Get Started</Link>
               </MenuItem>
               <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
