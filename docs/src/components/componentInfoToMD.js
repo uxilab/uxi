@@ -14,66 +14,72 @@ import { 
 
 
 export const componentInfoToMD = (rawCode) => {
-  const componentInfo = parse(rawCode);
-  return componentInfo.props && `
-| name  | default value | required  |
-| ----- | ------------- | --------- |
+  let componentInfo = {}
+  try {
+    componentInfo = parse(rawCode);
+  } catch (err) {
+    console.warn('Failed to parse or find a suitable component definition')
+  }
+
+  const propsInfo = componentInfo.props && `
+| name  | default value | type | required | description |
+| ----- | ------------- | ---- | -------- | ----------- |
 ${
   Object.keys(componentInfo.props).map(key => {
     const prop = componentInfo.props[key];
-    return `| \`${key}\` | ${prop.defaultValue.value || 'none'} | ${prop.required}\n`
+    return [
+      `| \`${key}\` |`,
+      `${prop.defaultValue.value || ''} |`,
+      `${(prop.type && prop.type.name) || ' — '} |`,
+      `${prop.required || ' — '} |`,
+      `${(prop.description && prop.description.replace(/\n/g, ' ')) || ' — '}`,
+      '\n'
+    ].join('')
   }).join('')
 }
 
-  ${componentInfo.description}
 `;
-//   \`\`\`js
-//   ${JSON.stringify(componentInfo, 2, 2)}
-//   \`\`\`
-//   `;
 
-  return (
-    <div style={{ border: '1px solid #cacaca' }}>
-      <H1> { componentInfo.displayName } </H1>
-      <P>
-        {componentInfo.description}
-      </P>
 
-      <H3>Props</H3>
-       <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn width="70%" >name</TableHeaderColumn>
-            <TableHeaderColumn width="15%" >defaultValue</TableHeaderColumn>
-            <TableHeaderColumn width="15%" >required</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-           {
-            Object.keys(componentInfo.props).map(key => {
-              const prop = componentInfo.props[key];
-              console.log('key', key)
-              console.log('componentInfo', componentInfo)
-              console.log('prop', prop)
-              const name = key
+  const methodsData = (componentInfo.methods && componentInfo.methods.length > 0 && `
+| name  | params | returns | modifiers | description |
+| ----- | ------ | ------- | --------- | ----------- |
+${
+  componentInfo.methods.map(method => {
+    return [
+      `| \`${method.name || ''}\` |`,
+      `${(method.params && method.params.map(p => p && (`\`${p.name}\` :${p.type}`)).join(', ')) || ' — '} |`,
+      `${method.returns || ' — '} |`,
+      `${method.modifiers || ' — '} |`,
+      `${(method.docblock && method.docblock.replace(/\n/g, ' ')) || ' — '}`,
+      '\n'
+    ].join('')
+  }).join('')
+}`) || '';
 
-              return (
-                <TableRow>
-                  <TableRowColumn>{key}</TableRowColumn>
-                  <TableRowColumn>{prop.defaultValue.value}</TableRowColumn>
-                  <TableRowColumn>{prop.required}</TableRowColumn>
-                </TableRow>
-              )
-            })
-          }
-        </TableBody>
-      </Table>
+const rawDetail = `
 
-      <pre>
-        {JSON.stringify(componentInfo, 2, 2)}
-      </pre>
-    </div>
-  )
+
+<div>
+  <details>
+    <summary><small>view raw</small></summary>
+    <pre>
+\`\`\`
+${JSON.stringify(componentInfo, 2, 2)}
+\`\`\`
+    </pre>
+  </details>
+</div>
+
+
+
+`;
+
+
+  return (`
+${propsInfo}
+${methodsData}
+${rawDetail}
+${componentInfo.description}
+  `);
 }
-
-// export default ComponentInfo

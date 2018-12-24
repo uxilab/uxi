@@ -9,18 +9,19 @@ import { componentsData } from './searchData';
 const Wrapper = styled.div` ul { top: 40px !important } `;
 const PostFix = styled.span`
   color: grey;
-  font-size: 85% !important;
+  font-size: 16px !important;
+  small { font-size: 85% !important; font-weight: 100; }
 `;
 
 // flatMap
 const flattenRoutes = routes
   .reduce((routes, route) => {
-    routes.push(route)
+    routes.push(route);
     if (route.childRoutes) {
-      routes = routes.concat(route.childRoutes)
+      routes = routes.concat(route.childRoutes);
     }
-    return routes
-  },[])
+    return routes;
+  }, [])
   .map(navRoute => ({
     ...navRoute,
     postFix: (navRoute.isHOC
@@ -35,7 +36,7 @@ const flattenRoutes = routes
         </PostFix>
       )
     ),
-  }))
+  }));
 
 const routesWithPropData = componentsData
   .reduce((accu, data) => {
@@ -46,38 +47,40 @@ const routesWithPropData = componentsData
           path: data.path,
           postFix: (
             <PostFix>
-              {`<${data.componentInfo.displayName} `}
-              <strong>
-                {`${key}`}
-              </strong>
-              {` />`}
+              <small>
+                {`<${data.componentInfo.displayName} `}
+              </small>
+              {`${key}`}
+              <small>
+                {' />'}
+              </small>
             </PostFix>
           ),
         })
-      )
-      accu = accu.concat(routeForProp)
+        );
+      accu = accu.concat(routeForProp);
     }
-    return accu
-}, [])
+    return accu;
+  }, []);
 
-console.log('routesWithPropData', routesWithPropData)
-const flattenRoutesWithPropData = routesWithPropData.concat(flattenRoutes)
+console.log('routesWithPropData', routesWithPropData);
+const flattenRoutesWithPropData = routesWithPropData.concat(flattenRoutes);
 
 const searchData = flattenRoutesWithPropData.map(route => ({
   ...route,
   // searchValue: `${route.label} • ${route.path}`,
-}))
+}));
 
 class Search extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       searchTerm: '',
-    }
+    };
   }
 
-  render () {
+  render() {
     return (
       <Wrapper>
         <AutoComplete
@@ -85,19 +88,19 @@ class Search extends Component {
           filterOn="label"
           onChange={(data) => {
             if (data.originalValue && data.originalValue.path) {
-              this.props.goTo(data.originalValue.path)
+              this.props.goTo(data.originalValue.path);
             }
           }}
         />
       </Wrapper>
-    )
+    );
   }
 }
 
-const state = (state) => ({})
+const state = state => ({});
 const dispatch = dispatch => ({
-  goTo: pathname => dispatch(push(`/components${pathname}`))
-})
+  goTo: pathname => dispatch(push(`/components${pathname}`)),
+});
 
 export default connect(
   state,

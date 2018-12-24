@@ -20,8 +20,7 @@ const PanelContentPage = () => (
           title="PanelContent"
           description={componentInfoToMD(RAWPanelContent)}
           hasPadding
-        >
-        </CodeExample>
+        />
       </li>
       <li>
         <CodeExample

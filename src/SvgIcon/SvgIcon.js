@@ -72,6 +72,7 @@ class SvgIcon extends Component {
 }
 
 SvgIcon.propTypes = {
+  /** @ignore */
   children: PropTypes.node,
   /**
    * This is the fill color of the svg icon.
