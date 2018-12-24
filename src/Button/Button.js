@@ -224,13 +224,14 @@ Button.propTypes = {
     'danger',
     'warning',
     'success',
-    'info',
+    'information',
+    'default',
   ])
 };
 
 Button.defaultProps = {
   style: {},
-  type: 'info',
+  // type: 'default',
 };
 
 export default Button;

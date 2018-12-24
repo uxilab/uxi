@@ -29,7 +29,7 @@ ${
     const prop = componentInfo.props[key];
     return [
       `| \`${key}\` |`,
-      `${prop.defaultValue.value || ''} |`,
+      `${prop.defaultValue && prop.defaultValue.value || ''} |`,
       `${(prop.type && `${prop.type.name}: `) || ' — '}`,
       `${((prop.type && prop.type.name === 'enum') && prop.type.value.map(x => x.value).join(', ')) || ' — '} |`,
       `${prop.required || ' — '} |`,
