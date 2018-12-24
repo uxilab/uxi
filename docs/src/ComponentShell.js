@@ -84,7 +84,7 @@ const ComponentShell = ({ children }) => {
           </div>
         )}
       >
-        <MainContentWrapper>
+        <MainContentWrapper className="uxi_ComponentShell_scrolling-element">
           <div>
             <Search />
           </div>

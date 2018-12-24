@@ -33,6 +33,7 @@ class ExampleSimple extends Component {
       <div>
         <SelectInput
           onChange={(event, value) => this.setState({ selectedValue: value })}
+          mainScrollingElementSelector=".uxi_ComponentShell_scrolling-element"
         >
           <Flex value={null}>None</Flex>
           {

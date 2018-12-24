@@ -2,22 +2,19 @@ import React from 'react';
 import { H1 } from 'uxi/Classic';
 import CodeExample from '../../CodeExample';
 
-import ExampleAppLayout from './ExampleAppLayout';
-import RAWExampleAppLayout from '!raw-loader!./ExampleAppLayout';
+// import ExampleContentWithExtra from './ContentWithExtra/ExampleContentWithExtra';
+// import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
 
-import ExampleContentWithExtra from './ExampleContentWithExtra';
-import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
+// import ExampleSimpleGrid from './SimpleGrid/ExampleSimpleGrid';
+// import RAWExampleSimpleGrid from '!raw-loader!./ExampleSimpleGrid';
 
-import ExampleSimpleGrid from './ExampleSimpleGrid';
-import RAWExampleSimpleGrid from '!raw-loader!./ExampleSimpleGrid';
-
-import ExampleGrid from './ExampleGrid';
-import RAWExampleGrid from '!raw-loader!./ExampleGrid';
+// import ExampleGrid from './ExampleGrid';
+// import RAWExampleGrid from '!raw-loader!./ExampleGrid';
 
 const Layouts = () => (
   <div>
     <H1>Layouts </H1>
-    <CodeExample
+    {/* <CodeExample
       code={RAWExampleContentWithExtra}
       component
       title="ContentWithExtra"
@@ -26,27 +23,16 @@ const Layouts = () => (
       <ExampleContentWithExtra />
     </CodeExample>
 
-    <br />
+    <br /> */}
 
-    <CodeExample
-      code={RAWExampleAppLayout}
-      component
-      title="AppLayout"
-      hasPadding
-    >
-      <ExampleAppLayout />
-    </CodeExample>
-
-    <br />
-
-    <CodeExample
+    {/* <CodeExample
       code={RAWExampleSimpleGrid}
       component
       title="SimpleGrid"
       hasPadding
     >
       <ExampleSimpleGrid />
-    </CodeExample>
+    </CodeExample> */}
   </div>
 );
 

@@ -11,14 +11,26 @@ import { 
   TableRow,
   TableRowColumn,
 } from 'uxi/Table';
+import SuggestAnEdit from './SuggestAnEdit';
 
 
 export const componentInfoToMD = (rawCode) => {
-  let componentInfo = {}
+  let componentInfo = null
   try {
     componentInfo = parse(rawCode);
   } catch (err) {
     console.warn('Failed to parse or find a suitable component definition')
+  }
+
+  console.log('rawCode', rawCode)
+  console.log('componentInfo', componentInfo)
+
+  if (componentInfo === null) {
+    return ([
+        '  — no doc from code —  ',
+        ' \n ',
+        '[suggest an edit](https://github.com/uxilab/uxi/issues/new?title=Suggestion)',
+    ].join(''));
   }
 
   const propsInfo = componentInfo.props && `

@@ -19,6 +19,7 @@ export const routes = [
       ,{ path: '/inputs/Range', label: 'Range' }
       ,{ path: '/inputs/Datetime', label: 'Datetime' }
       ,{ path: '/inputs/SearchForm', label: 'SearchForm' }
+      , { path: '/inputs/AutoComplete', label: 'AutoComplete' }
       // ,{ path: '/inputs/switch', label: 'Switch' }
   ]},
   { path: '/button', label: 'Button', childRoutes: [
@@ -30,7 +31,12 @@ export const routes = [
   ]},
   { path: '/alert', label: 'Alert' },
   { path: '/badge', label: 'Badge' },
-  { path: '/layouts', label: 'Layout' },
+  { path: '/layouts', label: 'Layout', childRoutes: [
+    { path: '/layouts/AppLayout', label: 'AppLayout' }
+    ,{ path: '/layouts/Flex', label: 'Flex' }
+    ,{ path: '/layouts/ContentWithExtra', label: 'ContentWithExtra' }
+    ,{ path: '/layouts/SimpleGrid', label: 'SimpleGrid' }
+  ]},
   // { path: '/internal', label: 'Internal' },
   { path: '/breadcrumbs', label: 'BreadCrumbs' },
   { path: '/classic', label: 'Classic' },
@@ -48,8 +54,7 @@ export const routes = [
   { path: '/MenuDropDown', label: 'MenuDropDown' },
   // { path: '/font', label: 'Fonts' },
   // { path: '/color', label: 'Colors' },
-  { path: '/dropdown', label: 'Dropdown' },
-  { path: '/autocomplete', label: 'AutoComplete' },
+  // { path: '/dropdown', label: 'Dropdown' },
   { path: '/box', label: 'Box' },
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/indicator', label: 'Indicator' },

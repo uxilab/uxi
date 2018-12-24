@@ -22,6 +22,11 @@ import InputsPage from './components/pages/Inputs/Page';
   import CheckboxPage from './components/pages/Inputs/Checkbox/Page';
 import IconsPage from './components/pages/Icons/Page';
 import LayoutPage from './components/pages/Layouts/Page';
+  import AppLayoutPage from './components/pages/Layouts/AppLayout/Page';
+  import ContentWithExtraPage from './components/pages/Layouts/ContentWithExtra/Page';
+  import SimpleGridPage from './components/pages/Layouts/SimpleGrid/Page';
+  import FlexPage from './components/pages/Layouts/Flex/Page';
+
 import TablePage from './components/pages/Table/Page';
 import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
@@ -92,6 +97,7 @@ const ComponentRoutes = ({ match }) => (
         <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
         <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
         <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
+        <Route path={`${match.url}/inputs/autocomplete`} component={AutoCompletePage} />
         <Route path={`${match.url}/inputs/range`} component={RangePage} />
         <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
         <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
@@ -99,11 +105,15 @@ const ComponentRoutes = ({ match }) => (
         {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
 
       <Route path={`${match.url}/icons`} component={IconsPage} />
-      <Route path={`${match.url}/layouts`} component={LayoutPage} />
+      <Route path={`${match.url}/layouts`} exact component={LayoutPage} />
+        <Route path={`${match.url}/layouts/AppLayout`} component={AppLayoutPage} />
+        <Route path={`${match.url}/layouts/ContentWithExtra`} component={ContentWithExtraPage} />
+        <Route path={`${match.url}/layouts/Flex`} component={FlexPage} />
+        <Route path={`${match.url}/layouts/SimpleGrid`} component={SimpleGridPage} />
+
       <Route path={`${match.url}/list`} component={ListPage} />
       <Route path={`${match.url}/table`} component={TablePage} />
       <Route path={`${match.url}/alert`} component={AlertPage} />
-      <Route path={`${match.url}/autocomplete`} component={AutoCompletePage} />
       <Route path={`${match.url}/loader`} component={LoaderPage} />
       <Route path={`${match.url}/img`} component={ImgPage} />
       <Route path={`${match.url}/menu`} component={MenuPage} />
