@@ -38,7 +38,7 @@ class Alert extends Component {
   static defaultProps = {
     type: 'information',
     showClose: undefined,
-    onClose: undefined,
+    // onClose: undefined,
     hideClose: undefined,
     className: '',
     noIcon: false,
@@ -85,6 +85,8 @@ class Alert extends Component {
       style,
     } = this.props;
     const { isOpen } = this.state;
+
+    console.log('onClose in Alert', onClose)
 
     let wrapperStyles = { ...AlertStyle.alert };
 
