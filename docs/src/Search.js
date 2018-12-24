@@ -44,19 +44,6 @@ class Search extends Component {
         />
       </Wrapper>
     )
-
-    return (
-      <BETAAutoComplete
-        items={routes}
-        placeholder="Search..."
-        isFullWidth
-        onChange={(...a) => { console.log('changed', ...a)}}
-      >
-        {
-          routes.map(r => <div value={r.path}>{r.label}</div>)
-        }
-      </BETAAutoComplete>
-    )
   }
 }
 
