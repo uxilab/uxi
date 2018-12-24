@@ -3,6 +3,8 @@ import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import { Switch } from 'uxi/Input';
 import CodeExample from '../../CodeExample';
+import RAWButton from '!raw-loader!uxi/Button/Button';
+import { componentInfoToMD } from '../../componentInfoToMD';
 
 import ExampleButtonWithLoadingState from './ExampleButtonWithLoadingState';
 import RAWExampleButtonWithLoadingState from '!raw-loader!./ExampleButtonWithLoadingState';
@@ -10,8 +12,8 @@ import RAWExampleButtonWithLoadingState from '!raw-loader!./ExampleButtonWithLoa
 import ExampleButtonWithConfirm from './ExampleButtonWithConfirm';
 import RAWExampleButtonWithConfirm from '!raw-loader!./ExampleButtonWithConfirm';
 
-import ExampleSimpleFlat from './ExampleSimpleFlat';
-import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
+// import ExampleSimpleFlat from './FlatButton/ExampleSimpleFlat';
+// import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 
 import ExampleButtonLinks from './ExampleButtonLinks';
 import RAWExampleButtonLinks from '!raw-loader!./ExampleButtonLinks';
@@ -38,21 +40,19 @@ import RAWExampleSimpleButtonLink from '!raw-loader!./ExampleSimpleButtonLink';
 const ButtonPage = () => (
   <div>
     <Title text="Button" />
-    <P>
-      Button are used to emphasizes important functions on your page.
-    </P>
-    <br />
     <ul>
       <li>
         <CodeExample
-          code={RAWExampleSimpleSemantic}
+          code={RAWButton}
           component
-          title="Button using semantic colors"
+          title="Button"
+          description={componentInfoToMD(RAWButton)}
           hasPadding
-        >
-          <ExampleSimpleSemantic />
-        </CodeExample>
+        />
       </li>
+      </ul>
+      <Title text="Button example" />
+      <ul>
       <li>
         <CodeExample
           code={RAWExampleSimpleWithIcon}
@@ -74,7 +74,7 @@ const ButtonPage = () => (
           <ExampleButtonLinks />
         </CodeExample>
       </li>
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWExampleSimpleFlat}
           component
@@ -83,7 +83,7 @@ const ButtonPage = () => (
         >
           <ExampleSimpleFlat />
         </CodeExample>
-      </li>
+      </li> */}
         <li>
         <CodeExample
           code={RAWExampleButtonWithConfirm}

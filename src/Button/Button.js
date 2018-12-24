@@ -1,6 +1,7 @@
 /* @flow */
 /* eslint-disable brace-style */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Loader } from '../Indicator';
 import Ripples from '../Motion/Ripples';
@@ -215,8 +216,21 @@ class Button extends Component {
   }
 }
 
+Button.propTypes = {
+  style: PropTypes.object,
+  type: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'danger',
+    'warning',
+    'success',
+    'info',
+  ])
+};
+
 Button.defaultProps = {
   style: {},
+  type: 'info',
 };
 
 export default Button;

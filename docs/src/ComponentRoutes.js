@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/pages/Home';
 import ButtonPage from './components/pages/Button/Page';
+  import FlatButtonPage from './components/pages/Button/FlatButton/Page';
 import FontPage from './components/pages/Font/Page';
 import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
@@ -75,7 +76,9 @@ const ComponentRoutes = ({ match }) => (
 
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
-      <Route path={`${match.url}/button`} component={ButtonPage} />
+      <Route path={`${match.url}/button`} exact component={ButtonPage} />
+        <Route path={`${match.url}/button/FlatButton`} component={FlatButtonPage} />
+
       <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
         <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
       <Route path={`${match.url}/dropdown`} component={DropDownPage} />

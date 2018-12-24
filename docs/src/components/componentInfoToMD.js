@@ -30,7 +30,8 @@ ${
     return [
       `| \`${key}\` |`,
       `${prop.defaultValue.value || ''} |`,
-      `${(prop.type && prop.type.name) || ' — '} |`,
+      `${(prop.type && `${prop.type.name}: `) || ' — '}`,
+      `${((prop.type && prop.type.name === 'enum') && prop.type.value.map(x => x.value).join(', ')) || ' — '} |`,
       `${prop.required || ' — '} |`,
       `${(prop.description && prop.description.replace(/\n/g, ' ')) || ' — '}`,
       '\n'

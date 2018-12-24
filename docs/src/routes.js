@@ -21,7 +21,9 @@ export const routes = [
       ,{ path: '/inputs/SearchForm', label: 'SearchForm' }
       // ,{ path: '/inputs/switch', label: 'Switch' }
   ]},
-  { path: '/button', label: 'Button' },
+  { path: '/button', label: 'Button', childRoutes: [
+    { path: '/button/FlatButton', label: 'FlatButton' }
+  ]},
   { path: '/Drawer', label: 'Drawer', childRoutes: [
     { path: '/Drawer/CompactDrawer', label: 'CompactDrawer' }
   ]},
