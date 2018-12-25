@@ -18,6 +18,8 @@ const ButtonBaseMixin = css`
   /* STATIC BASE STYLES: */
   ${ButtonBaseStyles};
 
+  border-radius: ${({ theme: { radius } }) => radius};
+
   cursor: pointer;
   /* ICON POSITION: */
   flex-direction: ${({ iconPosition }) => {
@@ -213,7 +215,7 @@ FlatButton.propTypes = {
     'success',
     'information',
     'default',
-  ])
+  ]),
 };
 
 FlatButton.defaultProps = {

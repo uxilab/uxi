@@ -23,6 +23,6 @@ Panel.displayName = 'Panel';
 
 Panel.defaultProps = {
   rounded: false,
-}
+};
 
 export default Panel;

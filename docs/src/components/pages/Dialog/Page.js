@@ -30,22 +30,20 @@ import DialogPanelOverflowExample from './DialogPanelOverflowExample';
 import RAWDialogPanelOverflowExample from '!raw-loader!./DialogPanelOverflowExample';
 import RAWMDDialogPanelOverflowExample from '!raw-loader!./DialogPanelOverflowExample.md';
 
-console.log('RAWDialog', RAWDialog)
 
 const DialogPage = () => (
   <div>
     <Title text="Dialog" />
     <ul>
-       <li>
-        <CodeExample
+      <li>
+         <CodeExample
           code={RAWDialog}
           component
           title="Dialog"
           description={componentInfoToMD(RAWDialog)}
           hasPadding
-        >
-        </CodeExample>
-      </li>
+         />
+       </li>
       <li><Title text="Dialog examples" /></li>
       <li>
         <CodeExample

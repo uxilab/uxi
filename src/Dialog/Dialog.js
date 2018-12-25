@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Modal from '../internal/Modal';
+import {
+  headerHeight,
+  footerHeight,
+} from '../Panel/defaults';
 
 const DialogUI = styled.div`
   z-index: 100;
@@ -66,7 +70,7 @@ const Dialog = ({
         return React.cloneElement(childChildren, {
           ...(childChildren.props || {}),
           style: {
-            maxHeight: `calc(${baseHeight} - (2 * 54px))`, // for panel header and footer
+            maxHeight: `calc(${baseHeight} - (${headerHeight} + ${footerHeight}))`, // for panel header and footer
             ...childChildren.props.style,
           },
         });
@@ -77,14 +81,16 @@ const Dialog = ({
     return React.cloneElement(c, {
       key: `dialogContent-${index}`,
       onClose,
-      ...(c.type.displayName === 'Panel'
-        ? { rounded: true }
-        : {}
-      ),
+      // ...(console.log('c.type', c.type) || {}),
+      // ...(c.type.displayName === 'Panel' && console.log('c.type.displayName', c.type.displayName) || {}),
       style: {
         ...((c && c.props && c.props.style) ? c.props.style : {}),
       },
       ...(c.props || {}),
+      ...(c.type.displayName === 'Panel'
+        ? { rounded: true }
+        : {}
+      ),
       children: childExtendedChildren,
     });
   });

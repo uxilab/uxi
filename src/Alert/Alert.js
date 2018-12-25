@@ -10,7 +10,9 @@ import {
 import AlertStyle from './Alert.style';
 
 const AlertUI = styled.div`
-  div{
+  border-radius: ${({ theme: { radius } }) => radius};
+  overflow: hidden;
+  div {
     a, a:hover {
       color: white;
       text-decoration: underline;
@@ -86,7 +88,7 @@ class Alert extends Component {
     } = this.props;
     const { isOpen } = this.state;
 
-    console.log('onClose in Alert', onClose)
+    // console.log('onClose in Alert', onClose);
 
     let wrapperStyles = { ...AlertStyle.alert };
 

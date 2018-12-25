@@ -36,3 +36,10 @@ export const getThemeWithCustomPalette = (customPalette = {}) => { // eslint-dis
 
   return themeWithCustomPalette;
 };
+
+
+export const mergeTheme = (defaultTheme, partialTheme) => ({
+  ...defaultTheme,
+  ...partialTheme,
+  palette: mergeCustomPalette(defaultTheme.palette, partialTheme.palette),
+});

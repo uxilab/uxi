@@ -63,7 +63,6 @@ const routesWithPropData = componentsData
     return accu;
   }, []);
 
-console.log('routesWithPropData', routesWithPropData);
 const flattenRoutesWithPropData = routesWithPropData.concat(flattenRoutes);
 
 const searchData = flattenRoutesWithPropData.map(route => ({

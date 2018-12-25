@@ -19,6 +19,8 @@ const ButtonBaseMixin = css`
   /* STATIC BASE STYLES: */
   ${ButtonBaseStyles};
 
+  border-radius: ${({ theme: { radius } }) => radius};
+
   /* ICON POSITION: */
   flex-direction: ${({ iconPosition }) => {
     if (iconPosition && iconPosition === 'after') { return 'row-reverse'; }
@@ -226,7 +228,7 @@ Button.propTypes = {
     'success',
     'information',
     'default',
-  ])
+  ]),
 };
 
 Button.defaultProps = {

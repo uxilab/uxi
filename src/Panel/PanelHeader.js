@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Close } from '../Icons';
 import { AppLayout } from '../Layout';
+import {
+  headerHeight,
+} from './defaults';
 
 const HorizontalAppLayout = AppLayout.extend`
   flex-flow: row wrap;
@@ -18,6 +21,7 @@ const PanelHeaderUI = styled.div`
   display: flex;
   align-items: center;
   min-height: 50px;
+  min-height: ${headerHeight};
   border-radius: ${({ rounded, theme: { radius } }) => rounded && `${radius} ${radius} 0 0`};
 `;
 

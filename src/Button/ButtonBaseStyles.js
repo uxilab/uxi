@@ -19,7 +19,7 @@ const ButtonBaseStyles = css`
   text-transform: uppercase;
   box-sizing: border-box;
   min-height: 32px;
-  border-radius: 2px;
+  /* border-radius: 2px; */
   user-select: none;
   transition: all 0.38s ease-out;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../Button';
+import {
+  footerHeight,
+} from './defaults';
 
 const PanelFooterUI = styled.div`
   box-sizing: border-box;
@@ -11,6 +14,7 @@ const PanelFooterUI = styled.div`
   display: flex;
   justify-content: flex-end;
   min-height: 50px;
+  min-height: ${footerHeight};
   border-radius: ${({ rounded, theme: { radius } }) => rounded && `0 0 ${radius} ${radius}`};
 `;
 

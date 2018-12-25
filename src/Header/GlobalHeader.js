@@ -13,8 +13,13 @@ const Header = styled.header`
   padding: 0;
   position: absolute;
   left: 0;
-  background-color: ${({ theme: { palette }}) => palette.primary.main};
-  /* color: ${({ theme: { palette }}) => palette.white}; */
+  background-color: ${({ theme: { palette } }) => palette.primary.main};
+  & div.uxi-menu-item a {
+    color: ${({ theme: { palette } }) => palette.white} !important;
+    &:hover {
+      color: ${({ theme: { palette } }) => palette.accent.main} !important;
+    }
+  };
 `;
 
 class GlobalHeader extends Component {

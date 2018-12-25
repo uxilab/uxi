@@ -3,6 +3,10 @@ import ThemeProvider from 'uxi/Theme/ThemeProvider';
 import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import { Datacleaning } from 'uxi/Icons';
+import {
+  TextField,
+  RangeInput,
+} from 'uxi/Input';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import Drawer from 'uxi/Drawer';
 
@@ -14,8 +18,10 @@ class ThemeProviderDynamic extends Component {
     this.state = {
       // isOpen: false,
       isOpen: false,
-      primary: null,
-      secondary: null,
+      // isOpen: true,
+      primary: '#ff9315',
+      secondary: '#272727',
+      radius: '3px',
     };
 
     this.open = this.open.bind(this);
@@ -29,15 +35,27 @@ class ThemeProviderDynamic extends Component {
 
   primaryChange = debounce((color) => {
     this.setState({ primary: color });
-    console.log('change primary');
-    this.setState({ primary: color });
+    // console.log('change primary');
+    // this.setState({ primary: color });
   }, 15, { trailing: true, leading: true })
 
   secondaryChange = debounce((color) => {
-    this.setState({ primary: color });
-    console.log('change secondary');
     this.setState({ secondary: color });
+    // console.log('change secondary');
+    // this.setState({ secondary: color });
   }, 15, { trailing: true, leading: true })
+
+  radiusChange = debounce((radius) => {
+    this.setState({ radius: `${radius}px` });
+    // console.log('change secondary');
+    // this.setState({ secondary: color });
+  }, 15, { trailing: true, leading: true })
+
+  // radiusRawChange = debounce((radius) => {
+  //   this.setState({ radius });
+  //   // console.log('change secondary');
+  //   // this.setState({ secondary: color });
+  // }, 15, { trailing: true, leading: true })
 
   render() {
     const {
@@ -48,13 +66,22 @@ class ThemeProviderDynamic extends Component {
       isOpen,
       primary,
       secondary,
+      radius,
     } = this.state;
 
     return (
       <ThemeProvider
-        palette={{
-          primary,
-          secondary,
+        // palette={{
+        //   primary,
+        //   secondary,
+        //   radius,
+        // }}
+        theme={{
+          radius,
+          palette: {
+            primary,
+            secondary,
+          },
         }}
       >
         {children}
@@ -85,13 +112,40 @@ class ThemeProviderDynamic extends Component {
             <PanelContent style={{ padding: '16px' }}>
               <label>
                 <h4>Primary color</h4>
-                <input id="primary" type="color" onChange={e => this.primaryChange(e.target.value)} />
+                <input
+                  id="primary"
+                  type="color"
+                  onChange={e => this.primaryChange(e.target.value)}
+                  defaultValue={primary}
+                />
                 {primary}
               </label>
+              <hr />
               <label>
                 <h4>Secondary color</h4>
-                <input id="secondary" type="color" onChange={e => this.secondaryChange(e.target.value)} />
+                <input
+                  id="secondary"
+                  type="color"
+                  onChange={e => this.secondaryChange(e.target.value)}
+                  defaultValue={secondary}
+                />
                 {secondary}
+              </label>
+              <hr />
+              <label>
+                <h4>Radius</h4>
+                <RangeInput
+                  id="radius"
+                  min={0}
+                  max={32}
+                  onChange={(e, v) => this.radiusChange(e.target.value)}
+                  defaultValue={radius.replace('px', '')}
+                />
+                {/* <TextField
+                  placeholder="Or type radius value (e.g. single value '50%')"
+                  onChange={(e, v) => this.radiusRawChange(e.target.value)}
+                /> */}
+                {radius}
               </label>
             </PanelContent>
             <PanelFooter />
