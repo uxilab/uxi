@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import ThemeProviderDynamic from './ThemeProviderDynamic'
 
 import Header from 'uxi/Header';
 import { H4 } from 'uxi/Classic';
@@ -81,6 +82,7 @@ const Appshell = (props) => {
 
   return (
     <div>
+      <ThemeProviderDynamic>
       <AppLayout style={appLayoutStyle}>
         <Header isDark style={{ width: '100%', minHeight: '80px', position: 'sticky', zIndex: 100 }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -115,6 +117,7 @@ const Appshell = (props) => {
         </Header>
         <div style={appLayoutContentStyle}>{children}</div>
       </AppLayout>
+      </ThemeProviderDynamic>
       <style
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
           __html: [

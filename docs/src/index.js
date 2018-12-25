@@ -11,22 +11,21 @@ import GetStarted from './GetStarted'
 import Landing from './Landing'
 import { ConnectedRouter } from 'connected-react-router'
 import { store, history } from './configureStore'
+// import ThemeProviderDynamic from './ThemeProviderDynamic'
 
 window.React = React;
 
 render(
-  <ThemeProvider>
-    <Provider store={store} >
-      <ConnectedRouter
-        history={history}
-      >
-        <AppShell>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/get-started" component={GetStarted} />
-          <Route path="/components" component={ComponentRoutes} />
-        </AppShell>
-      </ConnectedRouter>
-    </Provider>
-  </ThemeProvider>,
+  <Provider store={store} >
+        <ConnectedRouter
+          history={history}
+        >
+          <AppShell>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/get-started" component={GetStarted} />
+            <Route path="/components" component={ComponentRoutes} />
+          </AppShell>
+        </ConnectedRouter>
+  </Provider>,
   document.getElementById('app'),
 );

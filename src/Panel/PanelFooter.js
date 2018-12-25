@@ -5,6 +5,7 @@ import { Button } from '../Button';
 const PanelFooterUI = styled.div`
   box-sizing: border-box;
   background-color: ${({ theme: { palette } }) => palette.white};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
   border-top: 1px solid ${({ theme: { palette } }) => palette.lightGrey};
   padding: 8px 16px;
   display: flex;
@@ -41,6 +42,6 @@ PanelFooter.displayName = 'PanelFooter';
 
 PanelFooter.defaultProps = {
   cancelLabel: 'Cancel',
-}
+};
 
 export default PanelFooter;

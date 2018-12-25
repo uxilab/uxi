@@ -22,9 +22,6 @@ export const componentInfoToMD = (rawCode) => {
     console.warn('Failed to parse or find a suitable component definition')
   }
 
-  console.log('rawCode', rawCode)
-  console.log('componentInfo', componentInfo)
-
   if (componentInfo === null) {
     return ([
         '  — no doc from code —  ',

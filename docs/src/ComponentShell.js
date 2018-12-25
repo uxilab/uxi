@@ -77,6 +77,9 @@ const ComponentShell = ({ children }) => {
       <ContentWithExtra
         extraMinWidth="68px"
         contentMinWidth="200px"
+        style={{
+          marginTop: '80px'
+        }}
         contentStyle={{ boxShadow: 'inset 1px 3px 16px rgba(0, 0, 0, .5)' }}
         extra={(
           <div style={{ maxHeight: 'calc(100vh - 80px)', overflowY: 'auto' }}>

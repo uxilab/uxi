@@ -12,6 +12,7 @@ const HorizontalAppLayout = AppLayout.extend`
 const PanelHeaderUI = styled.div`
   box-sizing: border-box;
   background-color: ${({ theme: { palette } }) => palette.accent.main};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
   padding: 8px 16px;
   color: ${({ theme: { palette } }) => palette.pureWhite};
   display: flex;
@@ -69,6 +70,6 @@ PanelHeader.displayName = 'PanelHeader';
 
 PanelHeader.defaultProps = {
   title: null,
-}
+};
 
 export default PanelHeader;
