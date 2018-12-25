@@ -3,6 +3,9 @@ import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../../CodeExample';
 
+import Playground from './Playground';
+import RAWPlayground from '!raw-loader!./Playground';
+
 import ExampleSimple from './ExampleSimple';
 import RAWExampleSimple from '!raw-loader!./ExampleSimple';
 
@@ -34,6 +37,16 @@ const SelectInputPage = () => (
       {'e.g. `mainScrollingElementSelector={"#my-main-scrolling-element-string-selector"}`'}
     </P>
     <ul>
+      <li>
+        <CodeExample
+          code={RAWPlayground}
+          component
+          title="simple SelectInput Playground"
+          hasPadding
+        >
+          <Playground />
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWExampleSimple}

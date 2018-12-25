@@ -71,8 +71,8 @@ class Drawer extends React.Component {
 
   handleEsc(e) {
     const { key } = e;
-    const { onClose, open } = this.props;
-    if (open && onClose && key === 'Escape') {
+    const { onClose, open, isOpen } = this.props;
+    if ((open || isOpen) && onClose && key === 'Escape') {
       onClose();
     }
   }
@@ -83,6 +83,7 @@ class Drawer extends React.Component {
       children,
       onClose,
       open,
+      isOpen,
       showOverlay,
       style,
       modal,
@@ -92,10 +93,11 @@ class Drawer extends React.Component {
       offsetRight,
     } = this.props;
 
+
     return (
       <div>
         <Slide
-          inAttr={open}
+          inAttr={(open || isOpen)}
           direction={getSlideDirection(anchor)}
           appear={!this.state.firstMount}
           offsetTop={offsetTop}
@@ -104,7 +106,7 @@ class Drawer extends React.Component {
           offsetRight={offsetRight}
         >
           <DrawerUI
-            inAttr={open}
+            inAttr={(open || isOpen)}
             dir={getSlideDirection(anchor)}
             style={style}
           >
@@ -122,7 +124,7 @@ class Drawer extends React.Component {
           </DrawerUI>
         </Slide>
         { showOverlay ? <Modal
-          show={open}
+          show={(open || isOpen)}
           onClose={modal ? null : onClose}
         /> : null }
       </div>
@@ -134,7 +136,14 @@ Drawer.propTypes = {
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   children: PropTypes.node,
   onClose: PropTypes.func,
+  /**
+   * deprecated (use `isOpen`)
+   */
   open: PropTypes.bool,
+  /**
+   * favor over deprecated `open`
+   */
+  isOpen: PropTypes.bool,
   showOverlay: PropTypes.bool,
   // transitionDuration: PropTypes.oneOfType([
   //   PropTypes.number,
@@ -149,6 +158,7 @@ Drawer.propTypes = {
 Drawer.defaultProps = {
   anchor: 'right',
   open: false,
+  isOpen: false,
   showOverlay: false,
   children: null,
   onClose: () => {},
