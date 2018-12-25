@@ -3,7 +3,7 @@ import path from 'path';
 import fse from 'fs-extra';
 
 const files = [
-  'README.md',
+  // 'README.md',
 ];
 
 Promise.all(
