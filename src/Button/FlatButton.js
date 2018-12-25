@@ -211,9 +211,10 @@ FlatButton.propTypes = {
     'primary',
     'secondary',
     'danger',
+    'error',
     'warning',
     'success',
-    'information',
+    'info',
     'default',
   ]),
 };

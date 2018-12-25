@@ -512,6 +512,7 @@ exports[`<Button /> should render a Button 1`] = `
         },
         "white": "#F3F3F2",
       },
+      "radius": "3px",
       "root": Object {
         "fontSize": "14p",
       },
