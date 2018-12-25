@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import ThemeProvider from 'uxi/Theme/ThemeProvider';
 import { connect } from 'react-redux';
 import { debounce } from 'lodash';
-import { Datacleaning } from 'uxi/Icons';
+import { Datacleaning, Start } from 'uxi/Icons';
+import { Flex } from 'uxi/Layout';
 import {
   TextField,
   RangeInput,
+  SearchForm,
 } from 'uxi/Input';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import Drawer from 'uxi/Drawer';
@@ -22,6 +24,7 @@ class ThemeProviderDynamic extends Component {
       primary: '#ff9315',
       secondary: '#272727',
       radius: '3px',
+      transition: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     };
 
     this.open = this.open.bind(this);
@@ -51,11 +54,11 @@ class ThemeProviderDynamic extends Component {
     // this.setState({ secondary: color });
   }, 15, { trailing: true, leading: true })
 
-  // radiusRawChange = debounce((radius) => {
-  //   this.setState({ radius });
-  //   // console.log('change secondary');
-  //   // this.setState({ secondary: color });
-  // }, 15, { trailing: true, leading: true })
+  defaultTransitionChange = (transition) => {
+    this.setState({ transition });
+    // console.log('change secondary');
+    // this.setState({ secondary: color });
+  }
 
   render() {
     const {
@@ -67,6 +70,7 @@ class ThemeProviderDynamic extends Component {
       primary,
       secondary,
       radius,
+      transition,
     } = this.state;
 
     return (
@@ -78,6 +82,9 @@ class ThemeProviderDynamic extends Component {
         // }}
         theme={{
           radius,
+          transition: {
+            default: transition,
+          },
           palette: {
             primary,
             secondary,
@@ -110,43 +117,66 @@ class ThemeProviderDynamic extends Component {
           <Panel>
             <PanelHeader title="White Label" />
             <PanelContent style={{ padding: '16px' }}>
+              <h2>Styles</h2>
               <label>
                 <h4>Primary color</h4>
-                <input
-                  id="primary"
-                  type="color"
-                  onChange={e => this.primaryChange(e.target.value)}
-                  defaultValue={primary}
-                />
-                {primary}
+                <Flex style={{ justifyContent: 'flex-start' }}>
+                  <input
+                    id="primary"
+                    type="color"
+                    onChange={e => this.primaryChange(e.target.value)}
+                    defaultValue={primary}
+                  />
+                  <div style={{ paddingLeft: '16px' }}>{primary}</div>
+                </Flex>
+
               </label>
-              <hr />
               <label>
                 <h4>Secondary color</h4>
-                <input
-                  id="secondary"
-                  type="color"
-                  onChange={e => this.secondaryChange(e.target.value)}
-                  defaultValue={secondary}
-                />
-                {secondary}
+                <Flex style={{ justifyContent: 'flex-start' }}>
+                  <input
+                    id="secondary"
+                    type="color"
+                    onChange={e => this.secondaryChange(e.target.value)}
+                    defaultValue={secondary}
+                  />
+                  <div style={{ paddingLeft: '16px' }}>{secondary}</div>
+                </Flex>
+
               </label>
-              <hr />
+              <h />
               <label>
                 <h4>Radius</h4>
-                <RangeInput
-                  id="radius"
-                  min={0}
-                  max={32}
-                  onChange={(e, v) => this.radiusChange(e.target.value)}
-                  defaultValue={radius.replace('px', '')}
-                />
-                {/* <TextField
+                <Flex style={{ justifyContent: 'flex-start' }}>
+                  <div style={{ paddingRight: '16px' }}>{radius}</div>
+                  <RangeInput
+                    id="radius"
+                    min={0}
+                    max={32}
+                    onChange={(e, v) => this.radiusChange(e.target.value)}
+                    defaultValue={radius.replace('px', '')}
+                  />
+                  {/* <TextField
                   placeholder="Or type radius value (e.g. single value '50%')"
                   onChange={(e, v) => this.radiusRawChange(e.target.value)}
                 /> */}
-                {radius}
+                </Flex>
+
               </label>
+              <hr />
+              <br />
+              <h2>Behaviour</h2>
+              <h4>default transition</h4>
+              <p>{transition}</p>
+              <br />
+              <SearchForm
+                isFullWidth
+                icon={<Start />}
+                id="transition"
+                defaultValue={transition}
+                placeholder="default transition value (e.g. '450ms cubic-bezier(0.23, 1, 0.32, 1) ')"
+                onSubmit={(e, v) => this.defaultTransitionChange(e.target.value)}
+              />
             </PanelContent>
             <PanelFooter />
           </Panel>

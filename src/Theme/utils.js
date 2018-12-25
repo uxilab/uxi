@@ -42,4 +42,9 @@ export const mergeTheme = (defaultTheme, partialTheme) => ({
   ...defaultTheme,
   ...partialTheme,
   palette: mergeCustomPalette(defaultTheme.palette, partialTheme.palette),
+  transition: {
+    ...defaultTheme.transition,
+    default: partialTheme.transition.default,
+    defaultAll: `all ${partialTheme.transition.default}`,
+  },
 });
