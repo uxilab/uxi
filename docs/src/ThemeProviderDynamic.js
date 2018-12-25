@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import { Datacleaning, Start } from 'uxi/Icons';
 import { Flex } from 'uxi/Layout';
+import styled from 'styled-components';
 import {
   TextField,
   RangeInput,
@@ -12,6 +13,24 @@ import {
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import Drawer from 'uxi/Drawer';
 
+const CTAWrapper = styled.div`
+  cursor: pointer;
+  background: white;
+  background: ${({ theme: { palette } }) => palette.primary.main};
+  svg, svg path {
+    fill: ${({ theme: { palette } }) => palette.accent.main};
+  }
+  padding: 8px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  box-shadow: 1px 4px 20px 0px #424242;
+  position: absolute;
+  z-index: 50;
+  right: 16px;
+  bottom: 16px;
+`;
 
 class ThemeProviderDynamic extends Component {
   constructor(props) {
@@ -92,27 +111,13 @@ class ThemeProviderDynamic extends Component {
         }}
       >
         {children}
-        <div
-          style={{
-            cursor: 'pointer',
-            background: 'white',
-            padding: '8px',
-            borderRadius: '50%',
-            boxSizing: 'border-box',
-            width: '44px',
-            height: '44px',
-            boxShadow: '1px 4px 20px 0px #424242',
-            position: 'absolute',
-            zIndex: 50,
-            right: '16px',
-            bottom: '16px',
-          }}
+        <CTAWrapper
           onClick={() => {
             this.open();
           }}
         >
           <Datacleaning />
-        </div>
+        </CTAWrapper>
         <Drawer isOpen={isOpen} onClose={() => this.setState({ isOpen: false })}>
           <Panel>
             <PanelHeader title="White Label" />
