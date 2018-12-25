@@ -67,14 +67,14 @@ export const getMatchesResult = (source, target) => {
     }],
   };
 
-  const finalResult = result.reduce((accu, x, i) => {
+  const finalResult = result.reduce((accu, x, i) => { // eslint-disable-line no-shadow
     if (i === 0) { return accu; }
 
     // const currentItem = accu.result[accu.result.length - 1];
 
     if (x.matches === accu.isCurrentlyMatching) {
       if (i === 0) {
-        accu.result[0] = x.string;
+        accu.result[0] = x.string; // eslint-disable-line no-param-reassign
       } else {
         // eslint-disable-next-line no-param-reassign
         accu.result[accu.result.length - 1].string += x.string;

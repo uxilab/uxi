@@ -58,7 +58,7 @@ ButtonLink.defaultProps = {
   children: null,
   style: {},
   isFullWidth: false,
-}
+};
 
 ButtonLink.propTypes = {
   onClick: PropTypes.func,
@@ -68,6 +68,6 @@ ButtonLink.propTypes = {
   children: PropTypes.any,
   style: PropTypes.object,
   isFullWidth: PropTypes.bool,
-}
+};
 
 export default ButtonLink;

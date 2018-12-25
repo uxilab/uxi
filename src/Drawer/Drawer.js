@@ -97,7 +97,7 @@ class Drawer extends React.Component {
     return (
       <div>
         <Slide
-          inAttr={(open || isOpen)}
+          inAttr={(open || isOpen)}
           direction={getSlideDirection(anchor)}
           appear={!this.state.firstMount}
           offsetTop={offsetTop}

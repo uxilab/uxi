@@ -25,7 +25,7 @@ class Alert extends Component {
     children: PropTypes.node,
     showClose: PropTypes.bool, // weird ?
     hideClose: PropTypes.bool, // weird ?
-    onClose: PropTypes.func,
+    onClose: PropTypes.func, // eslint-disable-line
     type: PropTypes.oneOf(['danger', 'error', 'success', 'warning', 'information']),
     noIcon: PropTypes.bool,
     className: PropTypes.string,

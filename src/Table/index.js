@@ -1,5 +1,6 @@
 import { withSelection } from '../DataGrid/withSelection';
 import TableSimple from './Table';
+
 export TableSimple from './Table';
 
 export const Table = withSelection(TableSimple);
@@ -11,4 +12,4 @@ export TableRow from './TableRow';
 export TableRowColumn from './TableRowColumn';
 
 
-export default Table
+export default Table;

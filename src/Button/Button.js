@@ -220,7 +220,7 @@ class Button extends Component {
 
 Button.propTypes = {
   style: PropTypes.object,
-  type: PropTypes.oneOf([
+  type: PropTypes.oneOf([ // eslint-disable-line
     'primary',
     'secondary',
     'danger',

@@ -207,7 +207,7 @@ class FlatButton extends Component {
 
 FlatButton.propTypes = {
   style: PropTypes.object,
-  type: PropTypes.oneOf([
+  type: PropTypes.oneOf([ // eslint-disable-line
     'primary',
     'secondary',
     'danger',

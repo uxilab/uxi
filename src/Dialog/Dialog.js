@@ -81,8 +81,6 @@ const Dialog = ({
     return React.cloneElement(c, {
       key: `dialogContent-${index}`,
       onClose,
-      // ...(console.log('c.type', c.type) || {}),
-      // ...(c.type.displayName === 'Panel' && console.log('c.type.displayName', c.type.displayName) || {}),
       style: {
         ...((c && c.props && c.props.style) ? c.props.style : {}),
       },

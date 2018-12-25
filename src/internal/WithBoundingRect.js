@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class WithBoundingRect extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.ref = null
+    this.ref = null;
 
     this.state = {
       scrollOffset: 0,
@@ -15,48 +15,47 @@ class WithBoundingRect extends Component {
         bottom: 0,
         height: 0,
         width: 0,
-      }
-    }
+      },
+    };
 
     this.update = this.update.bind(this);
     this.storeRef = this.storeRef.bind(this);
     this.findScrollingContextRef = this.findScrollingContextRef.bind(this);
-
   }
 
   componentDidMount() {
-    this.update()
+    this.update();
+  }
+
+  componentWillUnmount() {
+    this.scrollingContextRef = null;
+
+    window.cancelAnimationFrame(this.rafRef);
   }
 
   findScrollingContextRef() {
     if (!this.scrollingContextRef) {
       this.scrollingContextRef = this.props.mainScrollingElementSelector
         ? document.querySelector(this.props.mainScrollingElementSelector)
-        : window
+        : window;
     }
   }
 
-  componentWillUnmount() {
-    this.scrollingContextRef = null
-
-    window.cancelAnimationFrame(this.rafRef)
-  }
-
   update() {
-    this.findScrollingContextRef()
+    this.findScrollingContextRef();
     if (this.ref && this.scrollingContextRef) {
       this.setState({
         rect: this.ref.getBoundingClientRect(),
         scrollOffset: this.scrollingContextRef.scrollTop,
-      })
+      });
 
-      this.rafRef = requestAnimationFrame(this.update)
+      this.rafRef = requestAnimationFrame(this.update);
     }
   }
 
   storeRef(node) {
-    this.ref = node
-    this.update()
+    this.ref = node;
+    this.update();
   }
 
   render() {
@@ -66,12 +65,12 @@ class WithBoundingRect extends Component {
           React.cloneElement(this.props.children, {
             rect: this.state.rect,
             scrollOffset: this.state.scrollOffset,
-            ...(this.props || {}),
+            ...(this.props || {}),
           })
         }
       </div>
-    )
+    );
   }
 }
 
-export default WithBoundingRect
+export default WithBoundingRect;
