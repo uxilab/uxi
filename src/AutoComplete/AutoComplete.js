@@ -251,7 +251,11 @@ class AutoComplete extends ThemeComponent {
   }
 
   render() {
-    const { /* items, */ placeholder, /* itemComponent, defaultValue, */ filterOn, resultLimit } = this.props;
+    const {
+      placeholder,
+      filterOn,
+      resultLimit,
+    } = this.props;
     const { index, escape, valueForInput, filteredSet } = this.state;
 
     const shadowStyle = {

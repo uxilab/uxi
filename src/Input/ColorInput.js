@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { buttonResetStylesCSSString } from '../Button/buttonResetStyles';
-import ButtonBaseStyles from '../Button/ButtonBaseStyles';
 import { Datacleaning } from '../Icons';
-import Button from '../Button';
 
 const ColorInputUI = styled.input.attrs({
   children: null,
