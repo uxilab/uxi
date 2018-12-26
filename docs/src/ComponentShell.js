@@ -28,6 +28,7 @@ const MainContentWrapper = styled.div`
     margin-top: -18px;
     margin-left: -18px;
     margin-right: -18px;
+    top: -16px;
     /**
      * Target exclusively IE10 and above:
      */

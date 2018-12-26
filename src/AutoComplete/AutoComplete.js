@@ -208,7 +208,7 @@ class AutoComplete extends ThemeComponent {
   }
 
   asyncUpdateFilteredSet(consumerNotifierCallback) { // eslint-disable-line class-methods-use-this
-    const { items, defaultValue, filterOn } = this.props;
+    const { items, defaultValue, filterOn, strict } = this.props;
     const { valueForInput } = this.state;
 
     if (valueForInput && valueForInput.length >= 2) {
@@ -230,7 +230,9 @@ class AutoComplete extends ThemeComponent {
 
         const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
 
-        const filteredSet = (mappedUNfilteredSet.filter(filterFnPermissive || filterFnStrict));
+        const filteredSet = (mappedUNfilteredSet.filter(
+          strict ? filterFnStrict : filterFnPermissive)
+        );
 
         const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
 
@@ -249,7 +251,7 @@ class AutoComplete extends ThemeComponent {
   }
 
   render() {
-    const { /* items, */ placeholder, /* itemComponent, defaultValue, */ filterOn } = this.props;
+    const { /* items, */ placeholder, /* itemComponent, defaultValue, */ filterOn, resultLimit } = this.props;
     const { index, escape, valueForInput, filteredSet } = this.state;
 
     const shadowStyle = {
@@ -274,7 +276,7 @@ class AutoComplete extends ThemeComponent {
           // more than a hundreds search results is not
           // actually helpfull anyway, neither is it reasonnable to ask that to the dom
           // let's cut it at 10
-          .slice(0, 20)
+          .slice(0, resultLimit)
           .map((item, currentIndex) => {
             const { postFix } = item;
 
@@ -357,5 +359,9 @@ class AutoComplete extends ThemeComponent {
 AutoComplete.defaultProps = {
   items: [],
   placeholder: 'Type to search...',
+  strict: false,
+  resultLimit: 20,
 };
+
+
 export default AutoComplete;

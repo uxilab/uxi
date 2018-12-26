@@ -28,7 +28,7 @@ const IconsList = () => {
         mappedKeys.map((x, i) => {
           const Element = Icons[x] || <div />;
           return (
-            <div key={i} style={styles.item} >
+            <div id={x} key={i} style={styles.item} >
               <div style={styles.icon}><Element /></div>
               {x}
             </div>
