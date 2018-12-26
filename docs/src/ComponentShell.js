@@ -25,15 +25,30 @@ const MainContentWrapper = styled.div`
     z-index: 1;
     position: absolute;
     position: sticky;
-    top: -18px;
     margin-top: -18px;
     margin-left: -18px;
     margin-right: -18px;
+    /**
+     * Target exclusively IE10 and above:
+     */
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      top: 0 !important;
+      margin: 0  !important;
+      left: 0  !important;
+      right: 0  !important;
+    }
+
     @media screen and (min-width: 1024px) {
       margin-top: -34px;
       margin-left: -34px;
       margin-right: -34px;
       top: -34px;
+      @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        top: 0 !important;
+        margin: 0  !important;
+        left: 0  !important;
+        right: 0  !important;
+      }
     }
     & * { font-size: 1.1em; border-radius: 0;  }
     & ul * { font-size: 1em; padding: 2px 0; }

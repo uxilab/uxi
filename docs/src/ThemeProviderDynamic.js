@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import ThemeProvider from 'uxi/Theme/ThemeProvider';
-import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import { Datacleaning, Start } from 'uxi/Icons';
 import { Flex } from 'uxi/Layout';
 import styled from 'styled-components';
 import {
-  TextField,
   RangeInput,
   SearchForm,
   ColorInput,
-  ColorInput2,
 } from 'uxi/Input';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import Drawer from 'uxi/Drawer';
@@ -30,8 +27,8 @@ const CTAWrapper = styled.div`
   box-shadow: 1px 4px 20px 0px #424242;
   position: absolute;
   z-index: 50;
-  right: 16px;
-  bottom: 16px;
+  right: 32px;
+  bottom: 32px;
 `;
 
 class ThemeProviderDynamic extends Component {
@@ -41,7 +38,7 @@ class ThemeProviderDynamic extends Component {
     this.state = {
       // isOpen: false,
       isOpen: false,
-      isOpen: true,
+      // isOpen: true,
       primary: '#ff9315',
       secondary: '#272727',
       radius: '3px',

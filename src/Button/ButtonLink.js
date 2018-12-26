@@ -23,14 +23,16 @@ const ButtonLinkWrapper = styled.a`
   }
 `;
 
-const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth }) => {
+const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth, iconAfter }) => {
   const content = icon ? (
     <AvatarWithName
+      inverse={iconAfter}
       imgSize={16}
       icon={icon}
       name={text || message || children}
       style={{
         ...(isFullWidth ? { justifyContent: 'center' } : {}),
+        // ...(iconAfter ? { flexDirection: 'row-reverse' } : {}),
       }}
     />
   ) : (

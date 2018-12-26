@@ -20,7 +20,7 @@ const parseMD = (rawMD) => {
   try {
     componentInfo = parse(rawMD);
   } catch (err) {
-    console.error(err);
+    console.warn(err);
   }
 
   if (componentInfo === null) {
