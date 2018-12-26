@@ -14,3 +14,4 @@ export { default as SearchForm } from './SearchForm';
 export { default as RangeInput } from './RangeInput';
 export { default as BETAAutoComplete } from './BETAAutoComplete';
 export { default as Tree } from './Tree';
+export { default as ColorInput } from './ColorInput';

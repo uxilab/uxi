@@ -10,7 +10,7 @@ import { ThemedBox } from 'uxi/Box';
 import Menu from './Menu';
 import Footer from './Footer';
 import { routes } from './routes';
-import Search from './Search'
+import Search from './Search';
 
 
 const MainContentWrapper = styled.div`
@@ -25,15 +25,15 @@ const MainContentWrapper = styled.div`
     z-index: 1;
     position: absolute;
     position: sticky;
-    top: -16px;
-    margin-top: -16px;
-    margin-left: -16px;
-    margin-right: -16px;
+    top: -18px;
+    margin-top: -18px;
+    margin-left: -18px;
+    margin-right: -18px;
     @media screen and (min-width: 1024px) {
-      margin-top: -32px;
-      margin-left: -32px;
-      margin-right: -32px;
-      top: -32px;
+      margin-top: -34px;
+      margin-left: -34px;
+      margin-right: -34px;
+      top: -34px;
     }
     & * { font-size: 1.1em; border-radius: 0;  }
     & ul * { font-size: 1em; padding: 2px 0; }
@@ -54,9 +54,6 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-
-const pageWithMenuStyles = { marginTop: '110px', marginLeft: '45px', marginRight: '45px', borderRadius: '5px', padding: '30px 15px', background: '#fff', overflow: 'visible' };
-
 const isActive = (path, currentLocation) =>
   path.toLowerCase() === currentLocation.toLowerCase();
 
@@ -66,11 +63,6 @@ const makeMenuItem = ({ path, label }, currentLocation) => (
 
 const ComponentShell = ({ children }) => {
   const pathname = window.location.pathname;
-  const mainMenu = (
-    <VerticalMenu style={{ borderRight: '1px solid #e9e9e9', height: '100%' }}>
-      {routes.map(x => makeMenuItem(x, pathname)) }
-    </VerticalMenu>
-  );
 
   return (
     <div>
@@ -78,7 +70,7 @@ const ComponentShell = ({ children }) => {
         extraMinWidth="68px"
         contentMinWidth="200px"
         style={{
-          marginTop: '80px'
+          marginTop: '80px',
         }}
         contentStyle={{ boxShadow: 'inset 1px 3px 16px rgba(0, 0, 0, .5)' }}
         extra={(
@@ -93,7 +85,7 @@ const ComponentShell = ({ children }) => {
           </div>
           <div>
             <div
-            style={{ minHeight: 'calc(100vh - 80px - 43px - 128px - 128px)' }}
+              style={{ minHeight: 'calc(100vh - 80px - 43px - 128px - 128px)' }}
             >{children}</div>
             <Footer />
           </div>
@@ -102,18 +94,18 @@ const ComponentShell = ({ children }) => {
     </div>
   );
 
-  return children
+  return children;
 
   return (
     <div style={{ maxWidth: '1280px', margin: '0 auto' }} >
 
-        <div style={{ padding: '16px' }}>
-          <Layout>
-            <Row>
-              <Col>{children}</Col>
-            </Row>
-          </Layout>
-        </div>
+      <div style={{ padding: '16px' }}>
+        <Layout>
+          <Row>
+            <Col>{children}</Col>
+          </Row>
+        </Layout>
+      </div>
     </div>
   );
 };

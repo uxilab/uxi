@@ -6,7 +6,7 @@ import AutoComplete from 'uxi/AutoComplete';
 import { routes } from './routes';
 import { componentsData } from './searchData';
 
-const Wrapper = styled.div` ul { top: 40px !important } `;
+const Wrapper = styled.div` ul { top: 44px !important } `;
 const PostFix = styled.span`
   color: grey;
   font-size: 16px !important;

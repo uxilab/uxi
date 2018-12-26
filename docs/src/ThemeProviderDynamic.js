@@ -9,6 +9,8 @@ import {
   TextField,
   RangeInput,
   SearchForm,
+  ColorInput,
+  ColorInput2,
 } from 'uxi/Input';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import Drawer from 'uxi/Drawer';
@@ -39,7 +41,7 @@ class ThemeProviderDynamic extends Component {
     this.state = {
       // isOpen: false,
       isOpen: false,
-      // isOpen: true,
+      isOpen: true,
       primary: '#ff9315',
       secondary: '#272727',
       radius: '3px',
@@ -126,9 +128,8 @@ class ThemeProviderDynamic extends Component {
               <label>
                 <h4>Primary color</h4>
                 <Flex style={{ justifyContent: 'flex-start' }}>
-                  <input
+                  <ColorInput
                     id="primary"
-                    type="color"
                     onChange={e => this.primaryChange(e.target.value)}
                     defaultValue={primary}
                   />
@@ -139,9 +140,8 @@ class ThemeProviderDynamic extends Component {
               <label>
                 <h4>Secondary color</h4>
                 <Flex style={{ justifyContent: 'flex-start' }}>
-                  <input
+                  <ColorInput
                     id="secondary"
-                    type="color"
                     onChange={e => this.secondaryChange(e.target.value)}
                     defaultValue={secondary}
                   />

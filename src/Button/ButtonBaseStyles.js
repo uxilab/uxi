@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 const ButtonBaseStyles = css`
-  outline: 0 !important;
+  /* outline: 0 !important; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +30,9 @@ const ButtonBaseStyles = css`
     min-height: 26px;
     height: 26px;
     max-height: 26px;
+  }
+  &:focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
 `;
 

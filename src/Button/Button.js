@@ -87,6 +87,8 @@ const ButtonIconWrapper = styled.div`
 
 const ButtonContentWrapper = styled.div`
   margin: 0 4px;
+  display: flex;
+  align-items: center;
 `;
 
 /* eslint-enable indent */

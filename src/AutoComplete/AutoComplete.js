@@ -257,9 +257,13 @@ class AutoComplete extends ThemeComponent {
         ? { boxShadow: AutoCompleteStyle.boxShadow }
         : {}
       ),
+      ...(filteredSet.length && filteredSet.length > 0
+        ? { boxShadow: AutoCompleteStyle.boxShadow }
+        : {}
+      ),
     };
 
-    const autoComplete = !escape ? (
+    const autoComplete = (!escape && valueForInput && filteredSet.length) ? (
       <VerticalMenu
         style={{ ...AutoCompleteStyle.popover, ...shadowStyle }}
         ref={(ref) => { this.autoComplete = ref; }}

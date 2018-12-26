@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  &:focus-within {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+`;
 
 const rippleStyle = {
   position: 'absolute',
@@ -94,10 +101,10 @@ class Ripples extends Component {
     };
 
     return (
-      <div {...props} style={s} onClick={handleClick}>
+      <Wrapper {...props} style={s} onClick={handleClick}>
         <s style={{ ...rippleStyle, ...state.rippleStyle }} />
         {children}
-      </div>
+      </Wrapper>
     );
   }
 }
