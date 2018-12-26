@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { buttonResetStylesCSSString } from '../Button/buttonResetStyles';
 import { Datacleaning } from '../Icons';
+import Button from '../Button'; // eslint-disable-line
 
 const ColorInputUI = styled.input.attrs({
   children: null,
