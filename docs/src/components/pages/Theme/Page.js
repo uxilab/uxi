@@ -13,7 +13,7 @@ import NeutralColor from './color/NeutralColor';
 
 import RAWReadme from '!raw-loader!./theme.md';
 
-console.log('RAWReadme', RAWReadme)
+console.log('RAWReadme', RAWReadme);
 
 
 const Page = () => (

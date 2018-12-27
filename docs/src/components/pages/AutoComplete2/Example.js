@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import BETAAutoComplete from 'uxi/Input/BETAAutoComplete';
 import Button from 'uxi/Button';
 
-const DecoratedInput = (props) => {
-  return (
-    <div>
-      {props.test}
-      <input type="test" {...props} />
-    </div>
-  )
-};
+const DecoratedInput = props => (
+  <div>
+    {props.test}
+    <input type="test" {...props} />
+  </div>
+);
 
 class ExampleBigList extends Component {
   constructor(props) {
@@ -55,8 +53,8 @@ class ExampleBigList extends Component {
           }
         </BETAAutoComplete>
 
-        <br/>
-        <br/>
+        <br />
+        <br />
         <BETAAutoComplete
           Input={DecoratedInput}
           test="test"

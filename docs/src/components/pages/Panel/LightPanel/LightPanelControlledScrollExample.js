@@ -8,22 +8,22 @@ import { LightPanel, LightPanelHeader, LightPanelContent, LightPanelFooter } fro
 import data from '../data';
 
 const Wrapper = styled.div`
-  max-height: ${({ showMore }) => showMore ? '65vh' : '200px'};
-  height: ${({ showMore }) => showMore ? '65vh' : '200px'};
-  transition: ${({ theme: { transition } }) => transition.defaultAll };
+  max-height: ${({ showMore }) => (showMore ? '65vh' : '200px')};
+  height: ${({ showMore }) => (showMore ? '65vh' : '200px')};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
 class LightPanelControlledScrollExample extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      showMore: false
-    }
+      showMore: false,
+    };
   }
 
   render() {
-    const { showMore } = this.state
+    const { showMore } = this.state;
 
     return (
       <div>
@@ -47,7 +47,7 @@ class LightPanelControlledScrollExample extends Component {
                   onClick={() => {
                     this.setState(
                       { showMore: !showMore }),
-                      () => console.log('toggle')
+                    () => console.log('toggle');
                   }}
                   message={showMore ? 'Show Less' : 'Show More'}
                 />

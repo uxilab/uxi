@@ -22,7 +22,8 @@ const ExampleSimpleWithIcon = () => (
         </svg>
       )}
       text="Merge"
-      iconPosition="after" />
+      iconPosition="after"
+    />
   </List>
 );
 

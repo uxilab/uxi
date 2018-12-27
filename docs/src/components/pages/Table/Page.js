@@ -10,7 +10,7 @@ import ExampleSimpleTableWithSpecialCell from './ExampleSimpleTableWithSpecialCe
 import RAWExampleSimpleTableWithSpecialCell from '!raw-loader!./ExampleSimpleTableWithSpecialCell';
 
 import ExampleSimpleTableWithReadOnly from './ExampleSimpleTableWithReadOnly';
-import RAWExampleSimpleTableWithReadOnly from '!raw-loader!./ExampleSimpleTableWithReadOnly'
+import RAWExampleSimpleTableWithReadOnly from '!raw-loader!./ExampleSimpleTableWithReadOnly';
 
 import ExampleSimpleTableWithSeparateRow from './ExampleSimpleTableWithSeparateRow.js';
 import RAWExampleSimpleTableWithSeparateRow from '!raw-loader!./ExampleSimpleTableWithSeparateRow.js';
@@ -22,7 +22,7 @@ import ExampleSelectableTableValues from './ExampleSelectableTableValues';
 import RAWExampleSelectableTableValues from '!raw-loader!./ExampleSelectableTableValues';
 
 import ExampleMuiltSelectableTableValues from './ExampleMuiltSelectableTableValues';
-import RAWExampleMuiltSelectableTableValues from '!raw-loader!./ExampleMuiltSelectableTableValues'
+import RAWExampleMuiltSelectableTableValues from '!raw-loader!./ExampleMuiltSelectableTableValues';
 
 import ExampleSelectableTableWithDelete from './ExampleSelectableTableWithDelete';
 import RAWExampleSelectableTableWithDelete from '!raw-loader!./ExampleSelectableTableWithDelete';
@@ -65,7 +65,7 @@ const TablePage = () => (
     <CodeExample
       title="Table with selectable"
       description={
-        "By default, the Table has all the visual elements for the selections, however, if you want to have a controlled Table, use the TableWithSelection component."
+        'By default, the Table has all the visual elements for the selections, however, if you want to have a controlled Table, use the TableWithSelection component.'
       }
       code={RAWExampleSelectableTableValues}
     >

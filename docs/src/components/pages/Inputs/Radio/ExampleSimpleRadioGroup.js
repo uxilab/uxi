@@ -5,7 +5,7 @@ const ExampleSimpleRadioGroup = () => (
   <div style={{ padding: '16px' }}>
     <RadioGroup
       name="isPayingCustomer"
-      onChange={(event, val) => {  }}
+      onChange={(event, val) => { }}
     >
       <Radio value="true" label="Yes" />
       <br />

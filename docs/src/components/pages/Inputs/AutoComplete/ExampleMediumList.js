@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
 import Button from 'uxi/Button';
 import medium from './medium-8000-array';
-import wrapInClientFormHOC from 'uxi/internal/wrapInClientFormHOC'
+import wrapInClientFormHOC from 'uxi/internal/wrapInClientFormHOC';
 
-const AutoCompleteClientFormWrapper = wrapInClientFormHOC(AutoComplete)
+const AutoCompleteClientFormWrapper = wrapInClientFormHOC(AutoComplete);
 
 const bigList = medium.map(x => ({
   ...x,
-  postFix: <span>{x.company}</span>
-}))
+  postFix: <span>{x.company}</span>,
+}));
 
 class ExampleMediumList extends Component {
   constructor(props) {
@@ -29,14 +29,14 @@ class ExampleMediumList extends Component {
           {`selected value: "${value}"`}
         </div>
         <AutoCompleteClientFormWrapper
-            filterOn={'name'}
-            onChange={({ value, originalValue }) => {
-              console.log('originalValue', originalValue);
-              this.setState({ value });
-            }}
-            items={bigList}
-          />
-        <Button onClick={() => console.log(medium)} text="log list to console"/>
+          filterOn={'name'}
+          onChange={({ value, originalValue }) => {
+            console.log('originalValue', originalValue);
+            this.setState({ value });
+          }}
+          items={bigList}
+        />
+        <Button onClick={() => console.log(medium)} text="log list to console" />
       </div>
     );
   }

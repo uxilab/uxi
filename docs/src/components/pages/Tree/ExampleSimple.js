@@ -29,24 +29,22 @@ const TreeData = {
               id: 6,
               isChecked: true,
             },
-          ]
+          ],
         },
-      ]
+      ],
     },
-  ]
-}
-
-const ExampleSimple = () => {
-  return (
-    <div>
-      <Tree
-        onChange={(n, ids) => {
-          alert(JSON.stringify(ids));
-        }}
-        rootNode={TreeData}
-      />
-    </div>
-  )
+  ],
 };
+
+const ExampleSimple = () => (
+  <div>
+    <Tree
+      onChange={(n, ids) => {
+        alert(JSON.stringify(ids));
+      }}
+      rootNode={TreeData}
+    />
+  </div>
+);
 
 export default ExampleSimple;

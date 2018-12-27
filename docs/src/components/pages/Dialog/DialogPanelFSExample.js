@@ -3,19 +3,19 @@ import Dialog from 'uxi/Dialog';
 import { P, H3 } from 'uxi/Classic';
 import Button from 'uxi/Button';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
-import ExampleSimpleTableWithSpecialCell from '../Table/ExampleSimpleTableWithSpecialCell'
+import ExampleSimpleTableWithSpecialCell from '../Table/ExampleSimpleTableWithSpecialCell';
 
 
 class DialogExample extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       show: false,
       showSmall: false,
-    }
+    };
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Button onClick={() => this.setState({ showSmall: true })}>
@@ -45,7 +45,7 @@ class DialogExample extends Component {
           </Panel>
         </Dialog>
 
-         <Dialog show={this.state.showSmall} isFullScreen>
+        <Dialog show={this.state.showSmall} isFullScreen>
           <Panel onClose={() => this.setState({ showSmall: false })} >
             <PanelHeader title="Panel title" />
             <PanelContent style={{ padding: '16px' }}>
@@ -64,7 +64,7 @@ class DialogExample extends Component {
           </Panel>
         </Dialog>
       </div>
-    )
+    );
   }
 }
 

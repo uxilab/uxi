@@ -11,17 +11,17 @@ import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
 const Layouts = () => (
   <div>
     <H1>ContentWithExtra </H1>
-      <CodeExample
-        code={RAWContentWithExtra}
-        component
-        title="ContentWithExtra"
-        description={componentInfoToMD(RAWContentWithExtra)}
-        hasPadding
-      />
+    <CodeExample
+      code={RAWContentWithExtra}
+      component
+      title="ContentWithExtra"
+      description={componentInfoToMD(RAWContentWithExtra)}
+      hasPadding
+    />
 
-      <br />
+    <br />
 
-      <CodeExample
+    <CodeExample
       code={RAWExampleContentWithExtra}
       component
       title="ContentWithExtra"

@@ -1,38 +1,38 @@
 import React from 'react';
 import { GlobalMenu } from 'uxi/Menu';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Circle, Cluedin } from 'uxi/Icons';
 import { H4, P } from 'uxi/Classic';
 import Button from 'uxi/Button';
 import { CluedinLogoText } from 'uxi/Logo';
 import { routes } from './routes';
 
-const getIsActive = key  => (
+const getIsActive = key => (
   window
   && window.location
   && window.location.pathname
   && window.location.pathname.toLowerCase
   && window.location.pathname.toLowerCase().indexOf(key.toLowerCase()) > -1
-)
+);
 
-export const GlobalDocAppMenu = props => {
-  const makeRouteObj = (routeDescription) => ({
+export const GlobalDocAppMenu = (props) => {
+  const makeRouteObj = routeDescription => ({
     displayName: routeDescription.label,
     key: routeDescription.label,
     // hasNew: true,
     onClick: () => { console.log(routeDescription.label); },
     // icon: <Circle /> ,
     to: `/components${routeDescription.path}`,
-    Link: Link,
+    Link,
     isActive: getIsActive(routeDescription.path),
     ...(
       routeDescription.childRoutes
         ? { children: routeDescription.childRoutes.map(makeRouteObj) }
         : {}
     ),
-  })
+  });
 
-  const menuDescriptors = routes.map(makeRouteObj)
+  const menuDescriptors = routes.map(makeRouteObj);
   /* const menuDescriptors = routes.map(route => ({
     displayName: route.label,
     key: route.label,
@@ -71,7 +71,7 @@ export const GlobalDocAppMenu = props => {
       menuDescriptors={menuDescriptors}
       isOwner
     />
-  )
-}
+  );
+};
 
-export default GlobalDocAppMenu
+export default GlobalDocAppMenu;

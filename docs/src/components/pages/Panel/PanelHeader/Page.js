@@ -20,7 +20,7 @@ import RAWPanelHeaderWithExtraExample from '!raw-loader!./PanelHeaderWithExtraEx
 
 const PanelHeaderPage = () => (
   <div>
-  <Title text="PanelHeader" />
+    <Title text="PanelHeader" />
     <ul>
       <li>
         <CodeExample

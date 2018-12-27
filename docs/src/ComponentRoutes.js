@@ -5,29 +5,29 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ThemePage from './components/pages/Theme/Page';
 import ButtonPage from './components/pages/Button/Page';
-  import FlatButtonPage from './components/pages/Button/FlatButton/Page';
-  import ButtonLinkPage from './components/pages/Button/ButtonLink/Page';
+import FlatButtonPage from './components/pages/Button/FlatButton/Page';
+import ButtonLinkPage from './components/pages/Button/ButtonLink/Page';
 import FontPage from './components/pages/Font/Page';
 import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
 import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
-  import RadioPage from './components/pages/Inputs/Radio/Page';
-  import SelectInputPage from './components/pages/Inputs/SelectInput/Page';
-  import AutoCompletePage from './components/pages/Inputs/AutoComplete/Page';
-  import FileInputPage from './components/pages/Inputs/File/Page';
-  import TextFieldPage from './components/pages/Inputs/TextField/Page';
-  import SearchFormPage from './components/pages/Inputs/SearchForm/Page';
-  import RangePage from './components/pages/Inputs/Range/Page';
-  import DatetimePage from './components/pages/Inputs/Datetime/Page';
-  // import SwitchPage from './components/pages/Inputs/Switch/Page';
-  import CheckboxPage from './components/pages/Inputs/Checkbox/Page';
+import RadioPage from './components/pages/Inputs/Radio/Page';
+import SelectInputPage from './components/pages/Inputs/SelectInput/Page';
+import AutoCompletePage from './components/pages/Inputs/AutoComplete/Page';
+import FileInputPage from './components/pages/Inputs/File/Page';
+import TextFieldPage from './components/pages/Inputs/TextField/Page';
+import SearchFormPage from './components/pages/Inputs/SearchForm/Page';
+import RangePage from './components/pages/Inputs/Range/Page';
+import DatetimePage from './components/pages/Inputs/Datetime/Page';
+// import SwitchPage from './components/pages/Inputs/Switch/Page';
+import CheckboxPage from './components/pages/Inputs/Checkbox/Page';
 import IconsPage from './components/pages/Icons/Page';
 import LayoutPage from './components/pages/Layouts/Page';
-  import AppLayoutPage from './components/pages/Layouts/AppLayout/Page';
-  import ContentWithExtraPage from './components/pages/Layouts/ContentWithExtra/Page';
-  import SimpleGridPage from './components/pages/Layouts/SimpleGrid/Page';
-  import FlexPage from './components/pages/Layouts/Flex/Page';
+import AppLayoutPage from './components/pages/Layouts/AppLayout/Page';
+import ContentWithExtraPage from './components/pages/Layouts/ContentWithExtra/Page';
+import SimpleGridPage from './components/pages/Layouts/SimpleGrid/Page';
+import FlexPage from './components/pages/Layouts/Flex/Page';
 
 import TablePage from './components/pages/Table/Page';
 import AlertPage from './components/pages/Alert/Page';
@@ -49,7 +49,7 @@ import DataGridPage from './components/pages/DataGrid/Page';
 import GlobalMenuPage from './components/pages/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
 import DialogPage from './components/pages/Dialog/Page';
-  import WithConfirmDialogPage from './components/pages/Dialog/withConfirmDialog/Page';
+import WithConfirmDialogPage from './components/pages/Dialog/withConfirmDialog/Page';
 import PesonalizedMenuPage from './components/pages/PersonalizedMenu/Page';
 import PanelPage from './components/pages/Panel/Page';
 import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
@@ -74,44 +74,44 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/`} exact component={Home} />
       <Route path={`${match.url}/Theme`} exact component={ThemePage} />
       <Route path={`${match.url}/Panel`} exact component={PanelPage} />
-        <Route path={`${match.url}/Panel/PanelHeader`} component={PanelHeaderPage} />
-        <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
-        <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
-        <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
+      <Route path={`${match.url}/Panel/PanelHeader`} component={PanelHeaderPage} />
+      <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
+      <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
+      <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
 
       <Route path={`${match.url}/Dialog`} exact component={DialogPage} />
-        <Route path={`${match.url}/Dialog/withConfirmDialog`} exact component={WithConfirmDialogPage} />
+      <Route path={`${match.url}/Dialog/withConfirmDialog`} exact component={WithConfirmDialogPage} />
 
       <Route path={`${match.url}/Font`} exact component={FontPage} />
       <Route path={`${match.url}/color`} component={ColorPage} />
       <Route path={`${match.url}/button`} exact component={ButtonPage} />
-        <Route path={`${match.url}/button/FlatButton`} component={FlatButtonPage} />
-        <Route path={`${match.url}/button/ButtonLink`} component={ButtonLinkPage} />
+      <Route path={`${match.url}/button/FlatButton`} component={FlatButtonPage} />
+      <Route path={`${match.url}/button/ButtonLink`} component={ButtonLinkPage} />
 
       <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
-        <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
+      <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
       <Route path={`${match.url}/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/box`} component={BoxPage} />
       <Route path={`${match.url}/popover`} component={PopOverPage} />
       <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
       <Route path={`${match.url}/inputs`} exact component={InputsPage} />
-        <Route path={`${match.url}/inputs/checkbox`} component={CheckboxPage} />
-        <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
-        <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
-        <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
-        <Route path={`${match.url}/inputs/autocomplete`} component={AutoCompletePage} />
-        <Route path={`${match.url}/inputs/range`} component={RangePage} />
-        <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
-        <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
-        <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
-        {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
+      <Route path={`${match.url}/inputs/checkbox`} component={CheckboxPage} />
+      <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
+      <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
+      <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
+      <Route path={`${match.url}/inputs/autocomplete`} component={AutoCompletePage} />
+      <Route path={`${match.url}/inputs/range`} component={RangePage} />
+      <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
+      <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
+      <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
+      {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
 
       <Route path={`${match.url}/icons`} component={IconsPage} />
       <Route path={`${match.url}/layouts`} exact component={LayoutPage} />
-        <Route path={`${match.url}/layouts/AppLayout`} component={AppLayoutPage} />
-        <Route path={`${match.url}/layouts/ContentWithExtra`} component={ContentWithExtraPage} />
-        <Route path={`${match.url}/layouts/Flex`} component={FlexPage} />
-        <Route path={`${match.url}/layouts/SimpleGrid`} component={SimpleGridPage} />
+      <Route path={`${match.url}/layouts/AppLayout`} component={AppLayoutPage} />
+      <Route path={`${match.url}/layouts/ContentWithExtra`} component={ContentWithExtraPage} />
+      <Route path={`${match.url}/layouts/Flex`} component={FlexPage} />
+      <Route path={`${match.url}/layouts/SimpleGrid`} component={SimpleGridPage} />
 
       <Route path={`${match.url}/list`} component={ListPage} />
       <Route path={`${match.url}/table`} component={TablePage} />

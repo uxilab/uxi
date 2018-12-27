@@ -6,7 +6,7 @@ import { Upload } from 'uxi/Icons';
 const ExampleButtonPlayGround = () => (
   <div style={{ padding: '32px' }}>
     <div style={{ background: 'palegreen', margin: '8px' }}>
-      <FlatButton text="send" style={{  margin: '8px' }} />
+      <FlatButton text="send" style={{ margin: '8px' }} />
     </div>
 
     <div style={{ background: 'palegreen', margin: '8px' }}>
@@ -22,10 +22,6 @@ const ExampleButtonPlayGround = () => (
       <Button link="#" style={{ margin: '8px' }} link="#" text="send" />
     </div>
     <br />
-
-
-
-
 
 
     <br />

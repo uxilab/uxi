@@ -29,7 +29,6 @@ const ExampleSimple = () => (
     <hr />
 
 
-
     <h3>UserMenu (UserMenuItem only as children, right anchored)</h3>
     <br />
     <hr />
@@ -38,17 +37,15 @@ const ExampleSimple = () => (
       anchor="right"
       main={<FlatButton icon={<Options size="14" />} />}
     >
-      <MenuDropDownItem onClick={() => { console.log('Download')}} icon={<Download />}> Download </MenuDropDownItem>
-      <MenuDropDownItem onClick={() => { console.log('Delete')}} icon={<Delete />}> Delete </MenuDropDownItem>
-      <MenuDropDownItem onClick={() => { console.log('Queue')}} icon={<Add />}> Queue </MenuDropDownItem>
-      <MenuDropDownItem onClick={() => { console.log('Upload')}} icon={<Upload />}> Upload </MenuDropDownItem>
+      <MenuDropDownItem onClick={() => { console.log('Download'); }} icon={<Download />}> Download </MenuDropDownItem>
+      <MenuDropDownItem onClick={() => { console.log('Delete'); }} icon={<Delete />}> Delete </MenuDropDownItem>
+      <MenuDropDownItem onClick={() => { console.log('Queue'); }} icon={<Add />}> Queue </MenuDropDownItem>
+      <MenuDropDownItem onClick={() => { console.log('Upload'); }} icon={<Upload />}> Upload </MenuDropDownItem>
       {/* <MenuDropDown onClick={() => { console.log('')}}Item icon={<Star />}> Star </MenuDropDownItem> */}
-      <MenuDropDownItem onClick={() => { console.log('Report')}} icon={<Report />} extra={<Star size="14" />}> Report </MenuDropDownItem>
+      <MenuDropDownItem onClick={() => { console.log('Report'); }} icon={<Report />} extra={<Star size="14" />}> Report </MenuDropDownItem>
     </MenuDropDown>
     <br />
     <hr />
-
-
 
 
   </div>

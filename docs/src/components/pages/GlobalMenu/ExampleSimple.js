@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { GlobalMenu } from 'uxi/Menu';
 import {
   Keepintheloop,
@@ -15,7 +15,7 @@ import { H4, P } from 'uxi/Classic';
 import Button from 'uxi/Button';
 import { CluedinLogoText } from 'uxi/Logo';
 
-const longString = `Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit. `;
+const longString = 'Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they\'re actually proud of that shit. ';
 
 const GDPRContent = ({ close }) => (
   <div>
@@ -31,7 +31,7 @@ const GDPRContent = ({ close }) => (
 );
 
 const GDPRTitle = () => (
-   <span>ttest2</span>
+  <span>ttest2</span>
 );
 
 class ExampleSimple extends Component {
@@ -73,7 +73,7 @@ class ExampleSimple extends Component {
         displayName: 'Keep in the loop',
         key: 'Keep in the loop',
         hasNew: true,
-        isActive: (window && window.location.pathname.indexOf('/globalmenu') > -1 ),
+        isActive: (window && window.location.pathname.indexOf('/globalmenu') > -1),
         icon: <Keepintheloop />,
         onClick: () => { console.log('Keep in the loop'); },
       },
@@ -86,7 +86,7 @@ class ExampleSimple extends Component {
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>{longString}</div>),
-          Action: ({close}) => (<button tabindex="0" onClick={close}>test</button>),
+          Action: ({ close }) => (<button tabindex="0" onClick={close}>test</button>),
           width: 300,
         },
       },
@@ -120,7 +120,7 @@ class ExampleSimple extends Component {
             displayName: 'GDPR Configuration',
             content: <a tabIndex="-1" style={{ outline: 'none' }} href="#" >GDPR Configuration</a>,
           },
-        ]
+        ],
       },
       {
         active: false,
@@ -148,7 +148,7 @@ class ExampleSimple extends Component {
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>'List of Followed entities'</div>),
-          Action: ({close}) => (<button tabindex="0" onClick={close}>test</button>),
+          Action: ({ close }) => (<button tabindex="0" onClick={close}>test</button>),
           width: 300,
         },
         children: [
@@ -162,7 +162,7 @@ class ExampleSimple extends Component {
             displayName: 'GDPR Configuration',
             content: 'GDPR Configuration',
           },
-        ]
+        ],
       },
       {
         hasNew: true,
@@ -196,7 +196,7 @@ class ExampleSimple extends Component {
       <div style={{ maxWidth: '90px' }}>
         <CluedinLogoText style={{ width: '100%' }} />
       </div>
-    )
+    );
 
     const logoDescriptor = {
       onClick: () => console.log('going home'),
@@ -207,7 +207,7 @@ class ExampleSimple extends Component {
       icon: (<Cluedin size={28} />),
       isActive: (location === '/'),
     };
-/*
+    /*
     menuDescriptors.push({
       displayName: 'GDPR!',
       icon: <Settings />,
@@ -233,14 +233,16 @@ class ExampleSimple extends Component {
     return (
       // Simulate cluedin rules .root a
       <div className="root">
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             .root a {
               cursor: pointer;
               text-decoration: none;
               color: #06979e;
-          }`
-        }} >
+          }`,
+          }}
+        >
         </style>
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>
@@ -256,7 +258,7 @@ class ExampleSimple extends Component {
           isOwner
         />
 
-        <br/>
+        <br />
 
         <H4>Wrong example of GlobalMenu (inline)</H4>
         <P>
@@ -276,7 +278,7 @@ class ExampleSimple extends Component {
           isOwner
         />
 
-        <br/>
+        <br />
 
         <H4>Fixed, full sized GlobalMenu</H4>
         <P>
@@ -288,7 +290,7 @@ class ExampleSimple extends Component {
         {/* Attached to viewport */}
         <Button
           onClick={() => this.setState({ attachToViewport: !attachToViewport })}
-          text={`${attachToViewport ? 'detach from' : 'attach to' } viewport`}
+          text={`${attachToViewport ? 'detach from' : 'attach to'} viewport`}
         />
         <GlobalMenu
           attachToViewport={attachToViewport}
@@ -298,7 +300,7 @@ class ExampleSimple extends Component {
           menuDescriptors={menuDescriptors}
           isOwner
         />
-        <br/>
+        <br />
       </div>
     );
   }

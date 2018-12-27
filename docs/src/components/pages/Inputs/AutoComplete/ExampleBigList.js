@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import AutoComplete from 'uxi/AutoComplete';
 import Button from 'uxi/Button';
-//import big from './bigArray';
+// import big from './bigArray';
 /*
 const bigList = big.map(x => ({
   ...x,
   postFix: <span>{x.company}</span>
-}))*/
+})) */
 
 class ExampleBigList extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class ExampleBigList extends Component {
           }}
           items={[]}
         />
-        <Button onClick={() => console.log([])} text="log list to console"/>
+        <Button onClick={() => console.log([])} text="log list to console" />
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input'
+import { SelectInput } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 
@@ -9,23 +9,23 @@ const options = [
     pic: 'https://randomuser.me/api/portraits/women/82.jpg',
   }, {
     name: 'Regina',
-    pic: 'https://randomuser.me/api/portraits/women/37.jpg'
+    pic: 'https://randomuser.me/api/portraits/women/37.jpg',
   }, {
     name: 'rem',
-    pic: 'https://randomuser.me/api/portraits/men/3.jpg'
+    pic: 'https://randomuser.me/api/portraits/men/3.jpg',
   }, {
     name: 'Britany',
-    pic: 'https://randomuser.me/api/portraits/women/76.jpg'
-  }
-]
+    pic: 'https://randomuser.me/api/portraits/women/76.jpg',
+  },
+];
 
 class ExampleSimple extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       selectedValue: null,
-    }
+    };
   }
 
   render() {
@@ -47,7 +47,7 @@ class ExampleSimple extends Component {
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>
       </div>
-    )
+    );
   }
 }
 

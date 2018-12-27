@@ -16,7 +16,7 @@ class ExampleWithPanel extends Component {
 
   render() {
     return (
-      <div  style={{ padding: '16px' }}>
+      <div style={{ padding: '16px' }}>
         <Button
           onClick={() => { this.setState({ showSidePanelLeft: true }); }}
           text="Show from the left"
@@ -35,7 +35,7 @@ class ExampleWithPanel extends Component {
           onClose={() => { this.setState({ showSidePanelLeft: false }); }}
           open={this.state.showSidePanelLeft}
         >
-          <Panel onClose={() => this.setState({ showSidePanelLeft: false }) }>
+          <Panel onClose={() => this.setState({ showSidePanelLeft: false })}>
             <PanelHeader title={'Notifications'} />
             <PanelContent>Some more content goes here</PanelContent>
             <PanelFooter></PanelFooter>
@@ -47,7 +47,7 @@ class ExampleWithPanel extends Component {
           onClose={() => { this.setState({ showSidePanelRight: false }); }}
           open={this.state.showSidePanelRight}
         >
-          <Panel onClose={() => this.setState({ showSidePanelRight: false }) }>
+          <Panel onClose={() => this.setState({ showSidePanelRight: false })}>
             <PanelHeader title={'Notifications'} />
             <PanelContent>Some more content goes here</PanelContent>
           </Panel>
@@ -76,7 +76,7 @@ class ExampleWithPanel extends Component {
             </PanelContent>
             <PanelFooter
               cancelLabel="Exit without saving"
-              onClose={() => this.setState({ showSidePanelBottom: false }) }
+              onClose={() => this.setState({ showSidePanelBottom: false })}
             >
               <Button
                 type='primary'

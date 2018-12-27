@@ -26,7 +26,7 @@ const PanelHeaderWithExtraExample = () => (
           <span>👉</span>
           <span>
             <FlatButton
-              text={"CLICK ME"}
+              text={'CLICK ME'}
               style={{ margin: '0 8px' }}
               onClick={() => console.log('clicked')}
             />
@@ -35,10 +35,10 @@ const PanelHeaderWithExtraExample = () => (
         </div>
       </PanelHeader>
     </li>
-    <li><br/></li>
+    <li><br /></li>
     <li>
       <P>
-        {"Use the <Flex /> component as a child to get vertical alignment automatically."}
+        {'Use the <Flex /> component as a child to get vertical alignment automatically.'}
       </P>
     </li>
     <li>
@@ -50,7 +50,7 @@ const PanelHeaderWithExtraExample = () => (
         <Flex style={{ justifyContent: 'flex-start' }}>
           <div>👉</div>
           <FlatButton
-            text={"CLICK ME"}
+            text={'CLICK ME'}
             style={{ margin: '0 8px' }}
             onClick={() => console.log('clicked')}
           />
@@ -58,7 +58,7 @@ const PanelHeaderWithExtraExample = () => (
         </Flex>
       </PanelHeader>
     </li>
-    <li><br/></li>
+    <li><br /></li>
     <li>
       <P>
         And easily set up the alignment along the x axis
@@ -73,7 +73,7 @@ const PanelHeaderWithExtraExample = () => (
         <Flex style={{ justifyContent: 'flex-end' }}>
           <div>👉</div>
           <FlatButton
-            text={"CLICK ME"}
+            text={'CLICK ME'}
             style={{ margin: '0 8px' }}
             onClick={() => console.log('clicked')}
           />
@@ -81,7 +81,7 @@ const PanelHeaderWithExtraExample = () => (
         </Flex>
       </PanelHeader>
     </li>
-    <li><br/></li>
+    <li><br /></li>
     <li>
       <P>
         Overwriting background color is possible but be carrefull if you do so.
@@ -94,12 +94,12 @@ const PanelHeaderWithExtraExample = () => (
         hasClose
         title="Panel rocks!"
         onClose={() => console.log('closed')}
-        style={{ background: '#cecece'}}
+        style={{ background: '#cecece' }}
       >
         <Flex>
           <div>👉</div>
           <Button
-            text={"CLICK ME"}
+            text={'CLICK ME'}
             type="primary"
             style={{ margin: '0 8px' }}
             onClick={() => console.log('clicked')}
@@ -108,7 +108,7 @@ const PanelHeaderWithExtraExample = () => (
         </Flex>
       </PanelHeader>
     </li>
-    <li><br/></li>
+    <li><br /></li>
     <li>
       <P>
         Pass background (or backgroundColor) <strong>AND</strong> color prop in the style of the PanelHeader.
@@ -127,13 +127,13 @@ const PanelHeaderWithExtraExample = () => (
           <div style={{ marginLeft: '16px' }}>👉</div>
           <Flex style={{ flexGrow: 99 }} >
             <Button
-              text={"CLICK ME"}
+              text={'CLICK ME'}
               type="primary"
               style={{ margin: '0 8px', flexGrow: 99 }}
               onClick={() => console.log('clicked')}
             />
             <Button
-              text={"OR CLICK ME"}
+              text={'OR CLICK ME'}
               type="primary"
               style={{ margin: '0 8px', flexGrow: 99 }}
               onClick={() => console.log('clicked')}

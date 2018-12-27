@@ -6,7 +6,7 @@ import Header from 'uxi/Header';
 import { Link } from 'react-router-dom';
 import { HorizontalMenu, MenuItem } from 'uxi/Menu';
 import { AppLayout } from 'uxi/Layout';
-import ThemeProviderDynamic from './ThemeProviderDynamic'
+import ThemeProviderDynamic from './ThemeProviderDynamic';
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
 import UXILogo from './UXILogo';
@@ -57,44 +57,44 @@ const mainStyles = {
 
 const Appshell = (props) => {
   const { children } = props;
-  console.log('props', props)
+  console.log('props', props);
 
-  let appLayoutContentStyle = {}
-  let appLayoutStyle = {}
+  let appLayoutContentStyle = {};
+  let appLayoutStyle = {};
 
   if (props.location.pathname.indexOf('/components/') === 0) {
     appLayoutContentStyle = {
       maxHeight: 'calc(100% - 80px)',
       // overflowY: 'auto',
-    }
+    };
 
     appLayoutStyle = {
       maxHeight: '100vh',
       // overflowY: 'auto',
-    }
+    };
   }
 
   return (
     <div>
       <ThemeProviderDynamic>
-      <AppLayout style={appLayoutStyle}>
-        <Header isDark style={{ width: '100%', minHeight: '80px', position: 'sticky', zIndex: 100 }}>
-          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center' }}>
-              <MenuItem style={{ display: 'flex' }}>
-                <LogoWrapper>
-                  <Link to="/" >
-                    <UXILogo />
-                  </Link>
-                </LogoWrapper>
-              </MenuItem>
-              <MenuItem style={{ display: 'flex' }}>
-                <Link to="/components">Components</Link>
-              </MenuItem>
-              <MenuItem style={{ display: 'flex' }}>
-                <Link to="/get-started">Get Started</Link>
-              </MenuItem>
-             {/*  <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
+        <AppLayout style={appLayoutStyle}>
+          <Header isDark style={{ width: '100%', minHeight: '80px', position: 'sticky', zIndex: 100 }}>
+            <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+              <HorizontalMenu isMain style={{ display: 'flex', alignItems: 'center' }}>
+                <MenuItem style={{ display: 'flex' }}>
+                  <LogoWrapper>
+                    <Link to="/" >
+                      <UXILogo />
+                    </Link>
+                  </LogoWrapper>
+                </MenuItem>
+                <MenuItem style={{ display: 'flex' }}>
+                  <Link to="/components">Components</Link>
+                </MenuItem>
+                <MenuItem style={{ display: 'flex' }}>
+                  <Link to="/get-started">Get Started</Link>
+                </MenuItem>
+                {/*  <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
                 <AutoCompleteWrapper style={{ marginTop: '24px' }}>
                   <AutoComplete
                     items={routes}
@@ -103,14 +103,14 @@ const Appshell = (props) => {
                   />
                 </AutoCompleteWrapper>
               </MenuItem> */}
-              <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
-                <GithubLink />
-              </MenuItem>
-            </HorizontalMenu>
-          </div>
-        </Header>
-        <div style={appLayoutContentStyle}>{children}</div>
-      </AppLayout>
+                <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
+                  <GithubLink />
+                </MenuItem>
+              </HorizontalMenu>
+            </div>
+          </Header>
+          <div style={appLayoutContentStyle}>{children}</div>
+        </AppLayout>
       </ThemeProviderDynamic>
       <style
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger

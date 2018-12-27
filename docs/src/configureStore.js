@@ -1,14 +1,14 @@
 // configureStore.js
 
-import { createBrowserHistory } from 'history'
-import { applyMiddleware, compose, createStore } from 'redux'
-import { routerMiddleware } from 'connected-react-router'
-import createRootReducer from './reducers'
-import logger from 'redux-logger'
+import { createBrowserHistory } from 'history';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
+import createRootReducer from './reducers';
+import logger from 'redux-logger';
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
-const initialState = {}
+const initialState = {};
 
 export const store = createStore(
   createRootReducer(history), // root reducer with router state
@@ -20,6 +20,6 @@ export const store = createStore(
       // ... other middlewares ...
     ),
   ),
-)
+);
 
 export default store;

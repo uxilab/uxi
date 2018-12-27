@@ -8,10 +8,10 @@ import {
   TableHeaderColumn,
 } from 'uxi/Table';
 import {
-  AvatarWithName
+  AvatarWithName,
 } from 'uxi/Img';
 import {
-  ProgressBar
+  ProgressBar,
 } from 'uxi/Indicator';
 
 const ExampleSimple = () => (
@@ -27,7 +27,7 @@ const ExampleSimple = () => (
     <TableBody>
       <TableRow>
         <TableRowColumn>
-          <AvatarWithName name="Jon Snow"/>
+          <AvatarWithName name="Jon Snow" />
         </TableRowColumn>
         <TableRowColumn>
           <p>King in the North</p>
@@ -38,7 +38,7 @@ const ExampleSimple = () => (
       </TableRow>
       <TableRow>
         <TableRowColumn>
-          <AvatarWithName name="Daenerys Targaryen"/>
+          <AvatarWithName name="Daenerys Targaryen" />
         </TableRowColumn>
         <TableRowColumn>
           <p>Queen of the Andals and the First Men</p>
@@ -52,7 +52,7 @@ const ExampleSimple = () => (
       </TableRow>
       <TableRow>
         <TableRowColumn>
-          <AvatarWithName name="Tyrion Lannister"/>
+          <AvatarWithName name="Tyrion Lannister" />
         </TableRowColumn>
         <TableRowColumn>
           <p>Hand of the Queen</p>
@@ -63,7 +63,7 @@ const ExampleSimple = () => (
       </TableRow>
       <TableRow>
         <TableRowColumn>
-          <AvatarWithName name="Jaime Lannister"/>
+          <AvatarWithName name="Jaime Lannister" />
         </TableRowColumn>
         <TableRowColumn>
           <p>Lord Commander of the Kingsguard</p>

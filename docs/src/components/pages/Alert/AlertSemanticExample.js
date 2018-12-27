@@ -4,11 +4,11 @@ import { P } from '../../../../../src/Classic';
 
 const AlertSemanticExample = () => (
   <div>
-    <Alert type="error" noIcon  showClose>
+    <Alert type="error" noIcon showClose>
       This is an danger Alert without icon and close btn! Daaaanger zone....
     </Alert>
     <br />
-    <Alert type="danger"  showClose>
+    <Alert type="danger" showClose>
       This is an danger Alert with icon and close btn! Daaaanger zone....
     </Alert>
     <br />

@@ -5,7 +5,7 @@ import {
 } from './whiteLabelActions';
 
 const defaultState = {
-  theme: 'theme'
+  theme: 'theme',
 };
 
 const reducer = handleActions(
@@ -19,7 +19,7 @@ const reducer = handleActions(
       ...(console.log('state in reducer', state, 'color', color) || {}),
       ...state,
       secondary: color,
-    })
+    }),
   },
   defaultState
 );

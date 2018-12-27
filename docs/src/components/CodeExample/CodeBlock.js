@@ -68,10 +68,10 @@ ${this.props.children}
          <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
        </div>
        <MarkDownElement style={codeStyle} text={text} lang="js" />
-      {
-        this.props.description &&
-        <MarkDownElement style={descriptionStyle} text={this.props.description} />
-      }
+       {
+         this.props.description &&
+         <MarkDownElement style={descriptionStyle} text={this.props.description} />
+       }
      </div>
    );
  }

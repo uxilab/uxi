@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Code } from 'uxi/Icons';
-import { H3 } from 'uxi/Classic'
+import { H3 } from 'uxi/Classic';
 
 const styles = {
   display: 'flex',

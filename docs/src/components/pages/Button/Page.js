@@ -50,9 +50,9 @@ const ButtonPage = () => (
           hasPadding
         />
       </li>
-      </ul>
-      <Title text="Button example" />
-      <ul>
+    </ul>
+    <Title text="Button example" />
+    <ul>
       <li>
         <CodeExample
           code={RAWExampleSimpleWithIcon}
@@ -94,7 +94,7 @@ const ButtonPage = () => (
           <ExampleSimpleFlat />
         </CodeExample>
       </li> */}
-        <li>
+      <li>
         <CodeExample
           code={RAWExampleButtonWithConfirm}
           component

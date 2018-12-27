@@ -5,11 +5,11 @@ import { Flex } from 'uxi/Layout';
 
 class DialogFSExample extends Component {
   constructor(props) {
-    super(props)
-    this.state = { show: false }
+    super(props);
+    this.state = { show: false };
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Button onClick={() => this.setState({ show: true })}>
@@ -22,7 +22,7 @@ class DialogFSExample extends Component {
           </Button>
         </Dialog>
       </div>
-    )
+    );
   }
 }
 

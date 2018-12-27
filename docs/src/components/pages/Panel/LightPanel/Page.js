@@ -14,7 +14,7 @@ import RAWMDLightPanelControlledScrollExample from '!raw-loader!./LightPanelCont
 
 const LightPanelPage = () => (
   <div>
-  <Title text="LightPanel" />
+    <Title text="LightPanel" />
     <ul>
       <li>
         <CodeExample

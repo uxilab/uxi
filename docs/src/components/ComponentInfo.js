@@ -3,7 +3,7 @@
 import React from 'react';
 import { parse } from 'react-docgen';
 import { H1, H3, P } from 'uxi/Classic';
-import { 
+import {
   TableSimple as Table,
   TableBody,
   TableHeader,
@@ -15,7 +15,7 @@ import { 
 
 const ComponentInfo = ({ code }) => {
   const componentInfo = parse(code);
-  return 'hi'
+  return 'hi';
 
   return (
     <div style={{ border: '1px solid #cacaca' }}>
@@ -25,7 +25,7 @@ const ComponentInfo = ({ code }) => {
       </P>
 
       <H3>Props</H3>
-       <Table>
+      <Table>
         <TableHeader>
           <TableRow>
             <TableHeaderColumn width="70%" >name</TableHeaderColumn>
@@ -34,13 +34,13 @@ const ComponentInfo = ({ code }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-           {
-            Object.keys(componentInfo.props).map(key => {
+          {
+            Object.keys(componentInfo.props).map((key) => {
               const prop = componentInfo.props[key];
-              console.log('key', key)
-              console.log('componentInfo', componentInfo)
-              console.log('prop', prop)
-              const name = key
+              console.log('key', key);
+              console.log('componentInfo', componentInfo);
+              console.log('prop', prop);
+              const name = key;
 
               return (
                 <TableRow>
@@ -48,7 +48,7 @@ const ComponentInfo = ({ code }) => {
                   <TableRowColumn>{prop.defaultValue.value}</TableRowColumn>
                   <TableRowColumn>{prop.required}</TableRowColumn>
                 </TableRow>
-              )
+              );
             })
           }
         </TableBody>
@@ -58,7 +58,7 @@ const ComponentInfo = ({ code }) => {
         {JSON.stringify(componentInfo, 2, 2)}
       </pre>
     </div>
-  )
-}
+  );
+};
 
-export default ComponentInfo
+export default ComponentInfo;

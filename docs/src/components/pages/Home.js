@@ -18,12 +18,12 @@ const Home = () => (
       <ListItem>Highly composable</ListItem>
       <ListItem>Whitre labeling</ListItem>
     </SimpleList>
-    <hr/>
+    <hr />
     <H3>README.md</H3>
     <P style={{ background: 'white', padding: '32px 8px' }}>
       <MarkDownElement text={RAWReadme} lang="js" />
     </P>
-    <hr/>
+    <hr />
     <H3>Component list</H3>
     <ul>
       {
@@ -31,7 +31,7 @@ const Home = () => (
           <li style={{ padding: '8px' }}>
             <Link to={`/components${route.path}`}>{route.label}</Link>
             {route.childRoutes
-              ?  (<ul>
+              ? (<ul>
                 {
                   route.childRoutes.map(route => (
                     <li style={{ padding: '8px', paddingLeft: '16px' }}>

@@ -4,7 +4,7 @@ import { MiniLoader, Loader } from 'uxi/Motion';
 const LoaderExample = () => (
   <div>
     <MiniLoader />
-    <Loader/>
+    <Loader />
     <Loader type="error" />
     <Loader type="success" />
     <Loader type="warning" size={80} />

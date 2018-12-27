@@ -11,24 +11,24 @@ import RAWExampleAppLayout from '!raw-loader!./ExampleAppLayout';
 const Layouts = () => (
   <div>
     <H1>App Layouts </H1>
-      <CodeExample
-        code={RAWAppLayout}
-        component
-        title="AppLayout"
-        description={componentInfoToMD(RAWAppLayout)}
-        hasPadding
-      />
+    <CodeExample
+      code={RAWAppLayout}
+      component
+      title="AppLayout"
+      description={componentInfoToMD(RAWAppLayout)}
+      hasPadding
+    />
 
-      <br />
+    <br />
 
-      <CodeExample
-        code={RAWExampleAppLayout}
-        component
-        title="AppLayout"
-        hasPadding
-      >
-        <ExampleAppLayout />
-      </CodeExample>
+    <CodeExample
+      code={RAWExampleAppLayout}
+      component
+      title="AppLayout"
+      hasPadding
+    >
+      <ExampleAppLayout />
+    </CodeExample>
   </div>
 );
 

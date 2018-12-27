@@ -4,7 +4,7 @@ import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 
 import ExampleSimpleDataGrid from './ExampleSimpleDataGrid';
-import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid'; 
+import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid';
 
 import ExampleSimpleDataGridOnlySomeKey from './ExampleSimpleDataGridOnlySomeKey';
 import RAWExampleSimpleDataGridOnlySomeKey from '!raw-loader!./ExampleSimpleDataGridOnlySomeKey';
@@ -41,7 +41,7 @@ const TablePage = () => (
       code={RAWExampleSimpleDataGridWithCustomType}
       title="Data Grid with custom type renderer"
     >
-      
+
     </CodeExample>
 
     <ExampleSimpleDataGridWithCustomType />
@@ -58,8 +58,8 @@ const TablePage = () => (
 export default TablePage;
 
 /**
- * 
- * 
+ *
+ *
  * const person = {
   firstName: "Denis",
   lastName: 'Florkin',
@@ -82,10 +82,9 @@ UX Guideliens :
 
 - Dashboard Multiple Widget
 
-- List 1 Entity Type 
+- List 1 Entity Type
 - Detail 1 Entity Type
 - Quickview 1 Entity Type
-
 
 
 class PersonMetaData extends MetaData {
@@ -106,7 +105,7 @@ class PersonMetaData extends MetaData {
     },
   ],
   static grid = {
-    
+
   };
   staic quickView = {
 

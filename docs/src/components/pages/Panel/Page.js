@@ -11,10 +11,10 @@ import RAWMDPanelExample from '!raw-loader!./PanelExample.md';
 
 const PanelPage = () => (
   <div>
-  <Title text="Panel" />
+    <Title text="Panel" />
     <ul>
       <li>
-       <CodeExample
+        <CodeExample
           code={RAWPanel}
           component
           title="Panel"

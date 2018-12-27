@@ -7,11 +7,11 @@ import { LightPanel, LightPanelHeader, LightPanelContent, LightPanelFooter } fro
 
 class LightPanelExample extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
 
-    }
+    };
   }
 
   render() {

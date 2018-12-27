@@ -3,18 +3,18 @@ import Dialog from 'uxi/Dialog';
 import { P, H3 } from 'uxi/Classic';
 import Button from 'uxi/Button';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
-import Search from '../../../Search'
+import Search from '../../../Search';
 
 class DialogPanelOverflowExample extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-       show: false ,
-       show2: false ,
-      }
+      show: false,
+      show2: false,
+    };
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Button onClick={() => this.setState({ show: true })}>
@@ -64,7 +64,7 @@ class DialogPanelOverflowExample extends Component {
           </Panel>
         </Dialog>
       </div>
-    )
+    );
   }
 }
 

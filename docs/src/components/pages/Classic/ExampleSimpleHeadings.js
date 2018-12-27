@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Title, H1, H2, H3, H4, H5, H6
+  Title, H1, H2, H3, H4, H5, H6,
 } from 'uxi/Classic';
 
 const ExampleSimpleHeadings = () => (

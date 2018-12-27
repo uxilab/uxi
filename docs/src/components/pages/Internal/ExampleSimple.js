@@ -29,7 +29,7 @@ class ExampleSimple extends Component {
   render() {
     return (
       <div>
-       {/*  <br />
+        {/*  <br />
         <Button onClick={() => { this.setState({ showSidePanelTop: true }); }}> Show SidePanel Top </Button><br />
         <Button onClick={() => { this.setState({ showSidePanelTop2: !this.state.showSidePanelTop2 }); }}> Show SidePanel Top 2 </Button><br />
         {'This is not a good idea like implemented right now (`Slide>stuff`):'}<br />

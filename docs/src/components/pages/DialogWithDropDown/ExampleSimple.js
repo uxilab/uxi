@@ -74,7 +74,6 @@ const ExampleSimple = () => (
       </div>
 
 
-
       <DialogFooter>
         <Button type="primary"> Save </Button>
       </DialogFooter>

@@ -36,14 +36,14 @@ const DialogPage = () => (
     <Title text="Dialog" />
     <ul>
       <li>
-         <CodeExample
+        <CodeExample
           code={RAWDialog}
           component
           title="Dialog"
           description={componentInfoToMD(RAWDialog)}
           hasPadding
-         />
-       </li>
+        />
+      </li>
       <li><Title text="Dialog examples" /></li>
       <li>
         <CodeExample

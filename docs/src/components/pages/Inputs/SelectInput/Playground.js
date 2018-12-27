@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input'
-import WithBoundingRect from 'uxi/internal/WithBoundingRect'
-import DropDown2 from 'uxi/internal/DropDown2'
+import { SelectInput } from 'uxi/Input';
+import WithBoundingRect from 'uxi/internal/WithBoundingRect';
+import DropDown2 from 'uxi/internal/DropDown2';
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 import { Options } from 'uxi/Icons';
-import {FlatButton} from 'uxi/Button';
+import { FlatButton } from 'uxi/Button';
 
 const options = [
   {
@@ -13,28 +13,27 @@ const options = [
     pic: 'https://randomuser.me/api/portraits/women/82.jpg',
   }, {
     name: 'Regina',
-    pic: 'https://randomuser.me/api/portraits/women/37.jpg'
+    pic: 'https://randomuser.me/api/portraits/women/37.jpg',
   }, {
     name: 'rem',
-    pic: 'https://randomuser.me/api/portraits/men/3.jpg'
+    pic: 'https://randomuser.me/api/portraits/men/3.jpg',
   }, {
     name: 'Britany',
-    pic: 'https://randomuser.me/api/portraits/women/76.jpg'
-  }
-]
+    pic: 'https://randomuser.me/api/portraits/women/76.jpg',
+  },
+];
 
 
 class Playground extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       selectedValue: null,
-    }
+    };
   }
 
   render() {
-
     const Show = ({ rect, children, scrollOffset }) => (
       <pre>
         {JSON.stringify(rect, 2, 2)}
@@ -61,7 +60,7 @@ class Playground extends Component {
           </DropDown2>
         </Flex>
       </div>
-    )
+    );
   }
 }
 

@@ -6,6 +6,7 @@ import RAWExampleSimple from '!raw-loader!./ExampleSimple';
 import ExampleEmptyTree from './ExampleEmptyTree';
 import RAWExampleEmptyTree from '!raw-loader!./ExampleEmptyTree';
 import CodeExample from '../../CodeExample';
+
 const TreePage = () => (
   <div>
     <Title text="Tree Component" />

@@ -3,7 +3,7 @@
 import React from 'react';
 import { parse } from 'react-docgen';
 import { H1, H3, P } from 'uxi/Classic';
-import { 
+import {
   TableSimple as Table,
   TableBody,
   TableHeader,
@@ -15,18 +15,18 @@ import SuggestAnEdit from './SuggestAnEdit';
 
 
 export const componentInfoToMD = (rawCode) => {
-  let componentInfo = null
+  let componentInfo = null;
   try {
     componentInfo = parse(rawCode);
   } catch (err) {
-    console.warn('Failed to parse or find a suitable component definition')
+    console.warn('Failed to parse or find a suitable component definition');
   }
 
   if (componentInfo === null) {
     return ([
-        '  — no doc from code —  ',
-        ' \n ',
-        '[suggest an edit](https://github.com/uxilab/uxi/issues/new?title=Suggestion)',
+      '  — no doc from code —  ',
+      ' \n ',
+      '[suggest an edit](https://github.com/uxilab/uxi/issues/new?title=Suggestion)',
     ].join(''));
   }
 
@@ -34,7 +34,7 @@ export const componentInfoToMD = (rawCode) => {
 | name  | default value | type | required | description |
 | ----- | ------------- | ---- | -------- | ----------- |
 ${
-  Object.keys(componentInfo.props).map(key => {
+  Object.keys(componentInfo.props).map((key) => {
     const prop = componentInfo.props[key];
     return [
       `| \`${key}\` |`,
@@ -43,8 +43,8 @@ ${
       `${((prop.type && prop.type.name === 'enum') && `(${prop.type.value.map(x => x.value).join(', ')})`) || ' — '} |`,
       `${prop.required || ' — '} |`,
       `${(prop.description && prop.description.replace(/\n/g, ' ')) || ' — '}`,
-      '\n'
-    ].join('')
+      '\n',
+    ].join('');
   }).join('')
 }
 
@@ -55,19 +55,17 @@ ${
 | name  | params | returns | modifiers | description |
 | ----- | ------ | ------- | --------- | ----------- |
 ${
-  componentInfo.methods.map(method => {
-    return [
+    componentInfo.methods.map(method => [
       `| \`${method.name || ''}\` |`,
       `${(method.params && method.params.map(p => p && (`\`${p.name}\` :${p.type}`)).join(', ')) || ' — '} |`,
       `${method.returns || ' — '} |`,
       `${method.modifiers || ' — '} |`,
       `${(method.docblock && method.docblock.replace(/\n/g, ' ')) || ' — '}`,
-      '\n'
-    ].join('')
-  }).join('')
-}`) || '';
+      '\n',
+    ].join('')).join('')
+    }`) || '';
 
-const rawDetail = `
+  const rawDetail = `
 
 
 <div>
@@ -91,4 +89,4 @@ ${propsInfo}
 ${methodsData}
 ${componentInfo.description}
   `);
-}
+};
