@@ -9,23 +9,23 @@ export const OutlineButtonBaseMixin = css`;
   color: ${({ theme, type, disabled }) => (
   // eslint-disable-next-line no-nested-ternary
     disabled
-      ? theme.palette.grey
-    : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
+      ? theme.palette.lightGrey
+      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
   )};
   border-color: ${({ disabled, theme, type }) => (
     disabled
-      ? theme.palette.grey
+      ? theme.palette.lightGrey
       : type
         ? getTypeColor(theme, type)
-        : theme.palette.lightGrey
+        : theme.palette.darkGrey
   )};
   & {
     color: ${({ disabled, theme, type }) => (
       disabled
-        ? theme.palette.grey
+        ? theme.palette.lightGrey
         : type
           ? `${getTypeColor(theme, type)}`
-          : theme.palette.lightGrey
+          : theme.palette.darkGrey
     )};
   }
 
@@ -35,16 +35,21 @@ export const OutlineButtonBaseMixin = css`;
   svg { fill: ${({ theme, type, disabled }) => (
     // eslint-disable-next-line no-nested-ternary
     disabled
-      ? theme.palette.grey
-    : (type ? getTypeColor(theme, type) : theme.palette.lightGrey)
+      ? theme.palette.lightGrey
+      : (type ? getTypeColor(theme, type) : theme.palette.darkGrey)
   )}}
 
   &:hover {
     & {
       color: ${({ disabled, theme }) => (
         disabled
-          ? theme.palette.grey
+          ? theme.palette.lightGrey
           : '#fff'
+      )};
+      border-color: ${({ disabled, theme }) => (
+        disabled
+          ? theme.palette.lightGrey
+          : theme.palette.grey
       )};
     }
     background-color: ${({ disabled, type, theme }) => (
@@ -53,12 +58,16 @@ export const OutlineButtonBaseMixin = css`;
         : type ? getTypeColor(theme, type) : theme.palette.grey
     )};
     * { color: inherit; }
-    svg { fill: ${({ type }) => (type ? '#ffffff' : '#ffffff')}
+    svg { fill: ${({ type, disabled, theme }) => (disabled ? theme.palette.lightGrey : (type ? getTypeColor(theme, type) : '#fff'))}
   }
 
-  svg {
-    ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
-  }
+  /* svg {
+    fill: ${({ type, disabled, theme }) => (
+      disabled
+        ? theme.palette.lightGrey
+        : type ? getTypeColor(theme, type) : theme.palette.darkGrey
+    )};
+  } */
 }
 `;
 

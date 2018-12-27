@@ -10,6 +10,10 @@ const ExampleSimpleFlat = () => (
     <FlatButton icon={<Download />} type="info" />
     <FlatButton icon={<Followentities />} type="primary" />
     <FlatButton icon={<Delete />} type="error" />
+    <FlatButton icon={<Delete />} />
+    <FlatButton icon={<Delete />} disabled />
+    <FlatButton icon={<Delete />} text="Delete" />
+    <FlatButton icon={<Delete />} disabled text="Delete" />
     <FlatButton text="send" />
     <FlatButton type="primary" text="SUBMIT" />
     <FlatButton type="warning" text="IGNORE" />
