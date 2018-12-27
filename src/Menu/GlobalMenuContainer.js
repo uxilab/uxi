@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import defaults from './defaults'; // eslint-disable-line import/no-named-as-default
 
 const {
-  menuWidth,
-  bigMenuWidth,
-  breakpoint,
+  menuWidth: defaultMenuWidth,
+  bigMenuWidth: defaultBigMenuWidth,
+  breakpoint: defaultBreakpoint,
 } = defaults;
 
 const getPosition = ({ attachToViewport }) => (
@@ -29,19 +29,32 @@ const GlobalMenuDiv = styled.div`
   height: 100vh;
   height: ${({ attachToViewport }) => (attachToViewport ? '100vh' : '100%')};
   text-align: center;
-  width: ${menuWidth};
+  width: ${({ menuWidth }) => menuWidth};
   background-color: ${({ theme: { palette: { primary: { dark } } } }) => (dark || '#15303f')};
   /* z-index: 99; need to be applied on children */
   transition:  ${({ theme: { transition } }) => transition.default};
-  @media (min-width: ${breakpoint}) {
-    width: ${bigMenuWidth};
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
+    width: ${({ bigMenuWidth }) => bigMenuWidth};
     transition:  ${({ theme: { transition } }) => transition.default};
   }
 `;
 
-const GlobalMenuContainer = ({ /* backgroundColor,  */children, attachToViewport, innerStyle }) => (
+const GlobalMenuContainer = ({
+  children,
+  attachToViewport,
+  innerStyle,
+  breakpoint,
+  menuWidth,
+  bigMenuWidth,
+}) => (
   <div style={{ position: 'relative' }}>
-    <GlobalMenuDiv attachToViewport={attachToViewport} style={innerStyle}>
+    <GlobalMenuDiv
+      attachToViewport={attachToViewport}
+      style={innerStyle}
+      breakpoint={breakpoint}
+      menuWidth={menuWidth}
+      bigMenuWidth={bigMenuWidth}
+    >
       {children}
     </GlobalMenuDiv>
   </div>
@@ -53,6 +66,9 @@ GlobalMenuContainer.propTypes = {
 
 GlobalMenuContainer.defaultProps = {
   children: null,
+  breakpoint: defaultBreakpoint,
+  menuWidth: defaultMenuWidth,
+  bigMenuWidth: defaultBigMenuWidth,
 };
 
 export default GlobalMenuContainer;

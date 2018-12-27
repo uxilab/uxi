@@ -8,7 +8,7 @@ import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQue
 
 const {
   borderThickness,
-  breakpoint,
+  breakpoint: defaultBreakpoint,
 } = defaults;
 
 const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
@@ -24,7 +24,7 @@ const LinkDecorator = styled.div`
     display: flex;
     flex-direction: column;
 
-    @media (min-width: ${breakpoint}) {
+    @media (min-width: ${({ breakpoint }) => breakpoint }) {
       flex-direction: row;
     }
   }
@@ -94,7 +94,7 @@ const GlobalMenuItemDiv = styled.a`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: ${breakpoint}) {
+  @media (min-width: ${({ breakpoint }) => breakpoint }) {
     flex-direction: row;
   }
 
@@ -175,7 +175,7 @@ const LabelDiv = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media (min-width: ${breakpoint}) {
+  @media (min-width: ${({ breakpoint }) => breakpoint }) {
     font-size: inherit;
 
     padding-left: 10px;
@@ -216,6 +216,7 @@ const GlobalMenuItem = (props) => {
     Link,
     to,
     href,
+    breakpoint,
   } = props;
 
   let isNewContent;
@@ -252,9 +253,10 @@ const GlobalMenuItem = (props) => {
       key={`mainMenuItemContainer-${index}`}
       {...linkProps}
       onClick={onClick}
+      breakpoint={breakpoint}
     >
       {icon}
-      <LabelDiv> {label} </LabelDiv>
+      <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
       {isNewContent}
     </GlobalMenuItemDivFinal>
   );
@@ -262,6 +264,7 @@ const GlobalMenuItem = (props) => {
   if (Link !== undefined) {
     resContent = (
       <LinkDecorator
+        breakpoint={breakpoint}
         primaryColor={primaryColor}
         isSelected={isSelected}
         isActive={isActive}
@@ -273,7 +276,7 @@ const GlobalMenuItem = (props) => {
           onClick={onClick}
         >
           {icon}
-          <LabelDiv> {label} </LabelDiv>
+          <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
           {isNewContent}
         </Link>
       </LinkDecorator>
@@ -290,7 +293,6 @@ const GlobalMenuItem = (props) => {
         {
           resContent
         }
-
       </Tooltip>
     </PropsMapperContainerQueries>
   );

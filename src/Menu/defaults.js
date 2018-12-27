@@ -33,7 +33,7 @@ export const GlobalMenuItemBase = css`
     transition: inherit;
   }
 
-  @media (min-width: ${defaults.breakpoint}) {
+  @media (min-width: ${({ breakpoint }) => breakpoint || defaults.breakpoint}) {
     justify-content: start;
     padding: ${`16px 0 16px ${defaults.borderThickness}`};
     padding: 16px 24px;

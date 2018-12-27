@@ -5,7 +5,7 @@ import defaults, { buttonReset } from './defaults';
 import { darken } from '../Theme/colorManipulator';
 
 const {
-  breakpoint,
+  breakpoint: defaultBreakpoint,
 } = defaults;
 
 const getAccessibilityRules = ({ isParentSelected }) => {
@@ -15,7 +15,7 @@ const getAccessibilityRules = ({ isParentSelected }) => {
   return 'pointer-events: none; visibility: collapse';
 };
 
-
+/* eslint-disable indent */
 const LinkDecorator = styled.div`
   & a {
 
@@ -43,15 +43,15 @@ const LinkDecorator = styled.div`
     cursor: pointer;
     background: ${({ theme: { palette } }) => darken(palette.primary.dark)};
     color: ${({ isSelected, isActive, theme: { palette } }) => (
-    isSelected || isActive ? palette.accent.light : palette.lightGrey
-  )};
+      isSelected || isActive ? palette.accent.light : palette.lightGrey
+    )};
 
     &,
     /* TODO fix tihs .root a situation */
     .root & {
       color: ${({ isSelected, isActive, theme: { palette } }) => (
-    isSelected || isActive ? palette.accent.light : palette.lightGrey
-  )}
+        isSelected || isActive ? palette.accent.light : palette.lightGrey
+      )}
     };
     height: 0px;
     max-height: 0px;
@@ -68,31 +68,31 @@ const LinkDecorator = styled.div`
       & { color: #fff; }
       transition: inherit;
       background: ${({ isSelected, theme: { palette } }) =>
-    (isSelected ? palette.primary.dark : palette.primary.light)
-};
+        (isSelected ? palette.primary.dark : palette.primary.light)
+      };
       color: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+        ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+      };
     }
 
     &:hover, &:hover:focus, &:hover:not(:focus) {
       /* color: #fff; */
       color: ${({ isSelected, isActive, theme: { palette } }) => (
-    isSelected && isActive ? palette.accent.light : palette.pureWhite
-  )};
+        isSelected && isActive ? palette.accent.light : palette.pureWhite
+      )};
 
       background: ${({ isSelected, isActive, theme: { palette } }) => (
-    isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
-  )};
+        isSelected && isActive ? darken(palette.primary.dark) : palette.primary.light
+      )};
       & {
         color: ${({ isSelected, isActive, theme: { palette } }) => (
-    isSelected && isActive ? palette.accent.light : palette.pureWhite
-  )};
+        isSelected && isActive ? palette.accent.light : palette.pureWhite
+      )};
       }
     }
 
 
-    @media (max-width: ${breakpoint}) {
+    @media (max-width: ${({ breakpoint }) => breakpoint}) {
       display:none;
     }
 
@@ -100,6 +100,7 @@ const LinkDecorator = styled.div`
     ${props => getAccessibilityRules(props)};
   }
 `;
+/* eslint-enable indent */
 
 const GlobalMenuSubItemDiv = styled.a`
   ${buttonReset};
@@ -176,7 +177,7 @@ const GlobalMenuSubItemDiv = styled.a`
   }
 
 
-  @media (max-width: ${breakpoint}) {
+  @media (max-width: ${({ breakpoint }) => breakpoint}) {
     display:none;
   }
 
@@ -201,6 +202,7 @@ const GlobalMenuSubItem = (props) => {
     Link,
     to,
     href,
+    breakpoint,
   } = props;
 
   let linkProps = {};
@@ -220,6 +222,7 @@ const GlobalMenuSubItem = (props) => {
 
   let resContent = (
     <GlobalMenuItemButton
+      breakpoint={breakpoint}
       isFirstSubItem={isFirstSubItem}
       isLastSubItem={isLastSubItem}
       primaryColor={primaryColor}
@@ -238,6 +241,7 @@ const GlobalMenuSubItem = (props) => {
   if (Link) {
     resContent = (
       <LinkDecorator
+        breakpoint={breakpoint}
         isFirstSubItem={isFirstSubItem}
         isLastSubItem={isLastSubItem}
         primaryColor={primaryColor}
@@ -261,5 +265,9 @@ const GlobalMenuSubItem = (props) => {
 };
 
 GlobalMenuSubItem.displayName = 'GlobalMenuSubItem';
+
+GlobalMenuSubItem.defaultProps = {
+  breakpoint: defaultBreakpoint,
+};
 
 export default GlobalMenuSubItem;

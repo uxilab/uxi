@@ -88,6 +88,9 @@ class GlobalMenu extends Component {
       logoDescriptor,
       attachToViewport,
       style,
+      breakpoint,
+      menuWidth,
+  bigMenuWidth,
       innerStyle,
       fullViewportWidthPanel: fullViewportWidthPanelProp,
     } = this.props;
@@ -146,6 +149,7 @@ class GlobalMenu extends Component {
 
     const theLogo = logoDescriptor && (
       <GlobalMenuLogo
+
         key={logoDescriptor.key || 'GlobalMenuMainLogo'}
         label={(logoDescriptor.displayName || '')}
         icon={logoDescriptor.icon}
@@ -172,6 +176,9 @@ class GlobalMenu extends Component {
       <div style={{ ...layoutContext, ...style }}>
         <div>
           <GlobalMenuWrapper
+            breakpoint={breakpoint}
+            menuWidth={menuWidth}
+            bigMenuWidth={bigMenuWidth}
             logo={theLogo}
             onLogoClick={onLogoClick}
             selectedKey={selected}

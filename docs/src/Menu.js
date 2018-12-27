@@ -65,11 +65,14 @@ export const GlobalDocAppMenu = (props) => {
 
   return (
     <GlobalMenu
+      isOwner
       // attachToViewport={true}
       logoDescriptor={null}
       activeKey="GlobalMenu"
       menuDescriptors={menuDescriptors}
-      isOwner
+      breakpoint="600px"
+      menuWidth="70px"
+      bigMenuWidth="170px"
     />
   );
 };

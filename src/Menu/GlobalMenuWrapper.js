@@ -27,12 +27,16 @@ const GlobalMenuWrapper = ({
   innerStyle,
   fullViewportWidthPanel,
   handlePanelClickOutside,
+  breakpoint,
+  menuWidth,
+  bigMenuWidth,
 }) => {
   const menuDescriptorsContent = [];
 
   (menuDescriptors || []).forEach((menuDescriptor) => {
     menuDescriptorsContent.push(
       <GlobalMenuItem
+        breakpoint={breakpoint}
         key={menuDescriptor.key}
         isSelected={menuDescriptor.isSelected}
         isActive={menuDescriptor.isActive}
@@ -57,6 +61,7 @@ const GlobalMenuWrapper = ({
       menuDescriptor.children.forEach((child, idx, list) => {
         menuDescriptorsContent.push(
           <GlobalMenuSubItem
+            breakpoint={breakpoint}
             isFirstSubItem={idx === 0}
             isLastSubItem={idx === list.length - 1}
             key={child.key}
@@ -102,6 +107,9 @@ const GlobalMenuWrapper = ({
 
   return (
     <GlobalMenuContainer
+      breakpoint={breakpoint}
+      menuWidth={menuWidth}
+      bigMenuWidth={bigMenuWidth}
       backgroundColor={backgroundColor}
       attachToViewport={attachToViewport}
       innerStyle={innerStyle}
