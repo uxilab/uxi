@@ -1,5 +1,5 @@
 import React from 'react';
-import ExampleButtonWithLoadingState from '../Button/ExampleButtonWithLoadingState';
+import ExampleSimpleWithIcon from '../Button/ExampleSimpleWithIcon';
 import ExampleSimpleOutline from '../Button/OutlineButton/ExampleSimpleOutline';
 import ExampleSimpleFlat from '../Button/FlatButton/ExampleSimpleFlat';
 import ExampleSimpleWithWidth from '../Inputs/SelectInput/ExampleSimpleWithWidth';
@@ -11,7 +11,7 @@ import DialogPanelFSExample from '../Dialog/DialogPanelFSExample';
 
 const ShowCase = () => (
   <div>
-    <ExampleButtonWithLoadingState /> <br />
+    <ExampleSimpleWithIcon /> <br />
     <ExampleSimpleOutline /> <br />
     <ExampleSimpleFlat /> <br />
     <ExampleSimpleWithWidth /> <br />

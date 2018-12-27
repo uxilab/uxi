@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button } from 'uxi/Button';
-import { Github } from 'uxi/Icons';
+import { Github, Idea, Delete, Options } from 'uxi/Icons';
 import { List } from 'uxi/List';
 
 
 const ExampleSimpleWithIcon = () => (
   <List>
+    <Button icon={<Options />}  />
     <Button icon={<Github />} type="error" text="reconnect" />
+    <Button icon={<Github />} type="error" />
+    <Button icon={<Idea />} type="success" />
+    <Button icon={<Delete />} type="error" />
     <Button
       icon={(
         <svg

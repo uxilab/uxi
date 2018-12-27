@@ -17,7 +17,7 @@ function isDOMTypeElement(element) {
 }
 
 const TriggererWrapperWithEllispsisChildren = styled.div`
-  min-height: 30px;
+  min-height: 34px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -32,7 +32,8 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
 const TriggerreWrapper = styled.div`
   min-width: 180px;
   width: 100%;
-  min-height: 30px;
+  min-height: 34px;
+  height: 34px;
   border: 1px solid #cecece;
   display: block;
   border-radius: 3px;
@@ -63,8 +64,8 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     padding: 0,
-    maxHeight: '30px',
-    height: '30px',
+    maxHeight: '34px',
+    height: '34px',
     boxSizing: 'border-box',
   },
 };
@@ -233,7 +234,7 @@ class SelectInput extends PureComponent {
               display: 'flex',
               width: '100%',
               boxSizing: 'border-box',
-              height: '30px',
+              height: '34px',
             }}
           >
             {
@@ -270,7 +271,7 @@ class SelectInput extends PureComponent {
             style={{
               borderBottomLeftRadius: 0,
               borderTopLeftRadius: 0,
-              minHeight: '30px',
+              minHeight: '34px',
             }}
             icon={<Arrowdown />}
           />

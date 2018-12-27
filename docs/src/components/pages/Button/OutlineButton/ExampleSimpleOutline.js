@@ -1,10 +1,13 @@
 import React from 'react';
 import { OutlineButton } from 'uxi/Button';
 import { List } from 'uxi/List';
-import { Merge } from 'uxi/Icons';
+import { Merge, Filter, Markasunsensitive, Options } from 'uxi/Icons';
 
 const ExampleSimpleOutline = () => (
   <List>
+    <OutlineButton icon={<Filter />} type="info" />
+    <OutlineButton icon={<Markasunsensitive />} type="warning" />
+    <OutlineButton icon={<Options />} />
     <OutlineButton text="send" />
     <OutlineButton type="primary" text="SUBMIT" />
     <OutlineButton disabled link="https://www.google.com" type="info" text="DISABLED LINK" />

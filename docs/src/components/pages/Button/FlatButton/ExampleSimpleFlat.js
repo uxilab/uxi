@@ -1,10 +1,15 @@
 import React from 'react';
 import { FlatButton } from 'uxi/Button';
 import { List } from 'uxi/List';
-import { Merge } from 'uxi/Icons';
+import { Add, Merge, Download, Followentities, Delete, Options } from 'uxi/Icons';
 
 const ExampleSimpleFlat = () => (
   <List>
+    <FlatButton icon={<Add />} />
+    <FlatButton icon={<Options />} />
+    <FlatButton icon={<Download />} type="info" />
+    <FlatButton icon={<Followentities />} type="primary" />
+    <FlatButton icon={<Delete />} type="error" />
     <FlatButton text="send" />
     <FlatButton type="primary" text="SUBMIT" />
     <FlatButton type="warning" text="IGNORE" />
