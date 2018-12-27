@@ -40,6 +40,7 @@ const styles = {
     borderRadius: '3px',
     overflow: 'hidden',
     position: 'relative',
+    background: 'white',
   },
   trigerrerIcon: {
     position: 'absolute',
