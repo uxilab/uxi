@@ -4,6 +4,8 @@ import RAWThemeProvider from '!raw-loader!uxi/theme/ThemeProvider';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 import { componentInfoToMD } from '../../componentInfoToMD';
+import ShowCase from './ShowCase';
+
 
 import PrimaryColor from './color/PrimaryColor';
 import AccentColor from './color/AccentColor';
@@ -28,6 +30,10 @@ const Page = () => (
           description={RAWReadme}
           hasPadding
         />
+      </li>
+      <li>
+        <Title text="ShowCase" />
+        <ShowCase />
       </li>
       <li>
         <Title text="Color" />

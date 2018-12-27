@@ -19,15 +19,15 @@ class ExampleWithPanel extends Component {
       <div style={{ padding: '16px' }}>
         <Button
           onClick={() => { this.setState({ showSidePanelLeft: true }); }}
-          text="Show from the left"
+          text="Show Drawer with Panel from the left"
         /><br />
         <Button
           onClick={() => { this.setState({ showSidePanelRight: true }); }}
-          text="Show from the right (no footer)"
+          text="Show Drawer with Panel from the right (no footer)"
         /><br />
         <Button
           onClick={() => { this.setState({ showSidePanelBottom: true }); }}
-          text="Show from the bottom"
+          text="Show Drawer with Panel from the bottom"
         />
 
         <Drawer
