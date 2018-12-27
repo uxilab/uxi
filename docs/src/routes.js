@@ -1,5 +1,6 @@
 
 export const routes = [
+  { path: '/theme', label: 'Theme' },
   { path: '/panel', label: 'Panel', childRoutes: [
       { path: '/panel/PanelHeader', label: 'PanelHeader' }
       ,{ path: '/panel/PanelContent', label: 'PanelContent' }

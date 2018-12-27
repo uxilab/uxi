@@ -89,7 +89,6 @@ ${JSON.stringify(componentInfo, 2, 2)}
   return (`
 ${propsInfo}
 ${methodsData}
-${rawDetail}
 ${componentInfo.description}
   `);
 }
