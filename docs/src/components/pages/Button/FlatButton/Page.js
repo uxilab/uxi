@@ -12,6 +12,9 @@ import RAWExampleSimpleFlat from '!raw-loader!./ExampleSimpleFlat';
 import ExampleSimpleSemantic from './ExampleSimpleSemantic';
 import RAWExampleSimpleSemantic from '!raw-loader!./ExampleSimpleSemantic';
 
+import ExampleButtonLinks from './ExampleButtonLinks';
+import RAWExampleButtonLinks from '!raw-loader!./ExampleButtonLinks';
+
 const ButtonPage = () => (
   <div>
     <Title text="FlatButton" />
@@ -43,6 +46,16 @@ const ButtonPage = () => (
           hasPadding
         >
           <ExampleSimpleSemantic />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleButtonLinks}
+          component
+          title="FlatButton (link)"
+          hasPadding
+        >
+          <ExampleButtonLinks />
         </CodeExample>
       </li>
     </ul>

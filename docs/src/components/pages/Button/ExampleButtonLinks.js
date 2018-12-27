@@ -4,13 +4,13 @@ import { List } from 'uxi/List';
 
 const ExampleSimpleFlat = () => (
   <List>
-    <Button link="http://google.com" text="send" />
-    <Button link="http://google.com" type="primary" text="SUBMIT" />
-    <Button link="http://google.com" type="warning" text="IGNORE" />
-    <Button link="http://google.com" link="https://www.google.com" type="info" text="GO BACK" />
+    <Button link="#" text="send" />
+    <Button link="#" type="primary" text="SUBMIT" />
+    <Button link="#" type="warning" text="IGNORE" />
+    <Button link="#" type="info" text="GO BACK" />
     <Button
       type="primary"
-      link="http://google.com"
+      link="#"
       click={() => { }}
       message="Add Configuration"
     />

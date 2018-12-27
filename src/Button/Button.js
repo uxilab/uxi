@@ -105,6 +105,9 @@ export const ButtonLinkUI = styled.a`
 export const ButtonDivUI = styled.div`
   line-height: 1;
   ${ButtonBaseMixin};
+  & a:hover {
+    text-decoration: none;
+  }
 `;
 
 // eslint-disable-next-line react/prefer-stateless-function
