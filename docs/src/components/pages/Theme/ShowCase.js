@@ -3,6 +3,7 @@ import ExampleButtonWithLoadingState from '../Button/ExampleButtonWithLoadingSta
 import ExampleSimpleOutline from '../Button/OutlineButton/ExampleSimpleOutline';
 import ExampleSimpleFlat from '../Button/FlatButton/ExampleSimpleFlat';
 import ExampleSimpleWithWidth from '../Inputs/SelectInput/ExampleSimpleWithWidth';
+import ExampleSearchForm from '../Inputs/SearchForm/ExampleSearchForm';
 import ExampleCheckbox from '../Inputs/Checkbox/ExampleCheckbox';
 import ExampleSimpleRadioGroup from '../Inputs/Radio/ExampleSimpleRadioGroup';
 import ExampleWithPanel from '../Drawer/ExampleWithPanel';
@@ -14,6 +15,7 @@ const ShowCase = () => (
     <ExampleSimpleOutline /> <br />
     <ExampleSimpleFlat /> <br />
     <ExampleSimpleWithWidth /> <br />
+    <ExampleSearchForm /> <br />
     <ExampleCheckbox /> <br />
     <ExampleSimpleRadioGroup /> <br />
     <ExampleWithPanel /> <br />

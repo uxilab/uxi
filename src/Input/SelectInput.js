@@ -29,18 +29,31 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
   }
 `;
 
+const TriggerreWrapper = styled.div`
+  min-width: 180px;
+  width: 100%;
+  min-height: 30px;
+  border: 1px solid #cecece;
+  display: block;
+  border-radius: 3px;
+  border-radius: ${({ theme: { radius } }) => radius};
+  overflow: hidden;
+  position: relative;
+  background: white;
+`;
+
 // TODO show default value if any
 const styles = {
   trigerrer: {
-    minWidth: '180px',
-    width: '100%',
-    minHeight: '30px',
-    border: '1px solid #cecece',
-    display: 'block',
-    borderRadius: '3px',
-    overflow: 'hidden',
-    position: 'relative',
-    background: 'white',
+    // minWidth: '180px',
+    // width: '100%',
+    // minHeight: '30px',
+    // border: '1px solid #cecece',
+    // display: 'block',
+    // borderRadius: '3px',
+    // overflow: 'hidden',
+    // position: 'relative',
+    // background: 'white',
   },
   trigerrerIcon: {
     position: 'absolute',
@@ -243,10 +256,8 @@ class SelectInput extends PureComponent {
     }
 
     return (
-      <span
-        style={styles.trigerrer}
+      <TriggerreWrapper
         onEsc={() => this.clickHandler(null)}
-        // onClick={this.clickHandler}
       >
         <div>
           {mainContent}
@@ -264,7 +275,7 @@ class SelectInput extends PureComponent {
             icon={<Arrowdown />}
           />
         </div>
-      </span>
+      </TriggerreWrapper>
     );
   }
 
