@@ -33,7 +33,7 @@ const InputUI = styled.input`
 
 const Wrapper = styled.div`
   ${({ checker, theme: { palette } }) => (checker
-    ? `svg { fill: ${palette.accent} !important; }`
+    ? `svg { fill: ${palette.accent.main} !important; }`
     : '')
 };
   padding: 4px;
