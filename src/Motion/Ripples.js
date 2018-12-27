@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   &:focus-within {
     outline: -webkit-focus-ring-color auto 5px;
   }
+  border-radius: ${({ theme: { radius } }) => radius};
 `;
 
 const rippleStyle = {
@@ -96,8 +97,8 @@ class Ripples extends Component {
     const { state, handleClick } = this;
 
     const s = {
-      ...style,
       ...wrapStyle,
+      ...style,
     };
 
     return (

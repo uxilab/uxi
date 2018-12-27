@@ -127,8 +127,29 @@ export class ButtonComponent extends Component {
       </TheButtonComponent>
     );
 
-    const rippleStyles = isFullWidth ? { width: '100%' } : {};
-
+    const rippleStyles = {
+      ...(style.borderRadius !== undefined
+        ? { borderRadius: style.borderRadius }
+        : {}
+      ),
+      ...(style.borderBottomLeftRadius !== undefined
+        ? { borderBottomLeftRadius: style.borderBottomLeftRadius }
+        : {}
+      ),
+      ...(style.borderBottomRightRadius !== undefined
+        ? { borderBottomLeftRadius: style.borderBottomLeftRadius }
+        : {}
+      ),
+      ...(style.borderTopLeftRadius !== undefined
+        ? { borderTopLeftRadius: style.borderTopLeftRadius }
+        : {}
+      ),
+      ...(style.borderTopRightRadius !== undefined
+        ? { borderTopLeftRadius: style.borderTopLeftRadius }
+        : {}
+      ),
+      ...(isFullWidth ? { width: '100%' } : {}),
+    };
 
     return (
       <div style={{ ...marginStyles, lineHeight: 0 }}>
