@@ -131,8 +131,8 @@ const IconDataWithIcon = iconsData.map((iconData) => {
 const IconDataWithIconProp = iconsData
   .reduce(propsDataReducer, []);
 
-console.log('§§ iconsData', iconsData);
-console.log('§§ IconDataWithIconProp', IconDataWithIconProp);
+// console.log('§§ iconsData', iconsData);
+// console.log('§§ IconDataWithIconProp', IconDataWithIconProp);
 
 const flattenRoutesWithPropDataAndIconsData = flattenRoutesWithPropData.concat([
   ...IconDataWithIcon,

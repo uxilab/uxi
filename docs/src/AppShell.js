@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import ThemeProviderDynamic from './ThemeProviderDynamic'
+import styled from 'styled-components';
 
 import Header from 'uxi/Header';
-import { H4 } from 'uxi/Classic';
-import { HorizontalMenu, VerticalMenu, MenuItem } from 'uxi/Menu';
 import { Link } from 'react-router-dom';
-import { AppLayout, Flex, Layout, Col, Row } from 'uxi/Layout';
-import { PageWithMenu } from 'uxi/Page';
-import styled from 'styled-components';
-import AutoComplete from 'uxi/AutoComplete';
-import { ThemedBox } from 'uxi/Box';
+import { HorizontalMenu, MenuItem } from 'uxi/Menu';
+import { AppLayout } from 'uxi/Layout';
+import ThemeProviderDynamic from './ThemeProviderDynamic'
 import syntax from './styles/syntax';
 import markdown from './styles/markdown';
-import { routes } from './routes';
 import UXILogo from './UXILogo';
 import GithubLink from './GithubLink';
 
-console.log('routes in appshel', routes)
 
 const LogoWrapper = styled.div`
   width: 250px;
