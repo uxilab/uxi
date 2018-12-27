@@ -24,7 +24,7 @@ const LinkDecorator = styled.div`
     display: flex;
     flex-direction: column;
 
-    @media (min-width: ${({ breakpoint }) => breakpoint }) {
+    @media (min-width: ${({ breakpoint }) => breakpoint}) {
       flex-direction: row;
     }
   }
@@ -94,7 +94,7 @@ const GlobalMenuItemDiv = styled.a`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: ${({ breakpoint }) => breakpoint }) {
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
     flex-direction: row;
   }
 
@@ -175,7 +175,7 @@ const LabelDiv = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media (min-width: ${({ breakpoint }) => breakpoint }) {
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
     font-size: inherit;
 
     padding-left: 10px;
@@ -318,6 +318,7 @@ GlobalMenuItem.defaultProps = {
   onClick: () => { },
   isActive: false,
   primaryColor: '',
+  breakpoint: defaultBreakpoint,
 };
 
 export default GlobalMenuItem;

@@ -90,7 +90,7 @@ class GlobalMenu extends Component {
       style,
       breakpoint,
       menuWidth,
-  bigMenuWidth,
+      bigMenuWidth,
       innerStyle,
       fullViewportWidthPanel: fullViewportWidthPanelProp,
     } = this.props;

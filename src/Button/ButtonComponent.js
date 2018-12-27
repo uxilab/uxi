@@ -90,17 +90,20 @@ export class ButtonComponent extends Component {
 
     // which element to render div|a|button
     let TheButtonComponent = null;
-    if (inert) { TheButtonComponent = getButtonDivUI(this.ButtonCommonMixin, this.ButtonBaseMixin); }
-    else if (readyLink) {
+    if (inert) {
+      TheButtonComponent = getButtonDivUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
+    } else if (readyLink) {
       const DivButtonComponent = getButtonDivUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
       TheButtonComponent = props => (
         <DivButtonComponent {...props}>
           {readyLink}
         </DivButtonComponent>
       );
+    } else if (link) {
+      TheButtonComponent = getButtonLinkUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
+    } else {
+      TheButtonComponent = getButtonUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
     }
-    else if (link) { TheButtonComponent = getButtonLinkUI(this.ButtonCommonMixin, this.ButtonBaseMixin); }
-    else { TheButtonComponent = getButtonUI(this.ButtonCommonMixin, this.ButtonBaseMixin); }
 
     const theButton = (
       <TheButtonComponent

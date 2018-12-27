@@ -44,4 +44,4 @@ export const FlatButtonBaseMixin = css`;
 }
 `;
 
-export default FlatButtonBaseMixin
+export default FlatButtonBaseMixin;
