@@ -15,6 +15,7 @@ export const buttonResetStylesCSSString = css`
   background: transparent;
   border-radius: 0;
   cursor: pointer;
+
   /* &:focus { */
     /* outline: none; */
     /* box-shadow: 0 0 10px #719ECE; */

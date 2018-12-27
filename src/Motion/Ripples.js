@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { throws } from 'assert';
 
 const Wrapper = styled.div`
   &:focus-within {
-    outline: -webkit-focus-ring-color auto 5px;
+    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+    outline: ${({ theme: { outline } }) => outline};
   }
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    box-shadow: ${({ focusWithin, theme: { outlineShadow } }) => focusWithin && outlineShadow};
+    outline: ${({ focusWithin, theme: { outline } }) => focusWithin && outline};
+    button, a { outline: none }
+  }
+
   border-radius: ${({ theme: { radius } }) => radius};
+  & > div {
+    border-radius: ${({ theme: { radius } }) => radius};
+  }
 `;
 
 const rippleStyle = {
@@ -44,7 +55,31 @@ class Ripples extends Component {
 
   state = {
     rippleStyle: {},
+    focusWithin: false,
   };
+
+  componentDidMount = () => {
+    this.update()
+  }
+
+  componentDidUpdate = () => {
+    this.update()
+  }
+
+  update = () => {
+    if (this.ref) {
+      const focusWithin = this.ref.contains(document.activeElement);
+      if (focusWithin !== this.state.focusWithin) {
+        this.setState({
+          focusWithin,
+        });
+      }
+    }
+  }
+
+  storeRef = (node) => {
+    this.ref = node;
+  }
 
   handleClick = (ev) => {
     const { disabled } = this.props;
@@ -95,6 +130,7 @@ class Ripples extends Component {
   render() {
     const { children, style, during, ...props } = this.props;
     const { state, handleClick } = this;
+    const { focusWithin } = this.state;
 
     const s = {
       ...wrapStyle,
@@ -102,9 +138,18 @@ class Ripples extends Component {
     };
 
     return (
-      <Wrapper {...props} style={s} onClick={handleClick}>
-        <s style={{ ...rippleStyle, ...state.rippleStyle }} />
-        {children}
+      <Wrapper
+        {...props}
+        style={style}
+        onClick={handleClick}
+        focusWithin={focusWithin}
+        onFocus={this.update}
+        onBlur={this.update}
+      >
+        <div {...props} style={s} ref={this.storeRef}>
+          <s style={{ ...rippleStyle, ...state.rippleStyle }} />
+          {children}
+        </div>
       </Wrapper>
     );
   }

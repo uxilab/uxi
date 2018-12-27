@@ -15,13 +15,15 @@ const UnstyledButtonUI = styled.button.attrs({
   min-width: 100%;
   min-height: 100%;
   &:focus {
-    ${({ inert }) => (inert === false
-      ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
+    ${({ disabled, inert, theme }) => (!inert && !disabled
+      // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
+      ? `bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}`
       : '')
     };
   }
 `;
 /* eslint-enable indent */
+// TODO investigzte: inert unstyledButon doesn't make any sense
 
 const UnstyledButtonDivUI = UnstyledButtonUI.withComponent('div');
 

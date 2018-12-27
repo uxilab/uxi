@@ -301,6 +301,8 @@ export const theme = { // eslint-disable-line no-shadow
     base: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px ',
   },
   radius: '3px',
+  outline: 'none',
+  outlineShadow: '0 0 5px 3px rgba(35, 35, 35, .4), 0 0 2px 2px rgba(35, 35, 35, .24)',
   transition: {
     default: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     defaultAll: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) ',

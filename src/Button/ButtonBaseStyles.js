@@ -32,7 +32,18 @@ const ButtonBaseStyles = css`
     max-height: 26px;
   }
   &:focus {
-    outline: -webkit-focus-ring-color auto 5px;
+    /* outline: -webkit-focus-ring-color auto 5px; */
+    /* outline: rgba(35, 35, 35, .4) auto 5px; */
+    /* box-shadow: 0 0 3pt 2pt red; */
+    /* outline: ${({ theme: { outline } }) => outline};
+    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow}; */
+
+    ${({ disabled, inert, theme }) => (!inert || !disabled
+      // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
+      ? `bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
+
   }
 `;
 
