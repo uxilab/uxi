@@ -33,6 +33,7 @@ export const routes = [
     label: 'Button',
     childRoutes: [
       { path: '/button/FlatButton', label: 'FlatButton' },
+      { path: '/button/OutlineButton', label: 'OutlineButton' },
       { path: '/button/ButtonLink', label: 'ButtonLink' },
     ] },
   { path: '/Drawer',

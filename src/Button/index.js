@@ -7,6 +7,7 @@ export FlatButton from './FlatButton';
 export UnstyledButton from './UnstyledButton';
 export IconButton from './IconButton';
 export ButtonLink from './ButtonLink';
+export OutlineButton from './OutlineButton';
 
 export const ButtonWithConfirm = withConfirmDialog(Button);
 

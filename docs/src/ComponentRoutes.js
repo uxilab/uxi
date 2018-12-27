@@ -5,8 +5,9 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ThemePage from './components/pages/Theme/Page';
 import ButtonPage from './components/pages/Button/Page';
-import FlatButtonPage from './components/pages/Button/FlatButton/Page';
-import ButtonLinkPage from './components/pages/Button/ButtonLink/Page';
+  import FlatButtonPage from './components/pages/Button/FlatButton/Page';
+  import ButtonLinkPage from './components/pages/Button/ButtonLink/Page';
+  import OutlineButtonPage from './components/pages/Button/OutlineButton/Page';
 import FontPage from './components/pages/Font/Page';
 import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
@@ -34,7 +35,7 @@ import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
 import ImgPage from './components/pages/Img/Page';
 import MenuPage from './components/pages/Menu/Page';
-import InternalPage from './components/pages/Internal/Page';
+// import InternalPage from './components/pages/Internal/Page';
 import DrawerPage from './components/pages/Drawer/Page';
 import CompactDrawerPage from './components/pages/Drawer/CompactDrawer/Page';
 import BadgePage from './components/pages/Badge/Page';
@@ -87,6 +88,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/button`} exact component={ButtonPage} />
       <Route path={`${match.url}/button/FlatButton`} component={FlatButtonPage} />
       <Route path={`${match.url}/button/ButtonLink`} component={ButtonLinkPage} />
+      <Route path={`${match.url}/button/OutlineButton`} component={OutlineButtonPage} />
 
       <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
       <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />

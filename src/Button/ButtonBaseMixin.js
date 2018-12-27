@@ -1,7 +1,6 @@
 
 import { css } from 'styled-components';
 import { getTypeColor } from './utils';
-import ButtonBaseStyles from './ButtonBaseStyles';
 
 /* eslint-disable indent */
 export const ButtonBaseMixin = css`;
