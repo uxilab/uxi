@@ -46,6 +46,11 @@ const RadioLabelUI = styled.label`
     outline: 5px auto -webkit-focus-ring-color !important;
   `) : '')};
 
+  ${({ checker, theme: { palette } }) => (checker
+    ? `svg { fill: ${palette.accent.main} !important; }`
+    : '')
+  };
+
 `;
 /* eslint-enable indent */
 
@@ -134,7 +139,7 @@ class Radio extends React.PureComponent {
     /* eslint-disable jsx-a11y/label-has-for */
     return (
       <div style={this.getWrapperStyles()}>
-        <RadioLabelUI htmlFor={name} style={{}} label={label} hasFocus={hasFocus}>
+        <RadioLabelUI htmlFor={name} style={{}} label={label} hasFocus={hasFocus} checker={isChecked}>
           <RadioInpuUI
             tabIndex="0"
             id={id}
