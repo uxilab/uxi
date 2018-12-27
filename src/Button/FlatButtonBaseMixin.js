@@ -32,7 +32,7 @@ export const FlatButtonBaseMixin = css`;
   }
 
   &:hover {
-    ${({ disabled, theme: { palette } }) => (disabled ? `background-color: ${palette.lightGrey}; color: ${palette.grey}` : '')};
+    ${({ disabled, theme: { palette } }) => (disabled ? `background-color: transparent; color: ${palette.grey}` : '')};
     ${({ disabled }) => (disabled ? 'border-color: transparent;' : '')};
     svg {
       ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
