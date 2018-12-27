@@ -154,7 +154,7 @@ class Radio extends React.PureComponent {
               this.handleChange(...a);
             }}
           />
-          <Icon style={{ background: 'white' }} />
+          <Icon />
           {label}
         </RadioLabelUI>
       </div>
