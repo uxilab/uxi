@@ -217,7 +217,8 @@ class DataGrid extends Component {
       multiSelectable,
       () => {
         this.checkAll();
-      }
+      },
+      allChecked
     );
 
     return (
