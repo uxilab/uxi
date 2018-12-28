@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import { UnstyledButton } from '../Button';
+import UnstyledButtonBeta from '../Button/UnstyledButton1';
 
 const ItemsWrapper = styled.div`
   ${({ theme: { transition } }) => transition.defaultAll};
@@ -105,7 +106,7 @@ export class DropDown extends PureComponent {
   }
 
   static defaultProps = {
-    main: <div></div>,
+    main: <div />,
     items: [],
     inertMain: false,
     anchor: 'left',
@@ -177,34 +178,11 @@ export class DropDown extends PureComponent {
     }
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   return nextProps !== this.props;
-  // }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { isOpen: willBeOpenState } = nextState;
-    const { isOpen: willBeOpenProps } = nextProps;
-
-    const willBeOpen = willBeOpenState || willBeOpenProps;
-    let shouldFocusTrigerrer = false;
-
-    if (!willBeOpen) {
-      shouldFocusTrigerrer = true;
-    }
-    // } else if (isOpen && willBeOpen) {
-    //   shouldFocusTrigerrer
-    // }
-
-    this.setState({
-      shouldFocusTrigerrer,
-    });
-  }
-
   componentDidUpdate(prevProps) {
     if (prevProps.items.length !== this.props.items.length) {
-      setTimeout(() => this.forceUpdate(), 1);
+      // setTimeout(() => this.forceUpdate(), 1);
     } else if (prevProps.items !== this.props.items) {
-      setTimeout(() => this.forceUpdate(), 1);
+      // setTimeout(() => this.forceUpdate(), 1);
     }
   }
 
@@ -410,12 +388,12 @@ export class DropDown extends PureComponent {
       {
         ref: ref => this.storeMainRef(ref),
         // this next line is useless
-        onClick: () => {
-          this.handleToggleVisibility();
-          if (main.props.onClick) {
-            main.props.onClick();
-          }
-        },
+        // onClick: () => {
+        //   this.handleToggleVisibility();
+        //   if (main.props.onClick) {
+        //     main.props.onClick();
+        //   }
+        // },
       });
     // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
 
@@ -463,6 +441,21 @@ export class DropDown extends PureComponent {
             {dropDownMain}
           </div>
         </UnstyledButton>
+
+        {/* <UnstyledButtonBeta
+            inert={inertMain}
+            data-drop-down-main
+            role={inertMain === false ? undefined : 'menu'}
+            isFullWidth={isFullWidth}
+            style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
+            onClick={this.handleToggleVisibility}
+            {...tabIndexButtonattr}
+          >
+            <div style={styles.triggerInnerWrapper}>
+              {dropDownMain}
+            </div>
+          </UnstyledButtonBeta> */}
+
         <ItemsWrapper
           data-is-the-one="true"
           data-drop-down-items

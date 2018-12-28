@@ -36,11 +36,10 @@ const TriggerreWrapper = styled.div`
   height: 34px;
   border: 1px solid #cecece;
   display: block;
-  border-radius: 3px;
   border-radius: ${({ theme: { radius } }) => radius};
   overflow: hidden;
   position: relative;
-  background: white;
+  /* background: white; */
 `;
 
 // TODO show default value if any
@@ -568,9 +567,6 @@ class SelectInput extends PureComponent {
             maxHeight: '200px',
             overflowY: 'auto',
             overflowX: 'hidden',
-          }}
-          triggerWrapperStyle={{
-            borderRadius: '3px',
           }}
         />
         <ErrorWrapperUI>{error}</ErrorWrapperUI>
