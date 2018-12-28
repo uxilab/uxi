@@ -2,16 +2,19 @@
 /* eslint-disable brace-style */
 import React from 'react';
 import styled from 'styled-components';
-
+import { buttonResetStylesCSSString } from './buttonResetStyles';
 
 /* eslint-disable indent */
 const UnstyledButtonUI = styled.button.attrs({
   tabIndex: ({ inert }) => (inert ? -1 : undefined),
 })`
+  ${buttonResetStylesCSSString};
+  &, &:hover, & *, &:hover * {}
   border: none;
+  background: transparent;
+  color: inherit
   padding: 0;
   font-size: inherit;
-  background: transparent;
   min-width: 100%;
   min-height: 100%;
   &:focus {

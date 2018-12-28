@@ -8,6 +8,7 @@ import {
 export class UnstyledButton extends ButtonComponent {
   constructor(props) {
     super(props);
+    this.ButtonCommonMixin = '';
     this.ButtonBaseMixin = UnstyledButtonBaseMixin;
   }
 }

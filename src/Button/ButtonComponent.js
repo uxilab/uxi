@@ -9,20 +9,13 @@ import {
   getButtonLinkUI,
   getButtonDivUI,
 } from './Buttons';
-import {
-  ButtonBaseMixin,
-} from './ButtonBaseMixin';
-import {
-  ButtonCommonMixin,
-} from './ButtonCommonMixin';
-
 
 // eslint-disable-next-line
 export class ButtonComponent extends Component {
   constructor(props) {
     super(props);
-    this.ButtonCommonMixin = ButtonCommonMixin;
-    this.ButtonBaseMixin = ButtonBaseMixin;
+    this.ButtonCommonMixin = '';
+    this.ButtonBaseMixin = '';
   }
 
   render() {
@@ -179,8 +172,5 @@ ButtonComponent.defaultProps = {
   style: {},
   // type: 'default',
 };
-
-
-ButtonComponent.ButtonBaseMixin = ButtonBaseMixin;
 
 export default ButtonComponent;
