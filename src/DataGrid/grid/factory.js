@@ -85,11 +85,12 @@ export const createDataGridHeader = (
   fixedHeight,
   hideHeader,
   withCheckbox,
-  checkAllHandler
+  checkAllHandler,
+  allRowsSelected
 ) => (
   <TableHeader>
     <TableRow hideSvg={hideHeader}>
-      {withCheckbox && <TableHeaderCheckedAllCell onCheckAll={checkAllHandler} />}
+      {withCheckbox && <TableHeaderCheckedAllCell allRowsSelected={allRowsSelected} onCheckAll={checkAllHandler} />}
       {
         headers.map((header) => {
           const key = `header-${header.name || header.displayName}`;

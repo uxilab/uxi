@@ -11,7 +11,6 @@ const TableHeaderCheckedAllCell = ({
     <Checkbox
       key="selectallcb"
       name="selectallcb"
-      value="selected"
       checked={allRowsSelected}
       onChange={onCheckAll}
       style={{
@@ -27,7 +26,6 @@ const TableHeaderCheckedAllCell = ({
       key={`hpcb${rowNumber}`}
       noPadding
       style={{
-        cursor: !allRowsSelected ? 'not-allowed' : 'inherit',
         width: '42px',
         paddingLeft: '8px',
         paddingRight: '8px',
