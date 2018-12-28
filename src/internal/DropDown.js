@@ -5,6 +5,7 @@ import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import { UnstyledButton } from '../Button';
 import UnstyledButtonBeta from '../Button/UnstyledButton1';
+import Ripples from '../Motion/Ripples';
 
 const ItemsWrapper = styled.div`
   ${({ theme: { transition } }) => transition.defaultAll};
@@ -429,18 +430,23 @@ export class DropDown extends PureComponent {
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
         <UnstyledButton
-          inert={inertMain}
-          data-drop-down-main
-          role={inertMain === false ? undefined : 'menu'}
-          isFullWidth={isFullWidth}
-          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
-          onClick={this.handleToggleVisibility}
-          {...tabIndexButtonattr}
+          style={{ width: '100%' }}
         >
-          <div style={styles.triggerInnerWrapper}>
-            {dropDownMain}
-          </div>
+          <Ripples
+            inert={inertMain}
+            data-drop-down-main
+            role={inertMain === false ? undefined : 'menu'}
+            isFullWidth={isFullWidth}
+            style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
+            onClick={this.handleToggleVisibility}
+            {...tabIndexButtonattr}
+          >
+            <div style={styles.triggerInnerWrapper}>
+              {dropDownMain}
+            </div>
+          </Ripples>
         </UnstyledButton>
+
 
         {/* <UnstyledButtonBeta
             inert={inertMain}
