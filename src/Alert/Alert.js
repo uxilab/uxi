@@ -10,7 +10,7 @@ import {
 import AlertStyle from './Alert.style';
 
 const AlertUI = styled.div`
-  border-radius: ${({ theme: { radius } }) => radius};
+  border-radius: ${({ rounded, theme: { radius } }) => (rounded ? radius : 0)};
   overflow: hidden;
   div {
     a, a:hover {
@@ -35,6 +35,7 @@ class Alert extends Component {
       PropTypes.number,
     ]),
     style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    rounded: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -50,6 +51,7 @@ class Alert extends Component {
     // in case some text is not evaluated, the comp might appear like it has no children (text node)
     children: null, // we don't require children, alert always has at least 50px of height
     style: {},
+    rounded: false,
   };
 
   constructor(props) {
@@ -85,6 +87,7 @@ class Alert extends Component {
       iconSize,
       onClose,
       style,
+      rounded,
     } = this.props;
     const { isOpen } = this.state;
 
@@ -142,7 +145,7 @@ class Alert extends Component {
     };
 
     return (
-      <AlertUI>
+      <AlertUI rounded={rounded}>
         <div style={wrapperStyles} className={className}>
           {closeContent}
           {iconContent}
@@ -154,5 +157,8 @@ class Alert extends Component {
     );
   }
 }
+
+Alert.defaultProps = {
+};
 
 export default Alert;
