@@ -29,6 +29,9 @@ const RadioInpuUI = styled.input.attrs({
 const RadioLabelUI = styled.label`
   display: flex;
   align-items: center;
+  padding: 2px;
+  padding-left: 1px;
+  padding: 4px 6px;
   & > *:nth-child(2) {
     ${({ label }) => (label
       ? 'margin-right: 6px;'
@@ -38,8 +41,6 @@ const RadioLabelUI = styled.label`
 
   cursor: pointer;
   /* cannot use focus-within because IE */
-  padding: 2px;
-  padding-left: 1px;
   border-radius: 2px;
 
   border-radius: ${({ theme: { radius } }) => radius};

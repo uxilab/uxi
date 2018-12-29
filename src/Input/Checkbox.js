@@ -40,7 +40,8 @@ const Wrapper = styled.div`
     ? `svg { fill: ${palette.accent.main} !important; }`
     : '')
 };
-  padding: 4px;
+  padding: 6px;
+  /* margin: 0 4px */
   display: flex ;
   align-items: center;
 

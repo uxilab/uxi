@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withTheme } from 'styled-components'
+import { withTheme } from 'styled-components';
 
 const InputWrapper = styled.div`
-  overflow: hidden;
+  /* overflow: hidden; */
   display: inline-flex;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   border-radius: ${({ theme: { radius } }) => radius};
   border: ${({ theme: { palette } }) => palette.lightGrey};
   /* border: #dcdcdc; */

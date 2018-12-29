@@ -13,7 +13,7 @@ const UnstyledButtonUI = styled.button.attrs({
   border: none;
   background: transparent;
   color: inherit
-  padding: 0;
+  padding: 0 4px;
   font-size: inherit;
   min-width: 100%;
   min-height: 100%;

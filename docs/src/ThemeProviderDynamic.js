@@ -41,7 +41,7 @@ class ThemeProviderDynamic extends Component {
       // isOpen: true,
       primary: '#ff9315',
       secondary: '#272727',
-      radius: '3px',
+      radius: '18px',
       transition: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     };
 
