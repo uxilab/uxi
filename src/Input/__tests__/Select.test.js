@@ -1,14 +1,14 @@
 import React from 'react';
-import SelectInput from '../SelectInput';
+import Select from '../Select';
 
-describe('<SelectInput />', () => {
+describe('<Select />', () => {
   it('exists', () => {
-    expect(SelectInput).toBeDefined();
+    expect(Select).toBeDefined();
   });
 
   it('matches snapshot', () => {
     const sut = shallow(
-      <SelectInput />
+      <Select />
     );
     expect(sut).toMatchSnapshot();
   });
@@ -16,11 +16,11 @@ describe('<SelectInput />', () => {
   describe('controlled/uncontrolled behaviour', () => {
     it('works correctly as an uncontrolled input', () => {
       const sut = shallow(
-        <SelectInput defaultValue={'bar'} >
+        <Select defaultValue={'bar'} >
           <div value="foo">foo</div>
           <div value="bar">bar</div>
           <div value="baz">baz</div>
-        </SelectInput>
+        </Select>
       );
 
       expect(sut).toMatchSnapshot();
@@ -34,11 +34,11 @@ describe('<SelectInput />', () => {
 
     it('works as a controlled component, no onChange, no change', () => {
       const sut = shallow(
-        <SelectInput value={'baz'} >
+        <Select value={'baz'} >
           <div value="foo">foo</div>
           <div value="bar">bar</div>
           <div value="baz">baz</div>
-        </SelectInput>
+        </Select>
       );
 
       expect(sut).toMatchSnapshot();

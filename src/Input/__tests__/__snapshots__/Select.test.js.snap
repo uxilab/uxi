@@ -1,0 +1,418 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select /> controlled/uncontrolled behaviour works as a controlled component, no onChange, no change 1`] = `
+<div
+  style={Object {}}
+>
+  <clickOutside(DropDown)
+    isFullWidth={false}
+    isOpen={false}
+    items={
+      Array [
+        <Options
+          data-index={0}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+          value="foo"
+        >
+          <div
+            value="foo"
+          >
+            foo
+          </div>
+        </Options>,
+        <Options
+          data-index={1}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+          value="bar"
+        >
+          <div
+            value="bar"
+          >
+            bar
+          </div>
+        </Options>,
+        <Options
+          data-index={2}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={true}
+          style={
+            Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+          value="baz"
+        >
+          <div
+            value="baz"
+          >
+            baz
+          </div>
+        </Options>,
+      ]
+    }
+    itemsStyle={
+      Object {
+        "maxHeight": "200px",
+        "overflowX": "hidden",
+        "overflowY": "auto",
+      }
+    }
+    main={
+      <styled.div
+        onEsc={[Function]}
+      >
+        <div>
+          <styled.div>
+            <div
+              style={
+                Object {
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "height": "34px",
+                  "marginRight": "64px",
+                  "padding": "2px 2px 2px 6px",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+                value="baz"
+              >
+                baz
+              </div>
+            </div>
+          </styled.div>
+          <StatusIcon
+            error={undefined}
+            style={
+              Object {
+                "right": "48px",
+                "top": "0",
+              }
+            }
+            success={undefined}
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": "0",
+              "boxSizing": "border-box",
+              "display": "flex",
+              "height": "34px",
+              "maxHeight": "34px",
+              "padding": 0,
+              "position": "absolute",
+              "right": "0",
+              "top": "0",
+            }
+          }
+        >
+          <Button
+            icon={
+              <Arrowdown
+                color="#6d6d71"
+              />
+            }
+            inert={true}
+            style={
+              Object {
+                "borderBottomLeftRadius": 0,
+                "borderTopLeftRadius": 0,
+                "minHeight": "34px",
+              }
+            }
+            type="primary"
+          />
+        </div>
+      </styled.div>
+    }
+    onIsOpenChange={[Function]}
+    onItemRef={[Function]}
+  />
+  <styled.div />
+</div>
+`;
+
+exports[`<Select /> controlled/uncontrolled behaviour works correctly as an uncontrolled input 1`] = `
+<div
+  style={Object {}}
+>
+  <clickOutside(DropDown)
+    isFullWidth={false}
+    isOpen={false}
+    items={
+      Array [
+        <Options
+          data-index={0}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+          value="foo"
+        >
+          <div
+            value="foo"
+          >
+            foo
+          </div>
+        </Options>,
+        <Options
+          data-index={1}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={true}
+          style={
+            Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+          value="bar"
+        >
+          <div
+            value="bar"
+          >
+            bar
+          </div>
+        </Options>,
+        <Options
+          data-index={2}
+          isOpen={false}
+          onClick={[Function]}
+          onEsc={[Function]}
+          selected={false}
+          style={
+            Object {
+              "foo": "bar",
+              "maxWidth": "100%",
+              "overflowX": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+          value="baz"
+        >
+          <div
+            value="baz"
+          >
+            baz
+          </div>
+        </Options>,
+      ]
+    }
+    itemsStyle={
+      Object {
+        "maxHeight": "200px",
+        "overflowX": "hidden",
+        "overflowY": "auto",
+      }
+    }
+    main={
+      <styled.div
+        onEsc={[Function]}
+      >
+        <div>
+          <styled.div>
+            <div
+              style={
+                Object {
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "height": "34px",
+                  "marginRight": "64px",
+                  "padding": "2px 2px 2px 6px",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+                value="bar"
+              >
+                bar
+              </div>
+            </div>
+          </styled.div>
+          <StatusIcon
+            error={undefined}
+            style={
+              Object {
+                "right": "48px",
+                "top": "0",
+              }
+            }
+            success={undefined}
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": "0",
+              "boxSizing": "border-box",
+              "display": "flex",
+              "height": "34px",
+              "maxHeight": "34px",
+              "padding": 0,
+              "position": "absolute",
+              "right": "0",
+              "top": "0",
+            }
+          }
+        >
+          <Button
+            icon={
+              <Arrowdown
+                color="#6d6d71"
+              />
+            }
+            inert={true}
+            style={
+              Object {
+                "borderBottomLeftRadius": 0,
+                "borderTopLeftRadius": 0,
+                "minHeight": "34px",
+              }
+            }
+            type="primary"
+          />
+        </div>
+      </styled.div>
+    }
+    onIsOpenChange={[Function]}
+    onItemRef={[Function]}
+  />
+  <styled.div />
+</div>
+`;
+
+exports[`<Select /> matches snapshot 1`] = `
+<div
+  style={Object {}}
+>
+  <clickOutside(DropDown)
+    isFullWidth={false}
+    isOpen={false}
+    itemsStyle={
+      Object {
+        "maxHeight": "200px",
+        "overflowX": "hidden",
+        "overflowY": "auto",
+      }
+    }
+    main={
+      <styled.div
+        onEsc={[Function]}
+      >
+        <div>
+          <div>
+             
+          </div>
+          <StatusIcon
+            error={undefined}
+            style={
+              Object {
+                "right": "48px",
+                "top": "0",
+              }
+            }
+            success={undefined}
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": "0",
+              "boxSizing": "border-box",
+              "display": "flex",
+              "height": "34px",
+              "maxHeight": "34px",
+              "padding": 0,
+              "position": "absolute",
+              "right": "0",
+              "top": "0",
+            }
+          }
+        >
+          <Button
+            icon={
+              <Arrowdown
+                color="#6d6d71"
+              />
+            }
+            inert={true}
+            style={
+              Object {
+                "borderBottomLeftRadius": 0,
+                "borderTopLeftRadius": 0,
+                "minHeight": "34px",
+              }
+            }
+            type="primary"
+          />
+        </div>
+      </styled.div>
+    }
+    onIsOpenChange={[Function]}
+    onItemRef={[Function]}
+  />
+  <styled.div />
+</div>
+`;

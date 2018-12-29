@@ -62,7 +62,7 @@ class FileInput extends PureComponent {
     const {
       props,
       props: {
-        id,
+        // id,
         onChange,
         multiple,
         // success,
@@ -80,7 +80,7 @@ class FileInput extends PureComponent {
       : (success ? <SuccessIcon size="16" color={palette.semantic.success} /> : null);
     */
     const finalLabel = label || 'UPLOAD';
-    const finalId = id || finalLabel; // TODO => uuid
+    // const finalId = id || finalLabel; // TODO => uuid
 
     return (
       <FileInputWrapperUI
