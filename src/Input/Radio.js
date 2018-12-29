@@ -41,6 +41,7 @@ const RadioLabelUI = styled.label`
   border-radius: 2px;
 
   border-radius: ${({ theme: { radius } }) => radius};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     /* waiting for Edge to support focus-within */
@@ -56,10 +57,13 @@ const RadioLabelUI = styled.label`
     };
   }
 
-  ${({ checker, theme: { palette } }) => (checker
-    ? `svg { fill: ${palette.accent.main} !important; }`
-    : '')
-  };
+  svg {
+    transition: ${({ theme: { transition } }) => transition.defaultAll};
+    ${({ checker, theme: { palette } }) => (checker
+      ? `fill: ${palette.accent.main} !important; }`
+      : '')
+    };
+  }
 
 `;
 /* eslint-enable indent */

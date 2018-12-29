@@ -1,22 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { throws } from 'assert';
+
 
 const Wrapper = styled.div`
-  &:focus-within {
-    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
-    outline: ${({ theme: { outline } }) => outline};
+  box-shadow: none;
+  outline: none;
+  display: flex;
+  box-sizing: border-box;
+  /* &:focus-within {
   }
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     box-shadow: ${({ focusWithin, theme: { outlineShadow } }) => focusWithin && outlineShadow};
     outline: ${({ focusWithin, theme: { outline } }) => focusWithin && outline};
     button, a { outline: none }
-  }
+  } */
 
   border-radius: ${({ theme: { radius } }) => radius};
   & > div {
     border-radius: ${({ theme: { radius } }) => radius};
+  }
+
+  /* let the ripple effect overflow the component on mobile for better ux
+    since on mobile you'r thunm or finger will be hiddingthe animation
+  */
+  & > div {
+    overflow: visible;
+  }
+  & {
+    transition: ${({ theme: { transition } }) => transition.defaultAll};
+  }
+  @media screen and (min-width: 1024px) {
+    & > div {
+      overflow: hidden;
+    }
+    &:focus-within {
+      box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+      outline: ${({ theme: { outline } }) => outline};
+    }
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      box-shadow: ${({ focusWithin, theme: { outlineShadow } }) => focusWithin && outlineShadow};
+      outline: ${({ focusWithin, theme: { outline } }) => focusWithin && outline};
+      button, a { outline: none }
+    }
   }
 `;
 
@@ -33,7 +59,7 @@ const rippleStyle = {
 const wrapStyle = {
   position: 'relative',
   display: 'inline-block',
-  overflow: 'hidden',
+  // overflow: 'hidden', // move decision to parent compo to have media queries
 };
 
 class Ripples extends Component {
@@ -59,11 +85,11 @@ class Ripples extends Component {
   };
 
   componentDidMount = () => {
-    this.update()
+    this.update();
   }
 
   componentDidUpdate = () => {
-    this.update()
+    this.update();
   }
 
   update = () => {
@@ -119,7 +145,7 @@ class Ripples extends Component {
           opacity: 0,
         },
       });
-    }, 50);
+    }, 20);
 
     if (typeof onClick === 'function') {
       onClick(ev);
@@ -145,8 +171,10 @@ class Ripples extends Component {
         focusWithin={focusWithin}
         onFocus={this.update}
         onBlur={this.update}
+        data-ripple-wrapper
       >
-        <div {...props} style={s} ref={this.storeRef}>
+
+        <div {...props} style={s} ref={this.storeRef} data-ripple-main>
           <s style={{ ...rippleStyle, ...state.rippleStyle }} />
           {children}
         </div>

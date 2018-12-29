@@ -7,6 +7,7 @@ import CodeExample from '../../../CodeExample';
 
 import ExampleUnstyledButton from './ExampleUnstyledButton';
 import RAWExampleUnstyledButton from '!raw-loader!./ExampleUnstyledButton';
+import RAWMDExampleUnstyledButton from '!raw-loader!./ExampleUnstyledButton.md';
 
 const ButtonPage = () => (
   <div>
@@ -17,6 +18,7 @@ const ButtonPage = () => (
           code={RAWExampleUnstyledButton}
           component
           title="ExampleUnstyledButton"
+          description={RAWMDExampleUnstyledButton}
           hasPadding
         >
           <ExampleUnstyledButton />

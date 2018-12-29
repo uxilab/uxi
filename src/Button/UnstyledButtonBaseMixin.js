@@ -7,6 +7,7 @@ export const UnstyledButtonBaseMixin = css`;
   background-color: transparent;
   border-color: transparent;
   font-size: inherit;
+  text-transform: none;
   &, button {
     margin: 0;
     padding: 0;

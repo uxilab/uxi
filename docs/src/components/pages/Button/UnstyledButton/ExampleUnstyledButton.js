@@ -5,18 +5,19 @@ import { Delete, Pencil, Merge, Start } from 'uxi/Icons';
 import { List } from 'uxi/List';
 
 const ExampleUnstyledButton = () => (
-  <List style={{ background: 'blue' }}>
+  <div style={{ background: 'blue' }}>
     <br />
-    <OutlineButton icon={<Delete />} onClick={() => { alert('test'); }} message="Delete" />
+    <UnstyledButtonBeta iconAfter icon={<Delete />} onClick={() => { console.log('clicked'); }} text="Delete" />
     <br />
-    <FlatButton icon={<Delete />} onClick={() => { alert('test'); }} message="Delete" />
+    <UnstyledButtonBeta icon={<Delete />} onClick={() => { console.log('clicked'); }} />
     <br />
-    <Button icon={<Delete />} onClick={() => { alert('test'); }} message="Delete" />
+    <UnstyledButtonBeta onClick={() => { console.log('clicked'); }} text="delete" />
     <br />
-    <UnstyledButtonBeta icon={<Delete />} onClick={() => { alert('test'); }} text="Delete" />
+    <UnstyledButtonBeta onClick={() => { console.log('clicked'); }} >
+      <div>Hi</div>
+    </UnstyledButtonBeta>
     <br />
-    <UnstyledButton icon={<Delete />} onClick={() => { alert('test'); }} message="Delete">Delete</UnstyledButton>>
-  </List>
+  </div>
 );
 
 export default ExampleUnstyledButton;

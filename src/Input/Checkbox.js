@@ -6,6 +6,8 @@ import {
   Checkboxoutline,
   Padlock,
 } from '../Icons';
+import Ripple from '../Motion/Ripples';
+
 /* eslint-disable indent */
 const LabeLUI = styled.label`
   cursor: pointer;
@@ -41,6 +43,8 @@ const Wrapper = styled.div`
   align-items: center;
 
   border-radius: ${({ theme: { radius } }) => radius};
+
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     /* waiting for Edge to support focus-within */
@@ -181,25 +185,28 @@ class Checkbox extends React.PureComponent {
 
     return (
       <div style={checkboxWrapperStyle}>
-        <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
-          {iconIdentifier}
-          <InputUI
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            hasFocus
-            id={id}
-            style={inputStyle}
-            checked={checker}
-            defaultChecked={defaultChecked}
-            name={name}
-            type="checkbox"
-            disabled={disabled}
-            onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
-          />
-          <LabeLUI htmlFor={id} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
-            {label}
-          </LabeLUI>
-        </Wrapper>
+        <Ripple>
+          <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
+            {iconIdentifier}
+            <InputUI
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              hasFocus
+              id={id}
+              style={inputStyle}
+              checked={checker}
+              defaultChecked={defaultChecked}
+              name={name}
+              type="checkbox"
+              disabled={disabled}
+              onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
+            />
+            <LabeLUI htmlFor={id} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
+              {label}
+            </LabeLUI>
+          </Wrapper>
+        </Ripple>
+
       </div >
     );
   }

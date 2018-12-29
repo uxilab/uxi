@@ -10,10 +10,10 @@ const ExampleSimpleOutline = () => (
     <OutlineButton icon={<Options />} />
     <OutlineButton text="send" />
     <OutlineButton type="primary" text="SUBMIT" />
-    <OutlineButton disabled link="https://www.google.com" type="info" text="DISABLED LINK" />
+    <OutlineButton disabled link="#" type="info" text="DISABLED LINK" />
     <OutlineButton iconPosition="after" icon={<Merge />} disabled type="primary" text="DISABLED" />
     <OutlineButton type="warning" text="IGNORE" />
-    <OutlineButton link="https://www.google.com" type="info" text="GO BACK" />
+    <OutlineButton link="#" type="info" text="GO BACK" />
     <OutlineButton icon={<Merge />} disabled type="primary" text="DISABLED" />
     <OutlineButton iconPosition="after" icon={<Merge />} type="primary" text="zerfaergf" />
     <OutlineButton disabled type="primary" text="DISABLED" />

@@ -21,7 +21,8 @@ const ButtonBaseStyles = css`
   min-height: 32px;
   /* border-radius: 2px; */
   user-select: none;
-  transition: all 0.38s ease-out;
+  /* transition: all 0.38s ease-out; */
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   svg {
     min-width: 26px;
