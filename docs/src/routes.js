@@ -68,11 +68,9 @@ export const routes = [
     label: 'Beta',
     childRoutes: [
       { path: '/beta/classic', label: 'Classic' },
-      { path: '/beta/gallery', label: 'Gallery' },
       { path: '/beta/Motion', label: 'Motion' },
       { path: '/beta/datagrid', label: 'Data Grid' },
       { path: '/beta/spacer', label: 'Spacer' },
-      { path: '/beta/img', label: 'Image' },
       { path: '/beta/stepper', label: 'Stepper' },
       { path: '/beta/carrousel', label: 'Carrousel' },
       { path: '/beta/table', label: 'Table' },
