@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input';
+import { Select } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 
@@ -31,7 +31,7 @@ class ExampleSimple extends Component {
   render() {
     return (
       <div>
-        <SelectInput
+        <Select
           onChange={(event, value) => this.setState({ selectedValue: value })}
           mainScrollingElementSelector=".uxi_ComponentShell_scrolling-element"
         >
@@ -43,7 +43,7 @@ class ExampleSimple extends Component {
               </Flex>
             ))
           }
-        </SelectInput>
+        </Select>
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input';
+import { Select } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
 import Button from 'uxi/Button';
 
@@ -32,7 +32,7 @@ class ExampleSimpleControlled extends Component {
   render() {
     return (
       <div>
-        <SelectInput
+        <Select
           onChange={(event, value) => {
             console.log('constorlled behaviour: manully updating state', value);
             this.setState({ selectedValue: value });
@@ -47,7 +47,7 @@ class ExampleSimpleControlled extends Component {
               </div>
             ))
           }
-        </SelectInput>
+        </Select>
         <br />
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>

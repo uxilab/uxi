@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input';
+import { Select } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
-import Button from 'uxi/Button';
 
 const options = [
   {
@@ -19,24 +18,21 @@ const options = [
   },
 ];
 
-class ExampleSimpleControlled extends Component {
+class ExampleSimpleWithWidth extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedValue: 'Ava',
-      values: options.map(({ name }) => name),
+      selectedValue: null,
     };
   }
 
   render() {
     return (
       <div>
-        <SelectInput
-          onChange={(event, value) => {
-            console.log('contorled behaviour ignoring change', value);
-          }}
-          value={this.state.selectedValue}
+        <Select
+          onChange={(event, value) => this.setState({ selectedValue: value })}
+          style={{ width: '250px' }}
         >
           <div value={null}>None</div>
           {
@@ -46,24 +42,12 @@ class ExampleSimpleControlled extends Component {
               </div>
             ))
           }
-        </SelectInput>
-        <br />
-        <Button
-          text="Set to 'Ava'"
-          onClick={() => this.setState({ selectedValue: 'Ava' })}
-          style={{ margin: '0 8px' }}
-        />
-        <Button
-          text="Set to 'Regina'"
-          onClick={() => this.setState({ selectedValue: 'Regina' })}
-          style={{ margin: '0 8px' }}
-        />
+        </Select>
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>
-        <br />
       </div>
     );
   }
 }
 
-export default ExampleSimpleControlled;
+export default ExampleSimpleWithWidth;

@@ -2,10 +2,10 @@ import React from 'react';
 import Dialog, { DialogHeader, DialogFooter, ConfirmDialog } from 'uxi/Dialog';
 import Button from 'uxi/Button';
 import { DropDownMenu, Separator } from 'uxi/Menu';
-import { DropDown } from 'uxi/internal/DropDown';
+// import { DropDown } from 'uxi/internal/DropDown';
 import { Merge, Slack, Facebook } from 'uxi/Icons';
 import { AvatarWithName } from 'uxi/Img';
-import { SelectInput } from 'uxi/Input';
+import { Select } from 'uxi/Input';
 import MenuItem from 'uxi/Menu/MenuItem';
 
 const selectInputDefaultValueRef = 'fooooobar';
@@ -37,7 +37,7 @@ const ExampleSimple = () => (
 
         <br />
         <h3> Select Input </h3>
-        <SelectInput defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>
+        <Select defaultValue={selectInputDefaultValueRef} onChange={(x) => { console.log('onChange called with :', x); }}>
           <Separator label="B" />
           <AvatarWithName value={'item1'} name="Billy Jarvis" icon={<Merge />} />
           <AvatarWithName value={'item2'} name="Billy Joel" icon={<Slack />} />
@@ -70,7 +70,7 @@ const ExampleSimple = () => (
           <AvatarWithName value={'sdgsfbg'} name="I'm way way way tooooooooooooooooooo looooooooooog for thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiiiiiiiiiis" />
           <Separator label="Others" />
           <div value={selectInputDefaultValueRef}>Hi</div>
-        </SelectInput>
+        </Select>
       </div>
 
 

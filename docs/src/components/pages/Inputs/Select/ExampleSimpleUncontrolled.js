@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input';
+import { Select } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
+import Button from 'uxi/Button';
 
 const options = [
   {
@@ -18,21 +19,22 @@ const options = [
   },
 ];
 
-class ExampleSimpleWithWidth extends Component {
+class ExampleSimpleUncontrolled extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedValue: null,
+      selectedValue: 'Ava',
+      values: options.map(({ name }) => name),
     };
   }
 
   render() {
     return (
       <div>
-        <SelectInput
+        <Select
           onChange={(event, value) => this.setState({ selectedValue: value })}
-          style={{ width: '250px' }}
+          defaultValue={'Regina'}
         >
           <div value={null}>None</div>
           {
@@ -42,7 +44,7 @@ class ExampleSimpleWithWidth extends Component {
               </div>
             ))
           }
-        </SelectInput>
+        </Select>
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>
       </div>
@@ -50,4 +52,4 @@ class ExampleSimpleWithWidth extends Component {
   }
 }
 
-export default ExampleSimpleWithWidth;
+export default ExampleSimpleUncontrolled;

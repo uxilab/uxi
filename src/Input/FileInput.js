@@ -11,7 +11,7 @@ import { Button } from '../Button';
 const FileInputWrapperUI = styled.div`
   display: inline-block;
   position: relative;
-  outline: ${({ focussed }) => (focussed ? '-webkit-focus-ring-color auto 5px' : 'none')};
+  /* outline: ${({ focussed }) => (focussed ? '-webkit-focus-ring-color auto 5px' : 'none')}; */
 `;
 
 const FileInputLabelUI = styled.label`
@@ -19,22 +19,24 @@ const FileInputLabelUI = styled.label`
   padding: 0;
   width: 100%;
   cursor: pointer;
-  &:hover  {
+  /* &:hover  {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
-  };
+  }; */
 `;
 
 const FileInputUI = styled.input.attrs({
   type: 'file',
 })`
-  width: 0.1px;
-  height: 0.1px;
+  width: 100%;
+  height: 100%;
   opacity: 0;
   position: absolute;
   z-index: -1;
   left: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 /* eslint-disable jsx-a11y/label-has-for */
@@ -81,20 +83,41 @@ class FileInput extends PureComponent {
     const finalId = id || finalLabel; // TODO => uuid
 
     return (
-      <FileInputWrapperUI focussed={focussed}>
-        <FileInputLabelUI htmlFor={finalId}>
-          <Button inert>
-            <UploadIcon size="16" style={{ paddingRight: '8px', marginBottom: '-2px' }} />
+      <FileInputWrapperUI
+        focussed={focussed}
+        // onFocus={() => console.log('FileInputWrapperUI focused')}
+        // onBlur={() => console.log('FileInputWrapperUI blurred')}
+      >
+        <FileInputLabelUI
+          tabIndex="-1"
+          // onFocus={() => console.log('FileInputLabelUI focused')}
+          // onBlur={() => console.log('FileInputLabelUI blurred')}
+        >
+          {/*
+          the input is teh element getting the focus in this case,
+          so avoid focus confiusion bny disableing focus on button
+         */}
+          <Button inert tabIndex="-1">
+            <UploadIcon
+              size="16" style={{ paddingRight: '8px', marginBottom: '-2px' }}
+            />
             {finalLabel }
+            <FileInputUI
+              onFocus={(...a) => {
+                console.log('FileInpuUI focused');
+                this.setFocus(...a);
+              }}
+              onBlur={(...a) => {
+                console.log('FileInpuUI blurred');
+                this.setFocus(...a);
+              }}
+              {...props}
+              multiple={multiple}
+              onChange={onChange}
+              // onFocus={this.setFocus}
+              // onBlur={this.setBlur}
+            />
           </Button>
-          <FileInputUI
-            {...props}
-            multiple={multiple}
-            onChange={onChange}
-            id={finalId}
-            onFocus={this.setFocus}
-            onBlur={this.setBlur}
-          />
         </FileInputLabelUI>
       </FileInputWrapperUI>
     );

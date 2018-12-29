@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input';
+import { Select } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
 
 const options = [
@@ -30,7 +30,7 @@ class ExampleSimpleWithWidth extends Component {
   render() {
     return (
       <div>
-        <SelectInput
+        <Select
           onChange={(event, value) => this.setState({ selectedValue: value })}
           isFullWidth
         >
@@ -42,7 +42,7 @@ class ExampleSimpleWithWidth extends Component {
               </div>
             ))
           }
-        </SelectInput>
+        </Select>
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>
       </div>

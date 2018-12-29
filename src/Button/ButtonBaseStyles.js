@@ -2,7 +2,6 @@ import { css } from 'styled-components';
 
 /* eslint-disable indent */
 const ButtonBaseStyles = css`
-  /* outline: 0 !important; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,9 +32,11 @@ const ButtonBaseStyles = css`
     height: 26px;
     max-height: 26px;
   }
+  outline: none;
+  box-shadow: none;
   &:not(:hover) {
     &:focus {
-      ${({ disabled, inert, theme }) => (!inert || !disabled
+      ${({ disabled, theme }) => (!disabled
         ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
         : '')
       };

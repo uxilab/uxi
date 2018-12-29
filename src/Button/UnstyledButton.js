@@ -19,7 +19,6 @@ const UnstyledButtonUI = styled.button.attrs({
   min-height: 100%;
   &:focus {
     ${({ disabled, inert, theme }) => (!inert && !disabled
-      // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
       ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
       : '')
     };

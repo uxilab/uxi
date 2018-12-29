@@ -37,6 +37,7 @@ export class ButtonComponent extends Component {
       className,
       target,
       loading,
+      tabIndex,
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -47,8 +48,15 @@ export class ButtonComponent extends Component {
 
 
     let icon;
+    let iconSize = 16;
     if (React.isValidElement(iconProp)) {
-      icon = React.cloneElement(iconProp, { size: '16' });
+      const iconSizeFromConsumer = iconProp.props ? iconProp.props.size : null;
+      if (iconSizeFromConsumer !== undefined) {
+        iconSize = iconSizeFromConsumer;
+      }
+      icon = React.cloneElement(iconProp, {
+        size: iconSize,
+      });
     }
 
     const buttonAttr = {
@@ -62,6 +70,7 @@ export class ButtonComponent extends Component {
         marginBottom: 0,
         marginLeft: 0,
       },
+      ...(tabIndex ? { tabIndex } : {}),
     };
     const marginStyles = {
       display: isFullWidth ? 'block' : 'inline-block',
@@ -121,31 +130,39 @@ export class ButtonComponent extends Component {
     );
 
     const rippleStyles = {
-      ...(style.borderRadius !== undefined
-        ? { borderRadius: style.borderRadius }
-        : {}
-      ),
-      ...(style.borderBottomLeftRadius !== undefined
-        ? { borderBottomLeftRadius: style.borderBottomLeftRadius }
-        : {}
-      ),
-      ...(style.borderBottomRightRadius !== undefined
-        ? { borderBottomLeftRadius: style.borderBottomLeftRadius }
-        : {}
-      ),
-      ...(style.borderTopLeftRadius !== undefined
-        ? { borderTopLeftRadius: style.borderTopLeftRadius }
-        : {}
-      ),
-      ...(style.borderTopRightRadius !== undefined
-        ? { borderTopLeftRadius: style.borderTopLeftRadius }
-        : {}
-      ),
+      // ...(style.borderRadius !== undefined
+      //   ? { borderRadius: style.borderRadius }
+      //   : {}
+      // ),
+      // ...(style.borderBottomLeftRadius !== undefined
+      //   ? { borderBottomLeftRadius: style.borderBottomLeftRadius }
+      //   : {}
+      // ),
+      // ...(style.borderBottomRightRadius !== undefined
+      //   ? { borderBottomLeftRadius: style.borderBottomLeftRadius }
+      //   : {}
+      // ),
+      // ...(style.borderTopLeftRadius !== undefined
+      //   ? { borderTopLeftRadius: style.borderTopLeftRadius }
+      //   : {}
+      // ),
+      // ...(style.borderTopRightRadius !== undefined
+      //   ? { borderTopLeftRadius: style.borderTopLeftRadius }
+      //   : {}
+      // ),
       ...(isFullWidth ? { width: '100%' } : {}),
+      ...style,
     };
 
     return (
-      <div style={{ ...marginStyles, lineHeight: 0 }}>
+      <div
+        style={{
+          ...marginStyles,
+          lineHeight: 0,
+          ...(style.width ? { width: style.width } : {}),
+          ...(style.height ? { height: style.width } : {}),
+        }}
+      >
         <Ripples disabled={disabled} style={rippleStyles}>
           {theButton}
         </Ripples>

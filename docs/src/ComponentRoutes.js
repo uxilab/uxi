@@ -9,13 +9,13 @@ import FlatButtonPage from './components/pages/Button/FlatButton/Page';
 import ButtonLinkPage from './components/pages/Button/ButtonLink/Page';
 import OutlineButtonPage from './components/pages/Button/OutlineButton/Page';
 import UnstyledButtonPage from './components/pages/Button/UnstyledButton/Page';
-import FontPage from './components/pages/Font/Page';
-import ColorPage from './components/pages/Color/Page';
+// import FontPage from './components/pages/Font/Page';
+// import ColorPage from './components/pages/Color/Page';
 import BoxPage from './components/pages/Box/Page';
 import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
 import RadioPage from './components/pages/Inputs/Radio/Page';
-import SelectInputPage from './components/pages/Inputs/SelectInput/Page';
+import SelectPage from './components/pages/Inputs/Select/Page';
 import AutoCompletePage from './components/pages/Inputs/AutoComplete/Page';
 import FileInputPage from './components/pages/Inputs/File/Page';
 import TextFieldPage from './components/pages/Inputs/TextField/Page';
@@ -74,35 +74,50 @@ const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
       <Route path={`${match.url}/`} exact component={Home} />
+      {/* THEME */}
       <Route path={`${match.url}/Theme`} exact component={ThemePage} />
+
+      {/* PANEL */}
       <Route path={`${match.url}/Panel`} exact component={PanelPage} />
       <Route path={`${match.url}/Panel/PanelHeader`} component={PanelHeaderPage} />
       <Route path={`${match.url}/Panel/PanelContent`} component={PanelContentPage} />
       <Route path={`${match.url}/Panel/PanelFooter`} component={PanelFooterPage} />
       <Route path={`${match.url}/Panel/LightPanel`} component={LightPanelPage} />
 
+      {/* DIALOG */}
       <Route path={`${match.url}/Dialog`} exact component={DialogPage} />
       <Route path={`${match.url}/Dialog/withConfirmDialog`} exact component={WithConfirmDialogPage} />
 
-      <Route path={`${match.url}/Font`} exact component={FontPage} />
-      <Route path={`${match.url}/color`} component={ColorPage} />
+      {/* <Route path={`${match.url}/Font`} exact component={FontPage} />
+      <Route path={`${match.url}/color`} component={ColorPage} /> */}
+
+      {/* BUTTON */}
       <Route path={`${match.url}/button`} exact component={ButtonPage} />
       <Route path={`${match.url}/button/FlatButton`} component={FlatButtonPage} />
       <Route path={`${match.url}/button/ButtonLink`} component={ButtonLinkPage} />
       <Route path={`${match.url}/button/OutlineButton`} component={OutlineButtonPage} />
       <Route path={`${match.url}/button/UnstyledButton`} component={UnstyledButtonPage} />
 
+      {/* DRAWER */}
       <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
       <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
-      <Route path={`${match.url}/dropdown`} component={DropDownPage} />
-      <Route path={`${match.url}/box`} component={BoxPage} />
-      <Route path={`${match.url}/popover`} component={PopOverPage} />
-      <Route path={`${match.url}/sociallinks`} component={SocialLinksPage} />
+
+      {/* ICONS */}
+      <Route path={`${match.url}/icons`} component={IconsPage} />
+
+      {/* LAYOUTS */}
+      <Route path={`${match.url}/layouts`} exact component={LayoutPage} />
+      <Route path={`${match.url}/layouts/AppLayout`} component={AppLayoutPage} />
+      <Route path={`${match.url}/layouts/ContentWithExtra`} component={ContentWithExtraPage} />
+      <Route path={`${match.url}/layouts/Flex`} component={FlexPage} />
+      <Route path={`${match.url}/layouts/SimpleGrid`} component={SimpleGridPage} />
+
+      {/* INPUT */}
       <Route path={`${match.url}/inputs`} exact component={InputsPage} />
       <Route path={`${match.url}/inputs/checkbox`} component={CheckboxPage} />
       <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
       <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
-      <Route path={`${match.url}/inputs/selectinput`} component={SelectInputPage} />
+      <Route path={`${match.url}/inputs/select`} component={SelectPage} />
       <Route path={`${match.url}/inputs/autocomplete`} component={AutoCompletePage} />
       <Route path={`${match.url}/inputs/range`} component={RangePage} />
       <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
@@ -110,40 +125,43 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
       {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
 
-      <Route path={`${match.url}/icons`} component={IconsPage} />
-      <Route path={`${match.url}/layouts`} exact component={LayoutPage} />
-      <Route path={`${match.url}/layouts/AppLayout`} component={AppLayoutPage} />
-      <Route path={`${match.url}/layouts/ContentWithExtra`} component={ContentWithExtraPage} />
-      <Route path={`${match.url}/layouts/Flex`} component={FlexPage} />
-      <Route path={`${match.url}/layouts/SimpleGrid`} component={SimpleGridPage} />
-
-      <Route path={`${match.url}/list`} component={ListPage} />
-      <Route path={`${match.url}/table`} component={TablePage} />
+      {/* INPUT */}
       <Route path={`${match.url}/alert`} component={AlertPage} />
-      <Route path={`${match.url}/loader`} component={LoaderPage} />
-      <Route path={`${match.url}/img`} component={ImgPage} />
-      <Route path={`${match.url}/menu`} component={MenuPage} />
-      {/* <Route path={`${match.url}/internal`} exact component={InternalPage} /> */}
-      <Route path={`${match.url}/badge`} component={BadgePage} />
-      <Route path={`${match.url}/indicator`} component={IndicatorPage} />
-      <Route path={`${match.url}/dashboard`} component={DashboardPage} />
-      <Route path={`${match.url}/stepper`} component={StepperPage} />
-      <Route path={`${match.url}/DialogDropDown`} component={DialogDropDownPage} />
-      <Route path={`${match.url}/BreadCrumbs`} component={BreadCrumbsPage} />
-      <Route path={`${match.url}/classic`} component={ClassicPage} />
-      <Route path={`${match.url}/datagrid`} component={DataGridPage} />
-      <Route path={`${match.url}/globalMenu`} component={GlobalMenuPage} />
-      <Route path={`${match.url}/widget`} component={WidgetPage} />
-      <Route path={`${match.url}/personalizedmenu`} component={PesonalizedMenuPage} />
-      <Route path={`${match.url}/Gallery`} component={GalleryPage} />
-      <Route path={`${match.url}/Carrousel`} component={CarrouselPage} />
-      <Route path={`${match.url}/Tile`} component={TilePage} />
-      <Route path={`${match.url}/motion`} component={MotionPage} />
-      {/* <Route path={`${match.url}/compactslide`} component={CompactSlidePage} /> */}
-      <Route path={`${match.url}/BETAAutoComplete`} component={AutoComplete2} />
-      <Route path={`${match.url}/Spacer`} component={Spacer} />
-      <Route path={`${match.url}/Tree`} component={Tree} />
-      <Route path={`${match.url}/MenuDropDown`} component={MenuDropDownPage} />
+
+
+      {/* BETA: */}
+      <Route path={`${match.url}/beta/dropdown`} component={DropDownPage} />
+      <Route path={`${match.url}/beta/box`} component={BoxPage} />
+      <Route path={`${match.url}/beta/popover`} component={PopOverPage} />
+      <Route path={`${match.url}/beta/sociallinks`} component={SocialLinksPage} />
+
+
+      <Route path={`${match.url}/beta/list`} component={ListPage} />
+      <Route path={`${match.url}/beta/table`} component={TablePage} />
+      <Route path={`${match.url}/beta/loader`} component={LoaderPage} />
+      <Route path={`${match.url}/beta/img`} component={ImgPage} />
+      <Route path={`${match.url}/beta/menu`} component={MenuPage} />
+      {/* <Route path={`${match.url}/beta/internal`} exact component={InternalPage} /> */}
+      <Route path={`${match.url}/beta/badge`} component={BadgePage} />
+      <Route path={`${match.url}/beta/indicator`} component={IndicatorPage} />
+      <Route path={`${match.url}/beta/dashboard`} component={DashboardPage} />
+      <Route path={`${match.url}/beta/stepper`} component={StepperPage} />
+      <Route path={`${match.url}/beta/DialogDropDown`} component={DialogDropDownPage} />
+      <Route path={`${match.url}/beta/BreadCrumbs`} component={BreadCrumbsPage} />
+      <Route path={`${match.url}/beta/classic`} component={ClassicPage} />
+      <Route path={`${match.url}/beta/datagrid`} component={DataGridPage} />
+      <Route path={`${match.url}/beta/globalMenu`} component={GlobalMenuPage} />
+      <Route path={`${match.url}/beta/widget`} component={WidgetPage} />
+      <Route path={`${match.url}/beta/personalizedmenu`} component={PesonalizedMenuPage} />
+      <Route path={`${match.url}/beta/Gallery`} component={GalleryPage} />
+      <Route path={`${match.url}/beta/Carrousel`} component={CarrouselPage} />
+      <Route path={`${match.url}/beta/Tile`} component={TilePage} />
+      <Route path={`${match.url}/beta/motion`} component={MotionPage} />
+      {/* <Route path={`${match.url}/beta/compactslide`} component={CompactSlidePage} /> */}
+      <Route path={`${match.url}/beta/BETAAutoComplete`} component={AutoComplete2} />
+      <Route path={`${match.url}/beta/Spacer`} component={Spacer} />
+      <Route path={`${match.url}/beta/Tree`} component={Tree} />
+      <Route path={`${match.url}/beta/MenuDropDown`} component={MenuDropDownPage} />
     </Switch>
   </ComponentShell>
 );

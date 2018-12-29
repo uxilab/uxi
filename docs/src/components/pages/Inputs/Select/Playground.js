@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { SelectInput } from 'uxi/Input';
 import WithBoundingRect from 'uxi/internal/WithBoundingRect';
 import DropDown2 from 'uxi/internal/DropDown2';
 import { AvatarWithName } from 'uxi/Img';
