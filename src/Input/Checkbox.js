@@ -19,7 +19,9 @@ const LabeLUI = styled.label`
 
 `;
 
-const InputUI = styled.input`
+const InputUI = styled.input.attrs({
+  onMouseOut: () => ({ target }) => target.blur && target.blur(),
+})`
   position: absolute
   width: 100%;
   height: 100%;
@@ -53,11 +55,13 @@ const Wrapper = styled.div`
     `) : '')};
   }
 
-  &:focus-within {
-    ${({ disabled, inert, theme }) => (!inert || !disabled
-      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
-      : '')
-    };
+  &:not(:hover) {
+    &:focus-within {
+      ${({ disabled, inert, theme }) => (!inert || !disabled
+        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+        : '')
+      };
+    }
   }
 `;
 /* eslint-enable indent */

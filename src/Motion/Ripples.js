@@ -34,9 +34,11 @@ const Wrapper = styled.div`
     & > div {
       overflow: hidden;
     }
-    &:focus-within {
-      box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
-      outline: ${({ theme: { outline } }) => outline};
+    &:not(:hover) {
+      &:focus-within {
+        box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+        outline: ${({ theme: { outline } }) => outline};
+      }
     }
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
       box-shadow: ${({ focusWithin, theme: { outlineShadow } }) => focusWithin && outlineShadow};

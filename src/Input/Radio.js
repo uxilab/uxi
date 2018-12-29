@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
+import Ripple from '../Motion/Ripples';
 
 const RadioInpuUI = styled.input.attrs({
   type: 'radio',
+  onMouseOut: () => ({ target }) => target.blur && target.blur(),
 })`
   cursor: pointer;
   opacity: 0;
@@ -153,24 +155,32 @@ class Radio extends React.PureComponent {
     /* eslint-disable jsx-a11y/label-has-for */
     return (
       <div style={this.getWrapperStyles()}>
-        <RadioLabelUI htmlFor={name} style={{}} label={label} hasFocus={hasFocus} checker={isChecked}>
-          <RadioInpuUI
-            tabIndex="0"
-            id={id}
+        <Ripple>
+          <RadioLabelUI
+            htmlFor={name}
             style={{}}
-            {...checker}
-            name={name}
-            value={value}
-            disabled={disabled}
-            onBlur={this.onBlur}
-            onFocus={this.onFocus}
-            onChange={(...a) => {
-              this.handleChange(...a);
-            }}
-          />
-          <Icon />
-          {label}
-        </RadioLabelUI>
+            label={label}
+            hasFocus={hasFocus}
+            checker={isChecked}
+          >
+            <RadioInpuUI
+              tabIndex="0"
+              id={id}
+              style={{}}
+              {...checker}
+              name={name}
+              value={value}
+              disabled={disabled}
+              onBlur={this.onBlur}
+              onFocus={this.onFocus}
+              onChange={(...a) => {
+                this.handleChange(...a);
+              }}
+            />
+            <Icon />
+            {label}
+          </RadioLabelUI>
+        </Ripple>
       </div>
     );
   }
