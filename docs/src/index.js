@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import { Router, Route } from 'react-router-dom';
 import ThemeProvider from 'uxi/Theme/ThemeProvider';
+import About from './components/pages/Home';
 import ComponentRoutes from './ComponentRoutes';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Menu from './Menu';
@@ -24,6 +25,7 @@ render(
         <Route exact path="/" component={Landing} />
         <Route exact path="/get-started" component={GetStarted} />
         <Route path="/components" component={ComponentRoutes} />
+        <Route path="/about" component={About} />
       </AppShell>
     </ConnectedRouter>
   </Provider>,

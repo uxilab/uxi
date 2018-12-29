@@ -1,6 +1,6 @@
 
 export const routes = [
-  { path: '/theme', label: 'Theme' },
+  // { path: '/theme', label: 'Theme' },
   { path: '/panel',
     label: 'Panel',
     childRoutes: [

@@ -76,9 +76,9 @@ import MenuDropDownPage from './components/pages/MenuDropDown/Page';
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
     <Switch>
-      <Route path={`${match.url}/`} exact component={Home} />
+      <Route path={`${match.url}/`} exact component={ThemePage} />
       {/* THEME */}
-      <Route path={`${match.url}/Theme`} exact component={ThemePage} />
+      {/* <Route path={`${match.url}/Theme`} exact component={ThemePage} /> */}
 
       {/* PANEL */}
       <Route path={`${match.url}/Panel`} exact component={PanelPage} />

@@ -8,7 +8,7 @@ import { routes } from '../../routes';
 import RAWReadme from '!raw-loader!./README.md';
 
 const Home = () => (
-  <div>
+  <div style={{ padding: '116px 32px 32px', width: '100%', maxWidth: '760px', margin: '0 auto' }}>
     <PageTitle>UXI - Build UI faster</PageTitle>
     <PageSubTitle>Features</PageSubTitle>
     <SimpleList isBullet>

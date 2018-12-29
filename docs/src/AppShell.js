@@ -89,10 +89,13 @@ const Appshell = (props) => {
                   </LogoWrapper>
                 </MenuItem>
                 <MenuItem style={{ display: 'flex' }}>
-                  <Link to="/components">Components</Link>
+                  <Link to="/get-started">Get Started</Link>
                 </MenuItem>
                 <MenuItem style={{ display: 'flex' }}>
-                  <Link to="/get-started">Get Started</Link>
+                  <Link to="/components">Doc</Link>
+                </MenuItem>
+                <MenuItem style={{ display: 'flex' }}>
+                  <Link to="/about">About</Link>
                 </MenuItem>
                 {/*  <MenuItem style={{ marginLeft: 'auto', lineHeight: 1, color: 'grey' }}>
                 <AutoCompleteWrapper style={{ marginTop: '24px' }}>

@@ -20,9 +20,9 @@ console.log('RAWReadme', RAWReadme);
 
 const Page = () => (
   <div>
-    <Title text="Theme" />
+    <Title text="ShowCase" />
     <ul>
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWThemeProvider}
           component
@@ -30,9 +30,8 @@ const Page = () => (
           description={RAWReadme}
           hasPadding
         />
-      </li>
+      </li> */}
       <li>
-        <Title text="ShowCase" />
         <ShowCase />
       </li>
       <li>
