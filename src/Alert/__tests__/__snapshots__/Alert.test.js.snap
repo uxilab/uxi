@@ -3,7 +3,6 @@
 exports[`should render an Alert 1`] = `
 <styled.div>
   <div
-    className=""
     style={
       Object {
         "alignItems": "center",
@@ -21,7 +20,6 @@ exports[`should render an Alert 1`] = `
   >
     <Alert
       color="white"
-      size={24}
       style={
         Object {
           "margin": "8px 8px 8px 16px",
