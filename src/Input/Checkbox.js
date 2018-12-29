@@ -6,7 +6,7 @@ import {
   Checkboxoutline,
   Padlock,
 } from '../Icons';
-
+/* eslint-disable indent */
 const LabeLUI = styled.label`
   cursor: pointer;
   ${({ label, labelBefore }) => (
@@ -26,7 +26,7 @@ const InputUI = styled.input`
   bottom: 0;
   left: 0;
   opacity: 0;
-  cursor: inherit;
+  cursor: pointer;
   box-sizing: border-box;
   margin: 0;
 `;
@@ -40,17 +40,23 @@ const Wrapper = styled.div`
   display: flex ;
   align-items: center;
 
-  /* waiting for Edge to support focus-within */
-  ${({ hasFocus }) => (hasFocus ? (`
-    outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
-    outline: 5px auto -webkit-focus-ring-color !important;
-  `) : '')};
+  border-radius: ${({ theme: { radius } }) => radius};
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* waiting for Edge to support focus-within */
+    ${({ hasFocus, theme }) => (hasFocus ? (`
+      bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}
+    `) : '')};
+  }
 
   &:focus-within {
-    outline: 2px solid #7AACFE !important;
-    outline: 5px auto -webkit-focus-ring-color !important;
+    ${({ disabled, inert, theme }) => (!inert || !disabled
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
   }
 `;
+/* eslint-enable indent */
 
 // const posAbs = {
 //   position: 'absolute',

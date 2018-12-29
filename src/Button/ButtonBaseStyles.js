@@ -39,10 +39,10 @@ const ButtonBaseStyles = css`
     box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow}; */
 
     ${({ disabled, inert, theme }) => (!inert || !disabled
-      // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
-      ? `bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}`
-      : '')
-    };
+  // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
+    ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+    : '')
+};
 
   }
 `;

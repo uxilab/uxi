@@ -39,12 +39,22 @@ const RadioLabelUI = styled.label`
   padding: 2px;
   padding-left: 1px;
   border-radius: 2px;
-  /* fake outline */
-  /* waiting for Edge to support focus-within */
-  ${({ hasFocus }) => (hasFocus ? (`
-    outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
-    outline: 5px auto -webkit-focus-ring-color !important;
-  `) : '')};
+
+  border-radius: ${({ theme: { radius } }) => radius};
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* waiting for Edge to support focus-within */
+    ${({ hasFocus, theme }) => (hasFocus ? (`
+      bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}
+    `) : '')};
+  }
+
+  &:focus-within {
+    ${({ disabled, inert, theme }) => (!inert || !disabled
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
+  }
 
   ${({ checker, theme: { palette } }) => (checker
     ? `svg { fill: ${palette.accent.main} !important; }`

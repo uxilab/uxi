@@ -20,7 +20,7 @@ const UnstyledButtonUI = styled.button.attrs({
   &:focus {
     ${({ disabled, inert, theme }) => (!inert && !disabled
       // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
-      ? `bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
       : '')
     };
   }

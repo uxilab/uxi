@@ -21,6 +21,8 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  /* background: white; */
+
   * {
     overflow-x: hidden;
     text-overflow: ellipsis;
@@ -39,7 +41,7 @@ const TriggerreWrapper = styled.div`
   border-radius: ${({ theme: { radius } }) => radius};
   overflow: hidden;
   position: relative;
-  background: white;
+  /* background: white; */
 `;
 
 // TODO show default value if any
