@@ -35,6 +35,7 @@ export const routes = [
       { path: '/button/FlatButton', label: 'FlatButton' },
       { path: '/button/OutlineButton', label: 'OutlineButton' },
       { path: '/button/ButtonLink', label: 'ButtonLink' },
+      { path: '/button/UnstyledButton', label: 'UnstyledButton' },
     ] },
   { path: '/Drawer',
     label: 'Drawer',

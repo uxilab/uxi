@@ -77,6 +77,7 @@ const styles = {
     flexDirection: 'column',
   },
   triggerInnerWrapper: {
+    width: '100%',
     height: '100%',
     display: 'flex',
     alignItems: 'stretch',
@@ -387,7 +388,10 @@ export class DropDown extends PureComponent {
 
     const dropDownMain = React.cloneElement(main,
       {
-        ref: ref => this.storeMainRef(ref),
+        // ref: (ref) => {
+        //   console.log('running ref');
+        //   this.storeMainRef(ref);
+        // },
         // this next line is useless
         // onClick: () => {
         //   this.handleToggleVisibility();
@@ -429,23 +433,37 @@ export class DropDown extends PureComponent {
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
-        <UnstyledButton
+        {/* <UnstyledButton
           style={{ width: '100%' }}
+        > */}
+        <UnstyledButtonBeta
+          onClick={this.handleToggleVisibility}
+          ref={(ref) => {
+            console.log('running ref');
+            this.storeMainRef(ref);
+          }}
+          inert={inertMain}
+          data-drop-down-main
+          role={inertMain === false ? undefined : 'menu'}
+          isFullWidth={isFullWidth}
+          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
+          {...tabIndexButtonattr}
         >
-          <Ripples
-            inert={inertMain}
-            data-drop-down-main
-            role={inertMain === false ? undefined : 'menu'}
-            isFullWidth={isFullWidth}
-            style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
-            onClick={this.handleToggleVisibility}
-            {...tabIndexButtonattr}
-          >
-            <div style={styles.triggerInnerWrapper}>
-              {dropDownMain}
-            </div>
-          </Ripples>
-        </UnstyledButton>
+          <div style={styles.triggerInnerWrapper}>
+            {dropDownMain}
+          </div>
+        </UnstyledButtonBeta>
+        {/* <Ripples
+          inert={inertMain}
+          data-drop-down-main
+          role={inertMain === false ? undefined : 'menu'}
+          isFullWidth={isFullWidth}
+          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
+          onClick={this.handleToggleVisibility}
+          {...tabIndexButtonattr}
+        >
+        </Ripples> */}
+        {/* </UnstyledButton> */}
 
 
         {/* <UnstyledButtonBeta

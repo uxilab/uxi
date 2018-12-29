@@ -39,7 +39,7 @@ const TriggerreWrapper = styled.div`
   border-radius: ${({ theme: { radius } }) => radius};
   overflow: hidden;
   position: relative;
-  /* background: white; */
+  background: white;
 `;
 
 // TODO show default value if any

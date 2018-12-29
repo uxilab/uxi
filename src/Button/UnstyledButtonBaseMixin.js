@@ -15,6 +15,9 @@ export const UnstyledButtonBaseMixin = css`;
   button div, & div {
     margin: 0;
   }
+  & > div {
+    width: 100%;
+  }
 }
 `;
 
