@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 
+/* eslint-disable indent */
 const ButtonBaseStyles = css`
   /* outline: 0 !important; */
   display: flex;
@@ -32,20 +33,15 @@ const ButtonBaseStyles = css`
     height: 26px;
     max-height: 26px;
   }
-  &:focus {
-    /* outline: -webkit-focus-ring-color auto 5px; */
-    /* outline: rgba(35, 35, 35, .4) auto 5px; */
-    /* box-shadow: 0 0 3pt 2pt red; */
-    /* outline: ${({ theme: { outline } }) => outline};
-    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow}; */
-
-    ${({ disabled, inert, theme }) => (!inert || !disabled
-  // ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
-    ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
-    : '')
-};
-
+  &:not(:hover) {
+    &:focus {
+      ${({ disabled, inert, theme }) => (!inert || !disabled
+        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+        : '')
+      };
+    }
   }
 `;
+/* eslint-enable indent */
 
 export default ButtonBaseStyles;

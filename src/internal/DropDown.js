@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
-import { UnstyledButton } from '../Button';
+// import { UnstyledButton } from '../Button';
 import UnstyledButtonBeta from '../Button/UnstyledButton1';
-import Ripples from '../Motion/Ripples';
+// import Ripples from '../Motion/Ripples';
 
+/* eslint-disable indent */
 const ItemsWrapper = styled.div`
   ${({ theme: { transition } }) => transition.defaultAll};
+  ${({ isOpen, theme }) => (isOpen
+    ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+    : '')
+  };
+    /* box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+    outline: ${({ theme: { outline } }) => outline}; */
+  /* &:focus-within {
+    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+    outline: ${({ theme: { outline } }) => outline};
+  } */
 `;
 
 const PopOverArrow = styled.div`
@@ -52,6 +63,7 @@ const WrapperUI = styled.div`
   height: 100%;
   ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
 `;
+/* eslint-enable indent */
 
 
 /**
@@ -132,6 +144,7 @@ export class DropDown extends PureComponent {
     this.handleWindowScroll = this.handleWindowScroll.bind(this);
     this.attachListeners = this.attachListeners.bind(this);
     this.detachListeners = this.detachListeners.bind(this);
+    this.storeMainRef = this.storeMainRef.bind(this);
   }
 
   // componentWillMount() {
@@ -438,10 +451,7 @@ export class DropDown extends PureComponent {
         > */}
         <UnstyledButtonBeta
           onClick={this.handleToggleVisibility}
-          ref={(ref) => {
-            console.log('running ref');
-            this.storeMainRef(ref);
-          }}
+          ref={this.storeMainRef}
           inert={inertMain}
           data-drop-down-main
           role={inertMain === false ? undefined : 'menu'}
@@ -481,6 +491,7 @@ export class DropDown extends PureComponent {
           </UnstyledButtonBeta> */}
 
         <ItemsWrapper
+          isOpen={isOpen}
           data-is-the-one="true"
           data-drop-down-items
           // aria-hidden={isOpen ? false : true}
