@@ -19,10 +19,10 @@ const defaultRules = [
 ];
 
 const ResponsiveGallery = (props) => {
-  const { galleryDescriptor, rules } = props;
+  const { galleryDescriptor, rules, style } = props;
   return (
     <PropsMapperContainerQueries imgHeight={40} rules={rules}>
-      <Gallery galleryDescriptor={galleryDescriptor} />
+      <Gallery galleryDescriptor={galleryDescriptor} style={style} />
     </PropsMapperContainerQueries>
   );
 };

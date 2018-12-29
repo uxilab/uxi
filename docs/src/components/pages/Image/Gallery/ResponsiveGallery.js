@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gallery } from 'uxi/Img';
+import { ResponsiveGallery } from 'uxi/Img';
 
 const galleryDescriptor = [
   { url: 'https://cdni.rt.com/files/2017.12/article/5a436801fc7e9345418b456c.jpg' },
@@ -18,10 +18,11 @@ const galleryDescriptor = [
   { url: 'https://media.npr.org/assets/img/2010/12/08/spacex2_wide-05e503f2828703a048cf2ec94fd5172a4d8d2cc2-s900-c85.jpg' },
 ];
 
-const SimpleGallery = () => (
-  <div>
-    <Gallery galleryDescriptor={galleryDescriptor} />
-  </div>
+const ResponsiveGalleryExample = () => (
+  <ResponsiveGallery
+    galleryDescriptor={galleryDescriptor}
+    style={{ background: '#cecece' }}
+  />
 );
 
-export default SimpleGallery;
+export default ResponsiveGalleryExample;

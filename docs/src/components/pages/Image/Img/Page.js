@@ -1,6 +1,6 @@
 import React from 'react';
 import { H1 } from 'uxi/Classic';
-import CodeExample from '../../CodeExample';
+import CodeExample from '../../../CodeExample';
 
 import ImgExample from './ImgExample';
 import RAWImgExample from '!raw-loader!./ImgExample';

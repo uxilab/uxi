@@ -34,7 +34,11 @@ import FlexPage from './components/pages/Layouts/Flex/Page';
 import TablePage from './components/pages/Table/Page';
 import AlertPage from './components/pages/Alert/Page';
 import LoaderPage from './components/pages/Loader/Page';
-import ImgPage from './components/pages/Img/Page';
+
+import ImagePage from './components/pages/Image/Page';
+import ImgPage from './components/pages/Image/Img/Page';
+import GalleryPage from './components/pages/Image/Gallery/Page';
+
 import MenuPage from './components/pages/Menu/Page';
 // import InternalPage from './components/pages/Internal/Page';
 import DrawerPage from './components/pages/Drawer/Page';
@@ -58,7 +62,6 @@ import PanelHeaderPage from './components/pages/Panel/PanelHeader/Page';
 import PanelContentPage from './components/pages/Panel/PanelContent/Page';
 import PanelFooterPage from './components/pages/Panel/PanelFooter/Page';
 import LightPanelPage from './components/pages/Panel/LightPanel/Page';
-import GalleryPage from './components/pages/Gallery/Page';
 import CarrouselPage from './components/pages/Carrousel/Page';
 import TilePage from './components/pages/Tile/Page';
 import MotionPage from './components/pages/Motion/Page';
@@ -129,6 +132,11 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/alert`} component={AlertPage} />
 
 
+      {/* IMG */}
+      <Route path={`${match.url}/Image`} exact component={ImagePage} />
+      <Route path={`${match.url}/Image/img`} component={ImgPage} />
+      <Route path={`${match.url}/Image/Gallery`} component={GalleryPage} />
+
       {/* BETA: */}
       <Route path={`${match.url}/beta/dropdown`} component={DropDownPage} />
       <Route path={`${match.url}/beta/box`} component={BoxPage} />
@@ -139,7 +147,6 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/beta/list`} component={ListPage} />
       <Route path={`${match.url}/beta/table`} component={TablePage} />
       <Route path={`${match.url}/beta/loader`} component={LoaderPage} />
-      <Route path={`${match.url}/beta/img`} component={ImgPage} />
       <Route path={`${match.url}/beta/menu`} component={MenuPage} />
       {/* <Route path={`${match.url}/beta/internal`} exact component={InternalPage} /> */}
       <Route path={`${match.url}/beta/badge`} component={BadgePage} />
@@ -153,7 +160,6 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/beta/globalMenu`} component={GlobalMenuPage} />
       <Route path={`${match.url}/beta/widget`} component={WidgetPage} />
       <Route path={`${match.url}/beta/personalizedmenu`} component={PesonalizedMenuPage} />
-      <Route path={`${match.url}/beta/Gallery`} component={GalleryPage} />
       <Route path={`${match.url}/beta/Carrousel`} component={CarrouselPage} />
       <Route path={`${match.url}/beta/Tile`} component={TilePage} />
       <Route path={`${match.url}/beta/motion`} component={MotionPage} />

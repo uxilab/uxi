@@ -46,8 +46,14 @@ export const routes = [
       { path: '/Drawer/CompactDrawer', label: 'CompactDrawer' },
     ],
   },
+  { path: '/Image',
+    label: 'Image',
+    childRoutes: [
+      { path: '/Image/Img', label: 'Img' },
+      { path: '/Image/Gallery', label: 'Gallery' },
+    ],
+  },
   { path: '/alert', label: 'Alert' },
-  { path: '/badge', label: 'Badge' },
   { path: '/layouts',
     label: 'Layout',
     childRoutes: [
@@ -90,6 +96,7 @@ export const routes = [
       { path: '/beta/widget', label: 'Widget' },
       { path: '/beta/personalizedmenu', label: 'Personalized Menu' },
       { path: '/beta/tile', label: 'Tile' },
+      { path: '/beta/badge', label: 'Badge' },
     ],
   },
 ];
