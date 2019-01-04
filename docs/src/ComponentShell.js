@@ -13,7 +13,7 @@ import { routes } from './routes';
 import Search from './Search';
 
 const GlobalMenuWrapper = styled.div`
-  background: ${({ theme: { palette } }) => palette.primary.main};
+  background: ${({ theme: { palette } }) => palette.primary.dark};
   max-height: calc(100vh - 80px);
   height: 100%;
   overflow-y: auto;
