@@ -9,7 +9,8 @@ module.exports = (config) => {
   });
 
   config.devServer.port = 8989;
-  config.entry[1].replace(/(:\d*)$/, ':8989');
+  config.entry[1].replace(/(:3100)/, ':8989');
+  config.entry[2].replace(/(:3100)/, ':8989');
 
   config.resolve.alias = {
     uxi: path.resolve(__dirname, '../src'),

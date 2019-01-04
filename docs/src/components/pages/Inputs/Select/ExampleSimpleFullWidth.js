@@ -24,6 +24,7 @@ class ExampleSimpleWithWidth extends Component {
 
     this.state = {
       selectedValue: null,
+      selectedValue1: null,
     };
   }
 
@@ -45,6 +46,24 @@ class ExampleSimpleWithWidth extends Component {
         </Select>
         <br />
         <div>Selected Value: {this.state.selectedValue} </div>
+        <br /><br /><br /><br />
+        <div style={{ maxWidth: '80%' }}>
+          <Select
+            onChange={(event, value) => this.setState({ selectedValue1: value })}
+            isFullWidth
+          >
+            <div value={null}>None</div>
+            {
+              options.map(({ name, pic }) => (
+                <div value={name}>
+                  <AvatarWithName src={pic} name={name} />
+                </div>
+              ))
+            }
+          </Select>
+        </div>
+        <br />
+        <div>Selected Value: {this.state.selectedValue1} </div>
       </div>
     );
   }

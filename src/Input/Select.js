@@ -2,8 +2,10 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import DropDown from '../internal/DropDown';
+import DropDown2 from '../internal/DropDownWithClickOutside';
 import { Arrowdown } from '../Icons';
 import { Button } from '../Button';
+import UnstyledButtonBeta from '../Button/UnstyledButton1';
 import Option from './SelectInputOptions';
 import StatusIcon from './utils/StatusIcon';
 import ErrorWrapperUI from './utils/ErrorWrapperUI';
@@ -211,6 +213,8 @@ class SelectInput extends PureComponent {
         success,
         value,
         triggerElement,
+        style,
+        isFullWidth,
       },
     } = this;
 
@@ -261,26 +265,33 @@ class SelectInput extends PureComponent {
     }
 
     return (
-      <TriggerreWrapper
-        onEsc={() => this.clickHandler(null)}
+      <UnstyledButtonBeta
+        isFullWidth={isFullWidth}
+        style={{
+          ...(style.width ? { width: style.width } : {}),
+        }}
       >
-        <div>
-          {mainContent}
-          <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
-        </div>
-        <div style={styles.trigerrerIcon}>
-          <Button
-            inert
-            type="primary"
-            style={{
-              borderBottomLeftRadius: 0,
-              borderTopLeftRadius: 0,
-              minHeight: '34px',
-            }}
-            icon={<Arrowdown />}
-          />
-        </div>
-      </TriggerreWrapper>
+        <TriggerreWrapper
+          onEsc={() => this.clickHandler(null)}
+        >
+          <div>
+            {mainContent}
+            <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
+          </div>
+          <div style={styles.trigerrerIcon}>
+            <Button
+              inert
+              type="primary"
+              style={{
+                borderBottomLeftRadius: 0,
+                borderTopLeftRadius: 0,
+                minHeight: '34px',
+              }}
+              icon={<Arrowdown />}
+            />
+          </div>
+        </TriggerreWrapper>
+      </UnstyledButtonBeta>
     );
   }
 
@@ -559,7 +570,20 @@ class SelectInput extends PureComponent {
 
     return (
       <div style={style}>
-        <DropDown
+        <DropDown2
+          trigger={trigerer}
+        >
+          <div
+            style={{
+              background: 'white',
+              ...(style.width ? { width: style.width } : {}),
+              ...(isFullWidth ? { width: '100%' } : {}),
+            }}
+          >
+            {optionsItems}
+          </div>
+        </DropDown2>
+        {/* <DropDown
           inertMain={inertTrigger}
           mainScrollingElementSelector={mainScrollingElementSelector}
           onIsOpenChange={this.handleDropDownChange}
@@ -573,7 +597,7 @@ class SelectInput extends PureComponent {
             overflowY: 'auto',
             overflowX: 'hidden',
           }}
-        />
+        /> */}
         <ErrorWrapperUI>{error}</ErrorWrapperUI>
       </div>
     );

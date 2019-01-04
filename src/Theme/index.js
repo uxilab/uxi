@@ -307,7 +307,7 @@ export const theme = { // eslint-disable-line no-shadow
     default: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     defaultAll: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     duration: '450ms ',
-    durationIn: '232ms ',
+    durationIn: '292ms ',
     durationOut: '196ms ',
     delay: '0ms ',
     easing: 'cubic-bezier(0.23, 1, 0.32, 1) ',
