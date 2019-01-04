@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import WithBoundingRect from 'uxi/internal/WithBoundingRect';
 import DropDown2 from 'uxi/internal/DropDown2';
 import DropDown from 'uxi/internal/DropDownWithClickOutside';
+import FixedDropDown from 'uxi/internal/FixedDropDownWithClickOutside';
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 import { Options } from 'uxi/Icons';
@@ -60,7 +61,8 @@ class Playground extends Component {
         <br />
         <br />
         <Flex style={{ height: '200px', border: '1px solid grey', overflow: 'hidden' }}>
-          <DropDown
+          <FixedDropDown
+            mainScrollingElementSelector=".uxi_ComponentShell_scrolling-element"
             trigger={
               <FlatButton icon={<Options />} />
             }
@@ -68,7 +70,7 @@ class Playground extends Component {
             <div style={{ background: 'white', width: '240px', padding: '16px' }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
-          </DropDown>
+          </FixedDropDown>
         </Flex>
       </div>
     );
