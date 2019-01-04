@@ -16,6 +16,7 @@ export class ButtonComponent extends Component {
     super(props);
     this.ButtonCommonMixin = '';
     this.ButtonBaseMixin = '';
+    this.buttonType = ''; // oneOf 'Button', 'FlatButton', 'OutlineButton', 'UnstyledButton'
   }
 
   render() {
@@ -93,18 +94,18 @@ export class ButtonComponent extends Component {
     // which element to render div|a|button
     let TheButtonComponent = null;
     if (inert) {
-      TheButtonComponent = getButtonDivUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
+      TheButtonComponent = getButtonDivUI(this.buttonType);
     } else if (readyLink) {
-      const DivButtonComponent = getButtonDivUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
+      const DivButtonComponent = getButtonDivUI(this.buttonType);
       TheButtonComponent = props => (
         <DivButtonComponent {...props}>
           {readyLink}
         </DivButtonComponent>
       );
     } else if (link) {
-      TheButtonComponent = getButtonLinkUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
+      TheButtonComponent = getButtonLinkUI(this.buttonType);
     } else {
-      TheButtonComponent = getButtonUI(this.ButtonCommonMixin, this.ButtonBaseMixin);
+      TheButtonComponent = getButtonUI(this.buttonType);
     }
 
     const theButton = (

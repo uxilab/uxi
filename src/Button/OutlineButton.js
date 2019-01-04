@@ -13,6 +13,7 @@ class OutlineButton extends ButtonComponent {
     super(props);
     this.ButtonCommonMixin = ButtonCommonMixin;
     this.ButtonBaseMixin = OutlineButtonBaseMixin;
+    this.buttonType = 'OutlineButton';
   }
 }
 

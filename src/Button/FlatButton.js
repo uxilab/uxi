@@ -13,6 +13,7 @@ class FlatButton extends ButtonComponent {
     super(props);
     this.ButtonCommonMixin = ButtonCommonMixin;
     this.ButtonBaseMixin = FlatButtonBaseMixin;
+    this.buttonType = 'FlatButton';
   }
 }
 

@@ -20,7 +20,7 @@ const items = [
   },
 ];
 
-class ExampleDropDown2 extends Component {
+class ExampleSimpleDropDown extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,4 +57,4 @@ class ExampleDropDown2 extends Component {
   }
 }
 
-export default ExampleDropDown2;
+export default ExampleSimpleDropDown;
