@@ -67,9 +67,16 @@ class DropDown2 extends Component {
   // }
 
   toggleVisibility() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+    if (!this.isControlled) {
+      this.setState({
+        isOpen: !this.state.isOpen,
+      });
+    } /* else {
+      const { onToggleVisibility } = this.props;
+      if (onToggleVisibility) {
+        onToggleVisibility();
+      }
+    } */
   }
 
   update() {
@@ -97,9 +104,10 @@ class DropDown2 extends Component {
     } = this.props;
 
     const {
-      isOpen,
       height,
     } = this.state;
+
+    const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
 
     const { props: childrenProps = {} } = children;
 

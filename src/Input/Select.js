@@ -98,6 +98,7 @@ class SelectInput extends PureComponent {
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
     this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
     this.storeItemsRef = this.storeItemsRef.bind(this);
   }
 
@@ -270,10 +271,10 @@ class SelectInput extends PureComponent {
         style={{
           ...(style.width ? { width: style.width } : {}),
         }}
+        onEsc={() => this.clickHandler(null)}
+        onClick={this.toggleVisibility}
       >
-        <TriggerreWrapper
-          onEsc={() => this.clickHandler(null)}
-        >
+        <TriggerreWrapper >
           <div>
             {mainContent}
             <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
@@ -483,6 +484,7 @@ class SelectInput extends PureComponent {
   }
 
   clickHandler(e) {
+    console.log('clickHandler in Select', );
     if (!e) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -534,7 +536,20 @@ class SelectInput extends PureComponent {
     }
   }
 
+  toggleVisibility() {
+    if (!this.isOpenControlled) {
+      this.setState({ isOpen: !this.state.isOpen });
+    }
+  }
+
+  // close() {
+  //   if (!this.isOpenControlled) {
+  //     this.setState({ isOpen: false })
+  //   }
+  // }
+
   handleDropDownChange(isOpen) {
+    console.log('handleDropDownChange');
     if (!this.isOpenControlled) {
       if (this.state.isOpen !== isOpen) {
         this.setState({ isOpen });
@@ -571,6 +586,8 @@ class SelectInput extends PureComponent {
     return (
       <div style={style}>
         <DropDown2
+          isOpen={isOpen}
+          onClickOutside={this.handleDropDownChange}
           trigger={trigerer}
         >
           <div
