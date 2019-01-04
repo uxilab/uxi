@@ -44,6 +44,7 @@ export const routes = [
     label: 'Drawer',
     childRoutes: [
       { path: '/Drawer/CompactDrawer', label: 'CompactDrawer' },
+      { path: '/Drawer/Disclosure', label: 'Disclosure' },
     ],
   },
   { path: '/Image',

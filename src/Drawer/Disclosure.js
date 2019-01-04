@@ -5,13 +5,26 @@ import styled from 'styled-components';
 import { Arrowright } from '../Icons';
 import { Flex } from '../Layout';
 
+/* eslint-disable indent */
+/* eslint-disable no-nested-ternary */
 const Details = styled.details.attrs({
   onToggle: ({ onToggle }) => onToggle,
   open: ({ open }) => open,
 })`
+  &, & * {
+    ${({ theme: { transition } }) => transition.defaultAll};
+  }
+
   width: 100%;
   position: relative;
-
+  ${({ anchor }) => (anchor === 'top'
+    ? ''
+    : 'min-height: 18px;')
+  };
+  ${({ anchor, isOpen }) => (anchor === 'top'
+    ? ''
+    : isOpen ? 'margin-bottom: 18px;' : '')
+  };
 `;
 
 const SummaryIcon = Flex.extend`
@@ -19,6 +32,7 @@ const SummaryIcon = Flex.extend`
   transform: rotate(0deg);
   ${({ isOpen }) => (isOpen ? 'transform: rotate(90deg)' : '')};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
+  margin-left: 6px;
 `;
 
 
@@ -27,23 +41,24 @@ const Summary = styled.summary`
   align-items : center;
   justify-content: center;
 
-
   list-style: none;
   list-style-type: none;
   &::-webkit-details-marker {
     display: none;
   }
+
+  ${({ anchor, isOpen }) => (anchor === 'top'
+    ? ''
+    : `position: absolute; bottom: ${isOpen ? '-18px' : 0}; left: 0; right: 0;`)
+  };
 ;`;
 
 const SubContent = styled.div`
   width: 100%;
-  ${({ inline }) => (inline
-    ? ''
-    : 'position: absolute; box-shadow: 0 8px 16px 0 rgba(0,0,0,.1)'
-  )};
-
-  background: white;
 `;
+/* eslint-enable indent */
+/* eslint-enable no-nested-ternary */
+
 
 class Disclosure extends Component {
   static PropTypes = {
@@ -51,34 +66,26 @@ class Disclosure extends Component {
   }
 
   static defaultProps = {
-    isOpen: undefined,
-    inline: true,
-    closeOnClickOutside: true,
+    // isOpen: undefined,
+    anchor: 'bottom',
   }
 
   constructor(props) {
     super(props);
 
-    this.isControlled = this.props.isOpen !== undefined;
+    // this.isControlled = this.props.isOpen !== undefined;
 
     this.state = {
-      isOpen: this.isControlled ? this.props.isOpen : false,
+      isOpen: /* this.isControlled ? this.props.isOpen : */ false,
     };
 
     this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.isOpen !== this.props.isOpen
-      || prevState.isOpen !== this.state.isOpen
-    ) {
-      const isOpen = this.isControlled
-        ? this.props.isOpen
-        : this.state.isOpen;
-
+    if (prevState.isOpen !== this.state.isOpen) {
       if (this.ref) {
-        if (isOpen) {
+        if (this.state.isOpen) {
           this.ref.setAttribute('open', true);
         } else {
           this.ref.removeAttribute('open');
@@ -93,20 +100,12 @@ class Disclosure extends Component {
     });
   }
 
-  // handleClickOutside() {
-  //   const { closeOnClickOutside } = this.props;
-
-  //   if (closeOnClickOutside) {
-  //     this.setState({ isOpen: false });
-  //   }
-  // }
-
   render() {
     const {
       isOpen: isOpenProp,
-      content,
-      subContent,
-      inline,
+      detail,
+      summary,
+      anchor,
     } = this.props;
 
     const isOpen = this.isControlled
@@ -117,15 +116,17 @@ class Disclosure extends Component {
       <Details
         innerRef={(node) => { this.ref = node; }}
         onToggle={({ target = {} }) => this.setState({ isOpen: target.open })}
+        anchor={anchor}
+        isOpen={isOpen}
       >
-        <Summary>
+        <Summary anchor={anchor} isOpen={isOpen}>
+          {summary || (isOpen ? 'Show less' : 'Show more')}
           <SummaryIcon isOpen={isOpen}>
             <Arrowright size="12" />
           </SummaryIcon>
-          {content}
         </Summary>
-        <SubContent inline={inline} >
-          {subContent}
+        <SubContent>
+          {detail}
         </SubContent>
       </Details>
     );

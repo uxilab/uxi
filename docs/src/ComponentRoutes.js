@@ -43,6 +43,7 @@ import MenuPage from './components/pages/Menu/Page';
 // import InternalPage from './components/pages/Internal/Page';
 import DrawerPage from './components/pages/Drawer/Page';
 import CompactDrawerPage from './components/pages/Drawer/CompactDrawer/Page';
+import DisclosurePage from './components/pages/Drawer/Disclosure/Page';
 import BadgePage from './components/pages/Badge/Page';
 import IndicatorPage from './components/pages/Indicator/Page';
 import DashboardPage from './components/pages/DashboardLayout/Page';
@@ -104,6 +105,7 @@ const ComponentRoutes = ({ match }) => (
       {/* DRAWER */}
       <Route path={`${match.url}/Drawer`} exact component={DrawerPage} />
       <Route path={`${match.url}/Drawer/CompactDrawer`} component={CompactDrawerPage} />
+      <Route path={`${match.url}/Drawer/Disclosure`} component={DisclosurePage} />
 
       {/* ICONS */}
       <Route path={`${match.url}/icons`} component={IconsPage} />
