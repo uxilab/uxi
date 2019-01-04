@@ -45,7 +45,7 @@ const SubContent = styled.div`
   background: white;
 `;
 
-class DropDown2 extends Component {
+class Disclosure extends Component {
   static PropTypes = {
     isOpen: PropTypes.bool,
   }
@@ -133,5 +133,5 @@ class DropDown2 extends Component {
 }
 
 
-// export default enhanceWithClickOutside(DropDown2);
-export default DropDown2;
+// export default enhanceWithClickOutside(Disclosure);
+export default Disclosure;
