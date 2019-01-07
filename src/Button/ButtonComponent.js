@@ -153,6 +153,11 @@ export class ButtonComponent extends Component {
       // ),
       ...(isFullWidth ? { width: '100%' } : {}),
       ...style,
+      margin: 0,
+      marginTop: 0,
+      marginRight: 0,
+      marginBottom: 0,
+      marginLeft: 0,
     };
 
     return (
