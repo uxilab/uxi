@@ -6,7 +6,7 @@ import FixedDropDown from 'uxi/internal/FixedDropDownWithClickOutside';
 import { AvatarWithName } from 'uxi/Img';
 import { Flex } from 'uxi/Layout';
 import { Options } from 'uxi/Icons';
-import { FlatButton } from 'uxi/Button';
+import Button, { FlatButton } from 'uxi/Button';
 
 const options = [
   {
@@ -60,7 +60,7 @@ class Playground extends Component {
         </Flex>
         <br />
         <br />
-        <Flex style={{ height: '200px', border: '1px solid grey', overflow: 'hidden' }}>
+        {/*       <Flex style={{ height: '200px', border: '1px solid grey', overflow: 'hidden' }}>
           <FixedDropDown
             mainScrollingElementSelector=".uxi_ComponentShell_scrolling-element"
             trigger={
@@ -71,12 +71,12 @@ class Playground extends Component {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
           </FixedDropDown>
-        </Flex>
-        {/* <br />
+        </Flex> */}
+        <br />
         <br />
         <br />
 
-        <Flex style={{ border: '1px solid grey' }}>
+        <Flex style={{ height: '200px', border: '1px solid grey' }}>
           <DropDown
             trigger={
               <FlatButton icon={<Options />} />
@@ -85,10 +85,11 @@ class Playground extends Component {
           >
             <div style={{ background: 'white', width: '300px', padding: '16px' }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <Button text="Hello" />
             </div>
           </DropDown>
         </Flex>
-          */}
+
       </div>
     );
   }

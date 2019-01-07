@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Select } from 'uxi/Input';
 import { AvatarWithName } from 'uxi/Img';
+import { Flex } from 'uxi/Layout';
 
 const options = [
   {
@@ -34,7 +35,7 @@ class ExampleSimpleWithWidth extends Component {
           onChange={(event, value) => this.setState({ selectedValue: value })}
           style={{ width: '250px' }}
         >
-          <div value={null}>None</div>
+          <Flex value={null}>None</Flex>
           {
             options.map(({ name, pic }) => (
               <div value={name}>

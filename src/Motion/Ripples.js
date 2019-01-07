@@ -134,7 +134,12 @@ class Ripples extends Component {
       },
     });
 
-    setTimeout(() => {
+    const cbHandler = window.requestAnimationFrame
+      ? window.requestAnimationFrame
+      : window.setTimeout;
+
+    // setTimeout(() => {
+    cbHandler(() => {
       const size = Math.max(offsetWidth, offsetHeight);
 
       this.setState({
@@ -147,7 +152,7 @@ class Ripples extends Component {
           opacity: 0,
         },
       });
-    }, 20);
+    }, 8);
 
     if (typeof onClick === 'function') {
       onClick(ev);

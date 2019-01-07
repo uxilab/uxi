@@ -73,9 +73,6 @@ const styles = {
   },
 };
 
-/**
- * @deprecated
- */
 class SelectInput extends PureComponent {
   constructor(props) {
     super(props);
@@ -248,6 +245,7 @@ class SelectInput extends PureComponent {
           >
             {
               React.cloneElement(optionsNode[selectedIndex], {
+                onClick: () => {},
                 style: {
                   ...optionsNode[selectedIndex].props.style,
                   whiteSpace: 'nowrap',
@@ -271,8 +269,13 @@ class SelectInput extends PureComponent {
         style={{
           ...(style.width ? { width: style.width } : {}),
         }}
-        onEsc={() => this.clickHandler(null)}
-        onClick={this.toggleVisibility}
+        // onEsc={() => this.clickHandler(null)}
+        onClick={(e, ...r) => {
+          // if (e && e.stopPropagation) {
+          //   e.stopPropagation();
+          // }
+          this.toggleVisibility(e, ...r);
+        }}
       >
         <TriggerreWrapper >
           <div>
@@ -314,8 +317,16 @@ class SelectInput extends PureComponent {
         if (!isDOMTypeElement(child)) {
           return (
             <Option
-              onClick={e => this.clickHandler(e)}
-              onEsc={() => this.clickHandler(null)}
+              onClick={(e) => {
+                console.log('option onClick', document.activeElement);
+                isOpen && console.log('onClick on option item', e);
+                isOpen && this.clickHandler(e);
+              }}
+              onEsc={() => {
+                console.log('option onEsc', document.activeElement);
+                isOpen && console.log('onEsc on option item', null);
+                isOpen && this.clickHandler(null);
+              }}
               data-index={i}
               {...child.props}
               isOpen={isOpen}
@@ -336,8 +347,16 @@ class SelectInput extends PureComponent {
 
         return (
           <Option
-            onClick={e => this.clickHandler(e)}
-            onEsc={() => this.clickHandler(null)}
+            onClick={(e) => {
+              console.log('option onClick', document.activeElement);
+              isOpen && console.log('onClick on option item', e);
+              isOpen && this.clickHandler(e);
+            }}
+            onEsc={() => {
+              console.log('option onEsc', document.activeElement);
+              isOpen && console.log('onEsc on option item', null);
+              isOpen && this.clickHandler(null);
+            }}
             data-index={i}
             {...child.props}
             isOpen={isOpen}
@@ -360,6 +379,7 @@ class SelectInput extends PureComponent {
   }
 
   preventScrollingOnSpace(e) {
+    console.log('e.key', e.key);
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -476,15 +496,15 @@ class SelectInput extends PureComponent {
     };
   }
 
-  storeOptions(children) {
-    this.setState({
-      options: this.mapChildrenForStorage(children).options,
-      optionsNode: this.mapChildrenForStorage(children).optionsNode,
-    });
-  }
+  // storeOptions(children) {
+  //   this.setState({
+  //     options: this.mapChildrenForStorage(children).options,
+  //     optionsNode: this.mapChildrenForStorage(children).optionsNode,
+  //   });
+  // }
 
   clickHandler(e) {
-    console.log('clickHandler in Select', );
+    console.log('clickHandler in Select', e);
     if (!e) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -592,6 +612,7 @@ class SelectInput extends PureComponent {
         >
           <div
             style={{
+              minWidth: '180px',
               background: 'white',
               ...(style.width ? { width: style.width } : {}),
               ...(isFullWidth ? { width: '100%' } : {}),

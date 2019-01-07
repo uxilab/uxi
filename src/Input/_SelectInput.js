@@ -71,6 +71,9 @@ const styles = {
   },
 };
 
+/**
+ * @deprecated
+ */
 class SelectInput extends PureComponent {
   constructor(props) {
     super(props);

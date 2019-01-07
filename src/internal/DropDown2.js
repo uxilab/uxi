@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 /* eslint-disable indent */
-const BoxWrapperUI = styled.div`
+const BoxWrapperUI = styled.div.attrs({
+  // tabIndex: ({ isOpen }) => (isOpen ? '0' : '-1'),
+})`
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'collapse')}
   z-index: 99;
   position: absolute;
   max-height: 0;
@@ -14,14 +18,26 @@ const BoxWrapperUI = styled.div`
   )};
   max-height: ${({ isOpen, maxHeight }) => (isOpen ? `${maxHeight}px` : '0px')};
   overflow: ${({ isOpen }) => (isOpen ? 'auto' : 'hidden')};
-  ${({ isOpen, theme }) => (isOpen
-    ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
-    : '')
-  };
+
+  &:focus, &:focus-within {
+    ${({ /* isOpen,  */theme }) => (/* isOpen */ true
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
+  }
 `;
 /* eslint-enble indent */
 
 class DropDown2 extends Component {
+  static propTypes = {
+    isOpen: PropTypes.bool,
+    children: PropTypes.element,
+  }
+
+  static defaultProps = {
+
+  }
+
   constructor(props) {
     super(props);
 
@@ -31,25 +47,30 @@ class DropDown2 extends Component {
 
     this.state = {
       isOpen: this.isControlled ? this.props.isOpen : false,
-      // scrollOffset: 0,
-      // rect: {
-      // top: 0,
-      // left: 0,
-      // right: 0,
-      // bottom: 0,
       height: 0,
-      // width: 0,
-      // },
     };
 
     this.update = this.update.bind(this);
     this.storeRef = this.storeRef.bind(this);
-    // this.findScrollingContextRef = this.findScrollingContextRef.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.storeWrapperRef = this.storeWrapperRef.bind(this);
   }
 
   componentDidMount() {
     this.update();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.isControlled) {
+      if (prevProps.isOpen !== this.props.isOpen) {
+        if (this.props.isOpen) {
+          this.focusContent();
+        } else {
+          this.focusTrigger();
+        }
+        // this.toggleVisibility();
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -58,38 +79,72 @@ class DropDown2 extends Component {
     window.cancelAnimationFrame(this.rafRef);
   }
 
-  // findScrollingContextRef() {
-  //   if (!this.scrollingContextRef) {
-  //     this.scrollingContextRef = this.props.mainScrollingElementSelector
-  //       ? document.querySelector(this.props.mainScrollingElementSelector)
-  //       : window;
-  //   }
-  // }
+  focusTrigger() {
+    // return;
+    let focusTarget = this.wrapperRef;
+
+    if (focusTarget) {
+      if (
+        this.wrapperRef
+        && this.wrapperRef.querySelector
+        && this.wrapperRef.querySelector('button')
+      ) {
+        focusTarget = this.wrapperRef.querySelector('button');
+      } else if (
+        this.wrapperRef
+        && this.wrapperRef.firstChild
+        && this.wrapperRef.firstChild.focus
+      ) {
+        focusTarget = this.wrapperRef.firstChild;
+      }
+        console.log('trigger focusTarget=', this.wrapperRef.firstChild);
+
+      if (focusTarget.focus) {
+        setTimeout(() => {
+          focusTarget.focus();
+        }, 10);
+      }
+    }
+  }
+
+  focusContent() {
+    if (
+      this.ref
+      && this.ref.firstChild
+      && this.ref.firstChild.firstChild
+      && this.ref.firstChild.firstChild.focus
+    ) {
+      console.log('content focusTarget=', this.wrapperRef.firstChild);
+      setTimeout(() => {
+        this.ref.firstChild.firstChild.focus();
+      }, 10);
+    }
+  }
 
   toggleVisibility() {
     if (!this.isControlled) {
-      this.setState({
-        isOpen: !this.state.isOpen,
-      });
-    } /* else {
-      const { onToggleVisibility } = this.props;
-      if (onToggleVisibility) {
-        onToggleVisibility();
-      }
-    } */
+      const nextIsOpen = !this.state.isOpen;
+      const cb = nextIsOpen
+        ? this.focusTrigger
+        : this.focusContent;
+
+      this.setState({ isOpen: nextIsOpen }, cb);
+    }
   }
 
   update() {
-    // this.findScrollingContextRef();
-    if (this.ref/*  && this.scrollingContextRef */) {
+    if (this.ref) {
       this.setState({
         height: this.ref.getBoundingClientRect().height,
-        // rect: this.ref.getBoundingClientRect(),
-        // scrollOffset: this.scrollingContextRef.scrollTop,
       });
 
       this.rafRef = requestAnimationFrame(this.update);
     }
+  }
+
+  storeWrapperRef(node) {
+    this.wrapperRef = node;
+    this.update();
   }
 
   storeRef(node) {
@@ -113,6 +168,7 @@ class DropDown2 extends Component {
 
 
     const TriggerWithHandler = React.cloneElement(trigger, {
+      ...((trigger && trigger.props) || {}),
       onClick: (...a) => {
         this.toggleVisibility(...a);
         if (trigger.props && trigger.props.onClick) {
@@ -122,7 +178,7 @@ class DropDown2 extends Component {
     });
 
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative' }} ref={this.storeWrapperRef} >
         {TriggerWithHandler}
         <BoxWrapperUI
           isOpen={isOpen}
@@ -135,7 +191,7 @@ class DropDown2 extends Component {
           }}
         >
           <div ref={this.storeRef}>
-            {children}
+            {React.Children.only(children)}
           </div>
         </BoxWrapperUI>
       </div>
