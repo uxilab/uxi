@@ -49,7 +49,7 @@ class GlobalMenu extends Component {
   getFirstActiveFoundMaybe() {
     const { menuDescriptors } = this.props;
 
-    return menuDescriptors
+    const activeMaybe = menuDescriptors
       .find((menuDescriptor) => {
         const hasChildren = menuDescriptor.children;
         return (
@@ -59,6 +59,11 @@ class GlobalMenu extends Component {
           )
         );
       });
+
+    if (activeMaybe && activeMaybe.key) {
+      return activeMaybe.key;
+    }
+    return null;
   }
 
   getSelected(key) {
