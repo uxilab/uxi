@@ -27,6 +27,8 @@ const GlobalMenuWrapper = ({
   innerStyle,
   fullViewportWidthPanel,
   handlePanelClickOutside,
+  panelOffsetTop,
+  panelOffsetBottom,
 }) => {
   const menuDescriptorsContent = [];
 
@@ -82,6 +84,8 @@ const GlobalMenuWrapper = ({
         /* this wrapper div required for layout context */
         <div key={menuDescriptor.panel.key}>
           <GlobalMenuPanel
+            panelOffsetTop={panelOffsetTop}
+            panelOffsetBottom={panelOffsetBottom}
             key={menuDescriptor.panel.key}
             onClickOutside={() => { handlePanelClickOutside(menuDescriptor.key); }}
             Title={menuDescriptor.panel.Title}

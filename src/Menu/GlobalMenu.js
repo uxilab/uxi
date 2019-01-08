@@ -90,6 +90,8 @@ class GlobalMenu extends Component {
       style,
       innerStyle,
       fullViewportWidthPanel: fullViewportWidthPanelProp,
+      panelOffsetTop,
+      panelOffsetBottom,
     } = this.props;
 
     const fullViewportWidthPanel = attachToViewport ? true : fullViewportWidthPanelProp;
@@ -172,6 +174,8 @@ class GlobalMenu extends Component {
       <div style={{ ...layoutContext, ...style }}>
         <div>
           <GlobalMenuWrapper
+            panelOffsetTop={panelOffsetTop}
+            panelOffsetBottom={panelOffsetBottom}
             logo={theLogo}
             onLogoClick={onLogoClick}
             selectedKey={selected}
@@ -196,6 +200,8 @@ GlobalMenu.propTypes = {
   // primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
   style: PropTypes.object,
+  panelOffsetTop: PropTypes.string,
+  panelOffsetBottom: PropTypes.string,
 };
 
 GlobalMenu.defaultProps = {
@@ -207,6 +213,8 @@ GlobalMenu.defaultProps = {
   // primaryColor: '',
   menuDescriptors: [],
   style: PropTypes.object,
+  panelOffsetTop: '0px',
+  panelOffsetBottom: '0px',
 };
 
 export default GlobalMenu;
