@@ -627,7 +627,7 @@ exports[`<Button /> should render a Button 1`] = `
   }
 >
   <styled.div
-    data-globalStyles={true}
+    data-global-styles={true}
   >
     <ThemeProvider
       extendTheme={Object {}}
