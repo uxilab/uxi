@@ -17,6 +17,10 @@ const AutoCompletePage = () => (
     <Title text="AutoComplete" />
     <P>
       AutoComplete filter and sort a list of items based on user input.
+      AutoComplete takes a collection of items (which doesn't change during the lifecycle of the compo)
+      and help the user filter throught the available choices, by filtering by keyword.
+      The Autocomplete has a loose or strict way of matching (pass a boolean 'strict' props, default to loose).
+
     </P>
     <ul>
       <li>
