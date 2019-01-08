@@ -41,7 +41,8 @@ class Select extends Component {
     this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
-    this.storeItemsRef = this.storeItemsRef.bind(this);
+    this.storeTriggerWrapperRef = this.storeTriggerWrapperRef.bind(this);
+    this.storeChildrenWrapperRef = this.storeChildrenWrapperRef.bind(this);
   }
 
   componentDidMount() {
@@ -337,7 +338,7 @@ class Select extends Component {
 
         this.setState({
           isOpen: false,
-        });
+        }, this.focusTrigger);
       }
     } else if (e.key === 'Tab' || e.keyCode === 9) {
       if (!(document.activeElement.nodeName === 'BUTTON')) {
@@ -367,7 +368,7 @@ class Select extends Component {
       } else {
         this.setState({
           isOpen: false,
-        });
+        }, this.focusTrigger);
       }
     } else if (e.key === 'ArrowDown' || e.keyCode === 40) {
       if (!this.isOpenControlled) {
@@ -387,13 +388,13 @@ class Select extends Component {
           if (firstOptionItem && firstOptionItem.focus) {
             firstOptionItem.focus();
           }
-        } else if (this.itemRef) {
+        } /* else if (this.itemRef) {
           // go back to first option element
           const firstOption = this.itemRef.firstChild;
           if (firstOption && firstOption.focus) {
             firstOption.focus();
           }
-        }
+        } */
       }
     } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
       if (!this.isOpenControlled) {
@@ -463,7 +464,7 @@ class Select extends Component {
           this.setState({
             selectedIndex: this.state.selectedIndex || null,
             isOpen: false,
-          });
+          }, this.focusTrigger);
         }
         this.forceUpdate();
       }
@@ -479,7 +480,7 @@ class Select extends Component {
         if (!this.isOpenControlled) {
           this.setState({
             isOpen: false,
-          });
+          }, this.focusTrigger);
         }
         if (onChange) {
           const { options } = this.state;
@@ -495,7 +496,7 @@ class Select extends Component {
         this.setState({
           selectedIndex,
           isOpen: false,
-        });
+        }, this.focusTrigger);
         this.forceUpdate();
       }
     }
@@ -503,21 +504,24 @@ class Select extends Component {
 
   toggleVisibility() {
     if (!this.isOpenControlled) {
-      this.setState({ isOpen: !this.state.isOpen });
+      const nextIsOpen = !this.state.isOpen;
+      const cb = nextIsOpen === true
+        ? this.focusContent
+        : this.focusTrigger;
+
+      this.setState({ isOpen: nextIsOpen }, cb);
     }
   }
-
-  // close() {
-  //   if (!this.isOpenControlled) {
-  //     this.setState({ isOpen: false })
-  //   }
-  // }
 
   handleDropDownChange(isOpen) {
     console.log('handleDropDownChange');
     if (!this.isOpenControlled) {
       if (this.state.isOpen !== isOpen) {
-        this.setState({ isOpen });
+        const cb = isOpen
+          ? this.focusContent
+          : this.focusTrigger;
+
+        this.setState({ isOpen }, cb);
       }
     }
     if (this.props.onIsOpenChange) {
@@ -527,8 +531,59 @@ class Select extends Component {
     }
   }
 
-  storeItemsRef(itemsNode) {
-    this.itemRef = itemsNode;
+  // storeItemsRef(itemsNode) {
+  //   this.itemRef = itemsNode;
+  // }
+
+
+  focusTrigger() {
+    // return;
+    let focusTarget = this.triggerWrapperRef;
+    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
+
+    if (focusTarget) {
+      if (
+        this.triggerWrapperRef
+        && this.triggerWrapperRef.querySelector
+        && this.triggerWrapperRef.querySelector('button')
+      ) {
+        focusTarget = this.triggerWrapperRef.querySelector('button');
+      } else if (
+        this.triggerWrapperRef
+        && this.triggerWrapperRef.firstChild
+        && this.triggerWrapperRef.firstChild.focus
+      ) {
+        focusTarget = this.triggerWrapperRef.firstChild;
+      }
+      console.log('trigger focusTarget=', this.triggerWrapperRef.firstChild);
+
+      if (focusTarget.focus) {
+        setTimeout(() => {
+          focusTarget.focus();
+        }, 10);
+      }
+    }
+  }
+
+  focusContent() {
+    if (
+      this.childrenWrapperRef
+      && this.childrenWrapperRef.firstChild
+      && this.childrenWrapperRef.firstChild.firstChild
+      && this.childrenWrapperRef.firstChild.firstChild.focus
+    ) {
+      console.log('content focusTarget=', this.childrenWrapperRef.firstChild);
+      setTimeout(() => {
+        this.childrenWrapperRef.firstChild.firstChild.focus();
+      }, 10);
+    }
+  }
+
+  storeTriggerWrapperRef(node) {
+    this.triggerWrapperRef = node;
+  }
+  storeChildrenWrapperRef(node) {
+    this.childrenWrapperRef = node;
   }
 
   render() {
@@ -554,6 +609,8 @@ class Select extends Component {
           isOpen={isOpen}
           onClickOutside={this.handleDropDownChange}
           trigger={trigerer}
+          onTriggerWrapperRef={this.storeTriggerWrapperRef}
+          onChildrenWrapperRef={this.storeChildrenWrapperRef}
         >
           <div
             style={{

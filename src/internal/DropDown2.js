@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 /* eslint-disable indent */
-const BoxWrapperUI = styled.div.attrs({
-  // tabIndex: ({ isOpen }) => (isOpen ? '0' : '-1'),
-})`
+const BoxWrapperUI = styled.div.attrs({})`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'collapse')}
   z-index: 99;
   position: absolute;
@@ -32,10 +30,17 @@ class DropDown2 extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,
     children: PropTypes.element,
+    onTriggerWrapperRef: PropTypes.func,
+    onChildrenWrapperRef: PropTypes.func,
+    trigger: PropTypes.element,
   }
 
   static defaultProps = {
-
+    isOpen: undefined,
+    onTriggerWrapperRef: () => {},
+    onChildrenWrapperRef: () => {},
+    trigger: <div />,
+    children: <div />,
   }
 
   constructor(props) {
@@ -60,75 +65,17 @@ class DropDown2 extends Component {
     this.update();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.isControlled) {
-      if (prevProps.isOpen !== this.props.isOpen) {
-        if (this.props.isOpen) {
-          this.focusContent();
-        } else {
-          this.focusTrigger();
-        }
-        // this.toggleVisibility();
-      }
-    }
-  }
-
   componentWillUnmount() {
     this.scrollingContextRef = null;
 
     window.cancelAnimationFrame(this.rafRef);
   }
 
-  focusTrigger() {
-    // return;
-    let focusTarget = this.wrapperRef;
-
-    if (focusTarget) {
-      if (
-        this.wrapperRef
-        && this.wrapperRef.querySelector
-        && this.wrapperRef.querySelector('button')
-      ) {
-        focusTarget = this.wrapperRef.querySelector('button');
-      } else if (
-        this.wrapperRef
-        && this.wrapperRef.firstChild
-        && this.wrapperRef.firstChild.focus
-      ) {
-        focusTarget = this.wrapperRef.firstChild;
-      }
-        console.log('trigger focusTarget=', this.wrapperRef.firstChild);
-
-      if (focusTarget.focus) {
-        setTimeout(() => {
-          focusTarget.focus();
-        }, 10);
-      }
-    }
-  }
-
-  focusContent() {
-    if (
-      this.ref
-      && this.ref.firstChild
-      && this.ref.firstChild.firstChild
-      && this.ref.firstChild.firstChild.focus
-    ) {
-      console.log('content focusTarget=', this.wrapperRef.firstChild);
-      setTimeout(() => {
-        this.ref.firstChild.firstChild.focus();
-      }, 10);
-    }
-  }
-
   toggleVisibility() {
     if (!this.isControlled) {
       const nextIsOpen = !this.state.isOpen;
-      const cb = nextIsOpen
-        ? this.focusTrigger
-        : this.focusContent;
 
-      this.setState({ isOpen: nextIsOpen }, cb);
+      this.setState({ isOpen: nextIsOpen });
     }
   }
 
@@ -144,11 +91,17 @@ class DropDown2 extends Component {
 
   storeWrapperRef(node) {
     this.wrapperRef = node;
+    if (this.props.onTriggerWrapperRef) {
+      this.props.onTriggerWrapperRef(node);
+    }
     this.update();
   }
 
   storeRef(node) {
     this.ref = node;
+    if (this.props.onChildrenWrapperRef) {
+      this.props.onChildrenWrapperRef(node);
+    }
     this.update();
   }
 
