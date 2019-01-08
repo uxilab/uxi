@@ -136,6 +136,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  show: false,
   BackdropComponent: Backdrop,
   BackdropInvisible: false,
   BackdropTransitionDuration: 300,
