@@ -55,8 +55,6 @@ const Options = (props) => {
       if (e.key === 'Escape') {
         e.target.blur();
         e.target.tabIndex = -1;
-
-
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.target.blur();
         e.target.tabIndex = -1;
