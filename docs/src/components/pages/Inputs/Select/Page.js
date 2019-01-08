@@ -37,7 +37,7 @@ const SelectInputPage = () => (
       {'e.g. `mainScrollingElementSelector={"#my-main-scrolling-element-string-selector"}`'}
     </P>
     <ul>
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWPlayground}
           component
@@ -46,7 +46,7 @@ const SelectInputPage = () => (
         >
           <Playground />
         </CodeExample>
-      </li>
+      </li> */}
       <li>
         <CodeExample
           code={RAWExampleSimple}

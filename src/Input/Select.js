@@ -612,6 +612,8 @@ class SelectInput extends PureComponent {
         >
           <div
             style={{
+              maxHeight: '320px',
+              overflowY: 'auto',
               minWidth: '180px',
               background: 'white',
               ...(style.width ? { width: style.width } : {}),
