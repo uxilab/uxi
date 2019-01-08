@@ -6,6 +6,9 @@ import CodeExample from '../../../CodeExample';
 import Playground from './Playground';
 import RAWPlayground from '!raw-loader!./Playground';
 
+import ExampleSelectWithFiltering from './ExampleSelectWithFiltering';
+import RAWExampleSelectWithFiltering from '!raw-loader!./ExampleSelectWithFiltering';
+
 import ExampleSimple from './ExampleSimple';
 import RAWExampleSimple from '!raw-loader!./ExampleSimple';
 
@@ -47,6 +50,16 @@ const SelectInputPage = () => (
           <Playground />
         </CodeExample>
       </li> */}
+      <li>
+        <CodeExample
+          code={RAWExampleSelectWithFiltering}
+          component
+          title="SelectWithFiltering"
+          hasPadding
+        >
+          <ExampleSelectWithFiltering />
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWExampleSimple}

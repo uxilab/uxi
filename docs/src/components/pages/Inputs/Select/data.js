@@ -11,57 +11,53 @@ export default [
   }, {
     name: 'Britany',
     pic: 'https://randomuser.me/api/portraits/women/76.jpg',
-  },
-  {
-    name: 'Ava',
+  }, {
+    name: 'Millie',
     pic: 'https://randomuser.me/api/portraits/women/82.jpg',
   }, {
-    name: 'Regina',
+    name: 'Lara',
     pic: 'https://randomuser.me/api/portraits/women/37.jpg',
   }, {
-    name: 'rem',
+    name: 'bill',
     pic: 'https://randomuser.me/api/portraits/men/3.jpg',
   }, {
-    name: 'Britany',
+    name: 'Daria',
     pic: 'https://randomuser.me/api/portraits/women/76.jpg',
-  },
-  {
-    name: 'Ava',
+  }, {
+    name: 'Mela',
     pic: 'https://randomuser.me/api/portraits/women/82.jpg',
   }, {
-    name: 'Regina',
+    name: 'Lola',
     pic: 'https://randomuser.me/api/portraits/women/37.jpg',
   }, {
-    name: 'rem',
+    name: 'Marc',
     pic: 'https://randomuser.me/api/portraits/men/3.jpg',
   }, {
-    name: 'Britany',
+    name: 'Sara',
     pic: 'https://randomuser.me/api/portraits/women/76.jpg',
-  },
-  {
-    name: 'Ava',
+  }, {
+    name: 'Laure',
     pic: 'https://randomuser.me/api/portraits/women/82.jpg',
   }, {
-    name: 'Regina',
+    name: 'Mary',
     pic: 'https://randomuser.me/api/portraits/women/37.jpg',
   }, {
-    name: 'rem',
+    name: 'will',
     pic: 'https://randomuser.me/api/portraits/men/3.jpg',
   }, {
-    name: 'Britany',
+    name: 'Josephine',
     pic: 'https://randomuser.me/api/portraits/women/76.jpg',
-  },
-  {
-    name: 'Ava',
+  }, {
+    name: 'Simona',
     pic: 'https://randomuser.me/api/portraits/women/82.jpg',
   }, {
-    name: 'Regina',
+    name: 'Amalie',
     pic: 'https://randomuser.me/api/portraits/women/37.jpg',
   }, {
-    name: 'rem',
+    name: 'Wallace',
     pic: 'https://randomuser.me/api/portraits/men/3.jpg',
   }, {
-    name: 'Britany',
+    name: 'Margo',
     pic: 'https://randomuser.me/api/portraits/women/76.jpg',
   },
 ];

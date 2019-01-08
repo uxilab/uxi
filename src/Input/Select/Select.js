@@ -1,79 +1,24 @@
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+// import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
-import DropDown from '../internal/DropDown';
-import DropDown2 from '../internal/DropDownWithClickOutside';
-import { Arrowdown } from '../Icons';
-import { Button } from '../Button';
-import UnstyledButtonBeta from '../Button/UnstyledButton1';
-import Option from './SelectInputOptions';
-import StatusIcon from './utils/StatusIcon';
-import ErrorWrapperUI from './utils/ErrorWrapperUI';
+// import DropDown from '../internal/DropDown';
+import DropDown2 from '../../internal/DropDownWithClickOutside';
+import { Arrowdown } from '../../Icons';
+import { Button } from '../../Button';
+import UnstyledButtonBeta from '../../Button/UnstyledButton1';
+import Option from '../SelectInputOptions';
+import StatusIcon from '../utils/StatusIcon';
+import ErrorWrapperUI from '../utils/ErrorWrapperUI';
+import { styles } from './Select.styles';
+import TriggererWrapperWithEllispsisChildren from './TriggererWrapperWithEllispsisChildren';
+import TriggerreWrapper from './TriggerreWrapper';
+import {
+  // isElement,
+  isDOMTypeElement,
+} from './select-utils';
 
-function isElement(element) {
-  return React.isValidElement(element);
-}
 
-function isDOMTypeElement(element) {
-  return isElement(element) && typeof element.type === 'string';
-}
-
-const TriggererWrapperWithEllispsisChildren = styled.div`
-  min-height: 34px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  /* background: white; */
-
-  * {
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #222222 !important;
-  }
-`;
-
-const TriggerreWrapper = styled.div`
-  min-width: 180px;
-  width: 100%;
-  min-height: 34px;
-  height: 34px;
-  border: 1px solid #cecece;
-  display: block;
-  border-radius: ${({ theme: { radius } }) => radius};
-  overflow: hidden;
-  position: relative;
-  /* background: white; */
-`;
-
-// TODO show default value if any
-const styles = {
-  trigerrer: {
-    // minWidth: '180px',
-    // width: '100%',
-    // minHeight: '30px',
-    // border: '1px solid #cecece',
-    // display: 'block',
-    // borderRadius: '3px',
-    // overflow: 'hidden',
-    // position: 'relative',
-    // background: 'white',
-  },
-  trigerrerIcon: {
-    position: 'absolute',
-    right: '0',
-    top: '0',
-    bottom: '0',
-    display: 'flex',
-    alignItems: 'center',
-    padding: 0,
-    maxHeight: '34px',
-    height: '34px',
-    boxSizing: 'border-box',
-  },
-};
-
-class SelectInput extends PureComponent {
+class Select extends Component {
   constructor(props) {
     super(props);
 
@@ -318,14 +263,14 @@ class SelectInput extends PureComponent {
           return (
             <Option
               onClick={(e) => {
-                console.log('option onClick', document.activeElement);
-                isOpen && console.log('onClick on option item', e);
-                isOpen && this.clickHandler(e);
+                // console.log('option onClick', document.activeElement);
+                // isOpen && console.log('onClick on option item', e);
+                if (isOpen) this.clickHandler(e);
               }}
               onEsc={() => {
-                console.log('option onEsc', document.activeElement);
-                isOpen && console.log('onEsc on option item', null);
-                isOpen && this.clickHandler(null);
+                // console.log('option onEsc', document.activeElement);
+                // isOpen && console.log('onEsc on option item', null);
+                if (isOpen) this.clickHandler(null);
               }}
               data-index={i}
               {...child.props}
@@ -348,14 +293,14 @@ class SelectInput extends PureComponent {
         return (
           <Option
             onClick={(e) => {
-              console.log('option onClick', document.activeElement);
-              isOpen && console.log('onClick on option item', e);
-              isOpen && this.clickHandler(e);
+              // console.log('option onClick', document.activeElement);
+              // isOpen && console.log('onClick on option item', e);
+              if (isOpen) this.clickHandler(e);
             }}
             onEsc={() => {
-              console.log('option onEsc', document.activeElement);
-              isOpen && console.log('onEsc on option item', null);
-              isOpen && this.clickHandler(null);
+              // console.log('option onEsc', document.activeElement);
+              // isOpen && console.log('onEsc on option item', null);
+              if (isOpen) this.clickHandler(null);
             }}
             data-index={i}
             {...child.props}
@@ -592,8 +537,8 @@ class SelectInput extends PureComponent {
       isFullWidth,
       error,
       style,
-      mainScrollingElementSelector,
-      inertTrigger,
+      // mainScrollingElementSelector,
+      // inertTrigger,
       isOpen: isOpenProp,
     } = this.props;
 
@@ -644,9 +589,9 @@ class SelectInput extends PureComponent {
   }
 }
 
-SelectInput.defaultProps = {
+Select.defaultProps = {
   style: {},
 };
 
 
-export default SelectInput;
+export default Select;

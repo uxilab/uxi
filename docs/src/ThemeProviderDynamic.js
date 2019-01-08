@@ -40,8 +40,10 @@ class ThemeProviderDynamic extends Component {
       isOpen: false,
       // isOpen: true,
       primary: '#ff9315',
+      primary: 'rgb(38, 162, 154)',
       secondary: '#272727',
-      radius: '3px',
+      secondary: '#30556B',
+      radius: '5px',
       transition: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     };
 
