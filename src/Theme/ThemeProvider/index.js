@@ -23,7 +23,7 @@ const UXISCThemeProvider = (props) => {
 
   return (
     <SCThemeProvider theme={theTheme || theme} >
-      <GlobalStyles data-globalStyles>
+      <GlobalStyles data-global-styles>
         <UXIContextThemeProvider>
           <div style={{ height: '100%' }}>
             <style dangerouslySetInnerHTML={{ __html: actualCSSString }} />
