@@ -35,7 +35,6 @@ const OptionsUI = styled.div`
 
 const Options = (props) => {
   const {
-    onEsc,
     onClick,
     style,
     ...rest
@@ -53,19 +52,11 @@ const Options = (props) => {
       }
     }}
     onKeyUp={(e) => {
-      // if (e.target === document.body) {
-      // e.preventDefault()
-      // e.stopPropagation()
-      // }
-
       if (e.key === 'Escape') {
         e.target.blur();
         e.target.tabIndex = -1;
 
 
-        if (onEsc) {
-          onEsc();
-        }
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.target.blur();
         e.target.tabIndex = -1;

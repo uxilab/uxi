@@ -13,7 +13,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled
           data-index={0}
           isOpen={false}
           onClick={[Function]}
-          onEsc={[Function]}
           selected={false}
           style={
             Object {
@@ -35,7 +34,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled
           data-index={1}
           isOpen={false}
           onClick={[Function]}
-          onEsc={[Function]}
           selected={false}
           style={
             Object {
@@ -57,7 +55,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled
           data-index={2}
           isOpen={false}
           onClick={[Function]}
-          onEsc={[Function]}
           selected={true}
           style={
             Object {
@@ -86,7 +83,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works as a controlled
     }
     main={
       <span
-        onEsc={[Function]}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -201,7 +197,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
           data-index={0}
           isOpen={false}
           onClick={[Function]}
-          onEsc={[Function]}
           selected={false}
           style={
             Object {
@@ -223,7 +218,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
           data-index={1}
           isOpen={false}
           onClick={[Function]}
-          onEsc={[Function]}
           selected={true}
           style={
             Object {
@@ -245,7 +239,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
           data-index={2}
           isOpen={false}
           onClick={[Function]}
-          onEsc={[Function]}
           selected={false}
           style={
             Object {
@@ -274,7 +267,6 @@ exports[`<SelectInput /> controlled/uncontrolled behaviour works correctly as an
     }
     main={
       <span
-        onEsc={[Function]}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -392,7 +384,6 @@ exports[`<SelectInput /> matches snapshot 1`] = `
     }
     main={
       <span
-        onEsc={[Function]}
         style={
           Object {
             "border": "1px solid #cecece",
