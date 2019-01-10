@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const OptionsUI = styled.div.attrs({
   role: 'option',
-  // 'aria-hidden': ({ isOpen }) => (isOpen === false)},
   tabIndex: ({ isOpen }) => (isOpen === true ? 0 : -1),
 })`
   ${({ isOpen }) => (isOpen !== undefined
@@ -34,8 +33,6 @@ const OptionsUI = styled.div.attrs({
   &:focus {
     outline: none;
     background-color: #cecece;
-    /* &:not(:first-child) { border-top-color: #a3a3a3; }
-    &:not(:last-child) { border-bottom-color: #a3a3a3; } */
   };
   &:active {
     background-color: #fff;
@@ -56,25 +53,12 @@ const Options = (props) => {
     isOpen={isOpen}
     style={style}
     onClick={(e) => {
-      // if (e.target.blur) {
-      //   e.target.blur();
-      // }
       if (onClick) {
         onClick(e);
       }
     }}
     onKeyDown={(e) => {
-      console.log('option\'s onKeyDown', e);
-      console.log('option\'s onKeyDown isOpen', isOpen);
-      // if (e.target === document.body) {
-      // e.preventDefault()
-      // e.stopPropagation()
-      // }
-
       if (e.key === ' ' || e.key === 'Enter') {
-        // e.target.blur();
-        // e.target.tabIndex = -1;
-
         if (onClick) {
           const fakeEvent = {
             currentTarget: {
@@ -85,8 +69,6 @@ const Options = (props) => {
         }
       }
     }}
-
-    // tabIndex={props.isOpen ? 0 : -1}
   />);
 };
 

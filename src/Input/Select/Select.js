@@ -13,12 +13,11 @@ import { styles } from './Select.styles';
 import TriggererWrapperWithEllispsisChildren from './TriggererWrapperWithEllispsisChildren';
 import TriggerreWrapper from './TriggerreWrapper';
 import {
-  // isElement,
   isDOMTypeElement,
 } from './select-utils';
 
 
-class Select extends Component {
+export class Select extends Component {
   constructor(props) {
     super(props);
 
@@ -264,13 +263,9 @@ class Select extends Component {
           return (
             <Option
               onClick={(e) => {
-                // console.log('option onClick', document.activeElement);
-                // isOpen && console.log('onClick on option item', e);
                 if (isOpen) this.clickHandler(e);
               }}
               onEsc={() => {
-                // console.log('option onEsc', document.activeElement);
-                // isOpen && console.log('onEsc on option item', null);
                 if (isOpen) this.clickHandler(null);
               }}
               data-index={i}
@@ -294,13 +289,9 @@ class Select extends Component {
         return (
           <Option
             onClick={(e) => {
-              // console.log('option onClick', document.activeElement);
-              // isOpen && console.log('onClick on option item', e);
               if (isOpen) this.clickHandler(e);
             }}
             onEsc={() => {
-              // console.log('option onEsc', document.activeElement);
-              // isOpen && console.log('onEsc on option item', null);
               if (isOpen) this.clickHandler(null);
             }}
             data-index={i}
@@ -381,20 +372,20 @@ class Select extends Component {
       if (nextSiblingMaybe && nextSiblingMaybe.focus) {
         nextSiblingMaybe.focus();
       } else {
-      // focus from main triggerer to (first) item:
+        // focus from main triggerer to (first) item:
         const nextSiblingMaybeItem = document.activeElement.parentNode.nextElementSibling;
         if (nextSiblingMaybeItem) {
           const firstOptionItem = nextSiblingMaybeItem.firstChild;
           if (firstOptionItem && firstOptionItem.focus) {
             firstOptionItem.focus();
           }
-        } /* else if (this.itemRef) {
-          // go back to first option element
-          const firstOption = this.itemRef.firstChild;
-          if (firstOption && firstOption.focus) {
-            firstOption.focus();
-          }
-        } */
+        } // else if (this.itemRef) {
+        // go back to first option element
+        // const firstOption = this.itemRef.firstChild;
+        // if (firstOption && firstOption.focus) {
+        //   firstOption.focus();
+        // }
+        // }
       }
     } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
       if (!this.isOpenControlled) {
@@ -413,11 +404,11 @@ class Select extends Component {
             lastOptionItem.focus();
           }
         } else {
-          // go back to last option element
-          const lastOption = document.activeElement.parentNode.lastChild;
-          if (lastOption && lastOption.focus) {
-            lastOption.focus();
-          }
+          // go back to last option element NO!
+          // const lastOption = document.activeElement.parentNode.lastChild;
+          // if (lastOption && lastOption.focus) {
+          //   lastOption.focus();
+          // }
         }
       }
     }
@@ -572,7 +563,6 @@ class Select extends Component {
       && this.childrenWrapperRef.firstChild.firstChild
       && this.childrenWrapperRef.firstChild.firstChild.focus
     ) {
-      console.log('content focusTarget=', this.childrenWrapperRef.firstChild);
       setTimeout(() => {
         this.childrenWrapperRef.firstChild.firstChild.focus();
       }, 10);
