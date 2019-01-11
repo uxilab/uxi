@@ -9,7 +9,7 @@ const ExampleSimpleGrid = () => (
       itemHeight={180}
     >
       {[...Array(21)].map((_, i) => (
-        <Flex style={{ background: '#cecece' }} >
+        <Flex style={{ background: '#cecece' }} key={i} >
           <h3>{i}</h3>
         </Flex>
       ))}
@@ -24,7 +24,7 @@ const ExampleSimpleGrid = () => (
       itemHeight={140}
     >
       {[...Array(21)].map((_, i) => (
-        <div style={{ background: '#cecece' }} >
+        <div style={{ background: '#cecece' }} key={i} >
           <h3>{i}</h3>
         </div>
       ))}
