@@ -41,7 +41,6 @@ const OptionsUI = styled.div.attrs({
 
 const Options = (props) => {
   const {
-    onEsc,
     onClick,
     style,
     isOpen,

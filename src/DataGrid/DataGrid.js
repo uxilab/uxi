@@ -142,6 +142,7 @@ class DataGrid extends Component {
         </span>
         {actions.map(action => (
           <ButtonLink
+            key={action.label}
             text={action.label}
             icon={action.icon}
             onClick={(e) => {
@@ -217,7 +218,8 @@ class DataGrid extends Component {
       multiSelectable,
       () => {
         this.checkAll();
-      }
+      },
+      allChecked
     );
 
     return (

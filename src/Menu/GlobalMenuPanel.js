@@ -68,7 +68,9 @@ const getAccessibilityRules = ({ isOpen }) => {
 const GlobalMenuPanelWrapper = styled.div`
   position: ${({ attachToViewport }) => (attachToViewport ? 'fixed' : 'absolute')};
   top: 0;
+  top: ${({ panelOffsetTop }) => panelOffsetTop};
   bottom: 0;
+  bottom: ${({ panelOffsetBottom }) => panelOffsetBottom};
   margin-left: 0px;
   background: #fff;
   border-right: 1px solid #ececec;
@@ -116,6 +118,8 @@ class GlobalMenuPanel extends Component {
       fullWidth,
       attachToViewport,
       fullViewportWidthPanel,
+      panelOffsetTop,
+      panelOffsetBottom,
     } = this.props;
     let actionContent;
     let closeContent;
@@ -159,6 +163,8 @@ class GlobalMenuPanel extends Component {
     return (
       <GlobalMenuPanelWrapper
         className="rc-GlobalMenuPanelWrapper"
+        panelOffsetTop={panelOffsetTop}
+        panelOffsetBottom={panelOffsetBottom}
         isOpen={isOpen}
         panelWidth={width}
         fullWidth={fullWidth}
@@ -191,6 +197,9 @@ GlobalMenuPanel.propTypes = {
   fullWidth: PropTypes.bool,
   attachToViewport: PropTypes.bool,
   fullViewportWidthPanel: PropTypes.bool,
+  panelOffsetTop: PropTypes.string,
+  panelOffsetBottom: PropTypes.string,
+
 };
 
 GlobalMenuPanel.defaultProps = {
@@ -203,6 +212,8 @@ GlobalMenuPanel.defaultProps = {
   Action: null,
   fullWidth: false,
   fullViewportWidthPanel: false,
+  panelOffsetTop: '0px',
+  panelOffsetBottom: '0px',
 };
 
 export default enhanceWithClickOutside(GlobalMenuPanel);

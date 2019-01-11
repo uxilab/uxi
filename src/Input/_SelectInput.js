@@ -303,7 +303,6 @@ class SelectInput extends PureComponent {
           return (
             <Option
               onClick={e => this.clickHandler(e)}
-              onEsc={() => this.clickHandler(null)}
               data-index={i}
               {...child.props}
               isOpen={isOpen}
@@ -325,7 +324,6 @@ class SelectInput extends PureComponent {
         return (
           <Option
             onClick={e => this.clickHandler(e)}
-            onEsc={() => this.clickHandler(null)}
             data-index={i}
             {...child.props}
             isOpen={isOpen}

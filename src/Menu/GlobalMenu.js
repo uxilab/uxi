@@ -49,7 +49,7 @@ class GlobalMenu extends Component {
   getFirstActiveFoundMaybe() {
     const { menuDescriptors } = this.props;
 
-    return menuDescriptors
+    const activeMaybe = menuDescriptors
       .find((menuDescriptor) => {
         const hasChildren = menuDescriptor.children;
         return (
@@ -59,6 +59,11 @@ class GlobalMenu extends Component {
           )
         );
       });
+
+    if (activeMaybe && activeMaybe.key) {
+      return activeMaybe.key;
+    }
+    return null;
   }
 
   getSelected(key) {
@@ -93,6 +98,8 @@ class GlobalMenu extends Component {
       bigMenuWidth,
       innerStyle,
       fullViewportWidthPanel: fullViewportWidthPanelProp,
+      panelOffsetTop,
+      panelOffsetBottom,
     } = this.props;
 
     const fullViewportWidthPanel = attachToViewport ? true : fullViewportWidthPanelProp;
@@ -179,6 +186,8 @@ class GlobalMenu extends Component {
             breakpoint={breakpoint}
             menuWidth={menuWidth}
             bigMenuWidth={bigMenuWidth}
+            panelOffsetTop={panelOffsetTop}
+            panelOffsetBottom={panelOffsetBottom}
             logo={theLogo}
             onLogoClick={onLogoClick}
             selectedKey={selected}
@@ -203,6 +212,8 @@ GlobalMenu.propTypes = {
   // primaryColor: PropTypes.string,
   menuDescriptors: PropTypes.array,
   style: PropTypes.object,
+  panelOffsetTop: PropTypes.string,
+  panelOffsetBottom: PropTypes.string,
 };
 
 GlobalMenu.defaultProps = {
@@ -214,6 +225,8 @@ GlobalMenu.defaultProps = {
   // primaryColor: '',
   menuDescriptors: [],
   style: PropTypes.object,
+  panelOffsetTop: '0px',
+  panelOffsetBottom: '0px',
 };
 
 export default GlobalMenu;
