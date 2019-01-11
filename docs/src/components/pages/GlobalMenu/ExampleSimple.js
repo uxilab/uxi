@@ -20,7 +20,7 @@ const longString = 'Now that there is the Tec-9, a crappy spray gun from South M
 const GDPRContent = ({ close }) => (
   <div>
     test
-    <button tabindex="0" onClick={close} >Click!</button>
+    <button tabIndex="0" onClick={close} >Click!</button>
     <p style={{ padding: '16px' }}>
       {longString}
       {longString}
@@ -86,7 +86,7 @@ class ExampleSimple extends Component {
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>{longString}</div>),
-          Action: ({ close }) => (<button tabindex="0" onClick={close}>test</button>),
+          Action: ({ close }) => (<button tabIndex="0" onClick={close}>test</button>),
           width: 300,
         },
       },
@@ -148,7 +148,7 @@ class ExampleSimple extends Component {
         panel: {
           Title: 'Followed entities',
           Content: () => (<div>'List of Followed entities'</div>),
-          Action: ({ close }) => (<button tabindex="0" onClick={close}>test</button>),
+          Action: ({ close }) => (<button tabIndex="0" onClick={close}>test</button>),
           width: 300,
         },
         children: [
@@ -242,8 +242,7 @@ class ExampleSimple extends Component {
               color: #06979e;
           }`,
           }}
-        >
-        </style>
+        />
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>
           menuitem that have subItem (subroute) don't have panel and vicevera
@@ -270,13 +269,13 @@ class ExampleSimple extends Component {
         <P>
           This usage is discouraged
         </P>
-        <GlobalMenu
+        {/*  <GlobalMenu
           logoDescriptor={logoDescriptor}
           onLogoClick={this.onLogoClickHandler.bind(this)}
           activeKey="GlobalMenu"
           menuDescriptors={badMenuDescriptors}
           isOwner
-        />
+        /> */}
 
         <br />
 
@@ -288,7 +287,7 @@ class ExampleSimple extends Component {
 
 
         {/* Attached to viewport */}
-        <Button
+        {/* <Button
           onClick={() => this.setState({ attachToViewport: !attachToViewport })}
           text={`${attachToViewport ? 'detach from' : 'attach to'} viewport`}
         />
@@ -299,7 +298,7 @@ class ExampleSimple extends Component {
           activeKey="GlobalMenu"
           menuDescriptors={menuDescriptors}
           isOwner
-        />
+        /> */}
         <br />
       </div>
     );

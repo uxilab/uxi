@@ -12,7 +12,7 @@ import Footer from './Footer';
 import { routes } from './routes';
 import Search from './Search';
 
-const GlobalMenuWrapper = styled.div`
+const LocalGlobalMenuWrapper = styled.div`
   background: ${({ theme: { palette } }) => palette.primary.dark};
   max-height: calc(100vh - 80px);
   height: 100%;
@@ -96,9 +96,9 @@ const ComponentShell = ({ children }) => {
         }}
         contentStyle={{ boxShadow: 'inset 1px 3px 16px rgba(0, 0, 0, .5)' }}
         extra={(
-          <GlobalMenuWrapper>
+          <LocalGlobalMenuWrapper>
             <Menu />
-          </GlobalMenuWrapper>
+          </LocalGlobalMenuWrapper>
         )}
       >
         <MainContentWrapper className="uxi_ComponentShell_scrolling-element">

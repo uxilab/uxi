@@ -39,7 +39,7 @@ const GlobalMenuWrapper = ({
     menuDescriptorsContent.push(
       <GlobalMenuItem
         breakpoint={breakpoint}
-        key={menuDescriptor.key}
+        key={`${menuDescriptor.key}-rootitem`}
         isSelected={menuDescriptor.isSelected}
         isActive={menuDescriptor.isActive}
         onClick={() => {
@@ -56,7 +56,7 @@ const GlobalMenuWrapper = ({
         href={menuDescriptor.href}
         primaryColor={primaryColor}
         hasPanel={!!menuDescriptor.panel}
-      />,
+      />
     );
 
     if (menuDescriptor.children && menuDescriptor.children.length > 0) {
@@ -66,7 +66,7 @@ const GlobalMenuWrapper = ({
             breakpoint={breakpoint}
             isFirstSubItem={idx === 0}
             isLastSubItem={idx === list.length - 1}
-            key={child.key}
+            key={`${menuDescriptor.key}-subitem-${child.key}`}
             isSelected={child.isSelected}
             isParentSelected={menuDescriptor.isSelected}
             isActive={child.isActive}
@@ -79,7 +79,7 @@ const GlobalMenuWrapper = ({
             Link={child.Link}
             to={child.to}
             href={child.href}
-          />,
+          />
         );
       });
     }
@@ -87,11 +87,12 @@ const GlobalMenuWrapper = ({
     if (menuDescriptor && menuDescriptor.panel) {
       menuDescriptorsContent.push(
         /* this wrapper div required for layout context */
-        <div key={menuDescriptor.panel.key}>
+        <div
+          key={`${menuDescriptor.key}-panel-${menuDescriptor.panel.key}`}
+        >
           <GlobalMenuPanel
             panelOffsetTop={panelOffsetTop}
             panelOffsetBottom={panelOffsetBottom}
-            key={menuDescriptor.panel.key}
             onClickOutside={() => { handlePanelClickOutside(menuDescriptor.key); }}
             Title={menuDescriptor.panel.Title}
             Content={menuDescriptor.panel.Content}
@@ -102,12 +103,12 @@ const GlobalMenuWrapper = ({
             attachToViewport={attachToViewport}
             fullViewportWidthPanel={fullViewportWidthPanel}
           />
-        </div>,
+        </div>
       );
     }
   });
 
-  const gapFiller = <FlexExtended />;
+  const gapFiller = <FlexExtended key="single-gap-filler" />;
 
   return (
     <GlobalMenuContainer
