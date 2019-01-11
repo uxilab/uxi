@@ -42,7 +42,7 @@ const List = ({ style, children, type }) => {
 };
 
 List.propTypes = {
-  children: [PropTypes.node],
+  children: PropTypes.any,
 };
 
 List.defaultProps = {

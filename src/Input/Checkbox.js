@@ -178,6 +178,11 @@ class Checkbox extends React.PureComponent {
 
     const checker = this.isControlled ? checked : this.state.checked;
 
+    const checkAttributes = {};
+    if (this.isControlled) {
+      checkAttributes.checked = this.props.checked;
+    }
+
     // eslint-disable-next-line no-nested-ternary
     const iconIdentifier = disabled
       ? (checker ? <Padlock /> : <Padlock />)
@@ -200,7 +205,7 @@ class Checkbox extends React.PureComponent {
               id={id}
               style={inputStyle}
               checked={checker}
-              defaultChecked={defaultChecked}
+              // defaultChecked={defaultChecked}
               name={name}
               type="checkbox"
               disabled={disabled}

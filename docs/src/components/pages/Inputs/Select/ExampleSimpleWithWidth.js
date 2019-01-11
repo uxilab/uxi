@@ -23,8 +23,8 @@ class ExampleSimpleWithWidth extends Component {
         >
           <Flex value={null}>None</Flex>
           {
-            options.map(({ name, pic }) => (
-              <div value={name}>
+            options.map(({ name, pic }, i) => (
+              <div value={name} key={`${name}-${i}`}>
                 <AvatarWithName src={pic} name={name} />
               </div>
             ))

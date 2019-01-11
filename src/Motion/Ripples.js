@@ -23,17 +23,19 @@ const Wrapper = styled.div`
 
   /* let the ripple effect overflow the component on mobile for better ux
     since on mobile you'r thunm or finger will be hiddingthe animation
+
+    no this was a mistake
   */
   & > div {
-    overflow: visible;
+    overflow: hidden;
   }
   & {
     transition: ${({ theme: { transition } }) => transition.defaultAll};
   }
   @media screen and (min-width: 1024px) {
-    & > div {
+    /* & > div {
       overflow: hidden;
-    }
+    } */
     &:not(:hover) {
       &:focus-within {
         box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};

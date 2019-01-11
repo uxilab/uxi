@@ -74,11 +74,11 @@ class RadioGroup extends Component {
             ...child.props,
             key: index,
             name,
-            inputRef: (node) => {
-              if (node) {
-                this.radios.push(node);
-              }
-            },
+            // inputRef: (node) => {
+            //   if (node) {
+            //     this.radios.push(node);
+            //   }
+            // },
             checked,
             onChange: (e) => {
               this.handleRadioChange(e);

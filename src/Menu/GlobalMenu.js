@@ -224,7 +224,7 @@ GlobalMenu.defaultProps = {
   // Logo: PropTypes.any,
   // primaryColor: '',
   menuDescriptors: [],
-  style: PropTypes.object,
+  style: {},
   panelOffsetTop: '0px',
   panelOffsetBottom: '0px',
 };
