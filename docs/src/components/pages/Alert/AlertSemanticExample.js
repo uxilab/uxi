@@ -12,7 +12,7 @@ const AlertSemanticExample = () => (
       This is an danger Alert with icon and close btn! Daaaanger zone....
     </Alert>
     <br />
-    <Alert type="default" rounded>
+    <Alert rounded>
       This is an default Alert with an icon!
     </Alert>
     <br />

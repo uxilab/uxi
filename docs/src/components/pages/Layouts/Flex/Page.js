@@ -8,7 +8,7 @@ import ExampleFlex from './ExampleFlex';
 import RAWExampleFlex from '!raw-loader!./ExampleFlex';
 
 
-const Layouts = () => (
+const FlexPage = () => (
   <div>
     <H1>Layouts </H1>
     <CodeExample
@@ -20,7 +20,7 @@ const Layouts = () => (
     />
 
     <CodeExample
-      code={ExampleFlex}
+      code={RAWExampleFlex}
       component
       title="Flex"
       hasPadding
@@ -30,4 +30,4 @@ const Layouts = () => (
   </div>
 );
 
-export default Layouts;
+export default FlexPage;
