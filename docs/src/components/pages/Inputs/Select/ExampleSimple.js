@@ -19,12 +19,11 @@ class ExampleSimple extends Component {
       <div>
         <Select
           onChange={(event, value) => this.setState({ selectedValue: value })}
-          mainScrollingElementSelector=".uxi_ComponentShell_scrolling-element"
         >
-          <Flex value={null}>None</Flex>
+          <Flex key="none" value={null}>None</Flex>
           {
-            options.map(({ name, pic }) => (
-              <Flex value={name}>
+            options.map(({ name, pic }, i) => (
+              <Flex value={name} key={i}>
                 <AvatarWithName src={pic} name={name} />
               </Flex>
             ))

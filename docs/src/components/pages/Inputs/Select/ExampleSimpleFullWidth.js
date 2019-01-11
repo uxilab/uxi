@@ -18,7 +18,7 @@ const options = [
   },
 ];
 
-class ExampleSimpleWithWidth extends Component {
+class ExampleSimpleFullWidth extends Component {
   constructor(props) {
     super(props);
 
@@ -35,10 +35,10 @@ class ExampleSimpleWithWidth extends Component {
           onChange={(event, value) => this.setState({ selectedValue: value })}
           isFullWidth
         >
-          <div value={null}>None</div>
+          <div key="none" value={null}>None</div>
           {
             options.map(({ name, pic }) => (
-              <div value={name}>
+              <div value={name} key={name} >
                 <AvatarWithName src={pic} name={name} />
               </div>
             ))
@@ -52,10 +52,10 @@ class ExampleSimpleWithWidth extends Component {
             onChange={(event, value) => this.setState({ selectedValue1: value })}
             isFullWidth
           >
-            <div value={null}>None</div>
+            <div key="0-none" value={null}>None</div>
             {
-              options.map(({ name, pic }) => (
-                <div value={name}>
+              options.map(({ name, pic }, i) => (
+                <div value={name} key={i} >
                   <AvatarWithName src={pic} name={name} />
                 </div>
               ))
@@ -69,4 +69,4 @@ class ExampleSimpleWithWidth extends Component {
   }
 }
 
-export default ExampleSimpleWithWidth;
+export default ExampleSimpleFullWidth;

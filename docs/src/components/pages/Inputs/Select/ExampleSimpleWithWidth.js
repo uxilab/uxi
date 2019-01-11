@@ -16,23 +16,7 @@ class ExampleSimpleWithWidth extends Component {
 
   render() {
     return (
-      <div>
-        <Select
-          onChange={(event, value) => this.setState({ selectedValue: value })}
-          style={{ width: '250px' }}
-        >
-          <Flex value={null}>None</Flex>
-          {
-            options.map(({ name, pic }, i) => (
-              <div value={name} key={`${name}-${i}`}>
-                <AvatarWithName src={pic} name={name} />
-              </div>
-            ))
-          }
-        </Select>
-        <br />
-        <div>Selected Value: {this.state.selectedValue} </div>
-      </div>
+      <div />
     );
   }
 }

@@ -70,7 +70,7 @@ const SelectInputPage = () => (
           <ExampleSimple />
         </CodeExample>
       </li>
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWExampleSimpleWithWidth}
           component
@@ -79,7 +79,7 @@ const SelectInputPage = () => (
         >
           <ExampleSimpleWithWidth />
         </CodeExample>
-      </li>
+      </li> */}
       <li>
         <CodeExample
           code={RAWExampleSimpleFullWidth}

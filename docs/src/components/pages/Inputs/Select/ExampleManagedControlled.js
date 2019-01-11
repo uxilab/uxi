@@ -25,10 +25,10 @@ class ExampleSimpleControlled extends Component {
           }}
           value={this.state.selectedValue}
         >
-          <div value={null}>None</div>
+          <div key="none" value={null}>None</div>
           {
-            options.map(({ name, pic }) => (
-              <div value={name}>
+            options.map(({ name, pic }, i) => (
+              <div value={name} key={i}>
                 <AvatarWithName src={pic} name={name} />
               </div>
             ))

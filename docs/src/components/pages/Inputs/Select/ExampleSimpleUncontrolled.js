@@ -22,10 +22,10 @@ class ExampleSimpleUncontrolled extends Component {
           onChange={(event, value) => this.setState({ selectedValue: value })}
           defaultValue={'Regina'}
         >
-          <div value={null}>None</div>
+          <div key="none" value={null}>None</div>
           {
-            options.map(({ name, pic }) => (
-              <div value={name}>
+            options.map(({ name, pic }, i) => (
+              <div key={i} value={name}>
                 <AvatarWithName src={pic} name={name} />
               </div>
             ))

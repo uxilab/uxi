@@ -262,6 +262,7 @@ export class Select extends Component {
         if (!isDOMTypeElement(child)) {
           return (
             <Option
+              key={i}
               onClick={(e) => {
                 if (isOpen) this.clickHandler(e);
               }}
@@ -288,6 +289,7 @@ export class Select extends Component {
 
         return (
           <Option
+            key={i}
             onClick={(e) => {
               if (isOpen) this.clickHandler(e);
             }}
