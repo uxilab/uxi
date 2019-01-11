@@ -4,8 +4,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const slidesHorizontaly = direction => (direction === 'right' || direction === 'left');
+
+const addUnitIfNeeded = (value) => {
+  if (!value) { return ''; }
+
+  if (value.match && value.match(/px|pc|%|em|rem/)) {
+    return value;
+  }
+
+  return `${value.match}px`;
+};
 /* eslint-disable */
 const SlideUI = styled.div`
+  pointer-events: none;
   z-index: 200;
   transition: all 1s linear;
   transform: ${({ inAttr: isIn, dir }) => {
@@ -32,10 +44,35 @@ const SlideUI = styled.div`
     if (dir === 'bottom') return 'bottom: 100%; top: auto; left: 0; right:0'
   }};
 
+  /*
   ${({ offsetTop }) => offsetTop && `top: ${offsetTop}px`};
   ${({ offsetBottom }) => offsetBottom && `bottom: ${offsetBottom}px`};
   ${({ offsetLeft }) => offsetLeft && `left: ${offsetLeft}px`};
   ${({ offsetRight }) => offsetRight && `right: ${offsetRight}px`};
+  */
+
+  ${({ dir, offsetTop }) => (
+    offsetTop
+      ? slidesHorizontaly(dir)
+        ? `top: ${addUnitIfNeeded(offsetTop)}`
+        : `padding-top: ${addUnitIfNeeded(offsetTop)}`
+      : ''
+  )};
+  ${({ dir, offsetBottom }) => (
+    offsetBottom
+      ? slidesHorizontaly(dir)
+        ? `bottom: ${addUnitIfNeeded(offsetBottom)}`
+        : `padding-bottom: ${addUnitIfNeeded(offsetBottom)}`
+      : ''
+  )};
+  ${({ offsetLeft }) => (
+    offsetLeft &&
+      `left: ${addUnitIfNeeded(offsetLeft)}`
+  )};
+  ${({ offsetRight }) => (
+    offsetRight &&
+      `right: ${addUnitIfNeeded(offsetRight)}`
+  )};
 `;
 
 class Slide extends React.Component {

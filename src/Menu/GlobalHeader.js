@@ -6,7 +6,7 @@ const GlobalHeaderUI = styled.div`
   /* height: 48px; */
   background: ${({ theme: { palette } }) => palette.primary.main};
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const GlobalHeader = (props) => {

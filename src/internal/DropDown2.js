@@ -8,6 +8,8 @@ const BoxWrapperUI = styled.div.attrs({})`
   z-index: 99;
   position: absolute;
   max-height: 0;
+  /* width: 100%; */
+  ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
   border-radius: ${({ theme: { radius } }) => radius};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
   transition-duration: ${({ isOpen, theme: { transition } }) => (isOpen
@@ -109,6 +111,7 @@ class DropDown2 extends Component {
     const {
       trigger,
       children,
+      isFullWidth,
     } = this.props;
 
     const {
@@ -122,6 +125,7 @@ class DropDown2 extends Component {
 
     const TriggerWithHandler = React.cloneElement(trigger, {
       ...((trigger && trigger.props) || {}),
+      'data-drop-down-trigger': true,
       onClick: (...a) => {
         this.toggleVisibility(...a);
         if (trigger.props && trigger.props.onClick) {
@@ -132,8 +136,11 @@ class DropDown2 extends Component {
 
     return (
       <div style={{ position: 'relative' }} ref={this.storeWrapperRef} >
-        {TriggerWithHandler}
+        <div data-drop-down-trigger>
+          {TriggerWithHandler}
+        </div>
         <BoxWrapperUI
+          isFullWidth={isFullWidth}
           isOpen={isOpen}
           maxHeight={height}
           style={{
@@ -143,7 +150,7 @@ class DropDown2 extends Component {
             ),
           }}
         >
-          <div ref={this.storeRef}>
+          <div ref={this.storeRef} data-drop-down-content>
             {React.Children.only(children)}
           </div>
         </BoxWrapperUI>

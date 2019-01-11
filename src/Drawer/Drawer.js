@@ -16,9 +16,21 @@ function getSlideDirection(anchor) {
   }
   return 'top';
 }
+
+const addUnitIfNeeded = (value) => {
+  if (!value) { return ''; }
+
+  if (value.match && value.match(/px|pc|%|em|rem/)) {
+    return value;
+  }
+
+  return `${value.match}px`;
+};
+
 const slidesHorizontaly = direction => (direction === 'right' || direction === 'left');
 
 const DrawerUI = styled.div`
+  pointer-events: all;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -32,7 +44,12 @@ const DrawerUI = styled.div`
   ${({ inAttr: isIn }) => (isIn ?
     'box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16) , 0px 3px 10px rgba(0, 0, 0, 0.23)' : '')};
   /* height | width */
-  ${({ dir }) => (slidesHorizontaly(dir) ? 'height: 100vh' : 'width: 100vw')};
+  ${({ dir }) => (
+    slidesHorizontaly(dir)
+      ? 'height: 100%'
+      : 'width: 100%'
+  )};
+
   /* top&bottom | right&left */
   ${({ dir }) => (slidesHorizontaly(dir) ? 'top: 0; bottom: 0' : 'left: 0; right: 0')};
   &>*:last-child { ${({ dir, children }) =>
@@ -87,8 +104,8 @@ class Drawer extends React.Component {
       showOverlay,
       style,
       modal,
-      offsetBottom,
       offsetTop,
+      offsetBottom,
       offsetLeft,
       offsetRight,
     } = this.props;
@@ -106,6 +123,10 @@ class Drawer extends React.Component {
           offsetRight={offsetRight}
         >
           <DrawerUI
+            offsetTop={offsetTop}
+            offsetBottom={offsetBottom}
+            offsetLeft={offsetLeft}
+            offsetRight={offsetRight}
             inAttr={(open || isOpen)}
             dir={getSlideDirection(anchor)}
             style={style}

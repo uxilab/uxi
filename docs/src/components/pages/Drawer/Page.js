@@ -12,6 +12,10 @@ import ExampleWithPanel from './ExampleWithPanel';
 import RAWExampleWithPanel from '!raw-loader!./ExampleWithPanel';
 import RAWMDExampleWithPanel from '!raw-loader!./ExampleWithPanel.md';
 
+import ExampleWithPanelAndOffset from './ExampleWithPanelAndOffset';
+import RAWExampleWithPanelAndOffset from '!raw-loader!./ExampleWithPanelAndOffset';
+import RAWMDExampleWithPanelAndOffset from '!raw-loader!./ExampleWithPanelAndOffset.md';
+
 import ExampleWithAlert from './ExampleWithAlert';
 import RAWExampleWithAlert from '!raw-loader!./ExampleWithAlert';
 import RAWMDExampleWithAlert from '!raw-loader!./ExampleWithAlert.md';
@@ -26,8 +30,7 @@ const Page = () => (
           component
           title="Drawer"
           description={componentInfoToMD(RAWDrawer)}
-        >
-        </CodeExample>
+        />
       </li>
       <li>
         <H1>Drawer example</H1>
@@ -48,6 +51,16 @@ const Page = () => (
           description={RAWMDExampleWithPanel}
         >
           <ExampleWithPanel />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleWithPanelAndOffset}
+          component
+          title="Drawer with Panel (offset)"
+          description={RAWMDExampleWithPanelAndOffset}
+        >
+          <ExampleWithPanelAndOffset />
         </CodeExample>
       </li>
       <li>

@@ -4,7 +4,7 @@ import Drawer from 'uxi/Drawer';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import { Close } from 'uxi/Icons';
 
-class ExampleWithPanel extends Component {
+class ExampleWithPanelAndOffset extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,25 +20,26 @@ class ExampleWithPanel extends Component {
       <div style={{ padding: '16px' }}>
         <Button
           onClick={() => { this.setState({ showSidePanelLeft: true }); }}
-          text="Show Drawer with Panel from the left"
+          text="Show Drawer with Panel from the left (with offset)"
         /><br />
         <Button
           onClick={() => { this.setState({ showSidePanelRight: true }); }}
-          text="Show Drawer with Panel from the right (no footer)"
+          text="Show Drawer with Panel from the right (no footer) (with offset)"
         /><br />
         <Button
           onClick={() => { this.setState({ showSidePanelBottom: true }); }}
-          text="Show Drawer with Panel from the bottom"
+          text="Show Drawer with Panel from the bottom (with offset)"
         /><br />
         <Button
           onClick={() => { this.setState({ showSidePanelTop: true }); }}
-          text="Show Drawer with Panel from the top"
+          text="Show Drawer with Panel from the top (with offset)"
         />
 
         <Drawer
           anchor="left"
           onClose={() => { this.setState({ showSidePanelLeft: false }); }}
           open={this.state.showSidePanelLeft}
+          offsetTop={'80px'}
         >
           <Panel onClose={() => this.setState({ showSidePanelLeft: false })}>
             <PanelHeader title={'Notifications'} />
@@ -51,6 +52,7 @@ class ExampleWithPanel extends Component {
           anchor="right"
           onClose={() => { this.setState({ showSidePanelRight: false }); }}
           open={this.state.showSidePanelRight}
+          offsetBottom={'80px'}
         >
           <Panel onClose={() => this.setState({ showSidePanelRight: false })}>
             <PanelHeader title={'Notifications'} />
@@ -62,10 +64,13 @@ class ExampleWithPanel extends Component {
           anchor="bottom"
           onClose={() => { this.setState({ showSidePanelBottom: false }); }}
           open={this.state.showSidePanelBottom}
+          offsetLeft="64px"
+          offsetRight="64px"
+          offsetBottom="64px"
         >
           <Panel onClose={undefined} >
             <PanelHeader title={'Review Changes'} />
-            <PanelContent style={{ padding: '16px' }}>
+            <PanelContent style={{ padding: '16px' }}>
               <h3>old list:</h3>
               <ul>
                 <li> - banana</li>
@@ -96,6 +101,9 @@ class ExampleWithPanel extends Component {
           anchor="top"
           onClose={() => { this.setState({ showSidePanelTop: false }); }}
           open={this.state.showSidePanelTop}
+          offsetLeft="64px"
+          offsetRight="64px"
+          offsetTop="64px"
         >
           <Panel>
             <PanelHeader title={'Review Changes'} />
@@ -115,7 +123,6 @@ class ExampleWithPanel extends Component {
             </PanelContent>
             <PanelFooter
               cancelLabel="Exit without saving"
-              onClose={() => this.setState({ showSidePanelTop: false })}
             >
               <Button
                 type="primary"
@@ -130,4 +137,4 @@ class ExampleWithPanel extends Component {
   }
 }
 
-export default ExampleWithPanel;
+export default ExampleWithPanelAndOffset;

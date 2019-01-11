@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from './Select';
+import Select from './Select'; // eslint-disable-line import/no-named-as-default
 import UnstyledButtonBeta from '../../Button/UnstyledButton1';
 // import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
@@ -8,7 +8,7 @@ import UnstyledButtonBeta from '../../Button/UnstyledButton1';
 import { Arrowdown } from '../../Icons';
 import { Button } from '../../Button';
 // import Option from './SelectInputOptions';
-import StatusIcon from '../utils/StatusIcon';
+// import StatusIcon from '../utils/StatusIcon';
 import { TextField } from '../../Input';
 // import ErrorWrapperUI from './utils/ErrorWrapperUI';
 import { styles } from './Select.styles';
@@ -30,8 +30,8 @@ class SelectWithFiltering extends Select {
         // isOpen,
       },
       props: {
-        error,
-        success,
+        // error,
+        // success,
         value,
         triggerElement,
         style,
@@ -52,7 +52,7 @@ class SelectWithFiltering extends Select {
     }
 
 
-    let mainContent = null;
+    let mainContent = null; // eslint-disable-line no-unused-vars
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
       mainContent = (
         <TriggererWrapperWithEllispsisChildren>
