@@ -40,8 +40,13 @@ const WithConfirmDialogHOC = (Comp) => {
       const { showDialog } = this.state;
 
       return ([
-        <Comp {...this.props} onClick={() => this.setState({ showDialog: true })} />,
+        <Comp
+          {...this.props}
+          onClick={() => this.setState({ showDialog: true })}
+          key="Component"
+        />,
         <ConfirmDialog
+          key="confirm-dialog"
           show={showDialog}
           onConfirm={this.handleConfirm}
           onCancel={this.handleCancel}
