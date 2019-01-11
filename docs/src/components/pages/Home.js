@@ -20,22 +20,22 @@ const Home = () => (
     </SimpleList>
     <hr />
     <H3>README.md</H3>
-    <P style={{ background: 'white', padding: '32px 8px' }}>
+    <div style={{ background: 'white', padding: '32px 8px' }}>
       <MarkDownElement text={RAWReadme} lang="js" />
-    </P>
+    </div>
     <hr />
     <H3>Component list</H3>
     <ul>
       {
-        routes.map(route => (
-          <li style={{ padding: '8px' }}>
+        routes.map((route, i) => (
+          <li style={{ padding: '8px' }} key={i}>
             <Link to={`/components${route.path}`}>{route.label}</Link>
             {route.childRoutes
               ? (<ul>
                 {
-                  route.childRoutes.map(route => (
-                    <li style={{ padding: '8px', paddingLeft: '16px' }}>
-                      <Link to={`/components${route.path}`}>{route.label}</Link>
+                  route.childRoutes.map((childRoute, j) => (
+                    <li style={{ padding: '8px', paddingLeft: '16px' }} key={`${i}-${j}`}>
+                      <Link to={`/components${childRoute.path}`}>{childRoute.label}</Link>
                     </li>
                   ))
                 }
