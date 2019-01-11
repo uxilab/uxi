@@ -108,7 +108,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
       <Options
         data-index={0}
         isOpen={false}
-        key=".0"
+        key="0/.0"
         onClick={[Function]}
         onEsc={[Function]}
         selected={false}
@@ -131,7 +131,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
       <Options
         data-index={1}
         isOpen={false}
-        key=".1"
+        key="1/.1"
         onClick={[Function]}
         onEsc={[Function]}
         selected={false}
@@ -154,7 +154,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
       <Options
         data-index={2}
         isOpen={false}
-        key=".2"
+        key="2/.2"
         onClick={[Function]}
         onEsc={[Function]}
         selected={true}
@@ -288,7 +288,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
       <Options
         data-index={0}
         isOpen={false}
-        key=".0"
+        key="0/.0"
         onClick={[Function]}
         onEsc={[Function]}
         selected={false}
@@ -311,7 +311,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
       <Options
         data-index={1}
         isOpen={false}
-        key=".1"
+        key="1/.1"
         onClick={[Function]}
         onEsc={[Function]}
         selected={true}
@@ -334,7 +334,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
       <Options
         data-index={2}
         isOpen={false}
-        key=".2"
+        key="2/.2"
         onClick={[Function]}
         onEsc={[Function]}
         selected={false}
