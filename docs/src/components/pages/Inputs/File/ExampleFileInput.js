@@ -6,6 +6,7 @@ const ExampleFileInput = () => (
     <ul>
       <li>
         <FileInput
+          label="Upload a file"
           id="b" onChange={(e) => {
             console.log(e.target.files);
           }}
@@ -16,7 +17,10 @@ const ExampleFileInput = () => (
       <li><br /></li>
       <li>
         <FileInput
-          id="a" multiple onChange={(e) => {
+          id="a"
+          multiple
+          label="Upload files"
+          onChange={(e) => {
             console.log(e.target.files);
           }}
         />

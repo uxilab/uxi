@@ -11,15 +11,14 @@ const styles = {
   padding: '6.75px 6.75px 6.75px 6.75px',
 
 };
-const DateTimeInput = (props) => {
+const DateTimeInput = ({ inputType, ...props }) => {
   let intialDateValue = null;
-  const { inputType } = props;
   if (props.defaultValue) {
     const initialDateValueAsDate = new Date(props.defaultValue);// .toISOString();
 
     intialDateValue = props.defaultValue
       ? `${pad(initialDateValueAsDate.getFullYear())}-${
-        pad(initialDateValueAsDate.getMonth())}-${
+        pad(initialDateValueAsDate.getMonth() + 1)}-${
         pad(initialDateValueAsDate.getDate())}`
       : '';
   }
@@ -38,6 +37,7 @@ DateTimeInput.propTypes = {
   defaultValue: PropTypes.oneOfType([
     PropTypes.instanceOf(Date),
     PropTypes.string,
+    PropTypes.number,
   ]),
 };
 

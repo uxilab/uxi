@@ -9,6 +9,10 @@ const ExampleDatetime = () => (
         <DateInput defaultValue={Date.now() - 10e9} />
       </li>
       <li>
+        <h3>DateInput (defaultValue type Date (string)) :</h3>
+        <DateInput defaultValue={`${Date.now() - 10e7}`} />
+      </li>
+      <li>
         <h3>DateInput (defaultValue type string) :</h3>
         <DateInput defaultValue={`${new Date().toISOString()}`} />
       </li>
