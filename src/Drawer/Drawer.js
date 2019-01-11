@@ -17,15 +17,6 @@ function getSlideDirection(anchor) {
   return 'top';
 }
 
-const addUnitIfNeeded = (value) => {
-  if (!value) { return ''; }
-
-  if (value.match && value.match(/px|pc|%|em|rem/)) {
-    return value;
-  }
-
-  return `${value.match}px`;
-};
 
 const slidesHorizontaly = direction => (direction === 'right' || direction === 'left');
 

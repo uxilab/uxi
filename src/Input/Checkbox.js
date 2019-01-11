@@ -159,7 +159,6 @@ class Checkbox extends React.PureComponent {
       name: nameProp,
       disabled,
       checked,
-      defaultChecked,
       label,
       labelBefore,
       style,
