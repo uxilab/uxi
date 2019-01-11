@@ -37,7 +37,7 @@ class LightPanelControlledScrollExample extends Component {
 
             <LightPanelContent style={{ padding: '16px' }}>
               {
-                data.map(n => (<h1>{n}</h1>))
+                data.map(n => (<h1 key={n}>{n}</h1>))
               }
             </LightPanelContent>
 
