@@ -83,7 +83,7 @@ const Landing = props => (
       <ContentWrapper>
         <h1 style={{ fontSize: '48px' }}>uxi component library</h1>
         <p style={{ fontSize: '18px' }}>UXI is a Ui/Ux framework to build react application faster</p>
-        <p style={{ marginTop: '64px' }}>
+        <div style={{ marginTop: '64px' }}>
           <Button
             type="primary"
             readyLink={<Link to="/get-started">Get Started</Link>}
@@ -92,7 +92,7 @@ const Landing = props => (
             style={{ marginLeft: '16px' }}
             readyLink={<Link to="/components">View doc</Link>}
           />
-        </p>
+        </div>
       </ContentWrapper>
     </div>
   </div>

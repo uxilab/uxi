@@ -158,7 +158,7 @@ class ThemeProviderDynamic extends Component {
                     min={0}
                     max={32}
                     onChange={(e, v) => this.radiusChange(e.target.value)}
-                    defaultValue={radius.replace('px', '')}
+                    defaultValue={parseInt(radius.replace('px', ''), 10)}
                   />
                   {/* <TextField
                   placeholder="Or type radius value (e.g. single value '50%')"
