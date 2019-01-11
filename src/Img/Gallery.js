@@ -114,8 +114,8 @@ class Gallery extends Component {
         <GalleryButtonUI data-action="prev" onClick={this.handlePrevious} />
 
         <GalleryListUI innerRef={(node) => { this.listRef = node; }} imgHeight={imgHeight} >
-          {galleryDescriptor.map(image => (
-            <GalleryListItemUI>
+          {galleryDescriptor.map((image, i) => (
+            <GalleryListItemUI key={`${image.src}-${i}`} >
               <img tabIndex="0" src={image.url} alt="" />
             </GalleryListItemUI>
           ))}

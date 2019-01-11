@@ -50,9 +50,9 @@ class ExampleWithAlert extends Component {
           onClose={() => { this.setState({ showDrawerC: false }); }}
           open={this.state.showDrawerC}
         >
-          <Alert type="into">
+          <Alert type="information">
             <div style={{ padding: '16px 0' }} >
-            Could not connect to server!
+              Could not connect to server!
             </div>
           </Alert>
         </Drawer>
