@@ -60,6 +60,7 @@ class Stepper extends Component {
           React.cloneElement(connector, { key: `connect-${stepIndex - 1}-to-${stepIndex}` })
         ),
         <div
+          key={`stepper-step-${stepIndex}`}
           // remove event handler for disabled step button:
           onClick={(props.disabled ? () => { } : props.children.props.onClick)}
           style={(nowrap ? { width: '100%' } : {})}
