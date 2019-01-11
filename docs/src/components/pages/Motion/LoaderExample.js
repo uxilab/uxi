@@ -8,7 +8,7 @@ const LoaderExample = () => (
     <Loader type="error" />
     <Loader type="success" />
     <Loader type="warning" size={80} />
-    <MiniLoader type="info" size={40} />
+    <MiniLoader type="information" size={40} />
     <MiniLoader type="warning" size={40} />
   </div>
 );
