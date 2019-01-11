@@ -32,16 +32,16 @@ const Wrapper = styled.div`
   & {
     transition: ${({ theme: { transition } }) => transition.defaultAll};
   }
+  &:not(:hover) {
+    &:focus-within {
+      box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+      outline: ${({ theme: { outline } }) => outline};
+    }
+  }
   @media screen and (min-width: 1024px) {
     /* & > div {
       overflow: hidden;
     } */
-    &:not(:hover) {
-      &:focus-within {
-        box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
-        outline: ${({ theme: { outline } }) => outline};
-      }
-    }
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
       box-shadow: ${({ focusWithin, theme: { outlineShadow } }) => focusWithin && outlineShadow};
       outline: ${({ focusWithin, theme: { outline } }) => focusWithin && outline};
