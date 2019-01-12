@@ -30,7 +30,6 @@ import RAWExampleSelectableTableWithDelete from '!raw-loader!./ExampleSelectable
 const TablePage = () => (
   <div>
     <Title text="Table" />
-
     <CodeExample
       code={RAWExampleSimpleTable}
       title="Simple Table"
@@ -38,17 +37,15 @@ const TablePage = () => (
     >
       <ExampleSimpleTable />
     </CodeExample>
-
     <CodeExample
-      code={RAWExampleSimpleTable}
+      code={RAWExampleSimpleTableWithSpecialCell}
       title="Simple Table with custom cell"
       description="A cell of the Table can technically contain any kind of Component, however, you should refer to the UX guidelines to avoid making the Table too cumbersome for your user."
     >
       <ExampleSimpleTableWithSpecialCell />
     </CodeExample>
-
     <CodeExample
-      code={RAWExampleSimpleTable}
+      code={RAWExampleSimpleTableWithReadOnly}
       title="Simple Table with a readOnly row"
       description="Table with a readonly row."
     >
@@ -56,7 +53,7 @@ const TablePage = () => (
     </CodeExample>
 
     <CodeExample
-      code={ExampleSelectableTableWithDelete}
+      code={RAWExampleSimpleTableWithSeparateRow}
       title="Table with separated rows if you need more constract"
     >
       <ExampleSimpleTableWithSeparateRow />

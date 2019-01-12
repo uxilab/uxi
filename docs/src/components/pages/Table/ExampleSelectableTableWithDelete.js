@@ -85,14 +85,14 @@ class ExampleSelectableTable extends Component {
     const { selection, characters } = this.state;
     return (
       <div>
-        <P>
+        <div>
           <Button disabled={!selection || selection.length === 0} onClick={() => { this.deletedSelectedHandler(); }}>
           Delete selected
           </Button>
           <Button style={{ marginLeft: '15px' }} onClick={() => { this.addRow(); }}>
           Add rows
           </Button>
-        </P>
+        </div>
         <Table onChange={this.onChangeHandler.bind(this)} initialSelected={selection} multiSelectable selectable>
           <TableHeader>
             <TableRow>
