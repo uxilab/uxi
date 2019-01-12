@@ -18,17 +18,17 @@ const ActionMenuWrapper = styled.div`
   bottom: 0;
 `;
 
-export const createDataGridCell = (property, actions, entity) => {
+export const createDataGridCell = (property, actions, entity, index) => {
   if (!actions) {
     return (
-      <TableRowColumn hasAction={!!actions}>
+      <TableRowColumn hasAction={!!actions} key="">
         {property}
       </TableRowColumn>
     );
   }
 
   return (
-    <TableRowColumn hasAction={!!actions}>
+    <TableRowColumn hasAction={!!actions} key="" >
       <div>
         {property}
         {
@@ -48,16 +48,21 @@ export const createDataGridCell = (property, actions, entity) => {
   );
 };
 
-export const createDataGridColumn = (viewModel, actions) => (<TableRow
+export const createDataGridColumn = (viewModel, actions, index) => (<TableRow
   hasAction={!!actions}
-  key={viewModel.key}
+  key={viewModel.key || index}
   data-key={viewModel.key}
   value={viewModel.key}
 >
   {
     viewModel.properties.map(
       (property, index) => (
-        createDataGridCell(property, (index === 0) ? actions : null, viewModel.original)
+        createDataGridCell(
+          property,
+          (index === 0) ? actions : null,
+          viewModel.original,
+          index,
+        )
       ),
     )
   }
@@ -67,9 +72,9 @@ export const createDataGridColumn = (viewModel, actions) => (<TableRow
 export const createDataGridBody = (viewModels, isHidden, actions) => {
   const result = [];
 
-  viewModels.forEach((viewModel) => {
+  viewModels.forEach((viewModel, index) => {
     result.push(
-      createDataGridColumn(viewModel, actions),
+      createDataGridColumn(viewModel, actions, index),
     );
   });
 
@@ -93,20 +98,36 @@ export const createDataGridHeader = (
       {
         withCheckbox &&
         <TableHeaderCheckedAllCell
+          key="TableHeaderCheckedAllCell"
           allRowsSelected={allRowsSelected}
           onCheckAll={checkAllHandler}
         />
       }
       {
-        headers.map((header) => {
-          const key = `header-${header.name || header.displayName}`;
+        headers.map((header, i) => {
+          const key = `header-${header.name || header.displayName || i}`;
           if (!header.isSortable) {
             return (
-              <TableHeaderColumn style={hideHeader ? { visibility: 'hidden' } : {}} key={key}>{header.displayName}</TableHeaderColumn>
+              <TableHeaderColumn
+                key={key}
+                style={hideHeader
+                  ? { visibility: 'hidden' }
+                  : {}
+                }
+              >
+                {header.displayName}
+              </TableHeaderColumn>
             );
           }
           return (
-            <DataGridSorting style={hideHeader ? { visibility: 'hidden' } : {}} key={key} title={header.displayName} />
+            <DataGridSorting
+              key={key}
+              style={hideHeader
+                ? { visibility: 'hidden' }
+                : {}
+              }
+              title={header.displayName}
+            />
           );
         })
       }
