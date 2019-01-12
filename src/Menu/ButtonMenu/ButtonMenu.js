@@ -117,6 +117,7 @@ export class ButtonMenu extends Component {
       menuWidth,
       menuMinWidth,
       menuMaxWidth,
+      isFullWidth,
     } = this.props;
 
     const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
@@ -192,6 +193,7 @@ export class ButtonMenu extends Component {
         }}
       >
         <DropDown
+          // isFullWidth={isFullWidth}
           anchor={anchor}
           onClickOutside={this.close}
           isOpen={isOpen}

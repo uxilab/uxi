@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import {
   Trianglearrow,
   Trianglearrowup,
@@ -9,13 +10,49 @@ import {
 import {
   TableHeaderColumn,
 } from '../../Table';
+import {
+  Flex,
+} from '../../Layout';
 
 import {
-  VerticalMenu,
   Separator,
+  VerticalMenu,
+  ButtonMenuItem,
+  ButtonMenu,
 } from '../../Menu';
+import { UnstyledButton } from '../../Button';
 
 import MenuItem from '../../Menu/MenuItem';
+
+const FlexExtended = styled.div`
+  flex-grow: 99;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > div:first-child,
+  & > div:first-child > div:first-child,
+  & > div:first-child > div:first-child > *:first-child {
+    width : 100%;
+    height: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+`;
+
+const Flex2 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  color: rgb(158, 158, 158);
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: ${({ condensed }) => (condensed ? '12px' : '13px')};
+`;
 
 const popOver = {
   display: 'none',
@@ -54,6 +91,7 @@ class DataGridSorting extends Component {
       show: false,
     };
   }
+  /*
   componentDidMount() {
     document.addEventListener('click', this.clickHandlerForDom.bind(this), true);
   }
@@ -83,12 +121,56 @@ class DataGridSorting extends Component {
       show: !this.state.show,
     });
   }
-
+ */
   render() {
-    const { title/* , key */, style } = this.props;
-    const { show } = this.state;
-    const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
-    const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
+    const { title/* , key */, style, condensed, noPadding } = this.props;
+    // const { show } = this.state;
+    // const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
+    // const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
+
+    return (
+      <TableHeaderColumn /* style={style} */noPadding>
+        <FlexExtended
+          style={{ }}
+        >
+          <ButtonMenu
+            style={{ width: '100%', minHeight: '48px', boxSizing: 'border-box' }}
+            isFullWidth
+            anchor="right"
+            button={(
+              <UnstyledButton
+                isFullWidth
+                style={{
+                  minHeight: '48px',
+                  boxSizing: 'border-box',
+                  // paddingLeft: noPadding ? 0 : '24px',
+                  // paddingRight: noPadding ? 0 : '8px',
+                }}
+              >
+                <Flex2
+                  condensed={condensed}
+                >
+                  <div style={{ paddingLeft: '24px', paddingRight: '6px', width: '100%', textAlign: 'left' }}>{title}</div>
+                  <Trianglearrow style={{ marginLeft: 'auto', transition: 'none' }} size={12} />
+                </Flex2>
+              </UnstyledButton>
+            )}
+          >
+
+            {/* <VerticalMenu> */}
+            <ButtonMenuItem icon={<Sortingup size={16} />}>Sort ascending</ButtonMenuItem>
+            <ButtonMenuItem icon={<Sortingdown size={16} />}>Sort decending</ButtonMenuItem>
+            <Separator />
+            <ButtonMenuItem icon={<Nosorting size={16} />}>No Sorting</ButtonMenuItem>
+            {/* <div>Replace column with</div>
+              <ButtonMenuItem>Just a number</ButtonMenuItem>
+              <ButtonMenuItem>Some other field</ButtonMenuItem> */}
+            {/* </VerticalMenu> */}
+          </ButtonMenu>
+        </FlexExtended>
+      </TableHeaderColumn>
+    );
+    /*
     return (
       <TableHeaderColumn style={style}>
         <div className="sortingGrid" style={{ position: 'relative', cursor: 'pointer', marginLeft: '-24px', marginRight: '-4px', paddingLeft: '24px', paddingRight: '4px', ...styleForButton }}>
@@ -127,6 +209,7 @@ class DataGridSorting extends Component {
         </div>
       </TableHeaderColumn>
     );
+    */
   }
 }
 
