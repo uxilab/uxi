@@ -10,7 +10,7 @@ const Panel = ({ children, style, onClose, rounded }) => (
           child,
           {
             onClose,
-            rounded,
+            ...(child.type && child.type.displayName && child.type.displayName.indexOf('Panel') === 0 ? { rounded } : {}),
             ...(child.props || {}), // allow consumer final overwrite privilege for onClose
           },
         )

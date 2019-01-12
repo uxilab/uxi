@@ -213,9 +213,14 @@ export class ButtonMenu extends Component {
             }}
           >
             {
-              React.Children.map(children, child => React.cloneElement(child, {
-                onEsc: this.close,
-              }))
+              React.Children.map(children, (child) => {
+                if (child.type.displayName === 'ButtonMenuItem') {
+                  return React.cloneElement(child, {
+                    shouldClose: this.close,
+                  });
+                }
+                return child;
+              })
             }
 
             {/* React.Children.map(children, child => (

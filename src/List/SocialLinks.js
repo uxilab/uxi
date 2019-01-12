@@ -56,7 +56,7 @@ SocialLinks.defaultProps = {
   horizontal: false,
   style: {},
   spacing: '',
-  iconColor: 0,
+  iconColor: undefined,
 };
 
 export default SocialLinks;

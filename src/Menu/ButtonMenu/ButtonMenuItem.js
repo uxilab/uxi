@@ -44,7 +44,7 @@ export const ButtonMenuItem = ({
   children,
   extra,
   onClick,
-  onEsc,
+  shouldClose,
 }) => {
   let icon = null;
   if (iconProp) {
@@ -59,8 +59,8 @@ export const ButtonMenuItem = ({
         if (onClick) {
           onClick(e, ...a);
         }
-        if (onEsc) {
-          onEsc(e, ...a);
+        if (shouldClose) {
+          shouldClose(e, ...a);
         }
       }}
       onKeyDown={(e, ...a) => {
@@ -69,12 +69,12 @@ export const ButtonMenuItem = ({
           if (onClick) {
             onClick(e, ...a);
           }
-          if (onEsc) {
-            onEsc(e, ...a);
+          if (shouldClose) {
+            shouldClose(e, ...a);
           }
         } else if (e.key === 'Escape') {
-          if (onEsc) {
-            onEsc(e, ...a);
+          if (shouldClose) {
+            shouldClose(e, ...a);
           }
         }
       }}

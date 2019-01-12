@@ -15,7 +15,7 @@ const PanelFooterUI = styled.div`
   justify-content: flex-end;
   min-height: 50px;
   min-height: ${footerHeight};
-  border-radius: ${({ rounded, theme: { radius } }) => rounded && `0 0 ${radius} ${radius}`};
+  border-radius: ${({ round, theme: { radius } }) => round && `0 0 ${radius} ${radius}`};
 `;
 
 const PanelFooter = (props) => {
@@ -35,7 +35,7 @@ const PanelFooter = (props) => {
     : null;
 
   return (
-    <PanelFooterUI style={style} rounded={rounded}>
+    <PanelFooterUI style={style} round={rounded || undefined}>
       {children}
       {cancel}
     </PanelFooterUI>

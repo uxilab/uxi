@@ -145,7 +145,7 @@ class Alert extends Component {
     };
 
     return (
-      <AlertUI rounded={rounded}>
+      <AlertUI rounded={rounded || undefined}>
         <div style={wrapperStyles} className={className}>
           {closeContent}
           {iconContent}
