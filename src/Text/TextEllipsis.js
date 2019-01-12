@@ -19,7 +19,6 @@ export const TextEllipsisUI = styled.div.attrs({
       return JSON.stringify(title); // not safe to ad dynamic code in html attriubtes
     }
     return undefined;
-    return 'no title';
   },
 })`
   white-space: nowrap;

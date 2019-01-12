@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TextEllipsis } from '../../Text';
 import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
-import { TextEllipsis } from 'uxi/Text';
 
 
 const height = '38px';
@@ -38,7 +38,14 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
 /**
  * note: can use AvatarWithNameAndExtra if need be to show a 'submenu icon' on the right
  */
-export const ButtonMenuItem = ({ style, icon: iconProp, children, extra, onClick, onEsc/* , isOpen = false */ }) => {
+export const ButtonMenuItem = ({
+  style,
+  icon: iconProp,
+  children,
+  extra,
+  onClick,
+  onEsc,
+}) => {
   let icon = null;
   if (iconProp) {
     icon = React.cloneElement(iconProp, { size: iconSize, style: { marginRight: '8px' } });
