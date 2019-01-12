@@ -27,7 +27,7 @@ class TableBody extends Component {
     const numChildren = React.Children.count(this.props.children);
     let rowNumber = 0;
 
-    const rowChildren = React.Children.map(this.props.children, (child) => {
+    const rowChildren = React.Children.map(this.props.children, (child, i) => {
       if (!React.isValidElement(child)) {
         return undefined; // consistent-return
       }
@@ -59,6 +59,7 @@ class TableBody extends Component {
         displayBorder: rowNumber !== numChildren,
         sperateRows,
         activable,
+        key: i,
       });
 
 
@@ -68,10 +69,11 @@ class TableBody extends Component {
         children.push(<TableRowCheckedCell {...props} />);
       }
 
-      React.Children.forEach(child.props.children, (aChild) => {
+      React.Children.forEach(child.props.children, (aChild, j) => {
         if (aChild && React.isValidElement(aChild)) {
           const augmentedChildren = React.cloneElement(aChild, {
             ...aChild.props,
+            key: `${i}-${j}`,
             onClickHandler: aChild.props.onClick,
             condensed,
             noBorder,
@@ -83,7 +85,10 @@ class TableBody extends Component {
 
       rowNumber += 1;
 
-      return React.cloneElement(child, { ...props, ...handlers }, children);
+      return React.cloneElement(child, {
+        ...props,
+        ...handlers,
+      }, children);
     });
     return rowChildren;
   }

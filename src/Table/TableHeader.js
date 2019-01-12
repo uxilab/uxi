@@ -84,7 +84,7 @@ class TableHeader extends Component {
         key: `sh${index}`,
         rowNumber: index,
       };
-      superHeaders.push(this.createSuperHeaderRow(child, props));
+      superHeaders.push(this.createSuperHeaderRow(child, props, index));
     }
 
     if (superHeaders.length) {
@@ -93,7 +93,7 @@ class TableHeader extends Component {
     return null;
   }
 
-  createSuperHeaderRow(child, props) {
+  createSuperHeaderRow(child, props, index) {
     const {
       condensed,
       noBorder,
@@ -108,14 +108,16 @@ class TableHeader extends Component {
         <TableHeaderCheckedPlaceholderCell
           enableSelectAll={enableSelectAll}
           rowNumber={rowNumber}
+          key={rowNumber}
         />,
       );
     }
 
-    React.Children.forEach(child.props.children, (aChild) => {
+    React.Children.forEach(child.props.children, (aChild, i) => {
       if (aChild) {
         const augmentedChildren = React.cloneElement(aChild, {
           ...((aChild && aChild.props) || {}),
+          key: i,
           condensed,
           noBorder,
         });
@@ -125,7 +127,13 @@ class TableHeader extends Component {
 
     return React.cloneElement(
       child,
-      { ...props, condensed, noBorder, isTableHeader: true },
+      {
+        ...props,
+        condensed,
+        noBorder,
+        isTableHeader: true,
+        key: index,
+      },
       children,
     );
   }
@@ -151,6 +159,7 @@ class TableHeader extends Component {
       if (multiSelectable) {
         children.push(
           <TableHeaderCheckedAllCell
+            key="TableHeaderCheckedAllCell"
             onCheckAll={(event, checked) => {
               if (onSelectAll) {
                 onSelectAll(checked);
@@ -163,6 +172,7 @@ class TableHeader extends Component {
       } else {
         children.push(
           <TableHeaderCheckedPlaceholderCell
+            key="TableHeaderCheckedPlaceholderCell"
             enableSelectAll={enableSelectAll}
             rowNumber={numChildren}
           />,
@@ -170,10 +180,11 @@ class TableHeader extends Component {
       }
     }
 
-    React.Children.forEach(child.props.children, (aChild) => {
+    React.Children.forEach(child.props.children, (aChild, i) => {
       if (aChild) {
         const augmentedChildren = React.cloneElement(aChild, {
           ...aChild.props,
+          key: i,
           onClick: aChild.props.onClick,
           onClickHandler: aChild.props.onClick,
           condensed,
