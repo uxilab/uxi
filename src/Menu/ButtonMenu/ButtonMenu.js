@@ -201,8 +201,11 @@ export class ButtonMenu extends Component {
           onTriggerWrapperRef={this.storeTriggerWrapperRef}
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
         >
-          <div
+          <ul
             style={{
+              // padding: 0,
+              // margin: 0,
+              // listStyle: 'none',
               background: 'white',
               maxHeight: '288px',
               overflowY: 'auto',
@@ -214,7 +217,7 @@ export class ButtonMenu extends Component {
           >
             {
               React.Children.map(children, (child) => {
-                if (child.type.displayName === 'ButtonMenuItem') {
+                if (child.type && child.type.displayName && child.type.displayName === 'ButtonMenuItem') {
                   return React.cloneElement(child, {
                     shouldClose: this.close,
                   });
@@ -248,7 +251,7 @@ export class ButtonMenu extends Component {
                 }
               </div>
             )) */}
-          </div>
+          </ul>
         </DropDown>
       </div>
     );
