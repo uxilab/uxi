@@ -95,7 +95,7 @@ const PersonalizedMenuItem = ({
   );
 };
 
-const ActiondMenu = (props) => {
+const ActionMenu = (props) => {
   const {
     menuDescriptors = [],
     onFavoriteClick,
@@ -133,8 +133,9 @@ const ActiondMenu = (props) => {
             button={<MenuButtonItem style={mainMenuButtonItemStyle}><Options /></MenuButtonItem>}
             anchor="right"
           >
-            {allMenu.map(menuDescriptor => (
+            {allMenu.map((menuDescriptor, i) => (
               <PersonalizedMenuItem
+                key={i}
                 withPeronalization={withPeronalization}
                 onFavoriteClick={(e) => {
                   e.stopPropagation(); onFavoriteClick(menuDescriptor.key);
@@ -150,4 +151,4 @@ const ActiondMenu = (props) => {
   );
 };
 
-export default ActiondMenu;
+export default ActionMenu;
