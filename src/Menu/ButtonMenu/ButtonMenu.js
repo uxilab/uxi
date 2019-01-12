@@ -105,7 +105,7 @@ export class ButtonMenu extends Component {
   close() {
     if (!this.isControlled) {
       this.setState({ isOpen: false });
-      this.focusButton();
+      // this.focusButton();
     }
   }
 
@@ -147,8 +147,25 @@ export class ButtonMenu extends Component {
               && activeElement.nextElementSibling
               && activeElement.nextElementSibling.focus
             ) {
-              activeElement.nextElementSibling.focus();
-            }
+              if (activeElement.nodeName !== activeElement.nextElementSibling.nodeName) {
+                // divider
+                if (
+                  activeElement.nextElementSibling.nextElementSibling
+                  && activeElement.nextElementSibling.nextElementSibling.focus
+                ) {
+                  activeElement.nextElementSibling.nextElementSibling.focus();
+                }
+              } else {
+                activeElement.nextElementSibling.focus();
+              }
+            }/*  else if (
+              activeElement.nextElementSibling
+              && activeElement.nextElementSibling
+              && activeElement.nextElementSibling.nextElementSibling
+              && activeElement.nextElementSibling.nextElementSibling.focus
+            ) {
+              activeElement.nextElementSibling.nextElementSibling.focus();
+            } */
           } else if (e.key === 'ArrowUp') {
             e.preventDefault();
             const { activeElement } = document;
@@ -158,7 +175,18 @@ export class ButtonMenu extends Component {
               && activeElement.previousElementSibling.nodeName !== 'BUTTON'
               && activeElement.previousElementSibling.focus
             ) {
-              activeElement.previousElementSibling.focus();
+              // activeElement.previousElementSibling.focus();
+              if (activeElement.nodeName !== activeElement.previousElementSibling.nodeName) {
+                // divider
+                if (
+                  activeElement.previousElementSibling.previousElementSibling
+                  && activeElement.previousElementSibling.previousElementSibling.focus
+                ) {
+                  activeElement.previousElementSibling.previousElementSibling.focus();
+                }
+              } else {
+                activeElement.previousElementSibling.focus();
+              }
             }
           }
         }}

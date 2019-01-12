@@ -2,6 +2,9 @@
 import React from 'react';
 import DropDown from '../../internal/DropDown'; // eslint-disable-line
 
+/**
+ * @deprecated
+ */
 export const MenuDropDown = ({ children, main = null, anchor, mainScrollingElementSelector }) => (
   <DropDown
     mainScrollingElementSelector={mainScrollingElementSelector}

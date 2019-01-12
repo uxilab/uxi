@@ -24,10 +24,11 @@ const ExampleSimple = () => (
       >
         Download
       </ButtonMenuItem>
-      <ButtonMenuItem onClick={() => { console.log('Delete'); }} icon={<Delete />}> Deleteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee </ButtonMenuItem>
       <ButtonMenuItem onClick={() => { console.log('Queue'); }} icon={<Add />}> Queue </ButtonMenuItem>
       <ButtonMenuItem onClick={() => { console.log('Upload'); }} icon={<Upload />}> Upload </ButtonMenuItem>
       <ButtonMenuItem onClick={() => { console.log('Report'); }} icon={<Report />} extra={<Star size="14" />}> Report </ButtonMenuItem>
+      <div aria-hidden="true" style={{ height: '1px', background: '#cecece' }} />
+      <ButtonMenuItem onClick={() => { console.log('Delete'); }} icon={<Delete />}> Deleteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee </ButtonMenuItem>
     </ButtonMenu>
 
     <br />

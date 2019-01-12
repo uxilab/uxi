@@ -24,7 +24,7 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
   min-height: ${height};
   max-height: ${height};
   box-sizing: border-box;
-  padding: 0 8px;
+  padding: 4px 8px;
   outline: none;
   &:focus, &:hover {
     outline: none;
@@ -38,7 +38,7 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
 /**
  * note: can use AvatarWithNameAndExtra if need be to show a 'submenu icon' on the right
  */
-export const ButtonMenuItem = ({ icon: iconProp, children, extra, onClick, onEsc/* , isOpen = false */ }) => {
+export const ButtonMenuItem = ({ style, icon: iconProp, children, extra, onClick, onEsc/* , isOpen = false */ }) => {
   let icon = null;
   if (iconProp) {
     icon = React.cloneElement(iconProp, { size: iconSize, style: { marginRight: '8px' } });
@@ -47,6 +47,7 @@ export const ButtonMenuItem = ({ icon: iconProp, children, extra, onClick, onEsc
   return (
     <ButtonMenuItemItemFlex
       // isOpen={isOpen}
+      style={style}
       onClick={(e, ...a) => {
         if (onClick) {
           onClick(e, ...a);

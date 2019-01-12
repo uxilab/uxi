@@ -8,6 +8,7 @@ const BoxWrapperUI = styled.div.attrs({})`
   z-index: 99;
   position: absolute;
   max-height: 0;
+  top: 100%;
   ${({ anchor }) => (anchor === 'right' ? 'right: 0' : '')};
   /* width: 100%; */
   ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
@@ -129,7 +130,7 @@ class DropDown2 extends Component {
 
     const TriggerWithHandler = React.cloneElement(trigger, {
       ...((trigger && trigger.props) || {}),
-      'data-drop-down-trigger': true,
+      // 'data-drop-down-trigger': true,
       onClick: (...a) => {
         this.toggleVisibility(...a);
         if (trigger.props && trigger.props.onClick) {
@@ -139,10 +140,16 @@ class DropDown2 extends Component {
     });
 
     return (
-      <div style={{ position: 'relative', display: 'inline-block' }} ref={this.storeWrapperRef} >
-        <div data-drop-down-trigger>
+      <div
+        style={{
+          position: 'relative',
+          ...(!isFullWidth ? { display: 'inline-block' } : {}),
+        }}
+        ref={this.storeWrapperRef}
+      >
+        <span data-drop-down-trigger>
           {TriggerWithHandler}
-        </div>
+        </span>
         <BoxWrapperUI
           anchor={anchor}
           isFullWidth={isFullWidth}
