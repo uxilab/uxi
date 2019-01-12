@@ -202,7 +202,7 @@ export class ButtonMenu extends Component {
           <div
             style={{
               background: 'white',
-              maxHeight: '300px',
+              maxHeight: '288px',
               overflowY: 'auto',
               ...(menuWidth ? { width: menuWidth } : {}),
               ...(menuMinWidth ? { minWidth: menuMinWidth } : {}),
