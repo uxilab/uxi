@@ -73,6 +73,7 @@ import AutoComplete2 from './components/pages/AutoComplete2/Page';
 import Spacer from './components/pages/Spacer/Page';
 import Tree from './components/pages/Tree/Page';
 import MenuDropDownPage from './components/pages/MenuDropDown/Page';
+import ButtonMenuPage from './components/pages/Menu/ButtonMenu/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -138,6 +139,11 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/Image`} exact component={ImagePage} />
       <Route path={`${match.url}/Image/img`} component={ImgPage} />
       <Route path={`${match.url}/Image/Gallery`} component={GalleryPage} />
+
+      {/* MENU */}
+      <Route path={`${match.url}/Menu`} exact component={MenuPage} />
+      <Route path={`${match.url}/Menu/ButtonMenu`} component={ButtonMenuPage} />
+      {/* <Route path={`${match.url}/Menu/ButtonMenuItem`} component={ButtonMenuPage} /> */}
 
       {/* BETA: */}
       <Route path={`${match.url}/beta/dropdown`} component={DropDownPage} />

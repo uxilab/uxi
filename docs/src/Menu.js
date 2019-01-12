@@ -12,7 +12,7 @@ const getIsActive = key => (
   && window.location
   && window.location.pathname
   && window.location.pathname.toLowerCase
-  && window.location.pathname.toLowerCase().indexOf(key.toLowerCase()) > -1
+  && window.location.pathname.replace('components/', '').toLowerCase().indexOf(key.toLowerCase()) === 0
 );
 
 export const GlobalDocAppMenu = (props) => {

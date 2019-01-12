@@ -8,6 +8,7 @@ const BoxWrapperUI = styled.div.attrs({})`
   z-index: 99;
   position: absolute;
   max-height: 0;
+  ${({ anchor }) => (anchor === 'right' ? 'right: 0' : '')};
   /* width: 100%; */
   ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
   border-radius: ${({ theme: { radius } }) => radius};
@@ -35,6 +36,7 @@ class DropDown2 extends Component {
     onTriggerWrapperRef: PropTypes.func,
     onChildrenWrapperRef: PropTypes.func,
     trigger: PropTypes.element,
+    anchor: PropTypes.oneOf(['left', 'right']),
   }
 
   static defaultProps = {
@@ -43,6 +45,7 @@ class DropDown2 extends Component {
     onChildrenWrapperRef: () => {},
     trigger: <div />,
     children: <div />,
+    anchor: 'left',
   }
 
   constructor(props) {
@@ -112,6 +115,7 @@ class DropDown2 extends Component {
       trigger,
       children,
       isFullWidth,
+      anchor,
     } = this.props;
 
     const {
@@ -135,11 +139,12 @@ class DropDown2 extends Component {
     });
 
     return (
-      <div style={{ position: 'relative' }} ref={this.storeWrapperRef} >
+      <div style={{ position: 'relative', display: 'inline-block' }} ref={this.storeWrapperRef} >
         <div data-drop-down-trigger>
           {TriggerWithHandler}
         </div>
         <BoxWrapperUI
+          anchor={anchor}
           isFullWidth={isFullWidth}
           isOpen={isOpen}
           maxHeight={height}

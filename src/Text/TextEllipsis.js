@@ -18,6 +18,7 @@ export const TextEllipsisUI = styled.div.attrs({
     if (children && typeof children === 'string') {
       return JSON.stringify(title); // not safe to ad dynamic code in html attriubtes
     }
+    return undefined;
     return 'no title';
   },
 })`

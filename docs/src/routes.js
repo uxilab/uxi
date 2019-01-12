@@ -54,6 +54,13 @@ export const routes = [
       { path: '/Image/Gallery', label: 'Gallery' },
     ],
   },
+  { path: '/Menu',
+    label: 'Menu',
+    childRoutes: [
+      { path: '/Menu/ButtonMenu', label: 'ButtonMenu' },
+      // { path: '/Menu/ButtonMenuItem', label: 'ButtonMenuItem' },
+    ],
+  },
   { path: '/alert', label: 'Alert' },
   { path: '/layouts',
     label: 'Layout',
