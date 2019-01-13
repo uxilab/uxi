@@ -98,12 +98,12 @@ class Table extends Component {
 
 Table.propTypes = {
   children: PropTypes.node,
-  multiSelectable: PropTypes.bool,
-  allRowsSelected: PropTypes.bool,
-  onRowSelection: PropTypes.func,
-  selectable: PropTypes.bool,
-  height: PropTypes.string,
-  sperateRows: PropTypes.bool,
+  // multiSelectable: PropTypes.bool,
+  // allRowsSelected: PropTypes.bool,
+  // onRowSelection: PropTypes.func,
+  // selectable: PropTypes.bool,
+  // height: PropTypes.string,
+  // sperateRows: PropTypes.bool,
 };
 
 Table.defaultProps = {

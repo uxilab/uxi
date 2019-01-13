@@ -1,7 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import Select from './Select'; // eslint-disable-line import/no-named-as-default
 import UnstyledButtonBeta from '../../Button/UnstyledButton1';
-import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
@@ -236,12 +236,12 @@ class SelectWithFiltering extends Select {
           ...(style.width ? { width: style.width } : {}),
         }}
         // onEsc={() => this.clickHandler(null)}
-        onClick={(e, ...r) => {
-          // if (e && e.stopPropagation) {
-          //   e.stopPropagation();
-          // }
-          // this.toggleVisibility(e, ...r);
-        }}
+        // onClick={(e, ...r) => {
+        // if (e && e.stopPropagation) {
+        //   e.stopPropagation();
+        // }
+        // this.toggleVisibility(e, ...r);
+        // }}
       >
         <TriggerreWrapper >
           <div>
@@ -294,8 +294,6 @@ class SelectWithFiltering extends Select {
         if (value.indexOf) {
           if (value.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
             // match noop let go
-            value;
-            filter;
           } else {
             return null;
           }
@@ -489,7 +487,7 @@ class SelectWithFiltering extends Select {
   //   });
   // }
 
-  handlInputFocus(e) {
+  handlInputFocus() {
     if (!this.isOpenControlled) {
       this.setState({ isOpen: true });
     }
@@ -641,7 +639,7 @@ class SelectWithFiltering extends Select {
     const { isOpen: isOpenState } = this.state;
     const {
       isFullWidth,
-      error,
+      // error,
       style,
       // mainScrollingElementSelector,
       // inertTrigger,
