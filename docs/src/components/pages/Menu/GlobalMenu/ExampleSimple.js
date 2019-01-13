@@ -232,23 +232,11 @@ class ExampleSimple extends Component {
 */
     return (
       // Simulate cluedin rules .root a
-      <div className="root">
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            .root a {
-              cursor: pointer;
-              text-decoration: none;
-              color: #06979e;
-          }`,
-          }}
-        />
+      <div style={{ padding: '16px' }} >
+
         <H4>Good example of GlobalMenu (inline)</H4>
         <P>
-          menuitem that have subItem (subroute) don't have panel and vicevera
-        </P>
-        <P>
-          This usage is encouraged
+          menuitem that have subItem (subroute) do not have panel and vicevera
         </P>
         <GlobalMenu
           logoDescriptor={logoDescriptor}
@@ -256,50 +244,6 @@ class ExampleSimple extends Component {
           menuDescriptors={menuDescriptors}
           isOwner
         />
-
-        <br />
-
-        <H4>Wrong example of GlobalMenu (inline)</H4>
-        <P>
-          using panel and children on the same menu item
-          is confusing for several reasons
-          * where to pass the focus
-          * if it's not a route, how does it have "sub route"
-        </P>
-        <P>
-          This usage is discouraged
-        </P>
-        {/*  <GlobalMenu
-          logoDescriptor={logoDescriptor}
-          onLogoClick={this.onLogoClickHandler.bind(this)}
-          activeKey="GlobalMenu"
-          menuDescriptors={badMenuDescriptors}
-          isOwner
-        /> */}
-
-        <br />
-
-        <H4>Fixed, full sized GlobalMenu</H4>
-        <P>
-           toggle attachToViewport prop to make it
-           fixed and full viewport sized in one shot
-        </P>
-
-
-        {/* Attached to viewport */}
-        {/* <Button
-          onClick={() => this.setState({ attachToViewport: !attachToViewport })}
-          text={`${attachToViewport ? 'detach from' : 'attach to'} viewport`}
-        />
-        <GlobalMenu
-          attachToViewport={attachToViewport}
-          logoDescriptor={logoDescriptor}
-          onLogoClick={this.onLogoClickHandler.bind(this)}
-          activeKey="GlobalMenu"
-          menuDescriptors={menuDescriptors}
-          isOwner
-        /> */}
-        <br />
       </div>
     );
   }

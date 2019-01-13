@@ -53,7 +53,7 @@ import BreadCrumbsPage from './components/pages/BreadCrumbs/Page';
 import ClassicPage from './components/pages/Classic/Page';
 import ListPage from './components/pages/List/Page';
 import DataGridPage from './components/pages/DataGrid/Page';
-import GlobalMenuPage from './components/pages/GlobalMenu/Page';
+import GlobalMenuPage from './components/pages/Menu/GlobalMenu/Page';
 import WidgetPage from './components/pages/Widget/Page';
 import DialogPage from './components/pages/Dialog/Page';
 import WithConfirmDialogPage from './components/pages/Dialog/withConfirmDialog/Page';
@@ -145,6 +145,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/Menu`} exact component={MenuPage} />
       <Route path={`${match.url}/Menu/ButtonMenu`} component={ButtonMenuPage} />
       <Route path={`${match.url}/Menu/ButtonMenuItem`} component={ButtonMenuItemPage} />
+      <Route path={`${match.url}/Menu/globalMenu`} component={GlobalMenuPage} />
 
       {/* TABLE AND DATA GRID */}
       <Route path={`${match.url}/table`} exact component={TablePage} />
@@ -168,7 +169,6 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/beta/DialogDropDown`} component={DialogDropDownPage} />
       <Route path={`${match.url}/beta/BreadCrumbs`} component={BreadCrumbsPage} />
       <Route path={`${match.url}/beta/classic`} component={ClassicPage} />
-      <Route path={`${match.url}/beta/globalMenu`} component={GlobalMenuPage} />
       <Route path={`${match.url}/beta/widget`} component={WidgetPage} />
       <Route path={`${match.url}/beta/personalizedmenu`} component={PesonalizedMenuPage} />
       <Route path={`${match.url}/beta/Carrousel`} component={CarrouselPage} />

@@ -59,6 +59,7 @@ export const routes = [
     childRoutes: [
       { path: '/Menu/ButtonMenu', label: 'ButtonMenu' },
       { path: '/Menu/ButtonMenuItem', label: 'ButtonMenuItem' },
+      { path: '/Menu/globalmenu', label: 'GlobalMenu' },
     ],
   },
   { path: '/alert', label: 'Alert' },
@@ -90,7 +91,6 @@ export const routes = [
       { path: '/beta/popover', label: 'PopOver' },
       // { path: '/beta/compactslide', label: 'CompactSlide' },
       { path: '/beta/sociallinks', label: 'Sociallinks' },
-      { path: '/beta/globalmenu', label: 'Global Menu' },
       { path: '/beta/MenuDropDown', label: 'MenuDropDown' },
       // { path: '/beta/font', label: 'Fonts' },
       // { path: '/beta/color', label: 'Colors' },
