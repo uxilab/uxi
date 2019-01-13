@@ -1,13 +1,12 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
+import RAWAutoComplete from '!raw-loader!uxi/Input/AutoComplete/AutoComplete';
 import CodeExample from '../../../CodeExample';
+import { componentInfoToMD } from '../../../componentInfoToMD';
 
 import ExampleMediumList from './ExampleMediumList';
 import RAWExampleMediumList from '!raw-loader!./ExampleMediumList';
-
-import ExampleBigList from './ExampleBigList';
-import RAWExampleBigList from '!raw-loader!./ExampleBigList';
 
 import ExampleLongValues from './ExampleLongValues';
 import RAWExampleLongValues from '!raw-loader!./ExampleLongValues';
@@ -24,29 +23,27 @@ const AutoCompletePage = () => (
     <ul>
       <li>
         <CodeExample
+          code={RAWAutoComplete}
+          title="<AutoComplete />"
+          description={componentInfoToMD(RAWAutoComplete)}
+          hasPadding
+        />
+      </li>
+      <li>
+        <CodeExample
           code={RAWExampleMediumList}
           component
-          title="AutoComplete (length = 4500)"
+          title="Autocomplete"
           hasPadding
         >
           <ExampleMediumList />
         </CodeExample>
       </li>
-      {/*   <li>
-        <CodeExample
-          code={RAWExampleBigList}
-          component
-          title="AutoComplete (length = ~9000)"
-          hasPadding
-        >
-          <ExampleBigList />
-        </CodeExample>
-      </li> */}
       <li>
         <CodeExample
           code={RAWExampleLongValues}
           component
-          title="AutoComplete with long values (layout and search perf)"
+          title="long values"
           hasPadding
         >
           <ExampleLongValues />

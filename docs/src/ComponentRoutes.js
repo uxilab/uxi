@@ -16,6 +16,7 @@ import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
 import RadioPage from './components/pages/Inputs/Radio/Page';
 import SelectPage from './components/pages/Inputs/Select/Page';
+import TreePage from './components/pages/Inputs/Tree/Page';
 import AutoCompletePage from './components/pages/Inputs/AutoComplete/Page';
 import FileInputPage from './components/pages/Inputs/File/Page';
 import TextFieldPage from './components/pages/Inputs/TextField/Page';
@@ -130,6 +131,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />
       <Route path={`${match.url}/inputs/FileInput`} component={FileInputPage} />
       <Route path={`${match.url}/inputs/TextField`} component={TextFieldPage} />
+      <Route path={`${match.url}/inputs/Tree`} component={TreePage} />
       {/* <Route path={`${match.url}/inputs/switch`} component={SwitchPage} /> */}
 
       {/* INPUT */}
@@ -166,19 +168,19 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/beta/indicator`} component={IndicatorPage} />
       <Route path={`${match.url}/beta/dashboard`} component={DashboardPage} />
       <Route path={`${match.url}/beta/stepper`} component={StepperPage} />
-      <Route path={`${match.url}/beta/DialogDropDown`} component={DialogDropDownPage} />
+      {/* <Route path={`${match.url}/beta/DialogDropDown`} component={DialogDropDownPage} /> */}
       <Route path={`${match.url}/beta/BreadCrumbs`} component={BreadCrumbsPage} />
       <Route path={`${match.url}/beta/classic`} component={ClassicPage} />
       <Route path={`${match.url}/beta/widget`} component={WidgetPage} />
-      <Route path={`${match.url}/beta/personalizedmenu`} component={PesonalizedMenuPage} />
+      {/* <Route path={`${match.url}/beta/personalizedmenu`} component={PesonalizedMenuPage} /> */}
       <Route path={`${match.url}/beta/Carrousel`} component={CarrouselPage} />
-      <Route path={`${match.url}/beta/Tile`} component={TilePage} />
+      {/* <Route path={`${match.url}/beta/Tile`} component={TilePage} /> */}
       <Route path={`${match.url}/beta/motion`} component={MotionPage} />
       {/* <Route path={`${match.url}/beta/compactslide`} component={CompactSlidePage} /> */}
-      <Route path={`${match.url}/beta/BETAAutoComplete`} component={AutoComplete2} />
+      {/* <Route path={`${match.url}/beta/BETAAutoComplete`} component={AutoComplete2} /> */}
       <Route path={`${match.url}/beta/Spacer`} component={Spacer} />
-      <Route path={`${match.url}/beta/Tree`} component={Tree} />
-      <Route path={`${match.url}/beta/MenuDropDown`} component={MenuDropDownPage} />
+      {/* <Route path={`${match.url}/beta/Tree`} component={Tree} /> */}
+      {/* <Route path={`${match.url}/beta/MenuDropDown`} component={MenuDropDownPage} /> */}
     </Switch>
   </ComponentShell>
 );

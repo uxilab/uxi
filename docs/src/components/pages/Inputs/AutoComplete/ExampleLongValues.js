@@ -30,6 +30,7 @@ class ExampleLongValues extends Component {
           {`selected value: "${value}"`}
         </div>
         <AutoCompleteClientFormWrapper
+          strict
           filterOn={'name'}
           onChange={({ value, originalValue }) => {
             console.log('originalValue', originalValue);

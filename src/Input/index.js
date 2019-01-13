@@ -17,3 +17,4 @@ export { default as Tree } from './Tree';
 export { default as ColorInput } from './ColorInput';
 export { default as Select } from './Select/';
 export { default as SelectWithFiltering } from './Select/SelectWithFiltering';
+export { default as AutoComplete } from './AutoComplete/AutoComplete';

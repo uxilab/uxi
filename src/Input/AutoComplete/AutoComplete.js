@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import styled from 'styled-components';
-import { TextField } from '../Input';
-import { VerticalMenu, MenuItem } from '../Menu';
-import { Flex } from '../Layout';
-import ThemeComponent from '../Base/ThemeComponent';
+import { TextField } from '../../Input';
+import { VerticalMenu, MenuItem } from '../../Menu';
+import { Flex } from '../../Layout';
+import ThemeComponent from '../../Base/ThemeComponent';
 import { getMatchesResult, getFilteredSetWithScore } from './utils';
 
 const Highlighted = styled.span`
@@ -60,7 +61,6 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterO
 // };
 
 /* eslint-disable react/jsx-no-bind */
-/** @deprecated  */
 class AutoComplete extends ThemeComponent {
   constructor(props) {
     super(props);
@@ -360,6 +360,14 @@ class AutoComplete extends ThemeComponent {
     );
   }
 }
+
+AutoComplete.propTypes = {
+  /**
+   * strict filtering, set to true to only show exact matches,
+   * default behaviour is to allow loose filtering
+   */
+  strict: PropTypes.bool,
+};
 
 AutoComplete.defaultProps = {
   items: [],

@@ -37,6 +37,7 @@ export const routes = [
       { path: '/inputs/Datetime', label: 'Datetime' },
       { path: '/inputs/SearchForm', label: 'SearchForm' },
       { path: '/inputs/AutoComplete', label: 'AutoComplete' },
+      { path: '/inputs/tree', label: 'Tree' },
     // ,{ path: '/inputs/switch', label: 'Switch' }
     ],
   },
@@ -98,7 +99,6 @@ export const routes = [
       { path: '/beta/box', label: 'Box' },
       { path: '/beta/dashboard', label: 'Dashboard' },
       { path: '/beta/indicator', label: 'Indicator' },
-      { path: '/beta/tree', label: 'Tree' },
       // { path: '/beta/list', label: 'List' },
       // { path: '/beta/loader', label: 'Loader' },
       // { path: '/beta/menu', label: 'Menu' },

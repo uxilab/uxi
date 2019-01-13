@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AutoComplete from 'uxi/AutoComplete';
+import { AutoComplete } from 'uxi/Input';
 import Button from 'uxi/Button';
 import medium from './medium-8000-array';
 import wrapInClientFormHOC from 'uxi/internal/wrapInClientFormHOC';
