@@ -1,5 +1,7 @@
 import React from 'react';
 import CodeExample from '../../../CodeExample';
+import RAWButtonMenu from '!raw-loader!uxi/Menu/ButtonMenu/ButtonMenu';
+import { componentInfoToMD } from '../../../componentInfoToMD';
 import { H3 } from 'uxi/Classic';
 
 import ExampleSimple from './ExampleSimple';
@@ -16,6 +18,14 @@ const ButtonMenuPage = () => (
   <div>
     <H3>ButtonMenu</H3>
     <ul>
+      <li>
+        <CodeExample
+          code={RAWButtonMenu}
+          // component
+          title="<ButtonMenu></ButtonMenu>"
+          description={componentInfoToMD(RAWButtonMenu)}
+        />
+      </li>
       <li>
         <CodeExample
           code={RAWExampleSimple}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { TextEllipsis } from '../../Text';
 import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
@@ -38,7 +39,7 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
 /**
  * note: can use AvatarWithNameAndExtra if need be to show a 'submenu icon' on the right
  */
-export const ButtonMenuItem = ({
+const ButtonMenuItem = ({
   style,
   icon: iconProp,
   children,
@@ -85,5 +86,24 @@ export const ButtonMenuItem = ({
     </ButtonMenuItemItemFlex>
   );
 };
+
+ButtonMenuItem.defaultProps = {
+  style: {},
+  icon: null,
+  children: null,
+  extra: null,
+  onClick: () => {},
+  shouldClose: () => {},
+};
+
+ButtonMenuItem.propTypes = {
+  style: PropTypes.object,
+  icon: PropTypes.any,
+  children: PropTypes.any,
+  extra: PropTypes.any,
+  onClick: PropTypes.func,
+  shouldClose: PropTypes.func,
+};
+
 
 export default ButtonMenuItem;

@@ -74,6 +74,7 @@ import Spacer from './components/pages/Spacer/Page';
 import Tree from './components/pages/Tree/Page';
 import MenuDropDownPage from './components/pages/MenuDropDown/Page';
 import ButtonMenuPage from './components/pages/Menu/ButtonMenu/Page';
+import ButtonMenuItemPage from './components/pages/Menu/ButtonMenuItem/Page';
 
 const ComponentRoutes = ({ match }) => (
   <ComponentShell>
@@ -143,7 +144,11 @@ const ComponentRoutes = ({ match }) => (
       {/* MENU */}
       <Route path={`${match.url}/Menu`} exact component={MenuPage} />
       <Route path={`${match.url}/Menu/ButtonMenu`} component={ButtonMenuPage} />
-      {/* <Route path={`${match.url}/Menu/ButtonMenuItem`} component={ButtonMenuPage} /> */}
+      <Route path={`${match.url}/Menu/ButtonMenuItem`} component={ButtonMenuItemPage} />
+
+      {/* TABLE AND DATA GRID */}
+      <Route path={`${match.url}/table`} exact component={TablePage} />
+      <Route path={`${match.url}/datagrid`} component={DataGridPage} />
 
       {/* BETA: */}
       <Route path={`${match.url}/beta/dropdown`} component={DropDownPage} />
@@ -153,7 +158,6 @@ const ComponentRoutes = ({ match }) => (
 
 
       <Route path={`${match.url}/beta/list`} component={ListPage} />
-      <Route path={`${match.url}/beta/table`} component={TablePage} />
       <Route path={`${match.url}/beta/loader`} component={LoaderPage} />
       <Route path={`${match.url}/beta/menu`} component={MenuPage} />
       {/* <Route path={`${match.url}/beta/internal`} exact component={InternalPage} /> */}
@@ -164,7 +168,6 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/beta/DialogDropDown`} component={DialogDropDownPage} />
       <Route path={`${match.url}/beta/BreadCrumbs`} component={BreadCrumbsPage} />
       <Route path={`${match.url}/beta/classic`} component={ClassicPage} />
-      <Route path={`${match.url}/beta/datagrid`} component={DataGridPage} />
       <Route path={`${match.url}/beta/globalMenu`} component={GlobalMenuPage} />
       <Route path={`${match.url}/beta/widget`} component={WidgetPage} />
       <Route path={`${match.url}/beta/personalizedmenu`} component={PesonalizedMenuPage} />

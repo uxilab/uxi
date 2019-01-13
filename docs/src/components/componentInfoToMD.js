@@ -19,7 +19,10 @@ export const componentInfoToMD = (rawCode) => {
   try {
     componentInfo = parse(rawCode);
   } catch (err) {
-    console.warn('Failed to parse or find a suitable component definition');
+    console.warn(
+      'Failed to parse or find a suitable component definition'
+      , rawCode
+    );
   }
 
   if (componentInfo === null) {

@@ -1,14 +1,11 @@
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disable-line
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
 
-export class ButtonMenu extends Component {
-  static defaultProps = {
-    button: <FlatButton icon={<Options />} onClick={(...a) => { console.log('original onClick handler', ...a); }} />,
-  }
-
+class ButtonMenu extends Component {
   constructor(props) {
     super(props);
 
@@ -117,6 +114,7 @@ export class ButtonMenu extends Component {
       menuWidth,
       menuMinWidth,
       menuMaxWidth,
+      menuMaxHeight,
       // isFullWidth,
     } = this.props;
 
@@ -207,7 +205,7 @@ export class ButtonMenu extends Component {
               // margin: 0,
               // listStyle: 'none',
               background: 'white',
-              maxHeight: '288px',
+              maxHeight: menuMaxHeight,
               overflowY: 'auto',
               ...(menuWidth ? { width: menuWidth } : {}),
               ...(menuMinWidth ? { minWidth: menuMinWidth } : {}),
@@ -257,5 +255,23 @@ export class ButtonMenu extends Component {
     );
   }
 }
+
+ButtonMenu.defaultProps = {
+  children: [],
+  button: <FlatButton icon={<Options />} onClick={(...a) => { console.log('original onClick handler', ...a); }} />,
+  menuMaxHeight: '288px',
+  menuWidth: '280px',
+  menuMinWidth: undefined,
+  menuMaxWidth: undefined,
+};
+
+ButtonMenu.propTypes = {
+  button: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.node),
+  menuMaxHeight: PropTypes.string,
+  menuWidth: PropTypes.string,
+  menuMinWidth: PropTypes.string,
+  menuMaxWidth: PropTypes.string,
+};
 
 export default ButtonMenu;

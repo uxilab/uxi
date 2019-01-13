@@ -1,7 +1,9 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
+import RAWDataGrid from '!raw-loader!uxi/DataGrid/DataGrid';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
+import { componentInfoToMD } from '../../componentInfoToMD';
 
 import ExampleSimpleDataGrid from './ExampleSimpleDataGrid';
 import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid';
@@ -23,6 +25,12 @@ const TablePage = () => (
       Instead of passing column or cell definitions, you work towards your Entity. This is making the grid more extensible and re-usable. Refer to Entity and Metadata guidelines to know more.
     </P>
     <CodeExample
+      code={RAWDataGrid}
+      title="Simple Data Grid"
+      description={componentInfoToMD(RAWDataGrid)}
+    />
+    <br />
+    <CodeExample
       code={RAWExampleSimpleDataGrid}
       title="Simple Data Grid"
       description="Pass the data, DataGrid does the rest"
@@ -40,9 +48,7 @@ const TablePage = () => (
     <CodeExample
       code={RAWExampleSimpleDataGridWithCustomType}
       title="Data Grid with custom type renderer"
-    >
-
-    </CodeExample>
+    />
 
     <ExampleSimpleDataGridWithCustomType />
 

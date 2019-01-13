@@ -16,41 +16,51 @@ const TableUI = styled.table`
   border: none;
 `;
 
+
+const createTableBody = function (base) {
+  return React.cloneElement(
+    base,
+    {
+      activeRow: this.props.activeRow,
+      multiSelectable: this.props.multiSelectable,
+      onRowSelection: this.props.onRowSelection,
+      onActivateRow: this.props.onActivateRow,
+      selectable: this.props.selectable,
+      condensed: this.props.condensed,
+      noBorder: this.props.noBorder,
+      isRowSelected: this.props.isRowSelected,
+      activable: this.props.activable,
+      getID: this.props.getID,
+      sperateRows: this.props.sperateRows,
+      style: Object.assign({ height: this.props.height }, (base.props.style || {})),
+    },
+  );
+};
+
+const createTableHeader = function (base) {
+  return React.cloneElement(
+    base,
+    {
+      allRowsSelected: this.props.allRowsSelected,
+      selectable: this.props.selectable,
+      multiSelectable: this.props.multiSelectable,
+      onSelectAll: this.props.onSelectAll,
+      condensed: this.props.condensed,
+      noBorder: this.props.noBorder,
+    },
+  );
+};
+
 class Table extends Component {
   static componentName = 'Table';
-  createTableBody(base) {
-    return React.cloneElement(
-      base,
-      {
-        activeRow: this.props.activeRow,
-        multiSelectable: this.props.multiSelectable,
-        onRowSelection: this.props.onRowSelection,
-        onActivateRow: this.props.onActivateRow,
-        selectable: this.props.selectable,
-        condensed: this.props.condensed,
-        noBorder: this.props.noBorder,
-        isRowSelected: this.props.isRowSelected,
-        activable: this.props.activable,
-        getID: this.props.getID,
-        sperateRows: this.props.sperateRows,
-        style: Object.assign({ height: this.props.height }, (base.props.style || {})),
-      },
-    );
+
+  constructor(props) {
+    super(props);
+
+    this.createTableBody = createTableBody.bind(this);
+    this.createTableHeader = createTableHeader.bind(this);
   }
 
-  createTableHeader(base) {
-    return React.cloneElement(
-      base,
-      {
-        allRowsSelected: this.props.allRowsSelected,
-        selectable: this.props.selectable,
-        multiSelectable: this.props.multiSelectable,
-        onSelectAll: this.props.onSelectAll,
-        condensed: this.props.condensed,
-        noBorder: this.props.noBorder,
-      },
-    );
-  }
 
   render() {
     const { children, style } = this.props;

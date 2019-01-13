@@ -1,7 +1,9 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
+import RAWTable from '!raw-loader!uxi/Table/Table';
 import CodeExample from '../../CodeExample';
+import { componentInfoToMD } from '../../componentInfoToMD';
 
 import ExampleSimpleTable from './ExampleSimpleTable';
 import RAWExampleSimpleTable from '!raw-loader!./ExampleSimpleTable';
@@ -29,6 +31,13 @@ import RAWExampleSelectableTableWithDelete from '!raw-loader!./ExampleSelectable
 
 const TablePage = () => (
   <div>
+    <Title text="Table" />
+    <CodeExample
+      code={RAWTable}
+      title="<Table />"
+      description={componentInfoToMD(RAWTable)}
+    />
+    <br />
     <Title text="Table" />
     <CodeExample
       code={RAWExampleSimpleTable}
