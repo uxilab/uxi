@@ -21,7 +21,7 @@ const ActionMenuWrapper = styled.div`
 export const createDataGridCell = (property, actions, entity, index) => {
   if (!actions) {
     return (
-      <TableRowColumn hasAction={!!actions} key="">
+      <TableRowColumn hasAction={!!actions} key={index}>
         {property}
       </TableRowColumn>
     );
@@ -56,12 +56,12 @@ export const createDataGridColumn = (viewModel, actions, index) => (<TableRow
 >
   {
     viewModel.properties.map(
-      (property, index) => (
+      (property, idx) => (
         createDataGridCell(
           property,
-          (index === 0) ? actions : null,
+          (idx === 0) ? actions : null,
           viewModel.original,
-          index,
+          idx,
         )
       ),
     )

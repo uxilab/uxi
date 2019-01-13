@@ -117,7 +117,7 @@ export class ButtonMenu extends Component {
       menuWidth,
       menuMinWidth,
       menuMaxWidth,
-      isFullWidth,
+      // isFullWidth,
     } = this.props;
 
     const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;

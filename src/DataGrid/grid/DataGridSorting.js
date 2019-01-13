@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {
   Trianglearrow,
-  Trianglearrowup,
   Sortingup,
   Sortingdown,
   Nosorting,
@@ -10,19 +9,14 @@ import {
 import {
   TableHeaderColumn,
 } from '../../Table';
-import {
-  Flex,
-} from '../../Layout';
 
 import {
   Separator,
-  VerticalMenu,
   ButtonMenuItem,
   ButtonMenu,
 } from '../../Menu';
 import { UnstyledButton } from '../../Button';
 
-import MenuItem from '../../Menu/MenuItem';
 
 const FlexExtended = styled.div`
   flex-grow: 99;
@@ -53,7 +47,7 @@ const Flex2 = styled.div`
   font-weight: normal;
   font-size: ${({ condensed }) => (condensed ? '12px' : '13px')};
 `;
-
+/*
 const popOver = {
   display: 'none',
   zIndex: 1,
@@ -83,6 +77,7 @@ const headerWithSortNotSelected = {
   borderRight: '1px solid #fff',
   boxSizing: 'border-box',
 };
+ */
 
 class DataGridSorting extends Component {
   constructor(props) {
@@ -123,7 +118,7 @@ class DataGridSorting extends Component {
   }
  */
   render() {
-    const { title/* , key */, style, condensed, noPadding } = this.props;
+    const { title/* , key, style */, condensed /* noPadding */ } = this.props;
     // const { show } = this.state;
     // const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
     // const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
@@ -173,7 +168,18 @@ class DataGridSorting extends Component {
     /*
     return (
       <TableHeaderColumn style={style}>
-        <div className="sortingGrid" style={{ position: 'relative', cursor: 'pointer', marginLeft: '-24px', marginRight: '-4px', paddingLeft: '24px', paddingRight: '4px', ...styleForButton }}>
+        <div
+          className="sortingGrid"
+          style={{
+            position: 'relative',
+            cursor: 'pointer',
+            marginLeft: '-24px',
+            marginRight: '-4px',
+            paddingLeft: '24px',
+            paddingRight: '4px',
+            ...styleForButton
+          }}
+        >
           <div
             role="button"
             ref={(ref) => { this.toggler = ref; }}
@@ -184,7 +190,10 @@ class DataGridSorting extends Component {
               {title}
             </div>
             <div style={{ width: '30px' }}>
-              {show ? <Trianglearrowup style={{ transition: 'none' }} size={12} /> : <Trianglearrow style={{ transition: 'none' }} size={12} />}
+              {show
+                ? <Trianglearrowup style={{ transition: 'none' }} size={12} />
+                : <Trianglearrow style={{ transition: 'none' }} size={12} />
+              }
             </div>
           </div>
           <div style={mergedStyle} ref={(ref) => { this.node = ref; }}>
