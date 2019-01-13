@@ -11,7 +11,7 @@ const ExampleIconSimple = () => (
     <br />
     <Organization />
     <br />
-    <Organization color="blue" hoverColor="green"/>
+    <Organization color="blue" hoverColor="green" />
   </div>
 );
 

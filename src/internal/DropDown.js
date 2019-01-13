@@ -3,10 +3,23 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
-import { UnstyledButton } from '../Button';
+// import { UnstyledButton } from '../Button';
+import UnstyledButtonBeta from '../Button/UnstyledButton1';
+// import Ripples from '../Motion/Ripples';
 
+/* eslint-disable indent */
 const ItemsWrapper = styled.div`
   ${({ theme: { transition } }) => transition.defaultAll};
+  ${({ isOpen, theme }) => (isOpen
+    ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+    : '')
+  };
+    /* box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+    outline: ${({ theme: { outline } }) => outline}; */
+  /* &:focus-within {
+    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+    outline: ${({ theme: { outline } }) => outline};
+  } */
 `;
 
 const PopOverArrow = styled.div`
@@ -50,6 +63,7 @@ const WrapperUI = styled.div`
   height: 100%;
   ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
 `;
+/* eslint-enable indent */
 
 
 /**
@@ -75,6 +89,7 @@ const styles = {
     flexDirection: 'column',
   },
   triggerInnerWrapper: {
+    width: '100%',
     height: '100%',
     display: 'flex',
     alignItems: 'stretch',
@@ -105,7 +120,7 @@ export class DropDown extends PureComponent {
   }
 
   static defaultProps = {
-    main: <div></div>,
+    main: <div />,
     items: [],
     inertMain: false,
     anchor: 'left',
@@ -129,6 +144,7 @@ export class DropDown extends PureComponent {
     this.handleWindowScroll = this.handleWindowScroll.bind(this);
     this.attachListeners = this.attachListeners.bind(this);
     this.detachListeners = this.detachListeners.bind(this);
+    this.storeMainRef = this.storeMainRef.bind(this);
   }
 
   // componentWillMount() {
@@ -177,34 +193,11 @@ export class DropDown extends PureComponent {
     }
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   return nextProps !== this.props;
-  // }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { isOpen: willBeOpenState } = nextState;
-    const { isOpen: willBeOpenProps } = nextProps;
-
-    const willBeOpen = willBeOpenState || willBeOpenProps;
-    let shouldFocusTrigerrer = false;
-
-    if (!willBeOpen) {
-      shouldFocusTrigerrer = true;
-    }
-    // } else if (isOpen && willBeOpen) {
-    //   shouldFocusTrigerrer
-    // }
-
-    this.setState({
-      shouldFocusTrigerrer,
-    });
-  }
-
   componentDidUpdate(prevProps) {
     if (prevProps.items.length !== this.props.items.length) {
-      setTimeout(() => this.forceUpdate(), 1);
+      // setTimeout(() => this.forceUpdate(), 1);
     } else if (prevProps.items !== this.props.items) {
-      setTimeout(() => this.forceUpdate(), 1);
+      // setTimeout(() => this.forceUpdate(), 1);
     }
   }
 
@@ -408,14 +401,17 @@ export class DropDown extends PureComponent {
 
     const dropDownMain = React.cloneElement(main,
       {
-        ref: ref => this.storeMainRef(ref),
+        // ref: (ref) => {
+        //   console.log('running ref');
+        //   this.storeMainRef(ref);
+        // },
         // this next line is useless
-        onClick: () => {
-          this.handleToggleVisibility();
-          if (main.props.onClick) {
-            main.props.onClick();
-          }
-        },
+        // onClick: () => {
+        //   this.handleToggleVisibility();
+        //   if (main.props.onClick) {
+        //     main.props.onClick();
+        //   }
+        // },
       });
     // const dropDownMainDOMNode = ReactDOM.findDOMNode(dropDownMain);
 
@@ -450,20 +446,52 @@ export class DropDown extends PureComponent {
 
     return (
       <WrapperUI style={style} isFullWidth={isFullWidth}>
-        <UnstyledButton
+        {/* <UnstyledButton
+          style={{ width: '100%' }}
+        > */}
+        <UnstyledButtonBeta
+          onClick={this.handleToggleVisibility}
+          ref={this.storeMainRef}
           inert={inertMain}
           data-drop-down-main
           role={inertMain === false ? undefined : 'menu'}
           isFullWidth={isFullWidth}
-          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
-          onClick={this.handleToggleVisibility}
+          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
           {...tabIndexButtonattr}
         >
           <div style={styles.triggerInnerWrapper}>
             {dropDownMain}
           </div>
-        </UnstyledButton>
+        </UnstyledButtonBeta>
+        {/* <Ripples
+          inert={inertMain}
+          data-drop-down-main
+          role={inertMain === false ? undefined : 'menu'}
+          isFullWidth={isFullWidth}
+          style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
+          onClick={this.handleToggleVisibility}
+          {...tabIndexButtonattr}
+        >
+        </Ripples> */}
+        {/* </UnstyledButton> */}
+
+
+        {/* <UnstyledButtonBeta
+            inert={inertMain}
+            data-drop-down-main
+            role={inertMain === false ? undefined : 'menu'}
+            isFullWidth={isFullWidth}
+            style={{ ...styles.triggerWrapper, ...triggerWrapperStyle }}
+            onClick={this.handleToggleVisibility}
+            {...tabIndexButtonattr}
+          >
+            <div style={styles.triggerInnerWrapper}>
+              {dropDownMain}
+            </div>
+          </UnstyledButtonBeta> */}
+
         <ItemsWrapper
+          isOpen={isOpen}
           data-is-the-one="true"
           data-drop-down-items
           // aria-hidden={isOpen ? false : true}

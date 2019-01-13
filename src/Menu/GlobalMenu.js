@@ -93,6 +93,9 @@ class GlobalMenu extends Component {
       logoDescriptor,
       attachToViewport,
       style,
+      breakpoint,
+      menuWidth,
+      bigMenuWidth,
       innerStyle,
       fullViewportWidthPanel: fullViewportWidthPanelProp,
       panelOffsetTop,
@@ -153,6 +156,7 @@ class GlobalMenu extends Component {
 
     const theLogo = logoDescriptor && (
       <GlobalMenuLogo
+
         key={logoDescriptor.key || 'GlobalMenuMainLogo'}
         label={(logoDescriptor.displayName || '')}
         icon={logoDescriptor.icon}
@@ -179,6 +183,9 @@ class GlobalMenu extends Component {
       <div style={{ ...layoutContext, ...style }}>
         <div>
           <GlobalMenuWrapper
+            breakpoint={breakpoint}
+            menuWidth={menuWidth}
+            bigMenuWidth={bigMenuWidth}
             panelOffsetTop={panelOffsetTop}
             panelOffsetBottom={panelOffsetBottom}
             logo={theLogo}
@@ -217,7 +224,7 @@ GlobalMenu.defaultProps = {
   // Logo: PropTypes.any,
   // primaryColor: '',
   menuDescriptors: [],
-  style: PropTypes.object,
+  style: {},
   panelOffsetTop: '0px',
   panelOffsetBottom: '0px',
 };

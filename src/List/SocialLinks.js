@@ -35,7 +35,7 @@ const SocialLinks = ({ socialLinks, horizontal, spacing, iconColor, iconHoverCol
         spacing={spacing}
         key={name}
       >
-        <a href={url}>
+        <a href={url} style={{ ...(horizontal ? { display: 'flex' } : {}) }}>
           {getAppropriateIcon(name)() }
         </a>
       </SocialLI>
@@ -56,7 +56,7 @@ SocialLinks.defaultProps = {
   horizontal: false,
   style: {},
   spacing: '',
-  iconColor: 0,
+  iconColor: undefined,
 };
 
 export default SocialLinks;

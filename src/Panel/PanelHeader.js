@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Close } from '../Icons';
 import { AppLayout } from '../Layout';
+import {
+  headerHeight,
+} from './defaults';
 
 const HorizontalAppLayout = AppLayout.extend`
   flex-flow: row wrap;
@@ -12,11 +15,15 @@ const HorizontalAppLayout = AppLayout.extend`
 const PanelHeaderUI = styled.div`
   box-sizing: border-box;
   background-color: ${({ theme: { palette } }) => palette.accent.main};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+  * { transition: ${({ theme: { transition } }) => transition.defaultAll}; }
   padding: 8px 16px;
   color: ${({ theme: { palette } }) => palette.pureWhite};
   display: flex;
   align-items: center;
   min-height: 50px;
+  min-height: ${headerHeight};
+  border-radius: ${({ round, theme: { radius } }) => round && `${radius} ${radius} 0 0`};
 `;
 
 const PanelHeaderTitleWrapper = styled.div`
@@ -40,6 +47,7 @@ const PanelHeader = (props) => {
     hasClose,
     onClose,
     style,
+    rounded,
     // iconColor, // = '#ceceec',
     // iconHoverColor, // = '#ffffff',
   } = props;
@@ -53,7 +61,7 @@ const PanelHeader = (props) => {
     : null;
 
   return (
-    <PanelHeaderUI style={style} >
+    <PanelHeaderUI style={style} round={rounded || undefined}>
       <HorizontalAppLayout>
         <PanelHeaderTitleWrapper>{title}</PanelHeaderTitleWrapper>
         <div>{children}</div>
@@ -64,5 +72,9 @@ const PanelHeader = (props) => {
 };
 
 PanelHeader.displayName = 'PanelHeader';
+
+PanelHeader.defaultProps = {
+  title: null,
+};
 
 export default PanelHeader;

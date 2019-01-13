@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
+import Ripple from '../Motion/Ripples';
 
 const RadioInpuUI = styled.input.attrs({
   type: 'radio',
+  onMouseOut: () => ({ target }) => target.blur && target.blur(),
 })`
   cursor: pointer;
   opacity: 0;
@@ -27,6 +29,9 @@ const RadioInpuUI = styled.input.attrs({
 const RadioLabelUI = styled.label`
   display: flex;
   align-items: center;
+  padding: 2px;
+  padding-left: 1px;
+  padding: 4px 6px;
   & > *:nth-child(2) {
     ${({ label }) => (label
       ? 'margin-right: 6px;'
@@ -36,15 +41,32 @@ const RadioLabelUI = styled.label`
 
   cursor: pointer;
   /* cannot use focus-within because IE */
-  padding: 2px;
-  padding-left: 1px;
   border-radius: 2px;
-  /* fake outline */
-  /* waiting for Edge to support focus-within */
-  ${({ hasFocus }) => (hasFocus ? (`
-    outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
-    outline: 5px auto -webkit-focus-ring-color !important;
-  `) : '')};
+
+  border-radius: ${({ theme: { radius } }) => radius};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* waiting for Edge to support focus-within */
+    ${({ hasFocus, theme }) => (hasFocus ? (`
+      bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}
+    `) : '')};
+  }
+
+  &:focus-within {
+    ${({ disabled, inert, theme }) => (!inert || !disabled
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
+  }
+
+  svg {
+    transition: ${({ theme: { transition } }) => transition.defaultAll};
+    ${({ checker, theme: { palette } }) => (checker
+      ? `fill: ${palette.accent.main} !important; }`
+      : '')
+    };
+  }
 
 `;
 /* eslint-enable indent */
@@ -134,24 +156,32 @@ class Radio extends React.PureComponent {
     /* eslint-disable jsx-a11y/label-has-for */
     return (
       <div style={this.getWrapperStyles()}>
-        <RadioLabelUI htmlFor={name} style={{}} label={label} hasFocus={hasFocus}>
-          <RadioInpuUI
-            tabIndex="0"
-            id={id}
+        <Ripple>
+          <RadioLabelUI
+            htmlFor={name}
             style={{}}
-            {...checker}
-            name={name}
-            value={value}
-            disabled={disabled}
-            onBlur={this.onBlur}
-            onFocus={this.onFocus}
-            onChange={(...a) => {
-              this.handleChange(...a);
-            }}
-          />
-          <Icon style={{ background: 'white' }} />
-          {label}
-        </RadioLabelUI>
+            label={label}
+            hasFocus={hasFocus}
+            checker={isChecked}
+          >
+            <RadioInpuUI
+              tabIndex="0"
+              id={id}
+              style={{}}
+              {...checker}
+              name={name}
+              value={value}
+              disabled={disabled}
+              onBlur={this.onBlur}
+              onFocus={this.onFocus}
+              onChange={(...a) => {
+                this.handleChange(...a);
+              }}
+            />
+            <Icon />
+            {label}
+          </RadioLabelUI>
+        </Ripple>
       </div>
     );
   }

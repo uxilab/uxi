@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from './TextField';
 import { Button } from '../Button';
@@ -52,6 +53,7 @@ class SearchForm extends Component {
       icon,
       onChange,
       fullWidth,
+      isFullWidth,
       ...otherProps
     } = this.props;
 
@@ -63,8 +65,8 @@ class SearchForm extends Component {
     const finalIcon = icon || <Search style={{ margin: 0 }} />;
 
     return (
-      <FormUI fullWidth={fullWidth} onSubmit={this.handleSubmit}>
-        <InputGroup fullWidth={fullWidth}>
+      <FormUI fullWidth={isFullWidth || fullWidth} onSubmit={this.handleSubmit}>
+        <InputGroup fullWidth={isFullWidth || fullWidth}>
           <TextField {...inputProps} style={{ margin: 0 }} />
           <Button
             type="primary"
@@ -78,5 +80,13 @@ class SearchForm extends Component {
 }
 
 SearchForm.displayName = 'SearchForm';
+
+SearchForm.propTypes = {
+  isFullWidth: PropTypes.bool,
+};
+
+SearchForm.defaultProps = {
+  isFullWidth: false,
+};
 
 export default SearchForm;

@@ -2,6 +2,8 @@ import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../../CodeExample';
+import { componentInfoToMD } from '../../../componentInfoToMD';
+import RAWPanelHeader from '!raw-loader!uxi/Panel/PanelHeader';
 
 // import PanelExample from './PanelExample';
 // import RAWPanelExample from '!raw-loader!./PanelExample';
@@ -18,8 +20,18 @@ import RAWPanelHeaderWithExtraExample from '!raw-loader!./PanelHeaderWithExtraEx
 
 const PanelHeaderPage = () => (
   <div>
-  <Title text="PanelHeader" />
+    <Title text="PanelHeader" />
     <ul>
+      <li>
+        <CodeExample
+          code={RAWPanelHeader}
+          component
+          title="PanelHeader"
+          description={componentInfoToMD(RAWPanelHeader)}
+          hasPadding
+        >
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWPanelHeaderExample}

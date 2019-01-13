@@ -6,7 +6,9 @@ import {
   Checkboxoutline,
   Padlock,
 } from '../Icons';
+import Ripple from '../Motion/Ripples';
 
+/* eslint-disable indent */
 const LabeLUI = styled.label`
   cursor: pointer;
   ${({ label, labelBefore }) => (
@@ -17,7 +19,9 @@ const LabeLUI = styled.label`
 
 `;
 
-const InputUI = styled.input`
+const InputUI = styled.input.attrs({
+  onMouseOut: () => ({ target }) => target.blur && target.blur(),
+})`
   position: absolute
   width: 100%;
   height: 100%;
@@ -26,31 +30,42 @@ const InputUI = styled.input`
   bottom: 0;
   left: 0;
   opacity: 0;
-  cursor: inherit;
+  cursor: pointer;
   box-sizing: border-box;
   margin: 0;
 `;
 
 const Wrapper = styled.div`
   ${({ checker, theme: { palette } }) => (checker
-    ? `svg { fill: ${palette.accent} !important; }`
+    ? `svg { fill: ${palette.accent.main} !important; }`
     : '')
 };
-  padding: 4px;
+  padding: 6px;
+  /* margin: 0 4px */
   display: flex ;
   align-items: center;
 
-  /* waiting for Edge to support focus-within */
-  ${({ hasFocus }) => (hasFocus ? (`
-    outline: 2px solid #7AACFE !important; /* for non-webkit browsers */
-    outline: 5px auto -webkit-focus-ring-color !important;
-  `) : '')};
+  border-radius: ${({ theme: { radius } }) => radius};
 
-  &:focus-within {
-    outline: 2px solid #7AACFE !important;
-    outline: 5px auto -webkit-focus-ring-color !important;
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* waiting for Edge to support focus-within */
+    ${({ hasFocus, theme }) => (hasFocus ? (`
+      bowShadow: ${theme.outlineShadow}; outline: ${theme.outline}
+    `) : '')};
+  }
+
+  &:not(:hover) {
+    &:focus-within {
+      ${({ disabled, inert, theme }) => (!inert || !disabled
+        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+        : '')
+      };
+    }
   }
 `;
+/* eslint-enable indent */
 
 // const posAbs = {
 //   position: 'absolute',
@@ -144,7 +159,6 @@ class Checkbox extends React.PureComponent {
       name: nameProp,
       disabled,
       checked,
-      defaultChecked,
       label,
       labelBefore,
       style,
@@ -163,6 +177,11 @@ class Checkbox extends React.PureComponent {
 
     const checker = this.isControlled ? checked : this.state.checked;
 
+    const checkAttributes = {};
+    if (this.isControlled) {
+      checkAttributes.checked = this.props.checked;
+    }
+
     // eslint-disable-next-line no-nested-ternary
     const iconIdentifier = disabled
       ? (checker ? <Padlock /> : <Padlock />)
@@ -175,25 +194,28 @@ class Checkbox extends React.PureComponent {
 
     return (
       <div style={checkboxWrapperStyle}>
-        <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
-          {iconIdentifier}
-          <InputUI
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            hasFocus
-            id={id}
-            style={inputStyle}
-            checked={checker}
-            defaultChecked={defaultChecked}
-            name={name}
-            type="checkbox"
-            disabled={disabled}
-            onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
-          />
-          <LabeLUI htmlFor={id} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
-            {label}
-          </LabeLUI>
-        </Wrapper>
+        <Ripple>
+          <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
+            {iconIdentifier}
+            <InputUI
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              hasFocus
+              id={id}
+              style={inputStyle}
+              checked={checker}
+              // defaultChecked={defaultChecked}
+              name={name}
+              type="checkbox"
+              disabled={disabled}
+              onChange={this.handleChange.bind(this)} // eslint-disable-line react/jsx-no-bind
+            />
+            <LabeLUI htmlFor={id} labelStyle={labelStyle} label={label} labelBefore={labelBefore} >
+              {label}
+            </LabeLUI>
+          </Wrapper>
+        </Ripple>
+
       </div >
     );
   }

@@ -13,4 +13,9 @@ const PanelContent = ({ children, style }) => (
 
 PanelContent.displayName = 'PanelContent';
 
+PanelContent.defaultProps = {
+  children: null,
+  style: {},
+};
+
 export default PanelContent;

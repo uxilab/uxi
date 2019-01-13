@@ -4,20 +4,20 @@ import Button from 'uxi/Button';
 import { P } from 'uxi/Classic';
 
 class AlertBannerExample extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       show1: false,
       show2: false,
-    }
+    };
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <Button onClick={() => this.setState({ show1: true }) } text="show A" />
+        <Button onClick={() => this.setState({ show1: true })} text="show A" />
         <br />
-        <Button onClick={() => this.setState({ show2: true }) } text="show B" />
+        <Button onClick={() => this.setState({ show2: true })} text="show B" />
 
         {
           this.state.show1 && (
@@ -40,8 +40,8 @@ class AlertBannerExample extends Component {
             </Alert>
           )
         }
-    </div>
-    )
+      </div>
+    );
   }
 }
 

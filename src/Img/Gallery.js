@@ -8,7 +8,7 @@ const GalleryContainerUI = styled.div`
 
   max-width: 100%;
   overflow: hidden;
-  background: red;
+  /* background: red; */
   padding: 8px;
   -webkit-overflow-scrolling: touch;
   position: relative;
@@ -107,15 +107,15 @@ class Gallery extends Component {
   }
 
   render() {
-    const { galleryDescriptor, imgHeight } = this.props;
+    const { galleryDescriptor, imgHeight, style } = this.props;
 
     return (
-      <GalleryContainerUI>
+      <GalleryContainerUI style={style}>
         <GalleryButtonUI data-action="prev" onClick={this.handlePrevious} />
 
         <GalleryListUI innerRef={(node) => { this.listRef = node; }} imgHeight={imgHeight} >
-          {galleryDescriptor.map(image => (
-            <GalleryListItemUI>
+          {galleryDescriptor.map((image, i) => (
+            <GalleryListItemUI key={`${image.src}-${i}`} >
               <img tabIndex="0" src={image.url} alt="" />
             </GalleryListItemUI>
           ))}

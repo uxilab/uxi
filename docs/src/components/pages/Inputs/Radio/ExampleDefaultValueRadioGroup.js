@@ -6,7 +6,7 @@ const ExampleDefaultValueRadioGroup = () => (
     <RadioGroup
       defaultValue="true"
       name="isPayingCustomer"
-      onChange={(event, val) => {  }}
+      onChange={(event, val) => { }}
     >
       <Radio value="true" label="Yes" />
       <br />

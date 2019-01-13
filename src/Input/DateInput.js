@@ -2,7 +2,7 @@ import React from 'react';
 import DateTimeInput from './DateTimeInput';
 
 const DateInput = props =>
-  <DateTimeInput {...props} inputType="Date" />;
+  <DateTimeInput {...props} />;
 
 DateInput.displayName = 'DateInput';
 

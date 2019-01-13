@@ -27,6 +27,7 @@ const AvatarWithName = ({
   contain,
   style,
   nameStyle,
+  inverse,
 }) => {
   // eslint-disable-next-line no-nested-ternary
   const imgContent = src
@@ -37,9 +38,22 @@ const AvatarWithName = ({
     );
 
   return (
-    <div style={{ ...styles.wrapper, ...style }} onClick={onClick || null}>
+    <div
+      style={{
+        ...styles.wrapper,
+        ...(inverse ? { flexDirection: 'row-reverse' } : {}),
+        ...style,
+      }}
+      onClick={onClick || null}
+    >
       { imgContent }
-      <div style={{ ...styles.nameWrapper, ...nameStyle }}>
+      <div
+        style={{
+          ...styles.nameWrapper,
+          ...(inverse ? { marginLeft: 0, marginRight: '6px' } : {}),
+          ...nameStyle,
+        }}
+      >
         <TextEllipsis>
           {name}
         </TextEllipsis>

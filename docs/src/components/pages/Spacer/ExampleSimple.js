@@ -1,9 +1,8 @@
 import React from 'react';
 import Spacer from 'uxi/Spacer';
 
-const ExampleSimple = () => {
-  return (
-    <div>
+const ExampleSimple = () => (
+  <div>
     <Spacer padding="xl" style={{ background: 'green' }}>
       <Spacer padding="stack-m" style={{ background: 'red' }}>
         padding: stack-m
@@ -17,8 +16,7 @@ const ExampleSimple = () => {
         </Spacer>
       </Spacer>
     </Spacer>
-    </div>
-  )
-};
+  </div>
+);
 
 export default ExampleSimple;

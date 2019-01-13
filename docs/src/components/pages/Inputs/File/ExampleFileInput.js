@@ -5,17 +5,25 @@ const ExampleFileInput = () => (
   <div style={{ padding: '16px' }}>
     <ul>
       <li>
-        <FileInput id="b" onChange={(e) => {
-          console.log(e.target.files)
-        }} />
+        <FileInput
+          label="Upload a file"
+          id="b" onChange={(e) => {
+            console.log(e.target.files);
+          }}
+        />
       </li>
       <li><br /></li>
       <li>with 'multiple' bool prop:</li>
       <li><br /></li>
       <li>
-        <FileInput id="a" multiple onChange={(e) => {
-          console.log(e.target.files)
-        }} />
+        <FileInput
+          id="a"
+          multiple
+          label="Upload files"
+          onChange={(e) => {
+            console.log(e.target.files);
+          }}
+        />
       </li>
     </ul>
   </div>

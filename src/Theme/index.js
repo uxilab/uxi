@@ -300,15 +300,19 @@ export const theme = { // eslint-disable-line no-shadow
   shadow: {
     base: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px ',
   },
+  radius: '3px',
+  outline: 'none',
+  outlineShadow: '0 0 5px 3px rgba(35, 35, 35, .4), 0 0 2px 2px rgba(35, 35, 35, .24)',
   transition: {
     default: '450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     defaultAll: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) ',
     duration: '450ms ',
-    durationIn: '232ms ',
+    durationIn: '292ms ',
     durationOut: '196ms ',
     delay: '0ms ',
     easing: 'cubic-bezier(0.23, 1, 0.32, 1) ',
   },
+  // TODO do not use that, theme declaration must be done in json (serializable) =>
   sc: {
     // titleColor: 'red',
     // titleFontSize: '2em',

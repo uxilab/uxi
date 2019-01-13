@@ -15,7 +15,7 @@ class ExampleWithAlert extends Component {
 
   render() {
     return (
-      <div  style={{ padding: '16px' }}>
+      <div style={{ padding: '16px' }}>
         <Button
           onClick={() => { this.setState({ showDrawerA: true }); }}
           text="Show"
@@ -50,10 +50,10 @@ class ExampleWithAlert extends Component {
           onClose={() => { this.setState({ showDrawerC: false }); }}
           open={this.state.showDrawerC}
         >
-          <Alert type="into">
-          <div style={{ padding: '16px 0' }} >
-            Could not connect to server!
-          </div>
+          <Alert type="information">
+            <div style={{ padding: '16px 0' }} >
+              Could not connect to server!
+            </div>
           </Alert>
         </Drawer>
 

@@ -25,7 +25,9 @@ const DropDownMenuUI = styled.div`
   }
 `;
 
-// const DropDownMenu = ({ children, button }) => {
+/**
+ * @deprecated
+ */
 class DropDownMenu extends ThemeComponent {
   render() {
     const { children, button, anchor } = this.props;

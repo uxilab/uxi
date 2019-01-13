@@ -52,6 +52,9 @@ export const makeGlobalCSSInjector = (theme) => {
       background-color: rgba(0, 137, 122, 0.9); /* theme.accent.dark for contrast */
     }
 
+    button::-moz-focus-inner {
+      border: 0;
+    }
 
     /** Links */
     a {

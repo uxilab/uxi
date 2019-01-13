@@ -8,7 +8,7 @@ const PanelExample = () => (
   <div>
     <div style={{ height: '200px' }}>
       <Panel>
-        <PanelHeader hasClose title="Panel rocks!" onClose={() => console.log('closed')}/>
+        <PanelHeader hasClose title="Panel rocks!" onClose={() => console.log('closed')} />
 
         <PanelContent style={{ padding: '16px' }}>
           wuut

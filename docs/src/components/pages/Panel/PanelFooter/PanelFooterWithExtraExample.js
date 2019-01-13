@@ -13,7 +13,7 @@ const PanelFooterWithExtraExample = () => (
           <span>👉</span>
           <span>
             <Button
-              text={"CLICK ME"}
+              text={'CLICK ME'}
               style={{ margin: '0 8px' }}
               onClick={() => console.log('clicked')}
             />
@@ -34,7 +34,7 @@ const PanelFooterWithExtraExample = () => (
           <span>👉</span>
           <span>
             <Button
-              text={"CLICK ME"}
+              text={'CLICK ME'}
               style={{ margin: '0 8px' }}
               onClick={() => console.log('clicked')}
             />
@@ -55,7 +55,7 @@ const PanelFooterWithExtraExample = () => (
           <div>👉</div>
           <div>
             <Button
-              text={"CLICK ME"}
+              text={'CLICK ME'}
               style={{ margin: '0 8px' }}
               onClick={() => console.log('clicked')}
             />
@@ -76,7 +76,7 @@ const PanelFooterWithExtraExample = () => (
           <div>👉</div>
           <Flex style={{ flexGrow: 99 }}>
             <Button
-              text={"CLICK ME"}
+              text={'CLICK ME'}
               style={{ margin: '0 8px' }}
               onClick={() => console.log('clicked')}
             />

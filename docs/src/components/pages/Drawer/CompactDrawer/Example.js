@@ -17,7 +17,7 @@ class ExampleSimple extends Component {
 
   render() {
     return (
-      <div  style={{ padding: '16px' }}>
+      <div style={{ padding: '16px' }}>
         <Button
           onClick={() => { this.setState({ show1: true }); }}
           text="Show SidePanel with no visual way out"

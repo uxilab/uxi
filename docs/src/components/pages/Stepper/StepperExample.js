@@ -2,7 +2,7 @@ import React from 'react';
 import { Stepper, Step, StepButton } from 'uxi/Stepper';
 import { Arrowright } from 'uxi/Icons';
 
-const sayHi = () => console.log('Hi')
+const sayHi = () => console.log('Hi');
 const StepperExample = () => (
   <div>
     <ul>

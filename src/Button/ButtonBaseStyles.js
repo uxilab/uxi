@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
+/* eslint-disable indent */
 const ButtonBaseStyles = css`
-  outline: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,9 +19,10 @@ const ButtonBaseStyles = css`
   text-transform: uppercase;
   box-sizing: border-box;
   min-height: 32px;
-  border-radius: 2px;
+  /* border-radius: 2px; */
   user-select: none;
-  transition: all 0.38s ease-out;
+  /* transition: all 0.38s ease-out; */
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   svg {
     min-width: 26px;
@@ -31,6 +32,17 @@ const ButtonBaseStyles = css`
     height: 26px;
     max-height: 26px;
   }
+  outline: none;
+  box-shadow: none;
+  &:not(:hover) {
+    &:focus {
+      ${({ disabled, theme }) => (!disabled
+        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+        : '')
+      };
+    }
+  }
 `;
+/* eslint-enable indent */
 
 export default ButtonBaseStyles;

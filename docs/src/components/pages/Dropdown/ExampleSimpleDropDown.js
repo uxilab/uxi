@@ -20,13 +20,12 @@ const items = [
   },
 ];
 
-class ExampleDropDown2 extends Component {
+class ExampleSimpleDropDown extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
     };
-
   }
 
   render() {
@@ -35,22 +34,22 @@ class ExampleDropDown2 extends Component {
         <Flex>
           <SimpleDropDown
             content={'MORE'}
-            subContent={items.map(x => <AvatarWithName src={x.pic} name={x.name} /> )}
+            subContent={items.map(x => <AvatarWithName src={x.pic} name={x.name} />)}
           />
         </Flex>
-        <br/>
+        <br />
         <Flex>
           <SimpleDropDown
             inline={false}
             content={'MORE'}
-            subContent={items.map(x => <AvatarWithName src={x.pic} name={x.name} /> )}
+            subContent={items.map(x => <AvatarWithName src={x.pic} name={x.name} />)}
           />
         </Flex>
         <Flex>
           <SimpleDropDown
             closeOnClickOutside={false}
             content={'MORE'}
-            subContent={items.map(x => <AvatarWithName src={x.pic} name={x.name} /> )}
+            subContent={items.map(x => <AvatarWithName src={x.pic} name={x.name} />)}
           />
         </Flex>
       </div>
@@ -58,4 +57,4 @@ class ExampleDropDown2 extends Component {
   }
 }
 
-export default ExampleDropDown2;
+export default ExampleSimpleDropDown;

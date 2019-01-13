@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
   background: rgb(27, 60, 79);
-  &:before {
+  /* &:before {
     content: '';
     z-index: 2;
     position: absolute;
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     height: 100%;
     box-shadow: 0 0 0 10px red;
     pointer-events: none;
-  }
+  } */
 `;
 
 const VideoBg = styled.div`
@@ -78,14 +78,14 @@ const VideoFg = styled.div`
 }
 `;
 
-const IFrame = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: none;
-    position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
+// const IFrame = styled.iframe`
+//   width: 100%;
+//   height: 100%;
+//   border: none;
+//     position: absolute;
+//   top: 0; right: 0; bottom: 0; left: 0;
 
-`;
+// `;
 
 class LandingVideo extends Component {
   constructor(props) {

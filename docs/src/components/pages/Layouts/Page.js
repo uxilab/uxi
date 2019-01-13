@@ -1,62 +1,38 @@
 import React from 'react';
+import { H1 } from 'uxi/Classic';
 import CodeExample from '../../CodeExample';
 
-import ExampleSimple from './ExampleSimple';
-import RAWExampleSimple from '!raw-loader!./ExampleSimple';
+// import ExampleContentWithExtra from './ContentWithExtra/ExampleContentWithExtra';
+// import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
 
-import ExampleContentWithExtra from './ExampleContentWithExtra';
-import RAWExampleContentWithExtra from '!raw-loader!./ExampleContentWithExtra';
+// import ExampleSimpleGrid from './SimpleGrid/ExampleSimpleGrid';
+// import RAWExampleSimpleGrid from '!raw-loader!./ExampleSimpleGrid';
 
-import ExampleSimpleGrid from './ExampleSimpleGrid';
-import RAWExampleSimpleGrid from '!raw-loader!./ExampleSimpleGrid';
-
-import ExampleGrid from './ExampleGrid';
-import RAWExampleGrid from '!raw-loader!./ExampleGrid';
+// import ExampleGrid from './ExampleGrid';
+// import RAWExampleGrid from '!raw-loader!./ExampleGrid';
 
 const Layouts = () => (
   <div>
-    <br />
-
-   {/*  <CodeExample
-      code={RAWExampleGrid}
-      component
-      title="Grid"
-      hasPadding
-    >
-      <ExampleGrid />
-    </CodeExample> */}
-
-    <br />
-    <CodeExample
+    <H1>Layouts </H1>
+    {/* <CodeExample
       code={RAWExampleContentWithExtra}
       component
-      title="Layout"
+      title="ContentWithExtra"
       hasPadding
     >
       <ExampleContentWithExtra />
     </CodeExample>
 
-    <br />
+    <br /> */}
 
-    <CodeExample
-      code={RAWExampleSimple}
-      component
-      title="Layout"
-      hasPadding
-    >
-      <ExampleSimple />
-    </CodeExample>
-
-    <br />
-
-    <CodeExample
+    {/* <CodeExample
       code={RAWExampleSimpleGrid}
       component
       title="SimpleGrid"
       hasPadding
     >
       <ExampleSimpleGrid />
-    </CodeExample>
+    </CodeExample> */}
   </div>
 );
 

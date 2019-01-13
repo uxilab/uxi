@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AvatarWithName from '../Img/AvatarWithName';
 
@@ -22,14 +23,16 @@ const ButtonLinkWrapper = styled.a`
   }
 `;
 
-const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth }) => {
+const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth, iconAfter }) => {
   const content = icon ? (
     <AvatarWithName
+      inverse={iconAfter}
       imgSize={16}
       icon={icon}
       name={text || message || children}
       style={{
         ...(isFullWidth ? { justifyContent: 'center' } : {}),
+        // ...(iconAfter ? { flexDirection: 'row-reverse' } : {}),
       }}
     />
   ) : (
@@ -45,6 +48,28 @@ const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth
       {content}
     </ButtonLinkWrapper>
   );
+};
+
+ButtonLink.displayName = 'ButtonLink';
+
+ButtonLink.defaultProps = {
+  onClick: () => {},
+  icon: null,
+  text: '',
+  message: '',
+  children: null,
+  style: {},
+  isFullWidth: false,
+};
+
+ButtonLink.propTypes = {
+  onClick: PropTypes.func,
+  icon: PropTypes.node,
+  text: PropTypes.any,
+  message: PropTypes.any,
+  children: PropTypes.any,
+  style: PropTypes.object,
+  isFullWidth: PropTypes.bool,
 };
 
 export default ButtonLink;

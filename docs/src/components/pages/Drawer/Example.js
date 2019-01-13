@@ -15,7 +15,7 @@ class ExampleSimple extends Component {
 
   render() {
     return (
-      <div  style={{ padding: '16px' }}>
+      <div style={{ padding: '16px' }}>
         <Button
           onClick={() => { this.setState({ showSidePanelRight: true }); }}
           text="Show SidePanel with no visual way out"
@@ -42,7 +42,7 @@ class ExampleSimple extends Component {
             <div style={{ position: 'absolute', right: '16px', top: '16px' }} >
               <Button
                 icon={<Close />}
-                onClick={() => this.setState({ showSidePanelBottom: false }) }
+                onClick={() => this.setState({ showSidePanelBottom: false })}
               />
             </div>
             <P>

@@ -6,13 +6,13 @@ class ExampleControlledRadioGroup extends Component {
   constructor(props) {
     super(props);
     this.state = { value: false };
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
   handleChange() {
-    this.setState({ value: !(this.state.value) })
+    this.setState({ value: !(this.state.value) });
   }
   render() {
-    const { value } = this.state
+    const { value } = this.state;
     return (
       <div style={{ padding: '16px' }}>
         <RadioGroup value={value.toString()} name="my-radio-group">
@@ -21,7 +21,7 @@ class ExampleControlledRadioGroup extends Component {
         </RadioGroup>
         <Button onClick={this.handleChange} >Toggle</Button>
       </div>
-    )
+    );
   }
 }
 

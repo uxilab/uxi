@@ -137,12 +137,12 @@ class DataGrid extends Component {
 
     return (
       <List style={listStyle}>
-        <span>
+        <span key="selected" >
           {selectedEntities.length} selected
         </span>
-        {actions.map(action => (
+        {actions.map((action, i) => (
           <ButtonLink
-            key={action.label}
+            key={(action.label || i)}
             text={action.label}
             icon={action.icon}
             onClick={(e) => {

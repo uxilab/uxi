@@ -8,7 +8,7 @@ import RAWMDStepperExample from '!raw-loader!./StepperExample.md';
 
 const StepperPage = () => (
   <div>
-  <H1>Panel</H1>
+    <H1>Panel</H1>
     <ul>
       <li>
         <CodeExample

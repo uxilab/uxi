@@ -8,6 +8,9 @@ import React from 'react';
 const wrapInClientFormHOC = Component => props => (
   <form
     onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); } }}
+    /**
+     * TODO: what is this for? is it used? the onSubmit is marked by react as a unrocognized attr.
+     */
     onSumbit={(e) => { e.preventDefault(); e.stopPropagation(); }}
   >
     <Component {...props} />

@@ -1,10 +1,12 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
+import RAWDataGrid from '!raw-loader!uxi/DataGrid/DataGrid';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
+import { componentInfoToMD } from '../../componentInfoToMD';
 
 import ExampleSimpleDataGrid from './ExampleSimpleDataGrid';
-import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid'; 
+import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid';
 
 import ExampleSimpleDataGridOnlySomeKey from './ExampleSimpleDataGridOnlySomeKey';
 import RAWExampleSimpleDataGridOnlySomeKey from '!raw-loader!./ExampleSimpleDataGridOnlySomeKey';
@@ -23,6 +25,12 @@ const TablePage = () => (
       Instead of passing column or cell definitions, you work towards your Entity. This is making the grid more extensible and re-usable. Refer to Entity and Metadata guidelines to know more.
     </P>
     <CodeExample
+      code={RAWDataGrid}
+      title="Simple Data Grid"
+      description={componentInfoToMD(RAWDataGrid)}
+    />
+    <br />
+    <CodeExample
       code={RAWExampleSimpleDataGrid}
       title="Simple Data Grid"
       description="Pass the data, DataGrid does the rest"
@@ -40,9 +48,7 @@ const TablePage = () => (
     <CodeExample
       code={RAWExampleSimpleDataGridWithCustomType}
       title="Data Grid with custom type renderer"
-    >
-      
-    </CodeExample>
+    />
 
     <ExampleSimpleDataGridWithCustomType />
 
@@ -58,8 +64,8 @@ const TablePage = () => (
 export default TablePage;
 
 /**
- * 
- * 
+ *
+ *
  * const person = {
   firstName: "Denis",
   lastName: 'Florkin',
@@ -82,10 +88,9 @@ UX Guideliens :
 
 - Dashboard Multiple Widget
 
-- List 1 Entity Type 
+- List 1 Entity Type
 - Detail 1 Entity Type
 - Quickview 1 Entity Type
-
 
 
 class PersonMetaData extends MetaData {
@@ -106,7 +111,7 @@ class PersonMetaData extends MetaData {
     },
   ],
   static grid = {
-    
+
   };
   staic quickView = {
 

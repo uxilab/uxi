@@ -8,7 +8,7 @@ import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQue
 
 const {
   borderThickness,
-  breakpoint,
+  breakpoint: defaultBreakpoint,
 } = defaults;
 
 const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
@@ -18,13 +18,13 @@ const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
   return palette.white;
 };
 
-
+/* eslint-disable indent */
 const LinkDecorator = styled.div`
   & > * {
     display: flex;
     flex-direction: column;
 
-    @media (min-width: ${breakpoint}) {
+    @media (min-width: ${({ breakpoint }) => breakpoint}) {
       flex-direction: row;
     }
   }
@@ -45,40 +45,42 @@ const LinkDecorator = styled.div`
     color: ${({ isSelected, isActive, theme: { palette } }) =>
     (isSelected && isActive ? palette.accent.light : '#c2c2c2')
 };
-    border-right: ${({ isSelected, isActive }) => (isSelected && isActive ?
-    `${borderThickness} solid #0ea4a5` : '0 solid transparent')
-};
+    border-right: ${({ isSelected, isActive, theme: { palette } }) =>
+      (isSelected && isActive
+        ? `${borderThickness} solid ${palette.accent.main}`
+        : '0 solid transparent'
+    )};
     background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};
     transition: ${({ theme: { transition } }) => transition.defaultAll};
     &:hover {
       text-decoration: none;
       color: ${({ theme: { palette } }) => palette.pureWhite};
       background: ${({ isActive, isSelected, theme: { palette } }) => (
-    isSelected // eslint-disable-line no-nested-ternary
-      ? (isActive
-        ? palette.primary.dark
-        : palette.primary.light // child is slelected, means we can navigate there
-      )
-      : palette.primary.light
-  )};
+        isSelected // eslint-disable-line no-nested-ternary
+          ? (isActive
+            ? palette.primary.dark
+            : palette.primary.light // child is slelected, means we can navigate there
+          )
+          : palette.primary.light
+        )};
       svg {
         fill: #fff;
       }
     }
     &:focus {
       color: ${({ isActive, theme: { palette } }) => (
-    isActive ? 'inherit' : palette.pureWhite
-  )};
+        isActive ? 'inherit' : palette.pureWhite
+      )};
       background: ${({ isSelected, theme: { palette } }) => (
-    (isSelected ? palette.primary.main : palette.primary.light)
-  )};
+        (isSelected ? palette.primary.main : palette.primary.light)
+      )};
       color: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+        ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+      };
       svg {
         fill: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+          ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+        };
       }
     }
     svg {
@@ -86,12 +88,13 @@ const LinkDecorator = styled.div`
     }
   }
 `;
+/* eslint-enable indent */
 
 const GlobalMenuItemDiv = styled.a`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: ${breakpoint}) {
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
     flex-direction: row;
   }
 
@@ -172,7 +175,7 @@ const LabelDiv = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media (min-width: ${breakpoint}) {
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
     font-size: inherit;
 
     padding-left: 10px;
@@ -213,6 +216,7 @@ const GlobalMenuItem = (props) => {
     Link,
     to,
     href,
+    breakpoint,
   } = props;
 
   let isNewContent;
@@ -249,9 +253,10 @@ const GlobalMenuItem = (props) => {
       key={`mainMenuItemContainer-${index}`}
       {...linkProps}
       onClick={onClick}
+      breakpoint={breakpoint}
     >
       {icon}
-      <LabelDiv> {label} </LabelDiv>
+      <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
       {isNewContent}
     </GlobalMenuItemDivFinal>
   );
@@ -259,6 +264,7 @@ const GlobalMenuItem = (props) => {
   if (Link !== undefined) {
     resContent = (
       <LinkDecorator
+        breakpoint={breakpoint}
         primaryColor={primaryColor}
         isSelected={isSelected}
         isActive={isActive}
@@ -270,7 +276,7 @@ const GlobalMenuItem = (props) => {
           onClick={onClick}
         >
           {icon}
-          <LabelDiv> {label} </LabelDiv>
+          <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
           {isNewContent}
         </Link>
       </LinkDecorator>
@@ -287,7 +293,6 @@ const GlobalMenuItem = (props) => {
         {
           resContent
         }
-
       </Tooltip>
     </PropsMapperContainerQueries>
   );
@@ -313,6 +318,7 @@ GlobalMenuItem.defaultProps = {
   onClick: () => { },
   isActive: false,
   primaryColor: '',
+  breakpoint: defaultBreakpoint,
 };
 
 export default GlobalMenuItem;

@@ -16,9 +16,12 @@ function getSlideDirection(anchor) {
   }
   return 'top';
 }
+
+
 const slidesHorizontaly = direction => (direction === 'right' || direction === 'left');
 
 const DrawerUI = styled.div`
+  pointer-events: all;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -32,7 +35,12 @@ const DrawerUI = styled.div`
   ${({ inAttr: isIn }) => (isIn ?
     'box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16) , 0px 3px 10px rgba(0, 0, 0, 0.23)' : '')};
   /* height | width */
-  ${({ dir }) => (slidesHorizontaly(dir) ? 'height: 100vh' : 'width: 100vw')};
+  ${({ dir }) => (
+    slidesHorizontaly(dir)
+      ? 'height: 100%'
+      : 'width: 100%'
+  )};
+
   /* top&bottom | right&left */
   ${({ dir }) => (slidesHorizontaly(dir) ? 'top: 0; bottom: 0' : 'left: 0; right: 0')};
   &>*:last-child { ${({ dir, children }) =>
@@ -71,8 +79,8 @@ class Drawer extends React.Component {
 
   handleEsc(e) {
     const { key } = e;
-    const { onClose, open } = this.props;
-    if (open && onClose && key === 'Escape') {
+    const { onClose, open, isOpen } = this.props;
+    if ((open || isOpen) && onClose && key === 'Escape') {
       onClose();
     }
   }
@@ -83,19 +91,21 @@ class Drawer extends React.Component {
       children,
       onClose,
       open,
+      isOpen,
       showOverlay,
       style,
       modal,
-      offsetBottom,
       offsetTop,
+      offsetBottom,
       offsetLeft,
       offsetRight,
     } = this.props;
 
+
     return (
       <div>
         <Slide
-          inAttr={open}
+          inAttr={(open || isOpen)}
           direction={getSlideDirection(anchor)}
           appear={!this.state.firstMount}
           offsetTop={offsetTop}
@@ -104,7 +114,11 @@ class Drawer extends React.Component {
           offsetRight={offsetRight}
         >
           <DrawerUI
-            inAttr={open}
+            offsetTop={offsetTop}
+            offsetBottom={offsetBottom}
+            offsetLeft={offsetLeft}
+            offsetRight={offsetRight}
+            inAttr={(open || isOpen)}
             dir={getSlideDirection(anchor)}
             style={style}
           >
@@ -122,7 +136,7 @@ class Drawer extends React.Component {
           </DrawerUI>
         </Slide>
         { showOverlay ? <Modal
-          show={open}
+          show={(open || isOpen)}
           onClose={modal ? null : onClose}
         /> : null }
       </div>
@@ -134,7 +148,14 @@ Drawer.propTypes = {
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   children: PropTypes.node,
   onClose: PropTypes.func,
+  /**
+   * deprecated (use `isOpen`)
+   */
   open: PropTypes.bool,
+  /**
+   * favor over deprecated `open`
+   */
+  isOpen: PropTypes.bool,
   showOverlay: PropTypes.bool,
   // transitionDuration: PropTypes.oneOfType([
   //   PropTypes.number,
@@ -149,6 +170,7 @@ Drawer.propTypes = {
 Drawer.defaultProps = {
   anchor: 'right',
   open: false,
+  isOpen: false,
   showOverlay: false,
   children: null,
   onClose: () => {},

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { makeGlobalCSSInjector } from '../global';
-import { getThemeWithCustomPalette } from '../utils';
+import { getThemeWithCustomPalette, mergeTheme } from '../utils';
 import { theme as UXITheme } from '../index';
 import { ThemeProvider as UXIContextThemeProvider } from './ContextThemeProvider';
 
@@ -13,13 +13,21 @@ const GlobalStyles = styled.div`
 const UXISCThemeProvider = (props) => {
   const {
     children,
-    customTheme,
+    // customTheme,
     palette: customPalette,
+    defaultTheme,
     theme,
   } = props;
 
-  const theTheme = customTheme || getThemeWithCustomPalette(customPalette);
+  let theTheme = defaultTheme;
+  if (theme) {
+    theTheme = mergeTheme(defaultTheme, theme);
+  } else if (customPalette) {
+    theTheme = getThemeWithCustomPalette(customPalette);
+  }
   const actualCSSString = makeGlobalCSSInjector(theTheme);
+
+  console.log('theTheme', theTheme);
 
   return (
     <SCThemeProvider theme={theTheme || theme} >
@@ -36,12 +44,14 @@ const UXISCThemeProvider = (props) => {
 };
 
 UXISCThemeProvider.propTypes = {
+  defaultTheme: PropTypes.object,
   theme: PropTypes.object,
   palette: PropTypes.object,
 };
 
 UXISCThemeProvider.defaultProps = {
-  theme: UXITheme || {},
+  defaultTheme: UXITheme || {},
+  theme: undefined,
   palette: {},
 };
 

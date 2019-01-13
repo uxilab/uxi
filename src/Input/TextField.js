@@ -23,21 +23,26 @@ const InputUI = styled.input.attrs({
   theme: ({ theme }) => (theme || defaultTheme),
 })`
   border-radius: 3px;
+  border-radius: ${({ theme: { radius } }) => radius};
   /* min-height: 32px; */
   box-sizing: border-box;
   font-size: 14px;
   border: 1px solid ${({ theme: { palette: { semantic } } }) => semantic.default};
   padding: 6.5px 26px 6.5px 6.5px;
+  padding: ${({ theme: { radius } }) => `6.5px 26px 6.5px ${6.5 + (parseInt(radius.replace('px', ''), 10) * 0.6)}px`};
   min-width: 100%;
   border: 1px solid ${({ error, success, theme: { palette: { semantic } } }) => (
     error // eslint-disable-line no-nested-ternary
       ? semantic.error
       : (success ? semantic.success : semantic.default))
 };
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
   &:focus {
     outline: none;
     border: 1px solid ${({ theme }) => theme.palette.accent.main};
-    box-shadow: 0 0 10px #719ECE; /* where's that color from ? */
+    /* box-shadow: 0 0 10px #719ECE;*/ /* where's that color from ? */
+    box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
+    outline: ${({ theme: { outlineShadow } }) => outlineShadow};
   }
 `;
 

@@ -19,16 +19,14 @@ import { User } from 'uxi/Icons';
 import { Switch } from 'uxi/Input';
 import { P } from 'uxi/Classic';
 
-const getRandomString = () => {
-  return Math.random().toString(36).substring(7);
-};
+const getRandomString = () => Math.random().toString(36).substring(7);
 
 class ExampleSelectableTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selection: [
-        'Tyrion Lannister'
+        'Tyrion Lannister',
       ],
       characters: [
         {
@@ -51,7 +49,7 @@ class ExampleSelectableTable extends Component {
           title: 'Lord Commander of the Kingsguard',
           allegiance: 'House Lannister',
         },
-      ]
+      ],
     };
   }
   onChangeHandler(event, selectedRows, selectedRowsValues) {
@@ -65,8 +63,8 @@ class ExampleSelectableTable extends Component {
     const result = [];
 
     characters.forEach((character) => {
-      const hasDeleted = selection.find((s) => s === character.name);
-      if(!hasDeleted) {
+      const hasDeleted = selection.find(s => s === character.name);
+      if (!hasDeleted) {
         result.push(character);
       }
     });
@@ -79,44 +77,42 @@ class ExampleSelectableTable extends Component {
 
   addRow() {
     this.setState({
-      characters: [...this.state.characters, { name: getRandomString(), title: getRandomString(), allegiance: getRandomString() }]
-    })
+      characters: [...this.state.characters, { name: getRandomString(), title: getRandomString(), allegiance: getRandomString() }],
+    });
   }
 
   render() {
     const { selection, characters } = this.state;
     return (
       <div>
-      <P>
-        <Button disabled={!selection || selection.length === 0} onClick={() => { this.deletedSelectedHandler(); }}>
+        <div>
+          <Button disabled={!selection || selection.length === 0} onClick={() => { this.deletedSelectedHandler(); }}>
           Delete selected
-        </Button>
-        <Button style={{ marginLeft:'15px' }} onClick={() => {this.addRow();}}>
+          </Button>
+          <Button style={{ marginLeft: '15px' }} onClick={() => { this.addRow(); }}>
           Add rows
-        </Button>
-      </P>
-      <Table onChange={this.onChangeHandler.bind(this)} initialSelected={selection} multiSelectable selectable>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Titles</TableHeaderColumn>
-            <TableHeaderColumn>Allegiance</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {
-            characters.map((character) => {
-              return (
+          </Button>
+        </div>
+        <Table onChange={this.onChangeHandler.bind(this)} initialSelected={selection} multiSelectable selectable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Titles</TableHeaderColumn>
+              <TableHeaderColumn>Allegiance</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {
+              characters.map(character => (
                 <TableRow key={character.name} value={character.name}>
                   <TableRowColumn>{character.name}</TableRowColumn>
                   <TableRowColumn>{character.title}</TableRowColumn>
                   <TableRowColumn>{character.allegiance}</TableRowColumn>
                 </TableRow>
-              );
-            })
-          }
-        </TableBody>
-      </Table>
+              ))
+            }
+          </TableBody>
+        </Table>
       </div>
     );
   }

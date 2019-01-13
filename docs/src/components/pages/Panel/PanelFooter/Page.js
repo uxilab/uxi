@@ -1,6 +1,8 @@
 import React from 'react';
 import { Title } from 'uxi/Text';
+import RAWPanelFooter from '!raw-loader!uxi/Panel/PanelFooter';
 import CodeExample from '../../../CodeExample';
+import { componentInfoToMD } from '../../../componentInfoToMD';
 
 import PanelFooterExample from './PanelFooterExample';
 import RAWPanelFooterExample from '!raw-loader!./PanelFooterExample';
@@ -15,6 +17,16 @@ const PanelFooterPage = () => (
   <div>
     <Title text="PanelFooter" />
     <ul>
+      <li>
+        <CodeExample
+          code={RAWPanelFooter}
+          component
+          title="PanelContent"
+          description={componentInfoToMD(RAWPanelFooter)}
+          hasPadding
+        >
+        </CodeExample>
+      </li>
       <li>
         <CodeExample
           code={RAWPanelFooterExample}

@@ -2,26 +2,30 @@
 /* eslint-disable brace-style */
 import React from 'react';
 import styled from 'styled-components';
-
+import { buttonResetStylesCSSString } from './buttonResetStyles';
 
 /* eslint-disable indent */
 const UnstyledButtonUI = styled.button.attrs({
   tabIndex: ({ inert }) => (inert ? -1 : undefined),
 })`
+  ${buttonResetStylesCSSString};
+  &, &:hover, & *, &:hover * {}
   border: none;
-  padding: 0;
-  font-size: inherit;
   background: transparent;
+  color: inherit
+  padding: 0 4px;
+  font-size: inherit;
   min-width: 100%;
   min-height: 100%;
   &:focus {
-    ${({ inert }) => (inert === false
-      ? 'outline: none; box-shadow: 0 0 10px #719ECE;'
+    ${({ disabled, inert, theme }) => (!inert && !disabled
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
       : '')
     };
   }
 `;
 /* eslint-enable indent */
+// TODO investigzte: inert unstyledButon doesn't make any sense
 
 const UnstyledButtonDivUI = UnstyledButtonUI.withComponent('div');
 

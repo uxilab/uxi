@@ -10,7 +10,9 @@ import {
 import AlertStyle from './Alert.style';
 
 const AlertUI = styled.div`
-  div{
+  border-radius: ${({ rounded, theme: { radius } }) => (rounded ? radius : 0)};
+  overflow: hidden;
+  div {
     a, a:hover {
       color: white;
       text-decoration: underline;
@@ -23,7 +25,7 @@ class Alert extends Component {
     children: PropTypes.node,
     showClose: PropTypes.bool, // weird ?
     hideClose: PropTypes.bool, // weird ?
-    onClose: PropTypes.func,
+    onClose: PropTypes.func, // eslint-disable-line
     type: PropTypes.oneOf(['danger', 'error', 'success', 'warning', 'information']),
     noIcon: PropTypes.bool,
     className: PropTypes.string,
@@ -33,12 +35,13 @@ class Alert extends Component {
       PropTypes.number,
     ]),
     style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    rounded: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'information',
     showClose: undefined,
-    onClose: undefined,
+    // onClose: undefined,
     hideClose: undefined,
     className: '',
     noIcon: false,
@@ -48,6 +51,7 @@ class Alert extends Component {
     // in case some text is not evaluated, the comp might appear like it has no children (text node)
     children: null, // we don't require children, alert always has at least 50px of height
     style: {},
+    rounded: false,
   };
 
   constructor(props) {
@@ -83,8 +87,11 @@ class Alert extends Component {
       iconSize,
       onClose,
       style,
+      rounded,
     } = this.props;
     const { isOpen } = this.state;
+
+    // console.log('onClose in Alert', onClose);
 
     let wrapperStyles = { ...AlertStyle.alert };
 
@@ -138,7 +145,7 @@ class Alert extends Component {
     };
 
     return (
-      <AlertUI>
+      <AlertUI rounded={rounded || undefined}>
         <div style={wrapperStyles} className={className}>
           {closeContent}
           {iconContent}
@@ -150,5 +157,8 @@ class Alert extends Component {
     );
   }
 }
+
+Alert.defaultProps = {
+};
 
 export default Alert;

@@ -1,12 +1,17 @@
 import React from 'react';
 import { Button } from 'uxi/Button';
-import { Github } from 'uxi/Icons';
+import { Github, Idea, Delete, Options, Upload } from 'uxi/Icons';
 import { List } from 'uxi/List';
 
 
 const ExampleSimpleWithIcon = () => (
   <List>
+    <Button icon={<Options />}  />
     <Button icon={<Github />} type="error" text="reconnect" />
+    <Button icon={<Github />} type="error" />
+    <Button icon={<Idea />} type="success" />
+    <Button disabled icon={<Upload />} type="success" />
+    <Button icon={<Delete />} type="error" />
     <Button
       icon={(
         <svg
@@ -22,7 +27,8 @@ const ExampleSimpleWithIcon = () => (
         </svg>
       )}
       text="Merge"
-      iconPosition="after" />
+      iconPosition="after"
+    />
   </List>
 );
 

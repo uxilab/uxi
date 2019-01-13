@@ -78,7 +78,7 @@ MiniLoader.defaultProps = {
 MiniLoader.propTypes = {
   color: PropTypes.string,
   type: PropTypes.oneOf([
-    'default', 'success', 'error', 'warning',
+    'default', 'success', 'error', 'warning', 'information',
   ]),
 };
 
