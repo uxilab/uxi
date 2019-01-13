@@ -1,26 +1,168 @@
 import React from 'react';
 import Select from './Select'; // eslint-disable-line import/no-named-as-default
 import UnstyledButtonBeta from '../../Button/UnstyledButton1';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
-// import DropDown2 from '../internal/DropDownWithClickOutside';
+import DropDown2 from '../../internal/DropDownWithClickOutside';
 import { Arrowdown } from '../../Icons';
 import { Button } from '../../Button';
-// import Option from './SelectInputOptions';
+import Option from './SelectInputOptions';
 // import StatusIcon from '../utils/StatusIcon';
 import { TextField } from '../../Input';
-// import ErrorWrapperUI from './utils/ErrorWrapperUI';
+// // import ErrorWrapperUI from './utils/ErrorWrapperUI';
 import { styles } from './Select.styles';
 import TriggererWrapperWithEllispsisChildren from './TriggererWrapperWithEllispsisChildren';
 import TriggerreWrapper from './TriggerreWrapper';
 import {
 // isElement,
-// isDOMTypeElement,
+  isDOMTypeElement,
 } from './select-utils';
 
+const SelectWithFilteringWrapper = styled.div`
+  display: inline-block;
+  ${({ isFullWidth }) => (isFullWidth ? 'display: block' : '')};
+  transform: translate(0, 0);
+
+  *[data-drop-down-trigger] input {
+    height: 34px;
+  }
+  *[data-drop-down-trigger] > div > div > div > div,
+  *[data-ripple-wrapper] > div > div > div > div > div,
+  *[data-ripple-wrapper] > div > div > div > div > div > div {
+    height: 100%;
+  }
+`;
 
 class SelectWithFiltering extends Select {
+  constructor(props) {
+    super(props);
+
+    this.isOpenControlled = props.isOpen !== undefined;
+
+    this.isControlled = props.value !== undefined;
+
+    const { children } = this.props;
+    const storedOptions = (this.mapChildrenForStorage(children) || {});
+
+    this.state = {
+      isOpen: this.isOpenControlled ? this.props.isOpen : false,
+      options: storedOptions.options || [],
+      optionsNode: storedOptions.optionsNode || [],
+      // TODO: handle multi select
+      selectedIndex: null,
+      filter: false,
+    };
+
+    this.handleDropDownChange = this.handleDropDownChange.bind(this);
+    this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.storeTriggerWrapperRef = this.storeTriggerWrapperRef.bind(this);
+    this.storeChildrenWrapperRef = this.storeChildrenWrapperRef.bind(this);
+    this.handlInputFocus = this.handlInputFocus.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.isControlled) {
+      const { defaultValue } = this.props;
+      if (defaultValue !== undefined) {
+        const { options } = this.state;
+        // not controlled, use internal state
+        const foundIndex = options.findIndex(o => o === defaultValue);
+        const selectedIndex = foundIndex > -1 ? foundIndex : null;
+        this.setState({ selectedIndex });
+      } else {
+        this.setState({ selectedIndex: 0 });
+      }
+    } else {
+      const { value } = this.props;
+      const { options } = this.state;
+      // not controlled, use internal state
+      const foundIndex = options.findIndex(o => o === value);
+      const selectedIndex = foundIndex > -1 ? foundIndex : 0;
+      this.setState({ selectedIndex });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { isOpen: isOpenState } = this.state;
+    const { isOpen: isOpenProps } = this.props;
+
+    const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
+
+    if (this.isControlled) {
+      // noop
+    } else if (this.state.selectedIndex) {
+      const { selectedIndex } = prevState;
+      const { onChange } = prevProps;
+
+      if (selectedIndex !== this.state.selectedIndex) {
+        if (onChange) {
+          const { options } = this.state;
+          const value = options[this.state.selectedIndex];
+          const fakeEvent = {
+            target: { value },
+            currentTarget: { value },
+          };
+          onChange(fakeEvent, value);
+        }
+      }
+    }
+
+    if (isOpen) {
+      window.addEventListener('keydown', this.preventScrollingOnSpace);
+    } else {
+      window.removeEventListener('keydown', this.preventScrollingOnSpace);
+    }
+
+    const { children } = this.props;
+    const shouldUpdateOptions = (
+      prevProps.children &&
+      children &&
+      (
+        prevProps.children.length !== children.length ||
+        prevProps.children !== children
+      )
+    );
+
+    let storedOptions = null;
+    if (shouldUpdateOptions) {
+      storedOptions = (this.mapChildrenForStorage(children) || {});
+    }
+
+    const shouldClose = (
+      this.isControlled
+      && !this.isOpenControlled
+      && this.props.value !== prevProps.value
+    );
+
+    if (shouldUpdateOptions || shouldClose) {
+      setTimeout(() => {
+        let newStateProps = {};
+
+        if (storedOptions) {
+          newStateProps = {
+            options: storedOptions.options,
+            optionsNode: storedOptions.optionsNode,
+          };
+        }
+
+        if (shouldClose) {
+          newStateProps = {
+            ...newStateProps,
+            isOpen: false,
+          };
+        }
+
+        if (Object.keys(newStateProps).length) {
+          this.setState(newStateProps);
+        }
+      }, 1);
+    }
+  }
+
   getTrigerrerLabel() {
     const {
       state: {
@@ -98,14 +240,15 @@ class SelectWithFiltering extends Select {
           // if (e && e.stopPropagation) {
           //   e.stopPropagation();
           // }
-          this.toggleVisibility(e, ...r);
+          // this.toggleVisibility(e, ...r);
         }}
       >
         <TriggerreWrapper >
           <div>
             <TextField
               placeholder="filter"
-
+              onFocus={this.handlInputFocus}
+              onChange={this.handleInputChange}
             />
             {
               /* {mainContent}
@@ -128,6 +271,94 @@ class SelectWithFiltering extends Select {
         </TriggerreWrapper>
       </UnstyledButtonBeta>
     );
+  }
+
+  getOptionsItem() {
+    const {
+      children,
+      isOpen: isOpenProps,
+    } = this.props;
+
+    const { isOpen: isOpenState, filter } = this.state;
+
+    const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
+
+    return React.Children.map(children, (child, i) => {
+      const value = child.props.value ? child.props.value : i;
+      const isTheOne = this.state.selectedIndex === i;
+
+      if (
+        value
+        && filter
+      ) {
+        if (value.indexOf) {
+          if (value.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+            // match noop let go
+            value;
+            filter;
+          } else {
+            return null;
+          }
+        }
+      }
+
+      if (React.isValidElement(child)) {
+        if (!isDOMTypeElement(child)) {
+          return (
+            <Option
+              key={i}
+              onClick={(e) => {
+                if (isOpen) this.clickHandler(e);
+              }}
+              onEsc={() => {
+                if (isOpen) this.clickHandler(null);
+              }}
+              data-index={i}
+              {...child.props}
+              isOpen={isOpen}
+              selected={isTheOne}
+              style={{
+                textOverflow: 'ellipsis',
+                overflowX: 'hidden',
+                maxWidth: '100%',
+                foo: 'bar',
+              }}
+            >
+              {React.cloneElement(child, {
+                value,
+              })}
+            </Option>
+          );
+        }
+
+        return (
+          <Option
+            key={i}
+            onClick={(e) => {
+              if (isOpen) this.clickHandler(e);
+            }}
+            onEsc={() => {
+              if (isOpen) this.clickHandler(null);
+            }}
+            data-index={i}
+            {...child.props}
+            isOpen={isOpen}
+            selected={isTheOne}
+            style={{
+              textOverflow: 'ellipsis',
+              overflowX: 'hidden',
+              maxWidth: '100%',
+              foo: 'bar',
+            }}
+          >
+            {React.cloneElement(child, {
+              value,
+            })}
+          </Option>
+        );
+      }
+      return null;
+    });
   }
 
   preventScrollingOnSpace(e) {
@@ -182,23 +413,27 @@ class SelectWithFiltering extends Select {
         e.stopPropagation();
       }
 
-      // just go to next sigblings:
-      const nextSiblingMaybe = document.activeElement.nextElementSibling;
-      if (nextSiblingMaybe && nextSiblingMaybe.focus) {
-        nextSiblingMaybe.focus();
+      if (document.activeElement.nodeName === 'INPUT') {
+        this.focusContent();
       } else {
-      // focus from main triggerer to (first) item:
-        const nextSiblingMaybeItem = document.activeElement.parentNode.nextElementSibling;
-        if (nextSiblingMaybeItem) {
-          const firstOptionItem = nextSiblingMaybeItem.firstChild;
-          if (firstOptionItem && firstOptionItem.focus) {
-            firstOptionItem.focus();
-          }
-        } else if (this.itemRef) {
-          // go back to first option element
-          const firstOption = this.itemRef.firstChild;
-          if (firstOption && firstOption.focus) {
-            firstOption.focus();
+        // just go to next sigblings:
+        const nextSiblingMaybe = document.activeElement.nextElementSibling;
+        if (nextSiblingMaybe && nextSiblingMaybe.focus) {
+          nextSiblingMaybe.focus();
+        } else {
+        // focus from main triggerer to (first) item:
+          const nextSiblingMaybeItem = document.activeElement.parentNode.nextElementSibling;
+          if (nextSiblingMaybeItem) {
+            const firstOptionItem = nextSiblingMaybeItem.firstChild;
+            if (firstOptionItem && firstOptionItem.focus) {
+              firstOptionItem.focus();
+            }
+          } else if (this.itemRef) {
+            // go back to first option element
+            const firstOption = this.itemRef.firstChild;
+            if (firstOption && firstOption.focus) {
+              firstOption.focus();
+            }
           }
         }
       }
@@ -227,6 +462,239 @@ class SelectWithFiltering extends Select {
         }
       }
     }
+  }
+  mapChildrenForStorage(children) { // eslint-disable-line class-methods-use-this
+    const options = [];
+    const optionsNode = [];
+    React.Children.forEach(children, (child, i) => {
+      const value = child.props.value !== undefined ? child.props.value : i;
+      options[i] = value; // garanties ordering
+      optionsNode[i] = React.cloneElement(child, {
+        style: {
+          ...child.props.style,
+        },
+      });
+    });
+
+    return {
+      options,
+      optionsNode,
+    };
+  }
+
+  // storeOptions(children) {
+  //   this.setState({
+  //     options: this.mapChildrenForStorage(children).options,
+  //     optionsNode: this.mapChildrenForStorage(children).optionsNode,
+  //   });
+  // }
+
+  handlInputFocus(e) {
+    if (!this.isOpenControlled) {
+      this.setState({ isOpen: true });
+    }
+  }
+
+  handleInputChange(e, value = '') {
+    if (e.target.value) {
+      this.setState({ filter: value });
+    }
+  }
+
+  clickHandler(e) {
+    console.log('clickHandler in Select', e);
+    if (!e) {
+      if (this.isOpenControlled) {
+        const { onIsOpenChange } = this.props;
+        if (onIsOpenChange) {
+          onIsOpenChange(false, null);
+        }
+      } else {
+        if (this.isControlled) {
+          // notify consumer ?
+        } else {
+          this.setState({
+            selectedIndex: this.state.selectedIndex || null,
+            isOpen: false,
+          }, this.focusTrigger);
+        }
+        this.forceUpdate();
+      }
+
+      return;
+    }
+
+    // TODO actually implement an conotrlled input on selectinput
+    if (e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.index !== undefined) {
+      if (this.isControlled) {
+        const { onChange } = this.props;
+        const selectedIndex = e.currentTarget.dataset.index;
+        if (!this.isOpenControlled) {
+          this.setState({
+            isOpen: false,
+          }, this.focusTrigger);
+        }
+        if (onChange) {
+          const { options } = this.state;
+          const value = options[selectedIndex];
+          const fakeEvent = {
+            target: { value },
+            currentTarget: { value },
+          };
+          onChange(fakeEvent, value);
+        }
+      } else {
+        const selectedIndex = e.currentTarget.dataset.index;
+        this.setState({
+          selectedIndex,
+          isOpen: false,
+        }, this.focusTrigger);
+        this.forceUpdate();
+      }
+    }
+  }
+
+  toggleVisibility() {
+    if (!this.isOpenControlled) {
+      const nextIsOpen = !this.state.isOpen;
+      const cb = nextIsOpen === true
+        ? this.focusContent
+        : this.focusTrigger;
+
+      this.setState({ isOpen: nextIsOpen }, cb);
+    }
+  }
+
+  handleDropDownChange(isOpen) {
+    console.log('handleDropDownChange');
+    if (!this.isOpenControlled) {
+      if (this.state.isOpen !== isOpen) {
+        const cb = isOpen
+          ? this.focusContent
+          : this.focusTrigger;
+
+        this.setState({ isOpen }, cb);
+      }
+    }
+    if (this.props.onIsOpenChange) {
+      if (this.props.isOpen !== isOpen) {
+        this.props.onIsOpenChange(isOpen);
+      }
+    }
+  }
+
+  // storeItemsRef(itemsNode) {
+  //   this.itemRef = itemsNode;
+  // }
+
+
+  focusTrigger() {
+    // return;
+    let focusTarget = this.triggerWrapperRef;
+    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
+
+    if (focusTarget) {
+      if (
+        this.triggerWrapperRef
+        && this.triggerWrapperRef.querySelector
+        && this.triggerWrapperRef.querySelector('button')
+      ) {
+        focusTarget = this.triggerWrapperRef.querySelector('button');
+      } else if (
+        this.triggerWrapperRef
+        && this.triggerWrapperRef.firstChild
+        && this.triggerWrapperRef.firstChild.focus
+      ) {
+        focusTarget = this.triggerWrapperRef.firstChild;
+      }
+      console.log('trigger focusTarget=', this.triggerWrapperRef.firstChild);
+
+      if (focusTarget.focus) {
+        setTimeout(() => {
+          focusTarget.focus();
+        }, 10);
+      }
+    }
+  }
+
+  focusContent() {
+    if (
+      this.childrenWrapperRef
+      && this.childrenWrapperRef.firstChild
+      && this.childrenWrapperRef.firstChild.firstChild
+      && this.childrenWrapperRef.firstChild.firstChild.focus
+    ) {
+      setTimeout(() => {
+        this.childrenWrapperRef.firstChild.firstChild.focus();
+      }, 10);
+    }
+  }
+
+  storeTriggerWrapperRef(node) {
+    this.triggerWrapperRef = node;
+  }
+  storeChildrenWrapperRef(node) {
+    this.childrenWrapperRef = node;
+  }
+
+  render() {
+    const { isOpen: isOpenState } = this.state;
+    const {
+      isFullWidth,
+      error,
+      style,
+      // mainScrollingElementSelector,
+      // inertTrigger,
+      isOpen: isOpenProp,
+    } = this.props;
+
+    const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
+
+    const optionsItems = this.getOptionsItem();
+    console.log('optionsItems', optionsItems);
+
+    const trigerer = this.getTrigerrerLabel();
+
+    return (
+      <SelectWithFilteringWrapper style={style}>
+        <DropDown2
+          isOpen={isOpen}
+          onClickOutside={this.handleDropDownChange}
+          trigger={trigerer}
+          onTriggerWrapperRef={this.storeTriggerWrapperRef}
+          onChildrenWrapperRef={this.storeChildrenWrapperRef}
+        >
+          <div
+            style={{
+              maxHeight: '320px',
+              overflowY: 'auto',
+              minWidth: '180px',
+              background: 'white',
+              ...(style.width ? { width: style.width } : {}),
+              ...(isFullWidth ? { width: '100%' } : {}),
+            }}
+          >
+            {optionsItems}
+          </div>
+        </DropDown2>
+        {/* <DropDown
+          inertMain={inertTrigger}
+          mainScrollingElementSelector={mainScrollingElementSelector}
+          onIsOpenChange={this.handleDropDownChange}
+          isFullWidth={isFullWidth || ('width' in style)}
+          isOpen={isOpen}
+          main={trigerer}
+          items={optionsItems}
+          onItemRef={this.storeItemsRef}
+          itemsStyle={{
+            maxHeight: '200px',
+            overflowY: 'auto',
+            overflowX: 'hidden',
+          // }}
+        /> */}
+        {/* <ErrorWrapperUI>{error}</ErrorWrapperUI> */}
+      </SelectWithFilteringWrapper>
+    );
   }
 }
 

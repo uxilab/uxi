@@ -1,6 +1,7 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
+import RAWSelect from '!raw-loader!uxi/Input/Select/Select';
 import CodeExample from '../../../CodeExample';
 
 import Playground from './Playground';
@@ -26,6 +27,7 @@ import RAWExampleManagedControlled from '!raw-loader!./ExampleManagedControlled'
 
 import ExampleSimpleUncontrolled from './ExampleSimpleUncontrolled';
 import RAWExampleSimpleUncontrolled from '!raw-loader!./ExampleSimpleUncontrolled';
+import { componentInfoToMD } from '../../../componentInfoToMD';
 
 
 const SelectInputPage = () => (
@@ -37,24 +39,21 @@ const SelectInputPage = () => (
       <strong>{'IMPORTANT!'}</strong>
       {'You have to pass a `mainScrollingElementSelector` props if window.document is not the main scrolling element'}
       <br />
-      {'e.g. `mainScrollingElementSelector={"#my-main-scrolling-element-string-selector"}`'}
     </P>
     <ul>
-      {/* <li>
+      <li>
         <CodeExample
-          code={RAWPlayground}
+          code={RAWSelect}
           component
           title="simple SelectInput Playground"
-          hasPadding
-        >
-          <Playground />
-        </CodeExample>
-      </li> */}
+          description={componentInfoToMD(RAWSelect)}
+         />
+      </li>
       <li>
         <CodeExample
           code={RAWExampleSelectWithFiltering}
           component
-          title="SelectWithFiltering"
+          title="SelectWithFiltering (WIP)"
           hasPadding
         >
           <ExampleSelectWithFiltering />

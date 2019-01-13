@@ -17,7 +17,7 @@ import {
 } from './select-utils';
 
 
-export class Select extends Component {
+class Select extends Component {
   constructor(props) {
     super(props);
 
@@ -640,6 +640,8 @@ export class Select extends Component {
 
 Select.defaultProps = {
   style: {},
+  onChange: () => {},
+  children: [],
 };
 
 

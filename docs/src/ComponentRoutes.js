@@ -72,7 +72,6 @@ import PopOverPage from './components/pages/PopOver/Page';
 import DropDownPage from './components/pages/Dropdown/Page';
 import AutoComplete2 from './components/pages/AutoComplete2/Page';
 import Spacer from './components/pages/Spacer/Page';
-import Tree from './components/pages/Tree/Page';
 import MenuDropDownPage from './components/pages/MenuDropDown/Page';
 import ButtonMenuPage from './components/pages/Menu/ButtonMenu/Page';
 import ButtonMenuItemPage from './components/pages/Menu/ButtonMenuItem/Page';
@@ -162,7 +161,7 @@ const ComponentRoutes = ({ match }) => (
 
       <Route path={`${match.url}/beta/list`} component={ListPage} />
       <Route path={`${match.url}/beta/loader`} component={LoaderPage} />
-      <Route path={`${match.url}/beta/menu`} component={MenuPage} />
+      {/* <Route path={`${match.url}/beta/menu`} component={MenuPage} /> */}
       {/* <Route path={`${match.url}/beta/internal`} exact component={InternalPage} /> */}
       <Route path={`${match.url}/beta/badge`} component={BadgePage} />
       <Route path={`${match.url}/beta/indicator`} component={IndicatorPage} />
@@ -176,10 +175,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/beta/Carrousel`} component={CarrouselPage} />
       {/* <Route path={`${match.url}/beta/Tile`} component={TilePage} /> */}
       <Route path={`${match.url}/beta/motion`} component={MotionPage} />
-      {/* <Route path={`${match.url}/beta/compactslide`} component={CompactSlidePage} /> */}
-      {/* <Route path={`${match.url}/beta/BETAAutoComplete`} component={AutoComplete2} /> */}
       <Route path={`${match.url}/beta/Spacer`} component={Spacer} />
-      {/* <Route path={`${match.url}/beta/Tree`} component={Tree} /> */}
       {/* <Route path={`${match.url}/beta/MenuDropDown`} component={MenuDropDownPage} /> */}
     </Switch>
   </ComponentShell>
