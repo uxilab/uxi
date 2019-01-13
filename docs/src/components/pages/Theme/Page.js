@@ -1,6 +1,6 @@
 import React from 'react';
 import { P } from 'uxi/Classic';
-import RAWThemeProvider from '!raw-loader!uxi/theme/ThemeProvider';
+import RAWThemeProvider from '!raw-loader!uxi/Theme/ThemeProvider';
 import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 import { componentInfoToMD } from '../../componentInfoToMD';
