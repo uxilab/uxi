@@ -123,16 +123,18 @@ class DataGrid extends Component {
     }
 
     const listStyle = {
+      zIndex: 1,
       position: 'absolute',
       top: 0,
       left: 0,
       right: 0,
-      paddingLeft: '82px',
+      marginLeft: '56px',
       lineHeight: '48px',
       height: '48px',
       display: 'flex',
       justifyContent: 'stretch',
       borderBottom: '1px solid rgb(224,224,224)',
+      background: 'white',
     };
 
     return (

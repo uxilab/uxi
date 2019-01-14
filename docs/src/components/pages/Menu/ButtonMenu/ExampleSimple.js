@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ButtonMenu,
   ButtonMenuItem,
+  Separator,
 } from 'uxi/Menu';
 import { FlatButton } from 'uxi/Button';
 import {
@@ -26,8 +27,10 @@ const ExampleSimple = () => (
       </ButtonMenuItem>
       <ButtonMenuItem onClick={() => { console.log('Queue'); }} icon={<Add />}> Queue </ButtonMenuItem>
       <ButtonMenuItem onClick={() => { console.log('Upload'); }} icon={<Upload />}> Upload </ButtonMenuItem>
+      <Separator />
       <ButtonMenuItem onClick={() => { console.log('Report'); }} icon={<Report />} extra={<Star size="14" />}> Report </ButtonMenuItem>
-      <div aria-hidden="true" style={{ height: '1px', background: '#cecece' }} />
+      <Separator label="DESTRUCTIVE" />
+      {/* <div aria-hidden="true" style={{ height: '1px', background: '#cecece' }} /> */}
       <ButtonMenuItem onClick={() => { console.log('Delete'); }} icon={<Delete />}> Deleteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee </ButtonMenuItem>
     </ButtonMenu>
 

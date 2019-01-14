@@ -5,6 +5,8 @@ import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disabl
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
 
+const focusTimeout = 128;
+
 class ButtonMenu extends Component {
   constructor(props) {
     super(props);
@@ -20,13 +22,15 @@ class ButtonMenu extends Component {
 
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.close = this.close.bind(this);
-    this.focusButton = this.focusButton.bind(this);
+    // this.focusButton = this.focusButton.bind(this);
     this.focusMenu = this.focusMenu.bind(this);
     this.storeChildrenWrapperRef = this.storeChildrenWrapperRef.bind(this);
     this.storeTriggerWrapperRef = this.storeTriggerWrapperRef.bind(this);
   }
 
+  /*
   focusButton() {
+    return
     // return;
     let focusTarget = this.triggerWrapperRef;
 
@@ -46,23 +50,31 @@ class ButtonMenu extends Component {
       }
 
       if (focusTarget.focus) {
-        setTimeout(() => {
-          focusTarget.focus();
-        }, 10);
+        const timerRef = setTimeout(() => {
+          if (focusTarget && focusTarget.focus) {
+            focusTarget.focus();
+          }
+          clearTimeout(timerRef);
+        }, focusTimeout);
       }
     }
   }
+    */
 
   focusMenu() {
-    if (
+    const elem = (
       this.childrenWrapperRef
       && this.childrenWrapperRef.firstChild
       && this.childrenWrapperRef.firstChild.firstChild
-      && this.childrenWrapperRef.firstChild.firstChild.focus
-    ) {
-      setTimeout(() => {
-        this.childrenWrapperRef.firstChild.firstChild.focus();
-      }, 32);
+    );
+
+    if (elem && elem.focus) {
+      const timerRef = setTimeout(() => {
+        if (elem && elem.focus) {
+          elem.focus();
+        }
+        clearTimeout(timerRef);
+      }, focusTimeout);
     }
   }
 
@@ -81,7 +93,7 @@ class ButtonMenu extends Component {
       if (nextIsOpen) {
         this.setState({ isOpen: true }, this.focusMenu);
       } else {
-        this.setState({ isOpen: false }, this.focusButton);
+        this.setState({ isOpen: false }, /* this.focusButton */);
       }
     }
   }
@@ -125,6 +137,7 @@ class ButtonMenu extends Component {
             this.close();
           } else if (e.key === 'ArrowDown') {
             e.preventDefault();
+            // e.stopPropagation();
             const { activeElement } = document;
 
             if (
@@ -153,6 +166,7 @@ class ButtonMenu extends Component {
             } */
           } else if (e.key === 'ArrowUp') {
             e.preventDefault();
+            // e.stopPropagation();
             const { activeElement } = document;
 
             if (
@@ -220,10 +234,10 @@ class ButtonMenu extends Component {
 ButtonMenu.defaultProps = {
   children: [],
   button: <FlatButton icon={<Options />} onClick={(...a) => { console.log('original onClick handler', ...a); }} />,
-  menuMaxHeight: '288px',
-  menuWidth: '280px',
+  menuMaxHeight: '396px',
+  menuWidth: undefined,
   menuMinWidth: undefined,
-  menuMaxWidth: undefined,
+  menuMaxWidth: '300px',
 };
 
 ButtonMenu.propTypes = {

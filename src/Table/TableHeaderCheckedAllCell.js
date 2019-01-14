@@ -27,9 +27,13 @@ const TableHeaderCheckedAllCell = ({
       noPadding
       style={{
         width: '42px',
+        maxWidth: '42px',
         paddingLeft: '8px',
         paddingRight: '8px',
-        textAlign: 'center',
+        // textAlign: 'left',
+        // display: 'flex',
+        // justifyContent: 'center',
+        // alignItems: 'center',
       }}
     >
       {checkbox}

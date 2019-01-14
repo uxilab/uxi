@@ -34,13 +34,13 @@ const Tr = styled.tr`
     box-shadow: ${({ hasAction }) => (
       hasAction ? '0px 2px 8px 0px rgba(0,0,0,.15)' : 'none'
     )};
-    background-color: ${({ readOnly, hasAction, isTableHeader, locked, theme }) => {
+    ${({ readOnly, hasAction, isTableHeader, locked, theme }) => {
       if (hasAction) {
-        return '#fcfcfc';
+        return '';
       }
       return isTableHeader
-      ? (locked ? '#f6f6f6' : 'transparent')
-      : (readOnly ? '#f6f6f6' : lighten(theme.palette.accent.light, 0.93));
+      ? (locked ? 'background-color: : #f6f6f6' : 'transparent')
+      : (readOnly ? 'background-color: : #f6f6f6' : `background-color: ${lighten(theme.palette.accent.light, 0.93)}`);
     }};
   }
   .sortingGrid svg {

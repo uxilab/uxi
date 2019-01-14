@@ -5,6 +5,14 @@ import { TextEllipsis } from '../../Text';
 import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
 
 
+const WrapperComponentFn = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 const height = '38px';
 const iconSize = '18';
 
@@ -14,6 +22,10 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
   // tabIndex: ({ isOpen }) => (isOpen ? '0' : '-1'),
   tabIndex: 0,
 })`
+  a, a *, a:hover, a:hover * {
+    text-decoration: none;
+    color: ${({ theme: { palette } }) => palette.darkGrey};
+  }
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -25,7 +37,7 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
   min-height: ${height};
   max-height: ${height};
   box-sizing: border-box;
-  padding: 4px 8px;
+  ${({ Link }) => (Link ? '' : 'padding: 4px 8px')};
   outline: none;
   &:focus, &:hover {
     outline: none;
@@ -46,14 +58,23 @@ const ButtonMenuItem = ({
   extra,
   onClick,
   shouldClose,
+  Link,
+  linkProps,
 }) => {
   let icon = null;
   if (iconProp) {
     icon = React.cloneElement(iconProp, { size: iconSize, style: { marginRight: '8px' } });
   }
 
+  let LinkWrapperOrDiv = WrapperComponentFn;
+
+  if (Link && linkProps) {
+    LinkWrapperOrDiv = Link;
+  }
+
   return (
     <ButtonMenuItemItemFlex
+      Link={Link}
       // isOpen={isOpen}
       style={style}
       onClick={(e, ...a) => {
@@ -79,9 +100,36 @@ const ButtonMenuItem = ({
         }
       }}
     >
-      {icon}
-      <TextEllipsis>{children}</TextEllipsis>
-      <div style={{ marginLeft: 'auto' }}>{extra}</div>
+      <LinkWrapperOrDiv
+        {...linkProps}
+        style={{
+          width: '100%',
+          height: '100%',
+          ...(Link ? { padding: '4px 8px' } : {}),
+          ...(linkProps.style || {}),
+        }}
+      >
+        {icon}
+        <TextEllipsis
+          style={{
+            // width: '100%',
+            height: '100%',
+            // display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            {children}
+          </div>
+        </TextEllipsis>
+        <div style={{ marginLeft: 'auto' }}>{extra}</div>
+      </LinkWrapperOrDiv>
     </ButtonMenuItemItemFlex>
   );
 };
@@ -93,6 +141,8 @@ ButtonMenuItem.defaultProps = {
   extra: null,
   onClick: () => {},
   shouldClose: () => {},
+  Link: undefined,
+  linkProps: {},
 };
 
 ButtonMenuItem.propTypes = {
@@ -102,6 +152,8 @@ ButtonMenuItem.propTypes = {
   extra: PropTypes.any,
   onClick: PropTypes.func,
   shouldClose: PropTypes.func,
+  Link: PropTypes.func,
+  linkProps: PropTypes.object,
 };
 
 
