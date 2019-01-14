@@ -58,26 +58,18 @@ class ThemeProviderDynamic extends Component {
 
   primaryChange = debounce((color) => {
     this.setState({ primary: color });
-    // console.log('change primary');
-    // this.setState({ primary: color });
   }, 15, { trailing: true, leading: true })
 
   secondaryChange = debounce((color) => {
     this.setState({ secondary: color });
-    // console.log('change secondary');
-    // this.setState({ secondary: color });
   }, 15, { trailing: true, leading: true })
 
   radiusChange = debounce((radius) => {
     this.setState({ radius: `${radius}px` });
-    // console.log('change secondary');
-    // this.setState({ secondary: color });
   }, 15, { trailing: true, leading: true })
 
   defaultTransitionChange = (transition) => {
     this.setState({ transition });
-    // console.log('change secondary');
-    // this.setState({ secondary: color });
   }
 
   render() {

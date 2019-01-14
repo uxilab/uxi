@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3333;
 const app = express()
 
 const assetTarget = path.join(process.cwd(), 'public');
-console.log('assetTarget', assetTarget)
 app.use('/public', express.static(assetTarget))
 
 // let's encrypt verif file

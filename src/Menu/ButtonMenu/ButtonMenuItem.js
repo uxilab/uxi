@@ -65,7 +65,6 @@ const ButtonMenuItem = ({
         }
       }}
       onKeyDown={(e, ...a) => {
-        console.log('onKeyDown item', e.key);
         if (e.key === 'Enter' || e.key === ' ') {
           if (onClick) {
             onClick(e, ...a);

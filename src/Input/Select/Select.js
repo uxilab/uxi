@@ -318,7 +318,6 @@ class Select extends Component {
   }
 
   preventScrollingOnSpace(e) {
-    console.log('e.key', e.key);
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -443,7 +442,6 @@ class Select extends Component {
   // }
 
   clickHandler(e) {
-    console.log('clickHandler in Select', e);
     if (!e) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -507,7 +505,6 @@ class Select extends Component {
   }
 
   handleDropDownChange(isOpen) {
-    console.log('handleDropDownChange');
     if (!this.isOpenControlled) {
       if (this.state.isOpen !== isOpen) {
         const cb = isOpen
@@ -532,7 +529,6 @@ class Select extends Component {
   focusTrigger() {
     // return;
     let focusTarget = this.triggerWrapperRef;
-    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
 
     if (focusTarget) {
       if (
@@ -548,7 +544,6 @@ class Select extends Component {
       ) {
         focusTarget = this.triggerWrapperRef.firstChild;
       }
-      console.log('trigger focusTarget=', this.triggerWrapperRef.firstChild);
 
       if (focusTarget.focus) {
         setTimeout(() => {

@@ -27,8 +27,6 @@ const UXISCThemeProvider = (props) => {
   }
   const actualCSSString = makeGlobalCSSInjector(theTheme);
 
-  console.log('theTheme', theTheme);
-
   return (
     <SCThemeProvider theme={theTheme || theme} >
       <GlobalStyles data-global-styles>

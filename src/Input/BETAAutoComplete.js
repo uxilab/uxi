@@ -74,17 +74,12 @@ class BETAAutoComplete extends Component {
   }
 
   focusFirstItem() {
-    console.log('this.ref', this.ref);
     if (
       this.ref
       && this.ref.firstElementChild // ul
       && this.ref.firstElementChild.firstElementChild // first li
       && this.ref.firstElementChild.firstElementChild.focus
     ) {
-      console.log(
-        'this.ref.firstElementChild.firstElementChild',
-        this.ref.firstElementChild.firstElementChild
-      );
       setTimeout(() => this.ref.firstElementChild.firstElementChild.focus(), 8);
       // the ListWithNavigation should take care of the rest
     }
@@ -94,7 +89,6 @@ class BETAAutoComplete extends Component {
     if (this.triggerRef && this.triggerRef.querySelector) {
       const input = this.triggerRef.querySelector('input');
       if (input && input.focus) {
-        console.log('input', input);
         setTimeout(() => input.focus(), 8);
       }
     }
@@ -109,19 +103,16 @@ class BETAAutoComplete extends Component {
   }
 
   toggleVisibility() {
-    console.log('this.toggleVisibility', 'BETAAutoComplete');
     if (!this.isOpenControlled) {
       this.setState({ isOpen: this.state.isOpen });
     }
   }
   close() {
-    console.log('this.close', 'BETAAutoComplete');
     if (!this.isOpenControlled) {
       this.setState({ isOpen: false });
     }
   }
   open() {
-    console.log('this.open', 'BETAAutoComplete');
     if (!this.isOpenControlled) {
       this.setState({ isOpen: true });
     }
@@ -147,15 +138,7 @@ class BETAAutoComplete extends Component {
     const InputComponent = Input || InputUI;
     return (
       <div
-        // onKeyPress={(e) => { console.log('BETAAutoComplete onKeyPress'); }}
         onKeyDown={(e) => {
-          console.log('BETAAutoComplete onKeyDown');
-          // if (e.key === 'Enter' || e.key === 'Escape') {
-          //   this.closeVisibilty();
-          //   return;
-          // }
-          console.log(e);
-
           if (e.key === 'Escape') {
             this.close();
           } else if (e.key === 'ArrowDown') {

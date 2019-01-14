@@ -37,9 +37,6 @@ const ComponentInfo = ({ code }) => {
           {
             Object.keys(componentInfo.props).map((key) => {
               const prop = componentInfo.props[key];
-              console.log('key', key);
-              console.log('componentInfo', componentInfo);
-              console.log('prop', prop);
               const name = key;
 
               return (

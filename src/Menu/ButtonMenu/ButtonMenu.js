@@ -29,7 +29,6 @@ class ButtonMenu extends Component {
   focusButton() {
     // return;
     let focusTarget = this.triggerWrapperRef;
-    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
 
     if (focusTarget) {
       if (
@@ -45,7 +44,6 @@ class ButtonMenu extends Component {
       ) {
         focusTarget = this.triggerWrapperRef.firstChild;
       }
-      console.log('trigger focusTarget=', this.triggerWrapperRef.firstChild);
 
       if (focusTarget.focus) {
         setTimeout(() => {
@@ -62,19 +60,8 @@ class ButtonMenu extends Component {
       && this.childrenWrapperRef.firstChild.firstChild
       && this.childrenWrapperRef.firstChild.firstChild.focus
     ) {
-      console.log(
-        'this.childrenWrapperRef.firstChild.firstChild',
-        this.childrenWrapperRef.firstChild.firstChild
-      );
-      console.log('document.activeElement 0', document.activeElement);
       setTimeout(() => {
-        console.log('document.activeElement before', document.activeElement);
-        console.log(
-          'this.childrenWrapperRef.firstChild.firstChild',
-          this.childrenWrapperRef.firstChild.firstChild
-        );
         this.childrenWrapperRef.firstChild.firstChild.focus();
-        console.log('document.activeElement after', document.activeElement);
       }, 32);
     }
   }
@@ -134,7 +121,6 @@ class ButtonMenu extends Component {
     return (
       <div
         onKeyDown={(e) => {
-          console.log('e', e.key);
           if (e.key === 'Escape') {
             this.close();
           } else if (e.key === 'ArrowDown') {
@@ -224,31 +210,6 @@ class ButtonMenu extends Component {
               })
             }
 
-            {/* React.Children.map(children, child => (
-              <div
-                onKeyDown={(e, ...a) => {
-                  console.log('onKeyDown item', e.key);
-                  if (e.key === 'Enter') {
-                    // if (child.props.onClick) {
-                    //   child.props.onClick(e, ...a);
-                    // }
-                    this.close();
-                  }
-                }}
-                onClick={(...a) => {
-                  console.log('onClick in MenuDropDown\'s children map');
-                  // if (child.props.onClick) {
-                  //   child.props.onClick(...a);
-                  // }
-                  this.close();
-                }}
-                // tabIndex={isOpen ? 0 : -1}
-              >
-                {
-                  React.cloneElement(child)
-                }
-              </div>
-            )) */}
           </ul>
         </DropDown>
       </div>

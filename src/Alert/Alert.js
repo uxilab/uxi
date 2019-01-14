@@ -91,8 +91,6 @@ class Alert extends Component {
     } = this.props;
     const { isOpen } = this.state;
 
-    // console.log('onClose in Alert', onClose);
-
     let wrapperStyles = { ...AlertStyle.alert };
 
     if (isBanner) {

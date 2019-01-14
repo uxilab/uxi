@@ -16,8 +16,6 @@ import * as AllIcons from 'uxi/Icons';
 // import * as RAWAllIcons from '!raw-loader!uxi/Icons';
 import { parse } from 'react-docgen';
 
-// console.log('AllIcons', AllIcons);
-// console.log('RAWAllIcons', RAWAllIcons);
 
 const parseMD = (rawMD) => {
   let componentInfo = null;
@@ -86,7 +84,6 @@ export const iconsData = Object.keys(AllIcons).map(key => ({
   },
   label: key,
   path: `/Icons#${key}`,
-  // ...(console.log(AllIcons[key]) : {}),
   Icon: AllIcons[key],
 }));
 

@@ -57,7 +57,6 @@ const mainStyles = {
 
 const Appshell = (props) => {
   const { children } = props;
-  console.log('props', props);
 
   let appLayoutContentStyle = {};
   let appLayoutStyle = {};

@@ -85,13 +85,9 @@ class FileInput extends PureComponent {
     return (
       <FileInputWrapperUI
         focussed={focussed}
-        // onFocus={() => console.log('FileInputWrapperUI focused')}
-        // onBlur={() => console.log('FileInputWrapperUI blurred')}
       >
         <FileInputLabelUI
           tabIndex="-1"
-          // onFocus={() => console.log('FileInputLabelUI focused')}
-          // onBlur={() => console.log('FileInputLabelUI blurred')}
         >
           {/*
           the input is teh element getting the focus in this case,
@@ -104,11 +100,9 @@ class FileInput extends PureComponent {
             {finalLabel }
             <FileInputUI
               onFocus={(...a) => {
-                console.log('FileInpuUI focused');
                 this.setFocus(...a);
               }}
               onBlur={(...a) => {
-                console.log('FileInpuUI blurred');
                 this.setFocus(...a);
               }}
               {...props}

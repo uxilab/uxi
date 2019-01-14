@@ -360,7 +360,6 @@ class SelectWithFiltering extends Select {
   }
 
   preventScrollingOnSpace(e) {
-    console.log('e.key', e.key);
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -500,7 +499,6 @@ class SelectWithFiltering extends Select {
   }
 
   clickHandler(e) {
-    console.log('clickHandler in Select', e);
     if (!e) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -564,7 +562,6 @@ class SelectWithFiltering extends Select {
   }
 
   handleDropDownChange(isOpen) {
-    console.log('handleDropDownChange');
     if (!this.isOpenControlled) {
       if (this.state.isOpen !== isOpen) {
         const cb = isOpen
@@ -589,7 +586,6 @@ class SelectWithFiltering extends Select {
   focusTrigger() {
     // return;
     let focusTarget = this.triggerWrapperRef;
-    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
 
     if (focusTarget) {
       if (
@@ -605,7 +601,6 @@ class SelectWithFiltering extends Select {
       ) {
         focusTarget = this.triggerWrapperRef.firstChild;
       }
-      console.log('trigger focusTarget=', this.triggerWrapperRef.firstChild);
 
       if (focusTarget.focus) {
         setTimeout(() => {
@@ -649,7 +644,6 @@ class SelectWithFiltering extends Select {
     const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
 
     const optionsItems = this.getOptionsItem();
-    console.log('optionsItems', optionsItems);
 
     const trigerer = this.getTrigerrerLabel();
 
