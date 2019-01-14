@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { TextEllipsis } from '../../Text';
@@ -48,91 +48,93 @@ const ButtonMenuItemItemFlex = styled.li.attrs({
   }
 `;
 
-/**
- * note: can use AvatarWithNameAndExtra if need be to show a 'submenu icon' on the right
- */
-const ButtonMenuItem = ({
-  style,
-  icon: iconProp,
-  children,
-  extra,
-  onClick,
-  shouldClose,
-  Link,
-  linkProps,
-}) => {
-  let icon = null;
-  if (iconProp) {
-    icon = React.cloneElement(iconProp, { size: iconSize, style: { marginRight: '8px' } });
-  }
 
-  let LinkWrapperOrDiv = WrapperComponentFn;
+class ButtonMenuItem extends Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    const {
+      style,
+      icon: iconProp,
+      children,
+      extra,
+      onClick,
+      shouldClose,
+      Link,
+      linkProps,
+    } = this.props;
 
-  if (Link && linkProps) {
-    LinkWrapperOrDiv = Link;
-  }
+    let icon = null;
+    if (iconProp) {
+      icon = React.cloneElement(iconProp, { size: iconSize, style: { marginRight: '8px' } });
+    }
 
-  return (
-    <ButtonMenuItemItemFlex
-      Link={Link}
-      // isOpen={isOpen}
-      style={style}
-      onClick={(e, ...a) => {
-        if (onClick) {
-          onClick(e, ...a);
-        }
-        if (shouldClose) {
-          shouldClose(e, ...a);
-        }
-      }}
-      onKeyDown={(e, ...a) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+    let LinkWrapperOrDiv = WrapperComponentFn;
+
+    if (Link && linkProps) {
+      LinkWrapperOrDiv = Link;
+    }
+
+    return (
+      <ButtonMenuItemItemFlex
+        Link={Link}
+        // isOpen={isOpen}
+        style={style}
+        onClick={(e, ...a) => {
+          if (shouldClose) {
+            shouldClose(e, ...a);
+          }
           if (onClick) {
             onClick(e, ...a);
           }
-          if (shouldClose) {
-            shouldClose(e, ...a);
+        }}
+        onKeyDown={(e, ...a) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            if (shouldClose) {
+              shouldClose(e, ...a);
+            }
+            if (onClick) {
+              onClick(e, ...a);
+            }
+          } else if (e.key === 'Escape') {
+            if (shouldClose) {
+              shouldClose(e, ...a);
+            }
           }
-        } else if (e.key === 'Escape') {
-          if (shouldClose) {
-            shouldClose(e, ...a);
-          }
-        }
-      }}
-    >
-      <LinkWrapperOrDiv
-        {...linkProps}
-        style={{
-          width: '100%',
-          height: '100%',
-          ...(Link ? { padding: '4px 8px' } : {}),
-          ...(linkProps.style || {}),
         }}
       >
-        {icon}
-        <TextEllipsis
+        <LinkWrapperOrDiv
+          {...linkProps}
           style={{
-            // width: '100%',
+            width: '100%',
             height: '100%',
-            // display: 'flex',
-            alignItems: 'center',
+            ...(Link ? { padding: '4px 8px' } : {}),
+            ...(linkProps.style || {}),
           }}
         >
-          <div
+          {icon}
+          <TextEllipsis
             style={{
+              // width: '100%',
               height: '100%',
-              display: 'flex',
+              // display: 'flex',
               alignItems: 'center',
             }}
           >
-            {children}
-          </div>
-        </TextEllipsis>
-        <div style={{ marginLeft: 'auto' }}>{extra}</div>
-      </LinkWrapperOrDiv>
-    </ButtonMenuItemItemFlex>
-  );
-};
+            <div
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              {children}
+            </div>
+          </TextEllipsis>
+          <div style={{ marginLeft: 'auto' }}>{extra}</div>
+        </LinkWrapperOrDiv>
+      </ButtonMenuItemItemFlex>
+    );
+  }
+}
 
 ButtonMenuItem.defaultProps = {
   style: {},

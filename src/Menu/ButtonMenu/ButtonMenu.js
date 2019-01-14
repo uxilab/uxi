@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disable-line
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
+import ButtonMenuItem from './ButtonMenuItem';
 
 const focusTimeout = 128;
 
@@ -215,7 +216,7 @@ class ButtonMenu extends Component {
           >
             {
               React.Children.map(children, (child) => {
-                if (child.type && child.type.displayName && child.type.displayName === 'ButtonMenuItem') {
+                if (child.type && child.type === ButtonMenuItem) {
                   return React.cloneElement(child, {
                     shouldClose: this.close,
                   });
