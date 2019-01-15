@@ -593,6 +593,7 @@ class Select extends Component {
     return (
       <div style={style}>
         <DropDown2
+          isFullWidth={isFullWidth}
           isOpen={isOpen}
           onClickOutside={this.handleDropDownChange}
           trigger={trigerer}

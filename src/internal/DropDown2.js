@@ -9,6 +9,18 @@ const BoxWrapperUI = styled.div.attrs({})`
   position: absolute;
   max-height: 0;
   top: 100%;
+
+  /**
+    * fix flex scroll bar issue on IE */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* &, & > div,  */& > div > div {
+      /* width: 100%; */
+      ${({ childrenWith }) => (childrenWith
+        ? `width: ${childrenWith};`
+        : 'width: calc(100% - 24px);' /* 24 px => IE crollBar width */
+      )};
+    }
+  };
   ${({ anchor }) => (anchor === 'right' ? 'right: 0' : '')};
   /* width: 100%; */
   ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
@@ -19,7 +31,12 @@ const BoxWrapperUI = styled.div.attrs({})`
     : transition.durationOut
   )};
   max-height: ${({ isOpen, maxHeight }) => (isOpen ? `${maxHeight}px` : '0px')};
-  overflow: ${({ isOpen }) => (isOpen ? 'auto' : 'hidden')};
+
+  &, & > div {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
 
   &:focus, &:focus-within {
     ${({ /* isOpen,  */theme }) => (/* isOpen */ true
@@ -151,16 +168,15 @@ class DropDown2 extends Component {
           {TriggerWithHandler}
         </span>
         <BoxWrapperUI
+          data-Box-Wrapper-UI
+          onScroll={(e) => {
+            e.stopPropagation();
+          }}
           anchor={anchor}
           isFullWidth={isFullWidth}
           isOpen={isOpen}
           maxHeight={height}
-          style={{
-            ...((childrenProps.style && childrenProps.style.width)
-              ? { width: childrenProps.style.width }
-              : {}
-            ),
-          }}
+          childrenWith={(childrenProps.style && childrenProps.style.width) || null}
         >
           <div ref={this.storeRef} data-drop-down-content>
             {React.Children.only(children)}

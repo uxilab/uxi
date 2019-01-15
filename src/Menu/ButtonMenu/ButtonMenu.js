@@ -208,6 +208,7 @@ class ButtonMenu extends Component {
               background: 'white',
               maxHeight: menuMaxHeight,
               overflowY: 'auto',
+              overflowX: 'hidden',
               ...(menuWidth ? { width: menuWidth } : {}),
               ...(menuMinWidth ? { minWidth: menuMinWidth } : {}),
               ...(menuMaxWidth ? { maxWidth: menuMaxWidth } : {}),

@@ -171,7 +171,7 @@ class BETAAutoComplete extends Component {
         <DropDown
           onClickOutside={this.close}
           isOpen={isOpen}
-          isFullWidth
+          isFullWidth={isFullWidth}
           inertMain={inertMain}
           onChildrenWrapperRef={this.storeRef}
           onTriggerWrapperRef={this.storeTriggerRef}
@@ -195,7 +195,7 @@ class BETAAutoComplete extends Component {
             />
           }
         >
-          <ul style={{ background: 'white' }}>
+          <ul style={{ background: 'white', overflowY: 'scroll' }}>
             {
               React.Children
                 .map(children, c => c && (
