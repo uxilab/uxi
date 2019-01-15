@@ -67,7 +67,7 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
   constructor(props) {
     super(props);
 
-    const hasIdleCallback = !!(window.requestIdleCallback);
+    const hasIdleCallback = (window && window.requestIdleCallback);
 
     this.state = {
       loaded: !(hasIdleCallback),
@@ -86,7 +86,7 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
         const img = new Image();
         img.addEventListener('load', this.onLoadHandler);
         img.src = src;
-      });
+      }, { timeout: 500 });
     }
   }
 
