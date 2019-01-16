@@ -11,6 +11,11 @@ const WidgetWrapper = styled.div`
 
 const WidgetContainer = styled.div`
   min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  & > *:first-child {
+    flex-grow: 999;
+  }
 
   height: ${({ fixedHeight }) => (fixedHeight ? `${fixedHeight}px` : 'none')};
   ${({ fixedHeight }) => (fixedHeight ? 'overflow-y: auto' : '')};

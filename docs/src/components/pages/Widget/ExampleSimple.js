@@ -12,6 +12,16 @@ const ExampleSimple = () => (
     <h3>Widget</h3>
     <div style={{ marginBottom: '15px' }}>
       <Widget title="All Cars">
+        <div>
+          Main Content
+        </div>
+        <div>
+          some footer-like thing
+        </div>
+      </Widget>
+    </div>
+    <div style={{ marginBottom: '15px' }}>
+      <Widget title="All Cars">
         Some Content
       </Widget>
     </div>
