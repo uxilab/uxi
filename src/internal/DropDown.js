@@ -53,6 +53,7 @@ const PopOverArrow = styled.div`
     border-color: rgb(206, 206, 206);
     border-width: 1px;
     /* clip-path: polygon(0 0, 100% 0, 100% 100%); */
+    ${({ theme }) => `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`};
   }
 
 `;
