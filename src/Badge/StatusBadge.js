@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
-import { convertHexToRGBA } from '../Theme/colorManipulator';
+import styled/* , { keyframes } */ from 'styled-components';
+// import { convertHexToRGBA } from '../Theme/colorManipulator';
 
 const defaultBackgroundColor = '#ccc';
 
