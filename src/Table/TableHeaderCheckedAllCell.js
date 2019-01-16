@@ -17,6 +17,8 @@ const TableHeaderCheckedAllCell = ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        width: '34px',
+        margin: '0 auto',
       }}
     />
   );
