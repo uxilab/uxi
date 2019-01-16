@@ -109,7 +109,7 @@ SvgIcon.defaultProps = {
   onMouseEnter: () => { },
   onMouseLeave: () => { },
   viewBox: '0 0 24 24',
-  color: 'currentColor',
+  color: '#6d6d71',
   hoverColor: '#6d6d71',
   style: {},
   size: 24,
