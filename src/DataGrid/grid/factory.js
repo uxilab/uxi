@@ -18,17 +18,33 @@ const ActionMenuWrapper = styled.div`
   bottom: 0;
 `;
 
-export const createDataGridCell = (property, actions, entity, index) => {
+export const createDataGridCell = (property, actions, viewModel, index) => {
+  // const propertyName = typeof property === 'string'
+  //   ? property
+  //   : property.displayName || null;
+
+  const key = viewModel.id !== undefined
+    ? `${viewModel.id}-${index}`
+    : index;
+
   if (!actions) {
     return (
-      <TableRowColumn hasAction={!!actions} key={index}>
+      <TableRowColumn
+        hasAction={!!actions}
+        key={key}
+        data-key-fkrct={key}
+      >
         {property}
       </TableRowColumn>
     );
   }
 
   return (
-    <TableRowColumn hasAction={!!actions} key="" >
+    <TableRowColumn
+      hasAction={!!actions}
+      key={key}
+      data-key-fkrct={key}
+    >
       <div>
         {property}
         {
@@ -36,7 +52,7 @@ export const createDataGridCell = (property, actions, entity, index) => {
           (
             <ActionMenuWrapper className="actionMenuInTableRowColumn">
               <ActiondMenu
-                value={entity}
+                value={viewModel.original}
                 menuDescriptors={actions}
                 mainMenuButtonItemStyle={{ height: '50px' }}
               />
@@ -48,10 +64,11 @@ export const createDataGridCell = (property, actions, entity, index) => {
   );
 };
 
+// that's arow not acolumn, rioght ?
 export const createDataGridColumn = (viewModel, actions, index) => (<TableRow
   hasAction={!!actions}
-  key={viewModel.key || index}
-  data-key={viewModel.key}
+  key={viewModel.id || viewModel.key || index}
+  data-key={viewModel.id || viewModel.key || index}
   value={viewModel.key}
 >
   {
@@ -60,7 +77,7 @@ export const createDataGridColumn = (viewModel, actions, index) => (<TableRow
         createDataGridCell(
           property,
           (idx === 0) ? actions : null,
-          viewModel.original,
+          viewModel,
           idx,
         )
       ),

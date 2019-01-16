@@ -65,6 +65,7 @@ export const entityToViewModel = (
   propertyKey,
   getTypeDefinition,
 ) => ({
+  id: entity.id || entity.Id || null,
   key: getEntityKey(entity, propertyKey),
   original: entity,
   properties: createPropertiesWithValue(propertiesDefinitions, entity, getTypeDefinition),
