@@ -14,6 +14,7 @@ const isValidType = type => (
   type === 'default'
 );
 
+/*
 const getPulse = theme =>
   keyframes`
    0% {
@@ -54,6 +55,7 @@ const getGlowAnimation = (type, theme) => {
     `;
   return t;
 };
+*/
 
 const StatusBadgeInlineWrapperUI = styled.div`
   display: inline-block;
@@ -77,8 +79,6 @@ const StatusBadgeUI = styled.div`
     ? defaultBackgroundColor
     : theme.palette.semantic[type] || theme.palette.semantic.info // fallback
   )};
-  animation: ${({ type, theme }) =>
-    (type === 'error' ? getPulse(theme) : getGlowAnimation(type, theme))} 2s linear infinite;
 
 `;
 
