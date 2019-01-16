@@ -6,6 +6,7 @@ import { Loader } from '../Motion';
 const WidgetWrapper = styled.div`
   border: 1px solid #ececec;
   box-sizing: border-box;
+  background: white;
 `;
 
 const WidgetContainer = styled.div`
