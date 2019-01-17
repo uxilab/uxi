@@ -38,13 +38,13 @@ export const makeGlobalCSSInjector = (theme) => {
       background: ${palette.white};
       font-family: 'Open Sans', sans-serif;
       font-weight: 400;
-      color: ${palette.darkGrey};
     }
     body {
       min-height: 100%;
       margin: 0;
       padding: 0;
       font-size: 16px;
+      color: ${palette.darkGrey};
     }
     ::selection {
       color: white;

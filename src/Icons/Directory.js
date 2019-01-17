@@ -26,7 +26,7 @@ Directory.propTypes = {
 };
 
 Directory.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Directory;

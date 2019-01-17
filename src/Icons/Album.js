@@ -29,7 +29,7 @@ Album.propTypes = {
 };
 
 Album.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Album;

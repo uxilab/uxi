@@ -88,6 +88,16 @@ class DropDown2 extends Component {
     this.update();
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      React.Children.count(this.props.children) !== React.Children.count(prevProps.childrenProps)
+    ) {
+      this.update();
+    } else if (this.props.children !== prevProps.childrenProps) {
+      // this.update();
+    }
+  }
+
   componentWillUnmount() {
     this.scrollingContextRef = null;
 
@@ -104,11 +114,14 @@ class DropDown2 extends Component {
 
   update() {
     if (this.ref) {
-      this.setState({
-        height: this.ref.getBoundingClientRect().height,
-      });
+      const newHeight = this.ref.getBoundingClientRect().height;
+      if (newHeight !== this.state.height) {
+        this.setState({
+          height: newHeight,
+        });
+      }
 
-      this.rafRef = requestAnimationFrame(this.update);
+      // this.rafRef = requestAnimationFrame(this.update);
     }
   }
 

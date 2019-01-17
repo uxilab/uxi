@@ -27,7 +27,7 @@ Person.propTypes = {
 };
 
 Person.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Person;

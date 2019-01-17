@@ -36,8 +36,9 @@ const makeReducer = (taskRunner) => (
 
 const initialValue = Promise.resolve([])
 
-const mapPromiseSequentially = (tasks, taskRunner) => {
-  tasks.reduce(makeReducer(taskRunner), initialValue)
+const mapPromiseSequentially = async (tasks, taskRunner) => {
+  console.log('mapPromiseSequentially', tasks)
+  return tasks.reduce(makeReducer(taskRunner), initialValue)
 }
 
 
@@ -154,12 +155,20 @@ const prettifyFile = x => new Promise((resolve, reject) => {
 });
 
 const eslintAutoFix = (x) => {
-  exec(`eslint --fix ./${x}.js `, (err, stdout, stderr) => {
+  exec(`npx eslint --fix ./${x}.js `, (err, stdout, stderr) => {
     if (err) { console.log(err); return false; }
     console.log(`all good for ${x}.js`);
   });
   return x;
 };
+
+const eslintAutoFixPromise = (x) => new Promise((resolve, reject) => {
+  exec(`npx eslint --fix ./${x}.js `, (err, stdout, stderr) => {
+    if (err) { console.log(err); return false; }
+    console.log(`all good for ${x}.js`);
+    resolve(x)
+  });
+});
 
 const onlySVGFiles = x => x.match(/.svg$/) !== -1;
 
@@ -236,9 +245,16 @@ exec("echo '' > ./index.js", (err, std, stdout) => {
       // .map(prettifyFile)
   );
 
-  mapPromiseSequentially(originalFiles, prettifyFile)
+  await mapPromiseSequentially(originalFiles, prettifyFile)
+
+  await mapPromiseSequentially(originalFiles, eslintAutoFixPromise)
 
   console.log('§§ originalFiles', originalFiles);
+
+  exec('npm run lint', (err, std, stdout) => {
+    if (err) { console.log(err); return false; }
+    console.log('lint autofix has ran succesfully')
+    })
 
   originalFiles
     .map(addParenthesisBack)
@@ -256,9 +272,11 @@ export const getAppropriateIcon = (identifier) => {
 
 export default getAppropriateIcon;
 `;
+
   exec(`echo "${gASI}" > ./getAppropriateIcon.js`, (err, std, stdout) => {
     if (err) { console.log(err); return false; }
     console.log('index deleted');
+
   });
 
 

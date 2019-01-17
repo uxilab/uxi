@@ -2,8 +2,7 @@
 
 exports[`Icon : <Datacleaning /> match snapshot 1`] = `
 <SvgIcon
-  color="#6d6d71"
-  hoverColor="#6d6d71"
+  color="currentColor"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   size={24}

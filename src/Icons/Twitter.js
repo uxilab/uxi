@@ -26,7 +26,7 @@ Twitter.propTypes = {
 };
 
 Twitter.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Twitter;

@@ -26,7 +26,7 @@ Pencil.propTypes = {
 };
 
 Pencil.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Pencil;

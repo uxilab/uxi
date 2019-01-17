@@ -27,7 +27,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Checkbox;

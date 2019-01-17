@@ -31,7 +31,7 @@ Listul.propTypes = {
 };
 
 Listul.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Listul;

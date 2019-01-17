@@ -26,7 +26,7 @@ exports[`<Checkbox /> matches snapshot 1`] = `
       }
     >
       <Checkboxoutline
-        color="#6d6d71"
+        color="currentColor"
         size={22}
       />
       <styled.input

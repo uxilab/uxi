@@ -26,7 +26,7 @@ Search.propTypes = {
 };
 
 Search.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Search;

@@ -28,7 +28,7 @@ Options.propTypes = {
 };
 
 Options.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Options;

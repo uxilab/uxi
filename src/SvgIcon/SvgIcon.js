@@ -38,8 +38,8 @@ class SvgIcon extends Component {
 
     const mergedStyles = {
       display: 'inline-block',
-      color,
-      fill: this.state.hovered ? onColor : offColor,
+      color: this.state.hovered ? onColor : offColor,
+      fill: 'currentColor',
       height: size ? `${parseInt(size, 10)}px` : '24px',
       minHeight: size ? `${parseInt(size, 10)}px` : '24px',
       width: size ? `${parseInt(size, 10)}px` : '24px',
@@ -109,8 +109,9 @@ SvgIcon.defaultProps = {
   onMouseEnter: () => { },
   onMouseLeave: () => { },
   viewBox: '0 0 24 24',
-  color: 'currentColor',
-  hoverColor: '#6d6d71',
+  // color: '#6d6d71',
+  color: undefined,
+  hoverColor: undefined,
   style: {},
   size: 24,
 };

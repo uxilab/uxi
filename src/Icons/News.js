@@ -28,7 +28,7 @@ News.propTypes = {
 };
 
 News.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default News;

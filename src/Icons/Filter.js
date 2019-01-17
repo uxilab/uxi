@@ -26,7 +26,7 @@ Filter.propTypes = {
 };
 
 Filter.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Filter;

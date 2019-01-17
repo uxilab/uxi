@@ -26,7 +26,7 @@ Book.propTypes = {
 };
 
 Book.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Book;

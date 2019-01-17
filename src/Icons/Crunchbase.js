@@ -27,7 +27,7 @@ Crunchbase.propTypes = {
 };
 
 Crunchbase.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Crunchbase;

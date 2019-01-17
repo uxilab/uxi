@@ -38,6 +38,12 @@ const CloseWrapperUI = styled.div`
   & * {
     fill: currentColor;
   }
+  opacity: .7;
+  &:hover {
+    opacity: 1;
+    transform: scale(1.15);
+    transform-origin: center;
+  }
 `;
 
 const PanelHeader = (props) => {

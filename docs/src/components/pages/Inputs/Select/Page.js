@@ -47,7 +47,7 @@ const SelectInputPage = () => (
           component
           title="simple SelectInput Playground"
           description={componentInfoToMD(RAWSelect)}
-         />
+        />
       </li>
       <li>
         <CodeExample
@@ -67,6 +67,16 @@ const SelectInputPage = () => (
           hasPadding
         >
           <ExampleSimple />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleSelectWithFiltering}
+          component
+          title="SelectWithFiltering (WIP)"
+          hasPadding
+        >
+          <ExampleSelectWithFiltering />
         </CodeExample>
       </li>
       <li>

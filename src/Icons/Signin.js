@@ -27,7 +27,7 @@ Signin.propTypes = {
 };
 
 Signin.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Signin;

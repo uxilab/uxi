@@ -28,7 +28,7 @@ Businessinteligence.propTypes = {
 };
 
 Businessinteligence.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Businessinteligence;

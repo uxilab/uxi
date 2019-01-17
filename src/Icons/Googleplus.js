@@ -28,7 +28,7 @@ Googleplus.propTypes = {
 };
 
 Googleplus.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Googleplus;

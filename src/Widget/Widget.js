@@ -6,10 +6,16 @@ import { Loader } from '../Motion';
 const WidgetWrapper = styled.div`
   border: 1px solid #ececec;
   box-sizing: border-box;
+  background: white;
 `;
 
 const WidgetContainer = styled.div`
   min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  & > *:first-child {
+    flex-grow: 999;
+  }
 
   height: ${({ fixedHeight }) => (fixedHeight ? `${fixedHeight}px` : 'none')};
   ${({ fixedHeight }) => (fixedHeight ? 'overflow-y: auto' : '')};

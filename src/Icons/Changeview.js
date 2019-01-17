@@ -26,7 +26,7 @@ Changeview.propTypes = {
 };
 
 Changeview.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Changeview;

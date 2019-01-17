@@ -26,7 +26,7 @@ Website2.propTypes = {
 };
 
 Website2.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Website2;

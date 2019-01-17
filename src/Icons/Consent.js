@@ -29,7 +29,7 @@ Consent.propTypes = {
 };
 
 Consent.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Consent;

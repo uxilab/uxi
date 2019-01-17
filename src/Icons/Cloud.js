@@ -26,7 +26,7 @@ Cloud.propTypes = {
 };
 
 Cloud.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Cloud;

@@ -26,7 +26,7 @@ Diagram.propTypes = {
 };
 
 Diagram.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Diagram;

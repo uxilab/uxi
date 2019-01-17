@@ -27,7 +27,7 @@ Signout.propTypes = {
 };
 
 Signout.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Signout;

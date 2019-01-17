@@ -67,7 +67,15 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
   constructor(props) {
     super(props);
 
-    const hasIdleCallback = (window && window.requestIdleCallback);
+    // const hasIdleCallback = (window !== undefined && window.requestIdleCallback);
+    // work with ssr
+    let hasIdleCallback = false;
+    if (typeof window !== 'undefined') {
+      if (window.requestIdleCallback) {
+        hasIdleCallback = true;
+      }
+    }
+
 
     this.state = {
       loaded: !(hasIdleCallback),

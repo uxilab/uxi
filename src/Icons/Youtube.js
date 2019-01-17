@@ -31,7 +31,7 @@ Youtube.propTypes = {
 };
 
 Youtube.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Youtube;
