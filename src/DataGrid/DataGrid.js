@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
 import {
   Table,
 } from '../Table';
@@ -77,8 +78,17 @@ import { List } from '../List';
 
 class DataGrid extends Component {
   static componentName = 'DataGrid';
+
   static contextTypes = {
     getTypeDefinition: PropTypes.func,
+  };
+
+  static propTypes = {
+    data: PropTypes.array,
+  };
+
+  static defaultProps = {
+    data: [],
   };
 
   constructor(props) {
@@ -87,6 +97,33 @@ class DataGrid extends Component {
       selectedEntities: [],
       allChecked: false,
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const {
+      selectedEntities,
+      allChecked,
+    } = this.state;
+
+    const {
+      data,
+    } = this.props;
+
+    if (nextState.selectedEntities.length !== selectedEntities.length) {
+      console.log('DataGrid shouldComponentUpdate TRUE selectedEntities.length');
+      return true;
+    } else if (nextState.allChecked !== allChecked) {
+      console.log('DataGrid shouldComponentUpdate TRUE allChecked');
+      return true;
+    } else if (nextProps.data.length !== data.length) {
+      console.log('DataGrid shouldComponentUpdate TRUE (data.length');
+      return true;
+    } else if (!isEqual(nextProps.data, data)) {
+      console.log('DataGrid shouldComponentUpdate TRUE (data)');
+      return true;
+    }
+    console.log('DataGrid shouldComponentUpdate FALSE');
+    return false;
   }
 
   onChange(e, indexes, values) {
