@@ -41,8 +41,8 @@ const createCheckbox = (rowProps) => {
 };
 
 const TableRowCheckedCell = (props) => {
-  const { condensed, locked, rowNumber, noBorder } = props;
-  const key = `${rowNumber}-cb`;
+  const { condensed, locked, rowNumber, noBorder, childKey } = props;
+  const key = childKey ? `${childKey}-selectCB` : rowNumber;
   const checkBoxCellStyle = {
     cursor: locked ? 'not-allowed' : 'inherit',
     width: '42px',
@@ -54,6 +54,7 @@ const TableRowCheckedCell = (props) => {
   return (
     <TableRowColumn
       key={key}
+      data-key={`${childKey}-selectCB`}
       columnNumber={0}
       style={checkBoxCellStyle}
       condensed={condensed}

@@ -59,14 +59,14 @@ class TableBody extends Component {
         displayBorder: rowNumber !== numChildren,
         sperateRows,
         activable,
-        key: i,
+        // key: i,
       });
 
 
       const children = [];
 
       if (selectable) {
-        children.push(<TableRowCheckedCell {...props} />);
+        children.push(<TableRowCheckedCell {...props} childKey={child.key} />);
       }
 
       React.Children.forEach(child.props.children, (aChild, j) => {
