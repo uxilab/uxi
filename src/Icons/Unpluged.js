@@ -27,7 +27,7 @@ Unpluged.propTypes = {
 };
 
 Unpluged.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Unpluged;

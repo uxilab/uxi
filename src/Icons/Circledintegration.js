@@ -27,7 +27,7 @@ Circledintegration.propTypes = {
 };
 
 Circledintegration.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Circledintegration;

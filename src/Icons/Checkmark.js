@@ -26,7 +26,7 @@ Checkmark.propTypes = {
 };
 
 Checkmark.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Checkmark;

@@ -26,7 +26,7 @@ Home.propTypes = {
 };
 
 Home.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Home;

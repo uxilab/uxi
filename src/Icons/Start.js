@@ -26,7 +26,7 @@ Start.propTypes = {
 };
 
 Start.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Start;

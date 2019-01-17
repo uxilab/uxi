@@ -28,7 +28,7 @@ Circleduser.propTypes = {
 };
 
 Circleduser.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Circleduser;

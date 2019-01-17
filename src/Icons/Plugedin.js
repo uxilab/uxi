@@ -26,7 +26,7 @@ Plugedin.propTypes = {
 };
 
 Plugedin.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Plugedin;

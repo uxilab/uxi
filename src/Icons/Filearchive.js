@@ -33,7 +33,7 @@ Filearchive.propTypes = {
 };
 
 Filearchive.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Filearchive;

@@ -26,7 +26,7 @@ Sitemap.propTypes = {
 };
 
 Sitemap.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Sitemap;

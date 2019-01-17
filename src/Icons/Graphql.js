@@ -26,7 +26,7 @@ Graphql.propTypes = {
 };
 
 Graphql.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Graphql;

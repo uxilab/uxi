@@ -27,7 +27,7 @@ Governance.propTypes = {
 };
 
 Governance.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Governance;

@@ -32,7 +32,7 @@ Consuming.propTypes = {
 };
 
 Consuming.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Consuming;

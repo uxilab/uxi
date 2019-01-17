@@ -28,7 +28,7 @@ Sales.propTypes = {
 };
 
 Sales.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Sales;

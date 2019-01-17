@@ -27,7 +27,7 @@ Quote.propTypes = {
 };
 
 Quote.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Quote;

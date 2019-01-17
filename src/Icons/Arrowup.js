@@ -26,7 +26,7 @@ Arrowup.propTypes = {
 };
 
 Arrowup.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Arrowup;

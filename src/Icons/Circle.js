@@ -26,7 +26,7 @@ Circle.propTypes = {
 };
 
 Circle.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Circle;

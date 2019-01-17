@@ -29,7 +29,7 @@ Keepintheloop.propTypes = {
 };
 
 Keepintheloop.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Keepintheloop;

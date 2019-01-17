@@ -26,7 +26,7 @@ Department.propTypes = {
 };
 
 Department.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Department;

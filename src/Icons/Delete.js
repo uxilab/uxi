@@ -29,7 +29,7 @@ Delete.propTypes = {
 };
 
 Delete.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Delete;

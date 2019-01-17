@@ -26,7 +26,7 @@ Presentation.propTypes = {
 };
 
 Presentation.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Presentation;

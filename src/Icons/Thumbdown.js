@@ -26,7 +26,7 @@ Thumbdown.propTypes = {
 };
 
 Thumbdown.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Thumbdown;

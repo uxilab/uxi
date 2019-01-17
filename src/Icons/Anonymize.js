@@ -28,7 +28,7 @@ Anonymize.propTypes = {
 };
 
 Anonymize.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Anonymize;

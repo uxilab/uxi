@@ -26,7 +26,7 @@ Position.propTypes = {
 };
 
 Position.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Position;

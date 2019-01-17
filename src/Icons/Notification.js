@@ -26,7 +26,7 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Notification;

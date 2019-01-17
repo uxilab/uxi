@@ -26,7 +26,7 @@ Salesorder.propTypes = {
 };
 
 Salesorder.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Salesorder;

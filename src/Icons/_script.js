@@ -211,7 +211,7 @@ const {{name}} = (props) => (
 };
 
 {{name}}.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default {{name}};`;

@@ -25,7 +25,7 @@ Forbidden.propTypes = {
 };
 
 Forbidden.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Forbidden;

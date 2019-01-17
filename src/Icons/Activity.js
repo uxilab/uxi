@@ -26,7 +26,7 @@ Activity.propTypes = {
 };
 
 Activity.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Activity;

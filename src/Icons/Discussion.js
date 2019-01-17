@@ -27,7 +27,7 @@ Discussion.propTypes = {
 };
 
 Discussion.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Discussion;

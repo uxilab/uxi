@@ -26,7 +26,7 @@ Sandbox.propTypes = {
 };
 
 Sandbox.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Sandbox;

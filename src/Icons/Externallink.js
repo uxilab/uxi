@@ -27,7 +27,7 @@ Externallink.propTypes = {
 };
 
 Externallink.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Externallink;

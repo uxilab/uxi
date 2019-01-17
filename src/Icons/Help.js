@@ -28,7 +28,7 @@ Help.propTypes = {
 };
 
 Help.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Help;

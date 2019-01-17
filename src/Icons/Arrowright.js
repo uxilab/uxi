@@ -26,7 +26,7 @@ Arrowright.propTypes = {
 };
 
 Arrowright.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Arrowright;

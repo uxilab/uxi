@@ -27,7 +27,7 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Profile;

@@ -27,7 +27,7 @@ Nosorting.propTypes = {
 };
 
 Nosorting.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default Nosorting;

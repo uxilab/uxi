@@ -33,7 +33,7 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-  color: '#6d6d71',
+  color: 'currentColor',
 };
 
 export default List;
