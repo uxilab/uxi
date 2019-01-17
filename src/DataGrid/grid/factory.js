@@ -122,7 +122,7 @@ export const createDataGridHeader = (
       {
         withCheckbox &&
         <TableHeaderCheckedAllCell
-          key="TableHeaderCheckedAllCell"
+          dataKey="TableHeaderCheckedAllCell"
           allRowsSelected={allRowsSelected}
           onCheckAll={checkAllHandler}
         />
@@ -145,7 +145,7 @@ export const createDataGridHeader = (
           }
           return (
             <DataGridSorting
-              key={key}
+              dataKey={key}
               style={hideHeader
                 ? { visibility: 'hidden' }
                 : {}

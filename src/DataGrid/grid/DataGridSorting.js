@@ -118,13 +118,13 @@ class DataGridSorting extends Component {
   }
  */
   render() {
-    const { title/* , key, style */, condensed /* noPadding */ } = this.props;
+    const { title/* , key, style */, condensed /* noPadding */, dataKey } = this.props;
     // const { show } = this.state;
     // const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
     // const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
 
     return (
-      <TableHeaderColumn /* style={style} */noPadding>
+      <TableHeaderColumn /* style={style} */noPadding key={dataKey} >
         <FlexExtended
           style={{ }}
         >
