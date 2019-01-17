@@ -45,6 +45,7 @@ const AutoCompletePage = () => (
           component
           title="long values"
           hasPadding
+          description="using `strict` filtering"
         >
           <ExampleLongValues />
         </CodeExample>
