@@ -25,6 +25,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
                     "display": "flex",
                     "height": "34px",
                     "marginRight": "64px",
+                    "overflow": "hidden",
                     "padding": "2px 2px 2px 6px",
                     "width": "100%",
                   }
@@ -205,6 +206,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
                     "display": "flex",
                     "height": "34px",
                     "marginRight": "64px",
+                    "overflow": "hidden",
                     "padding": "2px 2px 2px 6px",
                     "width": "100%",
                   }
