@@ -60,6 +60,7 @@ class TableBody extends Component {
         sperateRows,
         activable,
         // key: i,
+        key: child.key,
       });
 
 
@@ -73,7 +74,7 @@ class TableBody extends Component {
         if (aChild && React.isValidElement(aChild)) {
           const augmentedChildren = React.cloneElement(aChild, {
             ...aChild.props,
-            key: `${i}-${j}`,
+            key: `${child.key || i}-${j}`,
             onClickHandler: aChild.props.onClick,
             condensed,
             noBorder,
