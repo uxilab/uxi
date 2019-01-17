@@ -22,7 +22,7 @@ import {
 const SelectWithFilteringWrapper = styled.div`
   display: inline-block;
   ${({ isFullWidth }) => (isFullWidth ? 'display: block' : '')};
-  transform: translate(0, 0);
+  // transform: translate(0, 0);
 
   *[data-drop-down-trigger] input {
     height: 34px;
