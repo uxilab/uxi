@@ -211,6 +211,7 @@ class Select extends Component {
               width: '100%',
               boxSizing: 'border-box',
               height: '34px',
+              overflow: 'hidden',
             }}
           >
             {
