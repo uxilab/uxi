@@ -50,6 +50,7 @@ const GlobalMenuWrapper = ({
         hasNew={menuDescriptor.hasNew}
         label={menuDescriptor.displayName}
         index={menuDescriptor.key}
+        dataKey={menuDescriptor.key}
         icon={menuDescriptor.icon}
         Link={menuDescriptor.Link}
         to={menuDescriptor.to}

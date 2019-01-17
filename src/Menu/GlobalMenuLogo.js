@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
@@ -148,50 +148,52 @@ const LabelDiv = styled.div`
   }
 `;
 
-const GlobalMenuLogo = ({
-  icon,
-  label,
-  Link,
-  to,
-  href,
-  onClick,
-  primaryColor,
-  logoTooltipLabel,
-  isActive,
-}) => {
-  let containerStyle;
+class GlobalMenuLogo extends Component {
+  shouldComponentUpdate(nextProps) {
+    const {
+      isActive,
+      isSelected,
+    } = this.props;
 
-  let linkProps = {};
-  if (Link !== undefined) {
-    linkProps = { to };
-  } else if (href) {
-    linkProps = { href };
+    if (isActive !== nextProps.isActive) {
+      return true;
+    }
+    if (isSelected !== nextProps.isSelected) {
+      return true;
+    }
+    return false;
   }
 
+  render() {
+    const {
+      icon,
+      label,
+      Link,
+      to,
+      href,
+      onClick,
+      primaryColor,
+      logoTooltipLabel,
+      isActive,
+    } = this.props;
+    let containerStyle;
 
-  // render the tooltip inert above window width of 699px
-  const rules = [{
-    minWidth: 100,
-    mapper: () => ({ trigger: [] }),
-  }];
+    let linkProps = {};
+    if (Link !== undefined) {
+      linkProps = { to };
+    } else if (href) {
+      linkProps = { href };
+    }
 
-  let resContent = (
-    <GlobalMenuLogoDiv
-      {...linkProps}
-      primaryColor={primaryColor}
-      key={`mainMenuItemContainer-${label}`}
-      style={containerStyle}
-      onClick={onClick}
-      isActive={isActive}
-    >
-      {icon}
-      <LabelDiv> {label} </LabelDiv>
-    </GlobalMenuLogoDiv>
-  );
 
-  if (Link) {
-    resContent = (
-      <LinkDecorator
+    // render the tooltip inert above window width of 699px
+    const rules = [{
+      minWidth: 100,
+      mapper: () => ({ trigger: [] }),
+    }];
+
+    let resContent = (
+      <GlobalMenuLogoDiv
         {...linkProps}
         primaryColor={primaryColor}
         key={`mainMenuItemContainer-${label}`}
@@ -199,24 +201,41 @@ const GlobalMenuLogo = ({
         onClick={onClick}
         isActive={isActive}
       >
-        <Link
+        {icon}
+        <LabelDiv> {label} </LabelDiv>
+      </GlobalMenuLogoDiv>
+    );
+
+    if (Link) {
+      resContent = (
+        <LinkDecorator
           {...linkProps}
+          primaryColor={primaryColor}
+          key={`mainMenuItemContainer-${label}`}
+          style={containerStyle}
+          onClick={onClick}
+          isActive={isActive}
         >
-          {icon}
-          <LabelDiv> {label} </LabelDiv>
-        </Link>
-      </LinkDecorator>
+          <Link
+            {...linkProps}
+          >
+            {icon}
+            <LabelDiv> {label} </LabelDiv>
+          </Link>
+        </LinkDecorator>
+      );
+    }
+
+    return (
+      <PropsMapperContainerQueries rules={rules} trigger={['hover']} debounceDelay={120} >
+        <Tooltip placement="right" overlay={<span>{logoTooltipLabel || label || ''}</span>}>
+          {resContent}
+        </Tooltip>
+      </PropsMapperContainerQueries>
     );
   }
+}
 
-  return (
-    <PropsMapperContainerQueries rules={rules} trigger={['hover']} debounceDelay={120} >
-      <Tooltip placement="right" overlay={<span>{logoTooltipLabel || label || ''}</span>}>
-        {resContent}
-      </Tooltip>
-    </PropsMapperContainerQueries>
-  );
-};
 
 GlobalMenuLogo.displayName = 'GlobalMenuLogo';
 

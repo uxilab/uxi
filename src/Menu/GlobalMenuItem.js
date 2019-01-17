@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import styled from 'styled-components';
@@ -203,100 +203,118 @@ const NewInfo = styled.div`
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
-const GlobalMenuItem = (props) => {
-  const {
-    isSelected,
-    icon,
-    index,
-    hasNew,
-    label,
-    onClick,
-    isActive,
-    primaryColor,
-    Link,
-    to,
-    href,
-    breakpoint,
-  } = props;
+class GlobalMenuItem extends Component {
+  shouldComponentUpdate(nextProps) {
+    const {
+      isActive,
+      isSelected,
+    } = this.props;
 
-  let isNewContent;
-
-  if (hasNew) {
-    isNewContent = (
-      <NewInfo isActive={isActive} isSelected={isSelected} >!</NewInfo>
-    );
+    if (isActive !== nextProps.isActive) {
+      return true;
+    }
+    if (isSelected !== nextProps.isSelected) {
+      return true;
+    }
+    return false;
   }
 
-  // render the tooltip inert when menu is in "wide" mode (labels are present, tooltip is useless)
-  const rules = [{
-    minWidth: 100,
-    mapper: (/* { trigger } */) => ({
-      trigger: [],
-      visible: false, // inject inexisting props
-    }),
-  }];
+  render() {
+    const {
+      isSelected,
+      icon,
+      index,
+      dataKey,
+      hasNew,
+      label,
+      onClick,
+      isActive,
+      primaryColor,
+      Link,
+      to,
+      href,
+      breakpoint,
+    } = this.props;
 
-  let linkProps = {};
-  if (Link !== undefined) {
-    linkProps = { to };
-  } else if (href) {
-    linkProps = { href };
-  }
+    let isNewContent;
 
-  let resContent;
+    if (hasNew) {
+      isNewContent = (
+        <NewInfo isActive={isActive} isSelected={isSelected} >!</NewInfo>
+      );
+    }
 
-  resContent = (
-    <GlobalMenuItemDivFinal
-      primaryColor={primaryColor}
-      isSelected={isSelected}
-      isActive={isActive}
-      key={`mainMenuItemContainer-${index}`}
-      {...linkProps}
-      onClick={onClick}
-      breakpoint={breakpoint}
-    >
-      {icon}
-      <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
-      {isNewContent}
-    </GlobalMenuItemDivFinal>
-  );
+    // render the tooltip inert when menu is in "wide" mode (labels are present, tooltip is useless)
+    const rules = [{
+      minWidth: 100,
+      mapper: (/* { trigger } */) => ({
+        trigger: [],
+        visible: false, // inject inexisting props
+      }),
+    }];
 
-  if (Link !== undefined) {
+    let linkProps = {};
+    if (Link !== undefined) {
+      linkProps = { to };
+    } else if (href) {
+      linkProps = { href };
+    }
+
+    let resContent;
+
     resContent = (
-      <LinkDecorator
-        breakpoint={breakpoint}
+      <GlobalMenuItemDivFinal
         primaryColor={primaryColor}
         isSelected={isSelected}
         isActive={isActive}
-        key={`mainMenuItemContainer-${index}`}
+        key={`mainMenuItemContainer-${dataKey}`}
+        {...linkProps}
+        onClick={onClick}
+        breakpoint={breakpoint}
       >
-        <Link
-          {...linkProps}
+        {icon}
+        <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
+        {isNewContent}
+      </GlobalMenuItemDivFinal>
+    );
 
-          onClick={onClick}
+    if (Link !== undefined) {
+      resContent = (
+        <LinkDecorator
+          breakpoint={breakpoint}
+          primaryColor={primaryColor}
+          isSelected={isSelected}
+          isActive={isActive}
+          key={`mainMenuItemContainer-${index}`}
         >
-          {icon}
-          <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
-          {isNewContent}
-        </Link>
-      </LinkDecorator>
+          <Link
+            {...linkProps}
+
+            onClick={onClick}
+          >
+            {icon}
+            <LabelDiv breakpoint={breakpoint}> {label} </LabelDiv>
+            {isNewContent}
+          </Link>
+        </LinkDecorator>
+      );
+    }
+
+    return (
+      <PropsMapperContainerQueries
+        debounceDelay={80}
+        rules={rules}
+        trigger={['hover']}
+      >
+        <Tooltip placement="right" overlay={<span>{label}</span>}>
+          {
+            resContent
+          }
+        </Tooltip>
+      </PropsMapperContainerQueries>
     );
   }
-
-  return (
-    <PropsMapperContainerQueries
-      debounceDelay={80}
-      rules={rules}
-      trigger={['hover']}
-    >
-      <Tooltip placement="right" overlay={<span>{label}</span>}>
-        {
-          resContent
-        }
-      </Tooltip>
-    </PropsMapperContainerQueries>
-  );
-};
+}
 
 GlobalMenuItem.displayName = 'GlobalMenuItem';
 
