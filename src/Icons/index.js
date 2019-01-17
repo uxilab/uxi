@@ -14,6 +14,7 @@ export Consuming from './Consuming';
 export Cookie from './Cookie';
 export Country from './Country';
 export Datacleaning from './Datacleaning';
+export Datacatalog from './Datacatalog';
 export Directory from './Directory';
 export Document from './Document';
 export Download from './Download';
