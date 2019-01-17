@@ -181,7 +181,7 @@ class DropDown2 extends Component {
           {TriggerWithHandler}
         </span>
         <BoxWrapperUI
-          data-Box-Wrapper-UI
+          data-box-wrapper-ui
           onScroll={(e) => {
             e.stopPropagation();
           }}
