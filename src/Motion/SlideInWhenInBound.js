@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 import SlideInWhenInBoundUI from './SlideInWhenInBoundUI';
 
 class SlideInWhenInBound extends Component {

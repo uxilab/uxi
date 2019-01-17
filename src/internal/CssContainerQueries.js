@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 
 /**
  * Mobile first (intended to work only with minWidth)
