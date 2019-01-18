@@ -110,19 +110,14 @@ class DataGrid extends Component {
     } = this.props;
 
     if (nextState.selectedEntities.length !== selectedEntities.length) {
-      console.log('DataGrid shouldComponentUpdate TRUE selectedEntities.length');
       return true;
     } else if (nextState.allChecked !== allChecked) {
-      console.log('DataGrid shouldComponentUpdate TRUE allChecked');
       return true;
     } else if (nextProps.data.length !== data.length) {
-      console.log('DataGrid shouldComponentUpdate TRUE (data.length');
       return true;
     } else if (!isEqual(nextProps.data, data)) {
-      console.log('DataGrid shouldComponentUpdate TRUE (data)');
       return true;
     }
-    console.log('DataGrid shouldComponentUpdate FALSE');
     return false;
   }
 

@@ -76,16 +76,12 @@ class Select extends Component {
 
     console.log('Select shouldComponentUpdate');
     if (React.Children.count(nextProps.children) !== React.Children.count(children)) {
-      console.log('Select shouldComponentUpdate TRUE', 'children length');
       return true;
     } else if (nextProps.isOpen !== isOpen) {
-      console.log('Select shouldComponentUpdate TRUE', 'isOpen prop');
       return true;
     } else if (nextProps.value !== value) {
-      console.log('Select shouldComponentUpdate TRUE', 'value prop');
       return true;
     } else if (!isEqual(this.state, nextState)) {
-      console.log('Select shouldComponentUpdate TRUE', 'state');
       return true;
     }
     return false;
