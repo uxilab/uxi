@@ -6,6 +6,7 @@ const TableHeaderCheckedAllCell = ({
   onCheckAll,
   allRowsSelected,
   rowNumber,
+  dataKey,
 }) => {
   const checkbox = (
     <Checkbox
@@ -22,10 +23,11 @@ const TableHeaderCheckedAllCell = ({
       }}
     />
   );
+  // table header is a single element, rowNumber dosen't make any sense here, does it ?
 
   return (
     <TableHeaderColumn
-      key={`hpcb${rowNumber}`}
+      key={dataKey || `hpcb${rowNumber}`}
       noPadding
       style={{
         width: '42px',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import defaults, { buttonReset } from './defaults';
@@ -188,59 +188,60 @@ const GlobalMenuSubItemDiv = styled.a`
 const GlobalMenuItemButton = GlobalMenuSubItemDiv.withComponent('button');
 
 
-const GlobalMenuSubItem = (props) => {
-  const {
-    // content,
-    onClick,
-    isSelected,
-    isActive,
-    isParentSelected,
-    isFirstSubItem,
-    isLastSubItem,
-    primaryColor,
-    label,
-    Link,
-    to,
-    href,
-    breakpoint,
-  } = props;
+class GlobalMenuSubItem extends Component {
+  shouldComponentUpdate(nextProps) {
+    const {
+      isActive,
+      isSelected,
+      isParentSelected,
+    } = this.props;
 
-  let linkProps = {};
-  if (Link !== undefined) {
-    // const GlobalMenuItemDivFinal = Link; // shadow
-    linkProps = { to };
-  } else if (href) {
-    linkProps = { href };
+    if (isActive !== nextProps.isActive) {
+      return true;
+    }
+    if (isParentSelected !== nextProps.isParentSelected) {
+      return true;
+    }
+    if (isSelected !== nextProps.isSelected) {
+      return true;
+    }
+    return false;
   }
 
-  // const attributes = {
-  //   ...(!isParentSelected
-  //     ? { tabIndex: -1, 'aria-hidden': 'true', role: 'navigation' }
-  //     : { tabIndex: 0, 'aria-hidden': 'false', role: 'navigation' }
-  //   ),
-  // };
+  render() {
+    const {
+    // content,
+      onClick,
+      isSelected,
+      isActive,
+      isParentSelected,
+      isFirstSubItem,
+      isLastSubItem,
+      primaryColor,
+      label,
+      Link,
+      to,
+      href,
+      breakpoint,
+    } = this.props;
 
-  let resContent = (
-    <GlobalMenuItemButton
-      breakpoint={breakpoint}
-      isFirstSubItem={isFirstSubItem}
-      isLastSubItem={isLastSubItem}
-      primaryColor={primaryColor}
-      isSelected={isSelected}
-      isActive={isActive}
-      key={`mainMenuItemContainer-${label}`}
-      // style={containerStyle}
-      {...linkProps}
-      onClick={onClick}
-      isParentSelected={isParentSelected}
-    >
-      {label}
-    </GlobalMenuItemButton>
-  );
+    let linkProps = {};
+    if (Link !== undefined) {
+    // const GlobalMenuItemDivFinal = Link; // shadow
+      linkProps = { to };
+    } else if (href) {
+      linkProps = { href };
+    }
 
-  if (Link) {
-    resContent = (
-      <LinkDecorator
+    // const attributes = {
+    //   ...(!isParentSelected
+    //     ? { tabIndex: -1, 'aria-hidden': 'true', role: 'navigation' }
+    //     : { tabIndex: 0, 'aria-hidden': 'false', role: 'navigation' }
+    //   ),
+    // };
+
+    let resContent = (
+      <GlobalMenuItemButton
         breakpoint={breakpoint}
         isFirstSubItem={isFirstSubItem}
         isLastSubItem={isLastSubItem}
@@ -248,21 +249,42 @@ const GlobalMenuSubItem = (props) => {
         isSelected={isSelected}
         isActive={isActive}
         key={`mainMenuItemContainer-${label}`}
-        isParentSelected={isParentSelected}
         // style={containerStyle}
+        {...linkProps}
+        onClick={onClick}
+        isParentSelected={isParentSelected}
       >
-        <Link
-          {...linkProps}
-          onClick={onClick}
-        >
-          {label}
-        </Link>
-      </LinkDecorator>
+        {label}
+      </GlobalMenuItemButton>
     );
-  }
 
-  return resContent;
-};
+    if (Link) {
+      resContent = (
+        <LinkDecorator
+          breakpoint={breakpoint}
+          isFirstSubItem={isFirstSubItem}
+          isLastSubItem={isLastSubItem}
+          primaryColor={primaryColor}
+          isSelected={isSelected}
+          isActive={isActive}
+          key={`mainMenuItemContainer-${label}`}
+          isParentSelected={isParentSelected}
+        // style={containerStyle}
+        >
+          <Link
+            {...linkProps}
+            onClick={onClick}
+          >
+            {label}
+          </Link>
+        </LinkDecorator>
+      );
+    }
+
+    return resContent;
+  }
+}
+
 
 GlobalMenuSubItem.displayName = 'GlobalMenuSubItem';
 

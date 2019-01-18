@@ -18,17 +18,25 @@ const ActionMenuWrapper = styled.div`
   bottom: 0;
 `;
 
-export const createDataGridCell = (property, actions, entity, index) => {
+export const createDataGridCell = (property, actions, viewModel, keyFromPropertyOrIndex) => {
   if (!actions) {
     return (
-      <TableRowColumn hasAction={!!actions} key={index}>
+      <TableRowColumn
+        hasAction={!!actions}
+        key={keyFromPropertyOrIndex}
+        data-key={keyFromPropertyOrIndex}
+      >
         {property}
       </TableRowColumn>
     );
   }
 
   return (
-    <TableRowColumn hasAction={!!actions} key="" >
+    <TableRowColumn
+      hasAction={!!actions}
+      key={keyFromPropertyOrIndex}
+      data-key={keyFromPropertyOrIndex}
+    >
       <div>
         {property}
         {
@@ -36,7 +44,7 @@ export const createDataGridCell = (property, actions, entity, index) => {
           (
             <ActionMenuWrapper className="actionMenuInTableRowColumn">
               <ActiondMenu
-                value={entity}
+                value={viewModel.original}
                 menuDescriptors={actions}
                 mainMenuButtonItemStyle={{ height: '50px' }}
               />
@@ -48,26 +56,42 @@ export const createDataGridCell = (property, actions, entity, index) => {
   );
 };
 
-export const createDataGridColumn = (viewModel, actions, index) => (<TableRow
-  hasAction={!!actions}
-  key={viewModel.key || index}
-  data-key={viewModel.key}
-  value={viewModel.key}
->
-  {
-    viewModel.properties.map(
-      (property, idx) => (
-        createDataGridCell(
-          property,
-          (idx === 0) ? actions : null,
-          viewModel.original,
-          idx,
+// that's arow not acolumn, rioght ?
+export const createDataGridColumn = (viewModel, actions, index) => {
+  const rowKey = viewModel.id || viewModel.key || index;
+  return (
+    <TableRow
+      hasAction={!!actions}
+      key={rowKey}
+      data-key={viewModel.id || viewModel.key || index}
+      value={viewModel.key}
+    >
+      {
+        viewModel.properties.map(
+          (property, idx) => {
+            const keyFromPropertyOrIndex = (
+              viewModel
+              && viewModel.propertiesDefinitions
+              && viewModel.propertiesDefinitions[idx]
+              && viewModel.propertiesDefinitions[idx].name
+            ) || idx;
+
+            const cellKey = `${rowKey}-${keyFromPropertyOrIndex}`;
+
+            return (
+              createDataGridCell(
+                property,
+                (idx === 0) ? actions : null,
+                viewModel,
+                cellKey,
+              )
+            );
+          }
         )
-      ),
-    )
-  }
-</TableRow>
-);
+      }
+    </TableRow>
+  );
+};
 
 export const createDataGridBody = (viewModels, isHidden, actions) => {
   const result = [];
@@ -79,7 +103,7 @@ export const createDataGridBody = (viewModels, isHidden, actions) => {
   });
 
   return (
-    <TableBody style={isHidden ? { visibility: 'hidden' } : {}}>
+    <TableBody style={isHidden ? { visibility: 'hidden' } : {}} viewModels={viewModels} >
       {result}
     </TableBody>
   );
@@ -98,7 +122,7 @@ export const createDataGridHeader = (
       {
         withCheckbox &&
         <TableHeaderCheckedAllCell
-          key="TableHeaderCheckedAllCell"
+          dataKey="TableHeaderCheckedAllCell"
           allRowsSelected={allRowsSelected}
           onCheckAll={checkAllHandler}
         />
@@ -121,7 +145,7 @@ export const createDataGridHeader = (
           }
           return (
             <DataGridSorting
-              key={key}
+              dataKey={key}
               style={hideHeader
                 ? { visibility: 'hidden' }
                 : {}

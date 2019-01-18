@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import { UnstyledButton } from '../Button';
-// import debounce from 'lodash.debounce';
+// import debounce from 'lodash/debounce';
 
 const ItemsWrapper = styled.div`
   pointer-events: none;

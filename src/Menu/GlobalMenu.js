@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
 import GlobalMenuWrapper from './GlobalMenuWrapper';
 import GlobalMenuLogo from './GlobalMenuLogo';
 
@@ -29,6 +30,18 @@ class GlobalMenu extends Component {
         this.changeSelected(firstActiveFound.key);
       }
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const {
+      menuDescriptor,
+    } = this.props;
+
+    if (!isEqual(nextProps.menuDescriptor) !== menuDescriptor) {
+      return true;
+    }
+
+    return false;
   }
 
   componentDidUpdate(prevProps) {

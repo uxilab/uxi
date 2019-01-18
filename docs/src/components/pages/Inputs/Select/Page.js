@@ -3,6 +3,7 @@ import { P } from 'uxi/Classic';
 import { Title } from 'uxi/Text';
 import RAWSelect from '!raw-loader!uxi/Input/Select/Select';
 import CodeExample from '../../../CodeExample';
+import { componentInfoToMD } from '../../../componentInfoToMD';
 
 import Playground from './Playground';
 import RAWPlayground from '!raw-loader!./Playground';
@@ -12,6 +13,7 @@ import RAWExampleSelectWithFiltering from '!raw-loader!./ExampleSelectWithFilter
 
 import ExampleSimple from './ExampleSimple';
 import RAWExampleSimple from '!raw-loader!./ExampleSimple';
+import RAWMDExampleSimple from '!raw-loader!./ExampleSimple.md';
 
 import ExampleSimpleWithWidth from './ExampleSimpleWithWidth';
 import RAWExampleSimpleWithWidth from '!raw-loader!./ExampleSimpleWithWidth';
@@ -27,7 +29,6 @@ import RAWExampleManagedControlled from '!raw-loader!./ExampleManagedControlled'
 
 import ExampleSimpleUncontrolled from './ExampleSimpleUncontrolled';
 import RAWExampleSimpleUncontrolled from '!raw-loader!./ExampleSimpleUncontrolled';
-import { componentInfoToMD } from '../../../componentInfoToMD';
 
 
 const SelectInputPage = () => (
@@ -65,6 +66,7 @@ const SelectInputPage = () => (
           component
           title="simple SelectInput"
           hasPadding
+          description={componentInfoToMD(RAWMDExampleSimple)}
         >
           <ExampleSimple />
         </CodeExample>

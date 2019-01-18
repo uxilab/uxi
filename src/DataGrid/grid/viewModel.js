@@ -19,6 +19,7 @@ const createPropertyViewModel = (entity, properties) => {
   // we can play with the Type and many other things
 
   return keys.map(k => ({
+    name: k.name,
     propertyName: k.property ? k.property : k,
     isComputed: k.isComputed,
     Component: k.Component ? k.Component : ({ value }) => (value || ''),
@@ -65,9 +66,11 @@ export const entityToViewModel = (
   propertyKey,
   getTypeDefinition,
 ) => ({
+  id: entity.id || entity.Id || null,
   key: getEntityKey(entity, propertyKey),
   original: entity,
   properties: createPropertiesWithValue(propertiesDefinitions, entity, getTypeDefinition),
+  propertiesDefinitions,
 });
 
 /**

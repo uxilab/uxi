@@ -65,6 +65,7 @@ const FigureUI = styled.figure`
 // const Img = props => (
 class Img extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
+    console.log('Img constructor');
     super(props);
 
     // const hasIdleCallback = (window !== undefined && window.requestIdleCallback);
@@ -86,6 +87,7 @@ class Img extends Component { // eslint-disable-line react/prefer-stateless-func
   }
 
   componentDidMount() {
+    console.log('Img componentDidMount');
     const { src } = this.props;
     const { hasIdleCallback } = this.state;
 

@@ -59,21 +59,22 @@ class TableBody extends Component {
         displayBorder: rowNumber !== numChildren,
         sperateRows,
         activable,
-        key: i,
+        // key: i,
+        key: child.key,
       });
 
 
       const children = [];
 
       if (selectable) {
-        children.push(<TableRowCheckedCell {...props} />);
+        children.push(<TableRowCheckedCell {...props} childKey={child.key} />);
       }
 
       React.Children.forEach(child.props.children, (aChild, j) => {
         if (aChild && React.isValidElement(aChild)) {
           const augmentedChildren = React.cloneElement(aChild, {
             ...aChild.props,
-            key: `${i}-${j}`,
+            key: `${child.key || i}-${j}`,
             onClickHandler: aChild.props.onClick,
             condensed,
             noBorder,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import isEqual from 'lodash/isEqual';
 // import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
@@ -64,6 +65,26 @@ class Select extends Component {
       const selectedIndex = foundIndex > -1 ? foundIndex : 0;
       this.setState({ selectedIndex });
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const {
+      children,
+      isOpen,
+      value,
+    } = this.props;
+
+    console.log('Select shouldComponentUpdate');
+    if (React.Children.count(nextProps.children) !== React.Children.count(children)) {
+      return true;
+    } else if (nextProps.isOpen !== isOpen) {
+      return true;
+    } else if (nextProps.value !== value) {
+      return true;
+    } else if (!isEqual(this.state, nextState)) {
+      return true;
+    }
+    return false;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -186,6 +207,7 @@ class Select extends Component {
               width: '100%',
               boxSizing: 'border-box',
               height: '34px',
+              overflow: 'hidden',
             }}
           >
             {
