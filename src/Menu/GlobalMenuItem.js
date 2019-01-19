@@ -246,8 +246,13 @@ class GlobalMenuItem extends Component {
 
     // render the tooltip inert when menu is in "wide" mode (labels are present, tooltip is useless)
     const rules = [{
+      minWidth: 0,
+      mapper: () => ({
+        trigger: ['hover', 'focus'],
+      }),
+    }, {
       minWidth: 100,
-      mapper: (/* { trigger } */) => ({
+      mapper: () => ({
         trigger: [],
         visible: false, // inject inexisting props
       }),
@@ -300,15 +305,21 @@ class GlobalMenuItem extends Component {
       );
     }
 
-    // return resContent;
-
     return (
       <PropsMapperContainerQueries
         debounceDelay={80}
         rules={rules}
-        trigger={['hover']}
+        trigger={['hover', 'focus']}
+        placement="right"
+        overlay={<span>{}</span>}
+        label={label}
       >
-        <Tooltip placement="right" overlay={<span>{label}</span>}>
+        <Tooltip
+          placement="right"
+          overlay={<span>{label}</span>}
+          label={label}
+          trigger={['hover', 'focus']}
+        >
           {
             resContent
           }
