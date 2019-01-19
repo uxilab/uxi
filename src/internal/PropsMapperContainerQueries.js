@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import styled from 'styled-components';
 import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 
 /**
  * Mobile first (intended to work only with minWidth)
@@ -61,8 +62,9 @@ export class PropsMapperContainerQueries extends Component {
     this.ref = null;
 
     this.state = {
-      width: null,
-      height: null,
+      // width: null,
+      // height: null,
+      mappedProps: null,
     };
   }
 
@@ -79,7 +81,7 @@ export class PropsMapperContainerQueries extends Component {
       window.addEventListener('resize', this.handleResize);
     }
     this.handleResize();
-    this.forceUpdate();
+    // this.forceUpdate();
   }
 
   componentWillUnmount() {
@@ -91,22 +93,36 @@ export class PropsMapperContainerQueries extends Component {
   storeRef(node) {
     this.ref = node;
     this.handleResize();
-    this.forceUpdate();
+    // this.forceUpdate();
   }
 
   handleResize() {
+    console.log('PropsMapperContainerQueries', 'handleResize');
     if (this.ref) {
-      const rect = this.ref.getBoundingClientRect();
-      this.setState({
-        width: rect.width,
-        height: rect.height,
-      });
+      const { rules } = this.props;
+      const { width, height } = this.ref.getBoundingClientRect() || {};
+      const mappedProps = applyRules(
+        {
+          ...this.props,
+          // ...(child.props || {}),
+        },
+        rules,
+        width,
+        height
+      );
+
+      if (!isEqual(this.state.mappedProps, mappedProps)) {
+        this.setState({
+          mappedProps,
+        });
+      }
     }
   }
 
   render() {
-    const { rules, children, inline, style /* , ...restOfProps */ } = this.props;
-    const { width, height } = this.state;
+    console.log('PropsMapperContainerQueries', 'render');
+    const { children, inline, style } = this.props;
+    const { mappedProps } = this.state;
 
 
     const type = inline ? 'span' : 'div';
@@ -115,15 +131,10 @@ export class PropsMapperContainerQueries extends Component {
       children,
       child => React.cloneElement(
         child,
-        applyRules(
-          {
-            ...this.props,
-            ...(child.props || {}),
-          },
-          rules,
-          width,
-          height
-        )
+        {
+          ...(child.props || {}),
+          ...mappedProps,
+        }
       )
     );
 
@@ -133,7 +144,7 @@ export class PropsMapperContainerQueries extends Component {
         ref: this.storeRef,
         style: {
           ...(style || {}),
-          ...((this.ref && width && height) ? {} : { opacity: 0 }),
+          ...((this.ref && mappedProps) ? {} : { opacity: 0 }),
         },
       },
       extendedChildren,
