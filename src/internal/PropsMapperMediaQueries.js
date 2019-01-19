@@ -53,7 +53,7 @@ const applyRules = (props, rules, width, height) => {
   return result;
 };
 
-export class PropsMapperMediaQueriesHOC extends Component {
+export class PropsMapperMediaQueries extends Component {
   static propTypes = {
     rules: PropTypes.array,
     children: PropTypes.node,
@@ -100,11 +100,11 @@ export class PropsMapperMediaQueriesHOC extends Component {
         innerHeight: height,
         innerWidth: width,
       } = window;
-      const { rules } = this.props;
+      const { rules, children = {} } = this.props;
       const mappedProps = applyRules(
         {
           ...this.props,
-          // ...(child.props || {}),
+          ...(children.props || {}),
         },
         rules,
         width,
@@ -112,8 +112,13 @@ export class PropsMapperMediaQueriesHOC extends Component {
       );
 
       if (!isEqual(this.state.mappedProps, mappedProps)) {
+        const {
+          rules, // eslint-disable-line no-shadow, no-unused-vars
+          ...restOfMappedProps
+        } = mappedProps;
+
         this.setState({
-          mappedProps,
+          mappedProps: restOfMappedProps,
         });
       }
     }
@@ -129,11 +134,11 @@ export class PropsMapperMediaQueriesHOC extends Component {
     return React.cloneElement(
       theChild,
       {
-        ...(theChild.props || {}),
-        mappedProps,
+        // ...(theChild.props || {}),
+        ...mappedProps,
       }
     );
   }
 }
 
-export default PropsMapperMediaQueriesHOC;
+export default PropsMapperMediaQueries;

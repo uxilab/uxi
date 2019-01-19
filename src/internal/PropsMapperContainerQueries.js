@@ -73,7 +73,7 @@ export class PropsMapperContainerQueries extends Component {
       window.addEventListener('resize', this.handleResize);
     }
     this.handleResize();
-    this.forceUpdate();
+    // this.forceUpdate();
   }
 
   componentDidMount() {
@@ -99,12 +99,12 @@ export class PropsMapperContainerQueries extends Component {
   handleResize() {
     console.log('PropsMapperContainerQueries', 'handleResize');
     if (this.ref) {
-      const { rules } = this.props;
+      const { rules, children = {} } = this.props;
       const { width, height } = this.ref.getBoundingClientRect() || {};
       const mappedProps = applyRules(
         {
           ...this.props,
-          // ...(child.props || {}),
+          ...(children.props || {}),
         },
         rules,
         width,
@@ -127,15 +127,19 @@ export class PropsMapperContainerQueries extends Component {
 
     const type = inline ? 'span' : 'div';
 
-    const extendedChildren = React.Children.map(
+    try {
+      React.Children.only(children);
+    } catch (err) {
+      console.error('PropsMapperContainerQueries accept a single child, see this SO https://goo.gl/2sF2eb');
+      return null;
+    }
+
+    const extendedChildren = React.cloneElement(
       children,
-      child => React.cloneElement(
-        child,
-        {
-          ...(child.props || {}),
-          ...mappedProps,
-        }
-      )
+      {
+        // ...(children.props || {}),
+        ...mappedProps,
+      }
     );
 
     return React.createElement(
