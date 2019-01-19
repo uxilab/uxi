@@ -300,6 +300,8 @@ class GlobalMenuItem extends Component {
       );
     }
 
+    // return resContent;
+
     return (
       <PropsMapperContainerQueries
         debounceDelay={80}
