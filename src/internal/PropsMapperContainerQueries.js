@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import styled from 'styled-components';
-import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
+import ResizeObserver from 'resize-observer-polyfill';
 
 /**
  * Mobile first (intended to work only with minWidth)
@@ -46,85 +46,96 @@ const applyRules = (props, rules, width, height) => {
 
 export class PropsMapperContainerQueries extends Component {
   static propTypes = {
-    // rules: PropTypes.arrayOf Rules:
-    // Rules => { minWidth: Number, css: Function(result of css``)}
   }
 
   constructor(props) {
     super(props);
-    const { debounceDelay } = this.props;
 
-    const delay = debounceDelay !== undefined ? debounceDelay : 180;
-    this.handleResize = debounce(this.handleResize.bind(this), delay).bind(this);
+    this.init = this.init.bind(this);
     this.storeRef = this.storeRef.bind(this);
 
     this.ref = null;
+    this.observer = null;
 
     this.state = {
-      width: null,
-      height: null,
+      mappedProps: null,
     };
-  }
-
-  componentWillMount() {
-    if (window && window.addEventListener) {
-      window.addEventListener('resize', this.handleResize);
-    }
-    this.handleResize();
-    this.forceUpdate();
   }
 
   componentDidMount() {
     if (window && window.addEventListener) {
       window.addEventListener('resize', this.handleResize);
     }
-    this.handleResize();
-    this.forceUpdate();
+    this.init();
   }
 
   componentWillUnmount() {
     if (window && window.removeEventListener) {
       window.removeEventListener('resize', this.handleResize);
     }
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   storeRef(node) {
     this.ref = node;
-    this.handleResize();
-    this.forceUpdate();
+    this.init();
   }
 
-  handleResize() {
-    if (this.ref) {
-      const rect = this.ref.getBoundingClientRect();
-      this.setState({
-        width: rect.width,
-        height: rect.height,
-      });
-    }
-  }
+  init() {
+    const {
+      rules,
+      children = {},
+    } = this.props;
 
-  render() {
-    const { rules, children, inline, style /* , ...restOfProps */ } = this.props;
-    const { width, height } = this.state;
+    if (this.observer) {
+      // noop watch on unmount
+    } else if (this.ref) {
+      console.log('PropsMapperContainerQueries', 'handleResize', this);
+      this.observer = new ResizeObserver((entries/* , observer */) => {
+        const last = entries[entries.length - 1];
 
+        const { width, height } = last.contentRect;
 
-    const type = inline ? 'span' : 'div';
-
-    const extendedChildren = React.Children.map(
-      children,
-      child => React.cloneElement(
-        child,
-        applyRules(
+        const mappedProps = applyRules(
           {
             ...this.props,
-            ...(child.props || {}),
+            ...(children.props || {}),
           },
           rules,
           width,
           height
-        )
-      )
+        );
+        if (!isEqual(this.state.mappedProps, mappedProps)) {
+          this.setState({ mappedProps });
+        }
+      });
+
+      this.observer.observe(this.ref);
+    }
+  }
+
+  render() {
+    const { children, inline, style } = this.props;
+    const { mappedProps } = this.state;
+
+
+    const type = inline ? 'span' : 'div';
+
+    try {
+      React.Children.only(children);
+    } catch (err) {
+      console.error('PropsMapperContainerQueries accept a single child, see this SO https://goo.gl/2sF2eb');
+      return null;
+    }
+
+    const extendedChildren = React.cloneElement(
+      children,
+      {
+        ...(mappedProps || {}),
+        rules: undefined,
+      }
     );
 
     return React.createElement(
@@ -133,7 +144,7 @@ export class PropsMapperContainerQueries extends Component {
         ref: this.storeRef,
         style: {
           ...(style || {}),
-          ...((this.ref && width && height) ? {} : { opacity: 0 }),
+          ...((this.ref && mappedProps) ? {} : { opacity: 0 }),
         },
       },
       extendedChildren,

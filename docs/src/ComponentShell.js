@@ -31,9 +31,9 @@ const MainContentWrapper = styled.div`
     z-index: 1;
     position: absolute;
     position: sticky;
-    margin-top: -18px;
-    margin-left: -18px;
-    margin-right: -18px;
+    margin-top: -16px;
+    margin-left: -16px;
+    margin-right: -16px;
     top: -16px;
     /**
      * Target exclusively IE10 and above:
@@ -46,10 +46,10 @@ const MainContentWrapper = styled.div`
     }
 
     @media screen and (min-width: 1024px) {
-      margin-top: -34px;
-      margin-left: -34px;
-      margin-right: -34px;
-      top: -34px;
+      margin-top: -32px;
+      margin-left: -32px;
+      margin-right: -32px;
+      top: -32px;
       @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
         top: 0 !important;
         margin: 0  !important;

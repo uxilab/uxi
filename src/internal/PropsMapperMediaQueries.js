@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 
 /**
  * Mobile first (intended to work only with minWidth)
@@ -52,11 +53,7 @@ const applyRules = (props, rules, width, height) => {
   return result;
 };
 
-/**
- * @deprecated
- * use PropMapperMediaQueries.js
- */
-export class PropsMapperMediaQueriesHOC extends Component {
+export class PropsMapperMediaQueries extends Component {
   static propTypes = {
     rules: PropTypes.array,
     children: PropTypes.node,
@@ -77,8 +74,7 @@ export class PropsMapperMediaQueriesHOC extends Component {
     this.handleResize = debounce(this.handleResize.bind(this), debounceDelay).bind(this);
 
     this.state = {
-      width: null,
-      height: null,
+      mappedProps: null,
     };
   }
 
@@ -98,44 +94,51 @@ export class PropsMapperMediaQueriesHOC extends Component {
   }
 
   handleResize() {
-    console.log('PropsMapperMediaQueriesHOC', 'handleResize');
+    console.log('PropsMapperMediaQueries', 'handleResize');
     if (window) {
       const {
         innerHeight: height,
         innerWidth: width,
       } = window;
-
-      this.setState({
+      const { rules, children = {} } = this.props;
+      const mappedProps = applyRules(
+        {
+          ...this.props,
+          ...(children.props || {}),
+        },
+        rules,
         width,
-        height,
-      });
+        height
+      );
+
+      if (!isEqual(this.state.mappedProps, mappedProps)) {
+        const {
+          rules, // eslint-disable-line no-shadow, no-unused-vars
+          ...restOfMappedProps
+        } = mappedProps;
+
+        this.setState({
+          mappedProps: restOfMappedProps,
+        });
+      }
     }
   }
 
   render() {
-    const { children, rules, ...restOfProps } = this.props;
-    const { width, height } = this.state;
+    console.log('PropsMapperMediaQueries', 'render');
+    const { children /* ...restOfProps */} = this.props;
+    const { mappedProps } = this.state;
 
     const theChild = React.Children.only(children);
 
-    const mappedProps = applyRules(
-      {
-        ...restOfProps,
-        // allowing restOfProps make the use more semantic
-        // you can explicitely put the props you intend to map
-        // on the HOC when instanciating it
-        ...theChild.props,
-      },
-      rules,
-      width,
-      height,
-    );
-
     return React.cloneElement(
       theChild,
-      mappedProps,
+      {
+        // ...(theChild.props || {}),
+        ...mappedProps,
+      }
     );
   }
 }
 
-export default PropsMapperMediaQueriesHOC;
+export default PropsMapperMediaQueries;

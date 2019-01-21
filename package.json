@@ -44,7 +44,8 @@
     "lodash": "4.17.11",
     "rc-tooltip": "^3.7.0",
     "react-click-outside": "^3.0.0",
-    "react-transition-group": "^2.2.1"
+    "react-transition-group": "^2.2.1",
+    "resize-observer-polyfill": "1.5.1"
   },
   "devDependencies": {
     "app-module-path": "^2.1.0",
