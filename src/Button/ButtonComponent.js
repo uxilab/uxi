@@ -73,6 +73,7 @@ export class ButtonComponent extends Component {
       },
       ...(tabIndex ? { tabIndex } : {}),
     };
+
     const marginStyles = {
       display: isFullWidth ? 'block' : 'inline-block',
       ...('margin' in style ? { margin: style.margin } : {}),
@@ -130,6 +131,15 @@ export class ButtonComponent extends Component {
       </TheButtonComponent>
     );
 
+    const { // eslint-disable-line no-unused-vars
+      border, // eslint-disable-line no-unused-vars
+      borderBottom, // eslint-disable-line no-unused-vars
+      borderTop, // eslint-disable-line no-unused-vars
+      borderLeft, // eslint-disable-line no-unused-vars
+      borderRight, // eslint-disable-line no-unused-vars
+      ...restForRippleStyles
+    } = style;
+
     const rippleStyles = {
       // ...(style.borderRadius !== undefined
       //   ? { borderRadius: style.borderRadius }
@@ -152,7 +162,7 @@ export class ButtonComponent extends Component {
       //   : {}
       // ),
       ...(isFullWidth ? { width: '100%' } : {}),
-      ...style,
+      ...restForRippleStyles,
       margin: 0,
       marginTop: 0,
       marginRight: 0,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import isEqual from 'lodash/isEqual';
-// import styled from 'styled-components';
+import { withTheme } from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
@@ -179,8 +179,16 @@ class Select extends Component {
         triggerElement,
         style,
         isFullWidth,
+        theme,
       },
     } = this;
+
+    const {
+      radius,
+    } = theme;
+
+    const radiusPlusOne = `${parseInt(radius, 10) + 1}px`;
+
 
     if (triggerElement) {
       return triggerElement;
@@ -235,6 +243,8 @@ class Select extends Component {
         isFullWidth={isFullWidth}
         style={{
           ...(style.width ? { width: style.width } : {}),
+          border: '1px solid #cecece',
+          borderRadius: radiusPlusOne,
         }}
         // onEsc={() => this.clickHandler(null)}
         onClick={(e, ...r) => {
@@ -663,4 +673,4 @@ Select.defaultProps = {
 };
 
 
-export default Select;
+export default withTheme(Select);
