@@ -179,6 +179,7 @@ class Select extends Component {
         triggerElement,
         style,
         isFullWidth,
+        disabled,
       },
     } = this;
 
@@ -232,9 +233,12 @@ class Select extends Component {
 
     return (
       <UnstyledButtonBeta
+        disabled={disabled}
         isFullWidth={isFullWidth}
         style={{
           ...(style.width ? { width: style.width } : {}),
+          ...(disabled ? { opacity: 0.8 } : {}),
+          ...(disabled ? { cursor: 'not-allowed' } : {}),
         }}
         // onEsc={() => this.clickHandler(null)}
         onClick={(e, ...r) => {
@@ -660,6 +664,7 @@ Select.defaultProps = {
   style: {},
   onChange: () => {},
   children: [],
+  disabled: false,
 };
 
 
