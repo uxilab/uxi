@@ -118,10 +118,41 @@ class DataGridSorting extends Component {
   }
  */
   render() {
-    const { title/* , key, style */, condensed /* noPadding */, dataKey } = this.props;
+    const {
+      title,
+      /* , key, style */
+      condensed,
+      /* noPadding */
+      dataKey,
+      customMenuItems,
+    } = this.props;
     // const { show } = this.state;
     // const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
     // const styleForButton = show ? headerWithSort : headerWithSortNotSelected;
+
+    const defaultSortingMenu = [
+      {
+        onClick: () => {},
+        displayName: 'Sort ascending',
+        icon: <Sortingup size={16} />,
+      }, {
+        onClick: () => {},
+        displayName: 'Sort descending',
+        icon: <Sortingdown size={16} />,
+      }, {
+        onClick: () => {},
+        displayName: 'no sorting',
+        icon: <Nosorting size={16} />,
+      }];
+
+    let finalMenu = defaultSortingMenu;
+
+    if (customMenuItems && customMenuItems.length) {
+      finalMenu.push(<Separator />);
+      finalMenu = finalMenu.concat(customMenuItems);
+    }
+
+    console.log('finalMenu', finalMenu);
 
     return (
       <TableHeaderColumn /* style={style} */noPadding key={dataKey} >
@@ -151,16 +182,12 @@ class DataGridSorting extends Component {
               </UnstyledButton>
             )}
           >
+            {finalMenu.map(menuItem => (
+              React.isValidElement(menuItem)
+                ? menuItem
+                : <ButtonMenuItem icon={menuItem.icon} onClick={menuItem.onClick} >{menuItem.displayName}</ButtonMenuItem>
+            ))}
 
-            {/* <VerticalMenu> */}
-            <ButtonMenuItem icon={<Sortingup size={16} />}>Sort ascending</ButtonMenuItem>
-            <ButtonMenuItem icon={<Sortingdown size={16} />}>Sort decending</ButtonMenuItem>
-            <Separator />
-            <ButtonMenuItem icon={<Nosorting size={16} />}>No Sorting</ButtonMenuItem>
-            {/* <div>Replace column with</div>
-              <ButtonMenuItem>Just a number</ButtonMenuItem>
-              <ButtonMenuItem>Some other field</ButtonMenuItem> */}
-            {/* </VerticalMenu> */}
           </ButtonMenu>
         </FlexExtended>
       </TableHeaderColumn>

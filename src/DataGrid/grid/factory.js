@@ -130,28 +130,48 @@ export const createDataGridHeader = (
       {
         headers.map((header, i) => {
           const key = `header-${header.name || header.displayName || i}`;
-          if (!header.isSortable) {
+          if (header.customMenu) {
+            // TODO add support for completetable header menu overwrite
+          }
+
+          if (header.customMenuItems) {
+            // TODO add support for appeding items to menu
             return (
-              <TableHeaderColumn
-                key={key}
+              <DataGridSorting
+                customMenuItems={header.customMenuItems}
+                dataKey={key}
                 style={hideHeader
                   ? { visibility: 'hidden' }
                   : {}
                 }
-              >
-                {header.displayName}
-              </TableHeaderColumn>
+                title={header.displayName}
+              />
             );
           }
-          return (
-            <DataGridSorting
+
+          if (header.isSortable) {
+            return (<DataGridSorting
               dataKey={key}
               style={hideHeader
                 ? { visibility: 'hidden' }
                 : {}
               }
               title={header.displayName}
-            />
+            />);
+          }
+
+
+          // default (not sortable) ——————————
+          return (
+            <TableHeaderColumn
+              key={key}
+              style={hideHeader
+                ? { visibility: 'hidden' }
+                : {}
+              }
+            >
+              {header.displayName}
+            </TableHeaderColumn>
           );
         })
       }
