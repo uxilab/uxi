@@ -52,7 +52,6 @@ class TableHeaderColumn extends Component {
             paddingLeft: noPadding ? 0 : '24px',
             paddingRight: noPadding ? 0 : '24px',
             height: '100%',
-            minHeight: '48px',
             boxSizing: 'border-box',
             display: 'flex',
             alignItems: 'center',
