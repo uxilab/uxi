@@ -72,14 +72,16 @@ class Select extends Component {
       children,
       isOpen,
       value,
+      disabled,
     } = this.props;
 
-    console.log('Select shouldComponentUpdate');
     if (React.Children.count(nextProps.children) !== React.Children.count(children)) {
       return true;
     } else if (nextProps.isOpen !== isOpen) {
       return true;
     } else if (nextProps.value !== value) {
+      return true;
+    } else if (nextProps.disabled !== disabled) {
       return true;
     } else if (!isEqual(this.state, nextState)) {
       return true;
@@ -179,6 +181,7 @@ class Select extends Component {
         triggerElement,
         style,
         isFullWidth,
+        disabled,
       },
     } = this;
 
@@ -230,11 +233,21 @@ class Select extends Component {
       mainContent = <div>&nbsp;</div>;
     }
 
+    const disabledStyle = disabled
+      ? {
+        opacity: 0.8,
+        filter: 'grayscale(100%)',
+        cursor: 'not-allowed',
+      }
+      : {};
+
     return (
       <UnstyledButtonBeta
+        disabled={disabled}
         isFullWidth={isFullWidth}
         style={{
           ...(style.width ? { width: style.width } : {}),
+          ...disabledStyle,
         }}
         // onEsc={() => this.clickHandler(null)}
         onClick={(e, ...r) => {
@@ -257,6 +270,8 @@ class Select extends Component {
                 borderBottomLeftRadius: 0,
                 borderTopLeftRadius: 0,
                 minHeight: '34px',
+                ...disabledStyle,
+                pointerEvents: 'none',
               }}
               icon={<Arrowdown />}
             />
@@ -660,6 +675,7 @@ Select.defaultProps = {
   style: {},
   onChange: () => {},
   children: [],
+  disabled: false,
 };
 
 
