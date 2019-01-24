@@ -10,6 +10,7 @@ import {
 import TableHeaderCheckedAllCell from '../../Table/TableHeaderCheckedAllCell';
 import DataGridSorting from './DataGridSorting';
 import ActiondMenu from '../../ActionMenu';
+import { TextEllipsis } from '../../Text';
 
 const ActionMenuWrapper = styled.div`
   position: absolute;
@@ -130,28 +131,56 @@ export const createDataGridHeader = (
       {
         headers.map((header, i) => {
           const key = `header-${header.name || header.displayName || i}`;
-          if (!header.isSortable) {
-            return (
-              <TableHeaderColumn
-                key={key}
-                style={hideHeader
-                  ? { visibility: 'hidden' }
-                  : {}
-                }
-              >
-                {header.displayName}
-              </TableHeaderColumn>
-            );
-          }
-          return (
-            <DataGridSorting
+          if (header.menuItems) {
+            return (<DataGridSorting
+              menuItems={header.menuItems}
               dataKey={key}
               style={hideHeader
                 ? { visibility: 'hidden' }
                 : {}
               }
               title={header.displayName}
-            />
+            />);
+          }
+
+          if (header.extraMenuItems) {
+            return (
+              <DataGridSorting
+                extraMenuItems={header.extraMenuItems}
+                dataKey={key}
+                style={hideHeader
+                  ? { visibility: 'hidden' }
+                  : {}
+                }
+                title={header.displayName}
+              />
+
+            );
+          }
+
+          if (header.isSortable) {
+            return (<DataGridSorting
+              dataKey={key}
+              style={hideHeader
+                ? { visibility: 'hidden' }
+                : {}
+              }
+              title={header.displayName}
+            />);
+          }
+
+
+          // default (not sortable) ——————————
+          return (
+            <TableHeaderColumn
+              key={key}
+              style={hideHeader
+                ? { visibility: 'hidden' }
+                : {}
+              }
+            >
+              <TextEllipsis>{header.displayName}</TextEllipsis>
+            </TableHeaderColumn>
           );
         })
       }
