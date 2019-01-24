@@ -112,6 +112,10 @@ const styles = {
   // `,
 };
 
+/**
+ * @deprecated
+ */
+/* eslint-disable */
 // eslint-disable-next-line react/prefer-stateless-function
 export class DropDown extends PureComponent {
   static propTypes = {
@@ -526,3 +530,4 @@ export class DropDown extends PureComponent {
 }
 
 export default enhanceWithClickOutside(DropDown);
+/* eslint-enable */

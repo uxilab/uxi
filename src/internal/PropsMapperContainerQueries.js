@@ -92,7 +92,6 @@ export class PropsMapperContainerQueries extends Component {
     if (this.observer) {
       // noop watch on unmount
     } else if (this.ref) {
-      console.log('PropsMapperContainerQueries', 'handleResize', this);
       this.observer = new ResizeObserver((entries/* , observer */) => {
         const last = entries[entries.length - 1];
 
