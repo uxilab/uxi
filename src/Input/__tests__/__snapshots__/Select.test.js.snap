@@ -11,6 +11,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
     onTriggerWrapperRef={[Function]}
     trigger={
       <UnstyledButton
+        disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
         style={
@@ -100,6 +101,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
                   "borderBottomLeftRadius": 0,
                   "borderTopLeftRadius": 0,
                   "minHeight": "34px",
+                  "pointerEvents": "none",
                 }
               }
               type="primary"
@@ -205,6 +207,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
     onTriggerWrapperRef={[Function]}
     trigger={
       <UnstyledButton
+        disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
         style={
@@ -294,6 +297,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
                   "borderBottomLeftRadius": 0,
                   "borderTopLeftRadius": 0,
                   "minHeight": "34px",
+                  "pointerEvents": "none",
                 }
               }
               type="primary"
@@ -399,6 +403,7 @@ exports[`<Select /> matches snapshot 1`] = `
     onTriggerWrapperRef={[Function]}
     trigger={
       <UnstyledButton
+        disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
         style={
@@ -460,6 +465,7 @@ exports[`<Select /> matches snapshot 1`] = `
                   "borderBottomLeftRadius": 0,
                   "borderTopLeftRadius": 0,
                   "minHeight": "34px",
+                  "pointerEvents": "none",
                 }
               }
               type="primary"
