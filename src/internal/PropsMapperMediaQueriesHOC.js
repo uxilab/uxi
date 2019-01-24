@@ -98,7 +98,6 @@ export class PropsMapperMediaQueriesHOC extends Component {
   }
 
   handleResize() {
-    console.log('PropsMapperMediaQueriesHOC', 'handleResize');
     if (window) {
       const {
         innerHeight: height,

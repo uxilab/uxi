@@ -94,7 +94,6 @@ export class PropsMapperMediaQueries extends Component {
   }
 
   handleResize() {
-    console.log('PropsMapperMediaQueries', 'handleResize');
     if (window) {
       const {
         innerHeight: height,
@@ -125,7 +124,6 @@ export class PropsMapperMediaQueries extends Component {
   }
 
   render() {
-    console.log('PropsMapperMediaQueries', 'render');
     const { children /* ...restOfProps */} = this.props;
     const { mappedProps } = this.state;
 

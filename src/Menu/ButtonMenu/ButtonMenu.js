@@ -235,7 +235,7 @@ class ButtonMenu extends Component {
 
 ButtonMenu.defaultProps = {
   children: [],
-  button: <FlatButton icon={<Options />} onClick={(...a) => { console.log('original onClick handler', ...a); }} />,
+  button: <FlatButton icon={<Options />} />,
   menuMaxHeight: '396px',
   menuWidth: undefined,
   menuMinWidth: undefined,

@@ -238,7 +238,6 @@ class SelectWithFiltering extends Select {
         }}
         onClick={() => {
           this.focusInput();
-          console.log('onClick this.focusInput');
         }}
         // onEsc={() => this.clickHandler(null)}
         // onClick={(e, ...r) => {
@@ -590,13 +589,10 @@ class SelectWithFiltering extends Select {
   // }
 
   focusInput() {
-    console.log('focusInput');
-    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
     const { triggerWrapperRef } = this;
 
     if (triggerWrapperRef && triggerWrapperRef.querySelector) {
       const inputMaybe = triggerWrapperRef.querySelector('input');
-      console.log('inputMaybe', inputMaybe);
       if (inputMaybe && inputMaybe.focus) {
         inputMaybe.focus();
       }
