@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField } from 'uxi/Input';
+import { Flex } from 'uxi/Layout';
 
 const ExampleTextField = () => (
   <div style={{ padding: '16px' }}>
@@ -11,6 +12,24 @@ const ExampleTextField = () => (
       <li>
         <h3>Email : (controlled value : bar)</h3>
         <TextField type="email" value={'bar'} />
+      </li>
+      <li>
+        <h3>Custom : </h3>
+        <Flex style={{ width: '100%' }}>
+          <div style={{ flexGrow: 99 }} >
+            <TextField isFullWidth type="text" defaultValue={'bill'} />
+          </div>
+          @example.com
+        </Flex>
+        <br />
+        <Flex style={{ width: '100%' }}>
+          ~/some/predefined/path/
+          <div style={{ flexGrow: 99 }} >
+            <TextField isFullWidth type="text" defaultValue={'filename'} />
+          </div>
+          {'.'}
+          <TextField type="text" defaultValue={'extension'} />
+        </Flex>
       </li>
       <li>
         <h3>Email with error :</h3>

@@ -148,10 +148,18 @@ TextField.propTypes = {
   type: PropTypes.oneOf([
     'text', 'email', 'password', 'search', 'file', 'number',
   ]),
+  /**
+   * onChange: callback function
+   * will be passed a first arg 'event' (ReactEvent)
+   * as well as a énd arg 'value' (String)
+   */
+  onChange: PropTypes.func,
 };
 
 TextField.defaultProps = {
   type: 'text',
+
+  onChange: (event, value) => {}, // eslint-disable-line no-unused-vars
 };
 
 TextField.displayName = 'TextField';
