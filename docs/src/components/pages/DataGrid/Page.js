@@ -8,6 +8,9 @@ import { componentInfoToMD } from '../../componentInfoToMD';
 import ExampleSimpleDataGrid from './ExampleSimpleDataGrid';
 import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid';
 
+import ExampleDataGridCustomPropertiesDef from './ExampleDataGridCustomPropertiesDef';
+import RAWExampleDataGridCustomPropertiesDef from '!raw-loader!./ExampleDataGridCustomPropertiesDef';
+
 import ExampleSimpleDataGridOnlySomeKey from './ExampleSimpleDataGridOnlySomeKey';
 import RAWExampleSimpleDataGridOnlySomeKey from '!raw-loader!./ExampleSimpleDataGridOnlySomeKey';
 
@@ -17,19 +20,26 @@ import RAWExampleSimpleDataGridWithCustomType from '!raw-loader!./ExampleSimpleD
 import ExampleSimpleDataGridComputedProperty from './ExampleSimpleDataGridComputedProperty';
 import RAWExampleSimpleDataGridComputedProperty from '!raw-loader!./ExampleSimpleDataGridComputedProperty';
 
+
 const TablePage = () => (
   <div>
     <Title text="DataGrid - Premium Component" />
     <P>
-      The DataGrid is a key component to render a list of Entity. The grid is really Entity oriented and not, as you can find with many grids, Tabular oriented.
-      Instead of passing column or cell definitions, you work towards your Entity. This is making the grid more extensible and re-usable. Refer to Entity and Metadata guidelines to know more.
+      The DataGrid is a key component to render a list of Entity.
+      The grid is really Entity oriented and not, as you can find with many grids,
+      Tabular oriented.
+      Instead of passing column or cell definitions, you work towards your Entity.
+      This is making the grid more extensible and re-usable.
+      Refer to Entity and Metadata guidelines to know more.
     </P>
     <CodeExample
       code={RAWDataGrid}
       title="Simple Data Grid"
       description={componentInfoToMD(RAWDataGrid)}
     />
+
     <br />
+
     <CodeExample
       code={RAWExampleSimpleDataGrid}
       title="Simple Data Grid"
@@ -38,19 +48,35 @@ const TablePage = () => (
       <ExampleSimpleDataGrid />
     </CodeExample>
 
+    <br />
+
     <CodeExample
       code={RAWExampleSimpleDataGridOnlySomeKey}
-      title="Data Grid, only show what you need"
+      title="Data Grid, custom properties definition (simple)"
     >
       <ExampleSimpleDataGridOnlySomeKey />
     </CodeExample>
 
+    <br />
+
+    <CodeExample
+      code={RAWExampleDataGridCustomPropertiesDef}
+      title="DataGrid custom properties definition"
+      description=""
+    >
+      <ExampleDataGridCustomPropertiesDef />
+    </CodeExample>
+
+    <br />
+
     <CodeExample
       code={RAWExampleSimpleDataGridWithCustomType}
       title="Data Grid with custom type renderer"
-    />
+    >
+      <ExampleSimpleDataGridWithCustomType />
+    </CodeExample>
 
-    <ExampleSimpleDataGridWithCustomType />
+    <br />
 
     <CodeExample
       code={RAWExampleSimpleDataGridComputedProperty}

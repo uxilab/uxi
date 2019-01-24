@@ -10,6 +10,7 @@ import {
 import TableHeaderCheckedAllCell from '../../Table/TableHeaderCheckedAllCell';
 import DataGridSorting from './DataGridSorting';
 import ActiondMenu from '../../ActionMenu';
+import { TextEllipsis } from '../../Text';
 
 const ActionMenuWrapper = styled.div`
   position: absolute;
@@ -130,15 +131,22 @@ export const createDataGridHeader = (
       {
         headers.map((header, i) => {
           const key = `header-${header.name || header.displayName || i}`;
-          if (header.customMenu) {
-            // TODO add support for completetable header menu overwrite
+          if (header.menuItems) {
+            return (<DataGridSorting
+              menuItems={header.menuItems}
+              dataKey={key}
+              style={hideHeader
+                ? { visibility: 'hidden' }
+                : {}
+              }
+              title={header.displayName}
+            />);
           }
 
-          if (header.customMenuItems) {
-            // TODO add support for appeding items to menu
+          if (header.extraMenuItems) {
             return (
               <DataGridSorting
-                customMenuItems={header.customMenuItems}
+                extraMenuItems={header.extraMenuItems}
                 dataKey={key}
                 style={hideHeader
                   ? { visibility: 'hidden' }
@@ -146,6 +154,7 @@ export const createDataGridHeader = (
                 }
                 title={header.displayName}
               />
+
             );
           }
 
@@ -170,7 +179,7 @@ export const createDataGridHeader = (
                 : {}
               }
             >
-              {header.displayName}
+              <TextEllipsis>{header.displayName}</TextEllipsis>
             </TableHeaderColumn>
           );
         })

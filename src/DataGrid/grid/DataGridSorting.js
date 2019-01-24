@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { TextEllipsis } from '../../Text';
 import {
-  Trianglearrow,
+  Arrowdown,
   Sortingup,
   Sortingdown,
   Nosorting,
@@ -124,7 +125,8 @@ class DataGridSorting extends Component {
       condensed,
       /* noPadding */
       dataKey,
-      customMenuItems,
+      extraMenuItems,
+      menuItems,
     } = this.props;
     // const { show } = this.state;
     // const mergedStyle = show ? Object.assign({}, popOver, { display: 'block' }) : popOver;
@@ -147,12 +149,14 @@ class DataGridSorting extends Component {
 
     let finalMenu = defaultSortingMenu;
 
-    if (customMenuItems && customMenuItems.length) {
+    if (extraMenuItems && extraMenuItems.length) {
       finalMenu.push(<Separator />);
-      finalMenu = finalMenu.concat(customMenuItems);
+      finalMenu = finalMenu.concat(extraMenuItems);
     }
 
-    console.log('finalMenu', finalMenu);
+    if (menuItems && menuItems.length) {
+      finalMenu = menuItems;
+    }
 
     return (
       <TableHeaderColumn /* style={style} */noPadding key={dataKey} >
@@ -176,8 +180,24 @@ class DataGridSorting extends Component {
                 <Flex2
                   condensed={condensed}
                 >
-                  <div style={{ paddingLeft: '24px', paddingRight: '6px', width: '100%', textAlign: 'left' }}>{title}</div>
-                  <Trianglearrow style={{ marginLeft: 'auto', transition: 'none' }} size={12} />
+                  <TextEllipsis
+                    style={{
+                      paddingLeft: '24px',
+                      paddingRight: '6px',
+                      width: '100%',
+                      textAlign: 'left',
+                    }}
+                  >
+                    {title}
+                  </TextEllipsis>
+                  <Arrowdown
+                    style={{
+                      marginLeft: 'auto',
+                      marginRight: '6px',
+                      transition: 'none',
+                    }}
+                    size={12}
+                  />
                 </Flex2>
               </UnstyledButton>
             )}
@@ -185,7 +205,12 @@ class DataGridSorting extends Component {
             {finalMenu.map(menuItem => (
               React.isValidElement(menuItem)
                 ? menuItem
-                : <ButtonMenuItem icon={menuItem.icon} onClick={menuItem.onClick} >{menuItem.displayName}</ButtonMenuItem>
+                : <ButtonMenuItem
+                  icon={menuItem.icon}
+                  onClick={menuItem.onClick}
+                >
+                  {menuItem.displayName}
+                </ButtonMenuItem>
             ))}
 
           </ButtonMenu>
