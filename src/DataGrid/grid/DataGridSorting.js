@@ -24,7 +24,6 @@ const FlexExtended = styled.div`
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  min-height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +32,7 @@ const FlexExtended = styled.div`
   & > div:first-child > div:first-child > *:first-child {
     width : 100%;
     height: 100%;
-    min-height: 48px;
+    /* min-height: 48px; */
     box-sizing: border-box;
   }
 `;
@@ -171,6 +170,7 @@ class DataGridSorting extends Component {
               <UnstyledButton
                 isFullWidth
                 style={{
+                  height: '47.99px', // IE is the best
                   minHeight: '48px',
                   boxSizing: 'border-box',
                   // paddingLeft: noPadding ? 0 : '24px',
