@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import isEqual from 'lodash/isEqual';
-import { withTheme } from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
@@ -179,16 +178,8 @@ class Select extends Component {
         triggerElement,
         style,
         isFullWidth,
-        theme,
       },
     } = this;
-
-    const {
-      radius,
-    } = theme;
-
-    const radiusPlusOne = `${parseInt(radius, 10) + 1}px`;
-
 
     if (triggerElement) {
       return triggerElement;
@@ -244,7 +235,9 @@ class Select extends Component {
         style={{
           ...(style.width ? { width: style.width } : {}),
           border: '1px solid #cecece',
-          borderRadius: radiusPlusOne,
+          // borderRadius: radiusPlusOne,
+          maxHeight: '34px',
+          boxSizing: 'border-box',
         }}
         // onEsc={() => this.clickHandler(null)}
         onClick={(e, ...r) => {
@@ -254,11 +247,11 @@ class Select extends Component {
           this.toggleVisibility(e, ...r);
         }}
       >
-        <TriggerreWrapper >
-          <div>
+        <div style={{ position: 'relative', width: '100%' }}>
+          <TriggerreWrapper>
             {mainContent}
             <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
-          </div>
+          </TriggerreWrapper>
           <div style={styles.trigerrerIcon}>
             <Button
               inert
@@ -271,7 +264,7 @@ class Select extends Component {
               icon={<Arrowdown />}
             />
           </div>
-        </TriggerreWrapper>
+        </div>
       </UnstyledButtonBeta>
     );
   }
@@ -673,4 +666,4 @@ Select.defaultProps = {
 };
 
 
-export default withTheme(Select);
+export default Select;

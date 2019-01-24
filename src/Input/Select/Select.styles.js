@@ -12,6 +12,18 @@ export const styles = {
   },
   trigerrerIcon: {
     position: 'absolute',
+    right: '-1px',
+    top: '-1px',
+    bottom: '-1px',
+    display: 'flex',
+    alignItems: 'center',
+    padding: 0,
+    maxHeight: '34px',
+    height: '34px',
+    boxSizing: 'border-box',
+  },
+  trigerrerIconForSelectWithFiltering: {
+    position: 'absolute',
     right: '0',
     top: '0',
     bottom: '0',

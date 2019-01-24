@@ -1,56 +1,485 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Select /> controlled/uncontrolled behaviour works as a controlled component, no onChange, no change 1`] = `
-<Select
-  onChange={[Function]}
+<div
   style={Object {}}
-  value="baz"
 >
-  <div
-    value="foo"
+  <clickOutside(DropDownWithClickOutside)
+    isOpen={false}
+    onChildrenWrapperRef={[Function]}
+    onClickOutside={[Function]}
+    onTriggerWrapperRef={[Function]}
+    trigger={
+      <UnstyledButton
+        isFullWidth={undefined}
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "1px solid #cecece",
+            "boxSizing": "border-box",
+            "maxHeight": "34px",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <styled.div>
+            <styled.div>
+              <div
+                style={
+                  Object {
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "height": "34px",
+                    "marginRight": "64px",
+                    "overflow": "hidden",
+                    "padding": "2px 2px 2px 6px",
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "overflow": "hidden",
+                      "textOverflow": "ellipsis",
+                      "whiteSpace": "nowrap",
+                    }
+                  }
+                  value="baz"
+                >
+                  baz
+                </div>
+              </div>
+            </styled.div>
+            <StatusIcon
+              error={undefined}
+              style={
+                Object {
+                  "right": "48px",
+                  "top": "0",
+                }
+              }
+              success={undefined}
+            />
+          </styled.div>
+          <div
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": "-1px",
+                "boxSizing": "border-box",
+                "display": "flex",
+                "height": "34px",
+                "maxHeight": "34px",
+                "padding": 0,
+                "position": "absolute",
+                "right": "-1px",
+                "top": "-1px",
+              }
+            }
+          >
+            <Button
+              icon={
+                <Arrowdown
+                  color="currentColor"
+                />
+              }
+              inert={true}
+              style={
+                Object {
+                  "borderBottomLeftRadius": 0,
+                  "borderTopLeftRadius": 0,
+                  "minHeight": "34px",
+                }
+              }
+              type="primary"
+            />
+          </div>
+        </div>
+      </UnstyledButton>
+    }
   >
-    foo
-  </div>
-  <div
-    value="bar"
-  >
-    bar
-  </div>
-  <div
-    value="baz"
-  >
-    baz
-  </div>
-</Select>
+    <div
+      style={
+        Object {
+          "background": "white",
+          "maxHeight": "320px",
+          "minWidth": "180px",
+          "overflowY": "auto",
+        }
+      }
+    >
+      <Options
+        data-index={0}
+        isOpen={false}
+        key="0/.0"
+        onClick={[Function]}
+        onEsc={[Function]}
+        selected={false}
+        style={
+          Object {
+            "foo": "bar",
+            "maxWidth": "100%",
+            "overflowX": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+        value="foo"
+      >
+        <div
+          value="foo"
+        >
+          foo
+        </div>
+      </Options>
+      <Options
+        data-index={1}
+        isOpen={false}
+        key="1/.1"
+        onClick={[Function]}
+        onEsc={[Function]}
+        selected={false}
+        style={
+          Object {
+            "foo": "bar",
+            "maxWidth": "100%",
+            "overflowX": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+        value="bar"
+      >
+        <div
+          value="bar"
+        >
+          bar
+        </div>
+      </Options>
+      <Options
+        data-index={2}
+        isOpen={false}
+        key="2/.2"
+        onClick={[Function]}
+        onEsc={[Function]}
+        selected={true}
+        style={
+          Object {
+            "foo": "bar",
+            "maxWidth": "100%",
+            "overflowX": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+        value="baz"
+      >
+        <div
+          value="baz"
+        >
+          baz
+        </div>
+      </Options>
+    </div>
+  </clickOutside(DropDownWithClickOutside)>
+  <styled.div />
+</div>
 `;
 
 exports[`<Select /> controlled/uncontrolled behaviour works correctly as an uncontrolled input 1`] = `
-<Select
-  defaultValue="bar"
-  onChange={[Function]}
+<div
   style={Object {}}
 >
-  <div
-    value="foo"
+  <clickOutside(DropDownWithClickOutside)
+    isOpen={false}
+    onChildrenWrapperRef={[Function]}
+    onClickOutside={[Function]}
+    onTriggerWrapperRef={[Function]}
+    trigger={
+      <UnstyledButton
+        isFullWidth={undefined}
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "1px solid #cecece",
+            "boxSizing": "border-box",
+            "maxHeight": "34px",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <styled.div>
+            <styled.div>
+              <div
+                style={
+                  Object {
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "height": "34px",
+                    "marginRight": "64px",
+                    "overflow": "hidden",
+                    "padding": "2px 2px 2px 6px",
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "overflow": "hidden",
+                      "textOverflow": "ellipsis",
+                      "whiteSpace": "nowrap",
+                    }
+                  }
+                  value="bar"
+                >
+                  bar
+                </div>
+              </div>
+            </styled.div>
+            <StatusIcon
+              error={undefined}
+              style={
+                Object {
+                  "right": "48px",
+                  "top": "0",
+                }
+              }
+              success={undefined}
+            />
+          </styled.div>
+          <div
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": "-1px",
+                "boxSizing": "border-box",
+                "display": "flex",
+                "height": "34px",
+                "maxHeight": "34px",
+                "padding": 0,
+                "position": "absolute",
+                "right": "-1px",
+                "top": "-1px",
+              }
+            }
+          >
+            <Button
+              icon={
+                <Arrowdown
+                  color="currentColor"
+                />
+              }
+              inert={true}
+              style={
+                Object {
+                  "borderBottomLeftRadius": 0,
+                  "borderTopLeftRadius": 0,
+                  "minHeight": "34px",
+                }
+              }
+              type="primary"
+            />
+          </div>
+        </div>
+      </UnstyledButton>
+    }
   >
-    foo
-  </div>
-  <div
-    value="bar"
-  >
-    bar
-  </div>
-  <div
-    value="baz"
-  >
-    baz
-  </div>
-</Select>
+    <div
+      style={
+        Object {
+          "background": "white",
+          "maxHeight": "320px",
+          "minWidth": "180px",
+          "overflowY": "auto",
+        }
+      }
+    >
+      <Options
+        data-index={0}
+        isOpen={false}
+        key="0/.0"
+        onClick={[Function]}
+        onEsc={[Function]}
+        selected={false}
+        style={
+          Object {
+            "foo": "bar",
+            "maxWidth": "100%",
+            "overflowX": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+        value="foo"
+      >
+        <div
+          value="foo"
+        >
+          foo
+        </div>
+      </Options>
+      <Options
+        data-index={1}
+        isOpen={false}
+        key="1/.1"
+        onClick={[Function]}
+        onEsc={[Function]}
+        selected={true}
+        style={
+          Object {
+            "foo": "bar",
+            "maxWidth": "100%",
+            "overflowX": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+        value="bar"
+      >
+        <div
+          value="bar"
+        >
+          bar
+        </div>
+      </Options>
+      <Options
+        data-index={2}
+        isOpen={false}
+        key="2/.2"
+        onClick={[Function]}
+        onEsc={[Function]}
+        selected={false}
+        style={
+          Object {
+            "foo": "bar",
+            "maxWidth": "100%",
+            "overflowX": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+        value="baz"
+      >
+        <div
+          value="baz"
+        >
+          baz
+        </div>
+      </Options>
+    </div>
+  </clickOutside(DropDownWithClickOutside)>
+  <styled.div />
+</div>
 `;
 
 exports[`<Select /> matches snapshot 1`] = `
-<Select
-  onChange={[Function]}
+<div
   style={Object {}}
-/>
+>
+  <clickOutside(DropDownWithClickOutside)
+    isOpen={false}
+    onChildrenWrapperRef={[Function]}
+    onClickOutside={[Function]}
+    onTriggerWrapperRef={[Function]}
+    trigger={
+      <UnstyledButton
+        isFullWidth={undefined}
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "1px solid #cecece",
+            "boxSizing": "border-box",
+            "maxHeight": "34px",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <styled.div>
+            <div>
+               
+            </div>
+            <StatusIcon
+              error={undefined}
+              style={
+                Object {
+                  "right": "48px",
+                  "top": "0",
+                }
+              }
+              success={undefined}
+            />
+          </styled.div>
+          <div
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": "-1px",
+                "boxSizing": "border-box",
+                "display": "flex",
+                "height": "34px",
+                "maxHeight": "34px",
+                "padding": 0,
+                "position": "absolute",
+                "right": "-1px",
+                "top": "-1px",
+              }
+            }
+          >
+            <Button
+              icon={
+                <Arrowdown
+                  color="currentColor"
+                />
+              }
+              inert={true}
+              style={
+                Object {
+                  "borderBottomLeftRadius": 0,
+                  "borderTopLeftRadius": 0,
+                  "minHeight": "34px",
+                }
+              }
+              type="primary"
+            />
+          </div>
+        </div>
+      </UnstyledButton>
+    }
+  >
+    <div
+      style={
+        Object {
+          "background": "white",
+          "maxHeight": "320px",
+          "minWidth": "180px",
+          "overflowY": "auto",
+        }
+      }
+    />
+  </clickOutside(DropDownWithClickOutside)>
+  <styled.div />
+</div>
 `;
