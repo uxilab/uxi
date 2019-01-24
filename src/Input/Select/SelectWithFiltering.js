@@ -62,6 +62,7 @@ class SelectWithFiltering extends Select {
     this.storeChildrenWrapperRef = this.storeChildrenWrapperRef.bind(this);
     this.handlInputFocus = this.handlInputFocus.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.focusInput = this.focusInput.bind(this);
   }
 
   componentDidMount() {
@@ -235,6 +236,10 @@ class SelectWithFiltering extends Select {
         style={{
           ...(style.width ? { width: style.width } : {}),
         }}
+        onClick={() => {
+          this.focusInput();
+          console.log('onClick this.focusInput');
+        }}
         // onEsc={() => this.clickHandler(null)}
         // onClick={(e, ...r) => {
         // if (e && e.stopPropagation) {
@@ -243,9 +248,10 @@ class SelectWithFiltering extends Select {
         // this.toggleVisibility(e, ...r);
         // }}
       >
-        <TriggerreWrapper >
-          <div>
+        <span style={{ position: 'relative' }}>
+          <TriggerreWrapper>
             <TextField
+              style={{ background: 'transparent' }}
               placeholder="filter"
               onFocus={this.handlInputFocus}
               onChange={this.handleInputChange}
@@ -255,8 +261,8 @@ class SelectWithFiltering extends Select {
               <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
               */
             }
-          </div>
-          <div style={styles.trigerrerIcon}>
+          </TriggerreWrapper>
+          <div style={styles.trigerrerIconForSelectWithFiltering}>
             <Button
               inert
               type="primary"
@@ -268,7 +274,8 @@ class SelectWithFiltering extends Select {
               icon={<Arrowdown />}
             />
           </div>
-        </TriggerreWrapper>
+
+        </span>
       </UnstyledButtonBeta>
     );
   }
@@ -582,6 +589,19 @@ class SelectWithFiltering extends Select {
   //   this.itemRef = itemsNode;
   // }
 
+  focusInput() {
+    console.log('focusInput');
+    console.log('this.triggerWrapperRef', this.triggerWrapperRef);
+    const { triggerWrapperRef } = this;
+
+    if (triggerWrapperRef && triggerWrapperRef.querySelector) {
+      const inputMaybe = triggerWrapperRef.querySelector('input');
+      console.log('inputMaybe', inputMaybe);
+      if (inputMaybe && inputMaybe.focus) {
+        inputMaybe.focus();
+      }
+    }
+  }
 
   focusTrigger() {
     // return;

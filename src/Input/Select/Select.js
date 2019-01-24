@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import isEqual from 'lodash/isEqual';
-// import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
@@ -247,6 +246,10 @@ class Select extends Component {
         isFullWidth={isFullWidth}
         style={{
           ...(style.width ? { width: style.width } : {}),
+          border: '1px solid #cecece',
+          // borderRadius: radiusPlusOne,
+          maxHeight: '34px',
+          boxSizing: 'border-box',
           ...disabledStyle,
         }}
         // onEsc={() => this.clickHandler(null)}
@@ -257,11 +260,11 @@ class Select extends Component {
           this.toggleVisibility(e, ...r);
         }}
       >
-        <TriggerreWrapper >
-          <div>
+        <div style={{ position: 'relative', width: '100%' }}>
+          <TriggerreWrapper>
             {mainContent}
             <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
-          </div>
+          </TriggerreWrapper>
           <div style={styles.trigerrerIcon}>
             <Button
               inert
@@ -276,7 +279,7 @@ class Select extends Component {
               icon={<Arrowdown />}
             />
           </div>
-        </TriggerreWrapper>
+        </div>
       </UnstyledButtonBeta>
     );
   }

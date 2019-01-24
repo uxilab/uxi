@@ -14,10 +14,23 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
         disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
-        style={Object {}}
+        style={
+          Object {
+            "border": "1px solid #cecece",
+            "boxSizing": "border-box",
+            "maxHeight": "34px",
+          }
+        }
       >
-        <styled.div>
-          <div>
+        <div
+          style={
+            Object {
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <styled.div>
             <styled.div>
               <div
                 style={
@@ -59,20 +72,20 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
               }
               success={undefined}
             />
-          </div>
+          </styled.div>
           <div
             style={
               Object {
                 "alignItems": "center",
-                "bottom": "0",
+                "bottom": "-1px",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "height": "34px",
                 "maxHeight": "34px",
                 "padding": 0,
                 "position": "absolute",
-                "right": "0",
-                "top": "0",
+                "right": "-1px",
+                "top": "-1px",
               }
             }
           >
@@ -94,7 +107,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
               type="primary"
             />
           </div>
-        </styled.div>
+        </div>
       </UnstyledButton>
     }
   >
@@ -197,10 +210,23 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
         disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
-        style={Object {}}
+        style={
+          Object {
+            "border": "1px solid #cecece",
+            "boxSizing": "border-box",
+            "maxHeight": "34px",
+          }
+        }
       >
-        <styled.div>
-          <div>
+        <div
+          style={
+            Object {
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <styled.div>
             <styled.div>
               <div
                 style={
@@ -242,20 +268,20 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
               }
               success={undefined}
             />
-          </div>
+          </styled.div>
           <div
             style={
               Object {
                 "alignItems": "center",
-                "bottom": "0",
+                "bottom": "-1px",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "height": "34px",
                 "maxHeight": "34px",
                 "padding": 0,
                 "position": "absolute",
-                "right": "0",
-                "top": "0",
+                "right": "-1px",
+                "top": "-1px",
               }
             }
           >
@@ -277,7 +303,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
               type="primary"
             />
           </div>
-        </styled.div>
+        </div>
       </UnstyledButton>
     }
   >
@@ -380,10 +406,23 @@ exports[`<Select /> matches snapshot 1`] = `
         disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
-        style={Object {}}
+        style={
+          Object {
+            "border": "1px solid #cecece",
+            "boxSizing": "border-box",
+            "maxHeight": "34px",
+          }
+        }
       >
-        <styled.div>
-          <div>
+        <div
+          style={
+            Object {
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <styled.div>
             <div>
                
             </div>
@@ -397,20 +436,20 @@ exports[`<Select /> matches snapshot 1`] = `
               }
               success={undefined}
             />
-          </div>
+          </styled.div>
           <div
             style={
               Object {
                 "alignItems": "center",
-                "bottom": "0",
+                "bottom": "-1px",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "height": "34px",
                 "maxHeight": "34px",
                 "padding": 0,
                 "position": "absolute",
-                "right": "0",
-                "top": "0",
+                "right": "-1px",
+                "top": "-1px",
               }
             }
           >
@@ -432,7 +471,7 @@ exports[`<Select /> matches snapshot 1`] = `
               type="primary"
             />
           </div>
-        </styled.div>
+        </div>
       </UnstyledButton>
     }
   >

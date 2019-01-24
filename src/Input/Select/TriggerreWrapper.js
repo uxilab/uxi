@@ -7,7 +7,6 @@ const TriggerreWrapper = styled.div`
   width: 100%;
   min-height: 34px;
   height: 34px;
-  border: 1px solid #cecece;
   display: block;
   border-radius: ${({ theme: { radius } }) => radius};
   overflow: hidden;
