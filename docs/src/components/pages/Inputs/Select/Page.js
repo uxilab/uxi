@@ -15,6 +15,10 @@ import ExampleSimple from './ExampleSimple';
 import RAWExampleSimple from '!raw-loader!./ExampleSimple';
 import RAWMDExampleSimple from '!raw-loader!./ExampleSimple.md';
 
+import ExampleSimpleDisabled from './ExampleSimpleDisabled';
+import RAWExampleSimpleDisabled from '!raw-loader!./ExampleSimpleDisabled';
+import RAWMDExampleSimpleDisabled from '!raw-loader!./ExampleSimpleDisabled.md';
+
 import ExampleSimpleWithWidth from './ExampleSimpleWithWidth';
 import RAWExampleSimpleWithWidth from '!raw-loader!./ExampleSimpleWithWidth';
 
@@ -46,7 +50,7 @@ const SelectInputPage = () => (
         <CodeExample
           code={RAWSelect}
           component
-          title="simple SelectInput Playground"
+          title="<Select />"
           description={componentInfoToMD(RAWSelect)}
         />
       </li>
@@ -66,19 +70,20 @@ const SelectInputPage = () => (
           component
           title="simple SelectInput"
           hasPadding
-          description={componentInfoToMD(RAWMDExampleSimple)}
+          description={RAWMDExampleSimple}
         >
           <ExampleSimple />
         </CodeExample>
       </li>
       <li>
         <CodeExample
-          code={RAWExampleSelectWithFiltering}
+          code={ExampleSimpleDisabled}
           component
-          title="SelectWithFiltering (WIP)"
+          title="Disabled SelectInput"
           hasPadding
+          description={RAWMDExampleSimpleDisabled}
         >
-          <ExampleSelectWithFiltering />
+          <ExampleSimpleDisabled />
         </CodeExample>
       </li>
       <li>
