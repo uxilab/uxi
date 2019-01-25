@@ -6,7 +6,7 @@ const ContentWithExtraUI = styled.div`
   display: flex;
   min-height: 100%;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   flex-flow: ${({ isAfter }) => (isAfter ? 'row wrap' : 'row wrap')};
 `;
 
