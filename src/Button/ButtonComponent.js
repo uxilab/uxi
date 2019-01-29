@@ -176,7 +176,11 @@ export class ButtonComponent extends Component {
           ...marginStyles,
           lineHeight: 0,
           ...(style.width ? { width: style.width } : {}),
+          ...(style.minWidth ? { minWidth: style.minWidth } : {}),
+          ...(style.maxWidth ? { maxWidth: style.maxWidth } : {}),
           ...(style.height ? { height: style.width } : {}),
+          ...(style.minHeight ? { minHeight: style.minHeight } : {}),
+          ...(style.maxHeight ? { maxHeight: style.maxHeight } : {}),
         }}
       >
         <Ripples disabled={disabled} style={rippleStyles}>
