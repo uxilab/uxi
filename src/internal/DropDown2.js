@@ -9,6 +9,7 @@ const BoxWrapperUI = styled.div.attrs({})`
   position: absolute;
   max-height: 0;
   top: 100%;
+  ${({ fullWidthContent }) => (fullWidthContent ? 'width: 100%' : '')};
 
   /**
     * fix flex scroll bar issue on IE */
@@ -37,7 +38,7 @@ const BoxWrapperUI = styled.div.attrs({})`
     overflow-y: hidden;
   }
 
-
+  /* TODO shoadow and focus stylesshould be managed by component orchestrating a dropDown2 */
   &:focus, &:focus-within {
     ${({ /* isOpen,  */theme }) => (/* isOpen */ true
       ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
@@ -59,6 +60,7 @@ class DropDown2 extends Component {
 
   static defaultProps = {
     isOpen: undefined,
+    fullWidthContent: false,
     onTriggerWrapperRef: () => {},
     onChildrenWrapperRef: () => {},
     trigger: <div />,
@@ -147,6 +149,7 @@ class DropDown2 extends Component {
       children,
       isFullWidth,
       anchor,
+      fullWidthContent,
     } = this.props;
 
     const {
@@ -181,6 +184,7 @@ class DropDown2 extends Component {
           {TriggerWithHandler}
         </span>
         <BoxWrapperUI
+          fullWidthContent={fullWidthContent}
           data-box-wrapper-ui
           onScroll={(e) => {
             e.stopPropagation();

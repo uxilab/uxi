@@ -34,6 +34,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
     />
   </Ripples>
 </div>
@@ -73,6 +74,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
       type="error"
     />
   </Ripples>
@@ -113,6 +115,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
       type="info"
     />
   </Ripples>
@@ -153,6 +156,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
       type="primary"
     />
   </Ripples>
@@ -193,6 +197,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
       type="secondary"
     />
   </Ripples>
@@ -233,6 +238,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
       type="success"
     />
   </Ripples>
@@ -273,6 +279,7 @@ exports[`<Button /> handles various types ([none], primary, secondary, error, wa
           "marginTop": 0,
         }
       }
+      tabIndex={0}
       type="warning"
     />
   </Ripples>
@@ -313,6 +320,7 @@ exports[`<Button /> match snapshot 1`] = `
           "marginTop": 0,
         }
       }
+      tabIndex={0}
     />
   </Ripples>
 </div>

@@ -38,7 +38,7 @@ export class ButtonComponent extends Component {
       className,
       target,
       loading,
-      tabIndex,
+      tabIndex = 0,
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -71,7 +71,7 @@ export class ButtonComponent extends Component {
         marginBottom: 0,
         marginLeft: 0,
       },
-      ...(tabIndex ? { tabIndex } : {}),
+      ...(tabIndex !== undefined && !disabled && !inert ? { tabIndex } : {}),
     };
 
     const marginStyles = {

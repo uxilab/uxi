@@ -666,6 +666,8 @@ class SelectWithFiltering extends Select {
     return (
       <SelectWithFilteringWrapper style={style}>
         <DropDown2
+          isFullWidth={isFullWidth}
+          fullWidthContent
           isOpen={isOpen}
           onClickOutside={this.handleDropDownChange}
           trigger={trigerer}
@@ -676,7 +678,7 @@ class SelectWithFiltering extends Select {
             style={{
               maxHeight: '320px',
               overflowY: 'auto',
-              minWidth: '180px',
+              width: '100%',
               background: 'white',
               ...(style.width ? { width: style.width } : {}),
               ...(isFullWidth ? { width: '100%' } : {}),

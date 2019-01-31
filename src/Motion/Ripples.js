@@ -124,8 +124,8 @@ class Ripples extends Component {
     } = ev;
     const { top, left } = currentTarget.getBoundingClientRect();
 
-    const rippleLeft = pageX - left;
-    const rippleTop = clientY - top;
+    const rippleLeft = pageX ? pageX - left : '50%';
+    const rippleTop = clientY ? clientY - top : '50%';
 
     this.setState({
       rippleStyle: {

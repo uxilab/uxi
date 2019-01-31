@@ -2,9 +2,11 @@
 
 exports[`<Select /> controlled/uncontrolled behaviour works as a controlled component, no onChange, no change 1`] = `
 <div
+  onKeyDown={null}
   style={Object {}}
 >
   <clickOutside(DropDownWithClickOutside)
+    fullWidthContent={true}
     isOpen={false}
     onChildrenWrapperRef={[Function]}
     onClickOutside={[Function]}
@@ -116,8 +118,8 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
         Object {
           "background": "white",
           "maxHeight": "320px",
-          "minWidth": "180px",
           "overflowY": "auto",
+          "width": "100%",
         }
       }
     >
@@ -198,9 +200,11 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
 
 exports[`<Select /> controlled/uncontrolled behaviour works correctly as an uncontrolled input 1`] = `
 <div
+  onKeyDown={null}
   style={Object {}}
 >
   <clickOutside(DropDownWithClickOutside)
+    fullWidthContent={true}
     isOpen={false}
     onChildrenWrapperRef={[Function]}
     onClickOutside={[Function]}
@@ -312,8 +316,8 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
         Object {
           "background": "white",
           "maxHeight": "320px",
-          "minWidth": "180px",
           "overflowY": "auto",
+          "width": "100%",
         }
       }
     >
@@ -394,9 +398,11 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
 
 exports[`<Select /> matches snapshot 1`] = `
 <div
+  onKeyDown={null}
   style={Object {}}
 >
   <clickOutside(DropDownWithClickOutside)
+    fullWidthContent={true}
     isOpen={false}
     onChildrenWrapperRef={[Function]}
     onClickOutside={[Function]}
@@ -480,8 +486,8 @@ exports[`<Select /> matches snapshot 1`] = `
         Object {
           "background": "white",
           "maxHeight": "320px",
-          "minWidth": "180px",
           "overflowY": "auto",
+          "width": "100%",
         }
       }
     />

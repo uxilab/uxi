@@ -37,11 +37,12 @@ class Select extends Component {
     };
 
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
-    this.preventScrollingOnSpace = this.preventScrollingOnSpace.bind(this);
+    this.handleKeyboardEvents = this.handleKeyboardEvents.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.storeTriggerWrapperRef = this.storeTriggerWrapperRef.bind(this);
     this.storeChildrenWrapperRef = this.storeChildrenWrapperRef.bind(this);
+    this.storeSelectWrapperRef = this.storeSelectWrapperRef.bind(this);
   }
 
   componentDidMount() {
@@ -89,10 +90,10 @@ class Select extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { isOpen: isOpenState } = this.state;
-    const { isOpen: isOpenProps } = this.props;
+    // const { isOpen: isOpenState } = this.state;
+    // const { isOpen: isOpenProps } = this.props;
 
-    const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
+    // const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
 
     if (this.isControlled) {
       // noop
@@ -113,11 +114,11 @@ class Select extends Component {
       }
     }
 
-    if (isOpen) {
-      window.addEventListener('keydown', this.preventScrollingOnSpace);
-    } else {
-      window.removeEventListener('keydown', this.preventScrollingOnSpace);
-    }
+    // if (isOpen) {
+    //   window.addEventListener('keydown', this.handleKeyboardEvents, { capture: true });
+    // } else {
+    //   window.removeEventListener('keydown', this.handleKeyboardEvents, { capture: true });
+    // }
 
     const { children } = this.props;
     const shouldUpdateOptions = (
@@ -357,7 +358,7 @@ class Select extends Component {
     });
   }
 
-  preventScrollingOnSpace(e) {
+  handleKeyboardEvents(e) {
     if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
@@ -398,6 +399,24 @@ class Select extends Component {
           this.props.onIsOpenChange(false, e);
         }
       } else {
+        e.stopPropagation(); // if a drawer is open, do not let propagate
+        // e.stopImmediatePropagation(); // if a drawer is open, do not let propagate
+        // e.preventDefault();
+        console.log(e);
+        console.log(e.stopPropagation);
+        console.log(e.preventDefault);
+        console.log(e.stopImmediatePropagation);
+        console.log(e.nativeEvent);
+        console.log(e.originalEvent);
+        // console.log(e.nativeEvent.stopImmediatePropagation);
+        if (e && e.nativeEvent) {
+          if (e.nativeEvent.stopImmediatePropagation) {
+            e.nativeEvent.stopImmediatePropagation();
+          }
+          if (e.nativeEvent.stopPropagation) {
+            e.nativeEvent.stopPropagation();
+          }
+        }
         this.setState({
           isOpen: false,
         }, this.focusTrigger);
@@ -586,8 +605,19 @@ class Select extends Component {
       }
 
       if (focusTarget.focus) {
-        setTimeout(() => {
-          focusTarget.focus();
+        const r = setTimeout(() => {
+          // abort if focus has already passed to something outside the select,
+          // like a second input in a form
+          if (
+            (this.selectWrapperRef && this.selectWrapperRef.contains(document.activeElement))
+            || (this.selectWrapperRef && document.activeElement === document.body)
+          ) {
+            // make sure dom node still mounted
+            if (focusTarget && focusTarget.focus) {
+              focusTarget.focus();
+            }
+          }
+          clearTimeout(r);
         }, 10);
       }
     }
@@ -600,8 +630,20 @@ class Select extends Component {
       && this.childrenWrapperRef.firstChild.firstChild
       && this.childrenWrapperRef.firstChild.firstChild.focus
     ) {
-      setTimeout(() => {
-        this.childrenWrapperRef.firstChild.firstChild.focus();
+      const r = setTimeout(() => {
+        // abort if focus has already passed to something outside the select,
+        // like a second input in a form
+        if (this.selectWrapperRef && this.selectWrapperRef.contains(document.activeElement)) {
+          if (
+            this.childrenWrapperRef
+            && this.childrenWrapperRef.firstChild
+            && this.childrenWrapperRef.firstChild.firstChild
+            && this.childrenWrapperRef.firstChild.firstChild.focus
+          ) {
+            this.childrenWrapperRef.firstChild.firstChild.focus();
+          }
+        }
+        clearTimeout(r);
       }, 10);
     }
   }
@@ -611,6 +653,9 @@ class Select extends Component {
   }
   storeChildrenWrapperRef(node) {
     this.childrenWrapperRef = node;
+  }
+  storeSelectWrapperRef(node) {
+    this.selectWrapperRef = node;
   }
 
   render() {
@@ -630,10 +675,26 @@ class Select extends Component {
 
     const trigerer = this.getTrigerrerLabel();
 
+    // if (isOpen) {
+    //   window.addEventListener('keydown', this.handleKeyboardEvents, { capture: true });
+    // } else {
+    //   window.removeEventListener('keydown', this.handleKeyboardEvents, { capture: true });
+    // }
+
+    const keyboardKeyDownHandler = isOpen
+      ? this.handleKeyboardEvents
+      : null;
+
+
     return (
-      <div style={style}>
+      <div
+        onKeyDown={keyboardKeyDownHandler}
+        style={style}
+        ref={this.storeSelectWrapperRef}
+      >
         <DropDown2
           isFullWidth={isFullWidth}
+          fullWidthContent
           isOpen={isOpen}
           onClickOutside={this.handleDropDownChange}
           trigger={trigerer}
@@ -644,7 +705,8 @@ class Select extends Component {
             style={{
               maxHeight: '320px',
               overflowY: 'auto',
-              minWidth: '180px',
+              width: '100%',
+              // minWidth: '180px',
               background: 'white',
               ...(style.width ? { width: style.width } : {}),
               ...(isFullWidth ? { width: '100%' } : {}),
