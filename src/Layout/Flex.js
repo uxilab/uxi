@@ -7,6 +7,7 @@ export const Flex = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: ${({ direction }) => (direction || 'row')};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
 export default Flex;

@@ -3,6 +3,10 @@ import ComponentShell from './ComponentShell';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/pages/Home';
+
+import NotifcationsPage from './components/pages/Notifcations/Page';
+import SnackbarPage from './components/pages/Notifcations/Snackbar/Page';
+
 import ThemePage from './components/pages/Theme/Page';
 import ButtonPage from './components/pages/Button/Page';
 import FlatButtonPage from './components/pages/Button/FlatButton/Page';
@@ -82,6 +86,11 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/`} exact component={ThemePage} />
       {/* THEME */}
       {/* <Route path={`${match.url}/Theme`} exact component={ThemePage} /> */}
+
+      {/* NotifcationsPage */}
+      <Route path={`${match.url}/Notifications`} exact component={NotifcationsPage} />
+      <Route path={`${match.url}/Notifications/Snackbar`} exact component={SnackbarPage} />
+
 
       {/* PANEL */}
       <Route path={`${match.url}/Panel`} exact component={PanelPage} />

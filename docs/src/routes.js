@@ -10,6 +10,12 @@ export const routes = [
       { path: '/panel/LightPanel', label: 'LightPanel' },
     ],
   },
+  { path: '/notifications',
+    label: 'Notifications',
+    childRoutes: [
+      { path: '/notifications/Snackbar', label: 'Snackbar' },
+    ],
+  },
   { path: '/Dialog',
     label: 'Dialog',
     childRoutes: [

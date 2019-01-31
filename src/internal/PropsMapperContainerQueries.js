@@ -17,6 +17,7 @@ import ResizeObserver from 'resize-observer-polyfill';
  */
 
 const applyRules = (props, rules, width, height) => {
+  console.log('applyRules', width, height);
   if (!rules || (rules.length === 0)) {
     return props;
   }
@@ -32,7 +33,10 @@ const applyRules = (props, rules, width, height) => {
      * logical, ascending, flow of overwrite
      * !!!avoid cyclic dependent constraint!!
      */
-    .filter(({ minWidth }) => !width || width >= minWidth);
+    .filter(({ minWidth, minHeight }) => (
+      (!width || width >= minWidth)
+      || (!height || height >= minHeight)
+    ));
 
   internalRules.forEach(({ mapper }) => {
     result = {
@@ -69,6 +73,24 @@ export class PropsMapperContainerQueries extends Component {
     this.init();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.children !== prevProps.children) {
+      if (this.ref) {
+        const {
+          height,
+          maxHeight,
+        } = this.ref.style;
+
+        this.ref.style.maxHeight = '100vh';
+        this.ref.style.height = 'auto';
+        const rect = this.ref.getBoundingClientRect();
+        this.ref.style.maxHeight = maxHeight;
+        this.ref.style.height = height;
+        this.handleUpdate(rect);
+      }
+    }
+  }
+
   componentWillUnmount() {
     if (window && window.removeEventListener) {
       window.removeEventListener('resize', this.handleResize);
@@ -79,8 +101,32 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   storeRef(node) {
+    console.log('storeRef', node);
     this.ref = node;
     this.init();
+  }
+
+  handleUpdate = (contentRect) => {
+    console.log('handleUpdate', 'contentRect', contentRect, this.ref);
+    const { children, rules } = this.props;
+
+
+    const { width, height } = contentRect;
+
+    console.log('handleUpdate', width, height);
+
+    const mappedProps = applyRules(
+      {
+        ...this.props,
+        ...(children.props || {}),
+      },
+      rules,
+      width,
+      height
+    );
+    if (!isEqual(this.state.mappedProps, mappedProps)) {
+      this.setState({ mappedProps, width, height });
+    }
   }
 
   init() {
@@ -92,22 +138,11 @@ export class PropsMapperContainerQueries extends Component {
     if (this.observer) {
       // noop watch on unmount
     } else if (this.ref) {
-      this.observer = new ResizeObserver((entries/* , observer */) => {
+      this.observer = new ResizeObserver((entries, observer) => {
         const last = entries[entries.length - 1];
-
-        const { width, height } = last.contentRect;
-
-        const mappedProps = applyRules(
-          {
-            ...this.props,
-            ...(children.props || {}),
-          },
-          rules,
-          width,
-          height
-        );
-        if (!isEqual(this.state.mappedProps, mappedProps)) {
-          this.setState({ mappedProps });
+        const { contentRect } = last;
+        if (contentRect) {
+          this.handleUpdate(contentRect);
         }
       });
 
