@@ -108,6 +108,7 @@ class TextField extends Component {
       success,
       error,
       defaultValue,
+      tabIndex = 0,
       ...attributes
     } = this.props;
 
@@ -118,6 +119,7 @@ class TextField extends Component {
 
     const inputAttributes = {
       ...attributes,
+      ...(tabIndex !== undefined ? { tabIndex } : {}),
       value: this.isControlled ? this.props.value : this.state.value,
     };
 
@@ -125,6 +127,7 @@ class TextField extends Component {
       <InputWrapperUI>
         <InputUI
           {...inputAttributes}
+
           type={type}
           style={style}
           placeholder={placeholder}

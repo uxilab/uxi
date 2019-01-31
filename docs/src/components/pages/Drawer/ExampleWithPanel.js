@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'uxi/Button';
 import Drawer from 'uxi/Drawer';
+import TextField from 'uxi/Input/TextField';
 import Panel, { PanelHeader, PanelContent, PanelFooter } from 'uxi/Panel';
 import { Close } from 'uxi/Icons';
 
@@ -42,7 +43,10 @@ class ExampleWithPanel extends Component {
         >
           <Panel onClose={() => this.setState({ showSidePanelLeft: false })}>
             <PanelHeader title={'Notifications'} />
-            <PanelContent>Some more content goes here</PanelContent>
+            <PanelContent>
+              first focusable element inside drawer gets focus on open
+              <Button>button</Button>
+            </PanelContent>
             <PanelFooter />
           </Panel>
         </Drawer>
@@ -54,7 +58,11 @@ class ExampleWithPanel extends Component {
         >
           <Panel onClose={() => this.setState({ showSidePanelRight: false })}>
             <PanelHeader title={'Notifications'} />
-            <PanelContent>Some more content goes here</PanelContent>
+            <PanelContent>
+              first focusable element inside drawer gets focus on open
+              <TextField placeholder="an input" />
+              <Button>button</Button>
+            </PanelContent>
           </Panel>
         </Drawer>
 
@@ -65,7 +73,7 @@ class ExampleWithPanel extends Component {
         >
           <Panel onClose={undefined} >
             <PanelHeader title={'Review Changes'} />
-            <PanelContent style={{ padding: '16px' }}>
+            <PanelContent style={{ padding: '16px' }}>
               <h3>old list:</h3>
               <ul>
                 <li> - banana</li>

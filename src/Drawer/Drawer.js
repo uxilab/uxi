@@ -50,18 +50,22 @@ const DrawerUI = styled.div`
 class Drawer extends React.Component {
   constructor(props) {
     super(props);
-    this.handleEsc = this.handleEsc.bind(this);
+
     this.state = {
       // Let's assume that the Drawer will always be rendered on user space.
       // We use that state is order to skip the appear transition during the
       // initial mount of the component.
       firstMount: true,
     };
+
+    this.handleEsc = this.handleEsc.bind(this);
+    this.storeRef = this.storeRef.bind(this);
   }
 
   componentDidMount() {
-    if (window) {
-      window.addEventListener('keyup', this.handleEsc);
+    const { open, isOpen } = this.props;
+    if (open || isOpen) {
+      // this.attachKeyboardEventHandler();
     }
   }
 
@@ -71,19 +75,68 @@ class Drawer extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    const { isOpen, open } = this.props;
+
+    if (prevProps.open !== open || prevProps.isOpen !== isOpen) {
+      if (open || isOpen) {
+        // this.attachKeyboardEventHandler();
+        this.focusFirstFocusableIfAny();
+      } else if (!open && !isOpen) {
+        // this.detachKeyboardEventHandler();
+      }
+    }
+  }
+
   componentWillUnmount() {
+    // this.detachKeyboardEventHandler();
+  }
+
+  detachKeyboardEventHandler() {
     if (window) {
       window.removeEventListener('keyup', this.handleEsc);
     }
   }
 
+  attachKeyboardEventHandler() {
+    if (window) {
+      window.addEventListener('keyup', this.handleEsc);
+    }
+  }
+
   handleEsc(e) {
+    console.log('e', e);
+    console.log('e.nativeEvent', e.nativeEvent);
     const { key } = e;
-    const { onClose, open, isOpen } = this.props;
-    if ((open || isOpen) && onClose && key === 'Escape') {
+    const { onClose } = this.props;
+    if (onClose && key === 'Escape') {
       onClose();
     }
   }
+
+  focusFirstFocusableIfAny() {
+    if (this.ref) {
+      if (this.ref.querySelector) {
+        let target = this.ref.querySelector('*[tabIndex]');
+        console.log('target', target);
+        if (target && target.focus) {
+          // noop
+        } else if (this.ref && this.ref.focus) {
+          target = this.ref;
+        }
+
+        const r = setTimeout(() => {
+          console.log('target in to', target);
+          if (target && target.focus) {
+            target.focus();
+          }
+          clearTimeout(r);
+        }, 10);
+      }
+    }
+  }
+
+  storeRef(node) { this.ref = node; }
 
   render() {
     const {
@@ -101,9 +154,12 @@ class Drawer extends React.Component {
       offsetRight,
     } = this.props;
 
+    const keyboardKeyDownHandler = (open || isOpen)
+      ? this.handleEsc
+      : null;
 
     return (
-      <div>
+      <div ref={this.storeRef} onKeyDown={keyboardKeyDownHandler}>
         <Slide
           inAttr={(open || isOpen)}
           direction={getSlideDirection(anchor)}
