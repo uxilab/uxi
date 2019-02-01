@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 
 const slideIn = keyframes`
   0% {
-    transform: translateY(50vh);
+    transform: translateY(30vh);
   }
 
   100% {
@@ -14,22 +14,24 @@ const slideIn = keyframes`
 
 const growIn = keyframes`
   0% {
-    max-height: 0vh;
-    height: auto;
+    max-height: 0px;
   }
 
   100% {
     max-height: 180px;
-    height: auto;
   }
 `;
 
 const ToastWrapper = styled.div`
+  height: auto;
   max-width: 380px;
   min-width: 380px;
   margin: 8px 0;
   overflow: visible;
-  animation: ${slideIn} 450ms forwards, ${growIn} 450ms forwards;
+  animation:
+    ${slideIn} 450ms cubic-bezier(0.23, 1, 0.32, 1) forwards,
+    ${growIn}  450ms cubic-bezier(0.23, 1, 0.32, 1) forwards
+  ;
   /* height: 0px; */
   &, & > * {
     transition: ${({ theme: { transition } }) => transition.defaultAll};
