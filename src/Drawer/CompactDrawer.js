@@ -171,14 +171,12 @@ class CompactDrawer extends React.Component {
         style={styleProp}
         {...handlers}
       >
-       <div>
         {
           React.Children.map(children, child => React.cloneElement(child, {
             onClose,
             ...(child.props || {}),
           }))
         }
-        </div>
       </CompactDrawerUI>
     );
   }

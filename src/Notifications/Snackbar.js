@@ -15,7 +15,7 @@ class Snackbar extends Component { // eslint-disable-line
 
     return (
       <CompactDrawer inAttr={!!React.Children.count(children)}>
-        <PropsMapperContainerQueries
+        {/* <PropsMapperContainerQueries
           inline
           rules={[{
             minHeight: 0,
@@ -28,17 +28,17 @@ class Snackbar extends Component { // eslint-disable-line
                   transition: 'all 450ms ',
                   maxHeight: containerHeight + 80,
                   height: containerHeight + 80,
-                  overflow: 'visible',
+                  overflow: 'hidden',
                 },
               };
             },
             // mapper: ({ ...a }) => ({ ...a }),
           }]}
-        >
-          <Flex style={{ flexDirection: 'column', transition: 'all 450ms ', maxHeight: '999px' }}>
-            {children}
-          </Flex>
-        </PropsMapperContainerQueries>
+        > */}
+        <Flex style={{ flexDirection: 'column', maxHeight: '30vh' }}>
+          {children}
+        </Flex>
+        {/* </PropsMapperContainerQueries> */}
       </CompactDrawer>
     );
   }

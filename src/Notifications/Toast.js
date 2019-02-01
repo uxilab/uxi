@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 
 const slideIn = keyframes`
   0% {
-    transform: translateY(100vh);
+    transform: translateY(50vh);
   }
 
   100% {
@@ -15,16 +15,19 @@ const slideIn = keyframes`
 const growIn = keyframes`
   0% {
     max-height: 0vh;
-    height: 0%;
+    height: auto;
   }
 
   100% {
-    max-height: 100vh;
-    height: 100%;
+    max-height: 180px;
+    height: auto;
   }
 `;
 
 const ToastWrapper = styled.div`
+  max-width: 380px;
+  min-width: 380px;
+  margin: 8px 0;
   overflow: visible;
   animation: ${slideIn} 450ms forwards, ${growIn} 450ms forwards;
   /* height: 0px; */
