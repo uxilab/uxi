@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import CompactDrawer from '../Drawer/CompactDrawer';
-import Flex from '../Layout/Flex';
-import PropsMapperContainerQueries from '../internal/PropsMapperContainerQueries';
+import { Flex } from '../Layout';
 
 class Snackbar extends Component { // eslint-disable-line
-  componentDidUpdate(prevProps) {
-    // if ()
-  }
-
   render() {
     const {
       children,

@@ -130,15 +130,10 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   init() {
-    const {
-      rules,
-      children = {},
-    } = this.props;
-
     if (this.observer) {
       // noop watch on unmount
     } else if (this.ref) {
-      this.observer = new ResizeObserver((entries, observer) => {
+      this.observer = new ResizeObserver((entries/* , observer */) => {
         const last = entries[entries.length - 1];
         const { contentRect } = last;
         if (contentRect) {

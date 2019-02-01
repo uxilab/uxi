@@ -1,6 +1,6 @@
 import React from 'react';
-import Alert from '../Alert';
 import styled, { keyframes } from 'styled-components';
+import Alert from '../Alert';
 
 const slideIn = keyframes`
   0% {
