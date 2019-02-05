@@ -63,6 +63,7 @@ export Smileysad from './Smileysad';
 export Sourcebranch from './Sourcebranch';
 export Thumbdown from './Thumbdown';
 export Thumbup from './Thumbup';
+export Training from './Training';
 export Unpluged from './Unpluged';
 export User from './User';
 export Video from './Video';
