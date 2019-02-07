@@ -7,6 +7,7 @@ const getValueWithUnit = prop => (
     : `${prop}px`
 );
 
+/* eslint-disable indent */
 export const GridUI = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
@@ -14,8 +15,12 @@ export const GridUI = styled.div`
   flex-flow: row wrap;  /* for IE11 only */
   display: grid;
   grid-gap: ${({ gap }) => `${getValueWithUnit(gap)}`};
-  grid-template-columns: ${({ itemWidth }) => `repeat(auto-fill, minmax(${getValueWithUnit(itemWidth)}, 1fr));`};
-  grid-template-rows: ${({ itemHeight }) => `repeat(auto-fill, minmax(${getValueWithUnit(itemHeight)}, 1fr));`};
+  grid-template-columns: ${({ itemWidth, columnAutoSizing }) =>
+    `repeat(auto-${columnAutoSizing}, minmax(${getValueWithUnit(itemWidth)}, 1fr));`
+  };
+  grid-template-rows: ${({ itemHeight, rowAutoSizing }) =>
+    `repeat(auto-${rowAutoSizing}, minmax(${getValueWithUnit(itemHeight)}, 1fr));`
+  };
   font-size: inherit;
   & > * {
     box-sizing: border-box;
@@ -40,11 +45,14 @@ export const GridUI = styled.div`
     }
   }
 `;
+/* eslint-enable indent */
 
 GridUI.defaultProps = {
   style: {},
   itemWidth: '100%',
   gap: 0,
+  columnAutoSizing: 'fill',
+  rowAutoSizing: 'fill',
 };
 
 GridUI.propTypes = {
@@ -57,6 +65,8 @@ GridUI.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  columnAutoSizing: PropTypes.string,
+  rowAutoSizing: PropTypes.string,
 };
 
 export default GridUI;
