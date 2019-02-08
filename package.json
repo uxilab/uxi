@@ -24,7 +24,7 @@
     "typeinstall": "flow-typed install",
     "deploy": "npm run lint && npm run test && npm version patch && npm run pack && npm publish build",
     "deploy-doc": "npm run lint && npm run test && cd docs/ && npm run deploy-doc",
-    "make-svg-icons": "cd src/Icons && node _script.js && npm run test"
+    "make-svg-icons": "cd src/Icons && node _script.js && cd ../../ && npx eslint src/Icons --fix && npm run test "
   },
   "repository": {
     "type": "git",
