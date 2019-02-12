@@ -3,7 +3,11 @@
 exports[`<Select /> controlled/uncontrolled behaviour works as a controlled component, no onChange, no change 1`] = `
 <div
   onKeyDown={null}
-  style={Object {}}
+  style={
+    Object {
+      "style": Object {},
+    }
+  }
 >
   <clickOutside(DropDownWithClickOutside)
     fullWidthContent={true}
@@ -201,7 +205,11 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
 exports[`<Select /> controlled/uncontrolled behaviour works correctly as an uncontrolled input 1`] = `
 <div
   onKeyDown={null}
-  style={Object {}}
+  style={
+    Object {
+      "style": Object {},
+    }
+  }
 >
   <clickOutside(DropDownWithClickOutside)
     fullWidthContent={true}
@@ -399,7 +407,11 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
 exports[`<Select /> matches snapshot 1`] = `
 <div
   onKeyDown={null}
-  style={Object {}}
+  style={
+    Object {
+      "style": Object {},
+    }
+  }
 >
   <clickOutside(DropDownWithClickOutside)
     fullWidthContent={true}

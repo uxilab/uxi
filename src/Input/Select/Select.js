@@ -689,7 +689,10 @@ class Select extends Component {
     return (
       <div
         onKeyDown={keyboardKeyDownHandler}
-        style={style}
+        style={{
+          style,
+          ...(isFullWidth ? { width: '100%' } : {}),
+        }}
         ref={this.storeSelectWrapperRef}
       >
         <DropDown2

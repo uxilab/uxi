@@ -17,6 +17,7 @@ const InputWrapperUI = styled.div.attrs({
   theme: ({ theme }) => (theme || defaultTheme),
 })`
   position: relative;
+  ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
 `;
 
 const InputUI = styled.input.attrs({
@@ -109,6 +110,7 @@ class TextField extends Component {
       error,
       defaultValue,
       tabIndex = 0,
+      isFullWidth,
       ...attributes
     } = this.props;
 
@@ -124,7 +126,7 @@ class TextField extends Component {
     };
 
     return (
-      <InputWrapperUI>
+      <InputWrapperUI isFullWidth={isFullWidth}>
         <InputUI
           {...inputAttributes}
 
