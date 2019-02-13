@@ -14,6 +14,11 @@ import RAWExampleButtonWithConfirm from '!raw-loader!./ExampleButtonWithConfirm'
 import RAWMDExampleButtonWithConfirm from '!raw-loader!./ExampleButtonWithConfirm.md';
 
 
+import ExampleCheckboxWithConfirm from './ExampleCheckboxWithConfirm';
+import RAWExampleCheckboxWithConfirm from '!raw-loader!./ExampleCheckboxWithConfirm';
+import RAWMDExampleCheckboxWithConfirm from '!raw-loader!./ExampleCheckboxWithConfirm.md';
+
+
 const WithConfirmDialogPage = () => (
   <div>
     <H1>withConfirmDialog</H1>
@@ -50,6 +55,17 @@ const WithConfirmDialogPage = () => (
           hasPadding
         >
           <ExampleButtonWithConfirm />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleCheckboxWithConfirm}
+          component
+          title="ButtonWithConfirm"
+          description={RAWMDExampleCheckboxWithConfirm}
+          hasPadding
+        >
+          <ExampleCheckboxWithConfirm />
         </CodeExample>
       </li>
     </ul>

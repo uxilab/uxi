@@ -165,6 +165,7 @@ class Checkbox extends React.PureComponent {
       inputStyle,
       labelStyle,
       id: idProp,
+      onClick,
       // ...restOfProps
     } = this.props;
 
@@ -193,7 +194,7 @@ class Checkbox extends React.PureComponent {
     }, style || {});
 
     return (
-      <div style={checkboxWrapperStyle}>
+      <div style={checkboxWrapperStyle} onClick={onClick}>
         <Ripple>
           <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
             {iconIdentifier}

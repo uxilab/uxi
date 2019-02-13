@@ -42,7 +42,10 @@ const WithConfirmDialogHOC = (Comp) => {
       return ([
         <Comp
           {...this.props}
-          onClick={() => this.setState({ showDialog: true })}
+          onClick={() => {
+            console.log('click');
+            this.setState({ showDialog: true });
+          }}
           key="Component"
         />,
         <ConfirmDialog
