@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon : <Plusbox /> match snapshot 1`] = `
+<SvgIcon
+  color="currentColor"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  size={24}
+  style={Object {}}
+  viewBox="0 0 24 24"
+>
+  <svg
+    focusable="false"
+    height="24px"
+    viewBox="0 0 20 20"
+    width="24px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      data-name="Group 559"
+      id="Group_559"
+      transform="translate(-289 -361)"
+    >
+      <g
+        data-name="Rectangle 1 copy 4"
+        fill="transparent"
+        id="Rectangle_1_copy_4"
+        opacity="0.6"
+        stroke="currentColor"
+        strokeWidth="1"
+        transform="translate(289 361)"
+      >
+        <rect
+          height="20"
+          stroke="none"
+          width="20"
+        />
+        <rect
+          height="19"
+          width="19"
+          x="0.5"
+          y="0.5"
+        />
+      </g>
+      <path
+        d="M686.277,141.033h-4.813V136.22h-2.253v4.813H674.4v2.253h4.813V148.1h2.253v-4.813h4.813Z"
+        data-name="Path 394"
+        id="Path_394"
+        transform="translate(-381.397 228.78)"
+      />
+    </g>
+  </svg>
+</SvgIcon>
+`;
