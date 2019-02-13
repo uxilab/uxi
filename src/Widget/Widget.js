@@ -44,6 +44,10 @@ const EmptyWrapper = styled.div`
 class Widget extends Component {
   static componentName = 'Widget';
 
+  static defaultProps = {
+    containerStyle: {},
+  };
+
   createFixedHeightDataGrid(table) {
     const { fixedHeight } = this.props;
 
@@ -66,6 +70,7 @@ class Widget extends Component {
       emptyText,
       fixedHeight,
       style: styleProp,
+      containerStyle,
     } = this.props;
 
     let content;
@@ -102,7 +107,10 @@ class Widget extends Component {
             />
           )
         }
-        <WidgetContainer fixedHeight={hasFixedHeight ? fixedHeight : ''}>
+        <WidgetContainer
+          fixedHeight={hasFixedHeight ? fixedHeight : ''}
+          style={containerStyle}
+        >
           { !isLoading && !emptyText && content}
           { isLoading && <LoaderWrapper><Loader /></LoaderWrapper>}
           { !isLoading && emptyText && <EmptyWrapper>{emptyText}</EmptyWrapper>}
