@@ -2,11 +2,23 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import WidgetHeader from './WidgetHeader';
 import { Loader } from '../Motion';
+import { Close, Fullscreen } from '../Icons';
+import { UnstyledButton } from '../Button';
 
 const WidgetWrapper = styled.div`
   border: 1px solid #ececec;
   box-sizing: border-box;
   background: white;
+  ${({ isFullScreen }) => (isFullScreen ? `
+    z-index: 9999999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh !important;
+  ` : '')}
 `;
 
 const WidgetContainer = styled.div`
@@ -48,6 +60,14 @@ class Widget extends Component {
     containerStyle: {},
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isFullScreen: false,
+    };
+  }
+
   createFixedHeightDataGrid(table) {
     const { fixedHeight } = this.props;
 
@@ -66,12 +86,39 @@ class Widget extends Component {
       title,
       isLoading,
       isLoadingMore,
-      menu,
+      menu: menuProp,
       emptyText,
       fixedHeight,
       style: styleProp,
       containerStyle,
+      allowFullScreen,
     } = this.props;
+
+    const { isFullScreen } = this.state;
+
+    let menu = menuProp;
+    if (!menu && allowFullScreen) {
+      menu = (
+        <UnstyledButton
+          style={{
+            width: '50px',
+            height: '50px',
+            boxSizing: 'border-box',
+            display: 'flex',
+            justifyContent: 'center',
+            color: 'grey',
+          }}
+          onClick={() => this.setState({ isFullScreen: !isFullScreen })}
+        >
+          {
+            isFullScreen
+              ? <Close />
+              : <Fullscreen />
+          }
+
+        </UnstyledButton>
+      );
+    }
 
     let content;
     let hasFixedHeight = fixedHeight;
@@ -96,7 +143,7 @@ class Widget extends Component {
     }
 
     return (
-      <WidgetWrapper style={styleProp}>
+      <WidgetWrapper style={styleProp} isFullScreen={isFullScreen}>
         {
           title &&
           (
