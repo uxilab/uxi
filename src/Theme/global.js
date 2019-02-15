@@ -31,6 +31,10 @@ export const makeGlobalCSSInjector = (theme) => {
     ${fonts}
     ${tooltip}
 
+    * {
+      scroll-behavior: smooth; /* is not an inherited prop */
+    }
+
     html {
       min-height: 100%;
       margin: 0;
