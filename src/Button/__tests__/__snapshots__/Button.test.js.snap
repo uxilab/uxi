@@ -1648,6 +1648,10 @@ exports[`<Button /> should render a Button 1`] = `
 
 
 
+    * {
+      scroll-behavior: smooth; /* is not an inherited prop */
+    }
+
     html {
       min-height: 100%;
       margin: 0;

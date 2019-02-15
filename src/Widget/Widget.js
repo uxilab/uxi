@@ -58,6 +58,7 @@ class Widget extends Component {
 
   static defaultProps = {
     containerStyle: {},
+    children: <div />,
   };
 
   constructor(props) {
@@ -140,6 +141,10 @@ class Widget extends Component {
       });
     } else {
       content = children;
+    }
+
+    if (React.isValidElement(content)) {
+      content = React.cloneElement(content, { isFullScreen });
     }
 
     return (
