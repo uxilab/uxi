@@ -26,7 +26,11 @@ export const TextEllipsisUI = styled.div.attrs({
   text-overflow: ellipsis;
   max-width: 100%;
   /* truncate tail by default */
-  ${({ truncateHead }) => (truncateHead ? 'text-align: left; direction: rtl;' : '')};
+  ${({ truncateHead, leftAligned }) => (
+    truncateHead
+      ? `text-align: ${leftAligned ? 'left' : 'right'}; direction: rtl;`
+      : ''
+  )};
 `;
 
 const TextEllipsis = (props = {}) => (
