@@ -11,7 +11,7 @@ import StatusIcon from '../utils/StatusIcon';
 import ErrorWrapperUI from '../utils/ErrorWrapperUI';
 import { styles } from './Select.styles';
 import TriggererWrapperWithEllispsisChildren from './TriggererWrapperWithEllispsisChildren';
-import TriggerreWrapper from './TriggerreWrapper';
+import TriggererWrapper from './TriggererWrapper';
 import {
   isDOMTypeElement,
 } from './select-utils';
@@ -262,10 +262,10 @@ class Select extends Component {
         }}
       >
         <div style={{ position: 'relative', width: '100%' }}>
-          <TriggerreWrapper>
+          <TriggererWrapper>
             {mainContent}
             <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
-          </TriggerreWrapper>
+          </TriggererWrapper>
           <div style={styles.trigerrerIcon}>
             <Button
               inert
@@ -291,13 +291,25 @@ class Select extends Component {
       isOpen: isOpenProps,
     } = this.props;
 
-    const { isOpen: isOpenState } = this.state;
+    const { isOpen: isOpenState, selectedIndex } = this.state;
 
     const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
-      const isTheOne = this.state.selectedIndex === i;
+      const isTheOne = this.isControlled
+        ? value === this.props.value
+        : selectedIndex === `${i}`
+      ;
+
+      const isTheOneStyles = isTheOne
+        ? {
+            fontWeight: '900', // eslint-disable-line indent
+            opacity: 0.7, // eslint-disable-line indent
+            background: 'lightgrey', // eslint-disable-line indent
+            color: 'grey', // eslint-disable-line indent
+          } // eslint-disable-line indent
+        : {};
 
       if (React.isValidElement(child)) {
         if (!isDOMTypeElement(child)) {
@@ -319,6 +331,7 @@ class Select extends Component {
                 overflowX: 'hidden',
                 maxWidth: '100%',
                 foo: 'bar',
+                ...isTheOneStyles,
               }}
             >
               {React.cloneElement(child, {
@@ -346,6 +359,7 @@ class Select extends Component {
               overflowX: 'hidden',
               maxWidth: '100%',
               foo: 'bar',
+              ...isTheOneStyles,
             }}
           >
             {React.cloneElement(child, {

@@ -13,17 +13,47 @@ import { TextField } from '../../Input';
 // // import ErrorWrapperUI from './utils/ErrorWrapperUI';
 import { styles } from './Select.styles';
 import TriggererWrapperWithEllispsisChildren from './TriggererWrapperWithEllispsisChildren';
-import TriggerreWrapper from './TriggerreWrapper';
+import TriggererWrapper from './TriggererWrapper';
 import {
 // isElement,
   isDOMTypeElement,
 } from './select-utils';
+
+/* eslint-disable indent */
+const TextFieldSmartWrapper = styled.div`
+  display: flex;
+   /* 42 => answer to life (also the right button width) */
+  max-width: 100%;
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
+  & > * {
+    transition: ${({ theme: { transition } }) => transition.defaultAll};
+    flex: 1;
+  }
+  & > *:first-child {
+    max-width: 100%;
+    overflow: hidden;
+    ${({ isOpen }) => (isOpen ? 'flex-grow: 8' : 'flex-grow: 0')};
+    ${({ isOpen, hasSelectValue }) => hasSelectValue && !isOpen && 'max-width: 0%'};
+    ${({ isOpen, hasSelectValue }) => hasSelectValue && isOpen && 'max-width: 200px; width: 50%'};
+  }
+  & > *:last-child {
+    ${({ isOpen }) => (isOpen ? 'flex-grow: 2; flex-shrink: 99' : 'flex-grow: 99')};
+    ${({ isOpen, hasSelectValue }) => hasSelectValue && isOpen && 'max-width: 100%; width: 50%'};
+  }
+
+  input {
+    max-width: 100%;
+  }
+
+`;
+/* eslint-enable indent */
 
 const SelectWithFilteringWrapper = styled.div`
   display: inline-block;
   ${({ isFullWidth }) => (isFullWidth ? 'display: block' : '')};
   // transform: translate(0, 0);
 
+  *[data-drop-down-trigger] { width: auto }
   *[data-drop-down-trigger] input {
     height: 34px;
   }
@@ -75,7 +105,7 @@ class SelectWithFiltering extends Select {
         const selectedIndex = foundIndex > -1 ? foundIndex : null;
         this.setState({ selectedIndex });
       } else {
-        this.setState({ selectedIndex: 0 });
+        // this.setState({ selectedIndex: 0 });
       }
     } else {
       const { value } = this.props;
@@ -109,6 +139,7 @@ class SelectWithFiltering extends Select {
           };
           onChange(fakeEvent, value);
         }
+        this.setState({ filter: null });
       }
     }
 
@@ -167,12 +198,14 @@ class SelectWithFiltering extends Select {
   getTrigerrerLabel() {
     const {
       state: {
+        filter,
         selectedIndex: selectedIndexState,
         optionsNode,
         options,
         // isOpen,
       },
       props: {
+        placeholder,
         // error,
         // success,
         value,
@@ -181,6 +214,8 @@ class SelectWithFiltering extends Select {
         isFullWidth,
       },
     } = this;
+
+    const isOpen = this.isOpenControlled ? this.props.isOpen : this.state.isOpen;
 
     if (triggerElement) {
       return triggerElement;
@@ -194,21 +229,38 @@ class SelectWithFiltering extends Select {
       }
     }
 
+    /*  const textField = (
+      <TextFieldSmartWrapper isOpen={isOpen}>
+        <TextField
+          style={{ background: 'transparent' }}
+          placeholder={placeholder || 'Type to filter'}
+          onFocus={this.handlInputFocus}
+          onChange={this.handleInputChange}
+        />
+      </TextFieldSmartWrapper>
+    ); */
 
     let mainContent = null; // eslint-disable-line no-unused-vars
+
     if (selectedIndex >= 0 && optionsNode[selectedIndex] !== undefined) {
+      // if (isOpen) {
+      //   mainContent = textField;
+      // } else {
       mainContent = (
-        <TriggererWrapperWithEllispsisChildren>
+        <TriggererWrapperWithEllispsisChildren
+          style={{ border: '1px solid #cecece' }}
+        >
           <div
             style={{
               padding: '2px 2px 2px 6px',
-              marginRight: '64px',
+              marginRight: '42px',
               display: 'flex',
               width: '100%',
               boxSizing: 'border-box',
-              height: '34px',
+              height: '32px',
             }}
           >
+            {/* {textField} */}
             {
               React.cloneElement(optionsNode[selectedIndex], {
                 onClick: () => {},
@@ -225,19 +277,26 @@ class SelectWithFiltering extends Select {
           </div>
         </TriggererWrapperWithEllispsisChildren>
       );
-    } else {
-      mainContent = <div>&nbsp;</div>;
     }
+    /* }  else {
+      mainContent = textField;
+    } */
 
     return (
       <UnstyledButtonBeta
+        onMouseOut={null}
         inert
         isFullWidth={isFullWidth}
         style={{
           ...(style.width ? { width: style.width } : {}),
+          ...(style.minWidth ? { minWidth: style.minWidth } : {}),
         }}
         onClick={() => {
-          this.focusInput();
+          if (!isOpen) {
+            if (!this.isOpenControlled) {
+              this.setState({ isOpen: true }, this.focusInput);
+            }
+          }
         }}
         // onEsc={() => this.clickHandler(null)}
         // onClick={(e, ...r) => {
@@ -247,20 +306,30 @@ class SelectWithFiltering extends Select {
         // this.toggleVisibility(e, ...r);
         // }}
       >
-        <span style={{ position: 'relative' }}>
-          <TriggerreWrapper>
-            <TextField
+        <span style={{ position: 'relative', width: '100%' }}>
+          <TriggererWrapper>
+            {/* <TextField
               style={{ background: 'transparent' }}
               placeholder="filter"
               onFocus={this.handlInputFocus}
               onChange={this.handleInputChange}
-            />
+            /> */}
+            <TextFieldSmartWrapper isOpen={isOpen} hasSelectValue={selectedIndex !== null} >
+              <TextField
+                style={{ background: 'transparent' }}
+                value={filter || ''}
+                placeholder={placeholder || 'Type to filter'}
+                onFocus={this.handlInputFocus}
+                onChange={this.handleInputChange}
+              />
+              {mainContent}
+            </TextFieldSmartWrapper>
             {
-              /* {mainContent}
+              /*
               <StatusIcon success={success} error={error} style={{ top: '0', right: '48px' }} />
               */
             }
-          </TriggerreWrapper>
+          </TriggererWrapper>
           <div style={styles.trigerrerIconForSelectWithFiltering}>
             <Button
               inert
@@ -285,13 +354,25 @@ class SelectWithFiltering extends Select {
       isOpen: isOpenProps,
     } = this.props;
 
-    const { isOpen: isOpenState, filter } = this.state;
+    const { isOpen: isOpenState, filter, selectedIndex } = this.state;
 
     const isOpen = this.isOpenControlled ? isOpenProps : isOpenState;
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
-      const isTheOne = this.state.selectedIndex === i;
+      const isTheOne = this.isControlled
+        ? value === this.props.value
+        : selectedIndex === `${i}`
+      ;
+
+      const isTheOneStyles = isTheOne
+        ? {
+            fontWeight: '900', // eslint-disable-line indent
+            opacity: 0.7, // eslint-disable-line indent
+            background: 'lightgrey', // eslint-disable-line indent
+            color: 'grey', // eslint-disable-line indent
+          } // eslint-disable-line indent
+        : {};
 
       if (
         value
@@ -326,6 +407,7 @@ class SelectWithFiltering extends Select {
                 overflowX: 'hidden',
                 maxWidth: '100%',
                 foo: 'bar',
+                ...isTheOneStyles,
               }}
             >
               {React.cloneElement(child, {
@@ -353,6 +435,7 @@ class SelectWithFiltering extends Select {
               overflowX: 'hidden',
               maxWidth: '100%',
               foo: 'bar',
+              ...isTheOneStyles,
             }}
           >
             {React.cloneElement(child, {
@@ -500,7 +583,7 @@ class SelectWithFiltering extends Select {
 
   handleInputChange(e, value = '') {
     if (e.target.value) {
-      this.setState({ filter: value });
+      this.setState({ filter: value || null });
     }
   }
 
@@ -518,7 +601,8 @@ class SelectWithFiltering extends Select {
           this.setState({
             selectedIndex: this.state.selectedIndex || null,
             isOpen: false,
-          }, this.focusTrigger);
+            filter: null,
+          }, this.resetInput);
         }
         this.forceUpdate();
       }
@@ -534,7 +618,8 @@ class SelectWithFiltering extends Select {
         if (!this.isOpenControlled) {
           this.setState({
             isOpen: false,
-          }, this.focusTrigger);
+            filter: null,
+          }, this.resetInput);
         }
         if (onChange) {
           const { options } = this.state;
@@ -547,9 +632,11 @@ class SelectWithFiltering extends Select {
         }
       } else {
         const selectedIndex = e.currentTarget.dataset.index;
+
         this.setState({
           selectedIndex,
           isOpen: false,
+          filter: null,
         }, this.focusTrigger);
         this.forceUpdate();
       }
@@ -588,13 +675,35 @@ class SelectWithFiltering extends Select {
   //   this.itemRef = itemsNode;
   // }
 
+  resetInput() {
+    const { triggerWrapperRef } = this;
+
+    if (triggerWrapperRef && triggerWrapperRef.querySelector) {
+      const inputMaybe = triggerWrapperRef.querySelector('input');
+      console.log('inputMaybe', inputMaybe);
+      if (inputMaybe && inputMaybe.reset) {
+        console.log('inputMaybe', 'resetInput');
+        inputMaybe.reset();
+      }
+    }
+  }
+
   focusInput() {
     const { triggerWrapperRef } = this;
 
     if (triggerWrapperRef && triggerWrapperRef.querySelector) {
       const inputMaybe = triggerWrapperRef.querySelector('input');
+      console.log('inputMaybe', inputMaybe);
       if (inputMaybe && inputMaybe.focus) {
+        console.log('inputMaybe', 'focusing');
         inputMaybe.focus();
+        const r = setTimeout(() => {
+          if (inputMaybe && inputMaybe.focus) {
+            console.log('inputMaybe', 'focusing');
+            inputMaybe.focus();
+          }
+          clearTimeout(r);
+        }, 100);
       }
     }
   }
@@ -664,9 +773,9 @@ class SelectWithFiltering extends Select {
     const trigerer = this.getTrigerrerLabel();
 
     return (
-      <SelectWithFilteringWrapper style={style}>
+      <SelectWithFilteringWrapper style={{ minWidth: '120px', ...style }} isFullWidth={isFullWidth}>
         <DropDown2
-          isFullWidth={isFullWidth}
+          isFullWidth
           fullWidthContent
           isOpen={isOpen}
           onClickOutside={this.handleDropDownChange}

@@ -39,6 +39,7 @@ export class ButtonComponent extends Component {
       target,
       loading,
       tabIndex = 0,
+      onMouseOut,
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -115,6 +116,7 @@ export class ButtonComponent extends Component {
         {...(link && !disabled && target ? { target } : {})}
         {...styleProps}
         {...buttonAttr}
+        onMouseOut={onMouseOut}
       >
         {icon && (
           loading
@@ -207,6 +209,7 @@ ButtonComponent.propTypes = {
 
 ButtonComponent.defaultProps = {
   style: {},
+  onMouseOut: undefined,
   // type: 'default',
 };
 

@@ -6,6 +6,9 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
   display: flex;
   align-items: center;
   /* background: white; */
+  /* border: 1px solid #cecece; */
+  border-radius: ${({ theme: { radius } }) => radius};
+
 
   * {
     overflow-x: hidden;

@@ -6,21 +6,27 @@ import { OutlineButtonBaseMixin } from './OutlineButtonBaseMixin';
 import { UnstyledButtonBaseMixin } from './UnstyledButtonBaseMixin';
 
 const attrs = {
-  onMouseOut: (/* props */) => ({ target, currentTarget }) => {
-    if (document && document.activeElement && document.activeElement === target) {
-      if (target.blur) target.blur();
-    } else if (document && document.activeElement && document.activeElement === currentTarget) {
-      if (currentTarget.blur) currentTarget.blur();
-    } else if (document && target.contains(document.activeElement)) {
-      if (document.activeElement && document.activeElement.blur) {
-        document.activeElement.blur();
+  onMouseOut: ({ onMouseOut }) => (onMouseOut ||
+    (({ target, currentTarget }) => {
+      if (document && document.activeElement && document.activeElement === target) {
+        if (target.blur) target.blur();
+      } else if (
+        document
+        && document.activeElement
+        && document.activeElement === currentTarget
+      ) {
+        if (currentTarget.blur) currentTarget.blur();
+      } else if (document && target.contains(document.activeElement)) {
+        if (document.activeElement && document.activeElement.blur) {
+          document.activeElement.blur();
+        }
+      } else if (document && currentTarget.contains(document.activeElement)) {
+        if (document.activeElement && document.activeElement.blur) {
+          document.activeElement.blur();
+        }
       }
-    } else if (document && currentTarget.contains(document.activeElement)) {
-      if (document.activeElement && document.activeElement.blur) {
-        document.activeElement.blur();
-      }
-    }
-  },
+    })
+  ),
 };
 
 export const ButtonUI = styled.button.attrs({

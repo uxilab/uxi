@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 
-const TriggerreWrapper = styled.div`
+const TriggererWrapper = styled.div`
   /* min-width: 180px; */
   width: 100%;
   min-height: 34px;
@@ -14,4 +14,4 @@ const TriggerreWrapper = styled.div`
   /* background: white; */
 `;
 
-export default TriggerreWrapper;
+export default TriggererWrapper;

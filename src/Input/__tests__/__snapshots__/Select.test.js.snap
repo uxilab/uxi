@@ -20,6 +20,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
         disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
+        onMouseOut={undefined}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -102,6 +103,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
                 />
               }
               inert={true}
+              onMouseOut={undefined}
               style={
                 Object {
                   "borderBottomLeftRadius": 0,
@@ -182,8 +184,12 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
         selected={true}
         style={
           Object {
+            "background": "lightgrey",
+            "color": "grey",
+            "fontWeight": "900",
             "foo": "bar",
             "maxWidth": "100%",
+            "opacity": 0.7,
             "overflowX": "hidden",
             "textOverflow": "ellipsis",
           }
@@ -222,6 +228,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
         disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
+        onMouseOut={undefined}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -304,6 +311,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
                 />
               }
               inert={true}
+              onMouseOut={undefined}
               style={
                 Object {
                   "borderBottomLeftRadius": 0,
@@ -358,7 +366,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
         key="1/.1"
         onClick={[Function]}
         onEsc={[Function]}
-        selected={true}
+        selected={false}
         style={
           Object {
             "foo": "bar",
@@ -424,6 +432,7 @@ exports[`<Select /> matches snapshot 1`] = `
         disabled={false}
         isFullWidth={undefined}
         onClick={[Function]}
+        onMouseOut={undefined}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -478,6 +487,7 @@ exports[`<Select /> matches snapshot 1`] = `
                 />
               }
               inert={true}
+              onMouseOut={undefined}
               style={
                 Object {
                   "borderBottomLeftRadius": 0,

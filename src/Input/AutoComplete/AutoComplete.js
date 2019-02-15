@@ -18,7 +18,7 @@ const AutoCompleteStyle = {
   popover: {
     position: 'absolute',
     top: '30px',
-    maxHeight: '60vh',
+    maxHeight: '30vh',
     overflowY: 'scroll',
     border: '1px solid #ccc',
     left: 0,
@@ -367,6 +367,11 @@ AutoComplete.propTypes = {
    * default behaviour is to allow loose filtering
    */
   strict: PropTypes.bool,
+  /**
+   * the property to filter on (does not support property path 'user.identity.name') to filter
+   *
+   */
+  filterOn: PropTypes.string,
 };
 
 AutoComplete.defaultProps = {
@@ -374,6 +379,7 @@ AutoComplete.defaultProps = {
   placeholder: 'Type to search...',
   strict: false,
   resultLimit: 20,
+  // filterOn: 'displayName',
 };
 
 
