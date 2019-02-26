@@ -256,6 +256,7 @@ class AutoComplete extends ThemeComponent {
       placeholder,
       filterOn,
       resultLimit,
+      isFullWidth,
     } = this.props;
     const { index, escape, valueForInput, filteredSet } = this.state;
 
@@ -343,11 +344,12 @@ class AutoComplete extends ThemeComponent {
 
     return (
       <div
-        style={{ position: 'relative' }}
+        style={{ position: 'relative', ...(isFullWidth ? { width: '100%' } : {}) }}
         ref={(node) => { this.node = node; }}
         onKeyUp={this.updateSearchValue.bind(this)}
       >
         <TextField
+          isFullWidth={isFullWidth}
           style={{ zIndex: 3 }}
           placeholder={placeholder}
           ref={(ref) => { this.currentInput = ref; }}
