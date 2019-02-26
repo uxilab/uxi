@@ -360,6 +360,7 @@ class SelectWithFiltering extends Select {
 
     return React.Children.map(children, (child, i) => {
       const value = child.props.value ? child.props.value : i;
+      const filterValue = child.props.filterValue ? child.props.filterValue : value;
       const isTheOne = this.isControlled
         ? value === this.props.value
         : selectedIndex === `${i}`
@@ -375,11 +376,11 @@ class SelectWithFiltering extends Select {
         : {};
 
       if (
-        value
+        filterValue
         && filter
       ) {
-        if (value.indexOf) {
-          if (value.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+        if (filterValue.indexOf) {
+          if (filterValue.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
             // match noop let go
           } else {
             return null;
@@ -582,9 +583,7 @@ class SelectWithFiltering extends Select {
   }
 
   handleInputChange(e, value = '') {
-    if (e.target.value) {
-      this.setState({ filter: value || null });
-    }
+    this.setState({ filter: value });
   }
 
   clickHandler(e) {
