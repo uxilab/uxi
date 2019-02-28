@@ -22,6 +22,7 @@ const WidgetHeaderTitle = styled.div`
 
 const WidgetRest = styled.div`
   flex:1;
+  /* flex-shrink: 1; */
   height:100%;
   position:relative;
   display: flex;
@@ -30,8 +31,10 @@ const WidgetRest = styled.div`
 
 const MenuWrapper = styled.div`
   flex:1;
+  /* flex-shrink: 0; */
   display: flex;
   height:100%;
+  width: 100%;
   justify-content: flex-end;
   align-items:center;
   &>* {
@@ -45,9 +48,10 @@ const WidgetHeader = ({
   title,
   isLoading,
   menu,
+  style,
 }) => (
   <WidgetHeaderWrapper>
-    <WidgetHeaderTitle>
+    <WidgetHeaderTitle style={style}>
       {title}
     </WidgetHeaderTitle>
     <WidgetRest>

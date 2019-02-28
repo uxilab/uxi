@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import WidgetHeader from './WidgetHeader';
 import { Loader } from '../Motion';
+import Flex from '../Layout/Flex'; // eslint-disable-line
 import { Close, Fullscreen } from '../Icons';
 import { UnstyledButton } from '../Button';
 
@@ -91,6 +92,7 @@ class Widget extends Component {
       emptyText,
       fixedHeight,
       style: styleProp,
+      headerStyles,
       containerStyle,
       allowFullScreen,
     } = this.props;
@@ -118,6 +120,30 @@ class Widget extends Component {
           }
 
         </UnstyledButton>
+      );
+    } else if (menu && allowFullScreen) {
+      menu = (
+        <Flex>
+          {menu}
+          <UnstyledButton
+            style={{
+              width: '50px',
+              height: '50px',
+              boxSizing: 'border-box',
+              display: 'flex',
+              justifyContent: 'center',
+              color: 'grey',
+            }}
+            onClick={() => this.setState({ isFullScreen: !isFullScreen })}
+          >
+            {
+              isFullScreen
+                ? <Close />
+                : <Fullscreen />
+            }
+
+          </UnstyledButton>
+        </Flex>
       );
     }
 
@@ -153,6 +179,7 @@ class Widget extends Component {
           title &&
           (
             <WidgetHeader
+              style={headerStyles}
               title={title}
               isLoading={isLoadingMore}
               menu={menu}
