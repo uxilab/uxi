@@ -7,7 +7,7 @@ import {
 } from '../Panel/defaults';
 
 const DialogUI = styled.div`
-  z-index: 100;
+  z-index: 999;
   position: fixed;
   top: 10vh;
   width: calc(100% - 20vw);
