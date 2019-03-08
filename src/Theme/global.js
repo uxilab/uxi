@@ -47,7 +47,7 @@ export const makeGlobalCSSInjector = (theme) => {
       min-height: 100%;
       margin: 0;
       padding: 0;
-      font-size: 16px;
+      font-size: 14px;
       color: ${palette.darkGrey};
     }
     ::selection {
