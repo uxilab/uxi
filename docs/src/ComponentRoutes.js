@@ -16,6 +16,7 @@ import SocialLinksPage from './components/pages/SocialLinks/Page';
 import InputsPage from './components/pages/Inputs/Page';
 import RadioPage from './components/pages/Inputs/Radio/Page';
 import SelectPage from './components/pages/Inputs/Select/Page';
+import SelectWithFilteringPage from './components/pages/Inputs/SelectWithFiltering/Page';
 import TreePage from './components/pages/Inputs/Tree/Page';
 import AutoCompletePage from './components/pages/Inputs/AutoComplete/Page';
 import FileInputPage from './components/pages/Inputs/File/Page';
@@ -125,6 +126,7 @@ const ComponentRoutes = ({ match }) => (
       <Route path={`${match.url}/inputs/radio`} component={RadioPage} />
       <Route path={`${match.url}/inputs/SearchForm`} component={SearchFormPage} />
       <Route path={`${match.url}/inputs/select`} component={SelectPage} />
+      <Route path={`${match.url}/inputs/selectwithfiltering`} component={SelectWithFilteringPage} />
       <Route path={`${match.url}/inputs/autocomplete`} component={AutoCompletePage} />
       <Route path={`${match.url}/inputs/range`} component={RangePage} />
       <Route path={`${match.url}/inputs/Datetime`} component={DatetimePage} />

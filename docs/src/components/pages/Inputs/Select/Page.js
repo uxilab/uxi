@@ -5,11 +5,12 @@ import RAWSelect from '!raw-loader!uxi/Input/Select/Select';
 import CodeExample from '../../../CodeExample';
 import { componentInfoToMD } from '../../../componentInfoToMD';
 
+/*
 import Playground from './Playground';
 import RAWPlayground from '!raw-loader!./Playground';
 
 import ExampleSelectWithFiltering from './ExampleSelectWithFiltering';
-import RAWExampleSelectWithFiltering from '!raw-loader!./ExampleSelectWithFiltering';
+import RAWExampleSelectWithFiltering from '!raw-loader!./ExampleSelectWithFiltering'; */
 
 import ExampleSimple from './ExampleSimple';
 import RAWExampleSimple from '!raw-loader!./ExampleSimple';
@@ -54,7 +55,7 @@ const SelectInputPage = () => (
           description={componentInfoToMD(RAWSelect)}
         />
       </li>
-      <li>
+      {/* <li>
         <CodeExample
           code={RAWExampleSelectWithFiltering}
           component
@@ -63,7 +64,7 @@ const SelectInputPage = () => (
         >
           <ExampleSelectWithFiltering />
         </CodeExample>
-      </li>
+      </li> */}
       <li>
         <CodeExample
           code={RAWExampleSimple}
