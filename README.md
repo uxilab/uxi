@@ -1,6 +1,5 @@
  [![npm version](https://badge.fury.io/js/uxi.svg)](https://badge.fury.io/js/uxi)
 
-
 ---
 
 # UXI - React component library
