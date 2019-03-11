@@ -10,7 +10,7 @@ class ExampleSimpleControlled extends Component {
     super(props);
 
     this.state = {
-      selectedValue: 'Ava',
+      selectedValue: 'rem',
       values: options.map(({ name }) => name),
     };
   }

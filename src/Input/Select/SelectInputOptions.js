@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OptionsUI = styled.div.attrs({
+export const OptionsUI = styled.div.attrs({
   role: 'option',
   tabIndex: ({ isOpen }) => (isOpen === true ? 0 : -1),
 })`
@@ -13,7 +13,7 @@ const OptionsUI = styled.div.attrs({
   box-sizing: border-box;
   cursor: pointer;
   padding: 2px 2px 2px 6px;
-  background: white;
+  /* background: white; */
 
   text-overflow: ellipsis;
   overflow-x: hidden;
@@ -29,14 +29,21 @@ const OptionsUI = styled.div.attrs({
   width: 100%;
   min-height: 32px;
   border: 1px solid transparent;
+
+  /* color: inherit; */
+  /* background-color: white; */
+
   &:hover,
   &:focus {
     outline: none;
-    background-color: #cecece;
+    color: white;
+    background: #595959;
+    /* background-color: #cecece; */
   };
-  &:active {
+
+  /* &:active {
     background-color: #fff;
-  };
+  }; */
 `;
 
 const Options = (props) => {

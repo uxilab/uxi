@@ -184,12 +184,9 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
         selected={true}
         style={
           Object {
-            "background": "lightgrey",
-            "color": "grey",
             "fontWeight": "900",
             "foo": "bar",
             "maxWidth": "100%",
-            "opacity": 0.7,
             "overflowX": "hidden",
             "textOverflow": "ellipsis",
           }

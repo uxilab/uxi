@@ -6,7 +6,7 @@ import DropDown2 from '../../internal/DropDownWithClickOutside';
 import { Arrowdown } from '../../Icons';
 import { Button } from '../../Button';
 import UnstyledButtonBeta from '../../Button/UnstyledButton1';
-import Option from '../SelectInputOptions';
+import Option from './SelectInputOptions';
 import StatusIcon from '../utils/StatusIcon';
 import ErrorWrapperUI from '../utils/ErrorWrapperUI';
 import { styles } from './Select.styles';
@@ -305,9 +305,9 @@ class Select extends Component {
       const isTheOneStyles = isTheOne
         ? {
             fontWeight: '900', // eslint-disable-line indent
-            opacity: 0.7, // eslint-disable-line indent
-            background: 'lightgrey', // eslint-disable-line indent
-            color: 'grey', // eslint-disable-line indent
+          // opacity: 0.7, // eslint-disable-line indent
+          // background: '#fafafa', // eslint-disable-line indent
+          // color: 'grey', // eslint-disable-line indent
           } // eslint-disable-line indent
         : {};
 
@@ -638,23 +638,42 @@ class Select extends Component {
   }
 
   focusContent() {
-    if (
-      this.childrenWrapperRef
-      && this.childrenWrapperRef.firstChild
-      && this.childrenWrapperRef.firstChild.firstChild
-      && this.childrenWrapperRef.firstChild.firstChild.focus
-    ) {
+    const { selectedIndex } = this.state;
+
+    const hasSelectedValue = (selectedIndex && selectedIndex >= 0);
+
+    const theIndex = this.isControlled
+      ? this.state.options.indexOf(this.props.value)
+      : selectedIndex;
+
+    const getTarget = hasSelectedValue
+      ? () => {
+        const targetNode = (
+          this.selectWrapperRef &&
+          this.selectWrapperRef.querySelector(`[data-index="${theIndex}"]`)
+        );
+        return targetNode;
+      }
+      : () => (
+        this.childrenWrapperRef
+        && this.childrenWrapperRef.firstChild
+        && this.childrenWrapperRef.firstChild.firstChild
+      );
+
+    const targetMaybe = getTarget();
+    if (targetMaybe && targetMaybe.focus) {
       const r = setTimeout(() => {
         // abort if focus has already passed to something outside the select,
         // like a second input in a form
-        if (this.selectWrapperRef && this.selectWrapperRef.contains(document.activeElement)) {
-          if (
-            this.childrenWrapperRef
-            && this.childrenWrapperRef.firstChild
-            && this.childrenWrapperRef.firstChild.firstChild
-            && this.childrenWrapperRef.firstChild.firstChild.focus
-          ) {
-            this.childrenWrapperRef.firstChild.firstChild.focus();
+        const focusIsStillWithinSelect = (
+          this.selectWrapperRef
+          && this.selectWrapperRef.contains(document.activeElement)
+        );
+
+        if (focusIsStillWithinSelect) {
+          const targetMaybe = getTarget(); // eslint-disable-line no-shadow
+          if (targetMaybe && targetMaybe.focus) {
+            targetMaybe.focus();
           }
         }
         clearTimeout(r);

@@ -3,30 +3,12 @@ import styled from 'styled-components';
 // import BETALookUp from '../internal/BETALookup';
 import DropDown from '../internal/DropDownWithClickOutside';
 // import ListWithNavigation from './ListWithNavigation';
+import { OptionsUI } from './Select/SelectInputOptions';
 
 const InputUI = styled.input`
   ${({ isFullWidth }) => (isFullWidth ? 'width: 100%;' : '')}
 `;
 
-
-const OptionsUI = styled.li`
-  background: #fff;
-  box-sizing: border-box;
-  cursor: pointer;
-  user-select: none;
-  &:hover {
-    outline: none;
-    background-color: rgb(206, 206, 206);
-  }
-  &:focus {
-    outline: none;
-    background-color: rgb(206, 206, 206);
-  }
-  &:active {
-    outline: none;
-    background-color: rgb(206, 206, 206);
-  }
-`;
 
 const KeyNavigationItem = ({
   onClick,
@@ -34,6 +16,7 @@ const KeyNavigationItem = ({
   value,
   index,
   children,
+  style,
 }) => (
   <OptionsUI
     tabIndex={0}
@@ -48,6 +31,9 @@ const KeyNavigationItem = ({
     data-index={index}
     selected={selected}
     role="menuitem"
+    style={{
+      ...style,
+    }}
   >
     {children}
   </OptionsUI>
