@@ -31,6 +31,7 @@ export const routes = [
       { path: '/inputs/Checkbox', label: 'Checkbox' },
       { path: '/inputs/radio', label: 'Radio' },
       { path: '/inputs/select', label: 'Select' },
+      { path: '/inputs/selectwithfiltering', label: 'SelectWithFiltering' },
       { path: '/inputs/FileInput', label: 'FileInput' },
       { path: '/inputs/TextField', label: 'TextField' },
       { path: '/inputs/Range', label: 'Range' },
