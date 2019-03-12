@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { AutoComplete } from 'uxi/Input';
 import Button from 'uxi/Button';
 import medium from './medium-8000-array';
-import wrapInClientFormHOC from 'uxi/internal/wrapInClientFormHOC';
 
-const AutoCompleteClientFormWrapper = wrapInClientFormHOC(AutoComplete);
 
 const bigList = medium.map(x => ({
   ...x,
@@ -28,7 +26,7 @@ class ExampleMediumList extends Component {
           <br />
           {`selected value: "${value}"`}
         </div>
-        <AutoCompleteClientFormWrapper
+        <AutoComplete
           filterOn={'name'}
           onChange={({ value, originalValue }) => {
             console.log('originalValue', originalValue);

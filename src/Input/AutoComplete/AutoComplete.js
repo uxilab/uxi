@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
-import styled from 'styled-components';
 import { TextField } from '../../Input';
 import { VerticalMenu, MenuItem } from '../../Menu';
-import { Flex } from '../../Layout';
 import ThemeComponent from '../../Base/ThemeComponent';
-import { getMatchesResult, getFilteredSetWithScore } from './utils';
-
-const Highlighted = styled.span`
-  font-weight: 600;
-  background: #fff9d6;
-`;
+import {
+  getHighlightedNameComplex,
+} from './utils';
+import worker from './autocomplete.worker';
+import WebWorker from './WebWorker';
 
 const AutoCompleteStyle = {
   boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px',
@@ -28,31 +25,6 @@ const AutoCompleteStyle = {
     zIndex: 2,
     background: 'white',
   },
-};
-
-const MatchesPart = styled.span`
-  white-space: nowrap;
-`;
-
-const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterOn */) => {
-  // const nameToRenderParam = item[filterOn];
-  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
-    matches
-      ? (<MatchesPart data-matches >
-        <Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />
-      </MatchesPart>)
-      : (<MatchesPart
-        data-not-matches
-        dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }}
-      />)
-  ));
-
-  return (
-    <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
-      <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
-      <span data-postFix style={{ margin: '0 6px', marginLeft: 'auto' }}>{postFix}</span>
-    </Flex>
-  );
 };
 
 // const recomposeStringValueReducer = (accu = '', { string }) => {
@@ -79,7 +51,24 @@ class AutoComplete extends ThemeComponent {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.clickHandlerForDom.bind(this), true);
+    document
+      .addEventListener('click', this.clickHandlerForDom.bind(this), true);
+
+    this.worker = new WebWorker(worker);
+    this.worker.addEventListener('message', (event) => {
+      const { data } = event;
+      console.log('postMessage received:', data);
+      const parsed = JSON.parse(data);
+      console.log('postMessage received parse:', parsed);
+      // const sortedList = event.data;
+      if (this && this.setState) {
+        this.setState({
+          filteredSet: parsed,
+        });
+      }
+    });
+
+    window.acWorker = this.worker;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -101,6 +90,9 @@ class AutoComplete extends ThemeComponent {
 
   componentWillUnmount() {
     document.removeEventListener('click', this.clickHandlerForDom);
+    if (this.worker) {
+      this.worker.terminate();
+    }
   }
 
   onItemClick(index) {
@@ -131,10 +123,11 @@ class AutoComplete extends ThemeComponent {
       valueForInput: value,
     });
 
+    if (onchange) {
+      onchange(value);
+    }
 
-    const consumerNotifierCallback = () => (onchange && onchange(value));
-
-    this.asyncUpdateFilteredSet(consumerNotifierCallback);
+    this.asyncUpdateFilteredSet(/* consumerNotifierCallback */);
   }
 
   onChangeWrap(e) {
@@ -208,12 +201,27 @@ class AutoComplete extends ThemeComponent {
     }
   }
 
-  asyncUpdateFilteredSet(consumerNotifierCallback) { // eslint-disable-line class-methods-use-this
+  // eslint-disable-next-line class-methods-use-this
+  asyncUpdateFilteredSet(/* consumerNotifierCallback */) {
     const { items, defaultValue, filterOn, strict } = this.props;
     const { valueForInput } = this.state;
 
+    // this.worker.postMessage({
+
+    // })
+
     if (valueForInput && valueForInput.length >= 2) {
-      new Promise((resolve/* , reject */) => {
+      // new Promise((resolve/* , reject */) => {
+
+      this.worker.postMessage(JSON.stringify({
+        strict,
+        filterOn,
+        valueForInput,
+        items,
+        defaultValue,
+      }));
+
+      /*
         const filterFnStrict = item => (
           item[filterOn].toLowerCase().replace(/\s/g, '')
             .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
@@ -222,6 +230,10 @@ class AutoComplete extends ThemeComponent {
         const matchMapper = item => ({
           ...item,
           matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
+          // matchesResults: this.worker.postMessage({
+          //   source: item[filterOn],
+          //   target: (valueForInput || defaultValue || ''),
+          // }),
         });
 
         const filterFnPermissive = (mappedMatch) => {
@@ -248,6 +260,7 @@ class AutoComplete extends ThemeComponent {
           filteredSet,
         }, consumerNotifierCallback),
       );
+      */
     }
   }
 
@@ -285,6 +298,7 @@ class AutoComplete extends ThemeComponent {
           .slice(0, resultLimit)
           .map((item, currentIndex) => {
             const { postFix } = item;
+            console.log('postFix', postFix);
 
             // const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =
