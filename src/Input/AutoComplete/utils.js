@@ -1,3 +1,7 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Flex } from '../../Layout';
+
 /*
 Q: fernd
 A:
@@ -109,3 +113,35 @@ export function getFilteredSetWithScore(filteredSet) {
 
   return filteredSetWithScore;
 }
+
+
+const Highlighted = styled.span`
+  font-weight: 600;
+  background: #fff9d6;
+`;
+const MatchesPart = styled.span`
+  white-space: nowrap;
+`;
+export const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterOn */) => {
+  // const nameToRenderParam = item[filterOn];
+  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
+    matches
+      ? (<MatchesPart data-matches >
+        <Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />
+      </MatchesPart>)
+      : (<MatchesPart
+        data-not-matches
+        dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }}
+      />)
+  ));
+
+  return (
+    <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
+      <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
+      <span data-postFix style={{ margin: '0 6px', marginLeft: 'auto' }}>
+        {/* postFix */}
+        {postFix && React.isValidElement(postFix) && React.cloneElement(postFix)}
+      </span>
+    </Flex>
+  );
+};
