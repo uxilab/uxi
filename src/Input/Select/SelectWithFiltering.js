@@ -776,6 +776,7 @@ class SelectWithFiltering extends Select {
         <DropDown2
           isFullWidth
           fullWidthContent
+          forceShadow
           isOpen={isOpen}
           onClickOutside={this.handleDropDownChange}
           trigger={trigerer}
