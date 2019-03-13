@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 import { TextField } from '../../Input';
 import { VerticalMenu, MenuItem } from '../../Menu';
 import ThemeComponent from '../../Base/ThemeComponent';
@@ -8,7 +9,7 @@ import {
   getHighlightedNameComplex,
 } from './utils';
 import worker from './autocomplete.worker';
-import WebWorker from './WebWorker';
+import WebWorkerWithData from './WebWorkerWithData';
 
 const AutoCompleteStyle = {
   boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px',
@@ -54,28 +55,29 @@ class AutoComplete extends ThemeComponent {
     document
       .addEventListener('click', this.clickHandlerForDom.bind(this), true);
 
-    this.worker = new WebWorker({ worker, store: this.state.originalItems });
-    this.worker.addEventListener('message', (event) => {
-      const { data } = event;
-      // console.log('postMessage received:', data);
-      const parsed = JSON.parse(data);
-      // console.log('postMessage received parse:', parsed);
-      // const sortedList = event.data;
-      if (this && this.setState) {
-        this.setState({
-          filteredSet: parsed,
-        });
-      }
-    });
+    this.worker = new WebWorkerWithData(worker, this.state.originalItems);
+    this.worker.addEventListener('message', this.handleMessage);
+  }
 
-    this.worker.postMessage(JSON.stringify({
-      type: 'init',
-      items: this.state.originalItems,
-    }));
+  handleMessage = (event) => {
+    const { data } = event;
+    // console.log('postMessage received:', data);
+    // const parsed = JSON.parse(data);
+    const parsed = data;
+    // console.log('postMessage received parse:', parsed);
+    // const sortedList = event.data;
+    if (this && this.setState) {
+      this.setState({
+        filteredSet: parsed,
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.items.length !== nextProps.items.length) {
+    if (
+      this.props.items.length !== nextProps.items.length
+      && !isEqual(this.props.items, nextProps.items)
+    ) {
       this.setState({
         originalItems: this.props.items.map((x, i) => ({
           ...x,
@@ -84,11 +86,11 @@ class AutoComplete extends ThemeComponent {
       });
     }
 
-    if (this.props.defaultValue !== nextProps.defaultValue) {
-      this.setState({
-        valueForInput: nextProps.defaultValue,
-      });
-    }
+    // if (this.props.defaultValue !== nextProps.defaultValue) {
+    //   this.setState({
+    //     valueForInput: nextProps.defaultValue,
+    //   });
+    // }
   }
 
   componentWillUnmount() {
@@ -206,64 +208,17 @@ class AutoComplete extends ThemeComponent {
 
   // eslint-disable-next-line class-methods-use-this
   asyncUpdateFilteredSet(/* consumerNotifierCallback */) {
-    const { items, defaultValue, filterOn, strict } = this.props;
+    const { defaultValue, filterOn, strict } = this.props;
     const { valueForInput } = this.state;
 
-    // this.worker.postMessage({
-
-    // })
 
     if (valueForInput && valueForInput.length >= 2) {
-      // new Promise((resolve/* , reject */) => {
-
-      this.worker.postMessage(JSON.stringify({
+      this.worker.postMessage({
         strict,
         filterOn,
         valueForInput,
-        items,
         defaultValue,
-      }));
-
-      /*
-        const filterFnStrict = item => (
-          item[filterOn].toLowerCase().replace(/\s/g, '')
-            .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
-        );
-
-        const matchMapper = item => ({
-          ...item,
-          matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
-          // matchesResults: this.worker.postMessage({
-          //   source: item[filterOn],
-          //   target: (valueForInput || defaultValue || ''),
-          // }),
-        });
-
-        const filterFnPermissive = (mappedMatch) => {
-          const isMatch = mappedMatch.matchesResults.some(x => x.matches);
-          return isMatch;
-        };
-
-        const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
-
-        const filteredSet = (mappedUNfilteredSet.filter(
-          strict ? filterFnStrict : filterFnPermissive)
-        );
-
-        const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
-
-        const finalSortedResult = filteredSetWithScore.sort((a, b) => {
-          if (a.scrore > b.scrore) { return -1; }
-          if (a.scrore < b.scrore) { return 1; }
-          return 0;
-        });
-        resolve(finalSortedResult);
-      }).then(filteredSet =>
-        this.setState({
-          filteredSet,
-        }, consumerNotifierCallback),
-      );
-      */
+      });
     }
   }
 
@@ -301,13 +256,9 @@ class AutoComplete extends ThemeComponent {
           .slice(0, resultLimit)
           .map((item, currentIndex) => {
             const { postFix } = item;
-            // console.log('postFix', postFix);
-
-            // const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =
               getHighlightedNameComplex(item, valueForInput, postFix, filterOn);
 
-            // const selectedClass = '';
             let liStyle = {};
             if (index === (currentIndex)) {
               liStyle = Object.assign({}, {
@@ -335,8 +286,6 @@ class AutoComplete extends ThemeComponent {
           ? (<MenuItem
             key={'not-currentIndex'}
             onClick={() => { }}
-            // onMouseOver={this.handleMouseEnterListItem.bind(this)}
-            // onMouseOut={this.handleMouseLeaveListItem.bind(this)}
             style={{
               textAlign: 'center', opacity: 0.8,
             }}
@@ -371,7 +320,7 @@ class AutoComplete extends ThemeComponent {
           placeholder={placeholder}
           ref={(ref) => { this.currentInput = ref; }}
           onChange={this.onChangeWrap}
-          value={this.state.valueForInput || ''}
+          // value={this.state.valueForInput || ''}
           type="text"
         />
         {autoComplete}
