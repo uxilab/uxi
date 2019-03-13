@@ -54,12 +54,12 @@ class AutoComplete extends ThemeComponent {
     document
       .addEventListener('click', this.clickHandlerForDom.bind(this), true);
 
-    this.worker = new WebWorker(worker);
+    this.worker = new WebWorker({ worker, store: this.state.originalItems });
     this.worker.addEventListener('message', (event) => {
       const { data } = event;
-      console.log('postMessage received:', data);
+      // console.log('postMessage received:', data);
       const parsed = JSON.parse(data);
-      console.log('postMessage received parse:', parsed);
+      // console.log('postMessage received parse:', parsed);
       // const sortedList = event.data;
       if (this && this.setState) {
         this.setState({
@@ -68,7 +68,10 @@ class AutoComplete extends ThemeComponent {
       }
     });
 
-    window.acWorker = this.worker;
+    this.worker.postMessage(JSON.stringify({
+      type: 'init',
+      items: this.state.originalItems,
+    }));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -298,7 +301,7 @@ class AutoComplete extends ThemeComponent {
           .slice(0, resultLimit)
           .map((item, currentIndex) => {
             const { postFix } = item;
-            console.log('postFix', postFix);
+            // console.log('postFix', postFix);
 
             // const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =

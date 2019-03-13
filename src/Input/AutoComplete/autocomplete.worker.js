@@ -1,7 +1,9 @@
 
 
 export default () => {
+  /* @&# */
   self.addEventListener('message', (e) => { // eslint-disable-line no-restricted-globals
+    // utils ––––––––––––
     const getMatchesResult = (source, target) => {
       // shorcut in case of perfect match
       if (source.toLowerCase().indexOf(target.toLowerCase()) === 0) {
@@ -84,15 +86,12 @@ export default () => {
 
       return finalResult.result;
     };
-
-
     const addScore = (accu, { string, matches }) => {
       if (matches) {
         return string.length > accu ? string.length : accu;
       }
       return accu;
     };
-
     function getFilteredSetWithScore(filteredSet) {
       const filteredSetWithScore = filteredSet.map(x => Object.assign({}, x, {
         scrore: x.matchesResults.reduce(addScore, 0),
@@ -102,10 +101,23 @@ export default () => {
     }
 
 
+    // main ––––––––––––
     console.log('wroker msg received, running...');
+
+
     if (!e) return;
+
     const { data } = e;
     const parsedData = JSON.parse(data);
+
+    // if (parsedData && parsedData.type === 'init') {
+    //   store = e.data.items;
+    //   return;
+    // }
+
+    // store should have been injected
+    console.log('store', store); // eslint-disable-line no-undef
+
     const { strict, filterOn, valueForInput, items, defaultValue = null } = parsedData;
     const matchMapper = item => Object.assign({}, item, {
       // ...item,
