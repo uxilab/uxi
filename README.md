@@ -1,4 +1,4 @@
- [![npm version](https://badge.fury.io/js/uxi.svg)](https://badge.fury.io/js/uxi)
+ [![npm version](https://badge.fury.io/js/uxi.svg)](https://badge.fury.io/js/uxi) [![Greenkeeper badge](https://badges.greenkeeper.io/uxilab/uxi.svg)](https://greenkeeper.io/)
 
 
 ---
