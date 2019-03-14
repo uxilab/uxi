@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AutoComplete } from 'uxi/Input';
 import Button from 'uxi/Button';
-import medium from './medium-8000-array';
+import medium from './crazyBigList';
 
 
 const bigList = medium.map(x => ({

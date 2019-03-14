@@ -47,8 +47,8 @@ class AutoComplete extends ThemeComponent {
       filteredSet: [],
     };
 
-    this.onQuerychangeDebounced = debounce(this.onQuerychange, 100);
-    this.onChangeWrap = this.onChangeWrap.bind(this);
+    // this.onQuerychangeDebounced = debounce(this.onQuerychange, 100);
+    // this.onChangeWrap = this.onChangeWrap.bind(this);
   }
 
   componentDidMount() {
@@ -135,11 +135,25 @@ class AutoComplete extends ThemeComponent {
     this.asyncUpdateFilteredSet(/* consumerNotifierCallback */);
   }
 
-  onChangeWrap(e) {
-    const value = e.target.value;
+  onChange = (e) => {
+    const { defaultValue, filterOn, strict } = this.props;
+    const { valueForInput } = this.state;
+    const { value } = e.target;
+
     this.setState({ valueForInput: value });
 
-    this.onQuerychangeDebounced(value);
+    // this.onQuerychangeDebounced(value);
+
+
+    if (value && value.length >= 2) {
+      console.log('posting message', value);
+      this.worker.postMessage({
+        strict,
+        filterOn,
+        valueForInput: value,
+        defaultValue,
+      });
+    }
   }
 
   handleMouseEnterList() {
@@ -213,6 +227,7 @@ class AutoComplete extends ThemeComponent {
 
 
     if (valueForInput && valueForInput.length >= 2) {
+      console.log('posting message');
       this.worker.postMessage({
         strict,
         filterOn,
@@ -319,7 +334,7 @@ class AutoComplete extends ThemeComponent {
           style={{ zIndex: 3 }}
           placeholder={placeholder}
           ref={(ref) => { this.currentInput = ref; }}
-          onChange={this.onChangeWrap}
+          onChange={this.onChange}
           // value={this.state.valueForInput || ''}
           type="text"
         />

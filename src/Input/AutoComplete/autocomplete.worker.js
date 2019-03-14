@@ -1,10 +1,21 @@
 
 /* eslint-disable */
 export default () => {
+  importScripts('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js')
   let globalNonce = null;
   const data = [];
+  let latestValue = null
+  let tasks = []
 
   // utils ––––––––––––
+  doWork = (n = 10e6) => {
+    let val = 0
+    for (let index = 0; index < (n * 4); index++) {
+      const r = Math.pow( Math.PI * Math.sin(index * 4) );
+      val = val + r
+    }
+    return val
+  }
   function toObject(val) {
     if (val === null || val === undefined) {
       throw new TypeError('Object.assign cannot be called with null or undefined');
@@ -141,9 +152,138 @@ export default () => {
 
     return filteredSetWithScore;
   }
-  self.addEventListener('message', (e) => { // eslint-disable-line no-restricted-globals
+
+
+  const main = async (e, localIdentity) => {
+    if (!e) return;
+
+    // const { data } = e;
+    // const parsedData = JSON.parse(e.data);
+    const parsedData = e.data;
+    // if (parsedData && parsedData.type === 'init') {
+    //   store = e.data.items;
+    //   return;
+    // }
+
+    // store should have been injected
+    // console.log('data', data); // eslint-disable-line no-undef
+    const items = data; // eslint-disable-line no-undef
+
+    const { strict, filterOn, valueForInput, defaultValue = null } = parsedData;
+
+    // eslint-disable-next-line no-new-object
+    const localNonce = globalNonce = new Object(); // eslint-disable-line no-multi-assig
+
+    const matchMapper = item => assign(item, {
+      // ...item,
+      matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
+      // matchesResults: this.worker.postMessage({
+      //   source: item[filterOn],
+      //   target: (valueForInput || defaultValue || ''),
+      // }),
+    });
+
+    const filterFnStrict = item => (
+      item[filterOn].toLowerCase().replace(/\s/g, '')
+        .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
+    );
+
+    const filterFnPermissive = (mappedMatch) => {
+      const isMatch = mappedMatch.matchesResults.some(x => x.matches);
+      return isMatch;
+    };
+
+    if (tasks[tasks.length - 1].id !== valueForInput) {
+      console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+      return;
+    }
+
+    // doWork()
+    const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
+
+    if (tasks[tasks.length - 1].id !== valueForInput) {
+      console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+      return;
+    }
+
+
+    const filteredSet = (mappedUNfilteredSet.filter(
+      strict ? filterFnStrict : filterFnPermissive)
+    );
+
+    if (tasks[tasks.length - 1].id !== valueForInput) {
+      console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+      return;
+    }
+
+    const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
+    if (tasks[tasks.length - 1].id !== valueForInput) {
+      console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+      return;
+    }
+
+
+    const finalSortedResult = filteredSetWithScore.sort((a, b) => {
+      if (a.scrore > b.scrore) { return -1; }
+      if (a.scrore < b.scrore) { return 1; }
+      return 0;
+    });
+
+    if (tasks[tasks.length - 1].id !== valueForInput) {
+      console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+      return;
+    }
+
+    // resolve(finalSortedResult);
+
+    console.log('wroker done, reporting back...');
+    postMessage(finalSortedResult.slice(0, 30));
+
+  }
+
+  self.addEventListener('message', async (e) => { // eslint-disable-line no-restricted-globals
     // main ––––––––––––
     console.log('wroker msg received, running...');
+    const localIdentity = Object.create(null)
+
+    if (!e) { return }
+
+    const { strict, filterOn, valueForInput, defaultValue = null } = e.data;
+
+    latestValue = valueForInput
+
+    const task = {
+      work: (resolve, reject) => {
+        setTimeout(() => {
+          resolve(e)
+        }, 200)
+      },
+      postWork: main,
+      id: valueForInput,
+    }
+
+    tasks = tasks.concat([ task ])
+
+    const run = (promiseExecutor) => new Promise(promiseExecutor)
+
+    run(task.work)
+      .then(task.postWork)
+
+
+    // const p = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(e)
+    //   }, 200)
+    // })
+    //   .then(async (e) => {
+    //     if (e && e.data && e.data.valueForInput === latestValue) {
+    //       await main(e, localIdentity)
+    //     }
+    //   });
+
+
+
+    /*
 
 
     if (!e) return;
@@ -186,7 +326,7 @@ export default () => {
 
     if (localNonce !== globalNonce) { return; }
 
-
+    doWork()
     const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
 
     if (localNonce !== globalNonce) { return; }
@@ -214,5 +354,8 @@ export default () => {
 
     console.log('wroker done, reporting back...');
     postMessage(finalSortedResult.slice(0, 30));
-  });
+
+    */
+
+  }, { passive: true });
 };
