@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
+// import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import { TextField } from '../../Input';
 import { VerticalMenu, MenuItem } from '../../Menu';
@@ -137,7 +137,6 @@ class AutoComplete extends ThemeComponent {
 
   onChange = (e) => {
     const { defaultValue, filterOn, strict } = this.props;
-    const { valueForInput } = this.state;
     const { value } = e.target;
 
     this.setState({ valueForInput: value });

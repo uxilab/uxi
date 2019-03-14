@@ -201,12 +201,6 @@ export default () => {
       return;
     }
 
-    // doWork(undefined, () => {
-    //   if (tasks[tasks.length - 1].id !== valueForInput) {
-    //     console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
-    //     return;
-    //   }
-    // })
     const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
 
     if (tasks[tasks.length - 1].id !== valueForInput) {
@@ -223,13 +217,6 @@ export default () => {
       console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
       return;
     }
-
-    // doWork(undefined, () => {
-    //   if (tasks[tasks.length - 1].id !== valueForInput) {
-    //     console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
-    //     return;
-    //   }
-    // })
 
     const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
     if (tasks[tasks.length - 1].id !== valueForInput) {
@@ -248,8 +235,6 @@ export default () => {
       console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
       return;
     }
-
-    // resolve(finalSortedResult);
 
     console.log('wroker done, reporting back...');
     postMessage(finalSortedResult.slice(0, 30));
@@ -268,12 +253,15 @@ export default () => {
     latestValue = valueForInput
 
     const task = {
-      work: (resolve, reject) => {
+      init: (resolve, reject) => {
         setTimeout(() => {
+          if (latestValue !== valueForInput) {
+            return reject('abort ' + valueForInput + ' because ' + latestValue)
+          }
           resolve(e)
-        }, 200)
+        }, 80)
       },
-      postWork: main,
+      work: main,
       id: valueForInput,
     }
 
@@ -281,96 +269,9 @@ export default () => {
 
     const run = (promiseExecutor) => new Promise(promiseExecutor)
 
-    run(task.work)
-      .then(task.postWork)
-
-
-    // const p = new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     resolve(e)
-    //   }, 200)
-    // })
-    //   .then(async (e) => {
-    //     if (e && e.data && e.data.valueForInput === latestValue) {
-    //       await main(e, localIdentity)
-    //     }
-    //   });
-
-
-
-    /*
-
-
-    if (!e) return;
-
-    // const { data } = e;
-    // const parsedData = JSON.parse(e.data);
-    const parsedData = e.data;
-    // if (parsedData && parsedData.type === 'init') {
-    //   store = e.data.items;
-    //   return;
-    // }
-
-    // store should have been injected
-    // console.log('data', data); // eslint-disable-line no-undef
-    const items = data; // eslint-disable-line no-undef
-
-    const { strict, filterOn, valueForInput, defaultValue = null } = parsedData;
-
-    // eslint-disable-next-line no-new-object
-    const localNonce = globalNonce = new Object(); // eslint-disable-line no-multi-assig
-
-    const matchMapper = item => assign(item, {
-      // ...item,
-      matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
-      // matchesResults: this.worker.postMessage({
-      //   source: item[filterOn],
-      //   target: (valueForInput || defaultValue || ''),
-      // }),
-    });
-
-    const filterFnStrict = item => (
-      item[filterOn].toLowerCase().replace(/\s/g, '')
-        .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
-    );
-
-    const filterFnPermissive = (mappedMatch) => {
-      const isMatch = mappedMatch.matchesResults.some(x => x.matches);
-      return isMatch;
-    };
-
-    if (localNonce !== globalNonce) { return; }
-
-    doWork()
-    const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
-
-    if (localNonce !== globalNonce) { return; }
-
-
-    const filteredSet = (mappedUNfilteredSet.filter(
-      strict ? filterFnStrict : filterFnPermissive)
-    );
-
-    if (localNonce !== globalNonce) { return; }
-
-    const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
-    if (localNonce !== globalNonce) { return; }
-
-
-    const finalSortedResult = filteredSetWithScore.sort((a, b) => {
-      if (a.scrore > b.scrore) { return -1; }
-      if (a.scrore < b.scrore) { return 1; }
-      return 0;
-    });
-
-    if (localNonce !== globalNonce) { return; }
-
-    // resolve(finalSortedResult);
-
-    console.log('wroker done, reporting back...');
-    postMessage(finalSortedResult.slice(0, 30));
-
-    */
+    run(task.init)
+      .then(task.work)
+      .catch(err => console.log('canceled task:', err))
 
   }, { passive: true });
 };
