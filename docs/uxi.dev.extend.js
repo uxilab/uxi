@@ -19,6 +19,23 @@ module.exports = (config) => {
     react: path.resolve(__dirname, 'node_modules/react'),
   };
 
+  config.output = {
+    ...config.output,
+    globalObject: 'self',
+    // globalObject: '(self || this)'
+  };
+
+  config.module.rules = [
+    ...config.module.rules,
+    {
+      test: /\.worker\.js$/,
+      use: {
+        loader: 'worker-loader',
+        options: { inline: true, fallback: false },
+      },
+    },
+  ];
+
 
   return config;
 };

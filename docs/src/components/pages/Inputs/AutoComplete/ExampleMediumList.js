@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AutoComplete } from 'uxi/Input';
 import Button from 'uxi/Button';
-import medium from './crazyBigList';
+import medium from './medium-8000-array';
 
 
 const bigList = medium.map(x => ({
   ...x,
-  postFix: <span>{x.company}</span>,
+  postFix: x.company,
 }));
 
 class ExampleMediumList extends Component {

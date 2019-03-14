@@ -8,7 +8,7 @@ import ThemeComponent from '../../Base/ThemeComponent';
 import {
   getHighlightedNameComplex,
 } from './utils';
-import worker from './autocomplete.worker';
+import Worker from './autocomplete.worker';
 import WebWorkerWithData from './WebWorkerWithData';
 
 const AutoCompleteStyle = {
@@ -55,7 +55,8 @@ class AutoComplete extends ThemeComponent {
     document
       .addEventListener('click', this.clickHandlerForDom.bind(this), true);
 
-    this.worker = new WebWorkerWithData(worker, this.state.originalItems);
+    // this.worker = new WebWorkerWithData(worker, this.state.originalItems);
+    this.worker = new Worker();
     this.worker.addEventListener('message', this.handleMessage);
   }
 
@@ -137,6 +138,7 @@ class AutoComplete extends ThemeComponent {
 
   onChange = (e) => {
     const { defaultValue, filterOn, strict } = this.props;
+    const { originalItems } = this.state;
     const { value } = e.target;
 
     this.setState({ valueForInput: value });
@@ -151,6 +153,7 @@ class AutoComplete extends ThemeComponent {
         filterOn,
         valueForInput: value,
         defaultValue,
+        items: originalItems,
       });
     }
   }
