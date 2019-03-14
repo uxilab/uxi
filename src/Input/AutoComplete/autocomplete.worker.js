@@ -8,11 +8,14 @@ export default () => {
   let tasks = []
 
   // utils ––––––––––––
-  doWork = (n = 10e6) => {
+  doWork = (n = 10e6, shouldCancel) => {
     let val = 0
     for (let index = 0; index < (n * 4); index++) {
       const r = Math.pow( Math.PI * Math.sin(index * 4) );
       val = val + r
+      if (shouldCancel()) {
+        return;
+      }
     }
     return val
   }
@@ -198,7 +201,12 @@ export default () => {
       return;
     }
 
-    // doWork()
+    // doWork(undefined, () => {
+    //   if (tasks[tasks.length - 1].id !== valueForInput) {
+    //     console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+    //     return;
+    //   }
+    // })
     const mappedUNfilteredSet = (items && items.map(matchMapper)) || [];
 
     if (tasks[tasks.length - 1].id !== valueForInput) {
@@ -215,6 +223,13 @@ export default () => {
       console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
       return;
     }
+
+    // doWork(undefined, () => {
+    //   if (tasks[tasks.length - 1].id !== valueForInput) {
+    //     console.log('aborting', tasks[tasks.length - 1].id, valueForInput);
+    //     return;
+    //   }
+    // })
 
     const filteredSetWithScore = getFilteredSetWithScore(filteredSet);
     if (tasks[tasks.length - 1].id !== valueForInput) {
