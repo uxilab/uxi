@@ -9,8 +9,17 @@
 
 <body style="margin: 0; padding: 0;">
 <div id='app'>
-<div style="display: flex; align-items: center; min-height: 100vh; width: 100%; justify-content: center;  background: rgb(27, 60, 79);">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.83 43.5" width="69.83" height="43.5">
+   <style>
+    @keyframes pulseIn { 0% { transform: scale(0.1); opacity: 0 } 16% { opacity: 1 } 100% { transform: scale(1); } }
+    @keyframes pulse { 0% { transform: scale(1); } 38% { transform: scale(1.08) } 100% { transform: scale(1); } }
+    .uxi-preload svg {
+      animation: pulseIn .48s cubic-bezier(.83,1.68,.34,.99) forwards, pulse 1.4s cubic-bezier(.41,.45,.44,1.01) infinite .6s;
+      width: 80px;
+    }
+    @media(min-width: 768px) { .uxi-preload svg { width: 120px } }
+  </style>
+  <div class="uxi-preload" style="display: flex; align-items: center; min-height: 100vh; width: 100%; justify-content: center;  background: #f3f3f2">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.83 43.5" >
       <title>UXI-logo-dark</title>
       <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_1-2" data-name="Layer 1">
@@ -25,10 +34,7 @@
         </g>
       </g>
     </svg>
-
-    </svg>
   </div>
-
 </div>
 
 <script src="/app.js"></script>

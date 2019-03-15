@@ -231,6 +231,7 @@ class AutoComplete extends ThemeComponent {
     if (valueForInput && valueForInput.length >= 2) {
       console.log('posting message');
       this.worker.postMessage({
+        type: 'uxi_autocomplete',
         strict,
         filterOn,
         valueForInput,

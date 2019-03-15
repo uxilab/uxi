@@ -29,35 +29,38 @@ const main = async (e) => {
 };
 
 self.addEventListener('message', async (e) => { // eslint-disable-line no-restricted-globals
-  // main ––––––––––––
-  console.log('wroker msg received, running...');
-
   if (!e) { return; }
 
-  const { valueForInput } = e.data;
+  if (e.type === 'uxi_autocomplete') {
+  // main ––––––––––––
+    console.log('wroker msg received, running...');
 
-  latestValue = valueForInput;
 
-  const task = {
-    init: (resolve, reject) => {
-      task.reject = reject;
-      // eslint-disable-next-line
+    const { valueForInput } = e.data;
+
+    latestValue = valueForInput;
+
+    const task = {
+      init: (resolve, reject) => {
+        task.reject = reject;
+        // eslint-disable-next-line
       setTimeout(() => {
         // if (latestValue !== valueForInput) {
         //   return reject(`aborted "${valueForInput}" because "${latestValue}" was newer`);
         // }
-        return resolve(e);
-      }, 80);
-    },
-    work: main,
-    id: valueForInput,
-  };
+          return resolve(e);
+        }, 80);
+      },
+      work: main,
+      id: valueForInput,
+    };
 
-  tasks = tasks.concat([task]);
+    tasks = tasks.concat([task]);
 
-  const run = promiseExecutor => new Promise(promiseExecutor);
+    const run = promiseExecutor => new Promise(promiseExecutor);
 
-  run(task.init)
-    .then(task.work)
-    .catch(err => console.log('canceled task:', err));
+    run(task.init)
+      .then(task.work)
+      .catch(err => console.log('canceled task:', err));
+  }
 }, { passive: true });
