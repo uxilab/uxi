@@ -144,16 +144,18 @@ class Ripples extends Component {
     cbHandler(() => {
       const size = Math.max(offsetWidth, offsetHeight);
 
-      this.setState({
-        rippleStyle: {
-          top: rippleTop,
-          left: rippleLeft,
-          backgroundColor: color,
-          transition: `all ${during}ms`,
-          transform: `${rippleStyle.transform} scale(${size / 9})`,
-          opacity: 0,
-        },
-      });
+      if (this && this.setState) {
+        this.setState({
+          rippleStyle: {
+            top: rippleTop,
+            left: rippleLeft,
+            backgroundColor: color,
+            transition: `all ${during}ms`,
+            transform: `${rippleStyle.transform} scale(${size / 9})`,
+            opacity: 0,
+          },
+        });
+      }
     }, 8);
 
     if (typeof onClick === 'function') {
