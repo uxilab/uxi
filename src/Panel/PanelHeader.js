@@ -6,11 +6,6 @@ import {
   headerHeight,
 } from './defaults';
 
-const HorizontalAppLayout = AppLayout.extend`
-  flex-flow: row wrap;
-  align-items: center;
-  width: 100%;
-`;
 
 const PanelHeaderUI = styled.div`
   box-sizing: border-box;
@@ -68,11 +63,17 @@ const PanelHeader = (props) => {
 
   return (
     <PanelHeaderUI style={style} round={rounded || undefined}>
-      <HorizontalAppLayout>
+      <AppLayout
+        style={{
+          flexFlow: 'row wrap',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
         <PanelHeaderTitleWrapper>{title}</PanelHeaderTitleWrapper>
         <div>{children}</div>
         <div>{close}</div>
-      </HorizontalAppLayout>
+      </AppLayout>
     </PanelHeaderUI>
   );
 };

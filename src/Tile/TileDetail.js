@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Img } from '../Img';
-import { ContentWithExtra, Flex } from '../Layout';
+import { ContentWithExtra } from '../Layout';
 import {
   Circle,
 } from '../Icons';
+import { flexStylesCSSString } from '../Layout/flexStyles';
 
-const ExtendedFlex = Flex.extend`
+const ExtendedFlex = styled.div`
+  ${flexStylesCSSString};
   justify-content: flex-start;
   align-items: flex-start;
   flex-flow: row wrap;

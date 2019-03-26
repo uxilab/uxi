@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { appLayoutStylesCSString } from './appLayoutStyles';
 /**
  * This comp takes 3 children and make a simple
  * fully responsive, always at least full-height/width
@@ -15,20 +15,7 @@ import styled from 'styled-components';
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
 const AppLayout = styled.div`
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  position: relative;
-  &>* {
-    box-sizing: border-box;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-  &>*:nth-child(2) {
-    flex-grow: 99;
-    flex-shrink: 1;
-    overflow-y: auto;
-  }
+  ${appLayoutStylesCSString};
 `;
 
 AppLayout.displayName = 'AppLayout';

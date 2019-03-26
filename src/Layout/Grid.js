@@ -1,89 +1,93 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-// eslint-disable-next-line import/no-named-as-default
-import PropsMapperContainerQueries from '../internal/PropsMapperContainerQueries';
-import { GridUI } from './SimpleGrid';
+/**
+ * @deprecated
+ * */
 
-/* eslint-disable indent */
-const ExtendedGridUI = GridUI.extend`
-  box-sizing: border-box;
-  margin: 0 auto;
-  display: flex;  /* for IE11 only */
-  flex-flow: row wrap;  /* for IE11 only */
-  display: grid;
-  grid-gap: ${({ gap }) => `${gap}px`};
-  grid-template-columns: ${({ itemWidth }) => `repeat(auto-fill, minmax(${itemWidth}px, 1fr));`};
-  font-size: inherit;
-  & > * {
-    box-sizing: border-box;
-    ${({ itemWidth }) => `min-width: ${itemWidth}px`};
-    ${({ itemHeight }) => `height: ${itemHeight}px`};
-  }
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// // eslint-disable-next-line import/no-named-as-default
+// import PropsMapperContainerQueries from '../internal/PropsMapperContainerQueries';
+// import { GridUI } from './SimpleGrid';
 
-  /**
-   * add gap for flax layout, (no margin collapse with flex)
-   * Target exclusively IE10 and above: */
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    & {
-      padding: ${({ gap }) => `${gap / 2}px`};
-      margin-left: auto !important;
-      margin-right: auto !important;
-      width: ${({ columns, itemWidth, gap }) => (
-          `${(
-              ((columns) * (itemWidth + gap)) + (gap)
-          )}px;`
-        )
-      };
-      /* width: ${({ columns, itemWidth, gap }) => `calc(${columns} * calc(${itemWidth}px + ${2 * gap}px))`}; */
-    }
-    & > * {
-      margin: ${({ gap }) => `${gap / 2}px`};
-      ${({ itemWidth }) => `max-width: ${itemWidth}px`};
-      ${({ itemWidth }) => `width: ${itemWidth}px`};    }
-  }
-`;
-/* eslint-enable indent */
+// /* eslint-disable indent */
+// const ExtendedGridUI = GridUI.extend`
+//   box-sizing: border-box;
+//   margin: 0 auto;
+//   display: flex;  /* for IE11 only */
+//   flex-flow: row wrap;  /* for IE11 only */
+//   display: grid;
+//   grid-gap: ${({ gap }) => `${gap}px`};
+//   grid-template-columns: ${({ itemWidth }) => `repeat(auto-fill, minmax(${itemWidth}px, 1fr));`};
+//   font-size: inherit;
+//   & > * {
+//     box-sizing: border-box;
+//     ${({ itemWidth }) => `min-width: ${itemWidth}px`};
+//     ${({ itemHeight }) => `height: ${itemHeight}px`};
+//   }
 
-const rules = [
-  {
-    minWidth: 0,
-    mapper: ({ itemWidth, containerWidth, gap }) => {
-      const columns = Math.floor(
-        (Math.floor(containerWidth) / (itemWidth + gap))
-      );
+//   /**
+//    * add gap for flax layout, (no margin collapse with flex)
+//    * Target exclusively IE10 and above: */
+//   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+//     & {
+//       padding: ${({ gap }) => `${gap / 2}px`};
+//       margin-left: auto !important;
+//       margin-right: auto !important;
+//       width: ${({ columns, itemWidth, gap }) => (
+//           `${(
+//               ((columns) * (itemWidth + gap)) + (gap)
+//           )}px;`
+//         )
+//       };
+//       /* width: ${({ columns, itemWidth, gap }) => `calc(${columns} * calc(${itemWidth}px + ${2 * gap}px))`}; */
+//     }
+//     & > * {
+//       margin: ${({ gap }) => `${gap / 2}px`};
+//       ${({ itemWidth }) => `max-width: ${itemWidth}px`};
+//       ${({ itemWidth }) => `width: ${itemWidth}px`};    }
+//   }
+// `;
+// /* eslint-enable indent */
 
-      return {
-        columns,
-      };
-    },
-  },
-];
+// const rules = [
+//   {
+//     minWidth: 0,
+//     mapper: ({ itemWidth, containerWidth, gap }) => {
+//       const columns = Math.floor(
+//         (Math.floor(containerWidth) / (itemWidth + gap))
+//       );
 
-const Grid = ({ children, ...restOfProps }) => (
-  <PropsMapperContainerQueries
-    {...restOfProps}
-    rules={rules}
-  >
-    <ExtendedGridUI>
-      {children}
-    </ExtendedGridUI>
-  </PropsMapperContainerQueries>
-);
+//       return {
+//         columns,
+//       };
+//     },
+//   },
+// ];
 
-Grid.propTypes = {
-  itemWidth: PropTypes.number,
-  itemHeight: PropTypes.number,
-  gap: PropTypes.number,
-  style: PropTypes.object,
-};
+// const Grid = ({ children, ...restOfProps }) => (
+//   <PropsMapperContainerQueries
+//     {...restOfProps}
+//     rules={rules}
+//   >
+//     <ExtendedGridUI>
+//       {children}
+//     </ExtendedGridUI>
+//   </PropsMapperContainerQueries>
+// );
 
-Grid.defaultProps = {
-  itemWidth: 96,
-  itemHeight: undefined,
-  gap: 16,
-  style: {},
-};
+// Grid.propTypes = {
+//   itemWidth: PropTypes.number,
+//   itemHeight: PropTypes.number,
+//   gap: PropTypes.number,
+//   style: PropTypes.object,
+// };
 
-Grid.displayName = 'Grid';
+// Grid.defaultProps = {
+//   itemWidth: 96,
+//   itemHeight: undefined,
+//   gap: 16,
+//   style: {},
+// };
 
-export default Grid;
+// Grid.displayName = 'Grid';
+
+// export default Grid;

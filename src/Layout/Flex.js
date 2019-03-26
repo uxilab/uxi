@@ -1,11 +1,9 @@
 import styled from 'styled-components';
+import { flexStylesCSSString } from './flexStyles';
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
 export const Flex = styled.div`
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexStylesCSSString};
   flex-direction: ${({ direction }) => (direction || 'row')};
 `;
 
