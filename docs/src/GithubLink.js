@@ -1,8 +1,9 @@
 import React from 'react';
-import { styled } from 'styled-components';
-import { Flex } from 'uxi/Layout';
+import styled from 'styled-components';
+import { flexStylesCSSString } from 'uxi/Layout/flexStyles';
 
-const FlexExtended = Flex.extend`
+const FlexExtended = styled.div`
+  ${flexStylesCSSString};
   height: 100%;
   color: #f3f3f3;
   font-weight: 100;

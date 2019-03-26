@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { flexStylesCSSString } from '../Layout/flexStyles';
 import { Img } from '../Img';
-import { ContentWithExtra, Flex } from '../Layout';
+import { ContentWithExtra } from '../Layout';
 import { PropsMapperContainerQueries } from '../internal/PropsMapperContainerQueries';
 import {
   Circle,
 } from '../Icons';
 
-const ExtendedFlex = Flex.extend`
+const ExtendedFlex = styled.div`
+  ${flexStylesCSSString};
   justify-content: flex-start;
   align-items: flex-start;
   flex-flow: row wrap;

@@ -1,11 +1,14 @@
 import React from 'react';
-import SuggestAnEdit from './components/SuggestAnEdit';
 import { Flex } from 'uxi/Layout';
 import { Externallink } from 'uxi/Icons';
 import { ButtonLink } from 'uxi/Button';
+import { flexStylesCSSString } from 'uxi/Layout/flexStyles';
+import styled from 'styled-components';
+import SuggestAnEdit from './components/SuggestAnEdit';
 import MarkdownElement from './components/MarkdownElement/MarkDownElement';
 
-const ExtendedFlex = Flex.extend`
+const ExtendedFlex = styled.div`
+  ${flexStylesCSSString};
   /* margin-right: auto; */
   & a {
     display: flex;

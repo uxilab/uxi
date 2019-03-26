@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import enhanceWithClickOutside from 'react-click-outside';
 import styled from 'styled-components';
 import { Arrowright } from '../Icons';
-import { Flex } from '../Layout';
+import { flexStylesCSSString } from '../Layout/flexStyles';
+
 
 const Details = styled.details.attrs({
   onToggle: ({ onToggle }) => onToggle,
@@ -14,7 +15,8 @@ const Details = styled.details.attrs({
 
 `;
 
-const SummaryIcon = Flex.extend`
+const SummaryIcon = styled.div`
+  ${flexStylesCSSString};
   transform-origin: center;
   transform: rotate(0deg);
   ${({ isOpen }) => (isOpen ? 'transform: rotate(90deg)' : '')};
