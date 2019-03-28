@@ -23,11 +23,19 @@ const CarFullName = ({ entity }) => (
   <div>{entity.make} {entity.model}</div>
 );
 
+const ReviewScore = ({ value }) => {
+  return (
+    <div>
+      Score: {value.test}
+    </div>
+  )
+};
+
 const ExampleSimpleDataGridComputedProperty = () => {
   const data = [
-    { id: 1, make: 'Toyota', model: 'Celica', price: 35000, isSold: true },
-    { id: 2, make: 'Ford', model: 'Mondeo', price: 32000, isSold: true },
-    { id: 3, make: 'Porsche', model: 'Boxter', price: 72000, isSold: false },
+    { id: 1, make: 'Toyota', model: 'Celica', price: 35000, isSold: true, options: { test: '2' } },
+    { id: 2, make: 'Ford', model: 'Mondeo', price: 32000, isSold: true, options: { test: '2' } },
+    { id: 3, make: 'Porsche', model: 'Boxter', price: 72000, isSold: false, options: { test: '2' } },
   ];
   const types = [{
     type: 'boolean',
@@ -50,6 +58,11 @@ const ExampleSimpleDataGridComputedProperty = () => {
             property: 'isSold',
             displayName: 'Sold',
           },
+          {
+            property: 'options',
+            displayName: 'Review Score',
+            Component: ReviewScore,
+          }
         ]}
         data={data}
       />
