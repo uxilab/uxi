@@ -95,6 +95,7 @@ class Widget extends Component {
       headerStyles,
       containerStyle,
       allowFullScreen,
+      renderMenu,
     } = this.props;
 
     const { isFullScreen } = this.state;
@@ -145,6 +146,13 @@ class Widget extends Component {
           </UnstyledButton>
         </Flex>
       );
+    } else if (renderMenu) {
+      console.log('renderMenu', renderMenu);
+      menu = renderMenu({
+        isFullScreen: this.state.isFullScreen,
+        goFullScreen: () => this.setState({ isFullScreen: true }),
+        escapeFullScreen: () => this.setState({ isFullScreen: false }),
+      });
     }
 
     let content;
