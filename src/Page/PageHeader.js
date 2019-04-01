@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { UnstyledButton } from '../Button';
+import { Flex } from '../Layout/Flex';
+import Arrowleft from '../Icons/Arrowleft';
+
 
 const Container = styled.div`
   background: #fff;
@@ -14,7 +18,7 @@ const Container = styled.div`
 const TitleContainer = styled.div`
   flex: 1;
   display: flex;
-  padding-left: 30px;
+  padding-left: ${({ onGoBack }) => (onGoBack ? 0 : '32px')};
   align-items: center;
 `;
 
@@ -29,12 +33,50 @@ const Title = styled.div`
   font-family: 'Fira sans', sans-serif;
 `;
 
-const PageHeader = ({ title, icon, children }) => (
+const PageHeader = ({ title, icon, children, onGoBack, backLabel }) => (
   <Container>
-    <TitleContainer>
-      {icon && <IconWrapper>
-        {icon}
-      </IconWrapper>}
+    <TitleContainer onGoBack={onGoBack} >
+      {
+        onGoBack && (
+          <React.Fragment>
+            <UnstyledButton
+              onClick={onGoBack}
+              style={{
+                fontSize: '16px',
+                fontWeight: 600,
+                color: '#8c8c8c',
+              }}
+            >
+              <Flex
+                style={{
+                  boxSizing: 'border-box',
+                  width: '80px',
+                  height: '58px',
+                  padding: '0 16px',
+                }}
+              >
+                <Arrowleft size="13" style={{ color: '#26a29a', paddingRight: '6px' }} />
+                { backLabel || 'Back'}
+              </Flex>
+            </UnstyledButton>
+            <span
+              style={{
+                marginRight: '8px',
+                fontSize: '16px',
+                // fontWeight: 600,
+                color: '#cecece',
+              }}
+            > | </span>
+          </React.Fragment>
+        )
+      }
+      {
+        icon && (
+          <IconWrapper>
+            {icon}
+          </IconWrapper>
+        )
+      }
       <Title>{title}</Title>
     </TitleContainer>
     <div>
