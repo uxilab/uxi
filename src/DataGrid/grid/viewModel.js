@@ -1,5 +1,13 @@
 import React from 'react';
 
+const DefaultCellComponent = ({ value }) => {
+  if (typeof value === 'object') {
+    return JSON.stringify(value);
+  }
+
+  return (value || '');
+};
+
 export const toHeaderDefinition = (data, properties) => {
   const headers = properties || Object.keys(data[0] || {}) || [];
 
@@ -22,7 +30,7 @@ const createPropertyViewModel = (entity, properties) => {
     name: k.name,
     propertyName: k.property ? k.property : k,
     isComputed: k.isComputed,
-    Component: k.Component ? k.Component : ({ value }) => (value || ''),
+    Component: k.Component ? k.Component : DefaultCellComponent,
   }));
 };
 
