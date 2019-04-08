@@ -55,6 +55,7 @@ const ProgressIndicatorUI = styled.div`
   bottom: 0;
   width: ${({ value }) => `${value}%`};
   background: ${({ theme }) => theme.palette.accent.main};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
 
