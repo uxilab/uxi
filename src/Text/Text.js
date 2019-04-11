@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
  */
 import { theme } from '../Theme';
 
-class MarketingText extends Component {
+/* eslint-disable react/prefer-stateless-function */
+class Text extends Component {
   static contextTypes = {
     isDarkTheme: PropTypes.func,
   };
@@ -14,8 +15,11 @@ class MarketingText extends Component {
     const { type = 'body', children, style = {} } = this.props;
     const typeLowerCase = type.toLowerCase();
     const isDark = this.context.isDarkTheme ? this.context.isDarkTheme() : false;
-    const correctStyling = isDark ? theme.marketingText.dark[typeLowerCase] : theme.marketingText.light[typeLowerCase];
-    const defaultStyle = isDark ? theme.marketingText.dark.body : theme.marketingText.light.body;
+    const correctStyling = isDark
+      ? theme.fontsAndColor.dark[typeLowerCase]
+      : theme.fontsAndColor.light[typeLowerCase]
+    ;
+    const defaultStyle = isDark ? theme.fontsAndColor.dark.body : theme.fontsAndColor.light.body;
 
     const mergedStyle = Object.assign({}, correctStyling || defaultStyle, style);
 
@@ -35,4 +39,4 @@ class MarketingText extends Component {
   }
 }
 
-export default MarketingText;
+export default Text;
