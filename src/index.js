@@ -2,7 +2,7 @@
 export ThemeProvider from './Theme/ThemeProvider';
 
 export * from './Icons';
-export * from './SvgIcon';
+// export * from './SvgIcon';
 
 /** BUTTONS */
 export Button from './Button/Button';
