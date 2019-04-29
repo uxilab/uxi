@@ -147,7 +147,6 @@ class Widget extends Component {
         </Flex>
       );
     } else if (renderMenu) {
-      console.log('renderMenu', renderMenu);
       menu = renderMenu({
         isFullScreen: this.state.isFullScreen,
         goFullScreen: () => this.setState({ isFullScreen: true }),
