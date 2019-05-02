@@ -49,8 +49,8 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterO
 
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
-      <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
-      <span data-postFix style={{ margin: '0 6px', marginLeft: 'auto' }}>{postFix}</span>
+      <div style={{ flexGrow: 99, overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
+      <span data-postFix style={{ textAlign: 'right', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '50%', flexGrow: 1, flexShrink: 1, margin: '0 6px', marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
 };
