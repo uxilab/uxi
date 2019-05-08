@@ -9,9 +9,9 @@ const InputWrapper = styled.div`
   border: ${({ theme: { palette } }) => palette.lightGrey};
   /* border: #dcdcdc; */
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
-  &>div:first-child {
+  /* &>div:first-child {
     width: 100%;
-  }
+  } */
 `;
 
 /**
@@ -34,8 +34,9 @@ const InputGroup = ({ children, style = {}, fullWidth, theme: { radius = '3px' }
             ...child.props.style,
             borderRadius: rules,
             minHeight: '34px',
-            maxHeihgt: '34px',
-            heihgt: '34px',
+            maxHeight: '34px',
+            height: '34px',
+            boxSizing: 'border-box',
           },
           key: i,
         });
