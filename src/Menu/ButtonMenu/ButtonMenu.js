@@ -217,7 +217,7 @@ class ButtonMenu extends Component {
           >
             {
               React.Children.map(children, (child) => {
-                if (child.type && child.type === ButtonMenuItem) {
+                if (child && child.type && child.type === ButtonMenuItem) {
                   return React.cloneElement(child, {
                     shouldClose: this.close,
                   });
