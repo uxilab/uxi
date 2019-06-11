@@ -17,6 +17,9 @@ const getAccessibilityRules = ({ isParentSelected }) => {
 
 /* eslint-disable indent */
 const LinkDecorator = styled.div`
+  ${buttonReset};
+
+
   & a {
 
     ${buttonReset};
@@ -33,7 +36,9 @@ const LinkDecorator = styled.div`
     }
 
     border-bottom:  ${({ isLastSubItem, theme: { palette } }) =>
-    (isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, 0.5)}`)};
+      (isLastSubItem ? '0px' : `.1px solid ${darken(palette.accent.dark, 0.5)}`)
+    };
+
 
     overflow: hidden;
     color: #9a9fa5;
