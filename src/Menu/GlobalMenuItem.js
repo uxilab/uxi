@@ -320,7 +320,7 @@ class GlobalMenuItem extends Component {
 GlobalMenuItem.displayName = 'GlobalMenuItem';
 
 GlobalMenuItem.propTypes = {
-  isSelected: PropTypes.bool,
+  // isSelected: PropTypes.bool,
   index: PropTypes.string,
   hasNew: PropTypes.bool,
   label: PropTypes.node,
@@ -330,7 +330,7 @@ GlobalMenuItem.propTypes = {
 };
 
 GlobalMenuItem.defaultProps = {
-  isSelected: false,
+  // isSelected: false,
   index: '',
   hasNew: false,
   label: null,

@@ -219,7 +219,7 @@ class GlobalMenu extends Component {
 
 GlobalMenu.propTypes = {
   // initialActive: PropTypes.string,
-  initialSelected: PropTypes.string,
+  // initialSelected: PropTypes.string,
   onLogoClick: PropTypes.func,
   // backgroundColor: PropTypes.string,
   // Logo: PropTypes.any,
