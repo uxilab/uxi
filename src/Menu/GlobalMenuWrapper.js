@@ -69,7 +69,7 @@ const GlobalMenuWrapper = ({
             isLastSubItem={idx === list.length - 1}
             key={`${menuDescriptor.key}-subitem-${child.key}`}
             isSelected={child.isSelected}
-            isParentSelected={menuDescriptor.isSelected}
+            isParentSelected={menuDescriptor.isActive || child.isActive}
             isActive={child.isActive}
             onClick={child.onClick}
             hasNew={child.hasNew}

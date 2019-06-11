@@ -5,32 +5,32 @@ import GlobalMenuWrapper from './GlobalMenuWrapper';
 import GlobalMenuLogo from './GlobalMenuLogo';
 
 class GlobalMenu extends Component {
-  constructor(props) {
-    super(props);
-    const initialSelected = props.initialSelected;
-    const firstActiveMaybe = this.getFirstActiveFoundMaybe();
-    this.state = {
-      selected: initialSelected || (firstActiveMaybe || ''),
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   const initialSelected = props.initialSelected;
+  //   const firstActiveMaybe = this.getFirstActiveFoundMaybe();
+  //   this.state = {
+  //     selected: initialSelected || (firstActiveMaybe || ''),
+  //   };
+  // }
 
-  componentDidMount() {
-    const firstActiveFound = this.getFirstActiveFoundMaybe();
+  // componentDidMount() {
+  //   const firstActiveFound = this.getFirstActiveFoundMaybe();
 
-    if (firstActiveFound) {
-      const activeChild = (
-        firstActiveFound
-        && firstActiveFound.children
-        && firstActiveFound.children.find(child => child.isActive)
-      );
+  //   if (firstActiveFound) {
+  //     const activeChild = (
+  //       firstActiveFound
+  //       && firstActiveFound.children
+  //       && firstActiveFound.children.find(child => child.isActive)
+  //     );
 
-      if (activeChild) {
-        this.changeSelected(activeChild.key);
-      } else {
-        this.changeSelected(firstActiveFound.key);
-      }
-    }
-  }
+  //     if (activeChild) {
+  //       this.changeSelected(activeChild.key);
+  //     } else {
+  //       this.changeSelected(firstActiveFound.key);
+  //     }
+  //   }
+  // }
 
   shouldComponentUpdate(nextProps) {
     const {
@@ -44,60 +44,60 @@ class GlobalMenu extends Component {
     return false;
   }
 
-  componentDidUpdate(prevProps) {
-    const { selected } = this.state;
+  // componentDidUpdate(prevProps) {
+  //   const { selected } = this.state;
 
-    if (prevProps.menuDescriptors !== this.props.menuDescriptors) {
-      const firstActive = this.getFirstActiveFoundMaybe();
-      if (!firstActive) {
-        this.changeSelected('');
-      } else {
-        if (firstActive.key !== selected) { // eslint-disable-line
-          this.changeSelected(firstActive.key);
-        }
-      }
-    }
-  }
+  //   if (prevProps.menuDescriptors !== this.props.menuDescriptors) {
+  //     const firstActive = this.getFirstActiveFoundMaybe();
+  //     if (!firstActive) {
+  //       this.changeSelected('');
+  //     } else {
+  //       if (firstActive.key !== selected) { // eslint-disable-line
+  //         this.changeSelected(firstActive.key);
+  //       }
+  //     }
+  //   }
+  // }
 
-  getFirstActiveFoundMaybe() {
-    const { menuDescriptors } = this.props;
+  // getFirstActiveFoundMaybe() {
+  //   const { menuDescriptors } = this.props;
 
-    const activeMaybe = menuDescriptors
-      .find((menuDescriptor) => {
-        const hasChildren = menuDescriptor.children;
-        return (
-          menuDescriptor.isActive === true ||
-          (hasChildren && menuDescriptor.children
-            .find(child => child.isActive)
-          )
-        );
-      });
+  //   const activeMaybe = menuDescriptors
+  //     .find((menuDescriptor) => {
+  //       const hasChildren = menuDescriptor.children;
+  //       return (
+  //         menuDescriptor.isActive === true ||
+  //         (hasChildren && menuDescriptor.children
+  //           .find(child => child.isActive)
+  //         )
+  //       );
+  //     });
 
-    if (activeMaybe && activeMaybe.key) {
-      return activeMaybe.key;
-    }
-    return null;
-  }
+  //   if (activeMaybe && activeMaybe.key) {
+  //     return activeMaybe.key;
+  //   }
+  //   return null;
+  // }
 
-  getSelected(key) {
-    const { selected } = this.state;
+  // getSelected(key) {
+  //   const { selected } = this.state;
 
-    return (selected === key);
-  }
+  //   return (selected === key);
+  // }
 
-  changeSelected(value) {
-    this.setState({
-      selected: value,
-    });
-  }
+  // changeSelected(value) {
+  //   this.setState({
+  //     selected: value,
+  //   });
+  // }
 
-  handleClickOutside(value) {
-    const newSelectedKeyValue = (value === this.state.selected) ? '' : this.state.selected;
+  // handleClickOutside(value) {
+  //   const newSelectedKeyValue = (value === this.state.selected) ? '' : this.state.selected;
 
-    this.setState({
-      selected: newSelectedKeyValue,
-    });
-  }
+  //   this.setState({
+  //     selected: newSelectedKeyValue,
+  //   });
+  // }
 
   render() {
     const {
@@ -117,11 +117,12 @@ class GlobalMenu extends Component {
 
     const fullViewportWidthPanel = attachToViewport ? true : fullViewportWidthPanelProp;
 
-    const {
-      selected,
-    } = this.state;
+    // const {
+    //   selected,
+    // } = this.state;
 
-    const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
+    const menuDescriptorWithActiveAndSelected = (menuDescriptors || []);
+    /* const menuDescriptorWithActiveAndSelected = (menuDescriptors || []).map((menuDescriptor) => {
       const isSelected = this.getSelected(menuDescriptor.key);
       const menuDescriptorChildren = [];
       let isMenuSelected;
@@ -166,10 +167,10 @@ class GlobalMenu extends Component {
         children: menuDescriptorChildren,
       };
     });
+    */
 
     const theLogo = logoDescriptor && (
       <GlobalMenuLogo
-
         key={logoDescriptor.key || 'GlobalMenuMainLogo'}
         label={(logoDescriptor.displayName || '')}
         icon={logoDescriptor.icon}
@@ -177,9 +178,9 @@ class GlobalMenu extends Component {
         to={logoDescriptor.to}
         href={logoDescriptor.href}
         logoTooltipLabel={logoDescriptor.tooltipLabel || logoDescriptor.displayName || ''}
-        selectedKey={selected}
+        // selectedKey={selected}
         onClick={() => {
-          this.changeSelected(logoDescriptor.key || 'GlobalMenuMainLogo');
+          // this.changeSelected(logoDescriptor.key || 'GlobalMenuMainLogo');
           if (logoDescriptor.onClick) {
             logoDescriptor.onClick();
           }
@@ -203,12 +204,12 @@ class GlobalMenu extends Component {
             panelOffsetBottom={panelOffsetBottom}
             logo={theLogo}
             onLogoClick={onLogoClick}
-            selectedKey={selected}
+            // selectedKey={null/* selected */}
             menuDescriptors={menuDescriptorWithActiveAndSelected}
             attachToViewport={attachToViewport}
             innerStyle={innerStyle}
             fullViewportWidthPanel={fullViewportWidthPanel}
-            handlePanelClickOutside={this.handleClickOutside.bind(this)}
+            // handlePanelClickOutside={this.handleClickOutside.bind(this)}
           />
         </div>
       </div>

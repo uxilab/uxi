@@ -19,7 +19,6 @@ const getAccessibilityRules = ({ isParentSelected }) => {
 const LinkDecorator = styled.div`
   ${buttonReset};
 
-
   & a {
 
     ${buttonReset};
@@ -194,10 +193,11 @@ const GlobalMenuItemButton = GlobalMenuSubItemDiv.withComponent('button');
 
 
 class GlobalMenuSubItem extends Component {
+  /*
   shouldComponentUpdate(nextProps) {
     const {
       isActive,
-      isSelected,
+      // isSelected,
       isParentSelected,
     } = this.props;
 
@@ -207,11 +207,12 @@ class GlobalMenuSubItem extends Component {
     if (isParentSelected !== nextProps.isParentSelected) {
       return true;
     }
-    if (isSelected !== nextProps.isSelected) {
-      return true;
-    }
+    // if (isSelected !== nextProps.isSelected) {
+    //   return true;
+    // }
     return false;
   }
+  */
 
   render() {
     const {

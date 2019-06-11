@@ -11,8 +11,8 @@ const {
   breakpoint: defaultBreakpoint,
 } = defaults;
 
-const getIconColor = ({ isSelected, isActive, theme: { palette } }) => {
-  if (isActive && isSelected) {
+const getIconColor = ({ isActive, theme: { palette } }) => {
+  if (isActive) {
     return palette.accent.light;
   }
   return palette.white;
@@ -32,9 +32,9 @@ const LinkDecorator = styled.div`
   html body & svg,
   html body & svg > svg {
     /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
-    fill: ${({ isSelected, isActive, theme: { palette } }) =>
-    (isSelected && isActive ? palette.accent.light : palette.extraLightGrey)
-};
+    fill: ${({ isActive, theme: { palette } }) =>
+      (isActive ? palette.accent.light : palette.extraLightGrey)
+    };
   }
   .root & a,
   & a {
@@ -42,11 +42,11 @@ const LinkDecorator = styled.div`
     ${GlobalMenuItemBase};
     text-decoration: none;
 
-    color: ${({ isSelected, isActive, theme: { palette } }) =>
-    (isSelected && isActive ? palette.accent.light : '#c2c2c2')
-};
-    border-right: ${({ isSelected, isActive, theme: { palette } }) =>
-      (isSelected && isActive
+    color: ${({ isActive, theme: { palette } }) =>
+      (isActive ? palette.accent.light : '#c2c2c2')
+    };
+    border-right: ${({ isActive, theme: { palette } }) =>
+      (isActive
         ? `${borderThickness} solid ${palette.accent.main}`
         : '0 solid transparent'
     )};
@@ -55,13 +55,10 @@ const LinkDecorator = styled.div`
     &:hover {
       text-decoration: none;
       color: ${({ theme: { palette } }) => palette.pureWhite};
-      background: ${({ isActive, isSelected, theme: { palette } }) => (
-        isSelected // eslint-disable-line no-nested-ternary
-          ? (isActive
+      background: ${({ isActive, theme: { palette } }) => (
+          isActive
             ? palette.primary.dark
             : palette.primary.light // child is slelected, means we can navigate there
-          )
-          : palette.primary.light
         )};
       svg {
         fill: #fff;
@@ -71,15 +68,13 @@ const LinkDecorator = styled.div`
       color: ${({ isActive, theme: { palette } }) => (
         isActive ? 'inherit' : palette.pureWhite
       )};
-      background: ${({ isSelected, theme: { palette } }) => (
-        (isSelected ? palette.primary.main : palette.primary.light)
-      )};
-      color: ${({ isSelected, isActive, theme: { palette } }) =>
-        ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+
+      color: ${({ isActive, theme: { palette } }) =>
+        ((isActive) ? palette.accent.light : palette.pureWhite)
       };
       svg {
-        fill: ${({ isSelected, isActive, theme: { palette } }) =>
-          ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
+        fill: ${({ isActive, theme: { palette } }) =>
+          ((isActive) ? palette.accent.light : palette.pureWhite)
         };
       }
     }
@@ -88,7 +83,6 @@ const LinkDecorator = styled.div`
     }
   }
 `;
-/* eslint-enable indent */
 
 const GlobalMenuItemDiv = styled.a`
   display: flex;
@@ -104,36 +98,33 @@ const GlobalMenuItemDiv = styled.a`
   html body & svg,
   html body & svg > svg {
     /* fill: ${({ theme: { palette } }) => palette.extraLightGrey}; */
-    fill: ${({ isSelected, theme: { palette } }) =>
-    (isSelected ? palette.accent.light : palette.extraLightGrey)
-};
+    fill: ${({ isActive, theme: { palette } }) =>
+      (isActive ? palette.accent.light : palette.extraLightGrey)
+    };
   }
   text-decoration: none;
 
   .root &,
   & {
-    color: ${({ isSelected, theme: { palette } }) =>
-    (isSelected ? palette.accent.light : '#c2c2c2')
-};
+    color: ${({ isActive, theme: { palette } }) =>
+      (isActive ? palette.accent.light : '#c2c2c2')
+    };
   }
 
-  border-right: ${({ isSelected, theme: { palette } }) => (isSelected ?
+  border-right: ${({ isActive, theme: { palette } }) => (isActive ?
     `${borderThickness} solid ${palette.accent.main}` : '0 solid transparent')
-};
+  };
   background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
   .root &:hover, /* TODO solve this .root a  */
   &:hover {
     text-decoration: none;
     color: ${({ theme: { palette } }) => palette.pureWhite};
-    background: ${({ isActive, isSelected, theme: { palette } }) => (
-    isSelected // eslint-disable-line no-nested-ternary
-      ? (isActive
-        ? palette.primary.dark
-        : palette.primary.light // child is slelected, means we can navigate there
-      )
-      : palette.primary.light
-  )};
+    background: ${({ isActive, theme: { palette } }) => (
+      isActive
+          ? palette.primary.dark
+          : palette.primary.light // child is slelected, means we can navigate there
+      )};
     svg {
       fill: #fff;
     }
@@ -142,18 +133,18 @@ const GlobalMenuItemDiv = styled.a`
   .root &:focus, /* TODO solve this .root a  */
   &:focus {
     color: ${({ isActive, theme: { palette } }) => (
-    isActive ? 'inherit' : palette.pureWhite
-  )};
-    background: ${({ isSelected, theme: { palette } }) => (
-    (isSelected ? palette.primary.main : palette.primary.light)
-  )};
-    color: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+      isActive ? 'inherit' : palette.pureWhite
+    )};
+    background: ${({ isActive, theme: { palette } }) => (
+      (isActive ? palette.primary.main : palette.primary.light)
+    )};
+    color: ${({ isActive, theme: { palette } }) =>
+      ((isActive) ? palette.accent.light : palette.pureWhite)
+    };
     svg {
-      fill: ${({ isSelected, isActive, theme: { palette } }) =>
-    ((isSelected || isActive) ? palette.accent.light : palette.pureWhite)
-};
+      fill: ${({ isActive, theme: { palette } }) =>
+      ((isActive) ? palette.accent.light : palette.pureWhite)
+    };
     }
   }
 
@@ -161,6 +152,8 @@ const GlobalMenuItemDiv = styled.a`
     fill: ${props => (getIconColor(props))};
   }
 `;
+/* eslint-enable indent */
+
 
 const GlobalMenuItemDivFinal = GlobalMenuItemDiv.withComponent('button');
 
@@ -199,7 +192,7 @@ const NewInfo = styled.div`
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  right: ${({ isActive, isSelected }) => (isActive || isSelected ? '5px' : '9px')};
+  right: ${({ isActive }) => (isActive ? '5px' : '9px')};
   transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
@@ -207,21 +200,17 @@ class GlobalMenuItem extends Component {
   shouldComponentUpdate(nextProps) {
     const {
       isActive,
-      isSelected,
     } = this.props;
 
     if (isActive !== nextProps.isActive) {
       return true;
     }
-    if (isSelected !== nextProps.isSelected) {
-      return true;
-    }
+
     return false;
   }
 
   render() {
     const {
-      isSelected,
       icon,
       index,
       dataKey,
@@ -240,7 +229,7 @@ class GlobalMenuItem extends Component {
 
     if (hasNew) {
       isNewContent = (
-        <NewInfo isActive={isActive} isSelected={isSelected} >!</NewInfo>
+        <NewInfo isActive={isActive} >!</NewInfo>
       );
     }
 
@@ -270,7 +259,6 @@ class GlobalMenuItem extends Component {
     resContent = (
       <GlobalMenuItemDivFinal
         primaryColor={primaryColor}
-        isSelected={isSelected}
         isActive={isActive}
         key={`mainMenuItemContainer-${dataKey}`}
         {...linkProps}
@@ -288,7 +276,7 @@ class GlobalMenuItem extends Component {
         <LinkDecorator
           breakpoint={breakpoint}
           primaryColor={primaryColor}
-          isSelected={isSelected}
+          isSelected={isActive}
           isActive={isActive}
           key={`mainMenuItemContainer-${index}`}
         >
