@@ -59,6 +59,7 @@ class SearchForm extends Component {
 
     const inputProps = {
       ...otherProps,
+      isFullWidth,
       onChange: this.handleChange,
     };
 
