@@ -8,6 +8,9 @@ const ContentWithExtraUI = styled.div`
   width: 100%;
   /* overflow: hidden; */
   flex-flow: ${({ isAfter }) => (isAfter ? 'row wrap' : 'row wrap')};
+  &, & * {
+    transition: ${({ theme: { transition } }) => transition.defaultAll};
+  }
 `;
 
 const ContentUI = styled.div`

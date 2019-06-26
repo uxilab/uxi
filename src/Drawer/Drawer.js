@@ -30,10 +30,16 @@ const DrawerUI = styled.div`
   width: 500px;
   max-width: 100vw;
   background: #fff;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0) , 0px 3px 10px rgba(0, 0, 0, 0);
-  };
-  ${({ inAttr: isIn }) => (isIn ?
-    'box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16) , 0px 3px 10px rgba(0, 0, 0, 0.23)' : '')};
+
+  box-shadow: box-shadow: 0px 3px 10px rgba(0, 0, 0, 0) , 0px 3px 10px rgba(0, 0, 0, 0);
+
+
+  ${({ inAttr: isIn, inline }) => (isIn // eslint-disable-line no-nested-ternary
+    ? inline
+      ? 'none'
+      : 'box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16) , 0px 3px 10px rgba(0, 0, 0, 0.23)'
+    : ''
+  )};
   /* height | width */
   ${({ dir }) => (
     slidesHorizontaly(dir)
@@ -152,6 +158,8 @@ class Drawer extends React.Component {
       offsetBottom,
       offsetLeft,
       offsetRight,
+      regional,
+      inline,
     } = this.props;
 
     const keyboardKeyDownHandler = (open || isOpen)
@@ -161,6 +169,8 @@ class Drawer extends React.Component {
     return (
       <div ref={this.storeRef} onKeyDown={keyboardKeyDownHandler}>
         <Slide
+          regional={regional}
+          inline={inline}
           inAttr={(open || isOpen)}
           direction={getSlideDirection(anchor)}
           appear={!this.state.firstMount}
@@ -170,6 +180,8 @@ class Drawer extends React.Component {
           offsetRight={offsetRight}
         >
           <DrawerUI
+            regional={regional}
+            inline={inline}
             offsetTop={offsetTop}
             offsetBottom={offsetBottom}
             offsetLeft={offsetLeft}

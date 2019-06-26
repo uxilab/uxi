@@ -3,10 +3,19 @@ import styled from 'styled-components';
 
 // eslint-disable-next-line no-mixed-operators
 const lt = (x, a, b, c, d) => (x - a) / (b - c) * (d - c) + c;
+const addUnitIfNeeded = (value) => {
+  if (!value) { return ''; }
 
+  if (value.match && value.match(/px|pc|%|em|rem/)) {
+    return value;
+  }
+
+  return `${value.match}px`;
+};
 const ProgressBarWrapperUI = styled.div`
   /* ${({ width }) => (width !== undefined ? `width: ${width}px` : 'auto')}; */
   display: inline-block;
+  ${({ width }) => width && addUnitIfNeeded(width)};
   display: flex;
   align-items: center;
   flex-direction: ${({ labelPosition }) => {
@@ -28,7 +37,7 @@ const ProgressIndicatorWrapperUI = styled.div`
   display: inline-block;
   width: 100%;
   height: 4px;
-  max-width: ${({ width }) => (width !== undefined ? `${width}px` : 'auto')};
+  max-width: ${({ width }) => (width !== undefined ? `${addUnitIfNeeded(width)}` : 'auto')};
   background: ${({ theme }) => theme.palette.lightGrey};
   margin: ${({ labelPosition }) => {
     if (labelPosition === 'left') { return '0'; }

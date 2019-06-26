@@ -33,7 +33,11 @@ const SlideUI = styled.div`
     ? transition.durationIn + transition.easing
     : transition.durationOut + transition.easing
   };
-  position: fixed;
+  /* position: fixed; */
+  position: ${({ inline, regional }) => inline
+    ? 'relative'
+    : (regional ? 'absolute' : 'fixed')
+  };
   top: 0;
   bottom: 0;
   /* ${({ dir }) => {dir === 'left' || dir === 'right' ? 'height: 100vh' : 'width: 100vw' }}; */
@@ -113,6 +117,8 @@ class Slide extends React.Component {
       offsetTop,
       offsetLeft,
       offsetRight,
+      regional,
+      inline,
       ...other
     } = this.props;
 
@@ -123,6 +129,8 @@ class Slide extends React.Component {
 
     return (
       <SlideUI
+        regional={regional}
+        inline={inline}
         timeout={timeout}
         className="SlideUI"
         inAttr={inAttr}

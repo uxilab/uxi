@@ -50,11 +50,12 @@ const AppLayoutExtended = AppLayout.extend`
 `;
 
 const InnerAppLayoutUI = AppLayout.extend`
-  &>*:nth-child(1) {
+  & > *:nth-child(1) {
     flex-grow: 99;
     flex-shrink: 0;
+    transform: translate(0,0);
   }
-  &>*:nth-child(2) {
+  & > *:nth-child(2) {
     flex-grow: 1;
     flex-shrink: 0;
   }
