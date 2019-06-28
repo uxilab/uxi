@@ -1,11 +1,11 @@
 import React from 'react';
-import ExampleSimple from './ExampleSimple';
 import { H2 } from 'uxi/Classic';
+import ExampleSimple from './ExampleSimple';
 
 const MenuPage = () => (
   <div>
     <H2>Menu</H2>
-    {/* <ExampleSimple /> */}
+    <ExampleSimple />
   </div>
 );
 
