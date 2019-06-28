@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import TextEllipsis from '../Text/TextEllipsis';
 
 
+const MenuItem = styled.li`
+  a {
+    color: ${({ theme: { palette } }) => palette.darkGrey};
+    background: white;
+  }
+`;
+
 const MenuWrapperUI = styled.div`
   --itemWidth: 160px;
 
@@ -18,9 +25,10 @@ const MenuWrapperUI = styled.div`
   }
 
   a {
+    &, &:hover, &:focus { text-decoration: none; color: inherit }
     width: 100%;
     padding: 8px;
-    background: lightblue;
+    /* background: lightblue; */
     display: flex;
     & > *:first-child { flex-grow: 999999; }
   }
@@ -85,14 +93,14 @@ const MenuWrapperUI = styled.div`
 const handleMenuLevel = (menuItemDescriptor) => {
   const { children, label } = menuItemDescriptor;
   return (
-    <li key={label}>
+    <MenuItem key={label}>
       <a href="#"><TextEllipsis>{label}</TextEllipsis></a>
       {
         (children && children.length)
           ? <ul>{children.map(handleMenuLevel)}</ul>
           : null
       }
-    </li>
+    </MenuItem>
   );
 }
 
@@ -108,118 +116,6 @@ const Menu = (props) => {
         }
       </ul>
     </MenuWrapperUI>
-  );
-
-  return (
-    <div>
-      <MenuWrapperUI>
-        <ul>
-          <li><a href="#"><TextEllipsis>
-            otherrrrrrrrrrrrrrrrrrrrrrrrrrrr that is way too long
-          </TextEllipsis></a></li>
-          <li><a href="#"><TextEllipsis>reptile</TextEllipsis></a></li>
-          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-          <li>
-            <a href="#"><TextEllipsis>mamal</TextEllipsis></a>
-            <ul>
-              <li>
-                <a href="#"><TextEllipsis>feline</TextEllipsis></a>
-                <ul>
-                  <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
-                </ul>
-              </li>
-              <li><a href="#">
-                <TextEllipsis>Canidae</TextEllipsis>
-              </a></li>
-            </ul>
-          </li>
-          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-          <li>
-            <a href="#"><TextEllipsis>mamal</TextEllipsis></a>
-            <ul>
-              <li>
-                <a href="#"><TextEllipsis>feline</TextEllipsis></a>
-                <ul>
-                  <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
-                </ul>
-              </li>
-              <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
-              <li>
-                <a href="#"><TextEllipsis>mamal</TextEllipsis></a>
-                <ul>
-                  <li>
-                    <a href="#"><TextEllipsis>feline</TextEllipsis></a>
-                    <ul>
-                      <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-          <li>
-            <a href="#"><TextEllipsis>mamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaal</TextEllipsis></a>
-            <ul>
-              <li>
-                <a href="#"><TextEllipsis>feline</TextEllipsis></a>
-                <ul>
-                  <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#"><TextEllipsis>Canidae</TextEllipsis></a>
-                <ul>
-                  <li>
-                    <a href="#"><TextEllipsis>feline</TextEllipsis></a>
-                    <ul>
-                      <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
-                </ul>
-              </li>
-              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-              <li>
-                <a href="#"><TextEllipsis>Canidae</TextEllipsis></a>
-                <ul>
-                  <li>
-                    <a href="#"><TextEllipsis>feline</TextEllipsis></a>
-                    <ul>
-                      <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </MenuWrapperUI>
-    </div>
   );
 };
 
