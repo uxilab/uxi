@@ -34,8 +34,18 @@ const BoxWrapperUI = styled.div.attrs({})`
   max-height: ${({ isOpen, maxHeight }) => (isOpen ? `${maxHeight}px` : '0px')};
 
   &, & > div {
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-x: ${({ visibleOverflow }) => (visibleOverflow ? 'visible' : 'hidden')};
+    overflow-y: ${({ visibleOverflow }) => (visibleOverflow ? 'visible' : 'hidden')};
+  }
+  &, & > div {
+    overflow-x: ${({ visibleOverflow, isOpen }) => isOpen
+      ? (visibleOverflow ? 'visible' : 'hidden')
+      : 'hidden'
+    };
+    overflow-y: ${({ visibleOverflow, isOpen }) => isOpen
+      ? (visibleOverflow ? 'visible' : 'hidden')
+      : 'hidden'
+    };
   }
 
   /* TODO shoadow and focus stylesshould be managed by component orchestrating a dropDown2 */
@@ -153,6 +163,7 @@ class DropDown2 extends Component {
       anchor,
       fullWidthContent,
       forceShadow,
+      visibleOverflow,
     } = this.props;
 
     const {
@@ -187,6 +198,7 @@ class DropDown2 extends Component {
           {TriggerWithHandler}
         </span>
         <BoxWrapperUI
+          visibleOverflow={visibleOverflow}
           forceShadow={forceShadow}
           fullWidthContent={fullWidthContent}
           data-box-wrapper-ui

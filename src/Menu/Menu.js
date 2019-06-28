@@ -6,8 +6,8 @@ import TextEllipsis from '../Text/TextEllipsis';
 const MenuWrapperUI = styled.div`
   --itemWidth: 160px;
 
-  border: 1px solid rebeccapurple;
-  padding: 32px;
+  /* border: 1px solid rebeccapurple;
+  padding: 32px; */
 
   &, & * {
     box-sizing: border-box;
@@ -22,14 +22,16 @@ const MenuWrapperUI = styled.div`
     padding: 8px;
     background: lightblue;
     display: flex;
-    & > *:first-child { flex-grow: 999; }
+    & > *:first-child { flex-grow: 999999; }
   }
+
+
 
   a:not(:only-child) {
     &:after {
       content: '▸';
       display: block;
-      width: 16px;
+      width: 8px;
     }
   }
   li { position: relative;  display: flex; }
@@ -55,7 +57,13 @@ const MenuWrapperUI = styled.div`
     z-index: 100;
   }
 
-  li:hover > ul {
+  li:hover > a,
+  li:focus-within > a {
+    filter: invert(100%);
+  }
+
+  li:hover > ul,
+  li:focus-within > ul {
     display: block;
     width: var(--itemWidth);
 
@@ -70,114 +78,141 @@ const MenuWrapperUI = styled.div`
     }
 
   }
+
+  ul li a:hover { z-index: 9999 }
 `;
 
-const Menu = (/* props */) => {
-  'no auto return here GDI';
+const handleMenuLevel = (menuItemDescriptor) => {
+  const { children, label } = menuItemDescriptor;
+  return (
+    <li key={label}>
+      <a href="#"><TextEllipsis>{label}</TextEllipsis></a>
+      {
+        (children && children.length)
+          ? <ul>{children.map(handleMenuLevel)}</ul>
+          : null
+      }
+    </li>
+  );
+}
+
+
+const Menu = (props) => {
+  const { menuDescriptor } = props;
+
+  return (
+    <MenuWrapperUI>
+      <ul>
+        {
+          menuDescriptor.map(handleMenuLevel)
+        }
+      </ul>
+    </MenuWrapperUI>
+  );
 
   return (
     <div>
       <MenuWrapperUI>
         <ul>
-          <li><a><TextEllipsis>
+          <li><a href="#"><TextEllipsis>
             otherrrrrrrrrrrrrrrrrrrrrrrrrrrr that is way too long
           </TextEllipsis></a></li>
-          <li><a><TextEllipsis>reptile</TextEllipsis></a></li>
-          <li><a><TextEllipsis>other</TextEllipsis></a></li>
+          <li><a href="#"><TextEllipsis>reptile</TextEllipsis></a></li>
+          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
           <li>
-            <a><TextEllipsis>mamal</TextEllipsis></a>
+            <a href="#"><TextEllipsis>mamal</TextEllipsis></a>
             <ul>
               <li>
-                <a><TextEllipsis>feline</TextEllipsis></a>
+                <a href="#"><TextEllipsis>feline</TextEllipsis></a>
                 <ul>
-                  <li><a><TextEllipsis>cat</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>lynx</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
                 </ul>
               </li>
-              <li><a>
+              <li><a href="#">
                 <TextEllipsis>Canidae</TextEllipsis>
               </a></li>
             </ul>
           </li>
-          <li><a><TextEllipsis>other</TextEllipsis></a></li>
-          <li><a><TextEllipsis>other</TextEllipsis></a></li>
-          <li><a><TextEllipsis>other</TextEllipsis></a></li>
+          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
           <li>
-            <a><TextEllipsis>mamal</TextEllipsis></a>
+            <a href="#"><TextEllipsis>mamal</TextEllipsis></a>
             <ul>
               <li>
-                <a><TextEllipsis>feline</TextEllipsis></a>
+                <a href="#"><TextEllipsis>feline</TextEllipsis></a>
                 <ul>
-                  <li><a><TextEllipsis>cat</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>lynx</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
                 </ul>
               </li>
-              <li><a><TextEllipsis>Canidae</TextEllipsis></a></li>
+              <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
               <li>
-                <a><TextEllipsis>mamal</TextEllipsis></a>
+                <a href="#"><TextEllipsis>mamal</TextEllipsis></a>
                 <ul>
                   <li>
-                    <a><TextEllipsis>feline</TextEllipsis></a>
+                    <a href="#"><TextEllipsis>feline</TextEllipsis></a>
                     <ul>
-                      <li><a><TextEllipsis>cat</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>lynx</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
                     </ul>
                   </li>
-                  <li><a><TextEllipsis>Canidae</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
                 </ul>
               </li>
             </ul>
           </li>
-          <li><a><TextEllipsis>other</TextEllipsis></a></li>
+          <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
           <li>
-            <a><TextEllipsis>mamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaal</TextEllipsis></a>
+            <a href="#"><TextEllipsis>mamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaal</TextEllipsis></a>
             <ul>
               <li>
-                <a><TextEllipsis>feline</TextEllipsis></a>
+                <a href="#"><TextEllipsis>feline</TextEllipsis></a>
                 <ul>
-                  <li><a><TextEllipsis>cat</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>lynx</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
                 </ul>
               </li>
               <li>
-                <a><TextEllipsis>Canidae</TextEllipsis></a>
+                <a href="#"><TextEllipsis>Canidae</TextEllipsis></a>
                 <ul>
                   <li>
-                    <a><TextEllipsis>feline</TextEllipsis></a>
+                    <a href="#"><TextEllipsis>feline</TextEllipsis></a>
                     <ul>
-                      <li><a><TextEllipsis>cat</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>lynx</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
                     </ul>
                   </li>
-                  <li><a><TextEllipsis>Canidae</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
                 </ul>
               </li>
-              <li><a><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a><TextEllipsis>other</TextEllipsis></a></li>
-              <li><a><TextEllipsis>other</TextEllipsis></a></li>
+              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+              <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
               <li>
-                <a><TextEllipsis>Canidae</TextEllipsis></a>
+                <a href="#"><TextEllipsis>Canidae</TextEllipsis></a>
                 <ul>
                   <li>
-                    <a><TextEllipsis>feline</TextEllipsis></a>
+                    <a href="#"><TextEllipsis>feline</TextEllipsis></a>
                     <ul>
-                      <li><a><TextEllipsis>cat</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>lynx</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                      <li><a><TextEllipsis>other</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>cat</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>lynx</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                      <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
                     </ul>
                   </li>
-                  <li><a><TextEllipsis>Canidae</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>other</TextEllipsis></a></li>
-                  <li><a><TextEllipsis>other</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>Canidae</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
+                  <li><a href="#"><TextEllipsis>other</TextEllipsis></a></li>
                 </ul>
               </li>
             </ul>

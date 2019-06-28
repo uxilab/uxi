@@ -115,6 +115,7 @@ class ButtonMenu extends Component {
       menuMinWidth,
       menuMaxWidth,
       menuMaxHeight,
+      visibleOverflow,
       // isFullWidth,
     } = this.props;
 
@@ -192,6 +193,7 @@ class ButtonMenu extends Component {
         }}
       >
         <DropDown
+          visibleOverflow={visibleOverflow}
           // isFullWidth={isFullWidth}
           anchor={anchor}
           onClickOutside={this.close}
@@ -207,8 +209,8 @@ class ButtonMenu extends Component {
               // listStyle: 'none',
               background: 'white',
               maxHeight: menuMaxHeight,
-              overflowY: 'auto',
-              overflowX: 'hidden',
+              overflowY: visibleOverflow ? 'visible' : 'auto',
+              overflowX: visibleOverflow ? 'visible' : 'hidden',
               ...(menuWidth ? { width: menuWidth } : {}),
               ...(menuMinWidth ? { minWidth: menuMinWidth } : {}),
               ...(menuMaxWidth ? { maxWidth: menuMaxWidth } : {}),
