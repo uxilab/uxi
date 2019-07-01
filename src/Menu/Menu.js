@@ -7,30 +7,65 @@ const MenuItem = styled.li`
   a {
     color: ${({ theme: { palette } }) => palette.darkGrey};
     background: white;
+    text-decoration: none;
+    &:hover, &:focus {
+      background: ${({ theme: { palette } }) => palette.darkGrey};
+      color: white;
+      text-decoration: none;
+    }
   }
 `;
 
 const MenuWrapperUI = styled.div`
-  --itemWidth: 160px;
+  --itemWidth: 190px;
 
-  /* border: 1px solid rebeccapurple;
-  padding: 32px; */
 
   &, & * {
     box-sizing: border-box;
   }
 
-  ul, li {
-    max-width: var(--itemWidth);
+  ul {
+    box-sizing: border-box;
+    border: 1px solid #cecece;
+    box-shadow: ${({ theme }) => `${theme.outlineShadow}`};
+  }
+
+  ul {
+    width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
+    max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
+  }
+  li {
+    width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'calc(var(--itemWidth) - 2px)')};
+    max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'calc(var(--itemWidth) - 2px)')};
+  }
+
+  &, ul {
+    border-radius: ${({ theme: { radius } }) => radius};
+  }
+
+  li, li a {
+    border-radius: 0;
+  }
+
+  li:first-child, li:first-child > a {
+    border-radius: ${({ theme: { radius } }) => `${radius} ${radius} 0 0`};
+  }
+
+  li:last-child, li:last-child > a {
+    border-radius: ${({ theme: { radius } }) => `0 0 ${radius} ${radius}`};
+  }
+
+  li:first-child:last-child, li:first-child:last-child > a {
+    border-radius: ${({ theme: { radius } }) => radius};
   }
 
   a {
-    &, &:hover, &:focus { text-decoration: none; color: inherit }
+    &, &:hover, &:focus { }
     width: 100%;
     padding: 8px;
-    /* background: lightblue; */
     display: flex;
-    & > *:first-child { flex-grow: 999999; }
+    & > *:first-child { padding-right: 6px; flex-grow: 1 }
+    & > *:nth-child(2) { flex-grow: 999999; }
   }
 
 
@@ -50,11 +85,11 @@ const MenuWrapperUI = styled.div`
     position: absolute;
     right: 0;
     transform: translateX(100%);
-    transform: translate(100%, -50%);
+    transform: translate(100%, 0%);
     &:before {
       content: '';
       display: block;
-      width: var(--itemWidth);
+      width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
       height: 100%;
       position: absolute;
       left: calc(var(--itemWidth) * -1);
@@ -63,11 +98,6 @@ const MenuWrapperUI = styled.div`
 
   li:not(:hover) {
     z-index: 100;
-  }
-
-  li:hover > a,
-  li:focus-within > a {
-    filter: invert(100%);
   }
 
   li:hover > ul,
@@ -90,11 +120,20 @@ const MenuWrapperUI = styled.div`
   ul li a:hover { z-index: 9999 }
 `;
 
-const handleMenuLevel = (menuItemDescriptor) => {
-  const { children, label } = menuItemDescriptor;
+export const handleMenuLevel = (menuItemDescriptor) => {
+  const { children, label, onClick = () => {}, icon } = menuItemDescriptor;
   return (
-    <MenuItem key={label}>
-      <a href="#"><TextEllipsis>{label}</TextEllipsis></a>
+    <MenuItem key={label} >
+      <a
+        href="#"
+        onClick={(ev) => {
+          console.log('GD clicked ', onClick);
+          onClick(ev);
+        }}
+      >
+        {icon}
+        <TextEllipsis>{label}</TextEllipsis>
+      </a>
       {
         (children && children.length)
           ? <ul>{children.map(handleMenuLevel)}</ul>
@@ -102,14 +141,17 @@ const handleMenuLevel = (menuItemDescriptor) => {
       }
     </MenuItem>
   );
-}
+};
 
 
 const Menu = (props) => {
-  const { menuDescriptor } = props;
+  const {
+    menuDescriptor,
+    isFullWidth,
+  } = props;
 
   return (
-    <MenuWrapperUI>
+    <MenuWrapperUI isFullWidth={isFullWidth}>
       <ul>
         {
           menuDescriptor.map(handleMenuLevel)

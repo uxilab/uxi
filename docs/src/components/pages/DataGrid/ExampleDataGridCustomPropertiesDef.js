@@ -4,6 +4,7 @@ import {
   Process,
 } from 'uxi/Icons';
 
+
 const ExampleDataGridCustomPropertiesDef = () => {
   const data = [
     { id: 1, make: 'Toyota', model: 'Celica', price: 35000 },
@@ -18,7 +19,14 @@ const ExampleDataGridCustomPropertiesDef = () => {
         console.log('clicked');
       },
       icon: <Process size={16} />,
-      displayName: 'only me',
+      label: 'only me',
+      children: [{
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }],
     }],
   }, {
     property: 'model',
@@ -28,7 +36,7 @@ const ExampleDataGridCustomPropertiesDef = () => {
         console.log('clicked');
       },
       icon: <Process size={16} />,
-      displayName: 'user defined',
+      label: 'user defined',
     }],
   }, {
     isSortable: true,

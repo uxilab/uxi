@@ -23,6 +23,7 @@ const BoxWrapperUI = styled.div.attrs({})`
     }
   };
   ${({ anchor }) => (anchor === 'right' ? 'right: 0' : '')};
+  ${({ anchor }) => (anchor === 'right' ? 'right: 0' : anchor === 'outterLeft' ? 'left: 100%' : '')};
   /* width: 100%; */
   ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
   border-radius: ${({ theme: { radius } }) => radius};
@@ -38,13 +39,13 @@ const BoxWrapperUI = styled.div.attrs({})`
     overflow-y: ${({ visibleOverflow }) => (visibleOverflow ? 'visible' : 'hidden')};
   }
   &, & > div {
-    overflow-x: ${({ visibleOverflow, isOpen }) => isOpen
+    overflow-x: ${({ visibleOverflow, isOpen }) => (isOpen
       ? (visibleOverflow ? 'visible' : 'hidden')
-      : 'hidden'
+      : 'hidden')
     };
-    overflow-y: ${({ visibleOverflow, isOpen }) => isOpen
+    overflow-y: ${({ visibleOverflow, isOpen }) => (isOpen
       ? (visibleOverflow ? 'visible' : 'hidden')
-      : 'hidden'
+      : 'hidden')
     };
   }
 
@@ -67,7 +68,7 @@ class DropDown2 extends Component {
     onTriggerWrapperRef: PropTypes.func,
     onChildrenWrapperRef: PropTypes.func,
     trigger: PropTypes.element,
-    anchor: PropTypes.oneOf(['left', 'right']),
+    anchor: PropTypes.oneOf(['left', 'right', 'outterLeft']),
   }
 
   static defaultProps = {
