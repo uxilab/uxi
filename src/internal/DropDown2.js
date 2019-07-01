@@ -23,7 +23,11 @@ const BoxWrapperUI = styled.div.attrs({})`
     }
   };
   ${({ anchor }) => (anchor === 'right' ? 'right: 0' : '')};
-  ${({ anchor }) => (anchor === 'right' ? 'right: 0' : anchor === 'outterLeft' ? 'left: 100%' : '')};
+
+  ${({ anchor }) => (anchor === 'right' // eslint-disable-line no-nested-ternary
+    ? 'right: 0'
+    : anchor === 'outterLeft' ? 'left: 100%' : '')
+  };
   /* width: 100%; */
   ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
   border-radius: ${({ theme: { radius } }) => radius};
@@ -39,11 +43,11 @@ const BoxWrapperUI = styled.div.attrs({})`
     overflow-y: ${({ visibleOverflow }) => (visibleOverflow ? 'visible' : 'hidden')};
   }
   &, & > div {
-    overflow-x: ${({ visibleOverflow, isOpen }) => (isOpen
+    overflow-x: ${({ visibleOverflow, isOpen }) => (isOpen // eslint-disable-line no-nested-ternary
       ? (visibleOverflow ? 'visible' : 'hidden')
       : 'hidden')
     };
-    overflow-y: ${({ visibleOverflow, isOpen }) => (isOpen
+    overflow-y: ${({ visibleOverflow, isOpen }) => (isOpen // eslint-disable-line no-nested-ternary
       ? (visibleOverflow ? 'visible' : 'hidden')
       : 'hidden')
     };

@@ -5,7 +5,7 @@ import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disabl
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
 import Menu from '../Menu'; // eslint-disable-line
-import ButtonMenuItem from './ButtonMenuItem';
+// import ButtonMenuItem from './ButtonMenuItem';
 
 const focusTimeout = 128;
 
@@ -113,10 +113,10 @@ class ButtonMenuMultiLevel extends Component {
       button,
       menuDescriptor,
       anchor,
-      menuWidth,
-      menuMinWidth,
-      menuMaxWidth,
-      menuMaxHeight,
+      // menuWidth,
+      // menuMinWidth,
+      // menuMaxWidth,
+      // menuMaxHeight,
       // isFullWidth,
     } = this.props;
 
@@ -252,11 +252,11 @@ ButtonMenuMultiLevel.defaultProps = {
 
 ButtonMenuMultiLevel.propTypes = {
   button: PropTypes.element,
-  children: PropTypes.arrayOf(PropTypes.node),
-  menuMaxHeight: PropTypes.string,
-  menuWidth: PropTypes.string,
-  menuMinWidth: PropTypes.string,
-  menuMaxWidth: PropTypes.string,
+  // children: PropTypes.arrayOf(PropTypes.node),
+  // menuMaxHeight: PropTypes.string,
+  // menuWidth: PropTypes.string,
+  // menuMinWidth: PropTypes.string,
+  // menuMaxWidth: PropTypes.string,
 };
 
 export default ButtonMenuMultiLevel;

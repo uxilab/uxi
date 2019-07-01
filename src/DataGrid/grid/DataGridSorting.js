@@ -12,9 +12,9 @@ import {
 } from '../../Table';
 
 import {
-  Separator,
-  ButtonMenuItem,
-  ButtonMenu,
+  // Separator,
+  // ButtonMenuItem,
+  // ButtonMenu,
   ButtonMenuMultiLevel,
 } from '../../Menu';
 import { UnstyledButton } from '../../Button';

@@ -124,7 +124,7 @@ export const handleMenuLevel = (menuItemDescriptor) => {
   const { children, label, onClick = () => {}, icon } = menuItemDescriptor;
   return (
     <MenuItem key={label} >
-      <a
+      <a // eslint-disable-line jsx-a11y/href-no-hash
         href="#"
         onClick={(ev) => {
           console.log('GD clicked ', onClick);
