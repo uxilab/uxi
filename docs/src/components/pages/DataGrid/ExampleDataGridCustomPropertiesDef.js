@@ -27,6 +27,56 @@ const ExampleDataGridCustomPropertiesDef = () => {
         // icon: <Process size={16} />,
         label: 'only me\'s children',
       }],
+    }, {
+      onClick: () => {
+        console.log('clicked');
+      },
+      icon: <Process size={16} />,
+      label: 'only me',
+      children: [{
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }, {
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }, {
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }],
+    }, {
+      onClick: () => {
+        console.log('clicked');
+      },
+      icon: <Process size={16} />,
+      label: 'only me',
+      children: [{
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }, {
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }, {
+        onClick: () => {
+          console.log('clicked children');
+        },
+        // icon: <Process size={16} />,
+        label: 'only me\'s children',
+      }],
     }],
   }, {
     property: 'model',
