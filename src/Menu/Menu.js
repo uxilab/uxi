@@ -125,7 +125,7 @@ const MenuWrapperUI = styled.div`
 export const handleMenuLevel = (menuItemDescriptor = {}) => {
   console.log('menuItemDescriptor', menuItemDescriptor);
   const { type, children, label, onClick = () => {}, icon } = menuItemDescriptor;
-  const isSeparator = menuItemDescriptor.type === 'SEPARATOR';
+  const isSeparator = type === 'SEPARATOR';
   return (isSeparator
     ? <Separator label={label} />
     : <MenuItem key={label} >
