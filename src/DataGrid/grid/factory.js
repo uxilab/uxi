@@ -114,11 +114,12 @@ export const createDataGridHeader = (
   headers = [],
   fixedHeight,
   hideHeader,
+  stickyHeader,
   withCheckbox,
   checkAllHandler,
   allRowsSelected
 ) => (
-  <TableHeader>
+  <TableHeader stickyHeader={stickyHeader}>
     <TableRow hideSvg={hideHeader}>
       {
         withCheckbox &&

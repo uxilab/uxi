@@ -201,6 +201,7 @@ class DataGrid extends Component {
       multiSelectable,
       batchActions,
       actions,
+      stickyHeader,
     } = this.props;
     const { getTypeDefinition } = this.context;
     const headers = toHeaderDefinition(data, properties);
@@ -222,7 +223,7 @@ class DataGrid extends Component {
       hideHeader = true;
     }
 
-    const header = createDataGridHeader(headers, fixedHeight, hideHeader);
+    const header = createDataGridHeader(headers, fixedHeight, hideHeader, stickyHeader);
     const body = createDataGridBody(viewModel, false, actions);
     const batchActionsContent = this.createBatchActions(batchActions || []);
 
@@ -249,6 +250,7 @@ class DataGrid extends Component {
       headers,
       fixedHeight,
       hideHeader,
+      stickyHeader,
       multiSelectable,
       () => {
         this.checkAll();

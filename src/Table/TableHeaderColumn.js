@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Th = styled.td`
+const Th = styled.th`
   font-weight: normal;
   font-size: ${({ condensed }) => (condensed ? '12px' : '13px')};
   text-align: left;
