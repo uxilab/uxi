@@ -186,6 +186,7 @@ class DataGridSorting extends Component {
               <UnstyledButton
                 isFullWidth
                 style={{
+                  borderRadius: 0,
                   height: '47.99px', // IE is the best
                   minHeight: '48px',
                   boxSizing: 'border-box',

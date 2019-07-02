@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TableHeaderCheckedAllCell from './TableHeaderCheckedAllCell';
 import TableHeaderCheckedPlaceholderCell from './TableHeaderCheckedPlaceholderCell';
+
+/* eslint-disable indent */
+const Thead = styled.thead`
+
+  th {
+    ${({ stickyHeader }) => (stickyHeader
+      ? `background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      `
+      : ''
+    )};
+
+    & > * {
+      ${({ stickyHeader }) => (stickyHeader ? 'border-bottom: 2px solid #cecece' : '')};
+    }
+  }
+`;
+/* eslint-enable indent */
 
 class TableHeader extends Component {
   static componentName = 'TableHeader';
@@ -211,16 +232,17 @@ class TableHeader extends Component {
     const {
       className,
       style,
+      stickyHeader,
     } = this.props;
 
     const superHeaderRows = this.createSuperHeaderRows();
     const baseHeaderRow = this.createBaseHeaderRow();
 
     return (
-      <thead className={className} style={style}>
+      <Thead stickyHeader={stickyHeader} className={className} style={style}>
         {superHeaderRows}
         {baseHeaderRow}
-      </thead>
+      </Thead>
     );
   }
 }
