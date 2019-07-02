@@ -27,7 +27,10 @@ const ExampleDataGridCustomPropertiesDef = () => {
         // icon: <Process size={16} />,
         label: 'only me\'s children',
       }],
-    }, {
+    },
+    // 'SEPARATOR',
+    { label: 'Actions', type: 'SEPARATOR' },
+    {
       onClick: () => {
         console.log('clicked');
       },
@@ -39,7 +42,9 @@ const ExampleDataGridCustomPropertiesDef = () => {
         },
         // icon: <Process size={16} />,
         label: 'only me\'s children',
-      }, {
+      },
+      { type: 'SEPARATOR' },
+      {
         onClick: () => {
           console.log('clicked children');
         },

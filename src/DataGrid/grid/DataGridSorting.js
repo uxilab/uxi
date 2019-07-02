@@ -166,7 +166,7 @@ class DataGridSorting extends Component {
     }
 
 
-    const menuDescriptor = finalMenu.map(handleLevel);
+    const menuDescriptor = finalMenu;// .map(handleLevel);
 
     //   React.isValidElement(menuItem)
     //     ? menuItem

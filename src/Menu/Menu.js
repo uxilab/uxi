@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TextEllipsis from '../Text/TextEllipsis';
+import Separator from './Separator';
 
 
 const MenuItem = styled.li`
@@ -28,6 +29,7 @@ const MenuWrapperUI = styled.div`
     box-sizing: border-box;
     border: 1px solid #cecece;
     box-shadow: ${({ theme }) => `${theme.outlineShadow}`};
+    background: white;
   }
 
   ul {
@@ -120,10 +122,13 @@ const MenuWrapperUI = styled.div`
   ul li a:hover { z-index: 9999 }
 `;
 
-export const handleMenuLevel = (menuItemDescriptor) => {
-  const { children, label, onClick = () => {}, icon } = menuItemDescriptor;
-  return (
-    <MenuItem key={label} >
+export const handleMenuLevel = (menuItemDescriptor = {}) => {
+  console.log('menuItemDescriptor', menuItemDescriptor);
+  const { type, children, label, onClick = () => {}, icon } = menuItemDescriptor;
+  const isSeparator = menuItemDescriptor.type === 'SEPARATOR';
+  return (isSeparator
+    ? <Separator label={label} />
+    : <MenuItem key={label} >
       <a // eslint-disable-line jsx-a11y/href-no-hash
         href="#"
         onClick={(ev) => {
@@ -149,6 +154,8 @@ const Menu = (props) => {
     menuDescriptor,
     isFullWidth,
   } = props;
+
+  console.log('menuDescriptor', menuDescriptor);
 
   return (
     <MenuWrapperUI isFullWidth={isFullWidth}>
