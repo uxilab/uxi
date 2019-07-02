@@ -123,7 +123,6 @@ const MenuWrapperUI = styled.div`
 `;
 
 export const handleMenuLevel = (menuItemDescriptor = {}) => {
-  console.log('menuItemDescriptor', menuItemDescriptor);
   const { type, children, label, onClick = () => {}, icon } = menuItemDescriptor;
   const isSeparator = type === 'SEPARATOR';
   return (isSeparator
@@ -132,7 +131,6 @@ export const handleMenuLevel = (menuItemDescriptor = {}) => {
       <a // eslint-disable-line jsx-a11y/href-no-hash
         href="#"
         onClick={(ev) => {
-          console.log('GD clicked ', onClick);
           onClick(ev);
         }}
       >
@@ -155,7 +153,6 @@ const Menu = (props) => {
     isFullWidth,
   } = props;
 
-  console.log('menuDescriptor', menuDescriptor);
 
   return (
     <MenuWrapperUI isFullWidth={isFullWidth}>
