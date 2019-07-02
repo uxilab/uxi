@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disable-line
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
-import ButtonMenuItem from './ButtonMenuItem';
+import Menu from '../Menu'; // eslint-disable-line
+// import ButtonMenuItem from './ButtonMenuItem';
 
 const focusTimeout = 128;
 
-class ButtonMenu extends Component {
+class ButtonMenuMultiLevel extends Component {
   constructor(props) {
     super(props);
 
@@ -108,14 +109,14 @@ class ButtonMenu extends Component {
 
   render() {
     const {
-      children,
+      // children,
       button,
+      menuDescriptor,
       anchor,
-      menuWidth,
-      menuMinWidth,
-      menuMaxWidth,
-      menuMaxHeight,
-      visibleOverflow,
+      // menuWidth,
+      // menuMinWidth,
+      // menuMaxWidth,
+      // menuMaxHeight,
       // isFullWidth,
     } = this.props;
 
@@ -193,8 +194,8 @@ class ButtonMenu extends Component {
         }}
       >
         <DropDown
-          visibleOverflow={visibleOverflow}
-          // isFullWidth={isFullWidth}
+          visibleOverflow
+          isFullWidth
           anchor={anchor}
           onClickOutside={this.close}
           isOpen={isOpen}
@@ -202,7 +203,11 @@ class ButtonMenu extends Component {
           onTriggerWrapperRef={this.storeTriggerWrapperRef}
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
         >
-          <ul
+          <Menu
+            isFullWidth
+            menuDescriptor={menuDescriptor}
+          />
+          {/* <ul
             style={{
               // padding: 0,
               // margin: 0,
@@ -228,14 +233,15 @@ class ButtonMenu extends Component {
               })
             }
 
-          </ul>
+          </ul> */}
         </DropDown>
       </div>
     );
   }
 }
 
-ButtonMenu.defaultProps = {
+ButtonMenuMultiLevel.defaultProps = {
+  anchor: 'left',
   children: [],
   button: <FlatButton icon={<Options />} />,
   menuMaxHeight: '396px',
@@ -244,13 +250,13 @@ ButtonMenu.defaultProps = {
   menuMaxWidth: '300px',
 };
 
-ButtonMenu.propTypes = {
+ButtonMenuMultiLevel.propTypes = {
   button: PropTypes.element,
-  children: PropTypes.arrayOf(PropTypes.node),
-  menuMaxHeight: PropTypes.string,
-  menuWidth: PropTypes.string,
-  menuMinWidth: PropTypes.string,
-  menuMaxWidth: PropTypes.string,
+  // children: PropTypes.arrayOf(PropTypes.node),
+  // menuMaxHeight: PropTypes.string,
+  // menuWidth: PropTypes.string,
+  // menuMinWidth: PropTypes.string,
+  // menuMaxWidth: PropTypes.string,
 };
 
-export default ButtonMenu;
+export default ButtonMenuMultiLevel;

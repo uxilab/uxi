@@ -18,7 +18,7 @@ const addUnitIfNeeded = (value) => {
 /* eslint-disable */
 const SlideUI = styled.div`
   pointer-events: none;
-  z-index: 200;
+  ${({ inline, regional }) => !inline && !regional ?  'z-index: 200' : ''};
   transition: all 1s linear;
   transform: ${({ inAttr: isIn, dir }) => {
     if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0'; }

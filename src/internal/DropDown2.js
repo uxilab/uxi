@@ -23,6 +23,11 @@ const BoxWrapperUI = styled.div.attrs({})`
     }
   };
   ${({ anchor }) => (anchor === 'right' ? 'right: 0' : '')};
+
+  ${({ anchor }) => (anchor === 'right' // eslint-disable-line no-nested-ternary
+    ? 'right: 0'
+    : anchor === 'outterLeft' ? 'left: 100%' : '')
+  };
   /* width: 100%; */
   ${({ isFullWidth }) => isFullWidth && 'width: 100%'};
   border-radius: ${({ theme: { radius } }) => radius};
@@ -34,8 +39,18 @@ const BoxWrapperUI = styled.div.attrs({})`
   max-height: ${({ isOpen, maxHeight }) => (isOpen ? `${maxHeight}px` : '0px')};
 
   &, & > div {
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-x: ${({ visibleOverflow }) => (visibleOverflow ? 'visible' : 'hidden')};
+    overflow-y: ${({ visibleOverflow }) => (visibleOverflow ? 'visible' : 'hidden')};
+  }
+  &, & > div {
+    overflow-x: ${({ visibleOverflow, isOpen }) => (isOpen // eslint-disable-line no-nested-ternary
+      ? (visibleOverflow ? 'visible' : 'hidden')
+      : 'hidden')
+    };
+    overflow-y: ${({ visibleOverflow, isOpen }) => (isOpen // eslint-disable-line no-nested-ternary
+      ? (visibleOverflow ? 'visible' : 'hidden')
+      : 'hidden')
+    };
   }
 
   /* TODO shoadow and focus stylesshould be managed by component orchestrating a dropDown2 */
@@ -57,7 +72,7 @@ class DropDown2 extends Component {
     onTriggerWrapperRef: PropTypes.func,
     onChildrenWrapperRef: PropTypes.func,
     trigger: PropTypes.element,
-    anchor: PropTypes.oneOf(['left', 'right']),
+    anchor: PropTypes.oneOf(['left', 'right', 'outterLeft']),
   }
 
   static defaultProps = {
@@ -153,6 +168,7 @@ class DropDown2 extends Component {
       anchor,
       fullWidthContent,
       forceShadow,
+      visibleOverflow,
     } = this.props;
 
     const {
@@ -187,6 +203,7 @@ class DropDown2 extends Component {
           {TriggerWithHandler}
         </span>
         <BoxWrapperUI
+          visibleOverflow={visibleOverflow}
           forceShadow={forceShadow}
           fullWidthContent={fullWidthContent}
           data-box-wrapper-ui

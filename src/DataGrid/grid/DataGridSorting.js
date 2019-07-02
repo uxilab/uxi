@@ -12,12 +12,20 @@ import {
 } from '../../Table';
 
 import {
-  Separator,
-  ButtonMenuItem,
-  ButtonMenu,
+  // Separator,
+  // ButtonMenuItem,
+  // ButtonMenu,
+  ButtonMenuMultiLevel,
 } from '../../Menu';
 import { UnstyledButton } from '../../Button';
 
+
+const handleLevel = (menuItem = {}) => ({
+  onClick: menuItem.onClick,
+  icon: menuItem.icon,
+  label: menuItem.label,
+  children: (menuItem.children || []).map(handleLevel),
+});
 
 const FlexExtended = styled.div`
   flex-grow: 99;
@@ -124,7 +132,7 @@ class DataGridSorting extends Component {
       condensed,
       /* noPadding */
       dataKey,
-      extraMenuItems,
+      // extraMenuItems,
       menuItems,
     } = this.props;
     // const { show } = this.state;
@@ -134,35 +142,84 @@ class DataGridSorting extends Component {
     const defaultSortingMenu = [
       {
         onClick: () => {},
-        displayName: 'Sort ascending',
+        label: 'Sort ascending',
         icon: <Sortingup size={16} />,
       }, {
         onClick: () => {},
-        displayName: 'Sort descending',
+        label: 'Sort descending',
         icon: <Sortingdown size={16} />,
       }, {
         onClick: () => {},
-        displayName: 'no sorting',
+        label: 'no sorting',
         icon: <Nosorting size={16} />,
       }];
 
     let finalMenu = defaultSortingMenu;
 
-    if (extraMenuItems && extraMenuItems.length) {
-      finalMenu.push(<Separator />);
-      finalMenu = finalMenu.concat(extraMenuItems);
-    }
+    // if (extraMenuItems && extraMenuItems.length) {
+    //   finalMenu.push(<Separator />);
+    //   finalMenu = finalMenu.concat(extraMenuItems);
+    // }
 
     if (menuItems && menuItems.length) {
       finalMenu = menuItems;
     }
 
+
+    const menuDescriptor = finalMenu;// .map(handleLevel);
+
+    //   React.isValidElement(menuItem)
+    //     ? menuItem
+    //     : <ButtonMenuItem
+    //       icon={menuItem.icon}
+    //       onClick={menuItem.onClick}
+    //     >
+    //       {menuItem.displayName}
+    //     </ButtonMenuItem>
+    // ))
+
     return (
       <TableHeaderColumn /* style={style} */noPadding key={dataKey} >
-        <FlexExtended
-          style={{ }}
-        >
-          <ButtonMenu
+        <FlexExtended>
+          <ButtonMenuMultiLevel
+            button={(
+              <UnstyledButton
+                isFullWidth
+                style={{
+                  height: '47.99px', // IE is the best
+                  minHeight: '48px',
+                  boxSizing: 'border-box',
+                  // paddingLeft: noPadding ? 0 : '24px',
+                  // paddingRight: noPadding ? 0 : '8px',
+                }}
+              >
+                <Flex2
+                  condensed={condensed}
+                >
+                  <TextEllipsis
+                    style={{
+                      paddingLeft: '24px',
+                      paddingRight: '6px',
+                      width: '100%',
+                      textAlign: 'left',
+                    }}
+                  >
+                    {title}
+                  </TextEllipsis>
+                  <Arrowdown
+                    style={{
+                      marginLeft: 'auto',
+                      marginRight: '6px',
+                      transition: 'none',
+                    }}
+                    size={12}
+                  />
+                </Flex2>
+              </UnstyledButton>
+            )}
+            menuDescriptor={menuDescriptor}
+          />
+          {/* <ButtonMenu
             style={{ width: '100%', minHeight: '48px', boxSizing: 'border-box' }}
             isFullWidth
             anchor="right"
@@ -213,7 +270,7 @@ class DataGridSorting extends Component {
                 </ButtonMenuItem>
             ))}
 
-          </ButtonMenu>
+          </ButtonMenu> */}
         </FlexExtended>
       </TableHeaderColumn>
     );
