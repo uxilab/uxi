@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import MlMenuItem from './MlMenuItem';
 
-const getWidth = ({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)');
 
 const MlMenuListUI = styled.ul`
   --itemWidth: 190px;
@@ -14,8 +13,8 @@ const MlMenuListUI = styled.ul`
     /* transition: ${({ theme: { transition } }) => transition.defaultAll}; */
   }
 
-  width: ${getWidth};
-  max-width: ${getWidth};
+  width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
+  max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
   /* border: 1px solid #cecece; */
   box-shadow: ${({ theme }) => `${theme.outlineShadow}`};
   border-radius: ${({ theme: { radius } }) => radius};
@@ -30,7 +29,7 @@ const MlMenuListUI = styled.ul`
     &:before {
       content: '';
       display: block;
-      width: ${getWidth};
+      width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
       height: 100%;
       position: absolute;
       left: calc(var(--itemWidth) * -1);
@@ -54,13 +53,17 @@ const MlMenuListUI = styled.ul`
 `;
 
 const MlMenuList = (props) => {
-  const { menuDescriptor } = props;
+  const {
+    menuDescriptor,
+    isFullWidth,
+  } = props;
 
   return (
-    <MlMenuListUI>
+    <MlMenuListUI isFullWidth={isFullWidth}>
       {
         (menuDescriptor || []).map(itemDescriptor => (
           <MlMenuItem
+            isFullWidth={isFullWidth}
             {...itemDescriptor}
           />
         ))

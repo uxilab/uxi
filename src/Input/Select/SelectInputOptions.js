@@ -22,6 +22,7 @@ export const OptionsUI = styled.div.attrs({
     text-overflow: ellipsis;
     overflow-x: hidden;
     white-space: nowrap;
+    transition: none;
   }
 
   user-select: none;

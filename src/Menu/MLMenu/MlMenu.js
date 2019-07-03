@@ -3,10 +3,16 @@ import React from 'react';
 import MlMenuList from './MlMenuList';
 
 const MlMenu = (props) => {
-  const { menuDescriptor = [] } = props;
+  const {
+    menuDescriptor = [],
+    isFullWidth,
+  } = props;
 
   return (
-    <MlMenuList menuDescriptor={menuDescriptor} />
+    <MlMenuList
+      isFullWidth={isFullWidth}
+      menuDescriptor={menuDescriptor}
+    />
   );
 };
 

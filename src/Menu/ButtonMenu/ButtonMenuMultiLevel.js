@@ -5,6 +5,7 @@ import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disabl
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
 import Menu from '../Menu'; // eslint-disable-line
+import MlMenu from '../MLMenu/MlMenu';
 // import ButtonMenuItem from './ButtonMenuItem';
 
 const focusTimeout = 128;
@@ -203,7 +204,7 @@ class ButtonMenuMultiLevel extends Component {
           onTriggerWrapperRef={this.storeTriggerWrapperRef}
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
         >
-          <Menu
+          <MlMenu
             isFullWidth
             menuDescriptor={menuDescriptor}
           />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Menu from 'uxi/Menu/Menu';
 import Process from 'uxi/Icons/Process';
 import MlMenu from 'uxi/Menu/MlMenu/MlMenu';
@@ -6,6 +7,8 @@ import ButtonMenu from '../../../../../src/Menu/ButtonMenu/ButtonMenu';
 
 const menuDescriptor = [
   {
+    // onClick: () => { console.log('clicked foobar a way tooooooo'); },
+    onClick: () => { alert('yo'); console.log('clicked foobar a way tooooooo'); },
     icon: <Process />,
     label: 'foobar - a way tooooooooooooooooooooooooooooooooooooo long label is clipped with ellipsis and a native tooltip',
     children: [
@@ -16,7 +19,7 @@ const menuDescriptor = [
       },
     ],
   },
-  { label: 'foobaz' },
+  { label: 'foobaz', Link, to: '#bar' },
   { label: 'barza' },
   { label: 'foobarza' },
   {
@@ -55,6 +58,7 @@ const ExampleSimple = () => (
   <div>
 
     <MlMenu
+      isFullWidth
       menuDescriptor={menuDescriptor}
     />
 
@@ -73,7 +77,9 @@ const ExampleSimple = () => (
     <br />
 
     <ButtonMenu visibleOverflow>
-      <Menu menuDescriptor={menuDescriptor} />
+      <Menu
+        menuDescriptor={menuDescriptor}
+      />
     </ButtonMenu>
   </div>
 );
