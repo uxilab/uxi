@@ -6,6 +6,7 @@ export const palette = {
   extraLightGrey: '#c2c2c2',
   lightGrey: '#d4d4d4',
   grey: '#9a9a9a',
+  midDarkGrey: '#595959',
   darkGrey: '#222222',
   primary: {
     light: '#30556b',
