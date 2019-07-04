@@ -12,7 +12,7 @@ const Thead = styled.thead`
       ? `background: white;
         position: sticky;
         top: 0;
-        z-index: 10;
+        z-index: 1;
       `
       : ''
     )};

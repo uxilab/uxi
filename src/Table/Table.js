@@ -9,6 +9,11 @@ const TableWrapperUI = styled.div`
 `;
 
 const TableUI = styled.table`
+  /* z-index: 0;
+    solves an issue related to having sticky table header via data grid
+  */
+  z-index: 0;
+
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0px;
