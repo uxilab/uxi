@@ -18,9 +18,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
     trigger={
       <UnstyledButton
         disabled={false}
-        isFullWidth={undefined}
         onClick={[Function]}
-        onMouseOut={undefined}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -70,14 +68,12 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
               </div>
             </styled.div>
             <StatusIcon
-              error={undefined}
               style={
                 Object {
                   "right": "48px",
                   "top": "0",
                 }
               }
-              success={undefined}
             />
           </styled.div>
           <div
@@ -103,7 +99,6 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
                 />
               }
               inert={true}
-              onMouseOut={undefined}
               style={
                 Object {
                   "borderBottomLeftRadius": 0,
@@ -223,9 +218,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
     trigger={
       <UnstyledButton
         disabled={false}
-        isFullWidth={undefined}
         onClick={[Function]}
-        onMouseOut={undefined}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -275,14 +268,12 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
               </div>
             </styled.div>
             <StatusIcon
-              error={undefined}
               style={
                 Object {
                   "right": "48px",
                   "top": "0",
                 }
               }
-              success={undefined}
             />
           </styled.div>
           <div
@@ -308,7 +299,6 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
                 />
               }
               inert={true}
-              onMouseOut={undefined}
               style={
                 Object {
                   "borderBottomLeftRadius": 0,
@@ -427,9 +417,7 @@ exports[`<Select /> matches snapshot 1`] = `
     trigger={
       <UnstyledButton
         disabled={false}
-        isFullWidth={undefined}
         onClick={[Function]}
-        onMouseOut={undefined}
         style={
           Object {
             "border": "1px solid #cecece",
@@ -451,14 +439,12 @@ exports[`<Select /> matches snapshot 1`] = `
                
             </div>
             <StatusIcon
-              error={undefined}
               style={
                 Object {
                   "right": "48px",
                   "top": "0",
                 }
               }
-              success={undefined}
             />
           </styled.div>
           <div
@@ -484,7 +470,6 @@ exports[`<Select /> matches snapshot 1`] = `
                 />
               }
               inert={true}
-              onMouseOut={undefined}
               style={
                 Object {
                   "borderBottomLeftRadius": 0,
