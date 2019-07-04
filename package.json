@@ -40,6 +40,7 @@
     "babel-eslint": "^8.2.3",
     "classnames": "^2.2.5",
     "eslint": "^4.19.1",
+    "jest": "^24.8.0",
     "keycode": "^2.1.9",
     "lodash": "4.17.11",
     "rc-tooltip": "^3.7.0",
@@ -59,7 +60,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "styled-components": "^3.3.2",
-    "uxi-cli": "^1.0.82"
+    "uxi-cli": "^1.0.83"
   },
   "peerDependencies": {
     "styled-components": "3.2.0",

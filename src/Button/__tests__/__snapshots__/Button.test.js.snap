@@ -562,6 +562,7 @@ exports[`<Button /> should render a Button 1`] = `
         "extraLightGrey": "#c2c2c2",
         "grey": "#9a9a9a",
         "lightGrey": "#d4d4d4",
+        "midDarkGrey": "#595959",
         "neutral": Object {
           "dark": "rgb(114, 114, 114)",
           "darker": "rgb(53, 53, 53)",
