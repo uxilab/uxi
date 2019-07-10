@@ -180,9 +180,9 @@ const GlobalMenuSubItemDiv = styled.a`
      }
   }
 
-
-  @media (max-width: ${({ breakpoint }) => breakpoint}) {
-    display:none;
+  display: none;
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
+    display: block;
   }
 
   /** a11y */
