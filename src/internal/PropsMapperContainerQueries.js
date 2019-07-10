@@ -63,19 +63,12 @@ export class PropsMapperContainerQueries extends Component {
   }
 
   componentDidMount() {
-    if (window && window.addEventListener) {
-      window.addEventListener('resize', this.handleResize);
-    }
     this.init();
   }
 
-  componentWillUnmount() {
-    if (window && window.removeEventListener) {
-      window.removeEventListener('resize', this.handleResize);
-    }
-    if (this.observer) {
-      this.observer.disconnect();
-    }
+  componentDidCatch(err, info) { // eslint-disable-line class-methods-use-this
+    // eslint-disable-next-line no-console
+    console.log('componentDidCatch', err, info);
   }
 
   storeRef(node) {
@@ -108,6 +101,15 @@ export class PropsMapperContainerQueries extends Component {
         );
         if (!isEqual(this.state.mappedProps, mappedProps)) {
           this.setState({ mappedProps });
+        }
+      });
+
+      // swallow loop limit error
+      window.addEventListener('error', (error) => {
+        console.log('window.onerror', error);
+        if (/loop limit/.test(error.message)) {
+          console.log('window.onerror match loop limit; stopImmediatePropagation', error);
+          error.stopImmediatePropagation();
         }
       });
 
