@@ -25,7 +25,8 @@ jobs:
             - "./node_modules"
 
       - run: npm dedupe             # because reasons, without that zopfli(jest>request) fails and all goes to hell
-      - run: CI=true npm run test
+      - run: CI=true npm run test -- --runInBand
+
 
   publish-release:
     docker:
