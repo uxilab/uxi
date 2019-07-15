@@ -28,8 +28,11 @@ const LinkDecorator = styled.div`
 
   @media (min-width: ${({ breakpoint }) => breakpoint}) {
     & a {
-      padding: 0 32px 0 16px;
+      padding: 16px 32px 16px 16px !important;
+      justify-content: flex-start !important;
     }
+  }
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
     & > * {
       flex-direction: row;
     }
