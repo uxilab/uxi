@@ -96,13 +96,21 @@ const LinkDecorator = styled.div`
     }
 
 
-    @media (max-width: ${({ breakpoint }) => breakpoint}) {
-      display:none;
-    }
+
 
     /** a11y */
     ${props => getAccessibilityRules(props)};
   }
+
+  & a {
+    display:none;
+  }
+  @media (min-width: ${({ breakpoint }) => breakpoint}) {
+    & a {
+      display: flex;
+    }
+  }
+
 `;
 /* eslint-enable indent */
 
