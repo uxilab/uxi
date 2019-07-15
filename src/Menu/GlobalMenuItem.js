@@ -28,7 +28,7 @@ const LinkDecorator = styled.div`
 
   @media (min-width: ${({ breakpoint }) => breakpoint}) {
     & a {
-      padding: 16px 32px 16px 16px !important;
+      padding: 16px 32px 16px 32px !important;
       justify-content: flex-start !important;
     }
   }
