@@ -42,7 +42,7 @@
     "eslint": "^4.19.1",
     "jest": "^24.8.0",
     "keycode": "^2.1.9",
-    "lodash": "4.17.11",
+    "lodash": "^4.17.14",
     "rc-tooltip": "^3.7.0",
     "react-click-outside": "^3.0.0",
     "react-transition-group": "^2.2.1",
