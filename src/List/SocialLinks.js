@@ -35,7 +35,12 @@ const SocialLinks = ({ socialLinks, horizontal, spacing, iconColor, iconHoverCol
         spacing={spacing}
         key={name}
       >
-        <a href={url} style={{ ...(horizontal ? { display: 'flex' } : {}) }}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={url}
+          style={{ ...(horizontal ? { display: 'flex' } : {}) }}
+        >
           {getAppropriateIcon(name)() }
         </a>
       </SocialLI>
