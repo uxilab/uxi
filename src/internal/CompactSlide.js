@@ -16,7 +16,7 @@ const CompactSlideUI = styled.div`
     margin: 0 auto;
   }
 
-  z-index: 200;
+  z-index: 201;
   transition: all 1s linear;
   transform: ${({ inAttr: isIn, dir }) => {
     if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0; overflow: hidden'; }
