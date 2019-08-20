@@ -57,7 +57,7 @@
     "fs-extra": "^4.0.1",
     "image-webpack-loader": "^4.6.0",
     "prop-types": "^15.6.0",
-    "react": "^16.4.0",
+    "react": "^16.9.0",
     "react-dom": "^16.4.0",
     "styled-components": "^4.3.2",
     "uxi-cli": "^1.0.83"
