@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Close } from '../Icons';
-import { AppLayout } from '../Layout';
+import { appLayoutCSSString } from '../Layout';
 import {
   headerHeight,
 } from './defaults';
 
-const HorizontalAppLayout = AppLayout.extend`
+const HorizontalAppLayout = styled.div`
+  ${appLayoutCSSString};
   flex-flow: row wrap;
   align-items: center;
   width: 100%;

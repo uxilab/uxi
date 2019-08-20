@@ -1,7 +1,9 @@
-import Flex from './Flex'; // eslint-disable-line import/no-named-as-default
+import styled from 'styled-components';
+import { flexCSSString } from './Flex';
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
-const FlexRightCol = Flex.extend`
+const FlexRightCol = styled.div`
+  ${flexCSSString}
   & > *:nth-child(1) {
     flex-grow: 1;
     flex-shrink: 1;

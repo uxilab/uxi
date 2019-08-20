@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const getValueWithUnit = prop => (
@@ -8,7 +8,7 @@ const getValueWithUnit = prop => (
 );
 
 /* eslint-disable indent */
-export const GridUI = styled.div`
+export const gridUICSSString = css`
   box-sizing: border-box;
   margin: 0 auto;
   display: flex;  /* for IE11 only */
@@ -44,6 +44,10 @@ export const GridUI = styled.div`
       ${({ itemHeight }) => `min-height: ${getValueWithUnit(itemHeight)} !important`};
     }
   }
+`;
+
+export const GridUI = styled.div`
+  ${gridUICSSString};
 `;
 /* eslint-enable indent */
 

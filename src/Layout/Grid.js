@@ -1,11 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-named-as-default
 import PropsMapperContainerQueries from '../internal/PropsMapperContainerQueries';
-import { GridUI } from './SimpleGrid';
+import { gridUICSSString } from './SimpleGrid';
 
 /* eslint-disable indent */
-const ExtendedGridUI = GridUI.extend`
+const ExtendedGridUI = styled.div`
+  ${gridUICSSString};
   box-sizing: border-box;
   margin: 0 auto;
   display: flex;  /* for IE11 only */
