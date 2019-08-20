@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SuggestAnEdit from './components/SuggestAnEdit';
-import { flexCSSString } from 'uxi/Layout';
+import { Flex, flexCSSString } from 'uxi/Layout';
 import { Externallink } from 'uxi/Icons';
 import { ButtonLink } from 'uxi/Button';
 import MarkdownElement from './components/MarkdownElement/MarkDownElement';
