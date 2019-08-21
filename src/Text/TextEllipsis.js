@@ -8,23 +8,9 @@ export const textEllipsisStylesCSSString = `
   max-width: 100%;
 `;
 
-export const TextEllipsisUI = styled.div.attrs({
-  title: ({ children, title }) => {
-    if (title) {
-      if (typeof title === 'string') {
-        return JSON.stringify(title); // not safe to ad dynamic code in html attriubtes
-      }
-    }
-    if (children && typeof children === 'string') {
-      return JSON.stringify(children); // not safe to ad dynamic code in html attriubtes
-    }
-    return undefined;
-  },
-})`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
+// eslint-disable-next-line no-unexpected-multiline
+export const TextEllipsisUI = styled.div`
+  ${textEllipsisStylesCSSString};
   /* truncate tail by default */
   ${({ truncateHead, leftAligned }) => (
     truncateHead

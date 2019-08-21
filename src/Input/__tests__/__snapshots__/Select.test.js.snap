@@ -35,8 +35,8 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
             }
           }
         >
-          <styled.div>
-            <styled.div>
+          <ForwardRef(styled.div)>
+            <ForwardRef(styled.div)>
               <div
                 style={
                   Object {
@@ -66,7 +66,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
                   baz
                 </div>
               </div>
-            </styled.div>
+            </ForwardRef(styled.div)>
             <StatusIcon
               style={
                 Object {
@@ -75,7 +75,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works as a controlled comp
                 }
               }
             />
-          </styled.div>
+          </ForwardRef(styled.div)>
           <div
             style={
               Object {
@@ -235,8 +235,8 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
             }
           }
         >
-          <styled.div>
-            <styled.div>
+          <ForwardRef(styled.div)>
+            <ForwardRef(styled.div)>
               <div
                 style={
                   Object {
@@ -266,7 +266,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
                   bar
                 </div>
               </div>
-            </styled.div>
+            </ForwardRef(styled.div)>
             <StatusIcon
               style={
                 Object {
@@ -275,7 +275,7 @@ exports[`<Select /> controlled/uncontrolled behaviour works correctly as an unco
                 }
               }
             />
-          </styled.div>
+          </ForwardRef(styled.div)>
           <div
             style={
               Object {
@@ -434,7 +434,7 @@ exports[`<Select /> matches snapshot 1`] = `
             }
           }
         >
-          <styled.div>
+          <ForwardRef(styled.div)>
             <div>
                
             </div>
@@ -446,7 +446,7 @@ exports[`<Select /> matches snapshot 1`] = `
                 }
               }
             />
-          </styled.div>
+          </ForwardRef(styled.div)>
           <div
             style={
               Object {

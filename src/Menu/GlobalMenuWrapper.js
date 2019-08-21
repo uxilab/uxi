@@ -1,12 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import GlobalMenuContainer from './GlobalMenuContainer';
 import GlobalMenuItem from './GlobalMenuItem';
 import GlobalMenuSubItem from './GlobalMenuSubItem';
 import GlobalMenuPanel from './GlobalMenuPanel';
-import { Flex } from '../Layout';
+import { flexCSSString } from '../Layout';
 
-const FlexExtended = Flex.extend`
+const FlexExtended = styled.div`
+  ${flexCSSString};
   position: absolute;
   top: auto;
   left: 0;

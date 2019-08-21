@@ -1,6 +1,6 @@
 {
   "name": "uxi",
-  "version": "2.1.460",
+  "version": "3.0.0",
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "engine": {
@@ -10,7 +10,7 @@
   "scripts": {
     "heroku-postbuild": "npm run lint && npm run test && cd docs/ && npm i && npm run packAndBundle",
     "start": "cd docs/ && npm start",
-    "start:dev": "cd docs/ && npm run start:dev",
+    "start:dev": "cd docs/ && npm run dev",
     "flow": "flow",
     "typecheck": "flow check",
     "lint": "uxi-cli lint --quiet --fix ./src",
@@ -57,14 +57,14 @@
     "fs-extra": "^4.0.1",
     "image-webpack-loader": "^4.6.0",
     "prop-types": "^15.6.0",
-    "react": "^16.4.0",
+    "react": "^16.9.0",
     "react-dom": "^16.4.0",
-    "styled-components": "^3.3.2",
+    "styled-components": "^4.3.2",
     "uxi-cli": "^1.0.83"
   },
   "peerDependencies": {
     "styled-components": "3.2.0",
-    "react": "*",
-    "react-dom": "*"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   }
 }

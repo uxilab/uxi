@@ -13,22 +13,26 @@ import styled from 'styled-components';
  * you need to constrict/constrain the available space yourself
  */
 
-// TODO: would using flexbasis allow for auto transitionalbe layout ?
-const AppLayout = styled.div`
+export const appLayoutCSSString = `
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  &>* {
+  & > * {
     box-sizing: border-box;
     flex-grow: 0;
     flex-shrink: 0;
   }
-  &>*:nth-child(2) {
+  & > *:nth-child(2) {
     flex-grow: 99;
     flex-shrink: 1;
     overflow-y: auto;
   }
+`;
+
+// TODO: would using flexbasis allow for auto transitionalbe layout ?
+const AppLayout = styled.div`
+  ${appLayoutCSSString}
 `;
 
 AppLayout.displayName = 'AppLayout';
