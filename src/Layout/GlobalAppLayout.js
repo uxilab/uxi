@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { flexLeftColCSSString, appLayoutCSSString } from './';
+import { flexCSSString, flexLeftColCSSString, appLayoutCSSString } from './';
 import defaults from '../Menu/defaults'; // eslint-disable-line import/no-named-as-default
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
@@ -18,7 +18,8 @@ const {
  * the 'calc(100vw - ${(big)menuWidth})' should be remove eventually
 */
 const FlexLeftColExtended = styled.div`
-  ${flexLeftColCSSString};
+  ${() => flexLeftColCSSString};
+  ${() => flexCSSString};
   width: 100vh;
   min-width: 100vh;
   max-width: 100vh;
@@ -27,7 +28,7 @@ const FlexLeftColExtended = styled.div`
 `;
 
 const AppLayoutExtended = styled.div`
-  ${appLayoutCSSString};
+  ${props => appLayoutCSSString};
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
@@ -98,7 +99,7 @@ const GlobalAppLayout = (props) => {
   }
 
   return (
-    <FlexLeftColExtended style={{ ...wrapperStyle }}>
+    <FlexLeftColExtended className="uxi_FlexLeftColExtended" style={{ ...wrapperStyle }}>
       <FlexLeftColumnInnerWrapper>{menu}</FlexLeftColumnInnerWrapper>
       <AppLayoutExtended style={{ ...innerWrapperStyle }}>
         <HeaderWrapper>{header}</HeaderWrapper>

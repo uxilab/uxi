@@ -6,7 +6,7 @@ export const flexCSSString = css`
   justify-content: center;
   align-items: center;
   flex-direction: ${({ direction }) => (direction || 'row')};
-`.join('\n');
+`;
 
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?

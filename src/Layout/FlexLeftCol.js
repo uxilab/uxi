@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { flexCSSString } from './Flex';
 
-export const flexLeftColCSSString = css`
+export const flexLeftColCSSString = `
   & > *:first-child {
     flex-grow: 0;
     flex-shrink: 1;
@@ -12,11 +12,11 @@ export const flexLeftColCSSString = css`
     flex-shrink: 1;
     /* align-self: flex-end; ?? is that desirable ? -fd */
   }
-`.join('\n');
+`;
 
 // TODO: would using flexbasis allow for auto transitionalbe layout ?
 const FlexLeftCol = styled.div`
-  ${flexCSSString}
+  ${() => flexCSSString}
   ${flexLeftColCSSString}
 `;
 
