@@ -64,7 +64,7 @@
   },
   "peerDependencies": {
     "styled-components": "3.2.0",
-    "react": "*",
-    "react-dom": "*"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   }
 }
