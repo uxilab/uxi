@@ -18,8 +18,8 @@ const {
  * the 'calc(100vw - ${(big)menuWidth})' should be remove eventually
 */
 const FlexLeftColExtended = styled.div`
-  ${() => flexLeftColCSSString};
-  ${() => flexCSSString};
+  ${(/* props */) => flexLeftColCSSString};
+  ${(/* props */) => flexCSSString};
   width: 100vh;
   min-width: 100vh;
   max-width: 100vh;
@@ -28,7 +28,7 @@ const FlexLeftColExtended = styled.div`
 `;
 
 const AppLayoutExtended = styled.div`
-  ${props => appLayoutCSSString};
+  ${(/* props */) => appLayoutCSSString};
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
