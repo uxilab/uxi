@@ -25,9 +25,9 @@ const FileInputLabelUI = styled.label`
   }; */
 `;
 
-const FileInputUI = styled.input.attrs({
+const FileInputUI = styled.input.attrs((/* props */) => ({
   type: 'file',
-})`
+}))`
   width: 100%;
   height: 100%;
   opacity: 0;

@@ -19,9 +19,9 @@ const LabeLUI = styled.label`
 
 `;
 
-const InputUI = styled.input.attrs({
-  onMouseOut: () => ({ target }) => target.blur && target.blur(),
-})`
+const InputUI = styled.input.attrs((/*  props  */) => ({
+  onMouseOut: ({ target }) => target.blur && target.blur(),
+}))`
   position: absolute
   width: 100%;
   height: 100%;

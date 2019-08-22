@@ -13,16 +13,16 @@ import ErrorWrapperUI from './utils/ErrorWrapperUI';
 
 // const { semantic } = palette;
 
-const InputWrapperUI = styled.div.attrs({
-  theme: ({ theme }) => (theme || defaultTheme),
-})`
+const InputWrapperUI = styled.div.attrs(({ theme }) => ({
+  theme: (theme || defaultTheme),
+}))`
   position: relative;
 `;
 
-const InputUI = styled.textarea.attrs({
-  theme: ({ theme }) => (theme || defaultTheme),
+const InputUI = styled.textarea.attrs(({ theme }) => ({
+  theme: (theme || defaultTheme),
   rows: 3,
-})`
+}))`
   max-width: 100%;
   min-height: 40px;
   max-height: 200px;
@@ -43,31 +43,6 @@ const InputUI = styled.textarea.attrs({
     box-shadow: 0 0 10px #719ECE; /* where's that color from ? */
   }
 `;
-
-// const ErrorWrapperUI = styled.span.attrs({
-//   theme: ({ theme }) => (theme || defaultTheme),
-// })`
-//   padding: 0 6px;
-//   font-size: 12px;
-//   color: ${({ theme: { palette: { semantic } } }) => semantic.error};
-// `;
-
-// const StatusIcon = styled.span.attrs({
-//   theme: ({ theme }) => (theme || defaultTheme),
-// })`
-//   position: absolute;
-//   right: 8px;
-//   top: 9px;
-//   color: ${({ error, success, theme: { palette: { semantic } } }) => (error
-//     ? semantic.error
-//     : (success ? semantic.success : semantic.default)
-//   )};
-//   & > svg,
-//   & > svg * {
-//     fill: currentColor !important;
-//     color: currentColor !important;
-//   }
-// `;
 
 // eslint-disable-next-line react/prefer-stateless-function
 class TextArea extends Component {

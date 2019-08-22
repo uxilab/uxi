@@ -5,8 +5,8 @@ import { FlatButtonBaseMixin } from './FlatButtonBaseMixin';
 import { OutlineButtonBaseMixin } from './OutlineButtonBaseMixin';
 import { UnstyledButtonBaseMixin } from './UnstyledButtonBaseMixin';
 
-const attrs = {
-  onMouseOut: ({ onMouseOut }) => (onMouseOut ||
+const attrs = ({ onMouseOut }) => ({
+  onMouseOut: (onMouseOut ||
     (({ target, currentTarget }) => {
       if (document && document.activeElement && document.activeElement === target) {
         if (target.blur) target.blur();
@@ -27,32 +27,33 @@ const attrs = {
       }
     })
   ),
-};
+});
 
-export const ButtonUI = styled.button.attrs({
-  ...attrs,
-})`
+export const ButtonUI = styled.button.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${ButtonBaseMixin};
 `;
-export const FlatButtonUI = styled.button.attrs({
-  ...attrs,
-})`
+
+export const FlatButtonUI = styled.button.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${FlatButtonBaseMixin};
 `;
-export const OutlineButtonUI = styled.button.attrs({
-  ...attrs,
-})`
+export const OutlineButtonUI = styled.button.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${OutlineButtonBaseMixin};
 `;
-export const UnstyledButtonUI = styled.button.attrs({
-  ...attrs,
-})`
+export const UnstyledButtonUI = styled.button.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${UnstyledButtonBaseMixin};
@@ -66,36 +67,36 @@ export const getButtonUI = (buttonType) => {
 };
 
 
-export const ButtonLinkUI = styled.a.attrs({
-  ...attrs,
-})`
+export const ButtonLinkUI = styled.a.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${ButtonBaseMixin};
   text-decoration: none;
   &:hover { text-decoration: none }
 `;
-export const FlatButtonLinkUI = styled.a.attrs({
-  ...attrs,
-})`
+export const FlatButtonLinkUI = styled.a.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${FlatButtonBaseMixin};
   text-decoration: none;
   &:hover { text-decoration: none }
 `;
-export const OutlineButtonLinkUI = styled.a.attrs({
-  ...attrs,
-})`
+export const OutlineButtonLinkUI = styled.a.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${OutlineButtonBaseMixin};
   text-decoration: none;
   &:hover { text-decoration: none }
 `;
-export const UnstyledButtonLinkUI = styled.a.attrs({
-  ...attrs,
-})`
+export const UnstyledButtonLinkUI = styled.a.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${UnstyledButtonBaseMixin};
@@ -110,9 +111,9 @@ export const getButtonLinkUI = (buttonType) => {
 };
 
 
-export const ButtonDivUI = styled.div.attrs({
-  ...attrs,
-})`
+export const ButtonDivUI = styled.div.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${ButtonBaseMixin};
@@ -120,9 +121,9 @@ export const ButtonDivUI = styled.div.attrs({
     text-decoration: none;
   }
 `;
-export const FlatButtonDivUI = styled.div.attrs({
-  ...attrs,
-})`
+export const FlatButtonDivUI = styled.div.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${FlatButtonBaseMixin};
@@ -130,9 +131,9 @@ export const FlatButtonDivUI = styled.div.attrs({
     text-decoration: none;
   }
 `;
-export const OutlineButtonDivUI = styled.div.attrs({
-  ...attrs,
-})`
+export const OutlineButtonDivUI = styled.div.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${OutlineButtonBaseMixin};
@@ -140,9 +141,9 @@ export const OutlineButtonDivUI = styled.div.attrs({
     text-decoration: none;
   }
 `;
-export const UnstyledButtonDivUI = styled.div.attrs({
-  ...attrs,
-})`
+export const UnstyledButtonDivUI = styled.div.attrs(props => ({
+  ...attrs(props),
+}))`
   line-height: 1;
   ${ButtonCommonMixin};
   ${UnstyledButtonBaseMixin};

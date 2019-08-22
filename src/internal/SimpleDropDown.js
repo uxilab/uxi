@@ -5,13 +5,12 @@ import styled from 'styled-components';
 import { Arrowright } from '../Icons';
 import { flexCSSString } from '../Layout';
 
-const Details = styled.details.attrs({
-  onToggle: ({ onToggle }) => onToggle,
-  open: ({ open }) => open,
-})`
+const Details = styled.details.attrs(({ onToggle, open }) => ({
+  onToggle,
+  open,
+}))`
   width: 100%;
   position: relative;
-
 `;
 
 const SummaryIcon = styled.div`

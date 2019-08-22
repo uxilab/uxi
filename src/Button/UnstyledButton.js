@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { buttonResetStylesCSSString } from './buttonResetStyles';
 
 /* eslint-disable indent */
-const UnstyledButtonUI = styled.button.attrs({
-  tabIndex: ({ inert }) => (inert ? -1 : undefined),
-})`
+const UnstyledButtonUI = styled.button.attrs(({ inert }) => ({
+  tabIndex: (inert ? -1 : undefined),
+}))`
   ${buttonResetStylesCSSString};
   &, &:hover, & *, &:hover * {}
   border: none;

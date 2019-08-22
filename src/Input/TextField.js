@@ -13,16 +13,16 @@ import ErrorWrapperUI from './utils/ErrorWrapperUI';
 
 // const { semantic } = palette;
 
-const InputWrapperUI = styled.div.attrs({
-  theme: ({ theme }) => (theme || defaultTheme),
-})`
+const InputWrapperUI = styled.div.attrs(({ theme }) => ({
+  theme: theme || defaultTheme,
+}))`
   position: relative;
   ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
 `;
 
-const InputUI = styled.input.attrs({
-  theme: ({ theme }) => (theme || defaultTheme),
-})`
+const InputUI = styled.input.attrs(({ theme }) => ({
+  theme: (theme || defaultTheme),
+}))`
   border-radius: 3px;
   border-radius: ${({ theme: { radius } }) => radius};
   /* min-height: 32px; */
@@ -46,31 +46,6 @@ const InputUI = styled.input.attrs({
     outline: ${({ theme: { outlineShadow } }) => outlineShadow};
   }
 `;
-
-// const ErrorWrapperUI = styled.span.attrs({
-//   theme: ({ theme }) => (theme || defaultTheme),
-// })`
-//   padding: 0 6px;
-//   font-size: 12px;
-//   color: ${({ theme: { palette: { semantic } } }) => semantic.error};
-// `;
-
-// const StatusIcon = styled.span.attrs({
-//   theme: ({ theme }) => (theme || defaultTheme),
-// })`
-//   position: absolute;
-//   right: 8px;
-//   top: 9px;
-//   color: ${({ error, success, theme: { palette: { semantic } } }) => (error
-//     ? semantic.error
-//     : (success ? semantic.success : semantic.default)
-//   )};
-//   & > svg,
-//   & > svg * {
-//     fill: currentColor !important;
-//     color: currentColor !important;
-//   }
-// `;
 
 // eslint-disable-next-line react/prefer-stateless-function
 class TextField extends Component {

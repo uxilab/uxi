@@ -7,10 +7,10 @@ import { flexCSSString } from '../Layout';
 
 /* eslint-disable indent */
 /* eslint-disable no-nested-ternary */
-const Details = styled.details.attrs({
-  onToggle: ({ onToggle }) => onToggle,
-  open: ({ open }) => open,
-})`
+const Details = styled.details.attrs(({ onToggle, open }) => ({
+  onToggle,
+  open,
+}))`
   &, & * {
     ${({ theme: { transition } }) => transition.defaultAll};
   }

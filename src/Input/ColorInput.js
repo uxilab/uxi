@@ -4,13 +4,13 @@ import { buttonResetStylesCSSString } from '../Button/buttonResetStyles';
 import { Datacleaning } from '../Icons';
 import Button from '../Button'; // eslint-disable-line
 
-const ColorInputUI = styled.input.attrs({
+const ColorInputUI = styled.input.attrs(({ onChange }) => ({
   children: null,
   type: 'color',
-  onChange: ({ onChange }) => (e) => {
+  onChange: (e) => {
     onChange(e, e.target.value);
   },
-})`
+}))`
   ${buttonResetStylesCSSString};
   &:focus {
     outline: none;

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const OptionsUI = styled.div.attrs({
+export const OptionsUI = styled.div.attrs(({ isOpen }) => ({
   role: 'option',
-  tabIndex: ({ isOpen }) => (isOpen === true ? 0 : -1),
-})`
+  tabIndex: isOpen === true ? 0 : -1,
+}))`
   ${({ isOpen }) => (isOpen !== undefined
     ? `visibility: ${isOpen ? 'visible' : 'collapse'}`
     : '')

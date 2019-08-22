@@ -16,12 +16,9 @@ const WrapperComponentFn = styled.div`
 const height = '38px';
 const iconSize = '18';
 
-const ButtonMenuItemItemFlex = styled.li.attrs({
-  // onMouseOut: () => ({ target }) => target.blur && target.blur(),
-  // onMouseEnter: () => ({ target }) => target.focus && target.focus(),
-  // tabIndex: ({ isOpen }) => (isOpen ? '0' : '-1'),
+const ButtonMenuItemItemFlex = styled.li.attrs((/* props */) => ({
   tabIndex: 0,
-})`
+}))`
   a, a *, a:hover, a:hover * {
     text-decoration: none;
     color: ${({ theme: { palette } }) => palette.darkGrey};

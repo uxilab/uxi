@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
 import Ripple from '../Motion/Ripples';
 
-const RadioInpuUI = styled.input.attrs({
+const RadioInpuUI = styled.input.attrs((/* props */) => ({
   type: 'radio',
-  onMouseOut: () => ({ target }) => target.blur && target.blur(),
-})`
+  onMouseOut: ({ target }) => target.blur && target.blur(),
+}))`
   cursor: pointer;
   opacity: 0;
   position: absolute;

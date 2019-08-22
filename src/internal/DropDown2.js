@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 /* eslint-disable indent */
-const BoxWrapperUI = styled.div.attrs({})`
+const BoxWrapperUI = styled.div`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'collapse')}
   z-index: 99;
   position: absolute;
