@@ -84,7 +84,7 @@ const TileDetail = ({
     </TileExtra>
   ) || null;
 
-  const ImgTooltipWrapper = Tooltip || styled.div``;
+  const ImgTooltipWrapper = (Tooltip && imgTooltipOverlay) ? Tooltip : styled.div``;
 
   return (
     <TileDetailWrapper className="uxi-tile-detail" style={style}>
