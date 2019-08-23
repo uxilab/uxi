@@ -58,6 +58,8 @@ const TileContentWrapperTitle = styled.div`
 const TileDetail = ({
   title,
   imageUrl,
+  imgTooltipOverlay,
+  Tooltip,
   icon,
   extra,
   children,
@@ -82,6 +84,7 @@ const TileDetail = ({
     </TileExtra>
   ) || null;
 
+  const ImgTooltipWrapper = (Tooltip && imgTooltipOverlay) ? Tooltip : styled.div``;
 
   return (
     <TileDetailWrapper className="uxi-tile-detail" style={style}>
@@ -95,11 +98,18 @@ const TileDetail = ({
         contentMinWidth={'280px'}
       >
         <ExtendedFlex>
-          <TileImageWrapper>
-            <TileImageInnerWrapper roundImage={roundImage}>
-              {imageContent}
-            </TileImageInnerWrapper>
-          </TileImageWrapper>
+          <ImgTooltipWrapper
+            overlay={imgTooltipOverlay}
+            trigger={['hover']}
+            placement="top"
+            destroyTooltipOnHide
+          >
+            <TileImageWrapper>
+              <TileImageInnerWrapper roundImage={roundImage}>
+                {imageContent}
+              </TileImageInnerWrapper>
+            </TileImageWrapper>
+          </ImgTooltipWrapper>
           <TileContentWrapper>
             <TileContentWrapperTitle>
               {title}
