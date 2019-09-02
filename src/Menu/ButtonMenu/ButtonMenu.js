@@ -1,10 +1,17 @@
 
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disable-line
 import { FlatButton } from '../../Button'; // eslint-disable-line
 import { Options } from '../../Icons'; // eslint-disable-line
 import ButtonMenuItem from './ButtonMenuItem';
+
+const ButtonMenuUI = styled.div`
+  * {
+    box-sizing: border-box;
+  }
+`;
 
 const focusTimeout = 128;
 
@@ -133,7 +140,7 @@ class ButtonMenu extends Component {
     });
 
     return (
-      <div
+      <ButtonMenuUI
         onKeyDown={(e) => {
           if (e.key === 'Escape') {
             this.close();
@@ -230,7 +237,7 @@ class ButtonMenu extends Component {
 
           </ul>
         </DropDown>
-      </div>
+      </ButtonMenuUI>
     );
   }
 }
