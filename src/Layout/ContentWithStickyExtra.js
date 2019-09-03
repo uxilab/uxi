@@ -271,7 +271,10 @@ class ContentWithStickyExtra extends Component {
         key="content"
         contentMinWidth={contentMinWidth}
         {...contentProps}
-        style={{ ...contentStyle, ...(contentProps && contentProps.style ? contentProps.style : {}) }}
+        style={{
+          ...contentStyle,
+          ...(contentProps && contentProps.style ? contentProps.style : {}),
+        }}
       >
         {children}
       </ContentUI>,
