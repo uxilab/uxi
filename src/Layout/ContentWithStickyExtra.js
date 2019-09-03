@@ -99,7 +99,7 @@ class ContentWithStickyExtra extends Component {
     if (!this.state.listenerAttached) {
       if (scrollingElem) {
         scrollingElem.addEventListener('scroll', this.handleScroll);
-        scrollingElem.addEventListener('resize', this.handleResize);
+        window.addEventListener('resize', this.handleResize);
         this.setState({ scrollingElem, listenerAttached: true, windowHeight });
         if (this.extraRef) {
           const { height } = this.extraRef.getBoundingClientRect();
@@ -123,7 +123,7 @@ class ContentWithStickyExtra extends Component {
     if (this.state.scrollingElem) {
       if (this.state.attachListeners) {
         this.state.scrollingElem.removeEventListener('scroll', this.handleScroll);
-        this.state.scrollingElem.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('resize', this.handleResize);
       }
     }
   }
@@ -222,6 +222,8 @@ class ContentWithStickyExtra extends Component {
   }
 
   handleResize() {
+    console.log('§§ handleResize');
+    console.log('§§ handleResize this.extraRef', this.extraRef);
     if (this.extraRef) {
       const { height } = this.extraRef.getBoundingClientRect();
       this.setState({ extraHeight: height });
