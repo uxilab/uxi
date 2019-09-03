@@ -9,6 +9,7 @@ import { flexCSSString } from '../Layout';
 
 const FlexExtended = styled.div`
   ${flexCSSString};
+  align-items: flex-end;
   position: absolute;
   top: auto;
   left: 0;
@@ -34,6 +35,7 @@ const GlobalMenuWrapper = ({
   bigMenuWidth,
   panelOffsetTop,
   panelOffsetBottom,
+  appStamp,
 }) => {
   const menuDescriptorsContent = [];
 
@@ -111,7 +113,11 @@ const GlobalMenuWrapper = ({
     }
   });
 
-  const gapFiller = <FlexExtended key="single-gap-filler" />;
+  const gapFiller = (
+    <FlexExtended key="single-gap-filler" >
+      {appStamp}
+    </FlexExtended>
+  );
 
   return (
     <GlobalMenuContainer

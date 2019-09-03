@@ -113,6 +113,7 @@ class GlobalMenu extends Component {
       fullViewportWidthPanel: fullViewportWidthPanelProp,
       panelOffsetTop,
       panelOffsetBottom,
+      appStamp,
     } = this.props;
 
     const fullViewportWidthPanel = attachToViewport ? true : fullViewportWidthPanelProp;
@@ -197,6 +198,7 @@ class GlobalMenu extends Component {
       <div style={{ ...layoutContext, ...style }}>
         <div>
           <GlobalMenuWrapper
+            appStamp={appStamp}
             breakpoint={breakpoint}
             menuWidth={menuWidth}
             bigMenuWidth={bigMenuWidth}
