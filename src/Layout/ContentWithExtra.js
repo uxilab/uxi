@@ -49,13 +49,26 @@ const ContentWithExtra = (props) => {
     contentStyle,
     extraStyle,
     style,
+    contentProps,
+    extraProps,
   } = props;
 
   const contentItems = [
-    <ExtraUI key="extra" extraMinWidth={extraMinWidth} style={extraStyle}>
+    <ExtraUI
+      key="extra"
+      extraMinWidth={extraMinWidth}
+      {...extraProps}
+      style={{ ...extraStyle, ...(extraProps && extraProps.style ? extraProps.style : {}) }}
+
+    >
       {extra}
     </ExtraUI>,
-    <ContentUI key="content" contentMinWidth={contentMinWidth} style={contentStyle}>
+    <ContentUI
+      key="content"
+      contentMinWidth={contentMinWidth}
+      {...contentProps}
+      style={{ ...contentStyle, ...(contentProps && contentProps.style ? contentProps.style : {}) }}
+    >
       {children}
     </ContentUI>,
   ];

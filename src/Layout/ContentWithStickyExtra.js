@@ -73,10 +73,14 @@ class ContentWithStickyExtra extends Component {
   }
 
   storeExtraRef(node) {
+    console.log('§§ storeExtraRef');
+    console.log('§§ storeExtraRef node', node);
     if (node) {
       if (!this.extraRef) {
+        console.log('§§ storeExtraRef this.extraRef', this.extraRef);
         this.extraRef = node;
         const { height } = node.getBoundingClientRect();
+        console.log('§§ storeExtraRef height', height);
         this.setState({ extraHeight: height });
         this.attachListeners();
       } else {
@@ -95,7 +99,7 @@ class ContentWithStickyExtra extends Component {
     if (!this.state.listenerAttached) {
       if (scrollingElem) {
         scrollingElem.addEventListener('scroll', this.handleScroll);
-        scrollingElem.addEventListener('resize', this.handleResize);
+        window.addEventListener('resize', this.handleResize);
         this.setState({ scrollingElem, listenerAttached: true, windowHeight });
         if (this.extraRef) {
           const { height } = this.extraRef.getBoundingClientRect();
@@ -119,76 +123,82 @@ class ContentWithStickyExtra extends Component {
     if (this.state.scrollingElem) {
       if (this.state.attachListeners) {
         this.state.scrollingElem.removeEventListener('scroll', this.handleScroll);
-        this.state.scrollingElem.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('resize', this.handleResize);
       }
     }
   }
 
   handleScroll() {
-    const { height } = this.extraRef.getBoundingClientRect();
+    console.log('§§ handleScroll');
+    console.log('§§ this.extraRef', this.extraRef);
+    if (this.extraRef) {
+      const { height } = this.extraRef.getBoundingClientRect();
 
-    console.log(height);
+      console.log('§§ height', height);
 
-    const extraHeight = height;
-    // e.persist();
-    // console.log(e);
-    // console.log(e.originalEvent);
+      const extraHeight = height;
+      // e.persist();
+      // console.log(e);
+      // console.log(e.originalEvent);
 
-    const {
+      const {
       // extraHeight,
-      scrollingElem,
-      windowHeight,
-      previousScrollTop,
-      totalOffsetBackupScroll: totalOffsetBackupScrollState,
-    } = this.state;
+        scrollingElem,
+        windowHeight,
+        previousScrollTop,
+        totalOffsetBackupScroll: totalOffsetBackupScrollState,
+      } = this.state;
 
-    if (scrollingElem) {
-      const { scrollTop } = scrollingElem;
+      if (scrollingElem) {
+        console.log('scrollingElem exists, doing things');
+        const { scrollTop } = scrollingElem;
 
-      const isScrollingBackUp = previousScrollTop >= scrollTop;
+        const isScrollingBackUp = previousScrollTop >= scrollTop;
 
-      console.log('isScrollingBackUp', isScrollingBackUp);
+        console.log('previousScrollTop', previousScrollTop);
+        console.log('scrollTop', scrollTop);
+        console.log('isScrollingBackUp', isScrollingBackUp);
 
-      let totalOffsetBackupScroll = scrollTop > 0
-        ? totalOffsetBackupScrollState || 0
-        : 0;
+        let totalOffsetBackupScroll = scrollTop > 0
+          ? totalOffsetBackupScrollState || 0
+          : 0;
 
-      let scrollingBackUpOffset = 0;
-      if (isScrollingBackUp) {
+        let scrollingBackUpOffset = 0;
+        if (isScrollingBackUp) {
         // scrolling (back) up
-        scrollingBackUpOffset = previousScrollTop - scrollTop;
-      } else {
-        totalOffsetBackupScroll = 0;
-      }
+          scrollingBackUpOffset = previousScrollTop - scrollTop;
+        } else {
+          totalOffsetBackupScroll = 0;
+        }
 
-      totalOffsetBackupScroll += scrollingBackUpOffset;
+        totalOffsetBackupScroll += scrollingBackUpOffset;
 
-      const headerHeight = 48;
-      const paddingTotal = 16;
+        const headerHeight = 48;
+        const paddingTotal = 16;
 
-      const diff = isScrollingBackUp
-        ? (
-          (windowHeight - (extraHeight + headerHeight + paddingTotal)) + totalOffsetBackupScroll
-        )
-        : (
-          (windowHeight - (extraHeight + headerHeight + paddingTotal)) + totalOffsetBackupScroll
-        );
-      console.log('windowHeight', windowHeight);
-      console.log('extraHeight', extraHeight);
-      console.log('diff', diff);
-      console.log('scrollTop', scrollTop);
-      console.log('previousScrollTop', previousScrollTop);
-      console.log('totalOffsetBackupScroll', totalOffsetBackupScroll);
+        const diff = isScrollingBackUp
+          ? (
+            (windowHeight - (extraHeight + headerHeight + paddingTotal)) + totalOffsetBackupScroll
+          )
+          : (
+            (windowHeight - (extraHeight + headerHeight + paddingTotal)) + totalOffsetBackupScroll
+          );
+        console.log('windowHeight', windowHeight);
+        console.log('extraHeight', extraHeight);
+        console.log('diff', diff);
+        console.log('scrollTop', scrollTop);
+        console.log('previousScrollTop', previousScrollTop);
+        console.log('totalOffsetBackupScroll', totalOffsetBackupScroll);
 
-      if (scrollTop > diff) {
-        this.setState({
-          sticky: true,
-          top: diff <= paddingTotal ? diff : paddingTotal,
-          previousScrollTop: scrollTop,
-          isScrollingBackUp,
-          totalOffsetBackupScroll,
-        });
-      /* eslint-disable */
+        if (scrollTop > diff) {
+          this.setState({
+            sticky: true,
+            top: diff <= paddingTotal ? diff : paddingTotal,
+            previousScrollTop: scrollTop,
+            isScrollingBackUp,
+            totalOffsetBackupScroll,
+          });
+          /* eslint-disable */
       } /* else if (scrollTop <= diff) {
         this.setState({
           sticky: false,
@@ -199,18 +209,21 @@ class ContentWithStickyExtra extends Component {
         });
       } */ else if (scrollTop === 0) {
       /* eslint-enable */
-        this.setState({
-          sticky: false,
-          top: 0,
-          previousScrollTop: scrollTop,
-          isScrollingBackUp,
-          totalOffsetBackupScroll,
-        });
+          this.setState({
+            sticky: false,
+            top: 0,
+            previousScrollTop: scrollTop,
+            isScrollingBackUp,
+            totalOffsetBackupScroll,
+          });
+        }
       }
     }
   }
 
   handleResize() {
+    console.log('§§ handleResize');
+    console.log('§§ handleResize this.extraRef', this.extraRef);
     if (this.extraRef) {
       const { height } = this.extraRef.getBoundingClientRect();
       this.setState({ extraHeight: height });
@@ -230,6 +243,8 @@ class ContentWithStickyExtra extends Component {
       contentStyle,
       extraStyle,
       style,
+      contentProps,
+      extraProps,
     } = this.props;
 
     const { sticky, top } = this.state;
@@ -239,17 +254,28 @@ class ContentWithStickyExtra extends Component {
       <ExtraUI
         key="extra"
         extraMinWidth={extraMinWidth}
-        style={extraStyle}
+        {...extraProps}
+        style={{ ...extraStyle, ...(extraProps && extraProps.style ? extraProps.style : {}) }}
+
       >
         <ExtraStickyInnerWrapper
           sticky={sticky}
           top={top}
           innerRef={this.storeExtraRef}
+          ref={this.storeExtraRef}
         >
           {extra}
         </ExtraStickyInnerWrapper>
       </ExtraUI>,
-      <ContentUI key="content" contentMinWidth={contentMinWidth} style={contentStyle}>
+      <ContentUI
+        key="content"
+        contentMinWidth={contentMinWidth}
+        {...contentProps}
+        style={{
+          ...contentStyle,
+          ...(contentProps && contentProps.style ? contentProps.style : {}),
+        }}
+      >
         {children}
       </ContentUI>,
     ];
