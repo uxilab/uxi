@@ -21,7 +21,6 @@ const ActionWrapper = styled.div`
   cursor: pointer;
   width: 100%;
   position: relative;
-  min-height: 180px;
   display: flex;
   align-items: left;
   justify-content: center;
@@ -62,7 +61,7 @@ const Action = ({
   to = '#',
   target,
 }) => (
-  <Widget>
+  <Widget contentStyle={{ minHeight: '1px' }}>
     <Link to={to} target={target}>
       <ActionWrapper
         onClick={menuDescriptor.onClick}

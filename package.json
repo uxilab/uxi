@@ -1,6 +1,6 @@
 {
   "name": "uxi",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "engine": {
