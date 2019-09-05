@@ -60,9 +60,10 @@ const Action = ({
   style,
   Link = () => null,
   to = '#',
+  target,
 }) => (
   <Widget>
-    <Link to={to}>
+    <Link to={to} target={target}>
       <ActionWrapper
         onClick={menuDescriptor.onClick}
         style={style}
