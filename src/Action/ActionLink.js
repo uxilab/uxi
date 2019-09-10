@@ -33,12 +33,13 @@ const ActionWrapper = styled.div`
   padding: 24px;
   flex-direction: column;
   box-sizing: border-box;
+  min-height: 146px;
 `;
 
 const ActionIconWrapper = styled.div`
   svg {
-    width: 60px !important;
-    height:60px !important;
+    width: 48px !important;
+    height:48px !important;
     fill: currentColor
   }
 `;
@@ -48,7 +49,7 @@ const ActionDisplayNameWrapper = styled.div`
   font-weight: 600;
   font-size: 16px;
   font-family: 'Open sans', sans-serif;
-  margin-top:20px;
+  margin-top: 8px;
   flex-grow: 99;
   display: flex;
   align-items: center;
@@ -61,7 +62,7 @@ const Action = ({
   to = '#',
   target,
 }) => (
-  <Widget contentStyle={{ minHeight: '1px' }}>
+  <Widget containerStyle={{ minHeight: '1px' }}>
     <Link to={to} target={target}>
       <ActionWrapper
         onClick={menuDescriptor.onClick}
