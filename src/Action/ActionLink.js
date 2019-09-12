@@ -62,7 +62,7 @@ const Action = ({
   to = '#',
   target,
 }) => (
-  <Widget containerStyle={{ minHeight: '1px' }}>
+  <Widget containerStyle={{ minHeight: '1px' }} style={{ border: 'none' }}>
     <Link to={to} target={target}>
       <ActionWrapper
         onClick={menuDescriptor.onClick}
