@@ -3,6 +3,7 @@ export { default as Col } from './Col';
 export { default as Row } from './Row';
 export { default as SimpleLayout } from './SimpleLayout';
 export { default as Flex } from './Flex';
+export { default as FlexHolyAlbatross } from './FlexHolyAlbatross';
 export { flexCSSString } from './Flex';
 export { default as FlexLeftCol } from './FlexLeftCol';
 export { flexLeftColCSSString } from './FlexLeftCol';
