@@ -1,6 +1,6 @@
 {
   "name": "uxi",
-  "version": "3.0.12",
+  "version": "3.0.13",
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "engine": {
@@ -63,7 +63,7 @@
     "uxi-cli": "^1.0.85"
   },
   "peerDependencies": {
-    "styled-components": "3.2.0",
+    "styled-components": "^4.3.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   }
