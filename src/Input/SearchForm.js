@@ -18,7 +18,7 @@ class SearchForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { value, defaultValue } = this.props;
     const valueToInitStoreWith = value || defaultValue || '';
     this.setState({ value: valueToInitStoreWith });
