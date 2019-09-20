@@ -55,7 +55,7 @@ class TextField extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.isControlled = this.props.value !== undefined;
     if (!this.isControlled) {
       // not controlled, use internal state
