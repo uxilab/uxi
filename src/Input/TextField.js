@@ -53,6 +53,7 @@ class TextField extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -97,7 +98,11 @@ class TextField extends Component {
     const inputAttributes = {
       ...attributes,
       ...(tabIndex !== undefined ? { tabIndex } : {}),
-      value: this.isControlled ? this.props.value : this.state.value,
+      value:
+        this.isControlled
+          ? this.props.value
+          : this.state.value
+      ,
     };
 
     return (
