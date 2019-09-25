@@ -55,7 +55,7 @@ class TextField extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {};
     this.isControlled = this.props.value !== undefined;
-    console.log('TextField.constructor this.isControlled', this.isControlled);
+    ('TextField.constructor this.isControlled', this.isControlled);
   }
 
   componentDidMount() {
@@ -91,27 +91,11 @@ class TextField extends Component {
       ...attributes
     } = this.props;
 
-    console.log('attributes.value', attributes.value);
-    console.log('attributes', attributes);
-    console.log('this.isControlled', this.isControlled);
-
-    // const stateIcon = error // eslint-disable-line no-nested-ternary
-    //   ? <ErrorIcon size="16" />
-    //   : (success ? <SuccessIcon size="16" /> : null
-    //   );
-
     const inputAttributes = {
       ...attributes,
       ...(tabIndex !== undefined ? { tabIndex } : {}),
       ...(!this.isControlled ? { value: this.state.value } : {}),
-      // value:
-      //   this.isControlled
-      //     ? this.props.value
-      //     : this.state.value
-      // ,
     };
-
-    console.log('inputAttributes', inputAttributes);
 
     return (
       <InputWrapperUI isFullWidth={isFullWidth}>

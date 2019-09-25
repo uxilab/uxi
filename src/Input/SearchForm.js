@@ -68,8 +68,6 @@ class SearchForm extends Component {
       onChange: this.handleChange,
     };
 
-    console.log('inputProps in search form', inputProps);
-
     const finalIcon = icon || <Search style={{ margin: 0 }} />;
 
     return (
