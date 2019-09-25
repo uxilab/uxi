@@ -16,6 +16,10 @@ class SearchForm extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
+    const { value, defaultValue } = this.props;
+    const valueToInitStoreWith = value || defaultValue || '';
+    this.state = { value: valueToInitStoreWith };
   }
 
   componentDidMount() {
@@ -54,6 +58,7 @@ class SearchForm extends Component {
       onChange,
       fullWidth,
       isFullWidth,
+      formProps,
       ...otherProps
     } = this.props;
 
@@ -63,10 +68,12 @@ class SearchForm extends Component {
       onChange: this.handleChange,
     };
 
+    console.log('inputProps in search form', inputProps);
+
     const finalIcon = icon || <Search style={{ margin: 0 }} />;
 
     return (
-      <FormUI fullWidth={isFullWidth || fullWidth} onSubmit={this.handleSubmit}>
+      <FormUI {...formProps} fullWidth={isFullWidth || fullWidth} onSubmit={this.handleSubmit}>
         <InputGroup fullWidth={isFullWidth || fullWidth}>
           <TextField {...inputProps} style={{ margin: 0, paddingLeft: '8px' }} />
           <Button
