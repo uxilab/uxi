@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { palette } from '../Theme/palette';
 import styled from 'styled-components';
-import {
-// Done as SuccessIcon,
-// Issue as ErrorIcon,
-} from '../Icons';
-// import default theme in case not themeprovider is used
 import { theme as defaultTheme } from '../Theme';
 import StatusIcon from './utils/StatusIcon';
 import ErrorWrapperUI from './utils/ErrorWrapperUI';
 
-// const { semantic } = palette;
 
 const InputWrapperUI = styled.div.attrs(({ theme }) => ({
   theme: theme || defaultTheme,
@@ -25,7 +18,6 @@ const InputUI = styled.input.attrs(({ theme }) => ({
 }))`
   border-radius: 3px;
   border-radius: ${({ theme: { radius } }) => radius};
-  /* min-height: 32px; */
   box-sizing: border-box;
   font-size: 14px;
   border: 1px solid ${({ theme: { palette: { semantic } } }) => semantic.default};
@@ -41,7 +33,6 @@ const InputUI = styled.input.attrs(({ theme }) => ({
   &:focus {
     outline: none;
     border: 1px solid ${({ theme }) => theme.palette.accent.main};
-    /* box-shadow: 0 0 10px #719ECE;*/ /* where's that color from ? */
     box-shadow: ${({ theme: { outlineShadow } }) => outlineShadow};
     outline: ${({ theme: { outlineShadow } }) => outlineShadow};
   }
@@ -53,17 +44,11 @@ class TextField extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {};
     this.isControlled = this.props.value !== undefined;
-    ('TextField.constructor this.isControlled', this.isControlled);
-  }
-
-  componentDidMount() {
     if (!this.isControlled) {
-      // not controlled, use internal state
-      this.setState({
+      this.state = {
         value: this.props.defaultValue !== undefined ? this.props.defaultValue : '',
-      });
+      };
     }
   }
 
