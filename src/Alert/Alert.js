@@ -12,6 +12,8 @@ import AlertStyle from './Alert.style';
 const AlertUI = styled.div`
   border-radius: ${({ rounded, theme: { radius } }) => (rounded ? radius : 0)};
   overflow: hidden;
+  ${({ isFullWidth }) => (isFullWidth ? 'width: 100%;' : '')};
+  cursor: normal;
   div {
     a, a:hover {
       color: white;
@@ -36,6 +38,7 @@ class Alert extends Component {
     ]),
     style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     rounded: PropTypes.bool,
+    isFullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -52,6 +55,7 @@ class Alert extends Component {
     children: null, // we don't require children, alert always has at least 50px of height
     style: {},
     rounded: false,
+    isFullWidth: false,
   };
 
   constructor(props) {
@@ -88,6 +92,7 @@ class Alert extends Component {
       onClose,
       style,
       rounded,
+      isFullWidth,
     } = this.props;
     const { isOpen } = this.state;
 
@@ -143,7 +148,7 @@ class Alert extends Component {
     };
 
     return (
-      <AlertUI rounded={rounded || undefined}>
+      <AlertUI isFullWidth={isFullWidth} rounded={rounded || undefined}>
         <div style={wrapperStyles} className={className}>
           {closeContent}
           {iconContent}
