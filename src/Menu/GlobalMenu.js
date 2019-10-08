@@ -192,7 +192,13 @@ class GlobalMenu extends Component {
 
     const layoutContext = attachToViewport
       ? { position: 'fixed', zIndex: 80, top: 0, left: 0, bottom: 0, overflowX: 'hidden' }
-      : { position: 'relative', ...(fullViewportWidthPanel ? {} : { overflowX: 'hidden' }) };
+      : {
+        position: 'relative',
+        ...(fullViewportWidthPanel ? {} : { overflowX: 'hidden' }),
+        height: '100vh',
+        maxHeight: '100vh',
+        overflowY: 'auto',
+      };
 
     return (
       <div style={{ ...layoutContext, ...style }}>

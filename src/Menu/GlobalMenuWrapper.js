@@ -10,13 +10,14 @@ import { flexCSSString } from '../Layout';
 const FlexExtended = styled.div`
   ${flexCSSString};
   align-items: flex-end;
-  position: absolute;
-  top: auto;
+  /* position: relative; */
+  margin-top: auto;
+  /* top: auto;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   z-index: 97;
-  height: 100%;
+  /* height: 100%; */
   background: ${({ theme: { palette } }) => palette.primary.dark || '#15303f'};
 `;
 

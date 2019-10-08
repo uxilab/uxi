@@ -24,7 +24,8 @@ const GlobalMenuDiv = styled.div`
     /* position: */
     /* ${props => getPosition(props)}; */
 
-
+  display: flex;
+  flex-direction: column;
   height: 100%;
   height: 100vh;
   height: ${({ attachToViewport }) => (attachToViewport ? '100vh' : '100%')};
