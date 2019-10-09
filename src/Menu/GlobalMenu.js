@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import GlobalMenuWrapper from './GlobalMenuWrapper';
 import GlobalMenuLogo from './GlobalMenuLogo';
+import { defaults } from './defaults';
+
+
+const { bigMenuWidth } = defaults;
 
 class GlobalMenu extends Component {
   // constructor(props) {
@@ -108,7 +112,7 @@ class GlobalMenu extends Component {
       style,
       breakpoint,
       menuWidth,
-      bigMenuWidth,
+      bigMenuWidth, // eslint-disable-line no-shadow
       innerStyle,
       fullViewportWidthPanel: fullViewportWidthPanelProp,
       panelOffsetTop,
@@ -197,7 +201,9 @@ class GlobalMenu extends Component {
         ...(fullViewportWidthPanel ? {} : { overflowX: 'hidden' }),
         height: '100vh',
         maxHeight: '100vh',
+        overflow: 'hidden',
         overflowY: 'auto',
+        maxWidth: bigMenuWidth,
       };
 
     return (
@@ -236,6 +242,7 @@ GlobalMenu.propTypes = {
   style: PropTypes.object,
   panelOffsetTop: PropTypes.string,
   panelOffsetBottom: PropTypes.string,
+  bigMenuWidth: PropTypes.string,
 };
 
 GlobalMenu.defaultProps = {
@@ -249,6 +256,7 @@ GlobalMenu.defaultProps = {
   style: {},
   panelOffsetTop: '0px',
   panelOffsetBottom: '0px',
+  bigMenuWidth,
 };
 
 export default GlobalMenu;
