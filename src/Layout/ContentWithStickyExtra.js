@@ -73,14 +73,10 @@ class ContentWithStickyExtra extends Component {
   }
 
   storeExtraRef(node) {
-    console.log('§§ storeExtraRef');
-    console.log('§§ storeExtraRef node', node);
     if (node) {
       if (!this.extraRef) {
-        console.log('§§ storeExtraRef this.extraRef', this.extraRef);
         this.extraRef = node;
         const { height } = node.getBoundingClientRect();
-        console.log('§§ storeExtraRef height', height);
         this.setState({ extraHeight: height });
         this.attachListeners();
       } else {
@@ -129,12 +125,9 @@ class ContentWithStickyExtra extends Component {
   }
 
   handleScroll() {
-    console.log('§§ handleScroll');
-    console.log('§§ this.extraRef', this.extraRef);
     if (this.extraRef) {
       const { height } = this.extraRef.getBoundingClientRect();
 
-      console.log('§§ height', height);
 
       const extraHeight = height;
       // e.persist();
@@ -222,8 +215,6 @@ class ContentWithStickyExtra extends Component {
   }
 
   handleResize() {
-    console.log('§§ handleResize');
-    console.log('§§ handleResize this.extraRef', this.extraRef);
     if (this.extraRef) {
       const { height } = this.extraRef.getBoundingClientRect();
       this.setState({ extraHeight: height });

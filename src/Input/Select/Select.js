@@ -416,13 +416,6 @@ class Select extends Component {
         e.stopPropagation(); // if a drawer is open, do not let propagate
         // e.stopImmediatePropagation(); // if a drawer is open, do not let propagate
         // e.preventDefault();
-        console.log(e);
-        console.log(e.stopPropagation);
-        console.log(e.preventDefault);
-        console.log(e.stopImmediatePropagation);
-        console.log(e.nativeEvent);
-        console.log(e.originalEvent);
-        // console.log(e.nativeEvent.stopImmediatePropagation);
         if (e && e.nativeEvent) {
           if (e.nativeEvent.stopImmediatePropagation) {
             e.nativeEvent.stopImmediatePropagation();

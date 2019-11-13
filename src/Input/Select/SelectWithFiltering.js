@@ -679,9 +679,7 @@ class SelectWithFiltering extends Select {
 
     if (triggerWrapperRef && triggerWrapperRef.querySelector) {
       const inputMaybe = triggerWrapperRef.querySelector('input');
-      console.log('inputMaybe', inputMaybe);
       if (inputMaybe && inputMaybe.reset) {
-        console.log('inputMaybe', 'resetInput');
         inputMaybe.reset();
       }
     }
@@ -692,13 +690,10 @@ class SelectWithFiltering extends Select {
 
     if (triggerWrapperRef && triggerWrapperRef.querySelector) {
       const inputMaybe = triggerWrapperRef.querySelector('input');
-      console.log('inputMaybe', inputMaybe);
       if (inputMaybe && inputMaybe.focus) {
-        console.log('inputMaybe', 'focusing');
         inputMaybe.focus();
         const r = setTimeout(() => {
           if (inputMaybe && inputMaybe.focus) {
-            console.log('inputMaybe', 'focusing');
             inputMaybe.focus();
           }
           clearTimeout(r);

@@ -111,8 +111,6 @@ class Drawer extends React.Component {
   }
 
   handleEsc(e) {
-    console.log('e', e);
-    console.log('e.nativeEvent', e.nativeEvent);
     const { key } = e;
     const { onClose } = this.props;
     if (onClose && key === 'Escape') {
@@ -124,7 +122,6 @@ class Drawer extends React.Component {
     if (this.ref) {
       if (this.ref.querySelector) {
         let target = this.ref.querySelector('*[tabIndex]');
-        console.log('target', target);
         if (target && target.focus) {
           // noop
         } else if (this.ref && this.ref.focus) {
@@ -132,7 +129,6 @@ class Drawer extends React.Component {
         }
 
         const r = setTimeout(() => {
-          console.log('target in to', target);
           if (target && target.focus) {
             target.focus();
           }
