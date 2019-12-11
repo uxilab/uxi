@@ -11,6 +11,9 @@ import RAWExampleMediumList from '!raw-loader!./ExampleMediumList';
 import ExampleLongValues from './ExampleLongValues';
 import RAWExampleLongValues from '!raw-loader!./ExampleLongValues';
 
+import ExampleControlledUncontrolled from './ExampleControlledUncontrolled';
+import RAWExampleControlledUncontrolled from '!raw-loader!./ExampleControlledUncontrolled';
+
 const AutoCompletePage = () => (
   <div style={{ padding: '16px' }} >
     <Title text="AutoComplete" />
@@ -48,6 +51,17 @@ const AutoCompletePage = () => (
           description="using `strict` filtering"
         >
           <ExampleLongValues />
+        </CodeExample>
+      </li>
+      <li>
+        <CodeExample
+          code={RAWExampleControlledUncontrolled}
+          component
+          title="Controlled/Uncontrolled"
+          hasPadding
+          description="input behaviour"
+        >
+          <ExampleControlledUncontrolled />
         </CodeExample>
       </li>
     </ul>

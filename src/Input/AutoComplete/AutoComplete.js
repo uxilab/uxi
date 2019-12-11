@@ -36,12 +36,13 @@ const MatchesPart = styled.span`
 
 const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterOn */) => {
   // const nameToRenderParam = item[filterOn];
-  const matchesNode = (item.matchesResults || []).map(({ matches, string }) => (
+  const matchesNode = (item.matchesResults || []).map(({ matches, string }, i) => (
     matches
-      ? (<MatchesPart data-matches >
+      ? (<MatchesPart key={`${i}-${string}`} data-matches >
         <Highlighted dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }} />
       </MatchesPart>)
       : (<MatchesPart
+        key={`${i}-${string}`}
         data-not-matches
         dangerouslySetInnerHTML={{ __html: `${string.replace(/\s/, '&nbsp;')}` }}
       />)
@@ -50,7 +51,7 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterO
   return (
     <Flex style={{ justifyContent: 'flex-start', width: '100%' }}>
       <div style={{ flexGrow: 99, overflow: 'hidden', textOverflow: 'ellipsis' }}>{matchesNode}</div>
-      <span data-postFix style={{ textAlign: 'right', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '50%', flexGrow: 1, flexShrink: 1, margin: '0 6px', marginLeft: 'auto' }}>{postFix}</span>
+      <span data-post-fix style={{ textAlign: 'right', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '50%', flexGrow: 1, flexShrink: 1, margin: '0 6px', marginLeft: 'auto' }}>{postFix}</span>
     </Flex>
   );
 };
@@ -64,9 +65,12 @@ const getHighlightedNameComplex = (item, valueForInputParam, postFix/* , filterO
 class AutoComplete extends ThemeComponent {
   constructor(props) {
     super(props);
+
+    this.isControlled = this.props.value !== undefined;
+
     this.state = {
       index: -1,
-      value: props.defaultValue,
+      value: this.isControlled ? this.props.value : (props.defaultValue || ''),
       originalItems: this.props.items.map((x, i) => ({
         ...x,
         originalIndex: i,
@@ -82,8 +86,8 @@ class AutoComplete extends ThemeComponent {
     document.addEventListener('click', this.clickHandlerForDom.bind(this), true);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.items.length !== nextProps.items.length) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.items.length !== prevProps.items.length) {
       this.setState({
         originalItems: this.props.items.map((x, i) => ({
           ...x,
@@ -92,18 +96,40 @@ class AutoComplete extends ThemeComponent {
       });
     }
 
-    if (this.props.defaultValue !== nextProps.defaultValue) {
-      this.setState({
-        valueForInput: nextProps.defaultValue,
-      });
+    if (this.isControlled && (this.props.value !== prevProps.value)) {
+      this.onQuerychange(this.props.value);
+    } else if (!this.isControlled && this.state.value !== prevState.value) {
+      // this.setState({
+      //   value: this.props.value,
+      // });
+
+      this.onQuerychange(this.props.value);
     }
   }
+
+  // componentWillReceiveProps(nextProps) {
+  // if (this.props.items.length !== nextProps.items.length) {
+  //   this.setState({
+  //     originalItems: this.props.items.map((x, i) => ({
+  //       ...x,
+  //       originalIndex: i,
+  //     })) || [],
+  //   });
+  // }
+
+  // if (this.isControlled && (this.props.value !== nextProps.value)) {
+  //   this.setState({
+  //     value: nextProps.defaultValue,
+  //   });
+  // }
+  // }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.clickHandlerForDom);
   }
 
   onItemClick(index) {
+    console.log('onItemClick', index);
     const { filteredSet } = this.state;
 
     const originalValue = filteredSet[index];
@@ -125,21 +151,39 @@ class AutoComplete extends ThemeComponent {
   }
 
   onQuerychange(value) {
-    const { onchange } = this.props;
+    const { onchange, onChange } = this.props;
 
-    this.setState({
-      valueForInput: value,
-    });
+    const consumerNotifierCallback = () => {
+      /**
+       * onchange
+       * @deprecated
+       * @legacy
+       */
+      if (onchange) {
+        onchange({ value });
+      }
 
-
-    const consumerNotifierCallback = () => (onchange && onchange(value));
+      /**
+       * @recommended
+       */
+      if (onChange) {
+        onChange({ value });
+      }
+    };
 
     this.asyncUpdateFilteredSet(consumerNotifierCallback);
   }
 
   onChangeWrap(e) {
+    // const { onChange } = this.props;
     const value = e.target.value;
-    this.setState({ valueForInput: value });
+    // if (!this.isControlled) {
+    //   this.setState({ value });
+    // }
+
+    // if (onChange) {
+    this.onChange({ value });
+    // }
 
     this.onQuerychangeDebounced(value);
   }
@@ -158,14 +202,44 @@ class AutoComplete extends ThemeComponent {
   }
 
   onEnter(value, originalValue) {
-    // const { filteredSet, index } = this.state;
-    const { onChange } = this.props;
-
-    // const originalValue = filteredSet[index];
+    console.log('onEnter', value);
+    const { onSubmit, onChange } = this.props;
 
     this.setState({
-      valueForInput: value,
+      value,
     });
+
+    if (onChange) {
+      onChange({
+        value,
+        originalValue,
+      });
+    }
+
+    if (onSubmit) {
+      console.log('onEnter has onSubmit', onSubmit);
+
+      setTimeout(() => {
+        onSubmit({
+          value,
+          originalValue,
+        });
+      }, 1);
+      console.log('onEnter called onSubmit with', {
+        value,
+        originalValue,
+      });
+    }
+  }
+
+  onChange({ value, originalValue }) {
+    const { onChange } = this.props;
+
+    if (!this.isControlled) {
+      this.setState({
+        value,
+      });
+    }
 
     if (onChange) {
       onChange({
@@ -177,11 +251,14 @@ class AutoComplete extends ThemeComponent {
 
   updateSearchValue(e) {
     // const { items } = this.props;
-    const { index, valueForInput, filteredSet } = this.state;
+    const { index, value: valueState, filteredSet } = this.state;
+    const { value: valueProps } = this.props;
+
+    const value = this.isControlled ? valueProps : valueState;
 
     if (e.key === 'Enter') {
       if (index < 0) {
-        this.onEnter(valueForInput || '', true);
+        this.onEnter(value || '', true);
       } else {
         this.onEnter(
           filteredSet[index].matchesResults
@@ -209,19 +286,21 @@ class AutoComplete extends ThemeComponent {
   }
 
   asyncUpdateFilteredSet(consumerNotifierCallback) { // eslint-disable-line class-methods-use-this
-    const { items, defaultValue, filterOn, strict } = this.props;
-    const { valueForInput } = this.state;
+    const { items, value: valueProps, filterOn, strict } = this.props;
+    const { value: valueState } = this.state;
 
-    if (valueForInput && valueForInput.length >= 2) {
+    const value = this.isControlled ? valueProps : valueState;
+
+    if (value && value.length >= 2) {
       new Promise((resolve/* , reject */) => {
         const filterFnStrict = item => (
           item[filterOn].toLowerCase().replace(/\s/g, '')
-            .indexOf((valueForInput || defaultValue || '').toLowerCase().replace(/\s/g, '')) > -1
+            .indexOf((value).toLowerCase().replace(/\s/g, '')) > -1
         );
 
         const matchMapper = item => ({
           ...item,
-          matchesResults: getMatchesResult(item[filterOn], (valueForInput || defaultValue || '')),
+          matchesResults: getMatchesResult(item[filterOn], (value)),
         });
 
         const filterFnPermissive = (mappedMatch) => {
@@ -257,8 +336,11 @@ class AutoComplete extends ThemeComponent {
       filterOn,
       resultLimit,
       isFullWidth,
+      value: valueProps,
     } = this.props;
-    const { index, escape, valueForInput, filteredSet } = this.state;
+    const { index, escape, value: valueState, filteredSet } = this.state;
+
+    const value = this.isControlled ? valueProps : valueState;
 
     const shadowStyle = {
       ...(filteredSet.length && filteredSet.length > 0
@@ -271,8 +353,9 @@ class AutoComplete extends ThemeComponent {
       ),
     };
 
-    const autoComplete = (!escape && valueForInput && filteredSet.length) ? (
+    const autoComplete = (!escape && value && filteredSet.length) ? (
       <VerticalMenu
+        key={'suggestions'}
         style={{ ...AutoCompleteStyle.popover, ...shadowStyle }}
         ref={(ref) => { this.autoComplete = ref; }}
         onMouseOver={this.handleMouseEnterList.bind(this)}
@@ -288,7 +371,7 @@ class AutoComplete extends ThemeComponent {
 
             // const nameToRender = item[filterOn] || item.name;
             const nameToRenderWithHightlight =
-              getHighlightedNameComplex(item, valueForInput, postFix, filterOn);
+              getHighlightedNameComplex(item, value, postFix, filterOn);
 
             // const selectedClass = '';
             let liStyle = {};
@@ -303,7 +386,7 @@ class AutoComplete extends ThemeComponent {
 
             return (
               <MenuItem
-                key={currentIndex}
+                key={`${currentIndex}-${item[filterOn]}`}
                 onClick={this.onItemClick.bind(this, currentIndex)}
                 style={liStyle}
                 onMouseOver={this.handleMouseEnterListItem.bind(this)}
@@ -321,14 +404,14 @@ class AutoComplete extends ThemeComponent {
             // onMouseOver={this.handleMouseEnterListItem.bind(this)}
             // onMouseOut={this.handleMouseLeaveListItem.bind(this)}
             style={{
-              textAlign: 'center', opacity: 0.8,
+              textAlign: 'center', opacity: 0.8, fontSize: '12px',
             }}
           >
             {'Some results were omitted, try a more specific query'}
           </MenuItem>)
           : null
         )}
-        {(valueForInput && filteredSet.length === 0
+        {(value && filteredSet.length === 0
           ? (<MenuItem
             key={'not-currentIndex-no-results'}
             onClick={() => { }}
@@ -349,12 +432,13 @@ class AutoComplete extends ThemeComponent {
         onKeyUp={this.updateSearchValue.bind(this)}
       >
         <TextField
+          key={'textfield'}
           isFullWidth={isFullWidth}
           style={{ zIndex: 3 }}
           placeholder={placeholder}
           ref={(ref) => { this.currentInput = ref; }}
           onChange={this.onChangeWrap}
-          value={this.state.valueForInput || ''}
+          value={value}
           type="text"
         />
         {autoComplete}
