@@ -1,10 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import WidgetHeader from './WidgetHeader';
 import { Loader } from '../Motion';
 import Flex from '../Layout/Flex'; // eslint-disable-line
 import { Close, Fullscreen } from '../Icons';
 import { UnstyledButton } from '../Button';
+
+
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => { // eslint-disable-line consistent-return
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      const id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
+
+const LoaderText = () => {
+  const [count, setCount] = useState(0);
+
+  useInterval(() => {
+    // Your custom logic here
+    setCount(count < 3 ? count + 1 : 0);
+  }, 256);
+
+  const dots = [...new Array(count)].map(() => '.').join('');
+
+  return (
+    <small style={{ padding: '8px', boxSizing: 'border-box', textAlign: 'left', width: '98px', color: 'grey' }}>Fetching data{dots}</small>
+  );
+};
 
 const WidgetWrapper = styled.div`
   border: 1px solid #ececec;
@@ -40,6 +77,7 @@ const LoaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const EmptyWrapper = styled.div`
@@ -198,7 +236,10 @@ class Widget extends Component {
           style={containerStyle}
         >
           { !isLoading && !emptyText && content}
-          { isLoading && <LoaderWrapper><Loader /></LoaderWrapper>}
+          { isLoading && <LoaderWrapper>
+            <Loader />
+            <LoaderText />
+          </LoaderWrapper>}
           { !isLoading && emptyText && <EmptyWrapper>{emptyText}</EmptyWrapper>}
         </WidgetContainer>
       </WidgetWrapper>
