@@ -39,7 +39,7 @@ const LoaderText = () => {
   const dots = [...new Array(count)].map(() => '.').join('');
 
   return (
-    <small style={{ padding: '8px', boxSizing: 'border-box', textAlign: 'left', width: '98px', color: 'grey' }}>Fetching data{dots}</small>
+    <small style={{ padding: '8px', boxSizing: 'border-box', textAlign: 'left', width: '104px', color: 'grey' }}>Fetching data{dots}</small>
   );
 };
 
