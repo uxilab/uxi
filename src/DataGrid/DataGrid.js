@@ -107,6 +107,7 @@ class DataGrid extends Component {
 
     const {
       data,
+      properties,
     } = this.props;
 
     if (nextState.selectedEntities.length !== selectedEntities.length) {
@@ -114,6 +115,8 @@ class DataGrid extends Component {
     } else if (nextState.allChecked !== allChecked) {
       return true;
     } else if (nextProps.data.length !== data.length) {
+      return true;
+    } else if (!isEqual(nextProps.properties, properties)) {
       return true;
     } else if (!isEqual(nextProps.data, data)) {
       return true;
