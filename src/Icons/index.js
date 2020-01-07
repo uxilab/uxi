@@ -130,6 +130,7 @@ export Domain from './Domain';
 export Done from './Done';
 export Emailthread from './Emailthread';
 export Engine from './Engine';
+export Enrich from './Enrich';
 export Epic from './Epic';
 export Event from './Event';
 export Externallink from './Externallink';
