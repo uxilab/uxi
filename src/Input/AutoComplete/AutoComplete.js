@@ -129,7 +129,6 @@ class AutoComplete extends ThemeComponent {
   }
 
   onItemClick(index) {
-    console.log('onItemClick', index);
     const { filteredSet } = this.state;
 
     const originalValue = filteredSet[index];
@@ -202,7 +201,6 @@ class AutoComplete extends ThemeComponent {
   }
 
   onEnter(value, originalValue) {
-    console.log('onEnter', value);
     const { onSubmit, onChange } = this.props;
 
     this.setState({
@@ -217,18 +215,12 @@ class AutoComplete extends ThemeComponent {
     }
 
     if (onSubmit) {
-      console.log('onEnter has onSubmit', onSubmit);
-
       setTimeout(() => {
         onSubmit({
           value,
           originalValue,
         });
       }, 1);
-      console.log('onEnter called onSubmit with', {
-        value,
-        originalValue,
-      });
     }
   }
 

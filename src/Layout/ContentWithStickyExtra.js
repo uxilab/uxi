@@ -100,8 +100,6 @@ class ContentWithStickyExtra extends Component {
         if (this.extraRef) {
           const { height } = this.extraRef.getBoundingClientRect();
           this.setState({ extraHeight: height });
-          console.log('extraHeight in attachListeners', height);
-          console.log('this.extraRef in attachListeners', this.extraRef);
         }
       }
     } else {
@@ -109,8 +107,6 @@ class ContentWithStickyExtra extends Component {
       if (this.extraRef) {
         const { height } = this.extraRef.getBoundingClientRect();
         this.setState({ extraHeight: height });
-        console.log('extraHeight in attachListeners', height);
-        console.log('this.extraRef in attachListeners', this.extraRef);
       }
     }
   }
@@ -131,8 +127,6 @@ class ContentWithStickyExtra extends Component {
 
       const extraHeight = height;
       // e.persist();
-      // console.log(e);
-      // console.log(e.originalEvent);
 
       const {
       // extraHeight,
@@ -143,14 +137,10 @@ class ContentWithStickyExtra extends Component {
       } = this.state;
 
       if (scrollingElem) {
-        console.log('scrollingElem exists, doing things');
         const { scrollTop } = scrollingElem;
 
         const isScrollingBackUp = previousScrollTop >= scrollTop;
 
-        console.log('previousScrollTop', previousScrollTop);
-        console.log('scrollTop', scrollTop);
-        console.log('isScrollingBackUp', isScrollingBackUp);
 
         let totalOffsetBackupScroll = scrollTop > 0
           ? totalOffsetBackupScrollState || 0
@@ -176,12 +166,6 @@ class ContentWithStickyExtra extends Component {
           : (
             (windowHeight - (extraHeight + headerHeight + paddingTotal)) + totalOffsetBackupScroll
           );
-        console.log('windowHeight', windowHeight);
-        console.log('extraHeight', extraHeight);
-        console.log('diff', diff);
-        console.log('scrollTop', scrollTop);
-        console.log('previousScrollTop', previousScrollTop);
-        console.log('totalOffsetBackupScroll', totalOffsetBackupScroll);
 
         if (scrollTop > diff) {
           this.setState({
@@ -218,8 +202,6 @@ class ContentWithStickyExtra extends Component {
     if (this.extraRef) {
       const { height } = this.extraRef.getBoundingClientRect();
       this.setState({ extraHeight: height });
-      // console.log('extraHeight in handleResize', height);
-      // console.log('this.extraRef in handleResize', this.extraRef);
       this.setState({ windowHeight: window.innerHeight });
     }
   }

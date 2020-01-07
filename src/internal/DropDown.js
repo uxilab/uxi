@@ -407,7 +407,6 @@ export class DropDown extends PureComponent {
     const dropDownMain = React.cloneElement(main,
       {
         // ref: (ref) => {
-        //   console.log('running ref');
         //   this.storeMainRef(ref);
         // },
         // this next line is useless
