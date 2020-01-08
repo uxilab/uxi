@@ -108,9 +108,12 @@ class DataGrid extends Component {
     const {
       data,
       properties,
+      selectable,
     } = this.props;
 
     if (nextState.selectedEntities.length !== selectedEntities.length) {
+      return true;
+    } else if (nextProps.selectable !== selectable) {
       return true;
     } else if (nextState.allChecked !== allChecked) {
       return true;
