@@ -100,7 +100,9 @@ class Checkbox extends React.PureComponent {
       // not controlled, use internal state
       state = {
         ...state,
-        checked: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
+        checked: this.isControlled
+          ? this.props.checked
+          : undefined,
       };
     }
 
@@ -199,6 +201,7 @@ class Checkbox extends React.PureComponent {
           <Wrapper checker={checker} style={this.getWrapperStyles()} hasFocus={hasFocus} >
             {iconIdentifier}
             <InputUI
+              data-isControlled={this.isControlled}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               hasFocus
@@ -242,7 +245,7 @@ Checkbox.defaultProps = {
   inputStyle: {},
   labelStyle: {},
   checked: undefined,
-  defaultChecked: false,
+  defaultChecked: undefined,
   disabled: false,
 };
 

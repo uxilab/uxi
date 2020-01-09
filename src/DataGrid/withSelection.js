@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import isEqual from 'lodash/isEqual';
 
 const getValuesAndRows = (props) => {
   const { children } = props;
@@ -38,9 +39,12 @@ export const withSelection = Comp => class WithSelection extends Component {
     super(props);
     this.onActivateRow = this.onActivateRow.bind(this);
     this.onRowSelection = this.onRowSelection.bind(this);
+
+    this.isSelectionControlled = (props.selected !== undefined || props.selected !== undefined);
+
     this.state = {
       allRowsSelected: props.allRowsSelected,
-      selectedRows: [],
+      selectedRows: this.isSelectionControlled ? props.selected : [],
       selectedRowsValues: props.initialSelected || [],
       availableIndexes: [], // internal
       availableRowsValues: [], // internal
@@ -65,6 +69,30 @@ export const withSelection = Comp => class WithSelection extends Component {
     }));
   }
 
+  /*
+  componentDidUpdate(prevProps, prevState) {
+    if (this.isSelectionControlled) {
+      if (
+        // via indexes
+        (
+          (prevProps.selectedIndexes || []).length !== (this.props.selectedIndexes || []).length
+          || (!isEqual(prevProps.selectedIndexes, this.props.selectedIndexes))
+        )
+        // or via entityId (assumed to be from entity[propertyKey]) ?
+        || (
+          (prevProps.selectedEntities || []).length !== (this.props.selectedEntities || []).length
+          || (!isEqual(prevProps.selectedEntities, this.props.selectedEntities))
+        )
+      ) {
+        this.setState({
+          selectedRowsValues: this.props.selectedEntities,
+          selectedRows: this.props.selectedIndexes,
+        });
+      }
+    }
+  }
+  */
+
   componentWillReceiveProps(nextProps) {
     const {
       availableRowsValues,
@@ -75,6 +103,27 @@ export const withSelection = Comp => class WithSelection extends Component {
     const newValues = getValuesAndRows(nextProps);
     const newSelectedIndex = [];
     const newSelectedValues = [];
+
+    if (this.isSelectionControlled) {
+      if (
+        // via indexes
+        (
+          (nextProps.selectedIndexes || []).length !== (this.props.selectedIndexes || []).length
+          || (!isEqual(nextProps.selectedIndexes, this.props.selectedIndexes))
+        )
+        // or via entityId (assumed to be from entity[propertyKey]) ?
+        || (
+          (nextProps.selectedEntities || []).length !== (this.props.selectedEntities || []).length
+          || (!isEqual(nextProps.selectedEntities, this.props.selectedEntities))
+        )
+      ) {
+        return this.setState({
+          selectedRowsValues: nextProps.selectedEntities,
+          selectedRows: nextProps.selectedIndexes,
+        });
+      }
+    }
+
 
     if (availableRowsValues.length !== newValues.availableRowsValues.length) {
       newValues.availableRowsValues.forEach((newValue, index) => {
@@ -157,13 +206,24 @@ export const withSelection = Comp => class WithSelection extends Component {
    * @param {*} rowIndex The index of the row
    */
   onRowSelection = (rowIndex) => {
-    const { onChange, multiSelectable, selectable } = this.props;
-    const { availableIndexes, availableRowsValues, selectedRows } = this.state;
-    let mitigatedSelectedRows = [...selectedRows];
+    const {
+      onChange,
+      multiSelectable,
+      selectable,
+
+      selected,
+      selectedEntities,
+
+    } = this.props;
+    const { availableIndexes, availableRowsValues, selectedRows: selectedRowsState } = this.state;
+
+    const selectedRows = this.isSelectionControlled ? selected : selectedRowsState;
+
+    let mitigatedSelectedRows = [...(selectedRows || [])];
 
     // If the rowIndex is the special case 'check all', we select all availableRows (not locked).
     if (rowIndex === 'all') {
-      mitigatedSelectedRows = [...this.state.availableIndexes];
+      mitigatedSelectedRows = [...(this.state.availableIndexes || [])];
     } else if (rowIndex === 'none') {
       // If the rowIndex is the special case 'none', unselect all rows.
       mitigatedSelectedRows = [];
@@ -194,7 +254,9 @@ export const withSelection = Comp => class WithSelection extends Component {
     // make values, yeah this idirty
     const selectedRowsValues = this.getValueForRows(mitigatedSelectedRows);
 
+    // if (!this.isSelectionControlled) {
     this.setState({ selectedRows: mitigatedSelectedRows, selectedRowsValues });
+    // }
 
     if (onChange) {
       onChange(
@@ -229,21 +291,32 @@ export const withSelection = Comp => class WithSelection extends Component {
     this.onRowSelection('none');
   }
 
-  isRowSelected(rowIndex) {
-    if (this.state.selectedRows.indexOf(rowIndex) > -1) {
-      return true;
+  isRowSelected(rowIndex, rowPropertyKey) {
+    if (this.isSelectionControlled) {
+      if (rowPropertyKey) {
+        if (this.props.selectedEntities.indexOf(rowPropertyKey) > -1) {
+          return true;
+        }
+        return false;
+      } else if (rowIndex !== undefined) {
+
+      }
+    } else {
+      if (this.state.selectedRows.indexOf(rowIndex) > -1) {
+        return true;
+      }
+      return false;
     }
-    return false;
   }
 
   render() {
-    const allRowsSelected = this.state.availableIndexes.length === this.state.selectedRows.length;
+    const allRowsSelected = this.state.availableIndexes.length === (this.state.selectedRows || []).length;
 
     return (
       <Comp
         {...this.props}
         allRowsSelected={allRowsSelected}
-        isRowSelected={rowIndex => this.isRowSelected(rowIndex)}
+        isRowSelected={(rowIndex, rowPropertyKey) => this.isRowSelected(rowIndex, rowPropertyKey)}
         onSelectAll={() => { this.onSelectAll(); }}
         onRowSelection={this.onRowSelection}
         onActivateRow={this.onActivateRow}

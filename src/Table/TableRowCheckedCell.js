@@ -5,7 +5,7 @@ import Checkbox from '../Input/Checkbox';
 import TableRowColumn from './TableRowColumn';
 
 const createCheckbox = (rowProps) => {
-  const { condensed, onRowSelect, uniqueId, locked, selected, readOnlyText, rowNumber } = rowProps;
+  const { condensed, onRowSelect, checkboxId, uniqueId, locked, selected, readOnlyText, rowNumber, checked } = rowProps;
   const key = `${uniqueId}-cb`;
 
   if (locked) {
@@ -27,13 +27,17 @@ const createCheckbox = (rowProps) => {
     return icon;
   }
 
+  console.log('checked in TableRowCheckedCell', checked);
+
   return (
     <div data-uniqueid={uniqueId}>
       <Checkbox
       // ref="rowSelectCB" // ref have to be fn
-        name={key}
-        disabled={false}
-        defaultChecked={selected}
+        id={checkboxId}
+        name={checkboxId}
+        // disabled={false}
+        defaultChecked={undefined}
+        checked={checked}
         onChange={event => onRowSelect(rowProps, event, rowNumber)}
       />
     </div>
@@ -60,7 +64,7 @@ const TableRowCheckedCell = (props) => {
       condensed={condensed}
       noBorder={noBorder}
     >
-      {createCheckbox(props)}
+      {createCheckbox({ ...props, checkboxId: `${childKey}-selectCB` })}
     </TableRowColumn>
   );
 };
