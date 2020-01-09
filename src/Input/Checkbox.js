@@ -22,7 +22,7 @@ const LabeLUI = styled.label`
 const InputUI = styled.input.attrs((/*  props  */) => ({
   onMouseOut: ({ target }) => target.blur && target.blur(),
 }))`
-  position: absolute
+  position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
@@ -100,7 +100,9 @@ class Checkbox extends React.PureComponent {
       // not controlled, use internal state
       state = {
         ...state,
-        checked: this.props.defaultChecked !== undefined ? this.props.defaultChecked : false,
+        checked: this.isControlled // eslint-disable-line no-nested-ternary
+          ? props.checked
+          : props.defaultChecked !== undefined ? props.defaultChecked : false,
       };
     }
 
@@ -159,6 +161,7 @@ class Checkbox extends React.PureComponent {
       name: nameProp,
       disabled,
       checked,
+      // defaultChecked, // check in contructor
       label,
       labelBefore,
       style,
@@ -204,7 +207,7 @@ class Checkbox extends React.PureComponent {
               hasFocus
               id={id}
               style={inputStyle}
-              checked={checker}
+              checked={checker} // defaultChecked via state
               // defaultChecked={defaultChecked}
               name={name}
               type="checkbox"
@@ -242,7 +245,7 @@ Checkbox.defaultProps = {
   inputStyle: {},
   labelStyle: {},
   checked: undefined,
-  defaultChecked: false,
+  defaultChecked: undefined,
   disabled: false,
 };
 
