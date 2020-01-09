@@ -22,7 +22,7 @@ class TableBody extends Component {
       isRowSelected,
       activable,
       sperateRows,
-      isSelectionControlled,
+      // isSelectionControlled,
     } = this.props;
 
     const numChildren = React.Children.count(this.props.children);

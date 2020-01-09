@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Menu from 'uxi/Menu/Menu';
 import Process from 'uxi/Icons/Process';
-import MlMenu from 'uxi/Menu/MlMenu/MlMenu';
+import MlMenu from 'uxi/Menu/MLMenu/MlMenu';
 import ButtonMenu from '../../../../../src/Menu/ButtonMenu/ButtonMenu';
 
 const menuDescriptor = [

@@ -101,16 +101,6 @@ class DataGrid extends Component {
     this.isSelectionControlled = props.selectedEntities !== undefined;
   }
 
-  componentDidUpdate() {
-    if (!isEqual(this.state.selectedEntities, this.props.selectedEntities)) {
-      if (this.isSelectionControlled) {
-        this.setState({
-          selectedEntities: this.props.selectedEntities,
-        });
-      }
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     const {
       selectedEntities,
@@ -121,7 +111,7 @@ class DataGrid extends Component {
       data,
       properties,
       selectable,
-      selectedIndexes: selectedIndexesProp,
+      // selectedIndexes: selectedIndexesProp,
       selectedEntities: selectedEntitiesProp,
     } = this.props;
 
@@ -141,6 +131,16 @@ class DataGrid extends Component {
       return true;
     }
     return false;
+  }
+
+  componentDidUpdate() {
+    if (!isEqual(this.state.selectedEntities, this.props.selectedEntities)) {
+      if (this.isSelectionControlled) {
+        this.setState({
+          selectedEntities: this.props.selectedEntities,
+        });
+      }
+    }
   }
 
   onChange(e, indexes, values) {
@@ -249,7 +249,10 @@ class DataGrid extends Component {
     // let's keep hacking around GFD
     let selected = selectedProp;
     if (selectedEntitiesProp && selected === undefined) {
-      selected = data.reduce((acc, { entityId }, i) => (selectedEntitiesProp.indexOf(entityId) > -1 ? [...acc, i] : acc), []);
+      selected = data.reduce((acc, { entityId }, i) =>
+        (selectedEntitiesProp.indexOf(entityId) > -1 ? [...acc, i] : acc)
+        , []
+      );
     }
 
     const { getTypeDefinition } = this.context;

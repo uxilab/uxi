@@ -5,8 +5,18 @@ import Checkbox from '../Input/Checkbox';
 import TableRowColumn from './TableRowColumn';
 
 const createCheckbox = (rowProps) => {
-  const { condensed, onRowSelect, checkboxId, uniqueId, locked, selected, readOnlyText, rowNumber, checked } = rowProps;
-  const key = `${uniqueId}-cb`;
+  const {
+    condensed,
+    onRowSelect,
+    checkboxId,
+    uniqueId,
+    locked,
+    // selected,
+    readOnlyText,
+    rowNumber,
+    checked,
+  } = rowProps;
+  // const key = `${uniqueId}-cb`;
 
   if (locked) {
     const icon = (

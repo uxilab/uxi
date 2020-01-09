@@ -93,7 +93,7 @@ export const withSelection = Comp => class WithSelection extends Component {
   }
   */
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) { // eslint-disable-line consistent-return
     const {
       availableRowsValues,
       selectedRowsValues,
@@ -212,7 +212,7 @@ export const withSelection = Comp => class WithSelection extends Component {
       selectable,
 
       selected,
-      selectedEntities,
+      // selectedEntities,
 
     } = this.props;
     const { availableIndexes, availableRowsValues, selectedRows: selectedRowsState } = this.state;
@@ -299,7 +299,7 @@ export const withSelection = Comp => class WithSelection extends Component {
         }
         return false;
       } else if (rowIndex !== undefined) {
-
+        // TODO implement this case
       }
     } else {
       if (this.state.selectedRows.indexOf(rowIndex) > -1) {
@@ -307,10 +307,13 @@ export const withSelection = Comp => class WithSelection extends Component {
       }
       return false;
     }
+    return false;
   }
 
   render() {
-    const allRowsSelected = this.state.availableIndexes.length === (this.state.selectedRows || []).length;
+    const allRowsSelected = (
+      this.state.availableIndexes.length === (this.state.selectedRows || []).length
+    );
 
     return (
       <Comp
