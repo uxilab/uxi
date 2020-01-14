@@ -137,7 +137,8 @@ const MlMenuItem = (props) => {
     <MlMenuItemUI isFullWidth={isFullWidth} >
       <InteractiveComp
         isFullWidth
-        className="MlMenuItem-interactive-elem" {...interactiveCompProp}
+        className="MlMenuItem-interactive-elem"
+        {...interactiveCompProp}
       >
         {finalIcon}
         <TextEllipsis style={{ flexGrow: 999 }}>{label}</TextEllipsis>

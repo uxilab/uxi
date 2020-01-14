@@ -56,17 +56,27 @@ const MlMenuList = (props) => {
   const {
     menuDescriptor,
     isFullWidth,
+    onSelfClose,
   } = props;
 
   return (
-    <MlMenuListUI isFullWidth={isFullWidth}>
+    <MlMenuListUI isFullWidth={isFullWidth} >
       {
-        (menuDescriptor || []).map(itemDescriptor => (
-          <MlMenuItem
-            isFullWidth={isFullWidth}
-            {...itemDescriptor}
-          />
-        ))
+        (menuDescriptor || []).map((itemDescriptor) => {
+          const { onClick: consumerOnClick } = itemDescriptor;
+          const onClickHandler = (...a) => { onSelfClose(); return consumerOnClick(...a); };
+
+          return (
+            <MlMenuItem
+              isFullWidth={isFullWidth}
+              {...itemDescriptor}
+              onClick={onClickHandler}
+              // {...(itemDescriptor.children !== undefined
+              // ? {} : { onClick: () => { itemDescriptor.onClick; } })
+              // }
+            />
+          );
+        })
       }
     </MlMenuListUI>
   );

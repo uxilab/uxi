@@ -207,6 +207,10 @@ class ButtonMenuMultiLevel extends Component {
           <MlMenu
             isFullWidth
             menuDescriptor={menuDescriptor}
+            onSelfClose={(e) => {
+              console.log('e', e);
+              this.close();
+            }}
           />
           {/* <ul
             style={{
