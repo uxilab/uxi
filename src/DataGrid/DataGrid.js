@@ -97,6 +97,8 @@ class DataGrid extends Component {
       selectedEntities: [],
       allChecked: false,
     };
+
+    this.isSelectionControlled = props.selectedEntities !== undefined;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -109,9 +111,13 @@ class DataGrid extends Component {
       data,
       properties,
       selectable,
+      // selectedIndexes: selectedIndexesProp,
+      selectedEntities: selectedEntitiesProp,
     } = this.props;
 
-    if (nextState.selectedEntities.length !== selectedEntities.length) {
+    if (!isEqual(nextProps.selectedEntities, selectedEntitiesProp)) {
+      return true;
+    } else if (nextState.selectedEntities.length !== selectedEntities.length) {
       return true;
     } else if (nextProps.selectable !== selectable) {
       return true;
@@ -127,11 +133,30 @@ class DataGrid extends Component {
     return false;
   }
 
+  componentDidUpdate() {
+    if (!isEqual(this.state.selectedEntities, this.props.selectedEntities)) {
+      if (this.isSelectionControlled) {
+        this.setState({
+          selectedEntities: this.props.selectedEntities,
+        });
+      }
+    }
+  }
+
   onChange(e, indexes, values) {
     const { onChange } = this.props;
-    this.setState({
-      selectedEntities: values,
-    });
+    if (this.isSelectionControlled) {
+      // noop
+      // actully, let's cheat
+      this.setState({
+        selectedEntities: values,
+      });
+    } else {
+      this.setState({
+        selectedEntities: values,
+      });
+    }
+
     if (onChange) {
       onChange(e, indexes, values);
     }
@@ -154,7 +179,14 @@ class DataGrid extends Component {
   }
 
   createBatchActions(actions) {
-    const { selectedEntities } = this.state;
+    const {
+      selectedEntities,
+      hideBatchActionContent,
+    } = this.state;
+
+    if (hideBatchActionContent) {
+      return null;
+    }
 
     if (selectedEntities.length === 0) {
       return <div />;
@@ -208,7 +240,21 @@ class DataGrid extends Component {
       batchActions,
       actions,
       stickyHeader,
+      hideBatchActionContent,
+
+      selected: selectedProp, // using prop via entity[propertyKey],
+      selectedEntities: selectedEntitiesProp,
     } = this.props;
+
+    // let's keep hacking around GFD
+    let selected = selectedProp;
+    if (selectedEntitiesProp && selected === undefined) {
+      selected = data.reduce((acc, { entityId }, i) =>
+        (selectedEntitiesProp.indexOf(entityId) > -1 ? [...acc, i] : acc)
+        , []
+      );
+    }
+
     const { getTypeDefinition } = this.context;
     const headers = toHeaderDefinition(data, properties);
     const viewModel = toViewModel(
@@ -217,11 +263,16 @@ class DataGrid extends Component {
       propertyKey,
       getTypeDefinition,
     );
-    const { selectedEntities, allChecked } = this.state;
+    const { selectedEntities: selectedEntitiesState, allChecked } = this.state;
+
+    const selectedEntities = this.isSelectionControlled
+      ? selectedEntitiesProp
+      : selectedEntitiesState;
 
     let hideHeader = false;
 
-    if (batchActions
+    if (hideBatchActionContent !== true
+      && batchActions
       && batchActions.length > 0
       && selectedEntities
       && selectedEntities.length > 0
@@ -239,8 +290,10 @@ class DataGrid extends Component {
         <Table
           ref={(tableRef) => { this.tableRef = tableRef; }}
           onChange={this.onChange.bind(this)}
-          multiSelectable={selectable}
-          selectable={selectable}
+          multiSelectable={multiSelectable} // WTFF!!
+          selectable={selectable} // WTFF!!
+          selected={selected}
+          selectedEntities={selectedEntities}
         >
           {header}
           {body}
@@ -267,7 +320,7 @@ class DataGrid extends Component {
     return (
       <div style={{ position: 'relative' }}>
         {batchActionsContent}
-        <Table>
+        <Table >
           {headerWithCheckbox}
         </Table>
         <div style={{ height: `${fixedHeight}px`, overflowY: 'scroll' }}>
@@ -277,6 +330,8 @@ class DataGrid extends Component {
             onChange={this.onChange.bind(this)}
             selectable={selectable}
             multiSelectable={multiSelectable}
+            selected={selected}
+            selectedEntities={selectedEntities}
           >
             {body}
           </Table>

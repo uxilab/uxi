@@ -26,6 +26,7 @@ const createTableBody = function (base) {
   return React.cloneElement(
     base,
     {
+      isSelectionControlled: this.isSelectionControlled,
       activeRow: this.props.activeRow,
       multiSelectable: this.props.multiSelectable,
       onRowSelection: this.props.onRowSelection,
@@ -64,6 +65,8 @@ class Table extends Component {
 
     this.createTableBody = createTableBody.bind(this);
     this.createTableHeader = createTableHeader.bind(this);
+
+    this.isSelectionControlled = props.selectedEntities !== undefined;
   }
 
 
@@ -79,7 +82,7 @@ class Table extends Component {
 
       const { componentName } = child.type;
       if (componentName === 'TableBody') {
-        tBody = this.createTableBody(child);
+        tBody = this.createTableBody(child, this.isSelectionControlled);
       } else if (componentName === 'TableHeader') {
         tHead = this.createTableHeader(child);
       } else if (componentName === 'TableFooter') {

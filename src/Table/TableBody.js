@@ -22,6 +22,7 @@ class TableBody extends Component {
       isRowSelected,
       activable,
       sperateRows,
+      // isSelectionControlled,
     } = this.props;
 
     const numChildren = React.Children.count(this.props.children);
@@ -32,7 +33,7 @@ class TableBody extends Component {
         return undefined; // consistent-return
       }
 
-      const isSelected = isRowSelected && isRowSelected(rowNumber);
+      const isSelected = isRowSelected && isRowSelected(rowNumber, child.props.value);
 
       const handlers = {
         onClick: (event, rowIndex) => {
@@ -66,8 +67,9 @@ class TableBody extends Component {
 
       const children = [];
 
+      const checked = isSelected;
       if (selectable) {
-        children.push(<TableRowCheckedCell {...props} childKey={child.key} />);
+        children.push(<TableRowCheckedCell {...props} childKey={child.key} checked={checked} />);
       }
 
       React.Children.forEach(child.props.children, (aChild, j) => {

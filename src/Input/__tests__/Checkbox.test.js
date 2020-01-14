@@ -25,6 +25,7 @@ describe('<Checkbox />', () => {
       expect(sut.instance().isControlled).toBe(false);
       expect(sut.instance().state.checked).toBe(false);
       expect(sut.instance().props.checked).toBeUndefined();
+      expect(sut.instance().props.checked).toBeUndefined();
       expect(sut.instance().props.onChange).toBe(spy);
     });
 
