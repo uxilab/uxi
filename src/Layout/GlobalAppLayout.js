@@ -85,7 +85,9 @@ const errorMsg = `GlobalAppLayout will only work with all those props:
 const GlobalAppLayout = (props) => {
   const {
     menu,
+    menuStyle = {},
     header,
+    headerStyle = {},
     content,
     footer,
     children,
@@ -100,9 +102,9 @@ const GlobalAppLayout = (props) => {
 
   return (
     <FlexLeftColExtended className="uxi_FlexLeftColExtended" style={{ ...wrapperStyle }}>
-      <FlexLeftColumnInnerWrapper>{menu}</FlexLeftColumnInnerWrapper>
+      <FlexLeftColumnInnerWrapper style={menuStyle}>{menu}</FlexLeftColumnInnerWrapper>
       <AppLayoutExtended style={{ ...innerWrapperStyle }}>
-        <HeaderWrapper>{header}</HeaderWrapper>
+        <HeaderWrapper style={headerStyle}>{header}</HeaderWrapper>
         <InnerAppLayoutUI className="uxi_GAL-main-scrolling-element" >
           {content}
           {footer}
