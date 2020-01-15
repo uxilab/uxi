@@ -21,7 +21,9 @@ import simpleLayout from './simpleLayout'; // eslint-disable-line import/no-name
 /* eslint-disable prefer-template */
 
 // export const makeGlobalCSSInjector = (theme) => {
-//   if (!theme) return () => console.warn('called `makeGlobalCSSInjector` without passing a theme');
+//   if (!theme) {
+//     return () => console.warn('called `makeGlobalCSSInjector` without passing a theme');
+//   }
 //   const {
 //     palette,
 //     transition,
