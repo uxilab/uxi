@@ -26,7 +26,12 @@ The model support custom menu for table header
 
 <Playground>
 <ThemeProvider>
-  <WithState defaultState={{ selected: ['bar', 'vrn'], sortDirections: [] }}>
+  <WithState
+    defaultState={{
+      selected: ['bar', 'vrn'],
+      sortDirections: [{ property: 'name' }, { property: 'firstName', sortDirection: 'ASC' }],
+    }}
+  >
     {
       (state, setState) => (
         <DataGrid
@@ -51,10 +56,11 @@ The model support custom menu for table header
             { age: 123, firstName: 'voo', name: 'mar', },
             { age: 123, firstName: 'bop', name: 'vrn', },
           ]}
-          sortDirections={[{ property: 'name' }, { property: 'firstName' } ]}
+          sortDirections={state.sortDirections}
           defaultSortDirections={undefined}
           sortable
           onSortChange={(property, sortDirection, newSortDirections) => {
+            console.log('mdx: newSortDirections', newSortDirections)
             setState({ ...state, sortDirections: newSortDirections })
           }}
         />

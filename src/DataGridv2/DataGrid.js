@@ -22,7 +22,7 @@ type EntityModel = {
   menu: ?Node
 }
 
-const SORTS = {
+export const SORTS = {
   ASC: 'ASC',
   DESC: 'DESC',
 };
@@ -94,14 +94,10 @@ const DataGrid = (props: DataGridProps) => {
   );
   const actualSortDirections = isSortControlled ? sortDirectionsProp : sortDirections;
   const handleSortChange = (property, sortDirection) => {
-    const newSortDirections = actualSortDirections.map(sortModel => (
-      sortModel.property === property
-        ? ({
-          ...sortModel,
-          sortDirection: toggleSORTS(sortModel.sortDirection),
-        })
-        : sortModel
-    ));
+    const newSortDirections = actualSortDirections.map(sortModel => ({
+      ...sortModel,
+      sortDirection,
+    }));
     if (!isSortControlled) {
       setSortDirections(newSortDirections);
     }
@@ -213,12 +209,17 @@ const DataGrid = (props: DataGridProps) => {
                   : {};
 
                 const sortModel = (actualSortDirections || [])
-                  .find(({ property }) => property === m.property);
+                  .find(({ property }) => {
+                    console.log('m.property', m.property);
+                    console.log('property', property);
+                    console.log('property === m.property', property === m.property);
+                    return property === m.property;
+                  });
 
-                const sortProps = (sortable)
+                const sortProps = (sortable && sortModel)
                   ? {
                     onSortChange: () => handleSortChange(
-                      model.property,
+                      m.property,
                       toggleSORTS((sortModel || {}).sortDirection)
                     ),
                     sortable: true,
@@ -233,7 +234,6 @@ const DataGrid = (props: DataGridProps) => {
                     key={i}
                     {...resizeProps}
                     {...sortProps}
-
                   >
                     {m.displayName}
                     <span>{m.menu}</span>

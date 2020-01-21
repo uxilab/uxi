@@ -1,8 +1,10 @@
 // @flow
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { buttonResetStylesCSSString } from '../Button/buttonResetStyles';
+import { SORTS } from './DataGrid';
 import type { ThProps } from './Th';
+
 
 const Triangle = styled.svg.attrs(props => ({
   focusable: 'false',
@@ -11,12 +13,11 @@ const Triangle = styled.svg.attrs(props => ({
   height: '10px',
   children: <polygon points="250,110 100,450 400,450" />,
 }))`
-  /* fill: ${({ theme }) => theme.palette.midDarkGrey}; */
-  fill: inherit;
+  fill: ${({ theme }) => theme.palette.midDarkGrey};
 `;
 
 
-const SortHandler = styled.button.attrs((props: ThProps) => ({
+const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   onClick: (...a) => {
     if (PopStateEvent.onClick) {
       props.onClick(...a);
@@ -42,18 +43,20 @@ const SortHandler = styled.button.attrs((props: ThProps) => ({
   ${Triangle}:first-child {
     /* content: '▾';
     content: '▴'; */
+    ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.ASC ? css`fill: ${palette.accent.main}` : '')};
   }
   ${Triangle}:last-child {
     /* content: '▾';
     content: '▴'; */
+    ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.DESC ? css`fill: ${palette.accent.main}` : '')};
     transform: rotate(180deg);
   }
 `;
 
 
 export default props => (
-  <SortHandler {...props} >
+  <SortHandlerButton {...props} >
     <Triangle />
     <Triangle />
-  </SortHandler>
+  </SortHandlerButton>
 );

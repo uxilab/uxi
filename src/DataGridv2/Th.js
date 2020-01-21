@@ -25,6 +25,7 @@ const ThInnerWrapper = styled.div`
   flex-flow: row nowrap;
   align-items: stretch;
   white-space: nowrap;
+  padding: 0 8px;
 `;
 
 /* eslint-disable react/no-children-prop */
@@ -34,8 +35,18 @@ const mapChildren = (props: ThProps) => ({
   children: (
     <ThInnerWrapper>
       {props.children}
-      {props.sortable ? <SortHandler sortable={props.sortable} onSortChange={props.onSortChange} /> : null}
-      {props.resizable ? <ResizeHandler resizable={props.resizable} onResizeStart={props.onResizeStart} /> : null}
+      {props.sortable
+        ? <SortHandler
+          sortable={props.sortable}
+          sortDirection={props.sortDirection}
+          onSortChange={props.onSortChange}
+        />
+        : null
+      }
+      {props.resizable
+        ? <ResizeHandler resizable={props.resizable} onResizeStart={props.onResizeStart} />
+        : null
+      }
     </ThInnerWrapper>
   ),
 });
@@ -47,6 +58,8 @@ const Th = styled.th.attrs(mapChildren)`
   position: relative;
   transition: all 280ms cubic-bezier(.5,1,.5,1);
   text-transform: uppercase;
+  color: ${({ theme: { palette } }) => palette.midDarkGrey};
+  background: ${({ theme: { palette } }) => palette.white};
   /* font-size: 13px;
   color: ${({ theme }) => theme.palette.midDarkGrey}; */
   &:hover {
