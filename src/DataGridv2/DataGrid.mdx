@@ -1,0 +1,166 @@
+---
+name: DataGrid
+route: /doc/components/DataGrid
+---
+
+import { useState } from 'react'
+import { Playground, Props } from 'docz'
+import ThemeProvider from '../Theme/ThemeProvider'
+import DataGrid from './'
+import { WithState } from './utils'
+
+
+import Flex from '../Layout/Flex'
+// import ButtonMenu from '../ButtonMenu'
+
+
+# DataGrid
+
+Takes a list of entities, a model, and renders a table.
+The model displays the raw value unles you pass it a `Component`
+The model support custom menu for table header
+
+
+
+## Example usage (controlled selection)
+
+<Playground>
+<ThemeProvider>
+  <WithState defaultState={{ selected: ['bar', 'vrn'], sortDirections: [] }}>
+    {
+      (state, setState) => (
+        <DataGrid
+          resizable
+          propertyKey="name"
+          onSelectionChange={(isSelected, entityId, selected) => {
+            console.log('isSelected, entityId, selected', isSelected, entityId, selected)
+            setState({ ...state, selected })
+          }}
+          onSelectAllChange={(selectAllChecked) => console.log('selectAllChecked', selectAllChecked)}
+          selected={state.selected}
+          selectable
+          model={[
+            { property: 'firstName', displayName: 'First name' },
+            { property: 'name', displayName: 'Name' },
+            { property: 'age', displayName: 'Age' },
+          ]}
+          data={[
+            { age: 123, firstName: 'foo', name: 'bar', },
+            { age: 123, firstName: 'baz', name: 'foo', },
+            { age: 123, firstName: 'fuz', name: 'fob', },
+            { age: 123, firstName: 'voo', name: 'mar', },
+            { age: 123, firstName: 'bop', name: 'vrn', },
+          ]}
+          sortDirections={[{ property: 'name' }, { property: 'firstName' } ]}
+          defaultSortDirections={undefined}
+          sortable
+          onSortChange={(property, sortDirection, newSortDirections) => {
+            setState({ ...state, sortDirections: newSortDirections })
+          }}
+        />
+      )
+    }
+    </WithState>
+    </ThemeProvider>
+</Playground>
+
+
+## Basic usage
+
+<Playground>
+<ThemeProvider>
+  <DataGrid
+    model={[
+      { property: 'constructor', displayName: 'Main Constructor' },
+      { property: 'model', displayName: 'Vehicule Model' },
+    ]}
+    data={[
+      { constructor: 'SpaceX', model: 'falcon' },
+      { constructor: 'Tesla', model: 'model X' },
+    ]}
+    resizable
+    selectable
+    useSmartOverflowX
+  />
+</ThemeProvider>
+</Playground>
+
+
+## Props
+
+<Props of={DataGrid} />
+
+
+## Infered model
+
+`model`, if not provided, is infered from the first entity in the `data` collection
+
+Note: using `Object.keys`
+
+
+<Playground>
+<ThemeProvider>
+  <DataGrid
+    data={[
+      { constructor: 'SpaceX', model: 'falcon' },
+      { constructor: 'Tesla', model: 'model X', foo: 'bar' },
+    ]}
+  />
+  </ThemeProvider>
+</Playground>
+
+
+
+## Custom Component render + custom menu
+
+<Playground>
+  <ThemeProvider>
+  <DataGrid
+    model={[
+      { 
+        property: 'name',
+        displayName: 'Name',
+      },
+      {
+        property: 'roles',
+        displayName: 'User groups',
+        Component: (entity) => (
+          entity.roles.map((r, i, { length }) => (
+            <div>
+              <i>{r}</i>
+              {i === length-1 ? '' : ', '}
+            </div>
+          ))
+        )
+      },
+    ]}
+    data={[
+      { name: 'John', roles: ['admin', 'editor', 'writer'] },
+    ]}
+  />
+</ThemeProvider>
+</Playground>
+
+
+
+
+## useSmartOverflowX
+
+
+resize and observe the overflow-x automatically changing when the table is wider than "its viewport"
+
+<Playground>
+  <ThemeProvider>
+  <div
+    style={{ whiteSpace: 'nowrap' }}
+  >
+  <DataGrid
+    useSmartOverflowX
+    data={[
+      { constructor: 'SpaceX - $$$$$$$$$$$$$$$$', model: 'falcon  - $$$$$$$$$$$$$$$$', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$' },
+      { constructor: 'Tesla - $$$$$$$$$$$$$$$$', model: 'model X', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$'  },
+    ]}
+  />
+  </div>
+  </ThemeProvider>
+</Playground>

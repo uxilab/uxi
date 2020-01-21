@@ -244,6 +244,8 @@ class DataGrid extends Component {
 
       selected: selectedProp, // using prop via entity[propertyKey],
       selectedEntities: selectedEntitiesProp,
+
+      resizable,
     } = this.props;
 
     // let's keep hacking around GFD
@@ -288,6 +290,7 @@ class DataGrid extends Component {
       <div style={{ position: 'relative' }}>
         {batchActionsContent}
         <Table
+          resizable={resizable}
           ref={(tableRef) => { this.tableRef = tableRef; }}
           onChange={this.onChange.bind(this)}
           multiSelectable={multiSelectable} // WTFF!!
@@ -320,11 +323,12 @@ class DataGrid extends Component {
     return (
       <div style={{ position: 'relative' }}>
         {batchActionsContent}
-        <Table >
+        <Table resizable={resizable} >
           {headerWithCheckbox}
         </Table>
         <div style={{ height: `${fixedHeight}px`, overflowY: 'scroll' }}>
           <Table
+            // resizable={resizable}
             ref={(tableRef) => { this.tableRef = tableRef; }}
             allRowsSelected={allChecked}
             onChange={this.onChange.bind(this)}
