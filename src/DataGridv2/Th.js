@@ -24,20 +24,12 @@ type ThProps = {
   sortDirection: SortDirection,
 }
 
-const ThInnerWrapper = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: stretch;
-  white-space: nowrap;
-  padding: 0 0 0 8px;
-`;
-
 /* eslint-disable react/no-children-prop */
 const mapChildren = (props: ThProps = {}) => ({
   ...props,
   // TODO use fragment
   children: (
-    <ThInnerWrapper>
+    <props.ThInnerWrapper>
       {props.children}
       {props.sortable
         ? <SortHandler
@@ -78,7 +70,7 @@ const mapChildren = (props: ThProps = {}) => ({
         )
         : null
       }
-    </ThInnerWrapper>
+    </props.ThInnerWrapper>
   ),
 });
 

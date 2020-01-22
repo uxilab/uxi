@@ -7,6 +7,7 @@ import Td from './Td';
 import useOnDocumentMouseUp from '../hooks/useOnDocumentMouseUp';
 import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
+import ThInnerWrapper from './ThInnerWrapper';
 import { Flex } from '../Layout/Flex';
 
 
@@ -61,6 +62,15 @@ export type DataGridProps = {
   defaultColumnsSizes: ?Array<string>,
   borderCollapse: ? 'collapse' | 'separate',
   useSmartOverflowX: ?Boolean,
+
+  /**
+   * @beta
+   *
+   * `ThInnerWrapper` allow passing a props to overwritte the Th inner Element
+   * This may be useful but use wisely, as the layout of the default `ThInnerWrapper`
+   * has been carefully crafted to support all the data features (resize, menus, etc.)
+   */
+  ThInnerWrapper: ?Component,
 }
 
 const DataGrid = (props: DataGridProps) => {
@@ -85,6 +95,8 @@ const DataGrid = (props: DataGridProps) => {
     resizable,
     useSmartOverflowX,
     borderCollapse,
+
+    ThInnerWrapper,
   } = props;
 
   /* Sort */
@@ -195,6 +207,7 @@ const DataGrid = (props: DataGridProps) => {
             {
               selectable
                 ? <Th
+                  ThInnerWrapper={ThInnerWrapper}
                   resizable={false}
                   style={{ width: '32px' }}
                 >
@@ -233,6 +246,7 @@ const DataGrid = (props: DataGridProps) => {
                     menuDescriptor={m.menuDescriptor}
                     index={i}
                     key={i}
+                    ThInnerWrapper={ThInnerWrapper}
                     {...resizeProps}
                     {...sortProps}
                   >
@@ -309,6 +323,8 @@ DataGrid.defaultProps = {
   borderCollapse: 'collapse',
   defaultColumnsSizes: undefined,
   useSmartOverflowX: false,
+
+  ThInnerWrapper,
 };
 /* eslint-enable no-unused-vars */
 
