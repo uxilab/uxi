@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-export const WithState = ({ children, defaultState, ...props }) => {
+export const WithState = ({ children, defaultState }) => {
   const [state, setState] = useState(defaultState);
   return children(state, setState);
 };

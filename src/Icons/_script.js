@@ -137,7 +137,14 @@ const writeFileTest = (fileName) => {
 };
 
 const addFileToIndex = (x) => {
-  exec(`echo "export ${x} from './${x}';" >> index.js`, (err, stdout, stderr) => {
+  // const exportString = [
+  //   `import ${x}Comp from './${x}';`
+  //   `export const ${x} = ${x}Comp;`
+  // ].join('\n')
+
+  exec(
+    `echo "import ${x}Comp from './${x}'; export const ${x} = ${x}Comp; " >> index.js`,
+    (err, stdout, stderr) => {
     if (err) { console.log(err); return false; }
     console.log(`good for ${x}`);
   });
@@ -221,7 +228,7 @@ export default {{name}};`;
  * RUN :
  */
 // eraseIndex
-exec("echo '' > ./index.js", (err, std, stdout) => {
+exec("echo '/* eslint-disable max-len */' > ./index.js", (err, std, stdout) => {
   if (err) { console.log(err); return false; }
   console.log('index deleted');
 });

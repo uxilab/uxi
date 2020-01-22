@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
+// import keycode from 'keycode';
 import Fade from './Fade';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
@@ -35,7 +35,7 @@ class Modal extends Component {
   }
 
   handleDocumentKeyUp = (event) => {
-    if (keycode(event) !== 'esc') {
+    if (event.key !== 'esc') {
       return;
     }
 

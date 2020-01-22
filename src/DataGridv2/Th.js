@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
+import ButtonMenuMultiLevel from '../Menu/ButtonMenu/ButtonMenuMultiLevel'; // eslint-disable-line no-unused-vars
+import Options from '../Icons/Options';
+import UnstyledButton from '../Button/UnstyledButton1';
 import type { SortDirection } from './DataGrid';
 
 
@@ -46,6 +49,21 @@ const mapChildren = (props: ThProps) => ({
       {props.resizable
         ? <ResizeHandler resizable={props.resizable} onResizeStart={props.onResizeStart} />
         : null
+      }
+      {
+        props.menuDescriptor !== undefined
+          ? (
+            <div style={{ marginLeft: 'auto' }}>
+              <ButtonMenuMultiLevel
+                anchor={'right'}
+                buttonWrapperStyle={{ position: 'inherit' }}
+                menuDescriptor={props.menuDescriptor}
+                button={<UnstyledButton style={{ width: '28px' }} icon={<Options />} />}
+              />
+            </div>
+          )
+          // ? '•••'
+          : null
       }
     </ThInnerWrapper>
   ),

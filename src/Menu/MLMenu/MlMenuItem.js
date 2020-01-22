@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UnstyledButton } from '../../Button';
+import { UnstyledButton } from '../../Button/UnstyledButton1';
 import MlMenuSeparator from './MlMenuSeparator';
 import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
 import MlMenu from './MlMenu';

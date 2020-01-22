@@ -5,6 +5,9 @@ import { Title } from 'uxi/Text';
 import CodeExample from '../../CodeExample';
 import { componentInfoToMD } from '../../componentInfoToMD';
 
+import ExampleDataGridv2 from './DataGridv2';
+import RAWExampleDataGridv2 from '!raw-loader!./DataGridv2';
+
 import ExampleSimpleDataGrid from './ExampleSimpleDataGrid';
 import RAWExampleSimpleDataGrid from '!raw-loader!./ExampleSimpleDataGrid';
 
@@ -32,6 +35,13 @@ const TablePage = () => (
       This is making the grid more extensible and re-usable.
       Refer to Entity and Metadata guidelines to know more.
     </P>
+    <CodeExample
+      code={RAWExampleDataGridv2}
+      title="Data Grid v2"
+      description={componentInfoToMD(RAWExampleDataGridv2)}
+    />
+
+    <br />
     <CodeExample
       code={RAWDataGrid}
       title="Simple Data Grid"

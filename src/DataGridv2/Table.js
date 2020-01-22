@@ -1,12 +1,11 @@
 // @flow
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 
 type TableProps = {
   borderCollapse?: 'collapse' | 'separate',
   display?: 'table' | 'block',
-  light?: boolean,
 }
 
 // Table.propTypes = {
@@ -16,19 +15,21 @@ type TableProps = {
 // }
 
 
-const Table = styled.table`
+const TableUi = styled.table`
   width: 100%;
   border-collapse: ${({ borderCollapse }) => borderCollapse || 'collapse'};
   overflow-x: auto;
   display: ${({ display }) => display};
-  ${({ isResizing }) => (isResizing ? css`user-select: none` : '')};
+  ${({ isResizing }) => (isResizing ? 'user-select: none' : '')};
 `;
+
+
+const Table = (props: TableProps) => <TableUi {...props} />;
 
 
 Table.defaultProps = {
   borderCollapse: 'collapse',
   display: 'table',
-  light: undefined,
 };
 
-export default (props: TableProps) => <Table {...props} />;
+export default Table;

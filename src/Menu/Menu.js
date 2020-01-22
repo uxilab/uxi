@@ -128,7 +128,7 @@ export const handleMenuLevel = (menuItemDescriptor = {}) => {
   return (isSeparator
     ? <Separator label={label} />
     : <MenuItem key={label} >
-      <a // eslint-disable-line jsx-a11y/href-no-hash
+      <a // eslint-disable-line
         href="#"
         onClick={(ev) => {
           onClick(ev);

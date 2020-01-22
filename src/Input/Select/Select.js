@@ -4,7 +4,7 @@ import isEqual from 'lodash/isEqual';
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
 import { Arrowdown } from '../../Icons';
-import { Button } from '../../Button';
+import Button from '../../Button/Button';
 import UnstyledButtonBeta from '../../Button/UnstyledButton1';
 import Option from './SelectInputOptions';
 import StatusIcon from '../utils/StatusIcon';

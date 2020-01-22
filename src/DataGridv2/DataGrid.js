@@ -209,12 +209,7 @@ const DataGrid = (props: DataGridProps) => {
                   : {};
 
                 const sortModel = (actualSortDirections || [])
-                  .find(({ property }) => {
-                    console.log('m.property', m.property);
-                    console.log('property', property);
-                    console.log('property === m.property', property === m.property);
-                    return property === m.property;
-                  });
+                  .find(({ property }) => property === m.property);
 
                 const sortProps = (sortable && sortModel)
                   ? {
@@ -230,6 +225,7 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
+                    menuDescriptor={m.menuDescriptor}
                     index={i}
                     key={i}
                     {...resizeProps}
@@ -305,6 +301,5 @@ DataGrid.defaultProps = {
   useSmartOverflowX: false,
 };
 /* eslint-enable no-unused-vars */
-
 
 export default DataGrid;

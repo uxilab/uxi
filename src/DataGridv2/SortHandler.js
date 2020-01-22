@@ -7,6 +7,7 @@ import type { ThProps } from './Th';
 
 
 const Triangle = styled.svg.attrs(props => ({
+  ...props,
   focusable: 'false',
   viewBox: '0 0 500 500',
   width: '10px',

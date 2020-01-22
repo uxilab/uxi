@@ -169,6 +169,7 @@ class DropDown2 extends Component {
       fullWidthContent,
       forceShadow,
       visibleOverflow,
+      buttonWrapperStyle,
     } = this.props;
 
     const {
@@ -196,6 +197,7 @@ class DropDown2 extends Component {
         style={{
           position: 'relative',
           ...(!isFullWidth ? { display: 'inline-block' } : {}),
+          ...buttonWrapperStyle,
         }}
         ref={this.storeWrapperRef}
       >

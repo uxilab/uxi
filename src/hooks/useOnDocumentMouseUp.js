@@ -6,7 +6,8 @@ function useOnDocumentMouseUp(ref, handler) {
     () => {
       // console.log('useOnDocumentMouseUp effect handler running', )
       const listener = (event) => {
-        // TODO fi this, ideally we should not listen on documents but on the 'input' component or dialog or whatever...
+        // TODO fi this, ideally we should not listen on
+        // documents but on the 'input' component or dialog or whatever...
         // unless we decide to never do multiple modeal at once ??
         // Do nothing if clicking ref's element or descendent elements
         // if (!ref.current || ref.current.contains(event.target, event.currentTarget)) {

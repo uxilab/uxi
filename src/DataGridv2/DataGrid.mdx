@@ -6,6 +6,7 @@ route: /doc/components/DataGrid
 import { useState } from 'react'
 import { Playground, Props } from 'docz'
 import ThemeProvider from '../Theme/ThemeProvider'
+import Circle from '../Icons/Circle'
 import DataGrid from './'
 import { WithState } from './utils'
 
@@ -47,7 +48,28 @@ The model support custom menu for table header
           model={[
             { property: 'firstName', displayName: 'First name' },
             { property: 'name', displayName: 'Name' },
-            { property: 'age', displayName: 'Age' },
+            {
+              property: 'age',
+              displayName: 'Age',
+              menuDescriptor: [{
+                label: 'foo',
+                icon: <Circle />,
+                onClick: () => { console.log('foo')},
+                children: [
+                  {
+                    label: 'bar',
+                    icon: <Circle />,
+                    onClick: () => { console.log('foo>bar')},
+                  }
+                ],
+                // type: ,
+                // Link: ,
+                // to: ,
+                // href: ,
+                // target: ,
+                // isFullWidth: ,
+              }]
+            },
           ]}
           data={[
             { age: 123, firstName: 'foo', name: 'bar', },
