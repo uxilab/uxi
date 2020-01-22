@@ -6,7 +6,7 @@ import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
 import ButtonMenuMultiLevel from '../Menu/ButtonMenu/ButtonMenuMultiLevel'; // eslint-disable-line no-unused-vars
 import Options from '../Icons/Options';
-import UnstyledButton from '../Button/UnstyledButton1';
+import { UnstyledButton } from '../Button/UnstyledButton1';
 import type { SortDirection } from './DataGrid';
 
 
@@ -14,7 +14,8 @@ type ThProps = {
   children?: Node | Array<Node>,
   index?: number,
 
-  resizable?: boolean,
+  isResizing?: Boolean,
+  resizable?: Boolean,
   onResizeStart?: Function,
 
   // eslint-disable-next-line max-len
@@ -28,11 +29,11 @@ const ThInnerWrapper = styled.div`
   flex-flow: row nowrap;
   align-items: stretch;
   white-space: nowrap;
-  padding: 0 8px;
+  padding: 0 0 0 8px;
 `;
 
 /* eslint-disable react/no-children-prop */
-const mapChildren = (props: ThProps) => ({
+const mapChildren = (props: ThProps = {}) => ({
   ...props,
   // TODO use fragment
   children: (
@@ -46,24 +47,36 @@ const mapChildren = (props: ThProps) => ({
         />
         : null
       }
-      {props.resizable
-        ? <ResizeHandler resizable={props.resizable} onResizeStart={props.onResizeStart} />
-        : null
-      }
       {
         props.menuDescriptor !== undefined
           ? (
             <div style={{ marginLeft: 'auto' }}>
               <ButtonMenuMultiLevel
                 anchor={'right'}
-                buttonWrapperStyle={{ position: 'inherit' }}
+                buttonWrapperStyle={{
+                  position: 'inherit',
+                  // fuck: 'eslint',
+                }}
+                BoxWrapperUIStyle={{
+                  width: 'auto',
+                }}
                 menuDescriptor={props.menuDescriptor}
-                button={<UnstyledButton style={{ width: '28px' }} icon={<Options />} />}
+                button={<UnstyledButton style={{ width: '32px' }} icon={<Options />} />}
               />
             </div>
           )
           // ? '•••'
           : null
+      }
+      {props.resizable
+        ? (
+          <ResizeHandler
+            isResizing={props.isResizing}
+            resizable={props.resizable}
+            onResizeStart={props.onResizeStart}
+          />
+        )
+        : null
       }
     </ThInnerWrapper>
   ),
@@ -86,7 +99,6 @@ const Th = styled.th.attrs(mapChildren)`
       transition: all 280ms cubic-bezier(.5,1,.5,1);
       opacity: .8;
       width: 6px;
-      cursor: col-resize;
     }
   }
 
@@ -103,6 +115,7 @@ const Th = styled.th.attrs(mapChildren)`
 `;
 
 Th.propTypes = {
+  isResizing: PropTypes.bool,
   light: PropTypes.bool,
   index: PropTypes.number,
   resizable: PropTypes.bool,
@@ -110,7 +123,7 @@ Th.propTypes = {
 };
 
 Th.defaultProps = {
-  /* eslint-disable no-unused-vars */
+  isResizing: undefined, /* eslint-disable no-unused-vars */
   onResizeStart: () => {},
   // eslint-disable-next-line max-len
   onSortChange: (property: string, sortDirection: SortDirection, newSortDirections: Array<SortDirection>) => {},

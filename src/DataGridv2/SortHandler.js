@@ -32,7 +32,7 @@ const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  width: 28px;
+  width: 32px;
   cursor: pointer;
 
 

@@ -34,6 +34,7 @@ const MenuWrapperUI = styled.div`
 
   ul {
     width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
+    min-width: var(--itemWidth);
     max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
   }
   li {

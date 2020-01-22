@@ -46,7 +46,20 @@ The model support custom menu for table header
           selected={state.selected}
           selectable
           model={[
-            { property: 'firstName', displayName: 'First name' },
+            { property: 'firstName', displayName: 'First name', menuDescriptor: [
+              {
+                label: 'foo',
+                icon: <Circle />,
+                onClick: () => { console.log('foo')},
+                children: [
+                  {
+                    label: 'bar',
+                    icon: <Circle />,
+                    onClick: () => { console.log('foo>bar')},
+                  }
+                ],
+              },
+            ]},
             { property: 'name', displayName: 'Name' },
             {
               property: 'age',

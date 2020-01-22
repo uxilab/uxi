@@ -83,6 +83,7 @@ class DropDown2 extends Component {
     trigger: <div />,
     children: <div />,
     anchor: 'left',
+    BoxWrapperUIStyle: {},
   }
 
   constructor(props) {
@@ -170,6 +171,7 @@ class DropDown2 extends Component {
       forceShadow,
       visibleOverflow,
       buttonWrapperStyle,
+      BoxWrapperUIStyle,
     } = this.props;
 
     const {
@@ -217,6 +219,7 @@ class DropDown2 extends Component {
           isOpen={isOpen}
           maxHeight={height}
           childrenWith={(childrenProps.style && childrenProps.style.width) || null}
+          style={BoxWrapperUIStyle}
         >
           <div ref={this.storeRef} data-drop-down-content>
             {React.Children.only(children)}

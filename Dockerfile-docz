@@ -1,0 +1,50 @@
+FROM node:alpine
+
+WORKDIR /app
+
+# CODE + PACKAGE
+COPY ./src /app/src
+# COPY ./package.json /app/package.json
+RUN echo '{ "name": "_", "version": "0.0.1", "scripts": {} }' >> package.json
+# COPY ./yarn.lock /app/yarn.lock
+
+# INSTALL CONSUMER DEPS (no dev deps)
+# RUN npm install --only=production
+
+# INSTALL JOB DEPS
+RUN npm install classnames rc-tooltip lodash react react-dom styled-components react-scripts docz gatsby-plugin-flow react-click-outside react-transition-group resize-observer-polyfill
+
+RUN npx json -I -f package.json -e 'this.scripts["docz"]="docz build"'
+RUN npx json -I -f package.json -e 'this.scripts["docz:dev"]="docz dev"'
+
+# FLOW CONFIG
+RUN echo '[ignore]' >> /app/.flowconfig
+RUN echo '[include]' >> /app/.flowconfig
+RUN echo '[libs]' >> /app/.flowconfig
+RUN echo '[lints]' >> /app/.flowconfig
+RUN echo '[options]' >> /app/.flowconfig
+RUN echo 'module.system.node.resolve_dirname=node_modules' >> /app/.flowconfig
+RUN echo 'module.system.node.resolve_dirname=src' >> /app/.flowconfig
+RUN echo 'module.file_ext=.js' >> /app/.flowconfig
+RUN echo 'module.file_ext=.json' >> /app/.flowconfig
+RUN echo 'module.file_ext=.jsx' >> /app/.flowconfig
+RUN echo 'module.file_ext=.css' >> /app/.flowconfig
+RUN echo 'module.file_ext=.scss' >> /app/.flowconfig
+RUN echo '[strict]' >> /app/.flowconfig
+
+# GATSBY CONFIG
+RUN echo 'module.exports = { plugins: [`gatsby-plugin-flow`] }' >> /app/gatsby-config.js
+
+# DOCZ CONFIG
+# NEEDS `"host: "0.0.0.0"` because run inside docker need to be 'publicly' exposed
+RUN echo 'export default { port: 4000, host: "0.0.0.0" }' >> /app/doczrc.js
+
+# expose src volum (so to not have to buidl every time)
+# VOLUME ./src /app/src
+
+# expose volume for output (build - './.docz')
+# VOLUME .docz /app/.docz
+
+EXPOSE 4000
+
+CMD ["npm", "run", "docz"]

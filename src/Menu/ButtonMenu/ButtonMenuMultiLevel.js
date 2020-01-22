@@ -120,6 +120,7 @@ class ButtonMenuMultiLevel extends Component {
       // menuMaxHeight,
       // isFullWidth,
       buttonWrapperStyle,
+      BoxWrapperUIStyle,
     } = this.props;
 
     const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
@@ -205,6 +206,7 @@ class ButtonMenuMultiLevel extends Component {
           onTriggerWrapperRef={this.storeTriggerWrapperRef}
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
           buttonWrapperStyle={buttonWrapperStyle}
+          BoxWrapperUIStyle={BoxWrapperUIStyle}
         >
           <MlMenu
             isFullWidth

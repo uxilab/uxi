@@ -7,6 +7,7 @@ import Td from './Td';
 import useOnDocumentMouseUp from '../hooks/useOnDocumentMouseUp';
 import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
+import { Flex } from '../Layout/Flex';
 
 
 type EntityId = String
@@ -128,6 +129,8 @@ const DataGrid = (props: DataGridProps) => {
     setPageX(e.pageX);
     setCurColWidth(e.target.parentElement.offsetWidth);
     if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
+
+    document.body.style.cursor = 'grabbing';
   };
 
   useOnDocumentMouseMove(null, (e) => {
@@ -154,6 +157,7 @@ const DataGrid = (props: DataGridProps) => {
     setPageX(undefined);
     setCurColWidth(undefined);
     setNextColWidth(undefined);
+    document.body.style.cursor = 'inherit';
   });
 
 
@@ -225,6 +229,7 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
+                    isResizing={isResizing}
                     menuDescriptor={m.menuDescriptor}
                     index={i}
                     key={i}
@@ -246,13 +251,18 @@ const DataGrid = (props: DataGridProps) => {
               <Tr key={i} >
                 {
                   selectable
-                    ? <Td >
-                      <input
-                        type="checkbox"
-                        onChange={e => onToggle(e, entity[propertyKey])}
-                        checked={actualSelected.indexOf(entity[propertyKey]) > -1}
-                      />
-                    </Td>
+                    ? (
+                      <Td>
+                        <Flex>
+
+                          <input
+                            type="checkbox"
+                            onChange={e => onToggle(e, entity[propertyKey])}
+                            checked={actualSelected.indexOf(entity[propertyKey]) > -1}
+                          />
+                        </Flex>
+                      </Td>
+                    )
                     : null
                 }
 
