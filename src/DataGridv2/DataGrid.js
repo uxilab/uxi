@@ -7,8 +7,11 @@ import Td from './Td';
 import useOnDocumentMouseUp from '../hooks/useOnDocumentMouseUp';
 import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
-import ThInnerWrapper from './ThInnerWrapper';
+import ThInnerWrapperComp from './ThInnerWrapper';
 import { Flex } from '../Layout/Flex';
+import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu';
+import Checkbox from '../Input/Checkbox';
+// import PopOver from '../internal/PopOver';
 
 
 type EntityId = String
@@ -97,7 +100,11 @@ const DataGrid = (props: DataGridProps) => {
     borderCollapse,
 
     ThInnerWrapper,
+
+    tableHeaderOverlayRender,
   } = props;
+
+  const hasCustomHeader = tableHeaderOverlayRender !== undefined;
 
   /* Sort */
   const isSortControlled = selectedProp !== undefined;
@@ -202,7 +209,7 @@ const DataGrid = (props: DataGridProps) => {
         borderCollapse={borderCollapse}
         isResizing={isResizing}
       >
-        <thead>
+        <thead {...(hasCustomHeader ? { position: 'relative' } : {})}>
           <Tr>
             {
               selectable
@@ -211,7 +218,10 @@ const DataGrid = (props: DataGridProps) => {
                   resizable={false}
                   style={{ width: '32px' }}
                 >
-                  <input type="checkbox" onChange={onToggleSelectAll} />
+                  <Flex style={{ marginLeft: -'8px', width: '100%', height: '100%' }}>
+                    {/* <Checkbox type="checkbox" onChange={onToggleSelectAll} /> */}
+                    <input type="checkbox" onChange={onToggleSelectAll} />
+                  </Flex>
                 </Th>
                 : null
             }
@@ -257,42 +267,81 @@ const DataGrid = (props: DataGridProps) => {
               })
             }
           </Tr>
+          {
+            hasCustomHeader
+              ? tableHeaderOverlayRender({
+                data,
+                model,
+                selected: actualSelected,
+                columnsSizes,
+                sortDirections: actualSortDirections,
+              })
+              : null
+          }
+
         </thead>
 
         <tbody>
           {
-            data.map((entity, i) => (
-              <Tr key={i} >
-                {
-                  selectable
-                    ? (
-                      <Td>
-                        <Flex>
+            data.map((entity, i) => {
+              const isSelected = actualSelected.indexOf(entity[propertyKey]) > -1;
+              return (
+                <Tr
+                  key={i}
+                  selected={isSelected}
+                >
+                  {
+                    selectable
+                      ? (
+                        <Td>
+                          <Flex>
 
-                          <input
+                            {/* <input
                             type="checkbox"
                             onChange={e => onToggle(e, entity[propertyKey])}
                             checked={actualSelected.indexOf(entity[propertyKey]) > -1}
-                          />
-                        </Flex>
-                      </Td>
-                    )
-                    : null
-                }
+                          /> */}
+                            <Checkbox
+                              onChange={e => onToggle(e, entity[propertyKey])}
+                              checked={isSelected}
+                            />
+                          </Flex>
+                        </Td>
+                      )
+                      : null
+                  }
 
-                {
-                  model.map((m = {}, idx) => (
-                    <Td key={idx} >
-                      {
-                        (m.Component !== undefined)
-                          ? <m.Component {...entity} />
-                          : entity[m.property]
-                      }
-                    </Td>
-                  ))
-                }
-              </Tr>
-            ))
+                  {
+                    model.map((m = {}, idx) => {
+                      const cellContent = (m.Component !== undefined)
+                        ? <m.Component {...entity} />
+                        : <React.Fragment>{entity[m.property]}</React.Fragment>;
+
+                      const cellDetail = (m.CellDetail !== undefined)
+                        ? <m.CellDetail {...entity} />
+                        : null;
+
+                      const finalCellContent = cellDetail
+                        ? (
+                          <ButtonMenu
+                            isFullWidth
+                            button={<div>{cellContent}</div>}
+                          >
+                            {cellDetail}
+                          </ButtonMenu>
+                        )
+                        : cellContent;
+
+                      return (
+                        <Td key={idx} >
+                          {finalCellContent}
+                        </Td>
+                      );
+                    })
+                  }
+                </Tr>
+              );
+            })
           }
         </tbody>
       </Table>
@@ -324,7 +373,7 @@ DataGrid.defaultProps = {
   defaultColumnsSizes: undefined,
   useSmartOverflowX: false,
 
-  ThInnerWrapper,
+  ThInnerWrapper: ThInnerWrapperComp,
 };
 /* eslint-enable no-unused-vars */
 

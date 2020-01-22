@@ -75,7 +75,9 @@ const mapChildren = (props: ThProps = {}) => ({
 });
 
 const Th = styled.th.attrs(mapChildren)`
-  padding: 0;
+  box-sizing: border-box;
+  height: 58px;
+  padding: 8px;
   text-align: left;
   border: 1px solid #cecece;
   position: relative;

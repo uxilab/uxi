@@ -102,6 +102,7 @@ class ButtonMenuMultiLevel extends Component {
   }
 
   close() {
+    console.log('calling ButtonMenuMultiLevel.close()');
     if (!this.isControlled) {
       this.setState({ isOpen: false });
       // this.focusButton();
@@ -135,6 +136,11 @@ class ButtonMenuMultiLevel extends Component {
         this.toggleVisibility();
       },
     });
+
+    const onSelfClose = (e) => {
+      console.log('MlMenu onSelfClose => e', e);
+      this.close();
+    };
 
     return (
       <div
@@ -211,10 +217,7 @@ class ButtonMenuMultiLevel extends Component {
           <MlMenu
             isFullWidth
             menuDescriptor={menuDescriptor}
-            onSelfClose={(e) => {
-              console.log('e', e);
-              this.close();
-            }}
+            onSelfClose={onSelfClose}
           />
           {/* <ul
             style={{

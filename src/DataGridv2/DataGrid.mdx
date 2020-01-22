@@ -42,11 +42,24 @@ The model support custom menu for table header
             console.log('isSelected, entityId, selected', isSelected, entityId, selected)
             setState({ ...state, selected })
           }}
-          onSelectAllChange={(selectAllChecked) => console.log('selectAllChecked', selectAllChecked)}
+          onSelectAllChange={(selectAllChecked) => {
+            console.log('selectAllChecked', selectAllChecked)
+            setState({ ...state, selected: selectAllChecked ? [
+            { age: 123, firstName: 'foo', name: 'bar', },
+            { age: 123, firstName: 'baz', name: 'foo', },
+            { age: 123, firstName: 'fuz', name: 'fob', },
+            { age: 123, firstName: 'voo', name: 'mar', },
+            { age: 123, firstName: 'bop', name: 'vrn', },
+          ].map(({ name }) => name ) : [] })
+          }}
           selected={state.selected}
           selectable
           model={[
-            { property: 'firstName', displayName: 'First name', menuDescriptor: [
+            { property: 'firstName',
+            displayName: 'First name',
+            CellDetail: (entity) => { return <div style={{ background: 'white' }}><pre>{JSON.stringify(entity, null, 2)}</pre></div> },
+            // Component,
+            menuDescriptor: [
               {
                 label: 'foo',
                 icon: <Circle />,
@@ -98,6 +111,25 @@ The model support custom menu for table header
             console.log('mdx: newSortDirections', newSortDirections)
             setState({ ...state, sortDirections: newSortDirections })
           }}
+          // tableHeaderOverlayRender={(data) => {
+          //   console.log('data', data)
+          //   return (
+          //     <Flex
+          //       style={{
+          //         position: 'absolute',
+          //         top: 0,
+          //         left: 0,
+          //         right: 0,
+          //         height: '36px',
+          //         // bottom: 0,
+          //         width: '100%',
+          //         background: 'wheat',
+          //       }}
+          //     >
+          //       {`${data.selected.length} selected on ${data.data.length} total`}
+          //     </Flex>
+          //   )
+          // }}
         />
       )
     }

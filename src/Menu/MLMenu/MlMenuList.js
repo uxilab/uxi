@@ -60,12 +60,20 @@ const MlMenuList = (props) => {
     onSelfClose,
   } = props;
 
+  console.log('onSelfClose in MlMenuList', onSelfClose);
+
   return (
     <MlMenuListUI isFullWidth={isFullWidth} >
       {
         (menuDescriptor || []).map((itemDescriptor) => {
           const { onClick: consumerOnClick } = itemDescriptor;
-          const onClickHandler = (...a) => { onSelfClose(); return consumerOnClick(...a); };
+          const onClickHandler = (...a) => {
+            if (itemDescriptor.children === undefined) {
+              console.log('calling onSelfClose');
+              onSelfClose();
+            }
+            return consumerOnClick(...a);
+          };
 
           return (
             <MlMenuItem

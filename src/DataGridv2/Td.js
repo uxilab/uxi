@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 
 
 const TdUI = styled.td`
+  box-sizing: border-box;
+  height: 58px;
+  padding: 8px;
 `;
 
 type TdProps = {
-    light?: boolean,
 }
 
 const Td = (props: TdProps) => <TdUI {...props} />;
