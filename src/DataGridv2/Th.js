@@ -6,6 +6,7 @@ import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
 import ButtonMenuMultiLevel from '../Menu/ButtonMenu/ButtonMenuMultiLevel'; // eslint-disable-line no-unused-vars
 import Options from '../Icons/Options';
+import { Flex } from '../Layout/Flex';
 import { UnstyledButton } from '../Button/UnstyledButton1';
 import type { SortDirection } from './DataGrid';
 
@@ -42,22 +43,32 @@ const mapChildren = (props: ThProps = {}) => ({
       {
         props.menuDescriptor !== undefined
           ? (
-            <div style={{ marginLeft: 'auto' }}>
+            <Flex style={{ marginLeft: 'auto', alignItems: 'stretch' }}>
               <ButtonMenuMultiLevel
+                style={{ alignItems: 'stretch', display: 'flex' }}
                 anchor={'right'}
                 buttonWrapperStyle={{
                   position: 'inherit',
                   // fuck: 'eslint',
+                  height: '100%',
+                  alignItems: 'stretch',
+                  display: 'flex',
                 }}
                 BoxWrapperUIStyle={{
                   width: 'auto',
+                  zIndex: 1,
                 }}
                 menuDescriptor={props.menuDescriptor}
-                button={<UnstyledButton style={{ width: '32px' }} icon={<Options />} />}
+                button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
               />
-            </div>
+            </Flex>
           )
           // ? '•••'
+          : null
+      }
+      {
+        props.menuDescriptor === undefined && props.menu !== undefined
+          ? props.menu
           : null
       }
       {props.resizable
@@ -77,7 +88,7 @@ const mapChildren = (props: ThProps = {}) => ({
 const Th = styled.th.attrs(mapChildren)`
   box-sizing: border-box;
   height: 58px;
-  /* padding: 8px; */
+  padding: 0;
   text-align: left;
   border: 1px solid #cecece;
   position: relative;
@@ -104,6 +115,15 @@ const Th = styled.th.attrs(mapChildren)`
       display: none;
       visibility: hidden;
       pointer-events: none;
+    }
+  }
+
+  *[data-drop-down-trigger] {
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    & > div {
+      height: 100% !important;
     }
   }
 `;

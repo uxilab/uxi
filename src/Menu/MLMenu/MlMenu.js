@@ -3,12 +3,11 @@ import React from 'react';
 import MlMenuList from './MlMenuList';
 
 const MlMenu = (props) => {
-  console.log('onSelfClose in MlMenu', props.onSelfClose);
   const {
     menuDescriptor = [],
     isFullWidth,
     onClick,
-    onSelfClose = () => { console.log('onSelfClose default props used'); },
+    onSelfClose = () => { },
   } = props;
 
 

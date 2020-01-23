@@ -7,12 +7,13 @@ import { useState } from 'react'
 import { Playground, Props } from 'docz'
 import ThemeProvider from '../Theme/ThemeProvider'
 import Circle from '../Icons/Circle'
+import Star from '../Icons/Star'
+// import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu'
 import DataGrid from './'
 import { WithState } from './utils'
 
 
 import Flex from '../Layout/Flex'
-// import ButtonMenu from '../ButtonMenu'
 
 
 # DataGrid
@@ -36,6 +37,7 @@ The model support custom menu for table header
     {
       (state, setState) => (
         <DataGrid
+          useSmartOverflowX
           resizable
           propertyKey="name"
           onSelectionChange={(isSelected, entityId, selected) => {
@@ -78,15 +80,26 @@ The model support custom menu for table header
                 icon: <Circle />,
                 onClick: () => { console.log('foo')},
                 children: [
+                  { label: 'bar', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
                   {
-                    label: 'bar',
+                    label: 'foo',
                     icon: <Circle />,
                     onClick: () => { console.log('foo>bar')},
+                    children: [
+                      { label: 'bar', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                      { label: 'foo', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                    ],
                   }
                 ],
               },
+              {
+                label: 'bar',
+                icon: <Circle />,
+                onClick: () => { console.log('foo')},
+              },
             ]},
-            { property: 'name', displayName: 'Name' },
+            // { property: 'name', displayName: 'Name', menu: <ButtonMenu button={'≡'}>yooooo</ButtonMenu> },
+            { property: 'name', displayName: 'Name', menu: <Flex style={{ padding: '8px', marginLeft: 'auto' }}><Star /></Flex> },
             {
               property: 'age',
               displayName: 'Age',
@@ -111,11 +124,11 @@ The model support custom menu for table header
             },
           ]}
           data={[
-            { age: 123, firstName: 'foo', name: 'bar', },
-            { age: 123, firstName: 'baz', name: 'foo', },
+            { age: 123, firstName: 'foozefv ojnzfkgjnbzjrnvzoekrjnv', name: 'bar', },
+            { age: 123, firstName: 'baz kzejfnvlskngd bl lknf lkzfn g', name: 'foo', },
             { age: 123, firstName: 'fuz', name: 'fob', },
             { age: 123, firstName: 'voo', name: 'mar', },
-            { age: 123, firstName: 'bop', name: 'vrn', },
+            { age: 123, firstName: 'boplkznfknlfjgnkjnzfjkleznlfnzekjrfnkzenrkzejrnkzejrnf', name: 'vrn', },
           ]}
           sortDirections={state.sortDirections}
           defaultSortDirections={undefined}

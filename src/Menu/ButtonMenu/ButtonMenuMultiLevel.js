@@ -102,7 +102,6 @@ class ButtonMenuMultiLevel extends Component {
   }
 
   close() {
-    console.log('calling ButtonMenuMultiLevel.close()');
     if (!this.isControlled) {
       this.setState({ isOpen: false });
       // this.focusButton();
@@ -122,6 +121,7 @@ class ButtonMenuMultiLevel extends Component {
       // isFullWidth,
       buttonWrapperStyle,
       BoxWrapperUIStyle,
+      style,
     } = this.props;
 
     const isOpen = this.isControlled ? this.props.isOpen : this.state.isOpen;
@@ -138,7 +138,6 @@ class ButtonMenuMultiLevel extends Component {
     });
 
     const onSelfClose = (e) => {
-      console.log('MlMenu onSelfClose => e', e);
       this.close();
     };
 
@@ -201,6 +200,7 @@ class ButtonMenuMultiLevel extends Component {
             }
           }
         }}
+        style={style}
       >
         <DropDown
           visibleOverflow
@@ -261,11 +261,13 @@ ButtonMenuMultiLevel.defaultProps = {
   menuMinWidth: undefined,
   menuMaxWidth: '300px',
   buttonWrapperStyle: {},
+  style: {},
 };
 
 ButtonMenuMultiLevel.propTypes = {
   button: PropTypes.element,
   buttonWrapperStyle: PropTypes.object,
+  style: PropTypes.object,
   // children: PropTypes.arrayOf(PropTypes.node),
   // menuMaxHeight: PropTypes.string,
   // menuWidth: PropTypes.string,

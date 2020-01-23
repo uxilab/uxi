@@ -45,7 +45,7 @@ const CellContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: .6;
+    opacity: .35;
     transform: translateY(60px);
   }
 
@@ -55,7 +55,7 @@ const CellContent = styled.div`
       transition: ${({ theme: { transition } }) => transition.defaultAll};
     }
     &:after {
-      transform: translateY(0px);
+      transform: translateY(16px);
       transition: ${({ theme: { transition } }) => transition.defaultAll};
     }
   }

@@ -119,7 +119,7 @@ const DataGrid = (props: DataGridProps) => {
   const handleSortChange = (property, sortDirection) => {
     const newSortDirections = actualSortDirections.map(sortModel => ({
       ...sortModel,
-      sortDirection,
+      ...(sortModel.property === property ? { sortDirection } : {}),
     }));
     if (!isSortControlled) {
       setSortDirections(newSortDirections);
@@ -257,14 +257,14 @@ const DataGrid = (props: DataGridProps) => {
                   <Th
                     isResizing={isResizing}
                     menuDescriptor={m.menuDescriptor}
+                    menu={m.menu}
                     index={i}
                     key={i}
                     ThInnerWrapper={ThInnerWrapper}
                     {...resizeProps}
                     {...sortProps}
                   >
-                    {m.displayName}
-                    <span>{m.menu}</span>
+                    <Flex>{m.displayName}</Flex>
                   </Th>
                 );
               })

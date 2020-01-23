@@ -8,6 +8,7 @@ const ThInnerWrapper = styled.div`
   align-items: stretch;
   white-space: nowrap;
   padding: 0 0 0 16px;
+  height: 100%;
 `;
 
 

@@ -33,6 +33,7 @@ const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   justify-content: center;
   align-items: center;
   width: 32px;
+  height: 100%;
   cursor: pointer;
 
 
@@ -44,12 +45,12 @@ const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   ${Triangle}:first-child {
     /* content: '▾';
     content: '▴'; */
-    ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.ASC ? css`fill: ${palette.accent.main}` : '')};
+    ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.ASC ? css`fill: ${palette.accent.main};` : '')};
   }
   ${Triangle}:last-child {
     /* content: '▾';
     content: '▴'; */
-    ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.DESC ? css`fill: ${palette.accent.main}` : '')};
+    ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.DESC ? css`fill: ${palette.accent.main};` : '')};
     transform: rotate(180deg);
   }
 `;
