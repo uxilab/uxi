@@ -16,6 +16,21 @@ import TdInnerWrapper from './TdInnerWrapper';
 // import DropDown from '../DropDownv2';
 // import PopOver from '../internal/PopOver';
 
+const runWarnings = (props) => {
+  if (
+    props.selected === undefined
+    && props.selectable
+    && props.data[0][props.propertyKey] === undefined
+  ) {
+    const msg = [
+      'Missing `propertyKey`.',
+      'If you entities do not have `id` DataGrid needs you to specify propertyKey props',
+      'in order for the uncontrolled selection to work',
+    ].join('');
+    console.warn(msg);
+    throw new Error(msg);
+  }
+};
 
 type EntityId = String
 
@@ -106,6 +121,8 @@ const DataGrid = (props: DataGridProps) => {
 
     tableHeaderOverlayRender,
   } = props;
+
+  runWarnings(props);
 
   const hasCustomHeader = tableHeaderOverlayRender !== undefined;
 
@@ -304,7 +321,14 @@ const DataGrid = (props: DataGridProps) => {
                             onChange={e => onToggle(e, entity[propertyKey])}
                             checked={actualSelected.indexOf(entity[propertyKey]) > -1}
                           /> */}
-                            <input type="checkbox" onChange={e => onToggle(e, entity[propertyKey])} checked={isSelected} />
+                            <input
+                              id={i}
+                              type="checkbox"
+                              onChange={(e) => {
+                                onToggle(e, entity[propertyKey]);
+                              }}
+                              checked={isSelected}
+                            />
                             {/* <Checkbox
                               onChange={e => onToggle(e, entity[propertyKey])}
                               checked={isSelected}
