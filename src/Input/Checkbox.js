@@ -96,15 +96,15 @@ class Checkbox extends React.PureComponent {
     };
 
     this.isControlled = this.props.checked !== undefined;
-    if (!this.isControlled) {
-      // not controlled, use internal state
-      state = {
-        ...state,
-        checked: this.isControlled // eslint-disable-line no-nested-ternary
-          ? props.checked
-          : props.defaultChecked !== undefined ? props.defaultChecked : false,
-      };
-    }
+    // if (!this.isControlled) {
+    // not controlled, use internal state
+    state = {
+      ...state,
+      checked: this.isControlled // eslint-disable-line no-nested-ternary
+        ? props.checked
+        : props.defaultChecked !== undefined ? props.defaultChecked : false,
+    };
+    // }
 
     this.state = {
       ...state,
@@ -147,9 +147,11 @@ class Checkbox extends React.PureComponent {
   }
 
   handleChange(event) {
+    console.log('Checkbox.handleChange', event.target.checked);
     const checked = event.target.checked;
     if (!this.isControlled) {
-      this.setState({ checked: !this.state.checked });
+      console.log('is uncontrolled setting sttate', event.target.checked);
+      this.setState({ checked });
     }
 
     const { onChange, name } = this.props;
@@ -181,6 +183,8 @@ class Checkbox extends React.PureComponent {
 
     const checker = this.isControlled ? checked : this.state.checked;
 
+    console.log('checker', checker);
+
     const checkAttributes = {};
     if (this.isControlled) {
       checkAttributes.checked = this.props.checked;
@@ -207,7 +211,7 @@ class Checkbox extends React.PureComponent {
               hasFocus
               id={id}
               style={inputStyle}
-              checked={checker} // defaultChecked via state
+              checked={this.isControlled ? checker : undefined} // defaultChecked via state
               // defaultChecked={defaultChecked}
               name={name}
               type="checkbox"

@@ -221,8 +221,8 @@ const DataGrid = (props: DataGridProps) => {
                   resizable={false}
                   style={{ width: '32px' }}
                 >
-                  <Flex style={{ marginLeft: -'8px', width: '100%', height: '100%' }}>
-                    {/* <Checkbox type="checkbox" onChange={onToggleSelectAll} /> */}
+                  <Flex style={{ marginLeft: '-8px', width: '100%', height: '100%' }}>
+                    {/* <Checkbox onChange={onToggleSelectAll} /> */}
                     <input type="checkbox" onChange={onToggleSelectAll} />
                   </Flex>
                 </Th>
@@ -304,10 +304,11 @@ const DataGrid = (props: DataGridProps) => {
                             onChange={e => onToggle(e, entity[propertyKey])}
                             checked={actualSelected.indexOf(entity[propertyKey]) > -1}
                           /> */}
-                            <Checkbox
+                            <input type="checkbox" onChange={e => onToggle(e, entity[propertyKey])} checked={isSelected} />
+                            {/* <Checkbox
                               onChange={e => onToggle(e, entity[propertyKey])}
                               checked={isSelected}
-                            />
+                            /> */}
                           </TdInnerWrapper>
                         </Td>
                       )
