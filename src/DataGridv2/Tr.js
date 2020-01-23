@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Tr = styled.tr`
   border-bottom: 1px solid hsla(0, 0%, 88%, 1);
+  background: white;
   &:nth-child(2n) {
     background: hsla(0, 0%, 99.25%, 1);
   }
