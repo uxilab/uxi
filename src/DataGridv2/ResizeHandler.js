@@ -19,7 +19,7 @@ const ResizeHandler = styled.div.attrs(props => ({
   width: 0px;
   width: 3px;
   max-width: 6px;
-  background: grey;
+  /* background: grey; */
   opacity: 0;
   cursor: ${({ isResizing }) => (isResizing ? 'inherit' : 'col-resize')};
 `;

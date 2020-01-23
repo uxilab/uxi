@@ -1,0 +1,118 @@
+---
+name: DropDown
+route: /doc/components/DropDown
+---
+
+import { Playground, Props } from 'docz'
+import DropDown from './'
+
+import ThemeProvider from '../Theme/ThemeProvider'
+import Flex from '../Layout/Flex'
+
+# DropDown
+
+This is a general purpose collapsible dropdown (use it for dropdown list box (select), navigation drop down list...)
+
+
+
+## Default props
+
+<Playground>
+  <ThemeProvider>
+          <DropDown />
+  </ThemeProvider>
+</Playground>
+
+
+## Props
+
+<ThemeProvider>
+  <Props of={DropDown} />
+</ThemeProvider>
+
+
+## Basic usage
+
+<Playground>
+  <ThemeProvider>
+    <DropDown
+      box={<div>Box content</div>}
+      trigger={<div>trigger content</div>}
+    />
+  </ThemeProvider>
+</Playground>
+
+
+## Inline
+
+<Playground>
+  <ThemeProvider>
+    <div>
+      <p>Lorem ipsum</p>
+      <DropDown
+        inline={true}
+        trigger={<div>Click me</div>}
+        box={'Foo'}
+      />
+      <p>Lorem ipsum</p>
+    </div>
+  </ThemeProvider>
+</Playground>
+
+
+## Anchor
+
+not applicable when using `inline`
+
+<Playground>
+  <ThemeProvider>
+    <Flex style={{ justifyContent: 'space-between' }}>
+      <p>Lorem ipsum</p>
+      <DropDown
+        anchor={'left'}
+        trigger={<div>Click me</div>}
+        box={'foobar'}
+      />
+      <p>Lorem ipsum</p>
+      <DropDown
+        anchor={'right'}
+        trigger={<div>Click me</div>}
+        box={'foobar'}
+      />
+      <p>Lorem ipsum</p>
+    </Flex>
+  </ThemeProvider>
+</Playground>
+
+
+
+<!-- ## Controlled
+
+<Playground>
+  <WithState>
+    {
+      (state, setState) => (
+          <div>
+            <DropDown
+              inline
+              open={state}
+              onChange={(a) => {
+                console.log('onChange onsumer a', a)
+                setState(a)
+              }}
+              trigger={<div>Click me <span>({state ? 'open' : 'closed'})</span></div>}
+              box={'whatever'}
+            />
+            <br/>
+            <button onClick={() => setState(!state)} >Toggle programmatically</button>
+          </div>
+
+        )
+    }
+  </WithState>
+</Playground> -->
+
+
+
+
+

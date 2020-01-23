@@ -7,7 +7,7 @@ const ThInnerWrapper = styled.div`
   flex-flow: row nowrap;
   align-items: stretch;
   white-space: nowrap;
-  padding: 0 0 0 8px;
+  padding: 0 0 0 16px;
 `;
 
 

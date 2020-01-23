@@ -57,7 +57,20 @@ The model support custom menu for table header
           model={[
             { property: 'firstName',
             displayName: 'First name',
-            CellDetail: (entity) => { return <div style={{ background: 'white' }}><pre>{JSON.stringify(entity, null, 2)}</pre></div> },
+            CellDetail: (entity) => {
+              return (
+                <div style={{ padding: '16px' }}>
+                  <h4>Valid Data</h4>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <Flex style={{ justifyContent: 'flex-start', margin: '8px 0' }}>
+                    <Circle style={{ margin: '0 8px' }} />
+                    <Circle style={{ margin: '0 8px' }} />
+                  </Flex>
+                  <div><a href="#">View original</a></div>
+                  <div><a href="#">Search for similar</a></div>
+                </div>
+              )
+            },
             // Component,
             menuDescriptor: [
               {

@@ -9,8 +9,11 @@ import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import { Flex } from '../Layout/Flex';
-import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu';
+// import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu';
 import Checkbox from '../Input/Checkbox';
+import CellWithPopOver from './CellWithPopOver';
+import TdInnerWrapper from './TdInnerWrapper';
+// import DropDown from '../DropDownv2';
 // import PopOver from '../internal/PopOver';
 
 
@@ -294,7 +297,7 @@ const DataGrid = (props: DataGridProps) => {
                     selectable
                       ? (
                         <Td>
-                          <Flex>
+                          <TdInnerWrapper style={{ justifyContent: 'center', padding: '0 8px' }}>
 
                             {/* <input
                             type="checkbox"
@@ -305,7 +308,7 @@ const DataGrid = (props: DataGridProps) => {
                               onChange={e => onToggle(e, entity[propertyKey])}
                               checked={isSelected}
                             />
-                          </Flex>
+                          </TdInnerWrapper>
                         </Td>
                       )
                       : null
@@ -315,20 +318,27 @@ const DataGrid = (props: DataGridProps) => {
                     model.map((m = {}, idx) => {
                       const cellContent = (m.Component !== undefined)
                         ? <m.Component {...entity} />
-                        : <React.Fragment>{entity[m.property]}</React.Fragment>;
+                        : <TdInnerWrapper>{entity[m.property]}</TdInnerWrapper>;
 
                       const cellDetail = (m.CellDetail !== undefined)
                         ? <m.CellDetail {...entity} />
                         : null;
 
                       const finalCellContent = cellDetail
+                        // ? (
+                        //   <ButtonMenu
+                        //     isFullWidth
+                        //     button={<div>{cellContent}</div>}
+                        //   >
+                        //     {cellDetail}
+                        //   </ButtonMenu>
+                        // )
                         ? (
-                          <ButtonMenu
-                            isFullWidth
-                            button={<div>{cellContent}</div>}
-                          >
-                            {cellDetail}
-                          </ButtonMenu>
+                          <CellWithPopOver cellContent={cellContent} cellDetail={cellDetail} />
+                          // <DropDown
+                          //   box={cellDetail}
+                          //   trigger={<div>{cellContent}</div>}
+                          // />
                         )
                         : cellContent;
 
