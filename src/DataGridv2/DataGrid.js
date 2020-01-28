@@ -204,15 +204,15 @@ const DataGrid = (props: DataGridProps) => {
   const isSelectionControlled = selectedProp !== undefined;
   const [selected, setSelected] = useState(defaultSelected || []);
   const actualSelected = isSelectionControlled ? selectedProp : selected;
-  const onToggleSelectAll = ({ target = {} }) => {
-    const newSelected = target.checked ? data.map((_, i) => i) : [];
+  const onToggleSelectAll = (checked) => {
+    const newSelected = checked ? data.map((_, i) => i) : [];
     if (!isSelectionControlled) {
       setSelected(newSelected);
     }
-    onSelectAllChange(!!(target.checked));
+    onSelectAllChange(checked);
   };
-  const onToggle = ({ target = {} }, entityPropertyKeyValue) => {
-    const newSelected = target.checked
+  const onToggle = (checked, entityPropertyKeyValue) => {
+    const newSelected = checked
       ? [...actualSelected, entityPropertyKeyValue]
       : actualSelected.filter(x => x !== entityPropertyKeyValue);
 
@@ -220,7 +220,7 @@ const DataGrid = (props: DataGridProps) => {
       setSelected(newSelected);
     }
 
-    onSelectionChange(!!(target.checked), entityPropertyKeyValue, newSelected);
+    onSelectionChange(checked, entityPropertyKeyValue, newSelected);
   };
 
   return (
@@ -239,8 +239,13 @@ const DataGrid = (props: DataGridProps) => {
                   style={{ width: '32px' }}
                 >
                   <Flex style={{ marginLeft: '-8px', width: '100%', height: '100%' }}>
-                    {/* <Checkbox onChange={onToggleSelectAll} /> */}
-                    <input type="checkbox" onChange={onToggleSelectAll} />
+                    <Checkbox
+                      id={'DataGridMultiSelectCheckBox'}
+                      name={'DataGridMultiSelectCheckBox'}
+                      onChange={(evt, checked) => onToggleSelectAll(checked)}
+                      checked={actualSelected.length === data.length}
+                    />
+                    {/* <input type="checkbox" onChange={onToggleSelectAll} /> */}
                   </Flex>
                 </Th>
                 : null
@@ -321,18 +326,20 @@ const DataGrid = (props: DataGridProps) => {
                             onChange={e => onToggle(e, entity[propertyKey])}
                             checked={actualSelected.indexOf(entity[propertyKey]) > -1}
                           /> */}
-                            <input
+                            {/* <input
                               id={i}
                               type="checkbox"
                               onChange={(e) => {
                                 onToggle(e, entity[propertyKey]);
                               }}
                               checked={isSelected}
-                            />
-                            {/* <Checkbox
-                              onChange={e => onToggle(e, entity[propertyKey])}
-                              checked={isSelected}
                             /> */}
+                            <Checkbox
+                              id={i}
+                              name={i}
+                              onChange={(evt, checked) => onToggle(checked, entity[propertyKey])}
+                              checked={isSelected}
+                            />
                           </TdInnerWrapper>
                         </Td>
                       )

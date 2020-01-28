@@ -1,0 +1,61 @@
+---
+name: Checkbox
+route: /doc/components/Checkbox
+---
+
+
+import { useState } from 'react'
+import { Playground, Props } from 'docz'
+import ThemeProvider from '../Theme/ThemeProvider'
+import Checkbox from './Checkbox'
+import { WithState } from '../DataGridv2/utils'
+
+
+import Flex from '../Layout/Flex'
+
+
+## Basic usage
+
+<Playground>
+  <ThemeProvider>
+    <Checkbox
+      onChange={(evt, checked) => { console.log('checked', checked)}}
+    />
+  </ThemeProvider>
+</Playground>
+
+
+# props API
+
+<Props of={Checkbox} />
+
+
+
+# defaultChecked
+
+<Playground>
+  <ThemeProvider>
+    <Checkbox
+      defaultChecked={true}
+      onChange={(evt, checked) => { console.log('checked', checked) }}
+    />
+  </ThemeProvider>
+</Playground>
+
+
+# Controlled
+
+<Playground>
+  <ThemeProvider>
+    <WithState
+      defaultState={true}
+    >
+      {(state, setState) => (
+        <Checkbox
+          checked={state}
+          onChange={(evt, checked, name) => setState(checked) }
+        />
+      )}
+    </WithState>
+  </ThemeProvider>
+</Playground>

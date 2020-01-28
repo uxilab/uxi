@@ -147,10 +147,10 @@ class Checkbox extends React.PureComponent {
   }
 
   handleChange(event) {
-    console.log('Checkbox.handleChange', event.target.checked);
+    // console.log('Checkbox.handleChange', event.target.checked);
     const checked = event.target.checked;
     if (!this.isControlled) {
-      console.log('is uncontrolled setting sttate', event.target.checked);
+      // console.log('is uncontrolled setting sttate', event.target.checked);
       this.setState({ checked });
     }
 
@@ -183,7 +183,7 @@ class Checkbox extends React.PureComponent {
 
     const checker = this.isControlled ? checked : this.state.checked;
 
-    console.log('checker', checker);
+    // console.log('checker', checker);
 
     const checkAttributes = {};
     if (this.isControlled) {
