@@ -1,0 +1,21 @@
+version: '3'
+services:
+  docz:
+    image: cluedin/docker-docz
+    build:
+      context: .
+      dockerfile: ./Dockerfile-docz
+    ports:
+      - "4000:4000"
+    volumes:
+      - "$PWD/src:/app/src"
+    command: npm run docz:dev
+  build-docz:
+    image: cluedin/docker-docz
+    build:
+      context: .
+      dockerfile: ./Dockerfile-docz
+    volumes:
+      - "$PWD/src:/app/src"
+      - "$PWD/.docz:/app/.docz"
+    command: npm run docz

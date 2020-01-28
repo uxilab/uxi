@@ -24,7 +24,9 @@
     "typeinstall": "flow-typed install",
     "deploy": "npm run lint && npm run test && npm version patch && npm run pack && npm publish build",
     "deploy-doc": "npm run lint && npm run test && cd docs/ && npm run deploy-doc",
-    "make-svg-icons": "cd src/Icons && node _script.js && cd ../../ && npx eslint src/Icons --fix && npm run test "
+    "make-svg-icons": "cd src/Icons && node _script.js && cd ../../ && npx eslint src/Icons --fix && npm run test ",
+    "docz": "docker-compose -f docker-compose-docz.yml run build-docz",
+    "docz:dev": "docker-compose -f docker-compose-docz.yml run --service-ports docz"
   },
   "repository": {
     "type": "git",
