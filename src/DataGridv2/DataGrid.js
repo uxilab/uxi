@@ -9,12 +9,9 @@ import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import { Flex } from '../Layout/Flex';
-// import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu';
 import Checkbox from '../Input/Checkbox';
 import CellWithPopOver from './CellWithPopOver';
 import TdInnerWrapper from './TdInnerWrapper';
-// import DropDown from '../DropDownv2';
-// import PopOver from '../internal/PopOver';
 
 const runWarnings = (props) => {
   if (

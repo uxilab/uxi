@@ -161,7 +161,7 @@ class Checkbox extends React.PureComponent {
       name: nameProp,
       disabled,
       checked,
-      // defaultChecked, // check in contructor
+      defaultChecked, // check in contructor
       label,
       labelBefore,
       style,
@@ -208,7 +208,7 @@ class Checkbox extends React.PureComponent {
               id={id}
               style={inputStyle}
               checked={this.isControlled ? checker : undefined} // defaultChecked via state
-              // defaultChecked={defaultChecked}
+              defaultChecked={defaultChecked}
               name={name}
               type="checkbox"
               disabled={disabled}
