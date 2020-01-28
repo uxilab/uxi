@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
-import TdInnerWrapper from './TdInnerWrapper';
 
 
 const TdUI = styled.td.attrs(props => ({

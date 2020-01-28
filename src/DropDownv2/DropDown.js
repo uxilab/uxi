@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import useOnClickOutside from '../hooks/useClickOutside';
 import useOnEscKeyDown from '../hooks/useOnEscKeyDown';
-import UnstyledButton from '../Button/UnstyledButton1';
+import { UnstyledButton } from '../Button/UnstyledButton1';
 // import theme from '../../theme';
 
 
@@ -39,22 +39,6 @@ const getAnchorStyles = (anchor: Anchor) => {
   return '';
 };
 
-const Checkbox = styled.input.attrs(() => ({ type: 'checkbox' }))`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  cursor: pointer;
-`;
-
-// Checkbox.defaultProps = { theme };
-
 const MenuWrapper = styled.div`
   z-index: 1;
   width: 100%;
@@ -67,7 +51,7 @@ const MenuWrapper = styled.div`
 
 
 const Wrapper = styled.div`
-  ${({ isFullWidth }) => css`width: 100%; height: 100%;`};
+  ${({ isFullWidth }) => (isFullWidth ? css`width: 100%; height: 100%;` : '')};
   position: relative;
   ${MenuWrapper} {
     ${({ isOpen }) => css`

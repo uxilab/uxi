@@ -245,7 +245,6 @@ const DataGrid = (props: DataGridProps) => {
                       onChange={(evt, checked) => onToggleSelectAll(checked)}
                       checked={actualSelected.length === data.length}
                     />
-                    {/* <input type="checkbox" onChange={onToggleSelectAll} /> */}
                   </Flex>
                 </Th>
                 : null
@@ -320,20 +319,6 @@ const DataGrid = (props: DataGridProps) => {
                       ? (
                         <Td>
                           <TdInnerWrapper style={{ justifyContent: 'center', padding: '0 8px' }}>
-
-                            {/* <input
-                            type="checkbox"
-                            onChange={e => onToggle(e, entity[propertyKey])}
-                            checked={actualSelected.indexOf(entity[propertyKey]) > -1}
-                          /> */}
-                            {/* <input
-                              id={i}
-                              type="checkbox"
-                              onChange={(e) => {
-                                onToggle(e, entity[propertyKey]);
-                              }}
-                              checked={isSelected}
-                            /> */}
                             <Checkbox
                               id={i}
                               name={i}
@@ -357,20 +342,8 @@ const DataGrid = (props: DataGridProps) => {
                         : null;
 
                       const finalCellContent = cellDetail
-                        // ? (
-                        //   <ButtonMenu
-                        //     isFullWidth
-                        //     button={<div>{cellContent}</div>}
-                        //   >
-                        //     {cellDetail}
-                        //   </ButtonMenu>
-                        // )
                         ? (
                           <CellWithPopOver cellContent={cellContent} cellDetail={cellDetail} />
-                          // <DropDown
-                          //   box={cellDetail}
-                          //   trigger={<div>{cellContent}</div>}
-                          // />
                         )
                         : cellContent;
 

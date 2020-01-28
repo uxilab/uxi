@@ -137,7 +137,7 @@ class ButtonMenuMultiLevel extends Component {
       },
     });
 
-    const onSelfClose = (e) => {
+    const onSelfClose = (/* e */) => {
       this.close();
     };
 

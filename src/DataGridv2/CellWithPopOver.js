@@ -12,7 +12,7 @@ const CellDetail = styled.div`
     0 1px 20px 0px hsla(0, 0%, 0%, 0.29),
     0 1px 5px 0px hsla(0, 0%, 0%, 0.18)
   ;
-}`;
+`;
 
 const CellContent = styled.div`
   width: 100%;
