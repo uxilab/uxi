@@ -73,6 +73,30 @@ jobs:
       - run: git diff-index --quiet HEAD || git commit --no-verify -m "published $(node -pe "require('./package.json').version") [ci skip]"
       - run: git push https://github.com/uxilab/uxi.git HEAD:master --follow-tags
 
+  build-docz:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run:
+          name: add
+          command: npm run docz
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - .docz/dist
+
+  deploy-docz:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: npx gh-pages --dist .docz/dist
+
   deploy-documentation:
     docker:
       - image: circleci/node
@@ -129,6 +153,24 @@ workflows:
           filters:
             branches:
               only: master
+      - build-docz:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+                - feature/#121-datagridv2
+      - deploy-docz:
+          requires:
+            - build-docz
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+                - feature/#121-datagridv2
   # uxi-documentation-publish:
   #   jobs:
   #     - install
