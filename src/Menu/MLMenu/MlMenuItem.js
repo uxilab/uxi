@@ -25,40 +25,19 @@ const MlMenuItemUI = styled.li`
   }
 
   /** handle variance between links and buttons */
-  *.MlMenuItem-interactive-elem {
-    background: white;
-  }
   button.MlMenuItem-interactive-elem {
     ${buttonResetStylesCSSString};
     background: white;
     text-align: left;
-    /* background-color: white; */
     max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
     width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
     padding: 8px;
-    /* color: inherit !important;
-    background-color: inherit !important; */
   }
   a.MlMenuItem-interactive-elem {
     width: 100%;
     display: inline-block;
     background: white;
   }
-
-  /* a.MlMenuItem-interactive-elem:not(:only-child) {
-    &:after {
-      content: '▸';
-      display: block;
-      width: 8px;
-    }
-  }
-  & > *:not(a):not(:only-child) {
-    &:after {
-      content: '▸';
-      display: block;
-      width: 8px;
-    }
-  } */
 
   & .MlMenuItem-interactive-elem {
     font-size: 14px;
@@ -117,6 +96,7 @@ const MlMenuItem = (props) => {
     href,
     target,
     isFullWidth,
+    onSelfClose,
   } = props;
 
   const finalIcon = React.isValidElement(icon)
@@ -157,7 +137,7 @@ const MlMenuItem = (props) => {
       </InteractiveComp>
       {
         (hasChildren)
-          ? <MlMenu menuDescriptor={children} />
+          ? <MlMenu menuDescriptor={children} onSelfClose={onSelfClose} />
           : null
       }
     </MlMenuItemUI>

@@ -6,7 +6,6 @@ import { FlatButton } from '../../Button'; // eslint-disable-line
 import Options from '../../Icons/Options'; // eslint-disable-line
 import Menu from '../Menu'; // eslint-disable-line
 import MlMenu from '../MLMenu/MlMenu';
-// import ButtonMenuItem from './ButtonMenuItem';
 
 const focusTimeout = 128;
 
@@ -25,44 +24,10 @@ class ButtonMenuMultiLevel extends Component {
 
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.close = this.close.bind(this);
-    // this.focusButton = this.focusButton.bind(this);
     this.focusMenu = this.focusMenu.bind(this);
     this.storeChildrenWrapperRef = this.storeChildrenWrapperRef.bind(this);
     this.storeTriggerWrapperRef = this.storeTriggerWrapperRef.bind(this);
   }
-
-  /*
-  focusButton() {
-    return
-    // return;
-    let focusTarget = this.triggerWrapperRef;
-
-    if (focusTarget) {
-      if (
-        this.triggerWrapperRef
-        && this.triggerWrapperRef.querySelector
-        && this.triggerWrapperRef.querySelector('button')
-      ) {
-        focusTarget = this.triggerWrapperRef.querySelector('button');
-      } else if (
-        this.triggerWrapperRef
-        && this.triggerWrapperRef.firstChild
-        && this.triggerWrapperRef.firstChild.focus
-      ) {
-        focusTarget = this.triggerWrapperRef.firstChild;
-      }
-
-      if (focusTarget.focus) {
-        const timerRef = setTimeout(() => {
-          if (focusTarget && focusTarget.focus) {
-            focusTarget.focus();
-          }
-          clearTimeout(timerRef);
-        }, focusTimeout);
-      }
-    }
-  }
-    */
 
   focusMenu() {
     const elem = (
@@ -104,21 +69,14 @@ class ButtonMenuMultiLevel extends Component {
   close() {
     if (!this.isControlled) {
       this.setState({ isOpen: false });
-      // this.focusButton();
     }
   }
 
   render() {
     const {
-      // children,
       button,
       menuDescriptor,
       anchor,
-      // menuWidth,
-      // menuMinWidth,
-      // menuMaxWidth,
-      // menuMaxHeight,
-      // isFullWidth,
       buttonWrapperStyle,
       BoxWrapperUIStyle,
       style,
@@ -138,7 +96,7 @@ class ButtonMenuMultiLevel extends Component {
     });
 
     const onSelfClose = (/* e */) => {
-      this.close();
+      this.setState({ isOpen: false });
     };
 
     return (
@@ -219,33 +177,6 @@ class ButtonMenuMultiLevel extends Component {
             menuDescriptor={menuDescriptor}
             onSelfClose={onSelfClose}
           />
-          {/* <ul
-            style={{
-              // padding: 0,
-              // margin: 0,
-              // listStyle: 'none',
-              background: 'white',
-              maxHeight: menuMaxHeight,
-              overflowY: visibleOverflow ? 'visible' : 'auto',
-              overflowX: visibleOverflow ? 'visible' : 'hidden',
-              ...(menuWidth ? { width: menuWidth } : {}),
-              ...(menuMinWidth ? { minWidth: menuMinWidth } : {}),
-              ...(menuMaxWidth ? { maxWidth: menuMaxWidth } : {}),
-            // visibility: isOpen ? 'visible' : 'collapse'
-            }}
-          >
-            {
-              React.Children.map(children, (child) => {
-                if (child && child.type && child.type === ButtonMenuItem) {
-                  return React.cloneElement(child, {
-                    shouldClose: this.close,
-                  });
-                }
-                return child;
-              })
-            }
-
-          </ul> */}
         </DropDown>
       </div>
     );

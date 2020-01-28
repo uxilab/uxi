@@ -1,5 +1,4 @@
 import React from 'react';
-// import MlMenuItem from './MlMenuItem';
 import MlMenuList from './MlMenuList';
 
 const MlMenu = (props) => {
