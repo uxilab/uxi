@@ -37,8 +37,6 @@ const createCheckbox = (rowProps) => {
     return icon;
   }
 
-  console.log('checked in TableRowCheckedCell', checked);
-
   return (
     <div data-uniqueid={uniqueId}>
       <Checkbox

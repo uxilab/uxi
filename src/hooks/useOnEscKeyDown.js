@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 function useOnEscKeyDown(ref, handler) {
   useEffect(
     () => {
-      // console.log('useOnEscKeyDown effect handler running', )
       const listener = (event) => {
         // TODO fi this, ideally we should not listen on documents
         // but on the 'input' component or dialog or whatever...

@@ -32,7 +32,7 @@ services:
       - "4000:4000"
     volumes:
       - "/Users/dfl/code/uxilab/uxi/src:/app/src"
-      - "/Users/dfl/code/uxilab/uxi/.docz:/app/.docz"
+      # - "/Users/dfl/code/uxilab/uxi/.docz:/app/.docz"
     command: npm run docz:dev
   # tests:
   #   build:
