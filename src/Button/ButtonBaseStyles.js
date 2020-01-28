@@ -34,13 +34,11 @@ const ButtonBaseStyles = css`
   }
   outline: none;
   box-shadow: none;
-  &:not(:hover) {
-    &:focus {
-      ${({ disabled, theme }) => (!disabled
-        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
-        : '')
-      };
-    }
+  &:focus, &:hover {
+    ${({ disabled, theme }) => (!disabled
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
   }
 `;
 /* eslint-enable indent */

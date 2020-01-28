@@ -32,15 +32,24 @@ export const OptionsUI = styled.div.attrs(({ isOpen }) => ({
   border: 1px solid transparent;
 
   /* color: inherit; */
-  /* background-color: white; */
+  background-color: white;
 
   &:hover,
   &:focus {
     outline: none;
-    color: white;
-    background: #595959;
+    /* color: white;
+    background: #595959; */
     /* background-color: #cecece; */
   };
+  &:focus, &:hover {
+    ${({ disabled, theme }) => (!disabled
+    ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+    : '')
+};
+    color: ${({ theme }) => theme.focusHighlightText};
+    background-color: ${({ theme }) => theme.focusHighlight};
+  }
+
 
   /* &:active {
     background-color: #fff;

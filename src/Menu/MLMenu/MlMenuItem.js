@@ -6,7 +6,7 @@ import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
 import MlMenu from './MlMenu';
 import TextEllipsis from '../../Text/TextEllipsis';
 
-
+/* eslint-disable indent */
 const MlMenuItemUI = styled.li`
   width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
   max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
@@ -25,8 +25,12 @@ const MlMenuItemUI = styled.li`
   }
 
   /** handle variance between links and buttons */
+  *.MlMenuItem-interactive-elem {
+    background: white;
+  }
   button.MlMenuItem-interactive-elem {
     ${buttonResetStylesCSSString};
+    background: white;
     text-align: left;
     /* background-color: white; */
     max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
@@ -38,6 +42,7 @@ const MlMenuItemUI = styled.li`
   a.MlMenuItem-interactive-elem {
     width: 100%;
     display: inline-block;
+    background: white;
   }
 
   /* a.MlMenuItem-interactive-elem:not(:only-child) {
@@ -61,12 +66,14 @@ const MlMenuItemUI = styled.li`
     display: flex;
     align-items: center;
     padding: 8px;
-    color: ${({ theme: { palette } }) => palette.darkGrey} !important;
-    background-color: white !important;
     text-decoration: none;
-    &:hover, &:focus {
-      background-color: ${({ theme: { palette } }) => palette.midDarkGrey} !important;
-      color: white !important;
+    &:focus, &:hover {
+      ${({ disabled, theme }) => (!disabled
+        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+        : '')
+      };
+      color: ${({ theme }) => theme.focusHighlightText};
+      background-color: ${({ theme }) => theme.focusHighlight};
       text-decoration: none;
     }
     & > div > svg {
@@ -96,6 +103,7 @@ const MlMenuItemUI = styled.li`
   }
 
 `;
+/* eslint-enable indent */
 
 const MlMenuItem = (props) => {
   const {

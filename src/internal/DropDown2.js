@@ -56,11 +56,11 @@ const BoxWrapperUI = styled.div`
   /* TODO shoadow and focus stylesshould be managed by component orchestrating a dropDown2 */
   &:focus, &:focus-within {
     ${({ /* isOpen,  */theme }) => (
-      `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      `box-shadow: ${theme.outlineShadow2}; outline: ${theme.outline}`
     )};
   };
   ${({ theme, forceShadow, isOpen }) => forceShadow && isOpen &&
-    `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+    `box-shadow: ${theme.outlineShadow2}; outline: ${theme.outline}`
   };
 `;
 /* eslint-enble indent */
