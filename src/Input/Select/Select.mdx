@@ -1,0 +1,30 @@
+---
+name: Select
+route: /doc/components/Select
+---
+
+
+import { Playground, Props } from 'docz'
+import ThemeProvider from '../../Theme/ThemeProvider'
+import Flex from '../../Layout/Flex'
+import SelectWithFiltering from './SelectWithFiltering'
+
+
+# Demo
+
+<Playground>
+  <ThemeProvider>
+    <div style={{ padding: '16px', height: '800Px' }}>
+      <SelectWithFiltering>
+        <Flex value='foo'>foo</Flex>
+        <Flex value='bar'>bar</Flex>
+      </SelectWithFiltering>
+      <br />
+    </div>
+  </ThemeProvider>
+</Playground>
+
+
+# API
+
+<Props of={SelectWithFiltering} />

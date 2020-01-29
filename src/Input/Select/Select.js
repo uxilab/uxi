@@ -3,7 +3,7 @@ import isEqual from 'lodash/isEqual';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
-import { Arrowdown } from '../../Icons';
+import Arrowdown from '../../Icons/Arrowdown';
 import Button from '../../Button/Button';
 import UnstyledButtonBeta from '../../Button/UnstyledButton1';
 import Option from './SelectInputOptions';

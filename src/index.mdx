@@ -7,6 +7,8 @@ route: /doc/components/Demo
 import ThemeProvider from './Theme/ThemeProvider'
 import { Playground, Props } from 'docz'
 import Button from './Button'
+import FlatButton from './Button/FlatButton'
+import OutlineButton from './Button/OutlineButton'
 import UnstyledButton from './Button/UnstyledButton1.js'
 import Select from './Input/Select/Select'
 import Options from './Icons/Options'
@@ -25,13 +27,13 @@ import ButtonMenuMultiLevel from './Menu/ButtonMenu/ButtonMenuMultiLevel'
       <br />
       <Button  icon={<Options />} type='primary' text="foo" />
       <br />
-      <Button  icon={<Options />} type='primary' text="foo" />
+      <OutlineButton  icon={<Options />} type='primary' text="foo" />
       <br />
-      <Button  icon={<Options />} type='secondary' text="foo" />
+      <OutlineButton  icon={<Options />} type='secondary' text="foo" />
       <br />
-      <Button  icon={<Options />} type='error' text="foo" />
-      <Button  icon={<Options />} type='success' text="foo" />
-      <Button  icon={<Options />} type='warning' text="foo" />
+      <FlatButton  icon={<Options />} type='error' text="foo" />
+      <FlatButton  icon={<Options />} type='success' text="foo" />
+      <FlatButton  icon={<Options />} type='warning' text="foo" />
       <br />
       <div style={{ padding: '16px' }}>
         <Select

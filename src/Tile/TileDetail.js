@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Img } from '../Img';
+import Img from '../Img';
 import { flexCSSString, ContentWithExtra } from '../Layout';
 import {
   Circle,

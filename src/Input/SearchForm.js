@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from './TextField';
-import { Button } from '../Button';
+import Button from '../Button';
 import { Search } from '../Icons';
 import InputGroup from '../List/InputGroup';
 

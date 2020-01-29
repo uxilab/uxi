@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line import/no-named-as-default
 import getAppropriateIcon from '../Icons/getAppropriateIcon';
 import Img from './Img';
-import { TextEllipsis } from '../Text';
+import TextEllipsis from '../Text/TextEllipsis';
 
 const styles = {
   wrapper: {

@@ -13,7 +13,7 @@ export const ButtonBaseMixin = css`;
   * { color: inherit }
   svg { fill: ${({ theme, type }) => (type ? '#fff' : theme.palette.darkGrey)};}
 
-  &:hover {
+  &:hover, &:focus {
     border-color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.grey)};
     color: ${({ theme, type }) => (type ? getTypeColor(theme, type) : theme.palette.darkGrey)};
     background-color: ${({ type, theme }) => (type ? '#fff' : theme.palette.lightGrey)};
@@ -44,7 +44,7 @@ export const ButtonBaseMixin = css`;
       ${({ disabled, theme: { palette } }) => (disabled ? `fill: ${palette.grey}` : '')};
     }
   }
-}
+
 `;
 
 export default ButtonBaseMixin;

@@ -5,7 +5,7 @@ import {
   // Issue as ErrorIcon,
   Upload as UploadIcon,
 } from '../Icons';
-import { Button } from '../Button';
+import Button from '../Button';
 // import { palette } from '../Theme/palette';
 
 const FileInputWrapperUI = styled.div`
