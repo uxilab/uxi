@@ -37,7 +37,7 @@ RUN echo 'module.exports = { plugins: [`gatsby-plugin-flow`] }' >> /app/gatsby-c
 
 # DOCZ CONFIG
 # NEEDS `"host: "0.0.0.0"` because run inside docker need to be 'publicly' exposed
-RUN echo 'export default { port: 4000, host: "0.0.0.0" }' >> /app/doczrc.js
+RUN echo 'export default { base: "/uxi/", port: 4000, host: "0.0.0.0" }' >> /app/doczrc.js
 
 # expose src volum (so to not have to buidl every time)
 # VOLUME ./src /app/src
