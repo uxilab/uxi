@@ -54,13 +54,10 @@ const BoxWrapperUI = styled.div`
   }
 
   /* TODO shoadow and focus stylesshould be managed by component orchestrating a dropDown2 */
-  &:focus, &:focus-within {
+  &:focus, &:focus-within ${({ isOpen }) => (isOpen ? ', &' : '')} {
     ${({ /* isOpen,  */theme }) => (
       `box-shadow: ${theme.outlineShadow2}; outline: ${theme.outline}`
     )};
-  };
-  ${({ theme, forceShadow, isOpen }) => forceShadow && isOpen &&
-    `box-shadow: ${theme.outlineShadow2}; outline: ${theme.outline}`
   };
 `;
 /* eslint-enble indent */
@@ -168,7 +165,7 @@ class DropDown2 extends Component {
       isFullWidth,
       anchor,
       fullWidthContent,
-      forceShadow,
+      // forceShadow,
       visibleOverflow,
       buttonWrapperStyle,
       BoxWrapperUIStyle,
@@ -208,7 +205,7 @@ class DropDown2 extends Component {
         </span>
         <BoxWrapperUI
           visibleOverflow={visibleOverflow}
-          forceShadow={forceShadow}
+          // forceShadow={forceShadow}
           fullWidthContent={fullWidthContent}
           data-box-wrapper-ui
           onScroll={(e) => {

@@ -15,7 +15,7 @@ const MlMenuListUI = styled.ul`
   width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
   min-width: var(--itemWidth);
   max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
-  box-shadow: ${({ theme }) => `${theme.outlineShadow}`};
+  box-shadow: ${({ theme }) => `${theme.outlineShadow2}`};
   border-radius: ${({ theme: { radius } }) => radius};
 
   li > & { display: none; }

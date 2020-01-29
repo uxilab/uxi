@@ -36,7 +36,7 @@ import ButtonMenuMultiLevel from './Menu/ButtonMenu/ButtonMenuMultiLevel'
       <div style={{ padding: '16px' }}>
         <Select
           style={{ width: '300px' }}
-          onChange={(event, value) => this.setState({ selectedValue: value })}
+          onChange={(event, value) => console.log({ selectedValue: value })}
         >
           <Flex key="none" value={null}>None</Flex>
           <Flex value={'Ava'}>

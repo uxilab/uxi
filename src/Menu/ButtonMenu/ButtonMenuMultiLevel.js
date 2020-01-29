@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import DropDown from '../../internal/DropDownWithClickOutside'; // eslint-disable-line
 import { FlatButton } from '../../Button'; // eslint-disable-line
@@ -8,6 +9,16 @@ import Menu from '../Menu'; // eslint-disable-line
 import MlMenu from '../MLMenu/MlMenu';
 
 const focusTimeout = 128;
+
+
+const ButtonMenuMultiLevelWrapper = styled.div`
+  *[data-box-wrapper-ui] {
+    &, &:focus-within, &:focus, &:hover {
+      box-shadow: none !important;
+    }
+  }
+`;
+
 
 class ButtonMenuMultiLevel extends Component {
   constructor(props) {
@@ -100,7 +111,7 @@ class ButtonMenuMultiLevel extends Component {
     };
 
     return (
-      <div
+      <ButtonMenuMultiLevelWrapper
         onKeyDown={(e) => {
           if (e.key === 'Escape') {
             this.close();
@@ -171,6 +182,7 @@ class ButtonMenuMultiLevel extends Component {
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
           buttonWrapperStyle={buttonWrapperStyle}
           BoxWrapperUIStyle={BoxWrapperUIStyle}
+          noShadow
         >
           <MlMenu
             isFullWidth
@@ -178,7 +190,7 @@ class ButtonMenuMultiLevel extends Component {
             onSelfClose={onSelfClose}
           />
         </DropDown>
-      </div>
+      </ButtonMenuMultiLevelWrapper>
     );
   }
 }
