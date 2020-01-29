@@ -30,7 +30,6 @@ exports[`<Checkbox /> matches snapshot 1`] = `
         size={22}
       />
       <styled.input
-        checked={false}
         disabled={false}
         hasFocus={true}
         id="myawesomecheckbox"

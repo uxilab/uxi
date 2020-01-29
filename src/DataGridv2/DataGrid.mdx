@@ -1,0 +1,266 @@
+---
+name: DataGrid
+route: /doc/components/DataGrid
+---
+
+import { useState } from 'react'
+import { Playground, Props } from 'docz'
+import ThemeProvider from '../Theme/ThemeProvider'
+import Circle from '../Icons/Circle'
+import Star from '../Icons/Star'
+// import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu'
+import DataGrid from './'
+import { WithState } from './utils'
+
+
+import Flex from '../Layout/Flex'
+
+
+# DataGrid
+
+Takes a list of entities, a model, and renders a table.
+The model displays the raw value unles you pass it a `Component`
+The model support custom menu for table header
+
+
+
+## Example usage (controlled selection)
+
+<Playground>
+<ThemeProvider>
+  <WithState
+    defaultState={{
+      selected: ['bar', 'vrn'],
+      sortDirections: [{ property: 'name' }, { property: 'firstName', sortDirection: 'ASC' }],
+    }}
+  >
+    {
+      (state, setState) => (
+        <DataGrid
+          useSmartOverflowX
+          resizable
+          propertyKey="name"
+          onSelectionChange={(isSelected, entityId, selected) => {
+            console.log('isSelected, entityId, selected', isSelected, entityId, selected)
+            setState({ ...state, selected })
+          }}
+          onSelectAllChange={(selectAllChecked) => {
+            console.log('selectAllChecked', selectAllChecked)
+            setState({ ...state, selected: selectAllChecked ? [
+            { age: 123, firstName: 'foo', name: 'bar', },
+            { age: 123, firstName: 'baz', name: 'foo', },
+            { age: 123, firstName: 'fuz', name: 'fob', },
+            { age: 123, firstName: 'voo', name: 'mar', },
+            { age: 123, firstName: 'bop', name: 'vrn', },
+          ].map(({ name }) => name ) : [] })
+          }}
+          selected={state.selected}
+          selectable
+          model={[
+            { property: 'firstName',
+            displayName: 'First name',
+            CellDetail: (entity) => {
+              return (
+                <div style={{ padding: '16px' }}>
+                  <h4>Valid Data</h4>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <Flex style={{ justifyContent: 'flex-start', margin: '8px 0' }}>
+                    <Circle style={{ margin: '0 8px' }} />
+                    <Circle style={{ margin: '0 8px' }} />
+                  </Flex>
+                  <div><a href="#">View original</a></div>
+                  <div><a href="#">Search for similar</a></div>
+                </div>
+              )
+            },
+            // Component,
+            menuDescriptor: [
+              {
+                label: 'foo',
+                icon: <Circle />,
+                onClick: () => { console.log('foo')},
+                children: [
+                  { label: 'bar', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                  {
+                    label: 'foo',
+                    icon: <Circle />,
+                    onClick: () => { console.log('foo>bar')},
+                    children: [
+                      { label: 'bar', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                      { label: 'foo', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                    ],
+                  }
+                ],
+              },
+              {
+                label: 'bar',
+                icon: <Circle />,
+                onClick: () => { console.log('foo')},
+              },
+            ]},
+            // { property: 'name', displayName: 'Name', menu: <ButtonMenu button={'≡'}>yooooo</ButtonMenu> },
+            { property: 'name', displayName: 'Name', menu: <Flex style={{ padding: '8px', marginLeft: 'auto' }}><Star /></Flex> },
+            {
+              property: 'age',
+              displayName: 'Age',
+              menuDescriptor: [{
+                label: 'foo',
+                icon: <Circle />,
+                onClick: () => { console.log('foo')},
+                children: [
+                  {
+                    label: 'bar',
+                    icon: <Circle />,
+                    onClick: () => { console.log('foo>bar')},
+                  }
+                ],
+                // type: ,
+                // Link: ,
+                // to: ,
+                // href: ,
+                // target: ,
+                // isFullWidth: ,
+              }]
+            },
+          ]}
+          data={[
+            { age: 123, firstName: 'foozefv ojnzfkgjnbzjrnvzoekrjnv', name: 'bar', },
+            { age: 123, firstName: 'baz kzejfnvlskngd bl lknf lkzfn g', name: 'foo', },
+            { age: 123, firstName: 'fuz', name: 'fob', },
+            { age: 123, firstName: 'voo', name: 'mar', },
+            { age: 123, firstName: 'boplkznfknlfjgnkjnzfjkleznlfnzekjrfnkzenrkzejrnkzejrnf', name: 'vrn', },
+          ]}
+          sortDirections={state.sortDirections}
+          defaultSortDirections={undefined}
+          sortable
+          onSortChange={(property, sortDirection, newSortDirections) => {
+            console.log('mdx: newSortDirections', newSortDirections)
+            setState({ ...state, sortDirections: newSortDirections })
+          }}
+          // tableHeaderOverlayRender={(data) => {
+          //   console.log('data', data)
+          //   return (
+          //     <Flex
+          //       style={{
+          //         position: 'absolute',
+          //         top: 0,
+          //         left: 0,
+          //         right: 0,
+          //         height: '36px',
+          //         // bottom: 0,
+          //         width: '100%',
+          //         background: 'wheat',
+          //       }}
+          //     >
+          //       {`${data.selected.length} selected on ${data.data.length} total`}
+          //     </Flex>
+          //   )
+          // }}
+        />
+      )
+    }
+    </WithState>
+    </ThemeProvider>
+</Playground>
+
+
+## Basic usage
+
+<Playground>
+<ThemeProvider>
+  <DataGrid
+    propertyKey="model"
+    model={[
+      { property: 'constructor', displayName: 'Main Constructor' },
+      { property: 'model', displayName: 'Vehicule Model' },
+    ]}
+    data={[
+      { constructor: 'SpaceX', model: 'falcon' },
+      { constructor: 'Tesla', model: 'model X' },
+    ]}
+    resizable
+    selectable
+    useSmartOverflowX
+  />
+</ThemeProvider>
+</Playground>
+
+
+## Props
+
+<Props of={DataGrid} />
+
+
+## Infered model
+
+`model`, if not provided, is infered from the first entity in the `data` collection
+
+Note: using `Object.keys`
+
+
+<Playground>
+<ThemeProvider>
+  <DataGrid
+    data={[
+      { constructor: 'SpaceX', model: 'falcon' },
+      { constructor: 'Tesla', model: 'model X', foo: 'bar' },
+    ]}
+  />
+  </ThemeProvider>
+</Playground>
+
+
+
+## Custom Component render + custom menu
+
+<Playground>
+  <ThemeProvider>
+  <DataGrid
+    model={[
+      { 
+        property: 'name',
+        displayName: 'Name',
+      },
+      {
+        property: 'roles',
+        displayName: 'User groups',
+        Component: (entity) => (
+          entity.roles.map((r, i, { length }) => (
+            <div>
+              <i>{r}</i>
+              {i === length-1 ? '' : ', '}
+            </div>
+          ))
+        )
+      },
+    ]}
+    data={[
+      { name: 'John', roles: ['admin', 'editor', 'writer'] },
+    ]}
+  />
+</ThemeProvider>
+</Playground>
+
+
+
+
+## useSmartOverflowX
+
+
+resize and observe the overflow-x automatically changing when the table is wider than "its viewport"
+
+<Playground>
+  <ThemeProvider>
+  <div
+    style={{ whiteSpace: 'nowrap' }}
+  >
+  <DataGrid
+    useSmartOverflowX
+    data={[
+      { constructor: 'SpaceX - $$$$$$$$$$$$$$$$', model: 'falcon  - $$$$$$$$$$$$$$$$', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$' },
+      { constructor: 'Tesla - $$$$$$$$$$$$$$$$', model: 'model X', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$'  },
+    ]}
+  />
+  </div>
+  </ThemeProvider>
+</Playground>

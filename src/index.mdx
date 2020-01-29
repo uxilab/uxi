@@ -1,0 +1,85 @@
+---
+name: Demo
+route: /doc/components/Demo
+---
+
+
+import ThemeProvider from './Theme/ThemeProvider'
+import { Playground, Props } from 'docz'
+import Button from './Button'
+import FlatButton from './Button/FlatButton'
+import OutlineButton from './Button/OutlineButton'
+import UnstyledButton from './Button/UnstyledButton1.js'
+import Select from './Input/Select/Select'
+import Options from './Icons/Options'
+import Flex from './Layout/Flex'
+import AvatarWithName from './Img/AvatarWithName'
+import ButtonMenuMultiLevel from './Menu/ButtonMenu/ButtonMenuMultiLevel'
+
+
+# Demo
+
+
+<Playground>
+  <ThemeProvider>
+    <div style={{ padding: '16px', height: '800Px' }}>
+      <Button text="foo" />
+      <br />
+      <Button  icon={<Options />} type='primary' text="foo" />
+      <br />
+      <OutlineButton  icon={<Options />} type='primary' text="foo" />
+      <br />
+      <OutlineButton  icon={<Options />} type='secondary' text="foo" />
+      <br />
+      <FlatButton  icon={<Options />} type='error' text="foo" />
+      <FlatButton  icon={<Options />} type='success' text="foo" />
+      <FlatButton  icon={<Options />} type='warning' text="foo" />
+      <br />
+      <div style={{ padding: '16px' }}>
+        <Select
+          style={{ width: '300px' }}
+          onChange={(event, value) => console.log({ selectedValue: value })}
+        >
+          <Flex key="none" value={null}>None</Flex>
+          <Flex value={'Ava'}>
+            <AvatarWithName src={'https://randomuser.me/api/portraits/women/82.jpg'} name={'Ava'} />
+          </Flex>
+          <Flex value={'Regina'}>
+            <AvatarWithName src={'https://randomuser.me/api/portraits/women/37.jpg'} name={'Regina'} />
+          </Flex>
+        </Select>
+      </div>
+    </div>
+  </ThemeProvider>
+</Playground>
+
+
+
+
+<Playground>
+  <ThemeProvider>
+     <div style={{ padding: '16px' }}>
+      <ButtonMenuMultiLevel
+          style={{ alignItems: 'stretch', display: 'flex' }}
+          anchor={'left'}
+          buttonWrapperStyle={{
+            position: 'inherit',
+            // fuck: 'eslint',
+            height: '100%',
+            alignItems: 'stretch',
+            display: 'flex',
+          }}
+          BoxWrapperUIStyle={{
+            width: 'auto',
+            zIndex: 1,
+          }}
+          menuDescriptor={[{
+            label: 'foo',
+            children: [{ label: 'bar' }],
+          }]}
+          button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
+        />
+      </div>
+  </ThemeProvider>
+</Playground>
+

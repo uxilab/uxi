@@ -45,3 +45,6 @@ notes.txt     # denis
 jsconfig.json # vscode
 .vscode
 build/
+
+
+.docz

@@ -34,6 +34,7 @@ const MenuWrapperUI = styled.div`
 
   ul {
     width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
+    min-width: var(--itemWidth);
     max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
   }
   li {
@@ -128,7 +129,7 @@ export const handleMenuLevel = (menuItemDescriptor = {}) => {
   return (isSeparator
     ? <Separator label={label} />
     : <MenuItem key={label} >
-      <a // eslint-disable-line jsx-a11y/href-no-hash
+      <a // eslint-disable-line
         href="#"
         onClick={(ev) => {
           onClick(ev);

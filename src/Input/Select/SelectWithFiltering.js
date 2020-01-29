@@ -5,11 +5,11 @@ import UnstyledButtonBeta from '../../Button/UnstyledButton1';
 // eslint-disable-next-line import/no-named-as-default
 // import DropDown from '../internal/DropDown';
 import DropDown2 from '../../internal/DropDownWithClickOutside';
-import { Arrowdown } from '../../Icons';
-import { Button } from '../../Button';
+import Arrowdown from '../../Icons/Arrowdown';
+import Button from '../../Button';
 import Option from './SelectInputOptions';
 // import StatusIcon from '../utils/StatusIcon';
-import { TextField } from '../../Input';
+import TextField from '../../Input/TextField';
 // // import ErrorWrapperUI from './utils/ErrorWrapperUI';
 import { styles } from './Select.styles';
 import TriggererWrapperWithEllispsisChildren from './TriggererWrapperWithEllispsisChildren';
@@ -818,3 +818,4 @@ SelectWithFiltering.defaultProps = {
 
 
 export default SelectWithFiltering;
+// export default () => 'SelectWithFiltering';

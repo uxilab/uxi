@@ -1,5 +1,4 @@
 import React from 'react';
-// import MlMenuItem from './MlMenuItem';
 import MlMenuList from './MlMenuList';
 
 const MlMenu = (props) => {
@@ -7,8 +6,9 @@ const MlMenu = (props) => {
     menuDescriptor = [],
     isFullWidth,
     onClick,
-    onSelfClose = () => {},
+    onSelfClose = () => { },
   } = props;
+
 
   return (
     <MlMenuList

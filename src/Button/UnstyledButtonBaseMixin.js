@@ -22,7 +22,15 @@ export const UnstyledButtonBaseMixin = css`;
     display: flex;
     justify-content: center
   }
-}
+
+  &:focus, &:hover {
+    ${({ disabled, theme }) => (!disabled
+      ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      : '')
+    };
+    color: ${({ theme }) => theme.focusHighlightText};
+    background-color: ${({ theme }) => theme.focusHighlight};
+  }
 `;
 
 export default UnstyledButtonBaseMixin;

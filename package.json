@@ -1,6 +1,6 @@
 {
   "name": "uxi",
-  "version": "3.0.32",
+  "version": "4.0.0",
   "description": "react component Ui library",
   "main": "docs/srver/index.js",
   "engine": {
@@ -24,7 +24,9 @@
     "typeinstall": "flow-typed install",
     "deploy": "npm run lint && npm run test && npm version patch && npm run pack && npm publish build",
     "deploy-doc": "npm run lint && npm run test && cd docs/ && npm run deploy-doc",
-    "make-svg-icons": "cd src/Icons && node _script.js && cd ../../ && npx eslint src/Icons --fix && npm run test "
+    "make-svg-icons": "cd src/Icons && node _script.js && cd ../../ && npx eslint src/Icons --fix && npm run test ",
+    "docz": "docker-compose -f docker-compose-docz.yml run build-docz",
+    "docz:dev": "docker-compose -f docker-compose-docz.yml run --service-ports docz"
   },
   "repository": {
     "type": "git",
@@ -37,11 +39,7 @@
   },
   "homepage": "https://github.com/uxilab/uxi#readme",
   "dependencies": {
-    "babel-eslint": "^8.2.3",
     "classnames": "^2.2.5",
-    "eslint": "^4.19.1",
-    "jest": "^24.9.0",
-    "keycode": "^2.1.9",
     "lodash": "^4.17.14",
     "rc-tooltip": "^3.7.0",
     "react-click-outside": "^3.0.0",
@@ -49,6 +47,9 @@
     "resize-observer-polyfill": "1.5.1"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "jest": "^24.9.0",
+    "babel-eslint": "^8.2.3",
     "app-module-path": "^2.1.0",
     "cross-env": "^5.1.3",
     "file-loader": "^1.1.8",

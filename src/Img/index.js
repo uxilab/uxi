@@ -1,11 +1,18 @@
 import Img from './Img';
 
-export Img from './Img';
-export SquareImg from './SquareImg';
-export RoundedImg from './RoundedImg';
-export AvatarWithName from './AvatarWithName';
-export AvatarWithNameAndExtra from './AvatarWithNameAndExtra';
-export Gallery from './Gallery';
-export ResponsiveGallery from './ResponsiveGallery';
+import SquareImgComp from './SquareImg';
+import RoundedImgComp from './RoundedImg';
+import AvatarWithNameComp from './AvatarWithName';
+import AvatarWithNameAndExtraComp from './AvatarWithNameAndExtra';
+import GalleryComp from './Gallery';
+import ResponsiveGalleryComp from './ResponsiveGallery';
+
+export const SquareImg = SquareImgComp;
+export const RoundedImg = RoundedImgComp;
+export const AvatarWithName = AvatarWithNameComp;
+export const AvatarWithNameAndExtra = AvatarWithNameAndExtraComp;
+export const Gallery = GalleryComp;
+
+export const ResponsiveGallery = ResponsiveGalleryComp;
 
 export default Img;

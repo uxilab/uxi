@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/no-named-as-default
 import Lookup from '../internal/Lookup';
 import { Arrowdown } from '../Icons';
-import { Button } from '../Button';
+import Button from '../Button';
 import Option from './SelectInputOptions';
 import StatusIcon from './utils/StatusIcon';
 import ErrorWrapperUI from './utils/ErrorWrapperUI';

@@ -18,7 +18,6 @@ export const ButtonCommonMixin = css`;
 
   /* FULL WIDTH STYLES: */
   ${({ isFullWidth }) => (isFullWidth ? 'width: 100%' : '')};
-}
 `;
 
 export default ButtonCommonMixin;

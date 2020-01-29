@@ -198,5 +198,3 @@ export const GlobalStyle = createGlobalStyle`
   ${simpleLayout}
 `;
 
-
-console.log('GlobalStyle in its file', GlobalStyle);

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UnstyledButton } from '../../Button';
+import { UnstyledButton } from '../../Button/UnstyledButton1';
 import MlMenuSeparator from './MlMenuSeparator';
 import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
 import MlMenu from './MlMenu';
 import TextEllipsis from '../../Text/TextEllipsis';
 
-
+/* eslint-disable indent */
 const MlMenuItemUI = styled.li`
   width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
   max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
@@ -27,33 +27,17 @@ const MlMenuItemUI = styled.li`
   /** handle variance between links and buttons */
   button.MlMenuItem-interactive-elem {
     ${buttonResetStylesCSSString};
+    background: white;
     text-align: left;
-    /* background-color: white; */
     max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
     width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
     padding: 8px;
-    /* color: inherit !important;
-    background-color: inherit !important; */
   }
   a.MlMenuItem-interactive-elem {
     width: 100%;
     display: inline-block;
+    background: white;
   }
-
-  /* a.MlMenuItem-interactive-elem:not(:only-child) {
-    &:after {
-      content: '▸';
-      display: block;
-      width: 8px;
-    }
-  }
-  & > *:not(a):not(:only-child) {
-    &:after {
-      content: '▸';
-      display: block;
-      width: 8px;
-    }
-  } */
 
   & .MlMenuItem-interactive-elem {
     font-size: 14px;
@@ -61,12 +45,14 @@ const MlMenuItemUI = styled.li`
     display: flex;
     align-items: center;
     padding: 8px;
-    color: ${({ theme: { palette } }) => palette.darkGrey} !important;
-    background-color: white !important;
     text-decoration: none;
-    &:hover, &:focus {
-      background-color: ${({ theme: { palette } }) => palette.midDarkGrey} !important;
-      color: white !important;
+    &:focus, &:hover {
+      ${({ disabled, theme }) => (!disabled
+        ? `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+        : '')
+      };
+      color: ${({ theme }) => theme.focusHighlightText};
+      background-color: ${({ theme }) => theme.focusHighlight};
       text-decoration: none;
     }
     & > div > svg {
@@ -96,6 +82,7 @@ const MlMenuItemUI = styled.li`
   }
 
 `;
+/* eslint-enable indent */
 
 const MlMenuItem = (props) => {
   const {
@@ -109,6 +96,7 @@ const MlMenuItem = (props) => {
     href,
     target,
     isFullWidth,
+    onSelfClose,
   } = props;
 
   const finalIcon = React.isValidElement(icon)
@@ -149,7 +137,7 @@ const MlMenuItem = (props) => {
       </InteractiveComp>
       {
         (hasChildren)
-          ? <MlMenu menuDescriptor={children} />
+          ? <MlMenu menuDescriptor={children} onSelfClose={onSelfClose} />
           : null
       }
     </MlMenuItemUI>

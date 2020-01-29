@@ -10,13 +10,12 @@ const MlMenuListUI = styled.ul`
   * {
     box-sizing: border-box;
     transition: none !important; /* svg needs the authority */
-    /* transition: ${({ theme: { transition } }) => transition.defaultAll}; */
   }
 
   width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
+  min-width: var(--itemWidth);
   max-width: ${({ isFullWidth }) => (isFullWidth ? '100%' : 'var(--itemWidth)')};
-  /* border: 1px solid #cecece; */
-  box-shadow: ${({ theme }) => `${theme.outlineShadow}`};
+  box-shadow: ${({ theme }) => `${theme.outlineShadow2}`};
   border-radius: ${({ theme: { radius } }) => radius};
 
   li > & { display: none; }
@@ -63,17 +62,20 @@ const MlMenuList = (props) => {
     <MlMenuListUI isFullWidth={isFullWidth} >
       {
         (menuDescriptor || []).map((itemDescriptor) => {
-          const { onClick: consumerOnClick } = itemDescriptor;
-          const onClickHandler = (...a) => { onSelfClose(); return consumerOnClick(...a); };
+          const { onClick: consumerOnClick = () => {} } = itemDescriptor;
+          const onClickHandler = (...a) => {
+            if (itemDescriptor.children === undefined) {
+              onSelfClose();
+            }
+            return consumerOnClick(...a);
+          };
 
           return (
             <MlMenuItem
               isFullWidth={isFullWidth}
               {...itemDescriptor}
               onClick={onClickHandler}
-              // {...(itemDescriptor.children !== undefined
-              // ? {} : { onClick: () => { itemDescriptor.onClick; } })
-              // }
+              onSelfClose={onSelfClose}
             />
           );
         })

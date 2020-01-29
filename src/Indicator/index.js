@@ -1,2 +1,6 @@
-export ProgressBar from './ProgressBar';
-export Loader from './Loader';
+import ProgressBarComp from './ProgressBar';
+import LoaderComp from './Loader';
+
+export const ProgressBar = ProgressBarComp;
+
+export const Loader = LoaderComp;

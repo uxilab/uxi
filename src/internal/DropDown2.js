@@ -54,13 +54,10 @@ const BoxWrapperUI = styled.div`
   }
 
   /* TODO shoadow and focus stylesshould be managed by component orchestrating a dropDown2 */
-  &:focus, &:focus-within {
+  &:focus, &:focus-within ${({ isOpen }) => (isOpen ? ', &' : '')} {
     ${({ /* isOpen,  */theme }) => (
-      `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
+      `box-shadow: ${theme.outlineShadow2}; outline: ${theme.outline}`
     )};
-  };
-  ${({ theme, forceShadow, isOpen }) => forceShadow && isOpen &&
-    `box-shadow: ${theme.outlineShadow}; outline: ${theme.outline}`
   };
 `;
 /* eslint-enble indent */
@@ -83,6 +80,7 @@ class DropDown2 extends Component {
     trigger: <div />,
     children: <div />,
     anchor: 'left',
+    BoxWrapperUIStyle: {},
   }
 
   constructor(props) {
@@ -167,8 +165,10 @@ class DropDown2 extends Component {
       isFullWidth,
       anchor,
       fullWidthContent,
-      forceShadow,
+      // forceShadow,
       visibleOverflow,
+      buttonWrapperStyle,
+      BoxWrapperUIStyle,
     } = this.props;
 
     const {
@@ -196,6 +196,7 @@ class DropDown2 extends Component {
         style={{
           position: 'relative',
           ...(!isFullWidth ? { display: 'inline-block' } : {}),
+          ...buttonWrapperStyle,
         }}
         ref={this.storeWrapperRef}
       >
@@ -204,7 +205,7 @@ class DropDown2 extends Component {
         </span>
         <BoxWrapperUI
           visibleOverflow={visibleOverflow}
-          forceShadow={forceShadow}
+          // forceShadow={forceShadow}
           fullWidthContent={fullWidthContent}
           data-box-wrapper-ui
           onScroll={(e) => {
@@ -215,6 +216,7 @@ class DropDown2 extends Component {
           isOpen={isOpen}
           maxHeight={height}
           childrenWith={(childrenProps.style && childrenProps.style.width) || null}
+          style={BoxWrapperUIStyle}
         >
           <div ref={this.storeRef} data-drop-down-content>
             {React.Children.only(children)}
