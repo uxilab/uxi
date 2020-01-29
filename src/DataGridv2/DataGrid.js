@@ -330,9 +330,14 @@ const DataGrid = (props: DataGridProps) => {
 
                   {
                     model.map((m = {}, idx) => {
-                      const cellContent = (m.Component !== undefined)
-                        ? <m.Component {...entity} />
-                        : <TdInnerWrapper>{entity[m.property]}</TdInnerWrapper>;
+                      const cellContent = (
+                        <TdInnerWrapper>
+                          {m.Component !== undefined
+                            ? <m.Component {...entity} />
+                            : entity[m.property]
+                          }
+                        </TdInnerWrapper>
+                      );
 
                       const cellDetail = (m.CellDetail !== undefined)
                         ? <m.CellDetail {...entity} />
