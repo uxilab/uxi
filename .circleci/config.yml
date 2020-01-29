@@ -78,7 +78,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: add
+          name: build docz
           command: npm run docz
       - persist_to_workspace:
           root: ./
@@ -91,6 +91,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
+      - run: git config --global user.name $CICIMAINTAINER_NAME
+      - run: git config --global user.email $CICIMAINTAINER_EMAIL
       - run:
           name: Deploy docs to gh-pages branch
           command: npx gh-pages --dist .docz/dist
