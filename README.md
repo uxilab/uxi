@@ -8,6 +8,7 @@
 
 ## Demo (wip): [uxilab.eu](https://www.uxilab.eu)
 
+## Doc (wip): [uxilab.github.io/uxi/](https://uxilab.github.io/uxi/)
 
 #### We're looking for contributors!
 
