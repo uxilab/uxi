@@ -15,5 +15,7 @@ const TdInnerWrapper = styled.div`
   padding: 0 0 0 16px;
 `;
 
+TdInnerWrapper.displayName = 'TdInnerWrapper';
+
 
 export default TdInnerWrapper;

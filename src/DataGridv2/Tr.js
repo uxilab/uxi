@@ -16,4 +16,7 @@ const Tr = styled.tr`
   }
 `;
 
+Tr.displayName = 'Tr';
+
+
 export default Tr;

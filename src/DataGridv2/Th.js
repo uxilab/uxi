@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
 import ButtonMenuMultiLevel from '../Menu/ButtonMenu/ButtonMenuMultiLevel'; // eslint-disable-line no-unused-vars
@@ -12,8 +12,8 @@ import type { SortDirection } from './DataGrid';
 
 
 type ThProps = {
-  children?: Node | Array<Node>,
-  index?: number,
+  children: Node | Array<Node>,
+  // index?: number,
 
   isResizing?: Boolean,
   resizable?: Boolean,
@@ -26,66 +26,79 @@ type ThProps = {
 }
 
 /* eslint-disable react/no-children-prop */
-const mapChildren = (props: ThProps = {}) => ({
-  ...props,
-  // TODO use fragment
-  children: (
-    <props.ThInnerWrapper>
-      {props.children}
-      {props.sortable
-        ? <SortHandler
-          sortable={props.sortable}
-          sortDirection={props.sortDirection}
-          onSortChange={props.onSortChange}
-        />
-        : null
-      }
-      {
-        props.menuDescriptor !== undefined
-          ? (
-            <Flex style={{ marginLeft: 'auto', alignItems: 'stretch' }}>
-              <ButtonMenuMultiLevel
-                style={{ alignItems: 'stretch', display: 'flex' }}
-                anchor={'right'}
-                buttonWrapperStyle={{
-                  position: 'inherit',
-                  // fuck: 'eslint',
-                  height: '100%',
-                  alignItems: 'stretch',
-                  display: 'flex',
-                }}
-                BoxWrapperUIStyle={{
-                  width: 'auto',
-                  zIndex: 1,
-                }}
-                menuDescriptor={props.menuDescriptor}
-                button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
-              />
-            </Flex>
-          )
-          // ? '•••'
-          : null
-      }
-      {
-        props.menuDescriptor === undefined && props.menu !== undefined
-          ? props.menu
-          : null
-      }
-      {props.resizable
-        ? (
-          <ResizeHandler
-            isResizing={props.isResizing}
-            resizable={props.resizable}
-            onResizeStart={props.onResizeStart}
-          />
-        )
-        : null
-      }
-    </props.ThInnerWrapper>
-  ),
-});
+/*
+const mapChildren = (props: ThProps = {}) => {
+  const { ThInnerWrapper } = props;
+  console.log('ThInnerWrapper', ThInnerWrapper);
 
-const Th = styled.th.attrs(mapChildren)`
+  return {
+    ...props,
+    // TODO use fragment
+    children: (
+      <ThInnerWrapper>
+        {children}
+        {sortable
+          ? <SortHandler
+            sortable={sortable}
+            sortDirection={sortDirection}
+            onSortChange={onSortChange}
+          />
+          : null
+        }
+        {
+          menuDescriptor !== undefined
+            ? (
+              <Flex style={{ marginLeft: 'auto', alignItems: 'stretch' }}>
+                <ButtonMenuMultiLevel
+                  style={{ alignItems: 'stretch', display: 'flex' }}
+                  anchor={'right'}
+                  buttonWrapperStyle={{
+                    position: 'inherit',
+                    // fuck: 'eslint',
+                    height: '100%',
+                    alignItems: 'stretch',
+                    display: 'flex',
+                  }}
+                  BoxWrapperUIStyle={{
+                    width: 'auto',
+                    zIndex: 1,
+                  }}
+                  menuDescriptor={menuDescriptor}
+                  button={<UnstyledButton
+                    style={{
+                      width: '32px', height: '100%', display: 'flex', alignItems: 'stretch'
+                    }}
+                    icon={<Options />}
+                  />
+                  }
+                />
+              </Flex>
+            )
+            // ? '•••'
+            : null
+        }
+        {
+          menuDescriptor === undefined && props.menu !== undefined
+            ? props.menu
+            : null
+        }
+        {props.resizable
+          ? (
+            <ResizeHandler
+              isResizing={props.isResizing}
+              resizable={props.resizable}
+              onResizeStart={props.onResizeStart}
+            />
+          )
+          : null
+        }
+      </ThInnerWrapper>
+    ),
+  };
+};
+*/
+// const ThUI = styled.th.attrs(mapChildren)`
+const ThUI = styled.th`
   box-sizing: border-box;
   height: 58px;
   padding: 0;
@@ -128,21 +141,96 @@ const Th = styled.th.attrs(mapChildren)`
   }
 `;
 
-Th.propTypes = {
-  isResizing: PropTypes.bool,
-  light: PropTypes.bool,
-  index: PropTypes.number,
-  resizable: PropTypes.bool,
-  onResizeStart: PropTypes.func,
+const Th = (props: ThProps) => {
+  const {
+    ThInnerWrapper,
+    style,
+    sortable,
+    sortDirection,
+    onSortChange,
+    menuDescriptor,
+    menu,
+    isResizing,
+    resizable,
+    onResizeStart,
+    children,
+  } = props;
+  return (
+    <ThUI style={{ ...style }}>
+      <ThInnerWrapper>
+        {children}
+        {sortable
+          ? <SortHandler
+            sortable={sortable}
+            sortDirection={sortDirection}
+            onSortChange={onSortChange}
+          />
+          : null
+        }
+        {
+          menuDescriptor !== undefined
+            ? (
+              <Flex style={{ marginLeft: 'auto', alignItems: 'stretch' }}>
+                <ButtonMenuMultiLevel
+                  style={{ alignItems: 'stretch', display: 'flex' }}
+                  anchor={'right'}
+                  buttonWrapperStyle={{
+                    position: 'inherit',
+                    // fuck: 'eslint',
+                    height: '100%',
+                    alignItems: 'stretch',
+                    display: 'flex',
+                  }}
+                  BoxWrapperUIStyle={{
+                    width: 'auto',
+                    zIndex: 1,
+                  }}
+                  menuDescriptor={menuDescriptor}
+                  button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
+                />
+              </Flex>
+            )
+          // ? '•••'
+            : null
+        }
+        {
+          menuDescriptor === undefined && menu !== undefined
+            ? menu
+            : null
+        }
+        {resizable
+          ? (
+            <ResizeHandler
+              isResizing={isResizing}
+              resizable={resizable}
+              onResizeStart={onResizeStart}
+            />
+          )
+          : null
+        }
+      </ThInnerWrapper>
+    </ThUI>
+  );
 };
+
+
+// Th.propTypes = {
+//   isResizing: PropTypes.bool,
+//   // index: PropTypes.number,
+//   resizable: PropTypes.bool,
+//   onResizeStart: PropTypes.func,
+// };
 
 Th.defaultProps = {
-  isResizing: undefined, /* eslint-disable no-unused-vars */
+  style: {},
   onResizeStart: () => {},
+  /* eslint-disable no-unused-vars */
   // eslint-disable-next-line max-len
   onSortChange: (property: string, sortDirection: SortDirection, newSortDirections: Array<SortDirection>) => {},
-  /* eslint-disable no-unused-vars */
+  isResizing: false,
+  resizable: false,
 };
 
+Th.displayName = 'Th';
 
 export default Th;

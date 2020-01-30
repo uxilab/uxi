@@ -29,4 +29,6 @@ Td.defaultProps = {
   light: undefined,
 };
 
+Td.displayName = 'Td';
+
 export default Td;

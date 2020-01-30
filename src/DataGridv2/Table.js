@@ -32,4 +32,7 @@ Table.defaultProps = {
   display: 'table',
 };
 
+Table.displayName = 'Table';
+
+
 export default Table;

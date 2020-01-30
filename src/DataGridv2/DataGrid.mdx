@@ -24,6 +24,28 @@ The model support custom menu for table header
 
 
 
+## Basic usage
+
+
+<Playground>
+<ThemeProvider>
+  <DataGrid
+    resizable
+    model={[
+      { property: 'constructor', displayName: 'Main Constructor' },
+      { property: 'model', displayName: 'Vehicule Model' },
+      { property: 'application', displayName: 'Terrain' },
+    ]}
+    data={[
+      { constructor: 'SpaceX', model: 'falcon', application: 'space' },
+      { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
+      { constructor: 'SpaceX', model: 'dragon', application: 'space' },
+    ]}
+  />
+</ThemeProvider>
+</Playground>
+
+
 ## Example usage (controlled selection)
 
 <Playground>
@@ -161,28 +183,6 @@ The model support custom menu for table header
     }
     </WithState>
     </ThemeProvider>
-</Playground>
-
-
-## Basic usage
-
-<Playground>
-<ThemeProvider>
-  <DataGrid
-    propertyKey="model"
-    model={[
-      { property: 'constructor', displayName: 'Main Constructor' },
-      { property: 'model', displayName: 'Vehicule Model' },
-    ]}
-    data={[
-      { constructor: 'SpaceX', model: 'falcon' },
-      { constructor: 'Tesla', model: 'model X' },
-    ]}
-    resizable
-    selectable
-    useSmartOverflowX
-  />
-</ThemeProvider>
 </Playground>
 
 

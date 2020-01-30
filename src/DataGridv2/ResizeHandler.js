@@ -24,5 +24,6 @@ const ResizeHandler = styled.div.attrs(props => ({
   cursor: ${({ isResizing }) => (isResizing ? 'inherit' : 'col-resize')};
 `;
 
+ResizeHandler.displayName = 'ResizeHandler';
 
 export default ResizeHandler;
