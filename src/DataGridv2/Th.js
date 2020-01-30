@@ -25,78 +25,6 @@ type ThProps = {
   sortDirection: SortDirection,
 }
 
-/* eslint-disable react/no-children-prop */
-/*
-const mapChildren = (props: ThProps = {}) => {
-  const { ThInnerWrapper } = props;
-  console.log('ThInnerWrapper', ThInnerWrapper);
-
-  return {
-    ...props,
-    // TODO use fragment
-    children: (
-      <ThInnerWrapper>
-        {children}
-        {sortable
-          ? <SortHandler
-            sortable={sortable}
-            sortDirection={sortDirection}
-            onSortChange={onSortChange}
-          />
-          : null
-        }
-        {
-          menuDescriptor !== undefined
-            ? (
-              <Flex style={{ marginLeft: 'auto', alignItems: 'stretch' }}>
-                <ButtonMenuMultiLevel
-                  style={{ alignItems: 'stretch', display: 'flex' }}
-                  anchor={'right'}
-                  buttonWrapperStyle={{
-                    position: 'inherit',
-                    // fuck: 'eslint',
-                    height: '100%',
-                    alignItems: 'stretch',
-                    display: 'flex',
-                  }}
-                  BoxWrapperUIStyle={{
-                    width: 'auto',
-                    zIndex: 1,
-                  }}
-                  menuDescriptor={menuDescriptor}
-                  button={<UnstyledButton
-                    style={{
-                      width: '32px', height: '100%', display: 'flex', alignItems: 'stretch'
-                    }}
-                    icon={<Options />}
-                  />
-                  }
-                />
-              </Flex>
-            )
-            // ? '•••'
-            : null
-        }
-        {
-          menuDescriptor === undefined && props.menu !== undefined
-            ? props.menu
-            : null
-        }
-        {props.resizable
-          ? (
-            <ResizeHandler
-              isResizing={props.isResizing}
-              resizable={props.resizable}
-              onResizeStart={props.onResizeStart}
-            />
-          )
-          : null
-        }
-      </ThInnerWrapper>
-    ),
-  };
-};
-*/
 // const ThUI = styled.th.attrs(mapChildren)`
 const ThUI = styled.th`
   box-sizing: border-box;
@@ -110,8 +38,6 @@ const ThUI = styled.th`
   font-weight: 600;
   color: ${({ theme: { palette } }) => palette.midDarkGrey};
   background: ${({ theme: { palette } }) => palette.white};
-  /* font-size: 13px;
-  color: ${({ theme }) => theme.palette.midDarkGrey}; */
   &:hover {
     transition: all 280ms cubic-bezier(.5,1,.5,1);
     ${ResizeHandler} {
@@ -191,7 +117,6 @@ const Th = (props: ThProps) => {
                 />
               </Flex>
             )
-          // ? '•••'
             : null
         }
         {
@@ -214,13 +139,6 @@ const Th = (props: ThProps) => {
   );
 };
 
-
-// Th.propTypes = {
-//   isResizing: PropTypes.bool,
-//   // index: PropTypes.number,
-//   resizable: PropTypes.bool,
-//   onResizeStart: PropTypes.func,
-// };
 
 Th.defaultProps = {
   style: {},
