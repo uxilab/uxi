@@ -107,6 +107,7 @@ const ThUI = styled.th`
   position: relative;
   transition: all 280ms cubic-bezier(.5,1,.5,1);
   text-transform: uppercase;
+  font-weight: 600;
   color: ${({ theme: { palette } }) => palette.midDarkGrey};
   background: ${({ theme: { palette } }) => palette.white};
   /* font-size: 13px;
