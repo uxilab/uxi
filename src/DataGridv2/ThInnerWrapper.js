@@ -11,5 +11,7 @@ const ThInnerWrapper = styled.div`
   height: 100%;
 `;
 
+ThInnerWrapper.displayName = 'ThInnerWrapper';
+
 
 export default ThInnerWrapper;

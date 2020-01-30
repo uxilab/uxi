@@ -161,28 +161,43 @@ const DataGrid = (props: DataGridProps) => {
 
     setIsResizing(true);
     setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
-    const nextCol = e.target.parentElement.nextElementSibling;
+    const nextCol = e.target.parentElement.parentElement.nextElementSibling;
+    console.log('-onResizeStart- nextCol', nextCol);
+    console.log('-onResizeStart- e.target', e.target);
+    console.log('-onResizeStart- e.target.parentElement', e.target.parentElement);
+    console.log('-onResizeStart- e.target.parentElement.parentElement', e.target.parentElement.parentElement);
+    console.log('-onResizeStart- e.target.parentElement.parentElement.nextElementSibling', e.target.parentElement.parentElement.nextElementSibling);
     setPageX(e.pageX);
-    setCurColWidth(e.target.parentElement.offsetWidth);
+    const currColWidth = e.target.parentElement.offsetWidth;
+    setCurColWidth(currColWidth);
     if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
-
+    console.log('-onResizeStart- currColWidth', currColWidth);
+    console.log('-onResizeStart- nextCol.offsetWidth', nextCol && nextCol.offsetWidth);
     document.body.style.cursor = 'grabbing';
   };
 
   useOnDocumentMouseMove(null, (e) => {
     if (isResizing) {
       const diffX = e.pageX - pageX;
+      console.log('––––––––––––––– useOnDocumentMouseMove –––––––––––––––');
+      console.log('diffX', diffX);
       const newColumnsSizes = columnsSizes.map((c, i) => {
         const [curColIdx, nxtColIdx] = resizingColumnIndexes;
+        console.log('---- newColumnsSizes ----');
+        console.log('curColIdx, nxtColIdx, resizingColumnIndexes', curColIdx, nxtColIdx, resizingColumnIndexes);
 
         if (nxtColIdx !== null && i === nxtColIdx) {
+          console.log('case 1', nextColWidth);
           return `${nextColWidth - diffX}px`;
         }
         if (curColIdx === i) {
+          console.log('case 2', curColWidth);
           return `${curColWidth + diffX}px`;
         }
+        console.log('case default', curColIdx, nxtColIdx, resizingColumnIndexes);
         return c;
       });
+      console.log('––––––––––––––– •••••••••••••••••••••• –––––––––––––––');
 
       setColumnsSizes(newColumnsSizes);
     }
@@ -278,9 +293,9 @@ const DataGrid = (props: DataGridProps) => {
                     menu={m.menu}
                     index={i}
                     key={i}
-                    ThInnerWrapper={ThInnerWrapper}
                     {...resizeProps}
                     {...sortProps}
+                    ThInnerWrapper={ThInnerWrapper}
                   >
                     <Flex>{m.displayName}</Flex>
                   </Th>
@@ -330,9 +345,14 @@ const DataGrid = (props: DataGridProps) => {
 
                   {
                     model.map((m = {}, idx) => {
-                      const cellContent = (m.Component !== undefined)
-                        ? <m.Component {...entity} />
-                        : <TdInnerWrapper>{entity[m.property]}</TdInnerWrapper>;
+                      const cellContent = (
+                        <TdInnerWrapper>
+                          {m.Component !== undefined
+                            ? <m.Component {...entity} />
+                            : entity[m.property]
+                          }
+                        </TdInnerWrapper>
+                      );
 
                       const cellDetail = (m.CellDetail !== undefined)
                         ? <m.CellDetail {...entity} />
@@ -388,5 +408,7 @@ DataGrid.defaultProps = {
   ThInnerWrapper: ThInnerWrapperComp,
 };
 /* eslint-enable no-unused-vars */
+
+DataGrid.displayName = 'DataGridv2';
 
 export default DataGrid;

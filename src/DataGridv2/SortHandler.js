@@ -55,10 +55,14 @@ const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   }
 `;
 
-
-export default props => (
+const SortHandler = props => (
   <SortHandlerButton {...props} >
     <Triangle />
     <Triangle />
   </SortHandlerButton>
 );
+
+SortHandler.displayName = 'SortHandler';
+
+
+export default SortHandler;

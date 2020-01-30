@@ -14,5 +14,6 @@ export const Flex = styled.div`
   ${flexCSSString}
 `;
 
+Flex.displayName = 'Flex';
 
 export default Flex;

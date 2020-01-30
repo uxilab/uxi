@@ -77,4 +77,7 @@ const CellWithPopOver = (props) => {
   );
 };
 
+CellWithPopOver.displayName = 'CellWithPopOver';
+
+
 export default CellWithPopOver;
