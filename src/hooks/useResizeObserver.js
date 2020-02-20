@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 
-/**
- * since we control machines, no need to polyfil (resize-observer-polyfill)
- */
+
 const useResizeObserver = (reactRef, callback) => {
   useEffect(() => {
-    const resizeObserver = new (window).ResizeObserver((entries) => {
+    const resizeObserver = new ResizeObserver((entries) => {
       callback(entries[0].contentRect);
     });
 
