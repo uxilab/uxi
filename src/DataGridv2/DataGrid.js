@@ -1,5 +1,6 @@
 // @flow
 import React, { Component, useState } from 'react';
+// import { useDrag } from 'react-dnd';
 import Table from './Table';
 import Th from './Th';
 import Tr from './Tr';
@@ -12,6 +13,10 @@ import { Flex } from '../Layout/Flex';
 import Checkbox from '../Input/Checkbox';
 import CellWithPopOver from './CellWithPopOver';
 import TdInnerWrapper from './TdInnerWrapper';
+import TextEllipsis from '../Text/TextEllipsis';
+
+const minCellWidth = 64;
+const cellHeight = 48;
 
 const runWarnings = (props) => {
   if (
@@ -116,17 +121,160 @@ const DataGrid = (props: DataGridProps) => {
 
     ThInnerWrapper,
 
+    // reorderable = true,
+
     tableHeaderOverlayRender,
+    // eslint-disable-next-line no-nested-ternary
+    baseCellWidth = props.baseCellWidth !== undefined
+      ? props.baseCellWidth : (useSmartOverflowX && resizable) ? 240 : undefined,
   } = props;
 
   runWarnings(props);
 
   const hasCustomHeader = tableHeaderOverlayRender !== undefined;
 
+
+  /* Resize + Reorder */
+
+  /* Reorder */
+  // const [columnsOrder, setColumnsOrder] = useState(model.map((m, i) => ({ ...m, index: i })));
+  /* Reorder end */
+
+  const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
+  const [columnsSizes, setColumnsSizes] = useState(
+    defaultColumnsSizes
+      || [...new Array(columnsCount)].map(() => baseCellWidth)
+  ); // do we need controlled behavior ?
+  const [isResizing, setIsResizing] = useState();
+  const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
+  const [pageX, setPageX] = useState();
+  const [curColWidth, setCurColWidth] = useState();
+  // const [nextColWidth, setNextColWidth] = useState();
+
+  const onResizeStart = (e, columnIdx) => {
+    // eslint-disable-next-line no-nested-ternary
+    const siblingColumnIdx = columnIdx > -1
+      ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
+      : null;
+
+    setIsResizing(true);
+    setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
+    // const nextCol = e.target.parentElement.parentElement.nextElementSibling;
+    setPageX(e.pageX);
+    const currColWidth = e.target.parentElement.offsetWidth;
+    setCurColWidth(currColWidth);
+    // if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
+    document.body.style.cursor = 'grabbing';
+  };
+
+  useOnDocumentMouseMove([isResizing], (e) => {
+    if (isResizing) {
+      const diffX = e.pageX - pageX;
+      const newColumnsSizes = columnsSizes.map((c, i) => {
+        const [curColIdx/* , nxtColIdx */] = resizingColumnIndexes;
+
+        // if (nxtColIdx !== null && i === nxtColIdx) {
+        //   return `${nextColWidth - diffX}px`;
+        // }
+        if (curColIdx === i) {
+          const newVal = curColWidth + diffX;
+          return `${newVal < minCellWidth ? minCellWidth : newVal}px`;
+        }
+        return c;
+      });
+
+      setColumnsSizes(newColumnsSizes);
+    }
+  });
+
+  useOnDocumentMouseUp([isResizing], (/* e */) => {
+    setIsResizing(false);
+    setResizingColumnIndexes(undefined);
+    setPageX(undefined);
+    setCurColWidth(undefined);
+    // setNextColWidth(undefined);
+    document.body.style.cursor = 'inherit';
+  });
+
+
+  /* ColumnsOrder */
+  /* this one is declared higher up in the comp: */
+  // const [columnsOrder, setColumnsOrder] = useState(model.map((m, i) => ({ ...m, index: i })));
+  // const [tempThWidth, setIsReordering] = useState(null);
+  /*
+  const [isReordering, setIsReordering] = useState(null);
+  const [isReorderingHovered, setIsReorderingHovered] = useState(null);
+
+  const onDragTableHeaderStart = (index, ref) => {
+    if (ref && ref.current && ref.current.getBoundingClientRect) {
+      const { width } = ref.current.getBoundingClientRect();
+      setColumnsSizes([...columnsSizes]);
+    }
+    setIsReordering(index);
+  };
+  const onDragTableHeaderMove = (idx) => {
+    if (isReorderingHovered !== idx) {
+      setIsReorderingHovered(idx);
+    }
+  };
+  const onDropTableHeader = (idx) => {
+    const reorderedColsSizes = Object.entries(
+      columnsSizes
+        .reduce((ac, x, i) => {
+          // eslint-disable-next-line no-param-reassign
+          if (i === idx) {
+            // eslint-disable-next-line no-param-reassign
+            ac[isReordering] = x;
+          } else if (i === isReordering) {
+            // eslint-disable-next-line no-param-reassign
+            ac[idx] = x;
+          }
+          return ac;
+        }, {})
+    )
+      .map(([k, v]) => v);
+
+
+    //   })
+    // .reduce((ac, cs, i, l) => {
+    //   if (i === idx) {
+    //     // eslint-disable-next-line no-param-reassign
+    //     ac[isReordering] = cs;
+    //     // eslint-disable-next-line no-param-reassign
+    //     ac[idx] = cs;
+    //   }
+    //   return ac;
+    // }, columnsSizes);
+
+    setColumnsOrder(columnsOrder
+      .map((co) => {
+        if (co.index === idx) {
+          return {
+            ...co,
+            index: isReordering,
+          };
+        } else if (co.index === isReordering) {
+          return {
+            ...co,
+            index: idx,
+          };
+        }
+        return co;
+      })
+      .sort(({ index: a }, { index: b }) => (a > b ? +1 : -1))
+    );
+    setColumnsSizes(reorderedColsSizes);
+    setIsReorderingHovered(null);
+    setIsReordering(null);
+  };
+  */
+
+
   /* Sort */
   const isSortControlled = selectedProp !== undefined;
   const [sortDirections, setSortDirections] = useState(
     defaultSortDirections
+    // || (sortable ? columnsOrder.map(({ property }) => ({ property })) : [])
     || (sortable ? model.map(({ property }) => ({ property })) : [])
   );
   const actualSortDirections = isSortControlled ? sortDirectionsProp : sortDirections;
@@ -140,61 +288,6 @@ const DataGrid = (props: DataGridProps) => {
     }
     onSortChange(property, sortDirection, newSortDirections);
   };
-
-  /* Resize */
-  const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
-  const [columnsSizes, setColumnsSizes] = useState(
-    defaultColumnsSizes
-      || [...new Array(columnsCount)].map(() => 'none')
-  ); // do we need controlled behavior ?
-  const [isResizing, setIsResizing] = useState();
-  const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
-  const [pageX, setPageX] = useState();
-  const [curColWidth, setCurColWidth] = useState();
-  const [nextColWidth, setNextColWidth] = useState();
-
-  const onResizeStart = (e, columnIdx) => {
-    // eslint-disable-next-line no-nested-ternary
-    const siblingColumnIdx = columnIdx > -1
-      ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
-      : null;
-
-    setIsResizing(true);
-    setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
-    const nextCol = e.target.parentElement.parentElement.nextElementSibling;
-    setPageX(e.pageX);
-    const currColWidth = e.target.parentElement.offsetWidth;
-    setCurColWidth(currColWidth);
-    if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
-    document.body.style.cursor = 'grabbing';
-  };
-
-  useOnDocumentMouseMove(null, (e) => {
-    if (isResizing) {
-      const diffX = e.pageX - pageX;
-      const newColumnsSizes = columnsSizes.map((c, i) => {
-        const [curColIdx, nxtColIdx] = resizingColumnIndexes;
-
-        if (nxtColIdx !== null && i === nxtColIdx) {
-          return `${nextColWidth - diffX}px`;
-        }
-        if (curColIdx === i) {
-          return `${curColWidth + diffX}px`;
-        }
-        return c;
-      });
-
-      setColumnsSizes(newColumnsSizes);
-    }
-  });
-
-  useOnDocumentMouseUp(null, (/* e */) => {
-    setIsResizing(false);
-    setPageX(undefined);
-    setCurColWidth(undefined);
-    setNextColWidth(undefined);
-    document.body.style.cursor = 'inherit';
-  });
 
 
   /* selection */
@@ -231,11 +324,12 @@ const DataGrid = (props: DataGridProps) => {
             {
               selectable
                 ? <Th
-                  ThInnerWrapper={ThInnerWrapper}
+                  ThInnerWrapper={({ children }) => <Flex>{children}</Flex>}
                   resizable={false}
-                  style={{ width: '32px' }}
+                  reorderable={false}
+                  style={{ width: cellHeight, maxWidth: cellHeight }}
                 >
-                  <Flex style={{ marginLeft: '-8px', width: '100%', height: '100%' }}>
+                  <Flex style={{ width: '100%', height: '100%' }}>
                     <Checkbox
                       id={'DataGridMultiSelectCheckBox'}
                       name={'DataGridMultiSelectCheckBox'}
@@ -247,12 +341,13 @@ const DataGrid = (props: DataGridProps) => {
                 : null
             }
             {
-              model.map((m, i, { length }) => {
+              // (columnsOrder).map((m, i, { length }) => {
+              (model).map((m, i, { length }) => {
                 const resizeProps = resizable && (i < (length - 1))
                   ? {
                     onResizeStart: e => onResizeStart(e, i),
                     resizable: true,
-                    style: { width: columnsSizes[i] },
+                    columnWidth: columnsSizes[i],
                   }
                   : {};
 
@@ -271,18 +366,31 @@ const DataGrid = (props: DataGridProps) => {
                   : {}
                 ;
 
+                // const reorderingProps = {
+                //   reorderable: reorderable,
+                //   isReordering: isReordering,
+                //   isReorderingHovered: isReorderingHovered,
+                //   onDragTableHeaderStart: onDragTableHeaderStart,
+                //   onDragTableHeaderMove: onDragTableHeaderMove,
+                //   onDropTableHeader: onDropTableHeader,
+                // }
+
                 return (
                   <Th
                     isResizing={isResizing}
+                    resizingColumnIndexes={resizingColumnIndexes}
                     menuDescriptor={m.menuDescriptor}
                     menu={m.menu}
                     index={i}
                     key={i}
                     {...resizeProps}
                     {...sortProps}
+                    // {...reorderingProps}
                     ThInnerWrapper={ThInnerWrapper}
+                    dragId={m.property}
                   >
-                    <Flex>{m.displayName}</Flex>
+                    {/* {m.displayName} */}
+                    <TextEllipsis title={m.displayName}>{m.displayName}</TextEllipsis>
                   </Th>
                 );
               })
@@ -292,6 +400,7 @@ const DataGrid = (props: DataGridProps) => {
             hasCustomHeader
               ? tableHeaderOverlayRender({
                 data,
+                // model: columnsOrder,
                 model,
                 selected: actualSelected,
                 columnsSizes,
@@ -306,6 +415,8 @@ const DataGrid = (props: DataGridProps) => {
           {
             data.map((entity, i) => {
               const isSelected = actualSelected.indexOf(entity[propertyKey]) > -1;
+
+
               return (
                 <Tr
                   key={i}
@@ -329,12 +440,50 @@ const DataGrid = (props: DataGridProps) => {
                   }
 
                   {
+                    // columnsOrder.map((m = {}, idx) => {
                     model.map((m = {}, idx) => {
+                      const sizeProps = // baseCellWidth !== undefined
+                      // ? {
+                         {
+                           style: {
+                             width: `calc(${columnsSizes[idx]})`,
+                             minWidth: `calc(${columnsSizes[idx]})`,
+                             maxWidth: `calc(${columnsSizes[idx]})`,
+                             // },
+                           },
+                         };
+                      // : {};
+
                       const cellContent = (
-                        <TdInnerWrapper>
-                          {m.Component !== undefined
-                            ? <m.Component {...entity} />
-                            : entity[m.property]
+                        <TdInnerWrapper {...sizeProps}>
+                          {
+                            m.Component !== undefined
+                              ? <m.Component {...entity} />
+                              : (
+                                <span
+                                  style={{
+                                    maxWidth: 'calc(100% - 8px)',
+                                    width: '100%',
+                                    minWidth: '1px',
+                                    boxSizing: 'border-box',
+                                  }}
+                                >
+                                  <Flex
+                                    style={{
+                                      justifyContent: 'flex-start',
+                                      flexFlow: 'row nowrap',
+                                      maxWidth: '100%',
+                                      boxSizing: 'border-box',
+                                    }}
+                                  >
+                                    <Flex style={{ minWidth: '1px', flexGrow: 1, flexShrink: 999, justifyContent: 'flex-start' }}>
+                                      <TextEllipsis title={entity[m.property]}>
+                                        {entity[m.property]}
+                                      </TextEllipsis>
+                                    </Flex>
+                                  </Flex>
+                                </span>
+                              )
                           }
                         </TdInnerWrapper>
                       );
@@ -350,7 +499,10 @@ const DataGrid = (props: DataGridProps) => {
                         : cellContent;
 
                       return (
-                        <Td key={idx} >
+                        <Td
+                          key={idx}
+                          style={{ maxWidth: columnsSizes[i] }}
+                        >
                           {finalCellContent}
                         </Td>
                       );
@@ -379,6 +531,7 @@ DataGrid.defaultProps = {
   onSelectionChange: (checked: Boolean, entityId: EntityId, selected: Array<EntityId>) => {},
   onSelectAllChange: (selectAllChecked: Boolean) => {},
 
+  reorderable: false,
   sortable: false,
   sortDirections: undefined,
   defaultSortDirections: undefined,
