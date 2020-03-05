@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+import debounce from 'lodash/debounce';
 
 
-function useOnDocumentMouseMove(ref, handler) {
+function useOnDocumentMouseMove(refs, handler) {
   useEffect(
     () => {
       const listener = (event) => {
@@ -16,10 +17,17 @@ function useOnDocumentMouseMove(ref, handler) {
         handler(event);
       };
 
-      document.addEventListener('mousemove', listener);
+      const debounceListener = debounce(
+        listener,
+        300,
+        { maxWait: 1000, leading: true, trailing: true }
+      );
+
+      document.addEventListener('mousemove', debounceListener);
 
       return () => {
-        document.removeEventListener('mousemove', listener);
+        debounceListener.flush();
+        document.removeEventListener('mousemove', debounceListener);
       };
     },
     // Add ref and handler to effect dependencies
@@ -28,7 +36,7 @@ function useOnDocumentMouseMove(ref, handler) {
     // ... callback/cleanup to run every render. It's not a big deal ...
     // ... but to optimize you can wrap handler in useCallback before ...
     // ... passing it into this hook.
-    [ref, handler]
+    [...refs, handler]
   );
 }
 

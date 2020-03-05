@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const cellHeight = 48;
 
 const TdUI = styled.td.attrs(props => ({
   ...props,
   // children: <TdInnerWrapper>{props.children}</TdInnerWrapper>,
 }))`
   box-sizing: border-box;
-  height: 58px;
+  height: ${cellHeight}px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
