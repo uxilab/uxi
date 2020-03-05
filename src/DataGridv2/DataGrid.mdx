@@ -37,7 +37,7 @@ The model support custom menu for table header
       { property: 'application', displayName: 'Terrain' },
     ]}
     data={[
-      { constructor: 'SpaceX', model: 'falcon', application: 'space' },
+      { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon', application: 'space' },
       { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
       { constructor: 'SpaceX', model: 'dragon', application: 'space' },
     ]}
@@ -251,16 +251,16 @@ resize and observe the overflow-x automatically changing when the table is wider
 
 <Playground>
   <ThemeProvider>
-  <div
-    style={{ whiteSpace: 'nowrap' }}
-  >
-  <DataGrid
-    useSmartOverflowX
-    data={[
-      { constructor: 'SpaceX - $$$$$$$$$$$$$$$$', model: 'falcon  - $$$$$$$$$$$$$$$$', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$' },
-      { constructor: 'Tesla - $$$$$$$$$$$$$$$$', model: 'model X', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$'  },
-    ]}
-  />
-  </div>
+    <div>
+      <DataGrid
+        reorderable
+        resizable
+        useSmartOverflowX
+        data={[
+          { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon  - $$$$$$$$$$$$$$$$', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$' },
+          { constructor: 'Tesla - $$$$$$$$$$$$$$$$', model: 'model X', fooz: 'bar  - $$$$$$$$$$$$$$$$', foo: ' - $$$$$$$$$$$$$$$$', bar:  '- $$$$$$$$$$$$$$$$', baz: ' - $$$$$$$$$$$$$$$$'  },
+        ]}
+      />
+    </div>
   </ThemeProvider>
 </Playground>

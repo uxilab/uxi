@@ -1,11 +1,17 @@
 import { useEffect } from 'react';
+import isEqual from 'lodash/isEqual';
 import ResizeObserver from 'resize-observer-polyfill';
 
 
 const useResizeObserver = (reactRef, callback) => {
+  let state = null;
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
-      callback(entries[0].contentRect);
+      const { contentRect } = entries[0];
+      if (!isEqual(state, contentRect)) {
+        state = contentRect;
+        callback(contentRect);
+      }
     });
 
     resizeObserver.observe(reactRef.current);
