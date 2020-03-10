@@ -1,12 +1,13 @@
 // @flow
-import React, { Component, useState } from 'react';
+import React, { useEffect, Component, useState } from 'react';
+import throttle from 'lodash/throttle';
 // import { useDrag } from 'react-dnd';
 import Table from './Table';
 import Th from './Th';
 import Tr from './Tr';
 import Td from './Td';
-import useOnDocumentMouseUp from '../hooks/useOnDocumentMouseUp';
-import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
+// import useOnDocumentMouseUp from '../hooks/useOnDocumentMouseUp';
+// import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import { Flex } from '../Layout/Flex';
@@ -125,9 +126,20 @@ const DataGrid = (props: DataGridProps) => {
 
     tableHeaderOverlayRender,
     // eslint-disable-next-line no-nested-ternary
-    baseCellWidth = props.baseCellWidth !== undefined
-      ? props.baseCellWidth : (useSmartOverflowX && resizable) ? 240 : undefined,
+    baseCellWidth: baseCellWidthProp,
   } = props;
+
+  const [display, setDisplay] = useState('block');
+
+  // eslint-disable-next-line no-nested-ternary
+  const baseCellWidth = baseCellWidthProp !== undefined
+    ? baseCellWidthProp
+    : (useSmartOverflowX && resizable && display === 'block') ? 240 : undefined
+  ;
+
+  console.log('baseCellWidth', baseCellWidth);
+  console.log('defaultColumnsSizes', defaultColumnsSizes);
+
 
   runWarnings(props);
 
@@ -142,9 +154,14 @@ const DataGrid = (props: DataGridProps) => {
 
   const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
   const [columnsSizes, setColumnsSizes] = useState(
-    defaultColumnsSizes
-      || [...new Array(columnsCount)].map(() => baseCellWidth)
+    defaultColumnsSizes === undefined
+      ? [...new Array(columnsCount)].map(() => {
+        console.log('baseCellWidth in useState for columnsSizes', baseCellWidth);
+        return baseCellWidth;
+      })
+      : defaultColumnsSizes
   ); // do we need controlled behavior ?
+  console.log('columnsSizes', columnsSizes);
   const [isResizing, setIsResizing] = useState();
   const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
   const [pageX, setPageX] = useState();
@@ -156,7 +173,7 @@ const DataGrid = (props: DataGridProps) => {
     const siblingColumnIdx = columnIdx > -1
       ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
       : null;
-
+    console.log('onResizeStart running...');
     setIsResizing(true);
     setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
     // const nextCol = e.target.parentElement.parentElement.nextElementSibling;
@@ -167,11 +184,16 @@ const DataGrid = (props: DataGridProps) => {
     document.body.style.cursor = 'grabbing';
   };
 
-  useOnDocumentMouseMove([isResizing], (e) => {
+  // useOnDocumentMouseMove([isResizing], (e) => {
+  const onOnDocumentMouseMoveHandler = (e) => {
     if (isResizing) {
+      console.log('onOnDocumentMouseMoveHandler running...');
       const diffX = e.pageX - pageX;
       const newColumnsSizes = columnsSizes.map((c, i) => {
-        const [curColIdx/* , nxtColIdx */] = resizingColumnIndexes;
+        const [
+          curColIdx,
+          // nxtColIdx
+        ] = resizingColumnIndexes;
 
         // if (nxtColIdx !== null && i === nxtColIdx) {
         //   return `${nextColWidth - diffX}px`;
@@ -185,16 +207,60 @@ const DataGrid = (props: DataGridProps) => {
 
       setColumnsSizes(newColumnsSizes);
     }
-  });
+  };
 
-  useOnDocumentMouseUp([isResizing], (/* e */) => {
+  useEffect(
+    () => {
+      if (isResizing) {
+        const listener = (event) => {
+          console.log('useOnDocumentMouseMove listener running...');
+          onOnDocumentMouseMoveHandler(event);
+        };
+
+        const debounceListener = throttle(
+          listener, 14, { maxWait: 64, leading: true, trailing: false }
+        );
+
+        document.addEventListener('mousemove', debounceListener);
+
+        return () => {
+          console.log('useOnDocumentMouseMove cleanup');
+          debounceListener.flush();
+          document.removeEventListener('mousemove', debounceListener);
+        };
+      }
+      return () => {};
+    },
+    [isResizing/* , onOnDocumentMouseMoveHandler */]
+  );
+
+  const onOnDocumentMouseUp = (/* e */) => {
+    console.log('useOnDocumentMouseUp running...');
     setIsResizing(false);
     setResizingColumnIndexes(undefined);
     setPageX(undefined);
     setCurColWidth(undefined);
     // setNextColWidth(undefined);
     document.body.style.cursor = 'inherit';
-  });
+  };
+
+  useEffect(
+    () => {
+      if (isResizing) {
+        const listener = (event) => {
+          onOnDocumentMouseUp(event);
+        };
+
+        document.addEventListener('mouseup', listener);
+
+        return () => {
+          document.removeEventListener('mouseup', listener);
+        };
+      }
+      return () => {};
+    },
+    [isResizing, onOnDocumentMouseUp]
+  );
 
 
   /* ColumnsOrder */
@@ -314,7 +380,11 @@ const DataGrid = (props: DataGridProps) => {
   };
 
   return (
-    <DataGridSmartOverflowXWrapper useSmartOverflowX={useSmartOverflowX}>
+    <DataGridSmartOverflowXWrapper
+      useSmartOverflowX={useSmartOverflowX}
+      setDisplay={setDisplay}
+      display={display}
+    >
       <Table
         borderCollapse={borderCollapse}
         isResizing={isResizing}
@@ -379,6 +449,11 @@ const DataGrid = (props: DataGridProps) => {
                   <Th
                     isResizing={isResizing}
                     resizingColumnIndexes={resizingColumnIndexes}
+                    isBeingResized={!!(
+                      resizingColumnIndexes
+                      && resizingColumnIndexes[0] !== undefined
+                      && resizingColumnIndexes[0] === i
+                    )}
                     menuDescriptor={m.menuDescriptor}
                     menu={m.menu}
                     index={i}
@@ -446,13 +521,16 @@ const DataGrid = (props: DataGridProps) => {
                       // ? {
                          {
                            style: {
-                             width: `calc(${columnsSizes[idx]})`,
-                             minWidth: `calc(${columnsSizes[idx]})`,
-                             maxWidth: `calc(${columnsSizes[idx]})`,
+                             width: columnsSizes[idx],
+                             minWidth: columnsSizes[idx],
+                             maxWidth: columnsSizes[idx],
                              // },
                            },
                          };
                       // : {};
+
+                      // const maxWidth = columnsSizes && columnsSizes[idx] !== undefined
+                      //   ? columnsSizes[idx] - 8
 
                       const cellContent = (
                         <TdInnerWrapper {...sizeProps}>
@@ -500,8 +578,13 @@ const DataGrid = (props: DataGridProps) => {
 
                       return (
                         <Td
+                          isResizing={isResizing}
+                          isBeingResized={!!(
+                            resizingColumnIndexes
+                            && resizingColumnIndexes[0] !== undefined
+                            && resizingColumnIndexes[0] === idx
+                          )}
                           key={idx}
-                          style={{ maxWidth: columnsSizes[i] }}
                         >
                           {finalCellContent}
                         </Td>

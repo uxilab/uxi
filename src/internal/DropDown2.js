@@ -5,6 +5,7 @@ import styled from 'styled-components';
 /* eslint-disable indent */
 const BoxWrapperUI = styled.div`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'collapse')}
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')}
   z-index: 99;
   position: absolute;
   max-height: 0;

@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const cellHeight = 48;
 
@@ -17,18 +17,30 @@ const TdUI = styled.td.attrs(props => ({
   /* padding: 8px; */
 `;
 
-type TdProps = {
+// type TdProps = {
+// }
+
+class Td extends React.Component {
+  shouldComponentUpdate(/* nextProps, nextState */) {
+    const {
+      isBeingResized,
+    } = this.props;
+
+    if (isBeingResized) {
+      return true;
+    }
+
+    return false;
+  }
+
+  render() {
+    return (
+      <TdUI {...this.props} />
+    );
+  }
 }
 
-const Td = (props: TdProps) => <TdUI {...props} />;
-
-Td.propTypes = {
-  light: PropTypes.bool,
-};
-
-Td.defaultProps = {
-  light: undefined,
-};
+// const Td = (props: TdProps) => <TdUI {...props} />;
 
 Td.displayName = 'Td';
 
