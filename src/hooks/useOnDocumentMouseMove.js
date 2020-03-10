@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import debounce from 'lodash/debounce';
+// import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 
 
 function useOnDocumentMouseMove(refs, handler) {
@@ -13,19 +14,22 @@ function useOnDocumentMouseMove(refs, handler) {
         // if (!ref.current || ref.current.contains(event.target, event.currentTarget)) {
         //   return;
         // }
+        console.log('useOnDocumentMouseMove listener running...');
 
         handler(event);
       };
 
-      const debounceListener = debounce(
+      // const debounceListener = debounce(
+      const debounceListener = throttle(
         listener,
-        300,
-        { maxWait: 1000, leading: true, trailing: true }
+        14,
+        { maxWait: 64, leading: true, trailing: false }
       );
 
       document.addEventListener('mousemove', debounceListener);
 
       return () => {
+        console.log('useOnDocumentMouseMove cleanup');
         debounceListener.flush();
         document.removeEventListener('mousemove', debounceListener);
       };

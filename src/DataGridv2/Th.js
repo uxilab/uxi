@@ -13,19 +13,19 @@ import type { SortDirection } from './DataGrid';
 
 const headerCellHeight = 48;
 
-type ThProps = {
-  children: Node | Array<Node>,
-  // index?: number,
+// type ThProps = {
+//   children: Node | Array<Node>,
+//   // index?: number,
 
-  isResizing?: Boolean,
-  resizable?: Boolean,
-  onResizeStart?: Function,
+//   isResizing?: Boolean,
+//   resizable?: Boolean,
+//   onResizeStart?: Function,
 
-  // eslint-disable-next-line max-len
-  onSortChange: (property: string, sortDirection: SortDirection, newSortDirections: Array<SortDirection>) => {},
-  sortable: bool,
-  sortDirection: SortDirection,
-}
+// eslint-disable-next-line max-len
+//   onSortChange: (property: string, sortDirection: SortDirection, newSortDirections: Array<SortDirection>) => {},
+//   sortable: bool,
+//   sortDirection: SortDirection,
+// }
 
 // const ThUI = styled.th.attrs(mapChildren)`
 /* eslint-disable no-nested-ternary */
@@ -78,56 +78,51 @@ const ThUI = styled.th`
 `;
 /* eslint-enable no-nested-ternary */
 
-const Th = (props: ThProps) => {
-// class Th extends React.Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.props.isResizing || nextProps.isResizing) {
-  //     if (nextProps.resizingColumnIndexes[0] !== this.props.resizingColumnIndexes[0]) {
-  //       return true
-  //     }
+// const Th = (props: ThProps) => {
+class Th extends React.Component {
+  shouldComponentUpdate(/* nextProps: ThProps , nextState */) {
+    const {
+      isBeingResized,
+    } = this.props;
+    // const {
+    //   isBeingResized: nextIsBeingResized,
+    // } = nextProps;
 
-  //     if (
-  //       (this.props.isResizing && (this.props.resizingColumnIndexes[0] === this.props.index))
-  //       || (
-  //         this.props.isResizing
-  //         && (nextProps.resizingColumnIndexes[0] !== this.props.resizingColumnIndexes[0])
-  //       )
-  //     ) {
-  //       return true
-  //     }
+    if (isBeingResized) {
+      return true;
+    }
 
-  //     return false;
-  //   }
-  // }
+    return false;
+  }
 
-  // render() {
-  const {
-    ThInnerWrapper,
-    style,
-    columnWidth,
-    sortable,
-    sortDirection,
-    onSortChange,
-    menuDescriptor,
-    menu,
-    isResizing,
-    // resizingColumnIndexes = [],
-    resizable,
-    onResizeStart,
-    children,
+  render() {
+    const {
+      ThInnerWrapper,
+      style,
+      columnWidth,
+      sortable,
+      sortDirection,
+      onSortChange,
+      menuDescriptor,
+      menu,
+      isResizing,
+      // resizingColumnIndexes = [],
+      resizable,
+      onResizeStart,
+      children,
 
-    index,
-    // dragId,
+      index,
+      // dragId,
 
-    reorderable,
+      reorderable,
     // isReordering,
     // isReorderingHovered,
     // onDragTableHeaderStart,
     // onDragTableHeaderMove,
     // onDropTableHeader,
 
-  // } = this.props;
-  } = props;
+    } = this.props;
+    // } = props;
 
     /*
   const ref = useRef(null);
@@ -260,88 +255,88 @@ const Th = (props: ThProps) => {
 
   */
 
-  return (
-    <ThUI
-      style={{
-        width: columnWidth,
-        minWidth: columnWidth,
-        maxWidth: columnWidth,
-        // opacity,
-        ...style,
-      }}
-      isReordering={reorderable !== null}
-      // highlighted={hovered}
-      isFirst={index === 0}
-    >
-      <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
-        <Flex
-          style={{ minWidth: '1px', justifyContent: 'flex-start', flexGrow: 999, flexShrink: 999, cursor: reorderable ? 'ew-resize' : 'normal' }}
+    return (
+      <ThUI
+        style={{
+          width: columnWidth,
+          minWidth: columnWidth,
+          maxWidth: columnWidth,
+          // opacity,
+          ...style,
+        }}
+        isReordering={reorderable !== null}
+        // highlighted={hovered}
+        isFirst={index === 0}
+      >
+        <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
+          <Flex
+            style={{ minWidth: '1px', justifyContent: 'flex-start', flexGrow: 999, flexShrink: 999, cursor: reorderable ? 'ew-resize' : 'normal' }}
           // eslint-disable-next-line no-nested-ternary
           // ref={reorderable ? !isResizing ? ref : undefined : undefined}
-        >
-          {children}
-        </Flex>
-        {sortable
-          ? <SortHandler
-            style={{ flexGrow: 1, flexShrink: 0 }}
-            sortable={sortable}
-            sortDirection={sortDirection}
-            onSortChange={onSortChange}
-          />
-          : null
-        }
-        {
-          menuDescriptor !== undefined
-            ? (
-              <Flex
-                style={{
-                  marginLeft: 'auto',
-                  alignItems: 'stretch',
-                  flexGrow: 1,
-                  flexShrink: 0,
-                }}
-              >
-                <ButtonMenuMultiLevel
-                  style={{ alignItems: 'stretch', display: 'flex' }}
-                  anchor={'right'}
-                  buttonWrapperStyle={{
-                    position: 'inherit',
-                    // fuck: 'eslint',
-                    height: '100%',
+          >
+            {children}
+          </Flex>
+          {sortable
+            ? <SortHandler
+              style={{ flexGrow: 1, flexShrink: 0 }}
+              sortable={sortable}
+              sortDirection={sortDirection}
+              onSortChange={onSortChange}
+            />
+            : null
+          }
+          {
+            menuDescriptor !== undefined
+              ? (
+                <Flex
+                  style={{
+                    marginLeft: 'auto',
                     alignItems: 'stretch',
-                    display: 'flex',
+                    flexGrow: 1,
+                    flexShrink: 0,
                   }}
-                  BoxWrapperUIStyle={{
-                    width: 'auto',
-                    zIndex: 1,
-                  }}
-                  menuDescriptor={menuDescriptor}
-                  button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
-                />
-              </Flex>
+                >
+                  <ButtonMenuMultiLevel
+                    style={{ alignItems: 'stretch', display: 'flex' }}
+                    anchor={'right'}
+                    buttonWrapperStyle={{
+                      position: 'inherit',
+                      // fuck: 'eslint',
+                      height: '100%',
+                      alignItems: 'stretch',
+                      display: 'flex',
+                    }}
+                    BoxWrapperUIStyle={{
+                      width: 'auto',
+                      zIndex: 1,
+                    }}
+                    menuDescriptor={menuDescriptor}
+                    button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
+                  />
+                </Flex>
+              )
+              : null
+          }
+          {
+            menuDescriptor === undefined && menu !== undefined
+              ? menu
+              : null
+          }
+          {resizable
+            ? (
+              <ResizeHandler
+                isResizing={isResizing}
+                resizable={resizable}
+                onResizeStart={onResizeStart}
+              />
             )
             : null
-        }
-        {
-          menuDescriptor === undefined && menu !== undefined
-            ? menu
-            : null
-        }
-        {resizable
-          ? (
-            <ResizeHandler
-              isResizing={isResizing}
-              resizable={resizable}
-              onResizeStart={onResizeStart}
-            />
-          )
-          : null
-        }
-      </ThInnerWrapper>
-    </ThUI>
-  );
-};
-// } // class closing
+          }
+        </ThInnerWrapper>
+      </ThUI>
+    );
+  }
+} // class closing
 
 
 Th.defaultProps = {

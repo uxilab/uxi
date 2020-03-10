@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import useResizeObserver from '../hooks/useResizeObserver';
 import type { DataGridProps } from './DataGrid';
@@ -14,10 +14,10 @@ const DataGridSmartOverflowXWrapperUI = styled.div`
 `;
 
 const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
-  const { useSmartOverflowX, children } = props;
+  const { useSmartOverflowX, children, setDisplay, display } = props;
   /** useSmartOverflowX */
   const ref = useRef();
-  const [display, setDisplay] = useState('table');
+  // const [display, setDisplay] = useState('table');
   useResizeObserver(ref, (contentRect) => {
     if (useSmartOverflowX) {
       const table = (ref && ref.current) ? ref.current.querySelector('table') : {};
