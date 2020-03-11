@@ -2,28 +2,12 @@
 import styled, { css } from 'styled-components';
 
 /* eslint-disable no-nested-ternary */
-const ResizeHandler = styled.div.attrs((props) => {
-  console.log('ResizeHandler isResizing', props.isResizing);
-
-  return {
-    // children: '',
-    onMouseDown: function onMouseDown(e) {
-      console.log('ResizeHandler onMouseDown');
-      e.stopPropagation();
-      props.onResizeStart(e, props.index);
-    },
-    // onMouseUp: function onMouseDown(e) {
-    //   console.log('ResizeHandler onMouseUp');
-    //   props.onResizeStop(/* e, props.index */);
-    //   e.stopPropagation();
-    // },
-    // onClick: function onMouseDown(e) {
-    //   console.log('ResizeHandler onMouseUp');
-    //   props.onResizeStop(/* e, props.index */);
-    //   e.stopPropagation();
-    // },
-  };
-})`
+const ResizeHandler = styled.div.attrs(props => ({
+  onMouseDown: function onMouseDown(e) {
+    e.stopPropagation();
+    props.onResizeStart(e, props.index);
+  },
+}))`
   ${({ resizable }) => (resizable
     ? css`display: block; visibility: visible; pointer-events: all;`
     : css`display: none; visibility: none; pointer-events: none;`

@@ -141,9 +141,6 @@ const DataGrid = (props: DataGridProps) => {
     : (useSmartOverflowX && resizable && display === 'block') ? 240 : undefined
   ;
 
-  console.log('baseCellWidth', baseCellWidth);
-  console.log('defaultColumnsSizes', defaultColumnsSizes);
-
 
   runWarnings(props);
 
@@ -159,13 +156,9 @@ const DataGrid = (props: DataGridProps) => {
   const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
   const [columnsSizes, setColumnsSizes] = useState(
     defaultColumnsSizes === undefined
-      ? [...new Array(columnsCount)].map(() => {
-        console.log('baseCellWidth in useState for columnsSizes', baseCellWidth);
-        return baseCellWidth;
-      })
+      ? [...new Array(columnsCount)].map(() => baseCellWidth)
       : defaultColumnsSizes
   ); // do we need controlled behavior ?
-  console.log('columnsSizes', columnsSizes);
   const [isResizing, setIsResizing] = useState();
   const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
   const [pageX, setPageX] = useState();
@@ -173,7 +166,6 @@ const DataGrid = (props: DataGridProps) => {
   // const [nextColWidth, setNextColWidth] = useState();
 
   const onOnDocumentMouseUp = (/* e */) => {
-    console.log('useOnDocumentMouseUp running...');
     setIsResizing(false);
     setResizingColumnIndexes(undefined);
     setPageX(undefined);
@@ -184,7 +176,6 @@ const DataGrid = (props: DataGridProps) => {
   };
 
   const onResizeStart = (e, columnIdx) => {
-    console.log('onResizeStart running...');
     setIsResizing(true);
     const currColWidth = e.target.parentElement.offsetWidth;
     // eslint-disable-next-line no-nested-ternary
@@ -209,7 +200,6 @@ const DataGrid = (props: DataGridProps) => {
   // useOnDocumentMouseMove([isResizing], (e) => {
   const onOnDocumentMouseMoveHandler = (e) => {
     if (isResizing) {
-      console.log('onOnDocumentMouseMoveHandler running...');
       const diffX = e.pageX - pageX;
       const newColumnsSizes = columnsSizes.map((c, i) => {
         const [
@@ -235,7 +225,6 @@ const DataGrid = (props: DataGridProps) => {
     () => {
       if (isResizing) {
         const listener = (event) => {
-          console.log('useOnDocumentMouseMove listener running...');
           onOnDocumentMouseMoveHandler(event);
         };
 
@@ -246,7 +235,6 @@ const DataGrid = (props: DataGridProps) => {
         document.addEventListener('mousemove', debounceListener);
 
         return () => {
-          console.log('useOnDocumentMouseMove cleanup');
           debounceListener.flush();
           document.removeEventListener('mousemove', debounceListener);
         };
@@ -391,7 +379,6 @@ const DataGrid = (props: DataGridProps) => {
     onSelectionChange(checked, entityPropertyKeyValue, newSelected);
   };
 
-  console.log('DataGrid isResizing', isResizing);
 
   return (
     <DataGridSmartOverflowXWrapper
