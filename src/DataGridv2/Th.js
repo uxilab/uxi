@@ -45,12 +45,38 @@ const ThUI = styled.th`
     transition: all 280ms cubic-bezier(.5,1,.5,1);
     ${ResizeHandler} {
       transition: all 280ms cubic-bezier(.5,1,.5,1);
-      opacity: .8;
+      opacity: ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? 0.7 : 0) : 0.2)};
       width: 6px;
+      &:hover {
+        &, &:after {
+          opacity:.7;
+          transition: all 280ms cubic-bezier(.5,1,.5,1);
+        }
+      }
     }
   }
 
-  &:last-of-type,
+  &:hover ${ResizeHandler},
+  &:not(:hover) ${ResizeHandler} {
+      transition: all 280ms cubic-bezier(.5,1,.5,1);
+      ${({ isBeingResized }) => (isBeingResized ? css`opacity: 0.7 !important` : '')};
+      ${({ isBeingResized }) => (isBeingResized ? css`width: 6px` : '')};
+      &:hover, &:not(:hover) {
+        &, &:after {
+          ${({ isBeingResized }) => (isBeingResized ? css`opacity:.7;` : '')};
+          transition: all 280ms cubic-bezier(.5,1,.5,1);
+        }
+      }
+      /* width: 6px;
+      &:hover {
+        &, &:after {
+          opacity:.7;
+          transition: all 280ms cubic-bezier(.5,1,.5,1);
+        }
+      } */
+    }
+
+  /* &:last-of-type,
   &:last-child,
   &:last-of-type:hover,
   &:last-child:hover {
@@ -59,7 +85,7 @@ const ThUI = styled.th`
       visibility: hidden;
       pointer-events: none;
     }
-  }
+  } */
 
   *[data-drop-down-trigger] {
     height: 100%;
@@ -80,15 +106,23 @@ const ThUI = styled.th`
 
 // const Th = (props: ThProps) => {
 class Th extends React.Component {
-  shouldComponentUpdate(/* nextProps: ThProps , nextState */) {
+  shouldComponentUpdate(nextProps/* , nextState */) {
     const {
       isBeingResized,
+      isResizing,
     } = this.props;
-    // const {
-    //   isBeingResized: nextIsBeingResized,
-    // } = nextProps;
+    const {
+      isResizing: willBeResizing,
+    } = nextProps;
 
     if (isBeingResized) {
+      return true;
+    }
+
+    if (
+      (!isResizing && willBeResizing)
+      || (isResizing && !willBeResizing)
+    ) {
       return true;
     }
 
@@ -106,9 +140,11 @@ class Th extends React.Component {
       menuDescriptor,
       menu,
       isResizing,
+      isBeingResized,
       // resizingColumnIndexes = [],
       resizable,
       onResizeStart,
+      onResizeStop,
       children,
 
       index,
@@ -123,6 +159,7 @@ class Th extends React.Component {
 
     } = this.props;
     // } = props;
+    console.log('Th isResizing', isResizing);
 
     /*
   const ref = useRef(null);
@@ -257,6 +294,8 @@ class Th extends React.Component {
 
     return (
       <ThUI
+        isResizing={isResizing}
+        isBeingResized={isBeingResized}
         style={{
           width: columnWidth,
           minWidth: columnWidth,
@@ -328,6 +367,7 @@ class Th extends React.Component {
                 isResizing={isResizing}
                 resizable={resizable}
                 onResizeStart={onResizeStart}
+                onResizeStop={onResizeStop}
               />
             )
             : null
