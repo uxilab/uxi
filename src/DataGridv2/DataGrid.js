@@ -426,8 +426,8 @@ const DataGrid = (props: DataGridProps) => {
             }
             {
               // (columnsOrder).map((m, i, { length }) => {
-              (model).map((m, i, { length }) => {
-                const resizeProps = resizable && (i < (length - 1))
+              (model).map((m, i/* , { length } */) => {
+                const resizeProps = resizable /* && (i < (length - 1)) */
                   ? {
                     onResizeStart: e => onResizeStart(e, i),
                     onResizeStop: (/* e */) => onOnDocumentMouseUp(/* e, i */),
