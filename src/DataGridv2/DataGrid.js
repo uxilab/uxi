@@ -129,7 +129,11 @@ const DataGrid = (props: DataGridProps) => {
     baseCellWidth: baseCellWidthProp,
   } = props;
 
-  const [display, setDisplay] = useState('block');
+  const [display, setDisplay] = useState(
+    resizable && useSmartOverflowX
+      ? 'block'
+      : 'table'
+  );
 
   // eslint-disable-next-line no-nested-ternary
   const baseCellWidth = baseCellWidthProp !== undefined
@@ -168,20 +172,38 @@ const DataGrid = (props: DataGridProps) => {
   const [curColWidth, setCurColWidth] = useState();
   // const [nextColWidth, setNextColWidth] = useState();
 
+  const onOnDocumentMouseUp = (/* e */) => {
+    console.log('useOnDocumentMouseUp running...');
+    setIsResizing(false);
+    setResizingColumnIndexes(undefined);
+    setPageX(undefined);
+    setCurColWidth(undefined);
+    document.removeEventListener('mouseup', onOnDocumentMouseUp);
+    // setNextColWidth(undefined);
+    document.body.style.cursor = 'inherit';
+  };
+
   const onResizeStart = (e, columnIdx) => {
-    // eslint-disable-next-line no-nested-ternary
-    const siblingColumnIdx = columnIdx > -1
-      ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
-      : null;
     console.log('onResizeStart running...');
     setIsResizing(true);
-    setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
+    const currColWidth = e.target.parentElement.offsetWidth;
+    // eslint-disable-next-line no-nested-ternary
+    // const siblingColumnIdx = columnIdx > -1
+    //   ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
+    //   : null;
+    setResizingColumnIndexes([columnIdx/* , siblingColumnIdx */]);
     // const nextCol = e.target.parentElement.parentElement.nextElementSibling;
     setPageX(e.pageX);
-    const currColWidth = e.target.parentElement.offsetWidth;
     setCurColWidth(currColWidth);
     // if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
-    document.body.style.cursor = 'grabbing';
+
+    document.addEventListener('mouseup', onOnDocumentMouseUp);
+
+    // return () => {
+    //   document.removeEventListener('mouseup', onOnDocumentMouseUp);
+    // };
+
+    document.body.style.cursor = 'col-resize';
   };
 
   // useOnDocumentMouseMove([isResizing], (e) => {
@@ -233,16 +255,6 @@ const DataGrid = (props: DataGridProps) => {
     },
     [isResizing/* , onOnDocumentMouseMoveHandler */]
   );
-
-  const onOnDocumentMouseUp = (/* e */) => {
-    console.log('useOnDocumentMouseUp running...');
-    setIsResizing(false);
-    setResizingColumnIndexes(undefined);
-    setPageX(undefined);
-    setCurColWidth(undefined);
-    // setNextColWidth(undefined);
-    document.body.style.cursor = 'inherit';
-  };
 
   useEffect(
     () => {
@@ -379,6 +391,8 @@ const DataGrid = (props: DataGridProps) => {
     onSelectionChange(checked, entityPropertyKeyValue, newSelected);
   };
 
+  console.log('DataGrid isResizing', isResizing);
+
   return (
     <DataGridSmartOverflowXWrapper
       useSmartOverflowX={useSmartOverflowX}
@@ -416,6 +430,7 @@ const DataGrid = (props: DataGridProps) => {
                 const resizeProps = resizable && (i < (length - 1))
                   ? {
                     onResizeStart: e => onResizeStart(e, i),
+                    onResizeStop: (/* e */) => onOnDocumentMouseUp(/* e, i */),
                     resizable: true,
                     columnWidth: columnsSizes[i],
                   }
