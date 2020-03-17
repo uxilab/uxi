@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { UnstyledButton } from '../../Button/UnstyledButton1';
 import MlMenuSeparator from './MlMenuSeparator';
 import { buttonResetStylesCSSString } from '../../Button/buttonResetStyles';
@@ -58,6 +58,17 @@ const MlMenuItemUI = styled.li`
     & > div > svg {
       margin-right: 6px;
     }
+
+    &, &:hover, &focus  {
+      ${({ disabled }) => (disabled
+        ? css`
+          pointer-events: none;
+          color: 'grey';
+          background-color: '#cecece';
+        `
+        : '')
+      };
+    }
   }
 
 
@@ -86,6 +97,7 @@ const MlMenuItemUI = styled.li`
 
 const MlMenuItem = (props) => {
   const {
+    disabled,
     label,
     icon,
     onClick = () => {},
@@ -98,6 +110,7 @@ const MlMenuItem = (props) => {
     isFullWidth,
     onSelfClose,
   } = props;
+
 
   const finalIcon = React.isValidElement(icon)
     ? React.cloneElement(icon, { size: 16, paddingRight: '4px' })
@@ -122,7 +135,7 @@ const MlMenuItem = (props) => {
     return <MlMenuSeparator {...(label ? { label } : {})} />;
   }
   return (
-    <MlMenuItemUI isFullWidth={isFullWidth} >
+    <MlMenuItemUI isFullWidth={isFullWidth} disabled={disabled}>
       <InteractiveComp
         isFullWidth
         className="MlMenuItem-interactive-elem"

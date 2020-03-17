@@ -5,7 +5,9 @@ import styled, { css } from 'styled-components';
 const ResizeHandler = styled.div.attrs(props => ({
   onMouseDown: function onMouseDown(e) {
     e.stopPropagation();
-    props.onResizeStart(e, props.index);
+    // props.onResizeStart(e, props.index);
+    console.log('ResizeHandler props.property', props.property);
+    props.onResizeStart(e, props.property);
   },
 }))`
   ${({ resizable }) => (resizable
@@ -19,7 +21,7 @@ const ResizeHandler = styled.div.attrs(props => ({
   height: calc(100% + 32px);
   height: 100%;
   width: 0px;
-  width: 3px;
+  width: 6px;
   max-width: 6px;
   background: grey;
   opacity: 0;

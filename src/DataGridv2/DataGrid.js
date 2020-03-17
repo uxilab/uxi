@@ -1,7 +1,12 @@
 // @flow
-import React, { useEffect, Component, useState } from 'react';
+import React, { useEffect, Component, useState, useReducer } from 'react';
 import throttle from 'lodash/throttle';
 // import { useDrag } from 'react-dnd';
+import { Flex } from '../Layout/Flex';
+import Checkbox from '../Input/Checkbox';
+import CellWithPopOver from './CellWithPopOver';
+import TdInnerWrapper from './TdInnerWrapper';
+import TextEllipsis from '../Text/TextEllipsis';
 import Table from './Table';
 import Th from './Th';
 import Tr from './Tr';
@@ -10,11 +15,15 @@ import Td from './Td';
 // import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
-import { Flex } from '../Layout/Flex';
-import Checkbox from '../Input/Checkbox';
-import CellWithPopOver from './CellWithPopOver';
-import TdInnerWrapper from './TdInnerWrapper';
-import TextEllipsis from '../Text/TextEllipsis';
+import reducer, { initialState } from './reducer'; // eslint-disable-line import/no-named-as-default
+import {
+  showColumn as showColumnAction,
+  hideColumn as hideColumnAction,
+  // setColumnWidth as setColumnWidthAction,
+  setCurrColumnWidth as setCurrColumnWidthAction,
+  setIsResizing as setIsResizingAction,
+  setNextColumnWidth as setNextColumnWidthAction,
+} from './actions';
 
 const minCellWidth = 64;
 const cellHeight = 48;
@@ -54,7 +63,7 @@ export const SORTS = {
 };
 const toggleSORTS = sort => (SORTS[sort] === SORTS.ASC ? SORTS.DESC : SORTS.ASC);
 
-type SortDirection = 'ASC' | 'DESC'
+export type SortDirection = 'ASC' | 'DESC'
 
 type SortModel = {
   property: String,
@@ -83,7 +92,7 @@ export type DataGridProps = {
   // eslint-disable-next-line max-len
   onSortChange: ?(property: string, sortDirection: SortDirection, newSortDirections: Array<SortDirection>) => {},
 
-  defaultColumnsSizes: ?Array<string>,
+  // defaultColumnsSizes: ?Array<string>,
   borderCollapse: ? 'collapse' | 'separate',
   useSmartOverflowX: ?Boolean,
 
@@ -115,9 +124,10 @@ const DataGrid = (props: DataGridProps) => {
     defaultSortDirections,
     onSortChange,
 
-    defaultColumnsSizes,
+    // defaultColumnsSizes,
+    // defaultColumnsSize,
     resizable,
-    useSmartOverflowX,
+    useSmartOverflowX: useSmartOverflowXProp,
     borderCollapse,
 
     ThInnerWrapper,
@@ -129,17 +139,84 @@ const DataGrid = (props: DataGridProps) => {
     baseCellWidth: baseCellWidthProp,
   } = props;
 
-  const [display, setDisplay] = useState(
-    resizable && useSmartOverflowX
-      ? 'block'
-      : 'table'
-  );
+
+  const useSmartOverflowX = resizable
+    ? true
+    : useSmartOverflowXProp
+  ;
+
 
   // eslint-disable-next-line no-nested-ternary
   const baseCellWidth = baseCellWidthProp !== undefined
     ? baseCellWidthProp
-    : (useSmartOverflowX && resizable && display === 'block') ? 240 : undefined
+    : (useSmartOverflowX && resizable/*  && display === 'block' */)
+      ? 240
+      : undefined
   ;
+
+  const availProps = model
+    .map(m => ({ ...m, show: true, width: baseCellWidth }))
+    .concat(
+      Object.keys(data[0] || {})
+        .map((k) => {
+          const alreadyInModel = model.find(m => m.property === k);
+          if (!alreadyInModel) {
+            return {
+              property: k,
+              displayName: k,
+              show: false,
+              width: baseCellWidth,
+            };
+          }
+          return null;
+        })
+        .filter(x => x)
+    );
+
+  // const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
+  // const [columnsSizes, setColumnsSizes] = useState(
+    // defaultColumnsSizes === undefined
+  //     ? [...new Array(columnsCount)].map(() => baseCellWidth)
+  // : defaultColumnsSizes
+  // ); // do we need controlled behavior ?
+
+
+  const [
+    {
+      columns,
+      isResizing,
+      pageX,
+      isResizingProp,
+      isResizingNextProp,
+      currColWidth,
+      nextColWidth,
+    },
+    dispatch,
+  ] = useReducer(
+    reducer,
+    {
+      ...initialState,
+      columns: availProps,
+    }
+  );
+
+  const showColumn = property => dispatch(showColumnAction(property));
+  const hideColumn = property => dispatch(hideColumnAction(property));
+
+  const setIsResizing = payload => dispatch(setIsResizingAction(payload));
+
+  // const setColumnWidth = ({ property, width }) =>
+  //   dispatch(setColumnWidthAction({ property, width }));
+
+  const setCurrColumnWidth = width => dispatch(setCurrColumnWidthAction(width));
+  const setNextColumnWidth = width => dispatch(setNextColumnWidthAction(width));
+
+
+  const [display, setDisplay] = useState('table'
+    // resizable && useSmartOverflowX
+    //   ? 'block'
+    //   : 'table'
+  );
 
 
   runWarnings(props);
@@ -153,39 +230,49 @@ const DataGrid = (props: DataGridProps) => {
   // const [columnsOrder, setColumnsOrder] = useState(model.map((m, i) => ({ ...m, index: i })));
   /* Reorder end */
 
-  const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
-  const [columnsSizes, setColumnsSizes] = useState(
-    defaultColumnsSizes === undefined
-      ? [...new Array(columnsCount)].map(() => baseCellWidth)
-      : defaultColumnsSizes
-  ); // do we need controlled behavior ?
-  const [isResizing, setIsResizing] = useState();
-  const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
-  const [pageX, setPageX] = useState();
-  const [curColWidth, setCurColWidth] = useState();
+  // const [isResizing, setIsResizing] = useState();
+  // const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
+  // const [pageX, setPageX] = useState();
+  // const [curColWidth, setCurColWidth] = useState();
   // const [nextColWidth, setNextColWidth] = useState();
 
+
   const onOnDocumentMouseUp = (/* e */) => {
-    setIsResizing(false);
-    setResizingColumnIndexes(undefined);
-    setPageX(undefined);
-    setCurColWidth(undefined);
+    setIsResizing({
+      isResizing: false,
+      pageX: undefined,
+      currColWidth: undefined,
+      nextColWidth: undefined,
+      property: undefined,
+    });
+    // setResizingColumnIndexes(undefined);
+    // setPageX(undefined);
+    // setCurColWidth(undefined);
     document.removeEventListener('mouseup', onOnDocumentMouseUp);
     // setNextColWidth(undefined);
     document.body.style.cursor = 'inherit';
   };
 
-  const onResizeStart = (e, columnIdx) => {
-    setIsResizing(true);
+  const onResizeStart = (e, property) => {
+    // eslint-disable-next-line no-shadow
     const currColWidth = e.target.parentElement.offsetWidth;
     // eslint-disable-next-line no-nested-ternary
     // const siblingColumnIdx = columnIdx > -1
     //   ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
     //   : null;
-    setResizingColumnIndexes([columnIdx/* , siblingColumnIdx */]);
-    // const nextCol = e.target.parentElement.parentElement.nextElementSibling;
-    setPageX(e.pageX);
-    setCurColWidth(currColWidth);
+    // setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
+    const nextCol = e.target.parentElement.parentElement.nextElementSibling;
+    setIsResizing({
+      isResizing: true,
+      property,
+      // resizingColumnIndexes: [columnIdx, nextCol ? siblingColumnIdx : void 0],
+      pageX: e.pageX,
+      currColWidth,
+      nextColWidth: nextCol ? nextCol.offsetWidth : undefined,
+    });
+
+    // setPageX(e.pageX);
+    // setCurColWidth(currColWidth);
     // if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
 
     document.addEventListener('mouseup', onOnDocumentMouseUp);
@@ -201,23 +288,13 @@ const DataGrid = (props: DataGridProps) => {
   const onOnDocumentMouseMoveHandler = (e) => {
     if (isResizing) {
       const diffX = e.pageX - pageX;
-      const newColumnsSizes = columnsSizes.map((c, i) => {
-        const [
-          curColIdx,
-          // nxtColIdx
-        ] = resizingColumnIndexes;
-
-        // if (nxtColIdx !== null && i === nxtColIdx) {
-        //   return `${nextColWidth - diffX}px`;
-        // }
-        if (curColIdx === i) {
-          const newVal = curColWidth + diffX;
-          return `${newVal < minCellWidth ? minCellWidth : newVal}px`;
-        }
-        return c;
-      });
-
-      setColumnsSizes(newColumnsSizes);
+      console.log('diffX', diffX);
+      if (display === 'table' && isResizingNextProp) {
+        setNextColumnWidth(nextColWidth - diffX);
+      }
+      const newVal = currColWidth + diffX;
+      setCurrColumnWidth(newVal < minCellWidth ? minCellWidth : newVal);
+      // return c;
     }
   };
 
@@ -385,6 +462,7 @@ const DataGrid = (props: DataGridProps) => {
       useSmartOverflowX={useSmartOverflowX}
       setDisplay={setDisplay}
       display={display}
+      columnsSizes={columns.map(({ width }) => width)}
     >
       <Table
         borderCollapse={borderCollapse}
@@ -413,13 +491,13 @@ const DataGrid = (props: DataGridProps) => {
             }
             {
               // (columnsOrder).map((m, i, { length }) => {
-              (model).map((m, i/* , { length } */) => {
+              (columns.filter(c => c.show)).map((m, i/* , { length } */) => {
                 const resizeProps = resizable /* && (i < (length - 1)) */
                   ? {
-                    onResizeStart: e => onResizeStart(e, i),
+                    onResizeStart,
                     onResizeStop: (/* e */) => onOnDocumentMouseUp(/* e, i */),
                     resizable: true,
-                    columnWidth: columnsSizes[i],
+                    columnWidth: m.width,
                   }
                   : {};
 
@@ -438,6 +516,7 @@ const DataGrid = (props: DataGridProps) => {
                   : {}
                 ;
 
+
                 // const reorderingProps = {
                 //   reorderable: reorderable,
                 //   isReordering: isReordering,
@@ -449,12 +528,36 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
+                    property={m.property}
+                    // setInitialSize={(width) => {
+                    //   // setColumnsSizes((columnsSizes) => { // eslint-disable-line no-shadow
+                    //   // columnsSizes.forEach((cs, j) => {
+                    //   // if (i === j) {
+                    //   // eslint-disable-next-line no-nested-ternary
+                    //   const res = display === 'block'
+                    //     ? width > baseCellWidth ? baseCellWidth : width
+                    //     : width;
+                    //   // setCurrColumnWidth({ property: m.property, width: res });
+                    //   setColumnWidth({ property: m.property, width: res });
+                    //   return res;
+                    //   // }
+                    //   // return cs;
+                    //   // });
+
+                    //   // return newColsSizes;
+                    //   // });
+                    // }}
+                    model={columns}
+                    showColumn={showColumn}
+                    hideColumn={hideColumn}
+                    // setColumnsOrder={setColumnsOrder}
+                    // setColumnsSizes={setColumnsSizes}
+                    availProps={availProps}
+                    data={data}
                     isResizing={isResizing}
-                    resizingColumnIndexes={resizingColumnIndexes}
+                    // resizingColumnIndexes={resizingColumnIndexes}
                     isBeingResized={!!(
-                      resizingColumnIndexes
-                      && resizingColumnIndexes[0] !== undefined
-                      && resizingColumnIndexes[0] === i
+                      m.property === isResizingProp
                     )}
                     menuDescriptor={m.menuDescriptor}
                     menu={m.menu}
@@ -480,7 +583,7 @@ const DataGrid = (props: DataGridProps) => {
                 // model: columnsOrder,
                 model,
                 selected: actualSelected,
-                columnsSizes,
+                // columnsSizes,
                 sortDirections: actualSortDirections,
               })
               : null
@@ -518,53 +621,56 @@ const DataGrid = (props: DataGridProps) => {
 
                   {
                     // columnsOrder.map((m = {}, idx) => {
-                    model.map((m = {}, idx) => {
-                      const sizeProps = // baseCellWidth !== undefined
+                    (columns.filter(c => c.show)).map((m = {}, idx) => {
+                      // const sizeProps = // baseCellWidth !== undefined
                       // ? {
-                         {
-                           style: {
-                             width: columnsSizes[idx],
-                             minWidth: columnsSizes[idx],
-                             maxWidth: columnsSizes[idx],
-                             // },
-                           },
-                         };
+                      //  {
+                      //    style: {
+                      //      width: m.width,
+                      //      minWidth: m.width,
+                      //      maxWidth: m.width,
+                      //      // },
+                      //    },
+                      //  };
                       // : {};
 
                       // const maxWidth = columnsSizes && columnsSizes[idx] !== undefined
                       //   ? columnsSizes[idx] - 8
 
+                      const mComp = m.Component ? <m.Component {...entity} /> : null;
+
                       const cellContent = (
-                        <TdInnerWrapper {...sizeProps}>
-                          {
-                            m.Component !== undefined
-                              ? <m.Component {...entity} />
-                              : (
-                                <span
-                                  style={{
-                                    maxWidth: 'calc(100% - 8px)',
-                                    width: '100%',
-                                    minWidth: '1px',
-                                    boxSizing: 'border-box',
-                                  }}
-                                >
-                                  <Flex
-                                    style={{
-                                      justifyContent: 'flex-start',
-                                      flexFlow: 'row nowrap',
-                                      maxWidth: '100%',
-                                      boxSizing: 'border-box',
-                                    }}
-                                  >
+                        <TdInnerWrapper>
+                          <span
+                            style={{
+                              maxWidth: 'calc(100% - 8px)',
+                              width: '100%',
+                              minWidth: '1px',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            <Flex
+                              style={{
+                                justifyContent: 'flex-start',
+                                flexFlow: 'row nowrap',
+                                maxWidth: '100%',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              {
+                                m.Component !== undefined
+                                  ? mComp
+                                  : (
                                     <Flex style={{ minWidth: '1px', flexGrow: 1, flexShrink: 999, justifyContent: 'flex-start' }}>
                                       <TextEllipsis title={entity[m.property]}>
                                         {entity[m.property]}
                                       </TextEllipsis>
                                     </Flex>
-                                  </Flex>
-                                </span>
-                              )
-                          }
+                                  )
+                              }
+
+                            </Flex>
+                          </span>
                         </TdInnerWrapper>
                       );
 
@@ -580,11 +686,13 @@ const DataGrid = (props: DataGridProps) => {
 
                       return (
                         <Td
+                          mComp={mComp}
+                          Component={m.Component}
+                          columnSize={m.width}
+                          columnOrder={columns[idx]}
                           isResizing={isResizing}
                           isBeingResized={!!(
-                            resizingColumnIndexes
-                            && resizingColumnIndexes[0] !== undefined
-                            && resizingColumnIndexes[0] === idx
+                            m.property === isResizingProp
                           )}
                           key={idx}
                         >

@@ -24,6 +24,42 @@ The model support custom menu for table header
 
 
 
+
+## Custom Component render + custom menu
+
+<Playground>
+  <ThemeProvider>
+  <DataGrid
+    model={[
+      { 
+        property: 'name',
+        displayName: 'Name',
+      },
+      {
+        property: 'roles',
+        displayName: 'User groups',
+        Component: (entity) => (
+          entity.roles.map((r, i, { length }) => (
+            <div>
+              <i>{r}</i>
+              {i === length-1 ? '' : ', '}
+            </div>
+          ))
+        )
+      },
+    ]}
+    data={[
+      { name: 'John', roles: ['admin', 'editor', 'writer'] },
+    ]}
+  />
+</ThemeProvider>
+</Playground>
+
+
+
+
+
+
 ## Basic usage
 
 <Playground>
@@ -39,6 +75,39 @@ The model support custom menu for table header
         { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon', application: 'space' },
         { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
         { constructor: 'SpaceX', model: 'dragon', application: 'space' },
+      ]}
+    />
+  </ThemeProvider>
+</Playground>
+
+
+
+
+## smart props
+
+`model`, if not provided, is infered from the first entity in the `data` collection
+
+Note: using `Object.keys`
+
+
+<Playground>
+  <ThemeProvider>
+    <DataGrid
+      useSmartOverflowX
+      resizable
+      model={[{
+        property: 'constructor',
+        displayName: 'Constructor',
+      }, {
+        property: 'model',
+        displayName: 'Model',
+      }]}
+      data={[
+        { constructor: 'Application/vnd Openxmlformats Officedocument Presentationml Presentation', model: 'falcon', foo: 'bar', year: 2016 },
+        { constructor: 'Tesla', model: 'model X', foo: 'bar', year: 2017  },
+        { constructor: 'SpaceX', model: 'Falcon heavy', foo: 'bar', year: 2014  },
+        { constructor: 'SpaceX', model: 'Falcon 9', foo: 'bar', year: 2018  },
+        { constructor: 'SpaceX', model: 'Application/vnd Openxmlformats Officedocument Presentationml Presentation', foo: 'bar', year: 2019  },
       ]}
     />
   </ThemeProvider>
@@ -95,6 +164,28 @@ resize and observe the overflow-x automatically changing when the table is wider
     </div>
   </ThemeProvider>
 </Playground>
+
+
+
+
+## Infered model
+
+`model`, if not provided, is infered from the first entity in the `data` collection
+
+Note: using `Object.keys`
+
+
+<Playground>
+<ThemeProvider>
+  <DataGrid
+    data={[
+      { constructor: 'SpaceX', model: 'falcon' },
+      { constructor: 'Tesla', model: 'model X', foo: 'bar' },
+    ]}
+  />
+  </ThemeProvider>
+</Playground>
+
 
 
 ## Example usage (controlled selection)
@@ -240,57 +331,4 @@ resize and observe the overflow-x automatically changing when the table is wider
 ## Props
 
 <Props of={DataGrid} />
-
-
-## Infered model
-
-`model`, if not provided, is infered from the first entity in the `data` collection
-
-Note: using `Object.keys`
-
-
-<Playground>
-<ThemeProvider>
-  <DataGrid
-    data={[
-      { constructor: 'SpaceX', model: 'falcon' },
-      { constructor: 'Tesla', model: 'model X', foo: 'bar' },
-    ]}
-  />
-  </ThemeProvider>
-</Playground>
-
-
-
-## Custom Component render + custom menu
-
-<Playground>
-  <ThemeProvider>
-  <DataGrid
-    model={[
-      { 
-        property: 'name',
-        displayName: 'Name',
-      },
-      {
-        property: 'roles',
-        displayName: 'User groups',
-        Component: (entity) => (
-          entity.roles.map((r, i, { length }) => (
-            <div>
-              <i>{r}</i>
-              {i === length-1 ? '' : ', '}
-            </div>
-          ))
-        )
-      },
-    ]}
-    data={[
-      { name: 'John', roles: ['admin', 'editor', 'writer'] },
-    ]}
-  />
-</ThemeProvider>
-</Playground>
-
-
 

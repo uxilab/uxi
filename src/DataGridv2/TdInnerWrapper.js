@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const TdInnerWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
+  display: grid;
   flex-flow: row nowrap;
   align-items: stretch;
   align-items: center;

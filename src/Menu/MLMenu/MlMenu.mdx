@@ -1,0 +1,40 @@
+---
+name: MlMenu
+route: /doc/components/MlMenu
+---
+
+
+
+import { useState } from 'react'
+import { Playground, Props } from 'docz'
+import ThemeProvider from '../../Theme/ThemeProvider'
+import Circle from '../../Icons/Circle'
+import Star from '../../Icons/Star'
+// import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu'
+// import DataGrid from './'
+import { WithState } from '../../DataGridv2/utils'
+
+
+import Flex from '../../Layout/Flex'
+
+<Playground>
+  <ThemeProvider>
+    <ButtonMenuMultiLevel
+      style={{ alignItems: 'stretch', display: 'flex' }}
+      anchor={'right'}
+      buttonWrapperStyle={{
+        position: 'inherit',
+        // fuck: 'eslint',
+        height: '100%',
+        alignItems: 'stretch',
+        display: 'flex',
+      }}
+      BoxWrapperUIStyle={{
+        width: 'auto',
+        zIndex: 1,
+      }}
+      menuDescriptor={[{ label: 'foo' }]}
+      button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
+    />
+  </ThemeProvider>
+</Playground>
