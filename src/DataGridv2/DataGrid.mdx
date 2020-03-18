@@ -24,6 +24,27 @@ The model support custom menu for table header
 
 
 
+## Basic usage
+
+<Playground>
+  <ThemeProvider>
+    <DataGrid
+      resizable
+      model={[
+        { property: 'constructor', displayName: 'Main Constructor' },
+        { property: 'model', displayName: 'Vehicule Model' },
+        { property: 'application', displayName: 'Terrain' },
+      ]}
+      data={[
+        { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon', application: 'space' },
+        { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
+        { constructor: 'SpaceX', model: 'dragon', application: 'space' },
+      ]}
+    />
+  </ThemeProvider>
+</Playground>
+
+
 
 ## Custom Component render + custom menu
 
@@ -58,27 +79,6 @@ The model support custom menu for table header
 
 
 
-
-
-## Basic usage
-
-<Playground>
-  <ThemeProvider>
-    <DataGrid
-      resizable
-      model={[
-        { property: 'constructor', displayName: 'Main Constructor' },
-        { property: 'model', displayName: 'Vehicule Model' },
-        { property: 'application', displayName: 'Terrain' },
-      ]}
-      data={[
-        { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon', application: 'space' },
-        { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
-        { constructor: 'SpaceX', model: 'dragon', application: 'space' },
-      ]}
-    />
-  </ThemeProvider>
-</Playground>
 
 
 

@@ -201,7 +201,7 @@ class DropDown2 extends Component {
         }}
         ref={this.storeWrapperRef}
       >
-        <span data-drop-down-trigger>
+        <span data-drop-down-trigger style={{ maxWidth: '100%' }}>
           {TriggerWithHandler}
         </span>
         <BoxWrapperUI

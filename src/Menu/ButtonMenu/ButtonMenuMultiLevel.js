@@ -184,11 +184,18 @@ class ButtonMenuMultiLevel extends Component {
           BoxWrapperUIStyle={BoxWrapperUIStyle}
           noShadow
         >
-          <MlMenu
-            isFullWidth
-            menuDescriptor={menuDescriptor}
-            onSelfClose={onSelfClose}
-          />
+          {
+            isOpen
+              ? (
+                <MlMenu
+                  isFullWidth
+                  menuDescriptor={menuDescriptor}
+                  onSelfClose={onSelfClose}
+                />
+              )
+              : <div />
+          }
+
         </DropDown>
       </ButtonMenuMultiLevelWrapper>
     );
