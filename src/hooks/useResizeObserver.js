@@ -3,13 +3,14 @@ import isEqual from 'lodash/isEqual';
 import ResizeObserver from 'resize-observer-polyfill';
 import throttle from 'lodash/throttle';
 
-const useResizeObserver = (reactRef, callback) => {
+const useResizeObserver = (deps, callback) => {
+  const [reactRef] = deps;
   let state = null;
   useEffect(() => {
     const handler = (entries) => {
       const { contentRect } = entries[0];
       if (!isEqual(state, contentRect)) {
-        console.log('useResizeObserver handler running...');
+        // console.log('useResizeObserver handler running...');
         state = contentRect;
         callback(contentRect);
       }
@@ -24,10 +25,10 @@ const useResizeObserver = (reactRef, callback) => {
     resizeObserver.observe(reactRef.current);
 
     return () => {
-      console.log('useResizeObserver cleanup');
+      // console.log('useResizeObserver cleanup');
       resizeObserver.disconnect();
     };
-  }, [callback, reactRef]);
+  }, [callback, ...deps]);
 };
 
 

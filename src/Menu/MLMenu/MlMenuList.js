@@ -61,7 +61,7 @@ const MlMenuList = (props) => {
   return (
     <MlMenuListUI isFullWidth={isFullWidth} >
       {
-        (menuDescriptor || []).map((itemDescriptor) => {
+        (menuDescriptor || []).map((itemDescriptor, i) => {
           const { onClick: consumerOnClick = () => {} } = itemDescriptor;
           const onClickHandler = (...a) => {
             if (itemDescriptor.children === undefined) {
@@ -72,6 +72,7 @@ const MlMenuList = (props) => {
 
           return (
             <MlMenuItem
+              key={i}
               isFullWidth={isFullWidth}
               {...itemDescriptor}
               onClick={onClickHandler}
