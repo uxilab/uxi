@@ -19,7 +19,7 @@ import reducer, { initialState } from './reducer'; // eslint-disable-line import
 import {
   showColumn as showColumnAction,
   hideColumn as hideColumnAction,
-  // setColumnWidth as setColumnWidthAction,
+  setColumnWidth as setColumnWidthAction,
   setCurrColumnWidth as setCurrColumnWidthAction,
   setIsResizing as setIsResizingAction,
   setNextColumnWidth as setNextColumnWidthAction,
@@ -139,7 +139,6 @@ const DataGrid = (props: DataGridProps) => {
     baseCellWidth: baseCellWidthProp,
   } = props;
 
-
   const useSmartOverflowX = resizable
     ? true
     : useSmartOverflowXProp
@@ -190,6 +189,7 @@ const DataGrid = (props: DataGridProps) => {
       isResizingNextProp,
       currColWidth,
       nextColWidth,
+      hasBeenResizedOnce,
     },
     dispatch,
   ] = useReducer(
@@ -205,8 +205,8 @@ const DataGrid = (props: DataGridProps) => {
 
   const setIsResizing = payload => dispatch(setIsResizingAction(payload));
 
-  // const setColumnWidth = ({ property, width }) =>
-  //   dispatch(setColumnWidthAction({ property, width }));
+  const setColumnWidth = ({ property, width }) =>
+    dispatch(setColumnWidthAction({ property, width }));
 
   const setCurrColumnWidth = width => dispatch(setCurrColumnWidthAction(width));
   const setNextColumnWidth = width => dispatch(setNextColumnWidthAction(width));
@@ -255,21 +255,30 @@ const DataGrid = (props: DataGridProps) => {
 
   const onResizeStart = (e, property) => {
     // eslint-disable-next-line no-shadow
-    const currColWidth = e.target.parentElement.offsetWidth;
+    const currCol = e.target.parentElement.parentElement;
+    // eslint-disable-next-line no-shadow
+    const { width: currColWidth } = currCol.getBoundingClientRect();
+
+    console.log('currColWidth', currColWidth, currCol);
     // eslint-disable-next-line no-nested-ternary
     // const siblingColumnIdx = columnIdx > -1
     //   ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
     //   : null;
     // setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
-    const nextCol = e.target.parentElement.parentElement.nextElementSibling;
-    setIsResizing({
+    const nextCol = currCol.nextElementSibling;
+    // eslint-disable-next-line no-shadow
+    const { width: nextColWidth } = (nextCol ? nextCol.getBoundingClientRect() : {});
+    console.log('nextColWidth', nextColWidth, nextCol);
+    const payload = {
       isResizing: true,
       property,
       // resizingColumnIndexes: [columnIdx, nextCol ? siblingColumnIdx : void 0],
       pageX: e.pageX,
       currColWidth,
-      nextColWidth: nextCol ? nextCol.offsetWidth : undefined,
-    });
+      nextColWidth: nextCol ? nextColWidth : undefined,
+    };
+
+    setIsResizing(payload);
 
     // setPageX(e.pageX);
     // setCurColWidth(currColWidth);
@@ -290,7 +299,9 @@ const DataGrid = (props: DataGridProps) => {
       const diffX = e.pageX - pageX;
       console.log('diffX', diffX);
       if (display === 'table' && isResizingNextProp) {
-        setNextColumnWidth(nextColWidth - diffX);
+        const v = nextColWidth - diffX;
+        console.log('calling setNextColumnWidth', v);
+        setNextColumnWidth(v);
       }
       const newVal = currColWidth + diffX;
       setCurrColumnWidth(newVal < minCellWidth ? minCellWidth : newVal);
@@ -456,9 +467,10 @@ const DataGrid = (props: DataGridProps) => {
     onSelectionChange(checked, entityPropertyKeyValue, newSelected);
   };
 
-
   return (
     <DataGridSmartOverflowXWrapper
+      hasBeenResizedOnce={hasBeenResizedOnce}
+      isResizing={isResizing}
       useSmartOverflowX={useSmartOverflowX}
       setDisplay={setDisplay}
       display={display}
@@ -491,7 +503,7 @@ const DataGrid = (props: DataGridProps) => {
             }
             {
               // (columnsOrder).map((m, i, { length }) => {
-              (columns.filter(c => c.show)).map((m, i/* , { length } */) => {
+              (columns.filter(c => c.show)).map((m, i, { length }) => {
                 const resizeProps = resizable /* && (i < (length - 1)) */
                   ? {
                     onResizeStart,
@@ -528,25 +540,27 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
+                    hasBeenResizedOnce={hasBeenResizedOnce}
+                    display={display}
                     property={m.property}
-                    // setInitialSize={(width) => {
-                    //   // setColumnsSizes((columnsSizes) => { // eslint-disable-line no-shadow
-                    //   // columnsSizes.forEach((cs, j) => {
-                    //   // if (i === j) {
-                    //   // eslint-disable-next-line no-nested-ternary
-                    //   const res = display === 'block'
-                    //     ? width > baseCellWidth ? baseCellWidth : width
-                    //     : width;
-                    //   // setCurrColumnWidth({ property: m.property, width: res });
-                    //   setColumnWidth({ property: m.property, width: res });
-                    //   return res;
-                    //   // }
-                    //   // return cs;
-                    //   // });
+                    setInitialSize={(width) => {
+                      // setColumnsSizes((columnsSizes) => { // eslint-disable-line no-shadow
+                      // columnsSizes.forEach((cs, j) => {
+                      // if (i === j) {
+                      // eslint-disable-next-line no-nested-ternary
+                      const res = display === 'block'
+                        ? width > baseCellWidth ? baseCellWidth : width
+                        : width;
+                      // setCurrColumnWidth({ property: m.property, width: res });
+                      setColumnWidth({ property: m.property, width: res });
+                      // return res;
+                      // }
+                      // return cs;
+                      // });
 
-                    //   // return newColsSizes;
-                    //   // });
-                    // }}
+                      // return newColsSizes;
+                      // });
+                    }}
                     model={columns}
                     showColumn={showColumn}
                     hideColumn={hideColumn}
@@ -563,6 +577,7 @@ const DataGrid = (props: DataGridProps) => {
                     menu={m.menu}
                     index={i}
                     key={i}
+                    isLast={i === length - 1}
                     {...resizeProps}
                     {...sortProps}
                     // {...reorderingProps}
@@ -621,18 +636,22 @@ const DataGrid = (props: DataGridProps) => {
 
                   {
                     // columnsOrder.map((m = {}, idx) => {
-                    (columns.filter(c => c.show)).map((m = {}, idx) => {
-                      // const sizeProps = // baseCellWidth !== undefined
-                      // ? {
-                      //  {
-                      //    style: {
-                      //      width: m.width,
-                      //      minWidth: m.width,
-                      //      maxWidth: m.width,
-                      //      // },
-                      //    },
-                      //  };
-                      // : {};
+                    (columns.filter(c => c.show)).map((m = {}, idx, filteredColumns) => {
+                      const sizeProps = (
+                        hasBeenResizedOnce
+                        && m.width !== undefined
+                        && columns.filter(c => c.show).length > 1
+                      )
+                        ? {
+                          style: {
+                            width: m.width,
+                            minWidth: m.width,
+                            maxWidth: m.width,
+                            // maxWidth: '100%',
+                            // },
+                          },
+                        }
+                        : {};
 
                       // const maxWidth = columnsSizes && columnsSizes[idx] !== undefined
                       //   ? columnsSizes[idx] - 8
@@ -640,7 +659,9 @@ const DataGrid = (props: DataGridProps) => {
                       const mComp = m.Component ? <m.Component {...entity} /> : null;
 
                       const cellContent = (
-                        <TdInnerWrapper>
+                        <TdInnerWrapper
+                          {...sizeProps}
+                        >
                           <span
                             style={{
                               maxWidth: 'calc(100% - 8px)',
@@ -686,10 +707,11 @@ const DataGrid = (props: DataGridProps) => {
 
                       return (
                         <Td
+                          columns={columns}
                           mComp={mComp}
                           Component={m.Component}
                           columnSize={m.width}
-                          columnOrder={columns[idx]}
+                          columnOrder={filteredColumns[idx]}
                           isResizing={isResizing}
                           isBeingResized={!!(
                             m.property === isResizingProp

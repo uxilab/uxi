@@ -26,6 +26,7 @@ class Td extends React.Component {
     const {
       isBeingResized,
       columnSize,
+      columns = [],
       // columnOrder,
       mComp,
       // Component,
@@ -34,8 +35,15 @@ class Td extends React.Component {
       columnSize: nextColumnSize,
       // columnOrder: nextColumnsOrder,
       mComp: nextmComp,
+      columns: nextColumns = [],
       // Component: nextComponent,
     } = nextProps;
+
+    if (
+      columns.filter((x = {}) => x.show).length !== nextColumns.filter((x = {}) => x.show).length
+    ) {
+      return true;
+    }
 
     /** Columns size can change on user input (dnd col resize)
      * but also on mount,

@@ -11,7 +11,7 @@ import { UnstyledButton } from '../Button/UnstyledButton1';
 // import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu';
 // import ButtonMenuItem from '../Menu/ButtonMenu/ButtonMenuItem';
 import Options from '../Icons/Options';
-import Hamburger from '../Icons/Hamburger';
+// import Hamburger from '../Icons/Hamburger';
 import { Flex } from '../Layout/Flex';
 // import Checkbox from '../Input/Checkbox';
 // import Checkboxoutline from '../Icons/Checkboxoutline';
@@ -151,16 +151,20 @@ class Th extends React.Component {
     this.ref = React.createRef();
   }
 
-  // componentDidMount() {
-  //   if (this.ref.current && this.ref.current.getBoundingClientRect) {
-  //     const bRect = this.ref.current.getBoundingClientRect() || {};
-  //     const { width = 0 } = bRect;
-  //     // const { setInitialSize } = this.props;
-  //     // if (setInitialSize) {
-  //     //   setInitialSize(width);
-  //     // }
-  //   }
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   if ()
   // }
+
+  componentDidMount() {
+    if (this.ref.current && this.ref.current.getBoundingClientRect) {
+      const bRect = this.ref.current.getBoundingClientRect() || {};
+      const { width = 0 } = bRect;
+      const { setInitialSize } = this.props;
+      if (setInitialSize) {
+        setInitialSize(width);
+      }
+    }
+  }
 
   shouldComponentUpdate(nextProps/* , nextState */) {
     const {
@@ -197,6 +201,37 @@ class Th extends React.Component {
     return false;
   }
 
+
+  componentDidUpdate(prevProps) {
+    const { display, isResizing, model, property } = this.props;
+    const { isResizing: wasResizing, model: prevModel } = prevProps;
+    const a = prevModel.find(m => m.property === property);
+    const b = model.find(m => m.property === property);
+    const wasJustAdded = (b.show && !a.show);
+
+    const shouldCheckIntrinsicWidth = (
+      ((wasResizing && !isResizing) && display === 'table')
+      || wasJustAdded
+    );
+
+    if (shouldCheckIntrinsicWidth) {
+      if (this.ref.current && this.ref.current.getBoundingClientRect) {
+        const { width } = b;
+        const bRect = this.ref.current.getBoundingClientRect() || {};
+        const { width: intrinsicWidth = 0 } = bRect;
+        // const { width: prevWidth } = model.find(m => m.property === property) || {};
+
+        if (intrinsicWidth !== width) {
+          const { setInitialSize } = this.props;
+          if (setInitialSize) {
+            setInitialSize(intrinsicWidth);
+          }
+        }
+      }
+    }
+  }
+
+
   render() {
     const {
       ThInnerWrapper,
@@ -228,162 +263,213 @@ class Th extends React.Component {
       // availProps = [],
       // data = [],
 
-    // isReordering,
-    // isReorderingHovered,
-    // onDragTableHeaderStart,
-    // onDragTableHeaderMove,
-    // onDropTableHeader,
+      // isReordering,
+      // isReorderingHovered,
+      // onDragTableHeaderStart,
+      // onDragTableHeaderMove,
+      // onDropTableHeader,
+      isLast,
+      display,
+      hasBeenResizedOnce,
 
     } = this.props;
     // } = props;
 
-    console.log('th props.property', property);
     /*
-    const ref = useRef(null);
+      const ref = useRef(null);
 
-    const [dropCollectedProps, drop] = useDrop({
-      accept: 'my-foobar-type',
-      hover(item, monitor) {
-        if (!ref.current || isResizing) {
-          return;
-        }
-        const dragIndex = item.index;
-        const hoverIndex = index;
-        // Don't replace items with themselves
-        // if (dragIndex === hoverIndex) {
-        //   return;
-        // }
-        // Determine rectangle on screen
-        const hoverBoundingRect = ref.current.getBoundingClientRect();
-        // Get vertical middle
-        // const hoverMiddleY =
-        //   (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-        // Get horizontal middle
-        const hoverMiddleX =
-          (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
-        // Determine mouse position
-        const clientOffset = monitor.getClientOffset();
-        // Get pixels to the top
-
-        const hoverClientX = clientOffset.x - hoverBoundingRect.left;
-
-        // Only perform the move when the mouse has crossed half of the items width
-        // When dragging downwards, only move when the cursor is below 50%
-        // When dragging upwards, only move when the cursor is above 50%
-        // Dragging right
-
-        if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
-          onDragTableHeaderMove(hoverIndex);
-          return;
-        }
-
-        // Dragging left
-
-        if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
-          onDragTableHeaderMove(hoverIndex);
-          return;
-        }
-
-        // Time to actually perform the action
-        // moveCard(dragIndex, hoverIndex);
-        // onDropTableHeader(dragIndex, hoverIndex);
-        // Note: we're mutating the monitor item here!
-        // Generally it's better to avoid mutations,
-        // but it's good here for the sake of performance
-        // to avoid expensive index searches.
-        // eslint-disable-next-line
-        item.index = hoverIndex;
-      },
-      collect: (monitor) => {
-        if (!ref.current || isResizing) {
-          return {};
-        }
-
-        return {
-        // isDragging: monitor.isDragging(),
-          highlighted: monitor.canDrop(),
-          hovered: monitor.isOver(),
-        // canDrop: monitor.canDrop(),
-        };
-      },
-    });
-    const { highlighted, hovered } = dropCollectedProps;
-
-    const [dragCollectedProps, drag] = useDrag({
-      item: { type: 'my-foobar-type', dragId, index },
-      begin: (monitor) => {
-        if (!ref.current || isResizing) {
-          return;
-        }
-        onDragTableHeaderStart(index, ref);
-      },
-      end: (monitor) => {
-        // onDropTableHeader(monitor.index);
-        onDropTableHeader(isReorderingHovered);
-      },
-      collect: (monitor) => {
-        if (!ref.current || isResizing) {
-          return {};
-        }
-        return {
-          isDragging: monitor.isDragging(),
-        // canDrop: monitor.canDrop(),
-        // hovered: monitor.isOver(),
-        }
-        ;
-      },
-    });
-
-
-    const { isDragging } = dragCollectedProps;
-    const opacity = isDragging ? 0 : 1;
-
-    useEffect(() => {
-      if (isResizing) {
-        drop(ref)
-        return () => {
-          if (reorderable) {
-            drag(drop(ref));
+      const [dropCollectedProps, drop] = useDrop({
+        accept: 'my-foobar-type',
+        hover(item, monitor) {
+          if (!ref.current || isResizing) {
+            return;
           }
-        };
-      }
-      if (reorderable) {
-        drag(drop(ref));
-      }
-      return () => {
-        drop(ref)
-      };
-    }, [isResizing]);
+          const dragIndex = item.index;
+          const hoverIndex = index;
+          // Don't replace items with themselves
+          // if (dragIndex === hoverIndex) {
+          //   return;
+          // }
+          // Determine rectangle on screen
+          const hoverBoundingRect = ref.current.getBoundingClientRect();
+          // Get vertical middle
+          // const hoverMiddleY =
+          //   (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+          // Get horizontal middle
+          const hoverMiddleX =
+            (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
+          // Determine mouse position
+          const clientOffset = monitor.getClientOffset();
+          // Get pixels to the top
 
-    // drag(drop(ref));
+          const hoverClientX = clientOffset.x - hoverBoundingRect.left;
+
+          // Only perform the move when the mouse has crossed half of the items width
+          // When dragging downwards, only move when the cursor is below 50%
+          // When dragging upwards, only move when the cursor is above 50%
+          // Dragging right
+
+          if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
+            onDragTableHeaderMove(hoverIndex);
+            return;
+          }
+
+          // Dragging left
+
+          if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
+            onDragTableHeaderMove(hoverIndex);
+            return;
+          }
+
+          // Time to actually perform the action
+          // moveCard(dragIndex, hoverIndex);
+          // onDropTableHeader(dragIndex, hoverIndex);
+          // Note: we're mutating the monitor item here!
+          // Generally it's better to avoid mutations,
+          // but it's good here for the sake of performance
+          // to avoid expensive index searches.
+          // eslint-disable-next-line
+          item.index = hoverIndex;
+        },
+        collect: (monitor) => {
+          if (!ref.current || isResizing) {
+            return {};
+          }
+
+          return {
+          // isDragging: monitor.isDragging(),
+            highlighted: monitor.canDrop(),
+            hovered: monitor.isOver(),
+          // canDrop: monitor.canDrop(),
+          };
+        },
+      });
+      const { highlighted, hovered } = dropCollectedProps;
+
+      const [dragCollectedProps, drag] = useDrag({
+        item: { type: 'my-foobar-type', dragId, index },
+        begin: (monitor) => {
+          if (!ref.current || isResizing) {
+            return;
+          }
+          onDragTableHeaderStart(index, ref);
+        },
+        end: (monitor) => {
+          // onDropTableHeader(monitor.index);
+          onDropTableHeader(isReorderingHovered);
+        },
+        collect: (monitor) => {
+          if (!ref.current || isResizing) {
+            return {};
+          }
+          return {
+            isDragging: monitor.isDragging(),
+          // canDrop: monitor.canDrop(),
+          // hovered: monitor.isOver(),
+          }
+          ;
+        },
+      });
+
+
+      const { isDragging } = dragCollectedProps;
+      const opacity = isDragging ? 0 : 1;
+
+      useEffect(() => {
+        if (isResizing) {
+          drop(ref)
+          return () => {
+            if (reorderable) {
+              drag(drop(ref));
+            }
+          };
+        }
+        if (reorderable) {
+          drag(drop(ref));
+        }
+        return () => {
+          drop(ref)
+        };
+      }, [isResizing]);
+
+      // drag(drop(ref));
 
     */
 
+    const styles = hasBeenResizedOnce && isLast && display === 'table'
+      ? { width: '100%', ...style }
+      : {
+        width: columnWidth,
+        minWidth: columnWidth,
+        maxWidth: columnWidth,
+        ...style,
+      };
 
     return (
       <ThUI
         ref={this.ref}
         isResizing={isResizing}
         isBeingResized={isBeingResized}
-        style={{
-          width: columnWidth,
-          minWidth: columnWidth,
-          maxWidth: columnWidth,
-          // opacity,
-          ...style,
-        }}
+        style={styles}
         isReordering={reorderable !== null}
-        // highlighted={hovered}
         isFirst={index === 0}
       >
         <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
           <Flex
-            style={{ minWidth: '1px', justifyContent: 'flex-start', flexGrow: 999, flexShrink: 999, cursor: reorderable ? 'ew-resize' : 'normal' }}
-          // eslint-disable-next-line no-nested-ternary
-          // ref={reorderable ? !isResizing ? ref : undefined : undefined}
+            style={{
+              minWidth: '1px',
+              justifyContent: 'stretch',
+              alignItems: 'stretch',
+              flexGrow: 999,
+              flexShrink: 999,
+              cursor: reorderable ? 'ew-resize' : 'normal',
+            }}
           >
-            {children}
+
+            <ButtonMenuMultiLevel
+              style={{ alignItems: 'stretch', display: 'flex', width: '100%', boxSizing: 'border-box' }}
+              anchor={'left'}
+              buttonWrapperStyle={{
+                position: 'inherit',
+                height: '100%',
+                width: '100%',
+                alignItems: 'stretch',
+                display: 'flex',
+              }}
+              BoxWrapperUIStyle={{
+                width: 'auto',
+                zIndex: 1,
+              }}
+              menuDescriptor={
+                model.map((m) => {
+                  const modelDef = model.find(mo => m.property === mo.property);
+                  const isActive = m.show;
+                  const onClick = () => {
+                    if (model.length > 1) {
+                      if (isActive) {
+                        hideColumn(m.property);
+                      } else {
+                        showColumn(m.property);
+                      }
+                    }
+                  };
+                  return {
+                    label: modelDef ? modelDef.displayName : m.displayName,
+                    onClick,
+                    icon: isActive ? <Checkmark /> : <Flex style={{ width: '22px' }} />,
+                  };
+                })
+              }
+              button={
+                <Flex
+                  style={{ width: '100%', minWidth: '1px', justifyContent: 'flex-start', flexGrow: 999, flexShrink: 999, cursor: 'pointer' }}
+                >
+                  {children}
+                </Flex>
+              }
+            />
           </Flex>
+
           {sortable
             ? <SortHandler
               style={{ flexGrow: 1, flexShrink: 0 }}
@@ -430,118 +516,6 @@ class Th extends React.Component {
               ? menu
               : null
           }
-
-          <ExtraModelButtonWrapper>
-
-            <ButtonMenuMultiLevel
-              style={{ alignItems: 'stretch', display: 'flex' }}
-              anchor={'right'}
-              buttonWrapperStyle={{
-                position: 'inherit',
-                // fuck: 'eslint',
-                height: '100%',
-                alignItems: 'stretch',
-                display: 'flex',
-              }}
-              BoxWrapperUIStyle={{
-                width: 'auto',
-                zIndex: 1,
-              }}
-              menuDescriptor={
-                model.map((m) => {
-                  const modelDef = model.find(mo => m.property === mo.property);
-                  const isActive = m.show;
-                  const onClick = () => {
-                    if (model.length > 1) {
-                      if (isActive) {
-                        hideColumn(m.property);
-                        // setColumnsOrder(model.filter(mo => mo.property !== m.property));
-                      } else {
-                        showColumn(m.property);
-                        /* const tmpModel = [...model];
-                        const atIndex = availProps.findIndex(p => p.property === m.property);
-                        tmpModel.splice(atIndex, 0, { ...m });
-                        setColumnsOrder([
-                          tmpModel,
-                          { ...m },
-                        ]);
-                        setColumnsSizes((columnsSizes) => {
-                          const newColsSizes = [...columnsSizes];
-                          newColsSizes.splice(atIndex, 0, { ...m });
-
-                          return newColsSizes;
-                        }); */
-                        // setColumnsSizes(columnsSizes => [...columnsSizes, 240]);
-                        // setColumnsOrder(state => [
-                        //   ...state,
-                        //   { ...m },
-                        // ]);
-                      }
-                    }
-                  };
-                  return {
-                    label: modelDef ? modelDef.displayName : m.displayName,
-                    onClick,
-                    // icon: <Checkbox checked={isActive} />,
-                    icon: isActive ? <Checkmark /> : <Flex style={{ width: '22px' }} />,
-                  };
-
-                  // return (
-                  //   <div>
-                  //     <UnstyledButton onClick={onClick}>
-                  //       <Flex>
-                  //         <Checkbox
-                  //           checked={isActive}
-                  //           // onChange={}
-                  //         />
-                  //         {modelDef ? modelDef.displayName : m.displayName}
-                  //       </Flex>
-                  //     </UnstyledButton>
-                  //   </div>
-                  // );
-                })
-              }
-              button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Hamburger size={16} />} />}
-            />
-
-            { /*
-              <ButtonMenu
-                button={<Hamburger size={14} />}
-              >
-                {
-                  availProps.map((m) => {
-                    const modelDef = model.find(mo => m.property === mo.property);
-                    const isActive = !!modelDef;
-                    const onClick = () => {
-                      if (model.length > 1) {
-                        if (isActive) {
-                          setColumnsOrder(model.filter(mo => mo.property !== m.property));
-                        } else {
-                          setColumnsOrder([
-                            ...model,
-                            { ...m },
-                          ]);
-                        }
-                      }
-                    };
-                    return (
-                      <div>
-                        <UnstyledButton onClick={onClick}>
-                          <Flex>
-                            <Checkbox
-                              checked={isActive}
-                              // onChange={}
-                            />
-                            {modelDef ? modelDef.displayName : m.displayName}
-                          </Flex>
-                        </UnstyledButton>
-                      </div>
-                    );
-                  })
-                }
-              </ButtonMenu>
-            */ }
-          </ExtraModelButtonWrapper>
           {resizable
             ? (
               <ResizeHandler

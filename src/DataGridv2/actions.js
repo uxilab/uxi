@@ -5,7 +5,7 @@ export const C = {
   SET_IS_RESIZING: 'SET_IS_RESIZING',
   SET_COLUMN_W: 'SET_COLUMN_W',
   SET_CURR_COLUMN_W: 'SET_CURR_COLUMN_W',
-  SET_NEXT_COLUMN_W: 'SET_COLUMN_W',
+  SET_NEXT_COLUMN_W: 'SET_NEXT_COLUMN_W',
 };
 
 export const showColumn = payload => ({ type: C.SHOW_COLUMN, payload });

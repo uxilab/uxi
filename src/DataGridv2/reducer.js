@@ -9,6 +9,7 @@ export const initialState = {
   // resizingColumnIndexes: undefined,
   currColWidth: undefined,
   nextColWidth: undefined,
+  hasBeenResizedOnce: false,
 };
 
 export const reducer = (state, { type, payload }) => {
@@ -22,7 +23,10 @@ export const reducer = (state, { type, payload }) => {
     case C.HIDE_COLUMN:
       return {
         ...state,
-        columns: state.columns.map(c => (c.property === payload ? { ...c, show: false } : c)),
+        columns: state.columns.filter(c => c.show).length > 1
+          ? state.columns.map(c => (c.property === payload ? { ...c, show: false } : c))
+          : state.columns
+        ,
       };
 
     // eslint-disable-next-line no-case-declarations
@@ -45,6 +49,7 @@ export const reducer = (state, { type, payload }) => {
 
       return {
         ...state,
+        hasBeenResizedOnce: true,
         isResizing: payload.isResizing,
         pageX: payload.pageX,
         isResizingProp: payload.property,
@@ -82,18 +87,19 @@ export const reducer = (state, { type, payload }) => {
 };
 
 
-// eslint-disable-next-line no-shadow
 /*
+// eslint-disable-next-line no-shadow
 const middleware = reducer => (state, { type, payload }) => {
   console.log('––––––––––––––––––––––––––––', '\n');
-  console.log(`ACTION ${type} PREV STATE  :`, '\n', JSON.parse(JSON.stringify(state)));
+  console.log(`ACTION ${type} PREV STATE  :`, '\n', state);
   console.log(`ACTION ${type} WITH PAYLOAD:`, '\n', JSON.parse(JSON.stringify(payload)));
   const newState = reducer(state, { type, payload });
-  console.log(`ACTION ${type} NEXT STATE  :`, '\n', JSON.parse(JSON.stringify(newState)));
+  console.log(`ACTION ${type} NEXT STATE  :`, '\n', newState);
   return newState;
 };
-*/
 
-// export default middleware(reducer);
+export default middleware(reducer);
+
+*/
 
 export default reducer;

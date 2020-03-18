@@ -20,6 +20,12 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
   // const [display, setDisplay] = useState('table');
   useResizeObserver([ref, columnsSizes], (contentRect) => {
     if (useSmartOverflowX) {
+      // if (hasBeenResizedOnce) {
+      //   return setDisplay('block')
+      // }
+      // if (isResizing) {
+      //   return setDisplay('block');
+      // }
       const table = (ref && ref.current) ? ref.current.querySelector('table') : {};
       table.setAttribute('style', 'display: table; width: auto;');
       const { width: tableWidth } = table.getBoundingClientRect
