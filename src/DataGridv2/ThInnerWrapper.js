@@ -1,5 +1,6 @@
 // @flow
 import styled, { css } from 'styled-components';
+// import { minCellWidth } from './DataGrid';
 
 
 const ThInnerWrapper = styled.div`
@@ -9,7 +10,6 @@ const ThInnerWrapper = styled.div`
   white-space: nowrap;
   padding: 0 0 0 16px;
   width: 100%;
-  min-width: 16px;
   width: auto;
   box-sizing : border-box;
   ${({ resizable }) => (resizable ? css`padding-right: 8px` : '')};

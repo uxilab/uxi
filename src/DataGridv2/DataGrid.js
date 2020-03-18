@@ -1,6 +1,7 @@
 // @flow
 import React, { useEffect, Component, useState, useReducer } from 'react';
-import throttle from 'lodash/throttle';
+// import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 // import { useDrag } from 'react-dnd';
 import { Flex } from '../Layout/Flex';
 import Checkbox from '../Input/Checkbox';
@@ -25,7 +26,7 @@ import {
   setNextColumnWidth as setNextColumnWidthAction,
 } from './actions';
 
-const minCellWidth = 64;
+export const minCellWidth = 64;
 const cellHeight = 48;
 
 const runWarnings = (props) => {
@@ -301,7 +302,7 @@ const DataGrid = (props: DataGridProps) => {
       if (display === 'table' && isResizingNextProp) {
         const v = nextColWidth - diffX;
         console.log('calling setNextColumnWidth', v);
-        setNextColumnWidth(v);
+        setNextColumnWidth(v < minCellWidth ? minCellWidth : v);
       }
       const newVal = currColWidth + diffX;
       setCurrColumnWidth(newVal < minCellWidth ? minCellWidth : newVal);
@@ -312,12 +313,17 @@ const DataGrid = (props: DataGridProps) => {
   useEffect(
     () => {
       if (isResizing) {
-        const listener = (event) => {
-          onOnDocumentMouseMoveHandler(event);
-        };
+        // const listener = (event) => {
+        //   onOnDocumentMouseMoveHandler(event);
+        // };
 
-        const debounceListener = throttle(
-          listener, 14, { maxWait: 64, leading: true, trailing: false }
+        // const debounceListener = listener
+        const debounceListener = debounce(
+          // debounce(
+          onOnDocumentMouseMoveHandler,
+          // 32, { maxWait: 180, leading: true, trailing: true }
+          // ),
+          16, { maxWait: 16, leading: true, trailing: true }
         );
 
         document.addEventListener('mousemove', debounceListener);
@@ -540,7 +546,7 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
-                    hasBeenResizedOnce={hasBeenResizedOnce}
+                    // hasBeenResizedOnce={hasBeenResizedOnce}
                     display={display}
                     property={m.property}
                     setInitialSize={(width) => {
@@ -570,9 +576,8 @@ const DataGrid = (props: DataGridProps) => {
                     data={data}
                     isResizing={isResizing}
                     // resizingColumnIndexes={resizingColumnIndexes}
-                    isBeingResized={!!(
-                      m.property === isResizingProp
-                    )}
+                    isBeingResized={!!(m.property === isResizingProp)}
+                    isBeingResizedBySibling={!!(m.property === isResizingNextProp)}
                     menuDescriptor={m.menuDescriptor}
                     menu={m.menu}
                     index={i}
@@ -699,7 +704,7 @@ const DataGrid = (props: DataGridProps) => {
                         ? <m.CellDetail {...entity} />
                         : null;
 
-                      const finalCellContent = cellDetail
+                      const finalCellContent = (cellDetail && !isResizing)
                         ? (
                           <CellWithPopOver cellContent={cellContent} cellDetail={cellDetail} />
                         )
@@ -713,9 +718,8 @@ const DataGrid = (props: DataGridProps) => {
                           columnSize={m.width}
                           columnOrder={filteredColumns[idx]}
                           isResizing={isResizing}
-                          isBeingResized={!!(
-                            m.property === isResizingProp
-                          )}
+                          isBeingResized={!!(m.property === isResizingProp)}
+                          isBeingResizedBySibling={!!(m.property === isResizingNextProp)}
                           key={idx}
                         >
                           {finalCellContent}

@@ -25,7 +25,10 @@ const ResizeHandler = styled.div.attrs(props => ({
   max-width: 6px;
   background: grey;
   opacity: 0;
-  cursor: ${({ isResizing }) => (isResizing ? 'inherit' : 'col-resize')};
+  /* cursor: ${({ isResizing }) => (isResizing ? 'inherit' : 'col-resize')}; */
+  &, &:hover, &:active {
+    cursor: col-resize;
+  }
   /* &, &:hover {
     ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? '' : 'opacity: 0 !important') : '')};
   } */

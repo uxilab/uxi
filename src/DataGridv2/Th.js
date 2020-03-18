@@ -16,34 +16,36 @@ import { Flex } from '../Layout/Flex';
 // import Checkbox from '../Input/Checkbox';
 // import Checkboxoutline from '../Icons/Checkboxoutline';
 import Checkmark from '../Icons/Checkmark';
+// import { minCellWidth } from './DataGrid';
 
 import type { SortDirection } from './DataGrid';
 
-
-const ExtraModelButtonWrapper = styled.div`
-  padding: 4px;
-  box-sizing: border-box;
-  flex-grow: 1;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: stretch;
-  align-items: stretch;
-  height: 100%;
-  transition: all 280ms cubic-bezier(.5,1,.5,1);
-  width: 0px;
-  max-width: 0px;
-  opacity: 0;
-  & > *, & > * span[data-drop-down-trigger] {
+/*
+  const ExtraModelButtonWrapper = styled.div`
+    padding: 4px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-shrink: 0;
     display: flex;
     justify-content: stretch;
     align-items: stretch;
     height: 100%;
-  }
-  span[data-drop-down-trigger] {
-    align-items: center;
-  }
-`;
-
+    transition: all 280ms cubic-bezier(.5,1,.5,1);
+    transition: all 0ms cubic-bezier(.5,1,.5,1);
+    width: 0px;
+    max-width: 0px;
+    opacity: 0;
+    & > *, & > * span[data-drop-down-trigger] {
+      display: flex;
+      justify-content: stretch;
+      align-items: stretch;
+      height: 100%;
+    }
+    span[data-drop-down-trigger] {
+      align-items: center;
+    }
+  `;
+*/
 const headerCellHeight = 48;
 
 // type ThProps = {
@@ -68,28 +70,28 @@ const ThUI = styled.th`
   padding: 0;
   text-align: left;
   border: 1px solid #cecece;
-  position: relative;
-  transition: all 280ms cubic-bezier(.5,1,.5,1);
+  position: relative;00421
+  /* transition: all 280ms cubic-bezier(.5,1,.5,1);
+  transition: all ${({ isBeingResized }) => (isBeingResized ? '16.67ms' : '0ms')} cubic-bezier(.5,1,.5,1); */
+  transition: all 0ms cubic-bezier(.5,1,.5,1);
   text-transform: none;
   font-weight: 600;
   color: ${({ theme: { palette } }) => palette.midDarkGrey};
   background: ${({ theme: { palette } }) => (palette.white)};
   &:hover {
-    transition: all 280ms cubic-bezier(.5,1,.5,1);
-    ${ExtraModelButtonWrapper} {
-      transition: all 280ms cubic-bezier(.5,1,.5,1);
-      width: 32px;
-      max-width: 32px;
-      opacity: 1;
-    }
+    /* transition: all 280ms cubic-bezier(.5,1,.5,1);
+    transition: all ${({ isBeingResized }) => (isBeingResized ? '16.67ms' : '0ms')} cubic-bezier(.5,1,.5,1); */
+    transition: all 0ms cubic-bezier(.5,1,.5,1);
     ${ResizeHandler} {
       transition: all 280ms cubic-bezier(.5,1,.5,1);
+      /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
       opacity: ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? 0.7 : 0) : 0.2)};
       width: 6px;
       &:hover {
         &, &:after {
           opacity:.7;
           transition: all 280ms cubic-bezier(.5,1,.5,1);
+          /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
         }
       }
     }
@@ -98,12 +100,15 @@ const ThUI = styled.th`
   &:hover ${ResizeHandler},
   &:not(:hover) ${ResizeHandler} {
       transition: all 280ms cubic-bezier(.5,1,.5,1);
+      /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
       ${({ isBeingResized }) => (isBeingResized ? css`opacity: 0.7 !important;` : '')};
       ${({ isBeingResized }) => (isBeingResized ? css`width: 6px;` : '')};
       &:hover, &:not(:hover) {
         &, &:after {
+          &
           ${({ isBeingResized }) => (isBeingResized ? css`opacity:.7;` : '')};
           transition: all 280ms cubic-bezier(.5,1,.5,1);
+          /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
         }
       }
       /* width: 6px;
@@ -111,9 +116,18 @@ const ThUI = styled.th`
         &, &:after {
           opacity:.7;
           transition: all 280ms cubic-bezier(.5,1,.5,1);
+          transition: all 0ms cubic-bezier(.5,1,.5,1);
         }
       } */
-    }
+  }
+  &:last-child:hover ${ResizeHandler}:after,
+  &:last-child:not(:hover) ${ResizeHandler}:after {
+    /* display: none; fix a layout bug */
+    content: '◂❘';
+    margin-right: 0;
+    transform: translateX(0%);
+  }
+
 
   /* &:last-of-type,
   &:last-child,
@@ -170,12 +184,13 @@ class Th extends React.Component {
     const {
       isBeingResized,
       isResizing,
-      model,
+      model = [],
+      isBeingResizedBySibling,
       // setInitialSize,
     } = this.props;
     const {
       isResizing: willBeResizing,
-      model: nextModel,
+      model: nextModel = [],
       // setInitialSize: nextSetInitialSize,
     } = nextProps;
 
@@ -183,11 +198,11 @@ class Th extends React.Component {
     //   return true;
     // }
 
-    if (!isEqual(nextModel, model)) {
+    if (isBeingResized || isBeingResizedBySibling) {
       return true;
     }
 
-    if (isBeingResized) {
+    if (!isEqual(nextModel.map(x => x.show), model.map(x => x.show))) {
       return true;
     }
 
@@ -270,7 +285,7 @@ class Th extends React.Component {
       // onDropTableHeader,
       isLast,
       display,
-      hasBeenResizedOnce,
+      // hasBeenResizedOnce,
 
     } = this.props;
     // } = props;
@@ -396,14 +411,15 @@ class Th extends React.Component {
 
     */
 
-    const styles = hasBeenResizedOnce && isLast && display === 'table'
-      ? { width: '100%', ...style }
-      : {
-        width: columnWidth,
-        minWidth: columnWidth,
-        maxWidth: columnWidth,
-        ...style,
-      };
+    const styles = /* hasBeenResizedOnce  && isLast && display === 'table' */
+       {
+         width: columnWidth,
+         minWidth: columnWidth,
+         maxWidth: columnWidth,
+         ...style,
+       };
+    // : { ...style };
+    // : { width: '100%', ...style };
 
     return (
       <ThUI
@@ -415,61 +431,71 @@ class Th extends React.Component {
         isFirst={index === 0}
       >
         <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
-          <Flex
-            style={{
-              minWidth: '1px',
-              justifyContent: 'stretch',
-              alignItems: 'stretch',
-              flexGrow: 999,
-              flexShrink: 999,
-              cursor: reorderable ? 'ew-resize' : 'normal',
-            }}
-          >
-
-            <ButtonMenuMultiLevel
-              style={{ alignItems: 'stretch', display: 'flex', width: '100%', boxSizing: 'border-box' }}
-              anchor={'left'}
-              buttonWrapperStyle={{
-                position: 'inherit',
-                height: '100%',
-                width: '100%',
-                alignItems: 'stretch',
-                display: 'flex',
-              }}
-              BoxWrapperUIStyle={{
-                width: 'auto',
-                zIndex: 1,
-              }}
-              menuDescriptor={
-                model.map((m) => {
-                  const modelDef = model.find(mo => m.property === mo.property);
-                  const isActive = m.show;
-                  const onClick = () => {
-                    if (model.length > 1) {
-                      if (isActive) {
-                        hideColumn(m.property);
-                      } else {
-                        showColumn(m.property);
-                      }
+          {
+            !isResizing
+              ? (
+                <Flex
+                  style={{
+                    minWidth: '1px',
+                    justifyContent: 'stretch',
+                    alignItems: 'stretch',
+                    flexGrow: 999,
+                    flexShrink: 999,
+                    cursor: reorderable ? 'ew-resize' : 'normal',
+                  }}
+                >
+                  <ButtonMenuMultiLevel
+                    style={{ alignItems: 'stretch', display: 'flex', width: '100%', boxSizing: 'border-box' }}
+                    anchor={'left'}
+                    buttonWrapperStyle={{
+                      position: 'inherit',
+                      height: '100%',
+                      width: '100%',
+                      alignItems: 'stretch',
+                      display: 'flex',
+                    }}
+                    BoxWrapperUIStyle={{
+                      width: 'auto',
+                      zIndex: 1,
+                    }}
+                    menuDescriptor={
+                      model.map((m) => {
+                        const modelDef = model.find(mo => m.property === mo.property);
+                        const isActive = m.show;
+                        const onClick = () => {
+                          if (model.length > 1) {
+                            if (isActive) {
+                              hideColumn(m.property);
+                            } else {
+                              showColumn(m.property);
+                            }
+                          }
+                        };
+                        return {
+                          label: modelDef ? modelDef.displayName : m.displayName,
+                          onClick,
+                          icon: isActive ? <Checkmark /> : <Flex style={{ width: '22px' }} />,
+                        };
+                      })
                     }
-                  };
-                  return {
-                    label: modelDef ? modelDef.displayName : m.displayName,
-                    onClick,
-                    icon: isActive ? <Checkmark /> : <Flex style={{ width: '22px' }} />,
-                  };
-                })
-              }
-              button={
+                    button={
+                      <Flex
+                        style={{ width: '100%', minWidth: '1px', justifyContent: 'flex-start', flexGrow: 999, flexShrink: 999, cursor: 'pointer' }}
+                      >
+                        {children}
+                      </Flex>
+                    }
+                  />
+                </Flex>
+              )
+              : (
                 <Flex
                   style={{ width: '100%', minWidth: '1px', justifyContent: 'flex-start', flexGrow: 999, flexShrink: 999, cursor: 'pointer' }}
                 >
                   {children}
                 </Flex>
-              }
-            />
-          </Flex>
-
+              )
+          }
           {sortable
             ? <SortHandler
               style={{ flexGrow: 1, flexShrink: 0 }}
@@ -504,7 +530,7 @@ class Th extends React.Component {
                       width: 'auto',
                       zIndex: 1,
                     }}
-                    menuDescriptor={menuDescriptor}
+                    menuDescriptor={isResizing ? [] : menuDescriptor}
                     button={<UnstyledButton style={{ width: '32px', height: '100%', display: 'flex', alignItems: 'stretch' }} icon={<Options />} />}
                   />
                 </Flex>
@@ -516,7 +542,7 @@ class Th extends React.Component {
               ? menu
               : null
           }
-          {resizable
+          {resizable && (isLast ? display !== 'table' : true)
             ? (
               <ResizeHandler
                 property={property}
