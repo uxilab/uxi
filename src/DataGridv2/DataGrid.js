@@ -138,6 +138,7 @@ const DataGrid = (props: DataGridProps) => {
     tableHeaderOverlayRender,
     // eslint-disable-next-line no-nested-ternary
     baseCellWidth: baseCellWidthProp,
+    allowInlinePropertySelection = true,
   } = props;
 
   const useSmartOverflowX = resizable
@@ -183,7 +184,7 @@ const DataGrid = (props: DataGridProps) => {
 
   const [
     {
-      columns,
+      columns: columnsState,
       isResizing,
       pageX,
       isResizingProp,
@@ -200,6 +201,15 @@ const DataGrid = (props: DataGridProps) => {
       columns: availProps,
     }
   );
+
+  const columns = allowInlinePropertySelection
+    ? columnsState
+    : model.map(x => ({
+      ...x,
+      show: true,
+      width: (columnsState.find(y => y.property === x.property) || {}).width,
+    }))
+  ;
 
   const showColumn = property => dispatch(showColumnAction(property));
   const hideColumn = property => dispatch(hideColumnAction(property));
@@ -546,6 +556,7 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
+                    allowInlinePropertySelection={allowInlinePropertySelection}
                     // hasBeenResizedOnce={hasBeenResizedOnce}
                     display={display}
                     property={m.property}
