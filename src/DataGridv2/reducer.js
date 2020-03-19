@@ -14,6 +14,12 @@ export const initialState = {
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case C.SET_COLUMNS:
+      return {
+        ...state,
+        columns: payload,
+      };
+
     case C.SHOW_COLUMN:
       return {
         ...state,

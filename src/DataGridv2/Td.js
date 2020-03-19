@@ -30,6 +30,7 @@ class Td extends React.Component {
       // columnOrder,
       mComp,
       // Component,
+      // allowInlinePropertySelection,
     } = this.props;
     const {
       columnSize: nextColumnSize,
@@ -38,6 +39,10 @@ class Td extends React.Component {
       columns: nextColumns = [],
       // Component: nextComponent,
     } = nextProps;
+
+    // if (!allowInlinePropertySelection) {
+    //   return true
+    // }
 
     if (
       columns.filter((x = {}) => x.show).length !== nextColumns.filter((x = {}) => x.show).length

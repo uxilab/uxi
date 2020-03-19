@@ -187,12 +187,17 @@ class Th extends React.Component {
       model = [],
       isBeingResizedBySibling,
       // setInitialSize,
+      // allowInlinePropertySelection,
     } = this.props;
     const {
       isResizing: willBeResizing,
       model: nextModel = [],
       // setInitialSize: nextSetInitialSize,
     } = nextProps;
+
+    // if (!allowInlinePropertySelection) {
+    //   return true
+    // }
 
     // if (setInitialSize !== nextSetInitialSize) {
     //   return true;
@@ -218,15 +223,11 @@ class Th extends React.Component {
 
 
   componentDidUpdate(prevProps) {
-    const { allowInlinePropertySelection, display, isResizing, model, property } = this.props;
-    const { isResizing: wasResizing, model: prevModel } = prevProps;
+    const { display, isResizing, model = [], property } = this.props;
+    const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
     const a = prevModel.find(m => m.property === property) || {};
     const b = model.find(m => m.property === property) || {};
     const wasJustAdded = (b.show && !a.show);
-
-    if (!allowInlinePropertySelection) {
-      return true
-    }
 
     const shouldCheckIntrinsicWidth = (
       ((wasResizing && !isResizing) && display === 'table')
