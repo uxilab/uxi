@@ -187,12 +187,17 @@ class Th extends React.Component {
       model = [],
       isBeingResizedBySibling,
       // setInitialSize,
+      // allowInlinePropertySelection,
     } = this.props;
     const {
       isResizing: willBeResizing,
       model: nextModel = [],
       // setInitialSize: nextSetInitialSize,
     } = nextProps;
+
+    // if (!allowInlinePropertySelection) {
+    //   return true
+    // }
 
     // if (setInitialSize !== nextSetInitialSize) {
     //   return true;
@@ -203,6 +208,10 @@ class Th extends React.Component {
     }
 
     if (!isEqual(nextModel.map(x => x.show), model.map(x => x.show))) {
+      return true;
+    }
+
+    if (!isEqual(nextModel.map(x => x.property), model.map(x => x.property))) {
       return true;
     }
 
@@ -218,10 +227,10 @@ class Th extends React.Component {
 
 
   componentDidUpdate(prevProps) {
-    const { display, isResizing, model, property } = this.props;
-    const { isResizing: wasResizing, model: prevModel } = prevProps;
-    const a = prevModel.find(m => m.property === property);
-    const b = model.find(m => m.property === property);
+    const { display, isResizing, model = [], property } = this.props;
+    const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
+    const a = prevModel.find(m => m.property === property) || {};
+    const b = model.find(m => m.property === property) || {};
     const wasJustAdded = (b.show && !a.show);
 
     const shouldCheckIntrinsicWidth = (
@@ -249,6 +258,7 @@ class Th extends React.Component {
 
   render() {
     const {
+      allowInlinePropertySelection,
       ThInnerWrapper,
       style,
       columnWidth,
@@ -432,7 +442,7 @@ class Th extends React.Component {
       >
         <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
           {
-            !isResizing
+            !isResizing && allowInlinePropertySelection
               ? (
                 <Flex
                   style={{

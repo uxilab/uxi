@@ -18,6 +18,7 @@ import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import reducer, { initialState } from './reducer'; // eslint-disable-line import/no-named-as-default
 import {
+  setColumns as setColumnsAction,
   showColumn as showColumnAction,
   hideColumn as hideColumnAction,
   setColumnWidth as setColumnWidthAction,
@@ -138,6 +139,7 @@ const DataGrid = (props: DataGridProps) => {
     tableHeaderOverlayRender,
     // eslint-disable-next-line no-nested-ternary
     baseCellWidth: baseCellWidthProp,
+    allowInlinePropertySelection = true,
   } = props;
 
   const useSmartOverflowX = resizable
@@ -154,24 +156,26 @@ const DataGrid = (props: DataGridProps) => {
       : undefined
   ;
 
-  const availProps = model
-    .map(m => ({ ...m, show: true, width: baseCellWidth }))
-    .concat(
-      Object.keys(data[0] || {})
-        .map((k) => {
-          const alreadyInModel = model.find(m => m.property === k);
-          if (!alreadyInModel) {
-            return {
-              property: k,
-              displayName: k,
-              show: false,
-              width: baseCellWidth,
-            };
-          }
-          return null;
-        })
-        .filter(x => x)
-    );
+  const availProps = allowInlinePropertySelection
+    ? model
+      .map(m => ({ ...m, show: true, width: baseCellWidth }))
+      .concat(
+        Object.keys(data[0] || {})
+          .map((k) => {
+            const alreadyInModel = model.find(m => m.property === k);
+            if (!alreadyInModel) {
+              return {
+                property: k,
+                displayName: k,
+                show: false,
+                width: baseCellWidth,
+              };
+            }
+            return null;
+          })
+          .filter(x => x)
+      )
+    : model;
 
   // const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
   // const [columnsSizes, setColumnsSizes] = useState(
@@ -183,7 +187,7 @@ const DataGrid = (props: DataGridProps) => {
 
   const [
     {
-      columns,
+      columns: columnsState,
       isResizing,
       pageX,
       isResizingProp,
@@ -201,6 +205,18 @@ const DataGrid = (props: DataGridProps) => {
     }
   );
 
+  const columns = allowInlinePropertySelection
+    ? columnsState
+    : model.map(x => ({
+      ...x,
+      show: true,
+      width: (columnsState.find(y => y.property === x.property) || {}).width || 240,
+    }))
+  ;
+
+
+  const setColumns = property => dispatch(setColumnsAction(property));
+
   const showColumn = property => dispatch(showColumnAction(property));
   const hideColumn = property => dispatch(hideColumnAction(property));
 
@@ -211,6 +227,23 @@ const DataGrid = (props: DataGridProps) => {
 
   const setCurrColumnWidth = width => dispatch(setCurrColumnWidthAction(width));
   const setNextColumnWidth = width => dispatch(setNextColumnWidthAction(width));
+
+
+  const allowInlinePropertySelectionMonitor = model.map(({ property }) => property).join('');
+  console.log('allowInlinePropertySelectionMonitor', allowInlinePropertySelectionMonitor);
+  console.log('model', model);
+  useEffect(() => {
+    if (!allowInlinePropertySelection) {
+      console.log('model updated from consumer!');
+      setColumns(model.map(x => ({
+        ...x,
+        show: true,
+        width: (columnsState.find(y => y.property === x.property) || {}).width || 240,
+      })));
+      return () => {};
+    }
+    return () => {};
+  }, [allowInlinePropertySelectionMonitor]);
 
 
   const [display, setDisplay] = useState('table'
@@ -546,6 +579,7 @@ const DataGrid = (props: DataGridProps) => {
 
                 return (
                   <Th
+                    allowInlinePropertySelection={allowInlinePropertySelection}
                     // hasBeenResizedOnce={hasBeenResizedOnce}
                     display={display}
                     property={m.property}
@@ -712,11 +746,13 @@ const DataGrid = (props: DataGridProps) => {
 
                       return (
                         <Td
+                          allowInlinePropertySelection={allowInlinePropertySelection}
                           columns={columns}
                           mComp={mComp}
                           Component={m.Component}
                           columnSize={m.width}
                           columnOrder={filteredColumns[idx]}
+                          filteredColumns={filteredColumns}
                           isResizing={isResizing}
                           isBeingResized={!!(m.property === isResizingProp)}
                           isBeingResizedBySibling={!!(m.property === isResizingNextProp)}

@@ -1,5 +1,6 @@
 
 export const C = {
+  SET_COLUMNS: 'SET_COLUMNS',
   SHOW_COLUMN: 'SHOW_COLUMN',
   HIDE_COLUMN: 'HIDE_COLUMN',
   SET_IS_RESIZING: 'SET_IS_RESIZING',
@@ -7,6 +8,8 @@ export const C = {
   SET_CURR_COLUMN_W: 'SET_CURR_COLUMN_W',
   SET_NEXT_COLUMN_W: 'SET_NEXT_COLUMN_W',
 };
+
+export const setColumns = payload => ({ type: C.SET_COLUMNS, payload });
 
 export const showColumn = payload => ({ type: C.SHOW_COLUMN, payload });
 export const hideColumn = payload => ({ type: C.HIDE_COLUMN, payload });
