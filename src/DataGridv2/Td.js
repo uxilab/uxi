@@ -29,7 +29,7 @@ class Td extends React.Component {
       // columns = [],
       // columnOrder,
       mComp,
-      filteredColumns,
+      filteredColumns = [],
       // Component,
       // allowInlinePropertySelection,
     } = this.props;
@@ -38,7 +38,7 @@ class Td extends React.Component {
       // columnOrder: nextColumnsOrder,
       mComp: nextmComp,
       // columns: nextColumns = [],
-      filteredColumns: nextFilteredColumns,
+      filteredColumns: nextFilteredColumns = [],
       // Component: nextComponent,
     } = nextProps;
 
