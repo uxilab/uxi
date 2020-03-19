@@ -229,6 +229,9 @@ const DataGrid = (props: DataGridProps) => {
   const setNextColumnWidth = width => dispatch(setNextColumnWidthAction(width));
 
 
+  const allowInlinePropertySelectionMonitor = model.map(({ property }) => property).join('');
+  console.log('allowInlinePropertySelectionMonitor', allowInlinePropertySelectionMonitor);
+  console.log('model', model);
   useEffect(() => {
     if (!allowInlinePropertySelection) {
       console.log('model updated from consumer!');
@@ -240,7 +243,7 @@ const DataGrid = (props: DataGridProps) => {
       return () => {};
     }
     return () => {};
-  }, [model.length]);
+  }, [allowInlinePropertySelectionMonitor]);
 
 
   const [display, setDisplay] = useState('table'
@@ -749,6 +752,7 @@ const DataGrid = (props: DataGridProps) => {
                           Component={m.Component}
                           columnSize={m.width}
                           columnOrder={filteredColumns[idx]}
+                          filteredColumns={filteredColumns}
                           isResizing={isResizing}
                           isBeingResized={!!(m.property === isResizingProp)}
                           isBeingResizedBySibling={!!(m.property === isResizingNextProp)}

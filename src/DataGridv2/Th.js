@@ -211,6 +211,10 @@ class Th extends React.Component {
       return true;
     }
 
+    if (!isEqual(nextModel.map(x => x.property), model.map(x => x.property))) {
+      return true;
+    }
+
     if (
       (!isResizing && willBeResizing)
       || (isResizing && !willBeResizing)

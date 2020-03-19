@@ -26,9 +26,10 @@ class Td extends React.Component {
     const {
       isBeingResized,
       columnSize,
-      columns = [],
+      // columns = [],
       // columnOrder,
       mComp,
+      filteredColumns,
       // Component,
       // allowInlinePropertySelection,
     } = this.props;
@@ -36,7 +37,8 @@ class Td extends React.Component {
       columnSize: nextColumnSize,
       // columnOrder: nextColumnsOrder,
       mComp: nextmComp,
-      columns: nextColumns = [],
+      // columns: nextColumns = [],
+      filteredColumns: nextFilteredColumns,
       // Component: nextComponent,
     } = nextProps;
 
@@ -44,8 +46,19 @@ class Td extends React.Component {
     //   return true
     // }
 
+    /** TODO make sure this isn't useless: */
     if (
-      columns.filter((x = {}) => x.show).length !== nextColumns.filter((x = {}) => x.show).length
+      filteredColumns.length !== nextFilteredColumns.length
+    ) {
+      return true;
+    }
+
+
+    if (
+      !isEqual(
+        filteredColumns.map(({ property }) => property),
+        nextFilteredColumns.map(({ property }) => property)
+      )
     ) {
       return true;
     }

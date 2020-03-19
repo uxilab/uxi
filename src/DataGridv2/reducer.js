@@ -17,7 +17,7 @@ export const reducer = (state, { type, payload }) => {
     case C.SET_COLUMNS:
       return {
         ...state,
-        columns: payload,
+        columns: [...payload],
       };
 
     case C.SHOW_COLUMN:
