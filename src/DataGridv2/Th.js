@@ -70,7 +70,7 @@ const ThUI = styled.th`
   padding: 0;
   text-align: left;
   border: 1px solid #cecece;
-  position: relative;00421
+  position: relative;
   /* transition: all 280ms cubic-bezier(.5,1,.5,1);
   transition: all ${({ isBeingResized }) => (isBeingResized ? '16.67ms' : '0ms')} cubic-bezier(.5,1,.5,1); */
   transition: all 0ms cubic-bezier(.5,1,.5,1);
@@ -170,17 +170,19 @@ class Th extends React.Component {
   // }
 
   componentDidMount() {
+    const { property } = this.props;
     if (this.ref.current && this.ref.current.getBoundingClientRect) {
       const bRect = this.ref.current.getBoundingClientRect() || {};
       const { width = 0 } = bRect;
       const { setInitialSize } = this.props;
       if (setInitialSize) {
+        console.log('setInitialSize', width, property);
         setInitialSize(width);
       }
     }
   }
 
-  shouldComponentUpdate(nextProps/* , nextState */) {
+  /* shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
       isResizing,
@@ -207,7 +209,7 @@ class Th extends React.Component {
       return true;
     }
 
-    if (!isEqual(nextModel.map(x => x.show), model.map(x => x.show))) {
+    if (!isEqual(nextModel.map(x => !x.hide), model.map(x => !x.hide))) {
       return true;
     }
 
@@ -224,14 +226,15 @@ class Th extends React.Component {
 
     return false;
   }
+  */
 
 
   componentDidUpdate(prevProps) {
     const { display, isResizing, model = [], property } = this.props;
     const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
-    const a = prevModel.find(m => m.property === property) || {};
-    const b = model.find(m => m.property === property) || {};
-    const wasJustAdded = (b.show && !a.show);
+    const a = prevModel.find(m => m.property === property) || {};
+    const b = model.find(m => m.property === property) || {};
+    const wasJustAdded = (!b.hide && a.hide);
 
     const shouldCheckIntrinsicWidth = (
       ((wasResizing && !isResizing) && display === 'table')
@@ -239,6 +242,7 @@ class Th extends React.Component {
     );
 
     if (shouldCheckIntrinsicWidth) {
+      console.log('shouldCheckIntrinsicWidth', shouldCheckIntrinsicWidth);
       if (this.ref.current && this.ref.current.getBoundingClientRect) {
         const { width } = b;
         const bRect = this.ref.current.getBoundingClientRect() || {};
@@ -246,6 +250,7 @@ class Th extends React.Component {
         // const { width: prevWidth } = model.find(m => m.property === property) || {};
 
         if (intrinsicWidth !== width) {
+          console.log('intrinsicWidth !== width', intrinsicWidth, width, intrinsicWidth !== width);
           const { setInitialSize } = this.props;
           if (setInitialSize) {
             setInitialSize(intrinsicWidth);
@@ -471,7 +476,7 @@ class Th extends React.Component {
                     menuDescriptor={
                       model.map((m) => {
                         const modelDef = model.find(mo => m.property === mo.property);
-                        const isActive = m.show;
+                        const isActive = !m.hide;
                         const onClick = () => {
                           if (model.length > 1) {
                             if (isActive) {

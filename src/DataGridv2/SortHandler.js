@@ -20,11 +20,12 @@ const Triangle = styled.svg.attrs(props => ({
 
 const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   onClick: (...a) => {
-    if (PopStateEvent.onClick) {
+    if (props.onClick) {
       props.onClick(...a);
     }
     props.onSortChange();
   },
+  onSortChange: undefined,
 }))`
   ${buttonResetStylesCSSString};
 

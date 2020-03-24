@@ -33,6 +33,7 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
         : { width: 0 };
       const { width: containerWidth } = contentRect;
       const displayVal = tableWidth <= containerWidth ? 'table' : 'block';
+      console.log('displayVal', displayVal);
       setDisplay(displayVal);
       table.setAttribute('style', '');
     }

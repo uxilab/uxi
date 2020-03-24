@@ -2,96 +2,59 @@
 import styled from 'styled-components';
 import React from 'react';
 import isEqual from 'lodash/isEqual';
-// import PropTypes from 'prop-types';
 
 const cellHeight = 48;
 
 const TdUI = styled.td.attrs(props => ({
   ...props,
-  // children: <TdInnerWrapper>{props.children}</TdInnerWrapper>,
 }))`
   box-sizing: border-box;
   height: ${cellHeight}px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* padding: 8px; */
 `;
 
-// type TdProps = {
-// }
 
 class Td extends React.Component {
-  shouldComponentUpdate(nextProps /* , nextState */) {
-    const {
-      isBeingResized,
-      columnSize,
-      // columns = [],
-      // columnOrder,
-      mComp,
-      filteredColumns = [],
-      // Component,
-      // allowInlinePropertySelection,
-    } = this.props;
-    const {
-      columnSize: nextColumnSize,
-      // columnOrder: nextColumnsOrder,
-      mComp: nextmComp,
-      // columns: nextColumns = [],
-      filteredColumns: nextFilteredColumns = [],
-      // Component: nextComponent,
-    } = nextProps;
+  // shouldComponentUpdate(nextProps ) {
+  //   const {
+  //     isBeingResized,
+  //     columnSize,
+  //     columns = [],
+  //     mComp,
+  //   } = this.props;
+  //   const {
+  //     columnSize: nextColumnSize,
+  //     mComp: nextmComp,
+  //     columns: nextColumns = [],
+  //   } = nextProps;
 
-    // if (!allowInlinePropertySelection) {
-    //   return true
-    // }
+  //   if (
+  //     columns.filter((x = {}) => !x.hide).length !== nextColumns.filter((x = {}) => !x.hide).length
+  //   ) {
+  //     return true;
+  //   }
 
-    /** TODO make sure this isn't useless: */
-    if (
-      filteredColumns.length !== nextFilteredColumns.length
-    ) {
-      return true;
-    }
+  //   /** Columns size can change on user input (dnd col resize)
+  //    * but also on mount,
+  //    * depending on props an available space
+  //    */
 
+  //   if (columnSize !== nextColumnSize) {
+  //     return true;
+  //   }
 
-    if (
-      !isEqual(
-        filteredColumns.map(({ property }) => property),
-        nextFilteredColumns.map(({ property }) => property)
-      )
-    ) {
-      return true;
-    }
+  //   if (isBeingResized) {
+  //     return true;
+  //   }
 
-    /** Columns size can change on user input (dnd col resize)
-     * but also on mount,
-     * depending on props an available space
-     */
+  //   if (nextmComp && mComp && !isEqual(nextmComp.props, mComp.props)) {
+  //     return true;
+  //   }
 
-    if (columnSize !== nextColumnSize) {
-      return true;
-    }
-
-    if (isBeingResized) {
-      return true;
-    }
-    // console.log('–––––––––––––––––');
-    // console.log('Component', Component);
-    // console.log('nextComponent', nextComponent);
-    // console.log('–––––––––––––––––');
-    // console.log('mComp', mComp);
-    // console.log('nextmComp', nextmComp);
-    // console.log('–––––––––––––––––');
-    if (nextmComp && mComp && !isEqual(nextmComp.props, mComp.props)) {
-      return true;
-    }
-
-    // if (!isEqual(columnOrder, nextColumnsOrder)) {
-    //   return true;
-    // }
-
-    return false;
-  }
+  //   return false;
+  // }
 
   render() {
     return (
@@ -99,8 +62,6 @@ class Td extends React.Component {
     );
   }
 }
-
-// const Td = (props: TdProps) => <TdUI {...props} />;
 
 Td.displayName = 'Td';
 

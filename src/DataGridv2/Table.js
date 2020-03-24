@@ -16,6 +16,7 @@ type TableProps = {
 
 
 const TableUi = styled.table`
+  table-layout: fixed;
   width: 100%;
   border-collapse: ${({ borderCollapse }) => borderCollapse || 'collapse'};
   overflow-x: auto;

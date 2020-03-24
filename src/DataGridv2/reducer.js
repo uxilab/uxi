@@ -6,7 +6,6 @@ export const initialState = {
   isResizingProp: undefined,
   isResizingNextProp: undefined,
   pageX: undefined,
-  // resizingColumnIndexes: undefined,
   currColWidth: undefined,
   nextColWidth: undefined,
   hasBeenResizedOnce: false,
@@ -23,14 +22,14 @@ export const reducer = (state, { type, payload }) => {
     case C.SHOW_COLUMN:
       return {
         ...state,
-        columns: state.columns.map(c => (c.property === payload ? { ...c, show: true } : c)),
+        columns: state.columns.map(c => (c.property === payload ? { ...c, hide: false } : c)),
       };
 
     case C.HIDE_COLUMN:
       return {
         ...state,
-        columns: state.columns.filter(c => c.show).length > 1
-          ? state.columns.map(c => (c.property === payload ? { ...c, show: false } : c))
+        columns: state.columns.filter(c => !c.hide).length > 1
+          ? state.columns.map(c => (c.property === payload ? { ...c, hide: true } : c))
           : state.columns
         ,
       };
@@ -39,7 +38,7 @@ export const reducer = (state, { type, payload }) => {
     case C.SET_IS_RESIZING:
       const propIdx = state.columns.findIndex(c => c.property === payload.property);
       const siblingsProp = propIdx > -1
-        ? state.columns.slice(propIdx + 1).find(x => x.show)
+        ? state.columns.slice(propIdx + 1).find(x => !x.hide)
         : undefined
       ;
 
@@ -60,17 +59,25 @@ export const reducer = (state, { type, payload }) => {
         pageX: payload.pageX,
         isResizingProp: payload.property,
         isResizingNextProp: (siblingsProp || {}).property,
-        // resizingColumnsIndex: payload.columnIndexes,
         currColWidth: payload.currColWidth,
         nextColWidth: payload.nextColWidth,
         columns: nenwColumns,
       };
 
+    // eslint-disable-next-line no-case-declarations
     case C.SET_COLUMN_W:
+      const newCols = state.columns
+        .map(c => (c.property === payload.property ? { ...c, width: payload.width } : c));
+
+      const hasBeenResizedOnce = (
+        newCols.filter(x => x.width !== undefined).length
+        === newCols.length
+      );
+
       return {
         ...state,
-        columns: state.columns
-          .map(c => (c.property === payload.property ? { ...c, width: payload.width } : c)),
+        hasBeenResizedOnce,
+        columns: newCols,
       };
 
     case C.SET_CURR_COLUMN_W:
@@ -94,6 +101,9 @@ export const reducer = (state, { type, payload }) => {
 
 
 /*
+*/
+
+
 // eslint-disable-next-line no-shadow
 const middleware = reducer => (state, { type, payload }) => {
   console.log('––––––––––––––––––––––––––––', '\n');
@@ -106,6 +116,5 @@ const middleware = reducer => (state, { type, payload }) => {
 
 export default middleware(reducer);
 
-*/
 
-export default reducer;
+// export default reducer;

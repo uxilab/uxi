@@ -43,6 +43,8 @@
     "lodash": "^4.17.14",
     "rc-tooltip": "^3.7.0",
     "react-click-outside": "^3.0.0",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
     "react-transition-group": "^2.2.1",
     "resize-observer-polyfill": "1.5.1"
   },

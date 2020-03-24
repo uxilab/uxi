@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DndProvider } from 'react-dnd';
+import Backend from 'react-dnd-html5-backend';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../global';
 import { getThemeWithCustomPalette, mergeTheme } from '../utils';
@@ -25,10 +27,12 @@ const UXISCThemeProvider = (props) => {
   return (
     <SCThemeProvider theme={theTheme || theme} >
       <UXIContextThemeProvider>
-        <div style={{ height: '100%' }}>
-          <GlobalStyle />
-          {children}
-        </div>
+        <DndProvider backend={Backend}>
+          <div style={{ height: '100%' }}>
+            <GlobalStyle />
+            {children}
+          </div>
+        </DndProvider>
       </UXIContextThemeProvider>
     </SCThemeProvider>
   );
