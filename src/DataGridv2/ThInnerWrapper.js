@@ -41,10 +41,16 @@ const ThInnerWrapper = (props) => {
         return;
       }
       const dragIndex = item.index;
+      const itemDragId = item.dragId;
       const hoverIndex = index;
-      if (dragIndex === hoverIndex) {
+      const itemHoverId = dragId;
+      // if (dragIndex === hoverIndex) {
+      //   return;
+      // }
+      if (itemDragId === itemHoverId) {
         return;
       }
+
       // Don't replace items with themselves
       // if (dragIndex === hoverIndex) {
       //   return;
@@ -83,7 +89,7 @@ const ThInnerWrapper = (props) => {
         // console.log('hoverMiddleX', hoverMiddleX);
         // console.log('–––––––––––––––––––––––')
         // onDragTableHeaderMove(hoverIndex);
-        setColumOrder([dragIndex, hoverIndex]);
+        setColumOrder([itemDragId, itemHoverId]);
         // eslint-disable-next-line
         item.index = hoverIndex;
         // return;
@@ -99,7 +105,7 @@ const ThInnerWrapper = (props) => {
         // console.log('hoverMiddleX', hoverMiddleX);
         // console.log('–––––––––––––––––––––––')
         // onDragTableHeaderMove(hoverIndex);
-        setColumOrder([dragIndex, hoverIndex]);
+        setColumOrder([itemDragId, itemHoverId]);
         // eslint-disable-next-line
         item.index = hoverIndex;
         // return;
@@ -120,7 +126,7 @@ const ThInnerWrapper = (props) => {
         return {};
       }
 
-      const hovered = monitor.isOver();
+      // const hovered = monitor.isOver();
       // console.log('hovered', hovered);
 
       return {

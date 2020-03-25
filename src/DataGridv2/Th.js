@@ -583,6 +583,7 @@ class Th extends React.Component {
           <div
             style={{
               transition: 'none',
+              zIndex: 1,
               position: 'absolute',
               // width: '1px',
               width: isBeingReordered ? '100%' : '0',

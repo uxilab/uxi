@@ -51,16 +51,21 @@ export const reducer = (state, { type, payload }) => {
         isReordering: payload,
       };
     case C.SET_COLUMN_ORDER: {
-      const [a, b] = payload;
+      const [propA, propB] = payload;
 
       const newCols = [...state.columns];
-      newCols.splice(a, 1, state.columns[b]);
-      newCols.splice(b, 1, state.columns[a]);
+      const idxA = newCols.findIndex(c => c.property === propA);
+      const idxB = newCols.findIndex(c => c.property === propB);
+
+      newCols.splice(idxA, 1, state.columns[idxB]);
+      newCols.splice(idxB, 1, state.columns[idxA]);
+
+      const idxBVisibleOnly = newCols.filter(x => !x.hide).findIndex(c => c.property === propA);
 
       return {
         ...state,
         columns: newCols,
-        isReordering: b,
+        isReordering: idxBVisibleOnly,
         // isReordering: payload,
       };
     }
