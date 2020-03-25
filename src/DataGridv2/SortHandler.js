@@ -44,13 +44,9 @@ const SortHandlerButton = styled.button.attrs((props: ThProps) => ({
   }
 
   ${Triangle}:first-child {
-    /* content: '▾';
-    content: '▴'; */
     ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.ASC ? css`fill: ${palette.accent.main};` : '')};
   }
   ${Triangle}:last-child {
-    /* content: '▾';
-    content: '▴'; */
     ${({ sortDirection, theme: { palette } }) => (sortDirection === SORTS.DESC ? css`fill: ${palette.accent.main};` : '')};
     transform: rotate(180deg);
   }

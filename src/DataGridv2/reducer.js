@@ -66,7 +66,6 @@ export const reducer = (state, { type, payload }) => {
         ...state,
         columns: newCols,
         isReordering: idxBVisibleOnly,
-        // isReordering: payload,
       };
     }
     case C.SET_IS_RESIZING:
@@ -131,10 +130,6 @@ export const reducer = (state, { type, payload }) => {
       return { ...state };
   }
 };
-
-
-/*
-*/
 
 
 /*

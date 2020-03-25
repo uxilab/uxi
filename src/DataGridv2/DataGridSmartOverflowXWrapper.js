@@ -21,19 +21,13 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
     useSmartOverflowX,
     children,
     setDisplay,
-    display
+    display,
   } = props;
-  /** useSmartOverflowX */
+
   const ref = useRef();
-  // const [display, setDisplay] = useState('table');
+
   useResizeObserver([ref, columnsSizes], (contentRect) => {
     if (useSmartOverflowX) {
-      // if (hasBeenResizedOnce) {
-      //   return setDisplay('block')
-      // }
-      // if (isResizing) {
-      //   return setDisplay('block');
-      // }
       const table = (ref && ref.current) ? ref.current.querySelector('table') : {};
       table.setAttribute('style', 'display: table; width: auto;');
       const { width: tableWidth } = table.getBoundingClientRect
@@ -41,10 +35,12 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
         : { width: 0 };
       const { height, width: containerWidth } = contentRect;
       const displayVal = tableWidth <= containerWidth ? 'table' : 'block';
+
       setDisplay(displayVal);
       if (cRectHeight !== height) {
         storeContentRectHeight(height);
       }
+
       table.setAttribute('style', '');
     }
   });

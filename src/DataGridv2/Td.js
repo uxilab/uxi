@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 import React from 'react';
-import isEqual from 'lodash/isEqual';
+// import isEqual from 'lodash/isEqual';
 
 const cellHeight = 48;
 
@@ -16,6 +16,7 @@ const TdUI = styled.td.attrs(props => ({
 `;
 
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Td extends React.Component {
   // shouldComponentUpdate(nextProps ) {
   //   const {
@@ -31,7 +32,8 @@ class Td extends React.Component {
   //   } = nextProps;
 
   //   if (
-  //     columns.filter((x = {}) => !x.hide).length !== nextColumns.filter((x = {}) => !x.hide).length
+  //     columns.filter((x = {}) => !x.hide).length
+  //     !== nextColumns.filter((x = {}) => !x.hide).length
   //   ) {
   //     return true;
   //   }

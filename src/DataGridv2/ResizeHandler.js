@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components';
 const ResizeHandler = styled.div.attrs(props => ({
   onMouseDown: function onMouseDown(e) {
     e.stopPropagation();
-    // e.stopImmediatePropagation();
     props.onResizeStart(e, props.property);
   },
 }))`
