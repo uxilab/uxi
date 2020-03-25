@@ -14,7 +14,15 @@ const DataGridSmartOverflowXWrapperUI = styled.div`
 `;
 
 const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
-  const { columnsSizes, useSmartOverflowX, children, setDisplay, display } = props;
+  const {
+    storeContentRectHeight,
+    cRectHeight,
+    columnsSizes,
+    useSmartOverflowX,
+    children,
+    setDisplay,
+    display
+  } = props;
   /** useSmartOverflowX */
   const ref = useRef();
   // const [display, setDisplay] = useState('table');
@@ -31,10 +39,12 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
       const { width: tableWidth } = table.getBoundingClientRect
         ? table.getBoundingClientRect()
         : { width: 0 };
-      const { width: containerWidth } = contentRect;
+      const { height, width: containerWidth } = contentRect;
       const displayVal = tableWidth <= containerWidth ? 'table' : 'block';
-      console.log('displayVal', displayVal);
       setDisplay(displayVal);
+      if (cRectHeight !== height) {
+        storeContentRectHeight(height);
+      }
       table.setAttribute('style', '');
     }
   });

@@ -23,6 +23,29 @@ The model displays the raw value unles you pass it a `Component`
 The model support custom menu for table header
 
 
+## Basic usage
+
+<Playground>
+  <ThemeProvider>
+    <DataGrid
+      reorderable
+      useSmartOverflowX
+      resizable
+      model={[
+        { property: 'constructor', displayName: 'Main Constructor' },
+        { property: 'model', displayName: 'Vehicule Model' },
+        { property: 'application', displayName: 'Terrain' },
+      ]}
+      data={[
+        { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon', application: 'space' },
+        { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
+        { constructor: 'SpaceX', model: 'dragon', application: 'space' },
+      ]}
+    />
+  </ThemeProvider>
+</Playground>
+
+
 
 ## with A Bunch of data of length
 
@@ -95,28 +118,6 @@ resize and observe the overflow-x automatically changing when the table is wider
         { constructor: 'SpaceX', model: 'Draco', applications: ['space', 'earth'], propellant: 'Hypergolic', year: 2012  },
         { constructor: 'SpaceX', model: 'Draco', applications: ['space', 'earth'], propellant: 'Hypergolic', year: 2015  },
         { constructor: 'SpaceX', model: 'SuperDraco', applications: ['space', 'earth'], propellant: 'Hypergolic', year: 2015  },
-      ]}
-    />
-  </ThemeProvider>
-</Playground>
-
-
-
-## Basic usage
-
-<Playground>
-  <ThemeProvider>
-    <DataGrid
-      resizable
-      model={[
-        { property: 'constructor', displayName: 'Main Constructor' },
-        { property: 'model', displayName: 'Vehicule Model' },
-        { property: 'application', displayName: 'Terrain' },
-      ]}
-      data={[
-        { constructor: 'SpaceX - $$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$', model: 'falcon', application: 'space' },
-        { constructor: 'Tesla', model: 'model X', application: 'earth, mars' },
-        { constructor: 'SpaceX', model: 'dragon', application: 'space' },
       ]}
     />
   </ThemeProvider>

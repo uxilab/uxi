@@ -1,7 +1,7 @@
 // @flow
-import React, { /* useRef, useEffect */ } from 'react';
+import React, { useRef, useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
-// import { useDrag, useDrop } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import styled, { css } from 'styled-components';
 // import PropTypes from 'prop-types';
 import ResizeHandler from './ResizeHandler';
@@ -176,7 +176,6 @@ class Th extends React.Component {
       const { width = 0 } = bRect;
       const { setInitialSize } = this.props;
       if (setInitialSize) {
-        console.log('setInitialSize', width, property);
         setInitialSize(width);
       }
     }
@@ -242,7 +241,6 @@ class Th extends React.Component {
     );
 
     if (shouldCheckIntrinsicWidth) {
-      console.log('shouldCheckIntrinsicWidth', shouldCheckIntrinsicWidth);
       if (this.ref.current && this.ref.current.getBoundingClientRect) {
         const { width } = b;
         const bRect = this.ref.current.getBoundingClientRect() || {};
@@ -250,7 +248,6 @@ class Th extends React.Component {
         // const { width: prevWidth } = model.find(m => m.property === property) || {};
 
         if (intrinsicWidth !== width) {
-          console.log('intrinsicWidth !== width', intrinsicWidth, width, intrinsicWidth !== width);
           const { setInitialSize } = this.props;
           if (setInitialSize) {
             setInitialSize(intrinsicWidth);
@@ -260,9 +257,9 @@ class Th extends React.Component {
     }
   }
 
-
   render() {
     const {
+      cRectHeight,
       allowInlinePropertySelection,
       ThInnerWrapper,
       style,
@@ -281,7 +278,7 @@ class Th extends React.Component {
       children,
       property,
       index,
-      // dragId,
+      dragId,
 
       reorderable,
 
@@ -293,11 +290,12 @@ class Th extends React.Component {
       // availProps = [],
       // data = [],
 
-      // isReordering,
-      // isReorderingHovered,
-      // onDragTableHeaderStart,
-      // onDragTableHeaderMove,
-      // onDropTableHeader,
+      isReordering,
+      isReorderingHovered,
+      onDragTableHeaderStart,
+      onDragTableHeaderMove,
+      onDropTableHeader,
+      setColumOrder,
       isLast,
       display,
       // hasBeenResizedOnce,
@@ -305,126 +303,124 @@ class Th extends React.Component {
     } = this.props;
     // } = props;
 
-    /*
-      const ref = useRef(null);
+    // const ref = useRef(null);
+    // const ref = this.ref;
 
-      const [dropCollectedProps, drop] = useDrop({
-        accept: 'my-foobar-type',
-        hover(item, monitor) {
-          if (!ref.current || isResizing) {
-            return;
-          }
-          const dragIndex = item.index;
-          const hoverIndex = index;
-          // Don't replace items with themselves
-          // if (dragIndex === hoverIndex) {
-          //   return;
-          // }
-          // Determine rectangle on screen
-          const hoverBoundingRect = ref.current.getBoundingClientRect();
-          // Get vertical middle
-          // const hoverMiddleY =
-          //   (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-          // Get horizontal middle
-          const hoverMiddleX =
-            (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
-          // Determine mouse position
-          const clientOffset = monitor.getClientOffset();
-          // Get pixels to the top
+    // const [dropCollectedProps, drop] = useDrop({
+    //   accept: 'my-foobar-type',
+    //   hover(item, monitor) {
+    //     if (!ref.current || isResizing) {
+    //       return;
+    //     }
+    //     const dragIndex = item.index;
+    //     const hoverIndex = index;
+    //     // Don't replace items with themselves
+    //     // if (dragIndex === hoverIndex) {
+    //     //   return;
+    //     // }
+    //     // Determine rectangle on screen
+    //     const hoverBoundingRect = ref.current.getBoundingClientRect();
+    //     // Get vertical middle
+    //     // const hoverMiddleY =
+    //     //   (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    //     // Get horizontal middle
+    //     const hoverMiddleX =
+    //         (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
+    //       // Determine mouse position
+    //     const clientOffset = monitor.getClientOffset();
+    //     // Get pixels to the top
 
-          const hoverClientX = clientOffset.x - hoverBoundingRect.left;
+    //     const hoverClientX = clientOffset.x - hoverBoundingRect.left;
 
-          // Only perform the move when the mouse has crossed half of the items width
-          // When dragging downwards, only move when the cursor is below 50%
-          // When dragging upwards, only move when the cursor is above 50%
-          // Dragging right
+    //     // Only perform the move when the mouse has crossed half of the items width
+    //     // When dragging downwards, only move when the cursor is below 50%
+    //     // When dragging upwards, only move when the cursor is above 50%
+    //     // Dragging right
 
-          if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
-            onDragTableHeaderMove(hoverIndex);
-            return;
-          }
+    //     if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
+    //       onDragTableHeaderMove(hoverIndex);
+    //       return;
+    //     }
 
-          // Dragging left
+    //     // Dragging left
 
-          if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
-            onDragTableHeaderMove(hoverIndex);
-            return;
-          }
+    //     if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
+    //       onDragTableHeaderMove(hoverIndex);
+    //       return;
+    //     }
 
-          // Time to actually perform the action
-          // moveCard(dragIndex, hoverIndex);
-          // onDropTableHeader(dragIndex, hoverIndex);
-          // Note: we're mutating the monitor item here!
-          // Generally it's better to avoid mutations,
-          // but it's good here for the sake of performance
-          // to avoid expensive index searches.
-          // eslint-disable-next-line
-          item.index = hoverIndex;
-        },
-        collect: (monitor) => {
-          if (!ref.current || isResizing) {
-            return {};
-          }
+    //     // Time to actually perform the action
+    //     // moveCard(dragIndex, hoverIndex);
+    //     // onDropTableHeader(dragIndex, hoverIndex);
+    //     // Note: we're mutating the monitor item here!
+    //     // Generally it's better to avoid mutations,
+    //     // but it's good here for the sake of performance
+    //     // to avoid expensive index searches.
+    //     // eslint-disable-next-line
+    //       item.index = hoverIndex;
+    //   },
+    //   collect: (monitor) => {
+    //     if (!ref.current || isResizing) {
+    //       return {};
+    //     }
 
-          return {
-          // isDragging: monitor.isDragging(),
-            highlighted: monitor.canDrop(),
-            hovered: monitor.isOver(),
-          // canDrop: monitor.canDrop(),
-          };
-        },
-      });
-      const { highlighted, hovered } = dropCollectedProps;
+    //     return {
+    //       // isDragging: monitor.isDragging(),
+    //       highlighted: monitor.canDrop(),
+    //       hovered: monitor.isOver(),
+    //       // canDrop: monitor.canDrop(),
+    //     };
+    //   },
+    // });
+    // const { highlighted, hovered } = dropCollectedProps;
 
-      const [dragCollectedProps, drag] = useDrag({
-        item: { type: 'my-foobar-type', dragId, index },
-        begin: (monitor) => {
-          if (!ref.current || isResizing) {
-            return;
-          }
-          onDragTableHeaderStart(index, ref);
-        },
-        end: (monitor) => {
-          // onDropTableHeader(monitor.index);
-          onDropTableHeader(isReorderingHovered);
-        },
-        collect: (monitor) => {
-          if (!ref.current || isResizing) {
-            return {};
-          }
-          return {
-            isDragging: monitor.isDragging(),
-          // canDrop: monitor.canDrop(),
-          // hovered: monitor.isOver(),
-          }
-          ;
-        },
-      });
+    // const [dragCollectedProps, drag] = useDrag({
+    //   item: { type: 'my-foobar-type', dragId, index },
+    //   begin: (monitor) => {
+    //     if (!ref.current || isResizing) {
+    //       return;
+    //     }
+    //     onDragTableHeaderStart(index, ref);
+    //   },
+    //   end: (monitor) => {
+    //     // onDropTableHeader(monitor.index);
+    //     onDropTableHeader(isReorderingHovered);
+    //   },
+    //   collect: (monitor) => {
+    //     if (!ref.current || isResizing) {
+    //       return {};
+    //     }
+    //     return {
+    //       isDragging: monitor.isDragging(),
+    //       // canDrop: monitor.canDrop(),
+    //       // hovered: monitor.isOver(),
+    //     }
+    //     ;
+    //   },
+    // });
 
 
-      const { isDragging } = dragCollectedProps;
-      const opacity = isDragging ? 0 : 1;
+    // const { isDragging } = dragCollectedProps;
+    // const opacity = isDragging ? 0 : 1;
 
-      useEffect(() => {
-        if (isResizing) {
-          drop(ref)
-          return () => {
-            if (reorderable) {
-              drag(drop(ref));
-            }
-          };
-        }
-        if (reorderable) {
-          drag(drop(ref));
-        }
-        return () => {
-          drop(ref)
-        };
-      }, [isResizing]);
+    // useEffect(() => {
+    //   if (isResizing) {
+    //     drop(ref);
+    //     return () => {
+    //       if (reorderable) {
+    //         drag(drop(ref));
+    //       }
+    //     };
+    //   }
+    //   if (reorderable) {
+    //     drag(drop(ref));
+    //   }
+    //   return () => {
+    //     drop(ref);
+    //   };
+    // }, [isResizing]);
 
-      // drag(drop(ref));
-
-    */
+    // drag(drop(ref));
 
     const styles = /* hasBeenResizedOnce  && isLast && display === 'table' */
        {
@@ -435,17 +431,31 @@ class Th extends React.Component {
        };
     // : { ...style };
     // : { width: '100%', ...style };
+    const isBeingReordered = isReordering === index
 
     return (
       <ThUI
         ref={this.ref}
         isResizing={isResizing}
         isBeingResized={isBeingResized}
+        isBeingReordered={isBeingReordered}
         style={styles}
-        isReordering={reorderable !== null}
+        // isReordering={reorderable !== null}
+        isReordering={isReordering}
         isFirst={index === 0}
       >
-        <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
+        <ThInnerWrapper
+          reorderable={reorderable}
+          isResizing={isResizing}
+          onDragTableHeaderStart={onDragTableHeaderStart}
+          onDragTableHeaderMove={onDragTableHeaderMove}
+          onDropTableHeader={onDropTableHeader}
+          index={index}
+          setColumOrder={setColumOrder}
+          dragId={dragId}
+          columnWidth={columnWidth}
+          resizable={resizable}
+        >
           {
             !isResizing && allowInlinePropertySelection
               ? (
@@ -557,7 +567,7 @@ class Th extends React.Component {
               ? menu
               : null
           }
-          {resizable && (isLast ? display !== 'table' : true)
+          {/* resizable && (isLast ? display !== 'table' : true)
             ? (
               <ResizeHandler
                 property={property}
@@ -568,8 +578,44 @@ class Th extends React.Component {
               />
             )
             : null
-          }
+           */}
+
+          <div
+            style={{
+              transition: 'none',
+              position: 'absolute',
+              // width: '1px',
+              width: isBeingReordered ? '100%' : '0',
+              height: cRectHeight,
+              right: 0,
+              background: 'rgba(255, 255, 255, 0.5)',
+            }}
+          >&nbsp;</div>
+
+          <div
+            style={{
+              transition: 'none',
+              position: 'absolute',
+              width: '1px',
+              height: cRectHeight,
+              right: 0,
+              background: isReordering ? '#cecece' : 'transparent',
+            }}
+          >&nbsp;</div>
+
         </ThInnerWrapper>
+        {resizable && (isLast ? display !== 'table' : true) && !isReordering
+          ? (
+            <ResizeHandler
+              property={property}
+              isResizing={isResizing}
+              resizable={resizable}
+              onResizeStart={onResizeStart}
+              onResizeStop={onResizeStop}
+            />
+          )
+          : null
+        }
       </ThUI>
     );
   }

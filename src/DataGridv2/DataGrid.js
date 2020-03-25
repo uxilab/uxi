@@ -23,8 +23,11 @@ import {
   hideColumn as hideColumnAction,
   setColumnWidth as setColumnWidthAction,
   setCurrColumnWidth as setCurrColumnWidthAction,
+  setIsReordering as setIsReorderingAction,
+  setColumOrder as setColumOrderAction,
   setIsResizing as setIsResizingAction,
   setNextColumnWidth as setNextColumnWidthAction,
+  storeContentRectHeight as storeContentRectHeightAction,
 } from './actions';
 
 export const minCellWidth = 64;
@@ -134,7 +137,7 @@ const DataGrid = (props: DataGridProps) => {
 
     ThInnerWrapper,
 
-    // reorderable = true,
+    reorderable = true, // true for dev purp only ?
 
     tableHeaderOverlayRender,
     // eslint-disable-next-line no-nested-ternary
@@ -185,6 +188,7 @@ const DataGrid = (props: DataGridProps) => {
 
   const [
     {
+      cRectHeight,
       columns: columnsState,
       isResizing,
       pageX,
@@ -193,6 +197,8 @@ const DataGrid = (props: DataGridProps) => {
       currColWidth,
       nextColWidth,
       hasBeenResizedOnce,
+
+      isReordering,
     },
     dispatch,
   ] = useReducer(
@@ -202,6 +208,7 @@ const DataGrid = (props: DataGridProps) => {
       columns: model,
     }
   );
+
 
   const columns = allowInlinePropertySelection
     ? columnsState
@@ -214,11 +221,15 @@ const DataGrid = (props: DataGridProps) => {
 
 
   const setColumns = property => dispatch(setColumnsAction(property));
+  const storeContentRectHeight = property => dispatch(storeContentRectHeightAction(property));
 
   const showColumn = property => dispatch(showColumnAction(property));
   const hideColumn = property => dispatch(hideColumnAction(property));
 
+  const setIsReordering = payload => dispatch(setIsReorderingAction(payload));
+  const setColumOrder = payload => dispatch(setColumOrderAction(payload));
   const setIsResizing = payload => dispatch(setIsResizingAction(payload));
+
 
   const setColumnWidth = ({ property, width }) =>
     dispatch(setColumnWidthAction({ property, width }));
@@ -228,11 +239,8 @@ const DataGrid = (props: DataGridProps) => {
 
 
   const allowInlinePropertySelectionMonitor = model.map(({ property }) => property).join('');
-  console.log('allowInlinePropertySelectionMonitor', allowInlinePropertySelectionMonitor);
-  console.log('model', model);
   useEffect(() => {
     if (!allowInlinePropertySelection) {
-      console.log('model updated from consumer!');
       setColumns(model.map(x => ({
         ...x,
         show: true,
@@ -287,9 +295,10 @@ const DataGrid = (props: DataGridProps) => {
 
   const onResizeStart = (e, property) => {
     // eslint-disable-next-line no-shadow
-    const currCol = e.target.parentElement.parentElement;
+    const currCol = e.target.parentElement;
     // eslint-disable-next-line no-shadow
     const { width: currColWidth } = currCol.getBoundingClientRect();
+
 
     // eslint-disable-next-line no-nested-ternary
     // const siblingColumnIdx = columnIdx > -1
@@ -388,38 +397,37 @@ const DataGrid = (props: DataGridProps) => {
   /* this one is declared higher up in the comp: */
   // const [columnsOrder, setColumnsOrder] = useState(model.map((m, i) => ({ ...m, index: i })));
   // const [tempThWidth, setIsReordering] = useState(null);
-  /*
-  const [isReordering, setIsReordering] = useState(null);
-  const [isReorderingHovered, setIsReorderingHovered] = useState(null);
+  // const [isReordering, setIsReordering] = useState(null);
+  // const [isReorderingHovered, setIsReorderingHovered] = useState(null);
 
   const onDragTableHeaderStart = (index, ref) => {
-    if (ref && ref.current && ref.current.getBoundingClientRect) {
-      const { width } = ref.current.getBoundingClientRect();
-      setColumnsSizes([...columnsSizes]);
-    }
+    // if (ref && ref.current && ref.current.getBoundingClientRect) {
+    //   const { width } = ref.current.getBoundingClientRect();
+    //   setColumnsSizes([...columnsSizes]);
+    // }
     setIsReordering(index);
   };
   const onDragTableHeaderMove = (idx) => {
-    if (isReorderingHovered !== idx) {
-      setIsReorderingHovered(idx);
-    }
+    // if (isReorderingHovered !== idx) {
+    //   setIsReorderingHovered(idx);
+    // }
   };
   const onDropTableHeader = (idx) => {
-    const reorderedColsSizes = Object.entries(
-      columnsSizes
-        .reduce((ac, x, i) => {
-          // eslint-disable-next-line no-param-reassign
-          if (i === idx) {
-            // eslint-disable-next-line no-param-reassign
-            ac[isReordering] = x;
-          } else if (i === isReordering) {
-            // eslint-disable-next-line no-param-reassign
-            ac[idx] = x;
-          }
-          return ac;
-        }, {})
-    )
-      .map(([k, v]) => v);
+    // const reorderedColsSizes = Object.entries(
+    //   columnsSizes
+    //     .reduce((ac, x, i) => {
+    //       // eslint-disable-next-line no-param-reassign
+    //       if (i === idx) {
+    //         // eslint-disable-next-line no-param-reassign
+    //         ac[isReordering] = x;
+    //       } else if (i === isReordering) {
+    //         // eslint-disable-next-line no-param-reassign
+    //         ac[idx] = x;
+    //       }
+    //       return ac;
+    //     }, {})
+    // )
+    //   .map(([k, v]) => v);
 
 
     //   })
@@ -433,28 +441,27 @@ const DataGrid = (props: DataGridProps) => {
     //   return ac;
     // }, columnsSizes);
 
-    setColumnsOrder(columnsOrder
-      .map((co) => {
-        if (co.index === idx) {
-          return {
-            ...co,
-            index: isReordering,
-          };
-        } else if (co.index === isReordering) {
-          return {
-            ...co,
-            index: idx,
-          };
-        }
-        return co;
-      })
-      .sort(({ index: a }, { index: b }) => (a > b ? +1 : -1))
-    );
-    setColumnsSizes(reorderedColsSizes);
-    setIsReorderingHovered(null);
+    // setColumnsOrder(columnsOrder
+    //   .map((co) => {
+    //     if (co.index === idx) {
+    //       return {
+    //         ...co,
+    //         index: isReordering,
+    //       };
+    //     } else if (co.index === isReordering) {
+    //       return {
+    //         ...co,
+    //         index: idx,
+    //       };
+    //     }
+    //     return co;
+    //   })
+    //   .sort(({ index: a }, { index: b }) => (a > b ? +1 : -1))
+    // );
+    // setColumnsSizes(reorderedColsSizes);
+    // setIsReorderingHovered(null);
     setIsReordering(null);
   };
-  */
 
 
   /* Sort */
@@ -508,6 +515,8 @@ const DataGrid = (props: DataGridProps) => {
       setDisplay={setDisplay}
       display={display}
       columnsSizes={columns.map(({ width }) => width)}
+      storeContentRectHeight={storeContentRectHeight}
+      cRectHeight={cRectHeight}
     >
       <Table
         borderCollapse={borderCollapse}
@@ -562,17 +571,19 @@ const DataGrid = (props: DataGridProps) => {
                 ;
 
 
-                // const reorderingProps = {
-                //   reorderable: reorderable,
-                //   isReordering: isReordering,
-                //   isReorderingHovered: isReorderingHovered,
-                //   onDragTableHeaderStart: onDragTableHeaderStart,
-                //   onDragTableHeaderMove: onDragTableHeaderMove,
-                //   onDropTableHeader: onDropTableHeader,
-                // }
+                const reorderingProps = {
+                  reorderable,
+                  setColumOrder,
+                  isReordering,
+                  // isReorderingHovered,
+                  onDragTableHeaderStart,
+                  onDragTableHeaderMove,
+                  onDropTableHeader,
+                };
 
                 return (
                   <Th
+                    cRectHeight={cRectHeight}
                     allowInlinePropertySelection={allowInlinePropertySelection}
                     // hasBeenResizedOnce={hasBeenResizedOnce}
                     display={display}
@@ -588,8 +599,6 @@ const DataGrid = (props: DataGridProps) => {
                         // ? width > baseCellWidth ? baseCellWidth : width
                         // : width;
                         // setCurrColumnWidth({ property: m.property, width: res });
-                        console.log('width', width);
-                        console.log('res', res);
 
                         setColumnWidth({ property: m.property, width: res });
                       }
@@ -619,7 +628,7 @@ const DataGrid = (props: DataGridProps) => {
                     isLast={i === length - 1}
                     {...resizeProps}
                     {...sortProps}
-                    // {...reorderingProps}
+                    {...reorderingProps}
                     ThInnerWrapper={ThInnerWrapper}
                     dragId={m.property}
                   >

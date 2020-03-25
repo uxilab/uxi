@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { C } from './actions';
 
 export const initialState = {
@@ -9,10 +10,20 @@ export const initialState = {
   currColWidth: undefined,
   nextColWidth: undefined,
   hasBeenResizedOnce: false,
+
+  isReordering: undefined,
+
+  cRectHeight: undefined,
 };
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case C.STORE_C_RECT_HEIGHT:
+      return {
+        ...state,
+        cRectHeight: payload,
+      };
+
     case C.SET_COLUMNS:
       return {
         ...state,
@@ -34,7 +45,25 @@ export const reducer = (state, { type, payload }) => {
         ,
       };
 
-    // eslint-disable-next-line no-case-declarations
+    case C.SET_IS_REORDERING:
+      return {
+        ...state,
+        isReordering: payload,
+      };
+    case C.SET_COLUMN_ORDER: {
+      const [a, b] = payload;
+
+      const newCols = [...state.columns];
+      newCols.splice(a, 1, state.columns[b]);
+      newCols.splice(b, 1, state.columns[a]);
+
+      return {
+        ...state,
+        columns: newCols,
+        isReordering: b,
+        // isReordering: payload,
+      };
+    }
     case C.SET_IS_RESIZING:
       const propIdx = state.columns.findIndex(c => c.property === payload.property);
       const siblingsProp = propIdx > -1
@@ -48,7 +77,7 @@ export const reducer = (state, { type, payload }) => {
           : c)
         )
         .map(c => (c.property === (siblingsProp || {}).property
-          ? { ...c, width: payload.nextColWidth }
+          ? { ...c, width: payload.nextColWidth ? payload.nextColWidth : c.width }
           : c)
         );
 
@@ -64,7 +93,6 @@ export const reducer = (state, { type, payload }) => {
         columns: nenwColumns,
       };
 
-    // eslint-disable-next-line no-case-declarations
     case C.SET_COLUMN_W:
       const newCols = state.columns
         .map(c => (c.property === payload.property ? { ...c, width: payload.width } : c));
@@ -104,6 +132,7 @@ export const reducer = (state, { type, payload }) => {
 */
 
 
+/*
 // eslint-disable-next-line no-shadow
 const middleware = reducer => (state, { type, payload }) => {
   console.log('––––––––––––––––––––––––––––', '\n');
@@ -115,6 +144,6 @@ const middleware = reducer => (state, { type, payload }) => {
 };
 
 export default middleware(reducer);
+ */
 
-
-// export default reducer;
+export default reducer;
