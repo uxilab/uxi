@@ -56,6 +56,8 @@ const WidgetWrapper = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh !important;
+    max-height: '100vh',
+    overflowY: 'auto',
   ` : '')}
 `;
 

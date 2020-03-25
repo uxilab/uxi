@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { C } from './actions';
 
 export const initialState = {
@@ -6,14 +7,23 @@ export const initialState = {
   isResizingProp: undefined,
   isResizingNextProp: undefined,
   pageX: undefined,
-  // resizingColumnIndexes: undefined,
   currColWidth: undefined,
   nextColWidth: undefined,
   hasBeenResizedOnce: false,
+
+  isReordering: undefined,
+
+  cRectHeight: undefined,
 };
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case C.STORE_C_RECT_HEIGHT:
+      return {
+        ...state,
+        cRectHeight: payload,
+      };
+
     case C.SET_COLUMNS:
       return {
         ...state,
@@ -23,23 +33,45 @@ export const reducer = (state, { type, payload }) => {
     case C.SHOW_COLUMN:
       return {
         ...state,
-        columns: state.columns.map(c => (c.property === payload ? { ...c, show: true } : c)),
+        columns: state.columns.map(c => (c.property === payload ? { ...c, hide: false } : c)),
       };
 
     case C.HIDE_COLUMN:
       return {
         ...state,
-        columns: state.columns.filter(c => c.show).length > 1
-          ? state.columns.map(c => (c.property === payload ? { ...c, show: false } : c))
+        columns: state.columns.filter(c => !c.hide).length > 1
+          ? state.columns.map(c => (c.property === payload ? { ...c, hide: true } : c))
           : state.columns
         ,
       };
 
-    // eslint-disable-next-line no-case-declarations
+    case C.SET_IS_REORDERING:
+      return {
+        ...state,
+        isReordering: payload,
+      };
+    case C.SET_COLUMN_ORDER: {
+      const [propA, propB] = payload;
+
+      const newCols = [...state.columns];
+      const idxA = newCols.findIndex(c => c.property === propA);
+      const idxB = newCols.findIndex(c => c.property === propB);
+
+      newCols.splice(idxA, 1, state.columns[idxB]);
+      newCols.splice(idxB, 1, state.columns[idxA]);
+
+      const idxBVisibleOnly = newCols.filter(x => !x.hide).findIndex(c => c.property === propA);
+
+      return {
+        ...state,
+        columns: newCols,
+        isReordering: idxBVisibleOnly,
+      };
+    }
     case C.SET_IS_RESIZING:
       const propIdx = state.columns.findIndex(c => c.property === payload.property);
       const siblingsProp = propIdx > -1
-        ? state.columns.slice(propIdx + 1).find(x => x.show)
+        ? state.columns.slice(propIdx + 1).find(x => !x.hide)
         : undefined
       ;
 
@@ -49,7 +81,7 @@ export const reducer = (state, { type, payload }) => {
           : c)
         )
         .map(c => (c.property === (siblingsProp || {}).property
-          ? { ...c, width: payload.nextColWidth }
+          ? { ...c, width: payload.nextColWidth ? payload.nextColWidth : c.width }
           : c)
         );
 
@@ -60,17 +92,24 @@ export const reducer = (state, { type, payload }) => {
         pageX: payload.pageX,
         isResizingProp: payload.property,
         isResizingNextProp: (siblingsProp || {}).property,
-        // resizingColumnsIndex: payload.columnIndexes,
         currColWidth: payload.currColWidth,
         nextColWidth: payload.nextColWidth,
         columns: nenwColumns,
       };
 
     case C.SET_COLUMN_W:
+      const newCols = state.columns
+        .map(c => (c.property === payload.property ? { ...c, width: payload.width } : c));
+
+      const hasBeenResizedOnce = (
+        newCols.filter(x => x.width !== undefined).length
+        === newCols.length
+      );
+
       return {
         ...state,
-        columns: state.columns
-          .map(c => (c.property === payload.property ? { ...c, width: payload.width } : c)),
+        hasBeenResizedOnce,
+        columns: newCols,
       };
 
     case C.SET_CURR_COLUMN_W:
@@ -105,7 +144,6 @@ const middleware = reducer => (state, { type, payload }) => {
 };
 
 export default middleware(reducer);
-
-*/
+ */
 
 export default reducer;

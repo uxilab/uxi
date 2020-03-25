@@ -1,68 +1,18 @@
 // @flow
-import React, { /* useRef, useEffect */ } from 'react';
-import isEqual from 'lodash/isEqual';
-// import { useDrag, useDrop } from 'react-dnd';
+import React from 'react';
 import styled, { css } from 'styled-components';
-// import PropTypes from 'prop-types';
 import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
 import ButtonMenuMultiLevel from '../Menu/ButtonMenu/ButtonMenuMultiLevel'; // eslint-disable-line no-unused-vars
 import { UnstyledButton } from '../Button/UnstyledButton1';
-// import ButtonMenu from '../Menu/ButtonMenu/ButtonMenu';
-// import ButtonMenuItem from '../Menu/ButtonMenu/ButtonMenuItem';
 import Options from '../Icons/Options';
-// import Hamburger from '../Icons/Hamburger';
 import { Flex } from '../Layout/Flex';
-// import Checkbox from '../Input/Checkbox';
-// import Checkboxoutline from '../Icons/Checkboxoutline';
 import Checkmark from '../Icons/Checkmark';
-// import { minCellWidth } from './DataGrid';
 
 import type { SortDirection } from './DataGrid';
 
-/*
-  const ExtraModelButtonWrapper = styled.div`
-    padding: 4px;
-    box-sizing: border-box;
-    flex-grow: 1;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-    height: 100%;
-    transition: all 280ms cubic-bezier(.5,1,.5,1);
-    transition: all 0ms cubic-bezier(.5,1,.5,1);
-    width: 0px;
-    max-width: 0px;
-    opacity: 0;
-    & > *, & > * span[data-drop-down-trigger] {
-      display: flex;
-      justify-content: stretch;
-      align-items: stretch;
-      height: 100%;
-    }
-    span[data-drop-down-trigger] {
-      align-items: center;
-    }
-  `;
-*/
 const headerCellHeight = 48;
 
-// type ThProps = {
-//   children: Node | Array<Node>,
-//   // index?: number,
-
-//   isResizing?: Boolean,
-//   resizable?: Boolean,
-//   onResizeStart?: Function,
-
-// eslint-disable-next-line max-len
-//   onSortChange: (property: string, sortDirection: SortDirection, newSortDirections: Array<SortDirection>) => {},
-//   sortable: bool,
-//   sortDirection: SortDirection,
-// }
-
-// const ThUI = styled.th.attrs(mapChildren)`
 /* eslint-disable no-nested-ternary */
 const ThUI = styled.th`
   box-sizing: border-box;
@@ -70,28 +20,22 @@ const ThUI = styled.th`
   padding: 0;
   text-align: left;
   border: 1px solid #cecece;
-  position: relative;00421
-  /* transition: all 280ms cubic-bezier(.5,1,.5,1);
-  transition: all ${({ isBeingResized }) => (isBeingResized ? '16.67ms' : '0ms')} cubic-bezier(.5,1,.5,1); */
+  position: relative;
   transition: all 0ms cubic-bezier(.5,1,.5,1);
   text-transform: none;
   font-weight: 600;
   color: ${({ theme: { palette } }) => palette.midDarkGrey};
   background: ${({ theme: { palette } }) => (palette.white)};
   &:hover {
-    /* transition: all 280ms cubic-bezier(.5,1,.5,1);
-    transition: all ${({ isBeingResized }) => (isBeingResized ? '16.67ms' : '0ms')} cubic-bezier(.5,1,.5,1); */
     transition: all 0ms cubic-bezier(.5,1,.5,1);
     ${ResizeHandler} {
       transition: all 280ms cubic-bezier(.5,1,.5,1);
-      /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
       opacity: ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? 0.7 : 0) : 0.2)};
       width: 6px;
       &:hover {
         &, &:after {
           opacity:.7;
           transition: all 280ms cubic-bezier(.5,1,.5,1);
-          /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
         }
       }
     }
@@ -100,7 +44,6 @@ const ThUI = styled.th`
   &:hover ${ResizeHandler},
   &:not(:hover) ${ResizeHandler} {
       transition: all 280ms cubic-bezier(.5,1,.5,1);
-      /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
       ${({ isBeingResized }) => (isBeingResized ? css`opacity: 0.7 !important;` : '')};
       ${({ isBeingResized }) => (isBeingResized ? css`width: 6px;` : '')};
       &:hover, &:not(:hover) {
@@ -108,37 +51,15 @@ const ThUI = styled.th`
           &
           ${({ isBeingResized }) => (isBeingResized ? css`opacity:.7;` : '')};
           transition: all 280ms cubic-bezier(.5,1,.5,1);
-          /* transition: all 0ms cubic-bezier(.5,1,.5,1); */
         }
       }
-      /* width: 6px;
-      &:hover {
-        &, &:after {
-          opacity:.7;
-          transition: all 280ms cubic-bezier(.5,1,.5,1);
-          transition: all 0ms cubic-bezier(.5,1,.5,1);
-        }
-      } */
   }
   &:last-child:hover ${ResizeHandler}:after,
   &:last-child:not(:hover) ${ResizeHandler}:after {
-    /* display: none; fix a layout bug */
     content: '◂❘';
     margin-right: 0;
     transform: translateX(0%);
   }
-
-
-  /* &:last-of-type,
-  &:last-child,
-  &:last-of-type:hover,
-  &:last-child:hover {
-    ${ResizeHandler} {
-      display: none;
-      visibility: hidden;
-      pointer-events: none;
-    }
-  } */
 
   *[data-drop-down-trigger] {
     height: 100%;
@@ -157,17 +78,12 @@ const ThUI = styled.th`
 `;
 /* eslint-enable no-nested-ternary */
 
-// const Th = (props: ThProps) => {
 class Th extends React.Component {
   constructor(props) {
     super(props);
 
     this.ref = React.createRef();
   }
-
-  // UNSAFE_componentWillReceiveProps(nextProps) {
-  //   if ()
-  // }
 
   componentDidMount() {
     if (this.ref.current && this.ref.current.getBoundingClientRect) {
@@ -180,7 +96,7 @@ class Th extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps/* , nextState */) {
+  /* shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
       isResizing,
@@ -207,7 +123,7 @@ class Th extends React.Component {
       return true;
     }
 
-    if (!isEqual(nextModel.map(x => x.show), model.map(x => x.show))) {
+    if (!isEqual(nextModel.map(x => !x.hide), model.map(x => !x.hide))) {
       return true;
     }
 
@@ -224,14 +140,14 @@ class Th extends React.Component {
 
     return false;
   }
-
+  */
 
   componentDidUpdate(prevProps) {
     const { display, isResizing, model = [], property } = this.props;
     const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
     const a = prevModel.find(m => m.property === property) || {};
     const b = model.find(m => m.property === property) || {};
-    const wasJustAdded = (b.show && !a.show);
+    const wasJustAdded = (!b.hide && a.hide);
 
     const shouldCheckIntrinsicWidth = (
       ((wasResizing && !isResizing) && display === 'table')
@@ -243,7 +159,6 @@ class Th extends React.Component {
         const { width } = b;
         const bRect = this.ref.current.getBoundingClientRect() || {};
         const { width: intrinsicWidth = 0 } = bRect;
-        // const { width: prevWidth } = model.find(m => m.property === property) || {};
 
         if (intrinsicWidth !== width) {
           const { setInitialSize } = this.props;
@@ -255,9 +170,9 @@ class Th extends React.Component {
     }
   }
 
-
   render() {
     const {
+      cRectHeight,
       allowInlinePropertySelection,
       ThInnerWrapper,
       style,
@@ -269,178 +184,60 @@ class Th extends React.Component {
       menu,
       isResizing,
       isBeingResized,
-      // resizingColumnIndexes = [],
       resizable,
       onResizeStart,
       onResizeStop,
       children,
       property,
       index,
-      // dragId,
+      dragId,
 
       reorderable,
 
       model = [],
-      // setColumnsOrder,
       showColumn,
       hideColumn,
-      // setColumnsSizes,
-      // availProps = [],
-      // data = [],
 
-      // isReordering,
-      // isReorderingHovered,
-      // onDragTableHeaderStart,
-      // onDragTableHeaderMove,
-      // onDropTableHeader,
+      isReordering,
+      onDragTableHeaderStart,
+      onDragTableHeaderMove,
+      onDropTableHeader,
+      setColumOrder,
       isLast,
       display,
-      // hasBeenResizedOnce,
-
     } = this.props;
-    // } = props;
 
-    /*
-      const ref = useRef(null);
+    const styles = {
+      width: columnWidth,
+      minWidth: columnWidth,
+      maxWidth: columnWidth,
+      ...style,
+    };
 
-      const [dropCollectedProps, drop] = useDrop({
-        accept: 'my-foobar-type',
-        hover(item, monitor) {
-          if (!ref.current || isResizing) {
-            return;
-          }
-          const dragIndex = item.index;
-          const hoverIndex = index;
-          // Don't replace items with themselves
-          // if (dragIndex === hoverIndex) {
-          //   return;
-          // }
-          // Determine rectangle on screen
-          const hoverBoundingRect = ref.current.getBoundingClientRect();
-          // Get vertical middle
-          // const hoverMiddleY =
-          //   (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-          // Get horizontal middle
-          const hoverMiddleX =
-            (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
-          // Determine mouse position
-          const clientOffset = monitor.getClientOffset();
-          // Get pixels to the top
-
-          const hoverClientX = clientOffset.x - hoverBoundingRect.left;
-
-          // Only perform the move when the mouse has crossed half of the items width
-          // When dragging downwards, only move when the cursor is below 50%
-          // When dragging upwards, only move when the cursor is above 50%
-          // Dragging right
-
-          if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
-            onDragTableHeaderMove(hoverIndex);
-            return;
-          }
-
-          // Dragging left
-
-          if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
-            onDragTableHeaderMove(hoverIndex);
-            return;
-          }
-
-          // Time to actually perform the action
-          // moveCard(dragIndex, hoverIndex);
-          // onDropTableHeader(dragIndex, hoverIndex);
-          // Note: we're mutating the monitor item here!
-          // Generally it's better to avoid mutations,
-          // but it's good here for the sake of performance
-          // to avoid expensive index searches.
-          // eslint-disable-next-line
-          item.index = hoverIndex;
-        },
-        collect: (monitor) => {
-          if (!ref.current || isResizing) {
-            return {};
-          }
-
-          return {
-          // isDragging: monitor.isDragging(),
-            highlighted: monitor.canDrop(),
-            hovered: monitor.isOver(),
-          // canDrop: monitor.canDrop(),
-          };
-        },
-      });
-      const { highlighted, hovered } = dropCollectedProps;
-
-      const [dragCollectedProps, drag] = useDrag({
-        item: { type: 'my-foobar-type', dragId, index },
-        begin: (monitor) => {
-          if (!ref.current || isResizing) {
-            return;
-          }
-          onDragTableHeaderStart(index, ref);
-        },
-        end: (monitor) => {
-          // onDropTableHeader(monitor.index);
-          onDropTableHeader(isReorderingHovered);
-        },
-        collect: (monitor) => {
-          if (!ref.current || isResizing) {
-            return {};
-          }
-          return {
-            isDragging: monitor.isDragging(),
-          // canDrop: monitor.canDrop(),
-          // hovered: monitor.isOver(),
-          }
-          ;
-        },
-      });
-
-
-      const { isDragging } = dragCollectedProps;
-      const opacity = isDragging ? 0 : 1;
-
-      useEffect(() => {
-        if (isResizing) {
-          drop(ref)
-          return () => {
-            if (reorderable) {
-              drag(drop(ref));
-            }
-          };
-        }
-        if (reorderable) {
-          drag(drop(ref));
-        }
-        return () => {
-          drop(ref)
-        };
-      }, [isResizing]);
-
-      // drag(drop(ref));
-
-    */
-
-    const styles = /* hasBeenResizedOnce  && isLast && display === 'table' */
-       {
-         width: columnWidth,
-         minWidth: columnWidth,
-         maxWidth: columnWidth,
-         ...style,
-       };
-    // : { ...style };
-    // : { width: '100%', ...style };
+    const isBeingReordered = isReordering === index;
 
     return (
       <ThUI
         ref={this.ref}
         isResizing={isResizing}
         isBeingResized={isBeingResized}
+        isBeingReordered={isBeingReordered}
         style={styles}
-        isReordering={reorderable !== null}
+        isReordering={isReordering}
         isFirst={index === 0}
       >
-        <ThInnerWrapper columnWidth={columnWidth} resizable={resizable} >
+        <ThInnerWrapper
+          reorderable={reorderable}
+          isResizing={isResizing}
+          onDragTableHeaderStart={onDragTableHeaderStart}
+          onDragTableHeaderMove={onDragTableHeaderMove}
+          onDropTableHeader={onDropTableHeader}
+          index={index}
+          setColumOrder={setColumOrder}
+          dragId={dragId}
+          columnWidth={columnWidth}
+          resizable={resizable}
+        >
           {
             !isResizing && allowInlinePropertySelection
               ? (
@@ -471,7 +268,7 @@ class Th extends React.Component {
                     menuDescriptor={
                       model.map((m) => {
                         const modelDef = model.find(mo => m.property === mo.property);
-                        const isActive = m.show;
+                        const isActive = !m.hide;
                         const onClick = () => {
                           if (model.length > 1) {
                             if (isActive) {
@@ -507,12 +304,14 @@ class Th extends React.Component {
               )
           }
           {sortable
-            ? <SortHandler
-              style={{ flexGrow: 1, flexShrink: 0 }}
-              sortable={sortable}
-              sortDirection={sortDirection}
-              onSortChange={onSortChange}
-            />
+            ? (
+              <SortHandler
+                style={{ flexGrow: 1, flexShrink: 0 }}
+                sortable={sortable}
+                sortDirection={sortDirection}
+                onSortChange={onSortChange}
+              />
+            )
             : null
           }
           {
@@ -531,7 +330,6 @@ class Th extends React.Component {
                     anchor={'right'}
                     buttonWrapperStyle={{
                       position: 'inherit',
-                      // fuck: 'eslint',
                       height: '100%',
                       alignItems: 'stretch',
                       display: 'flex',
@@ -552,23 +350,46 @@ class Th extends React.Component {
               ? menu
               : null
           }
-          {resizable && (isLast ? display !== 'table' : true)
-            ? (
-              <ResizeHandler
-                property={property}
-                isResizing={isResizing}
-                resizable={resizable}
-                onResizeStart={onResizeStart}
-                onResizeStop={onResizeStop}
-              />
-            )
-            : null
-          }
+          <div
+            style={{
+              transition: 'none',
+              zIndex: 1,
+              position: 'absolute',
+              width: isBeingReordered ? '100%' : '0',
+              height: cRectHeight,
+              right: 0,
+              background: 'rgba(255, 255, 255, 0.5)',
+            }}
+          >&nbsp;</div>
+
+          <div
+            style={{
+              transition: 'none',
+              position: 'absolute',
+              width: '1px',
+              height: cRectHeight,
+              right: 0,
+              background: isReordering ? '#cecece' : 'transparent',
+            }}
+          >&nbsp;</div>
+
         </ThInnerWrapper>
+        {resizable && (isLast ? display !== 'table' : true) && !isReordering
+          ? (
+            <ResizeHandler
+              property={property}
+              isResizing={isResizing}
+              resizable={resizable}
+              onResizeStart={onResizeStart}
+              onResizeStop={onResizeStop}
+            />
+          )
+          : null
+        }
       </ThUI>
     );
   }
-} // class closing
+}
 
 
 Th.defaultProps = {

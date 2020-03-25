@@ -12,7 +12,8 @@ RUN echo '{ "name": "_", "version": "0.0.1", "scripts": {} }' >> package.json
 # RUN npm install --only=production
 
 # INSTALL JOB DEPS
-RUN npm install classnames rc-tooltip lodash react react-dom styled-components react-scripts docz gatsby-plugin-flow react-click-outside react-transition-group resize-observer-polyfill
+RUN npm install react-dnd react-dnd-html5-backend classnames rc-tooltip lodash react react-dom styled-components react-scripts docz gatsby-plugin-flow react-click-outside react-transition-group resize-observer-polyfill
+
 
 RUN npx json -I -f package.json -e 'this.scripts["docz"]="docz build"'
 RUN npx json -I -f package.json -e 'this.scripts["docz:dev"]="docz dev"'

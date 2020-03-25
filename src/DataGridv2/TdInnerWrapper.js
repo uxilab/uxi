@@ -9,8 +9,6 @@ const TdInnerWrapper = styled.div`
   flex-flow: row nowrap;
   align-items: stretch;
   align-items: center;
-  /* align-items: center; */
-  /* white-space: nowrap; */
   width: 100%;
   height: 100%;
   padding: 0 0 0 16px;

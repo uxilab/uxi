@@ -5,8 +5,6 @@ import styled, { css } from 'styled-components';
 const ResizeHandler = styled.div.attrs(props => ({
   onMouseDown: function onMouseDown(e) {
     e.stopPropagation();
-    // props.onResizeStart(e, props.index);
-    console.log('ResizeHandler props.property', props.property);
     props.onResizeStart(e, props.property);
   },
 }))`
@@ -25,13 +23,9 @@ const ResizeHandler = styled.div.attrs(props => ({
   max-width: 6px;
   background: grey;
   opacity: 0;
-  /* cursor: ${({ isResizing }) => (isResizing ? 'inherit' : 'col-resize')}; */
   &, &:hover, &:active {
     cursor: col-resize;
   }
-  /* &, &:hover {
-    ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? '' : 'opacity: 0 !important') : '')};
-  } */
   &:hover {
     opacity: ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? 0.7 : 0) : 0.2)};
     &:after {
@@ -51,10 +45,6 @@ const ResizeHandler = styled.div.attrs(props => ({
     width: auto;
     opacity: 0;
   }
-  /* &:hover &:after {
-    transition: all 280ms cubic-bezier(.5,1,.5,1);
-    opacity: .7;
-  } */
 `;
 /* eslint-disable-enable no-nested-ternary */
 

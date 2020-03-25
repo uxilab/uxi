@@ -711,20 +711,24 @@ exports[`<Button /> should render a Button 1`] = `
     palette={Object {}}
     theme={Object {}}
   >
-    <div
-      style={
-        Object {
-          "height": "100%",
-        }
-      }
+    <DndProvider
+      backend={[Function]}
     >
-      <GlobalStyleComponent />
-      <Button
-        onClick={[Function]}
-        style={Object {}}
-        text="YO!"
-      />
-    </div>
+      <div
+        style={
+          Object {
+            "height": "100%",
+          }
+        }
+      >
+        <GlobalStyleComponent />
+        <Button
+          onClick={[Function]}
+          style={Object {}}
+          text="YO!"
+        />
+      </div>
+    </DndProvider>
   </ThemeProvider>
 </ThemeProvider>
 `;

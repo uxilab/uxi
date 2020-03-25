@@ -8,14 +8,8 @@ type TableProps = {
   display?: 'table' | 'block',
 }
 
-// Table.propTypes = {
-//   borderCollapse: PropTypes.oneOf(['collapse', 'separate']),
-//   display: PropTypes.arrayOf(['table', 'block']),
-//   light: PropTypes.bool,
-// }
-
-
 const TableUi = styled.table`
+  table-layout: fixed;
   width: 100%;
   border-collapse: ${({ borderCollapse }) => borderCollapse || 'collapse'};
   overflow-x: auto;

@@ -1,8 +1,6 @@
 // @flow
 import React, { useEffect, Component, useState, useReducer } from 'react';
-// import throttle from 'lodash/throttle';
 import debounce from 'lodash/debounce';
-// import { useDrag } from 'react-dnd';
 import { Flex } from '../Layout/Flex';
 import Checkbox from '../Input/Checkbox';
 import CellWithPopOver from './CellWithPopOver';
@@ -12,8 +10,6 @@ import Table from './Table';
 import Th from './Th';
 import Tr from './Tr';
 import Td from './Td';
-// import useOnDocumentMouseUp from '../hooks/useOnDocumentMouseUp';
-// import useOnDocumentMouseMove from '../hooks/useOnDocumentMouseMove';
 import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import reducer, { initialState } from './reducer'; // eslint-disable-line import/no-named-as-default
@@ -23,8 +19,11 @@ import {
   hideColumn as hideColumnAction,
   setColumnWidth as setColumnWidthAction,
   setCurrColumnWidth as setCurrColumnWidthAction,
+  setIsReordering as setIsReorderingAction,
+  setColumOrder as setColumOrderAction,
   setIsResizing as setIsResizingAction,
   setNextColumnWidth as setNextColumnWidthAction,
+  storeContentRectHeight as storeContentRectHeightAction,
 } from './actions';
 
 export const minCellWidth = 64;
@@ -113,7 +112,7 @@ const DataGrid = (props: DataGridProps) => {
     propertyKey,
 
     data,
-    model = Object.keys(data[0] || {}).map(k => ({ property: k, displayName: k })),
+    model = Object.keys(data[0] || {}).map(k => ({ property: k, displayName: k, show: true })),
 
     selectable,
     onSelectionChange,
@@ -126,15 +125,13 @@ const DataGrid = (props: DataGridProps) => {
     defaultSortDirections,
     onSortChange,
 
-    // defaultColumnsSizes,
-    // defaultColumnsSize,
     resizable,
     useSmartOverflowX: useSmartOverflowXProp,
     borderCollapse,
 
     ThInnerWrapper,
 
-    // reorderable = true,
+    reorderable = true, // true for dev purp only ?
 
     tableHeaderOverlayRender,
     // eslint-disable-next-line no-nested-ternary
@@ -156,37 +153,10 @@ const DataGrid = (props: DataGridProps) => {
       : undefined
   ;
 
-  const availProps = allowInlinePropertySelection
-    ? model
-      .map(m => ({ ...m, show: true, width: baseCellWidth }))
-      .concat(
-        Object.keys(data[0] || {})
-          .map((k) => {
-            const alreadyInModel = model.find(m => m.property === k);
-            if (!alreadyInModel) {
-              return {
-                property: k,
-                displayName: k,
-                show: false,
-                width: baseCellWidth,
-              };
-            }
-            return null;
-          })
-          .filter(x => x)
-      )
-    : model;
-
-  // const columnsCount = model.length > 0 ? model.length + (selectable ? 1 : 0) : null;
-  // const [columnsSizes, setColumnsSizes] = useState(
-    // defaultColumnsSizes === undefined
-  //     ? [...new Array(columnsCount)].map(() => baseCellWidth)
-  // : defaultColumnsSizes
-  // ); // do we need controlled behavior ?
-
 
   const [
     {
+      cRectHeight,
       columns: columnsState,
       isResizing,
       pageX,
@@ -195,15 +165,18 @@ const DataGrid = (props: DataGridProps) => {
       currColWidth,
       nextColWidth,
       hasBeenResizedOnce,
+
+      isReordering,
     },
     dispatch,
   ] = useReducer(
     reducer,
     {
       ...initialState,
-      columns: availProps,
+      columns: model,
     }
   );
+
 
   const columns = allowInlinePropertySelection
     ? columnsState
@@ -216,11 +189,15 @@ const DataGrid = (props: DataGridProps) => {
 
 
   const setColumns = property => dispatch(setColumnsAction(property));
+  const storeContentRectHeight = property => dispatch(storeContentRectHeightAction(property));
 
   const showColumn = property => dispatch(showColumnAction(property));
   const hideColumn = property => dispatch(hideColumnAction(property));
 
+  const setIsReordering = payload => dispatch(setIsReorderingAction(payload));
+  const setColumOrder = payload => dispatch(setColumOrderAction(payload));
   const setIsResizing = payload => dispatch(setIsResizingAction(payload));
+
 
   const setColumnWidth = ({ property, width }) =>
     dispatch(setColumnWidthAction({ property, width }));
@@ -230,11 +207,8 @@ const DataGrid = (props: DataGridProps) => {
 
 
   const allowInlinePropertySelectionMonitor = model.map(({ property }) => property).join('');
-  console.log('allowInlinePropertySelectionMonitor', allowInlinePropertySelectionMonitor);
-  console.log('model', model);
   useEffect(() => {
     if (!allowInlinePropertySelection) {
-      console.log('model updated from consumer!');
       setColumns(model.map(x => ({
         ...x,
         show: true,
@@ -246,29 +220,12 @@ const DataGrid = (props: DataGridProps) => {
   }, [allowInlinePropertySelectionMonitor]);
 
 
-  const [display, setDisplay] = useState('table'
-    // resizable && useSmartOverflowX
-    //   ? 'block'
-    //   : 'table'
-  );
+  const [display, setDisplay] = useState('table');
 
 
   runWarnings(props);
 
   const hasCustomHeader = tableHeaderOverlayRender !== undefined;
-
-
-  /* Resize + Reorder */
-
-  /* Reorder */
-  // const [columnsOrder, setColumnsOrder] = useState(model.map((m, i) => ({ ...m, index: i })));
-  /* Reorder end */
-
-  // const [isResizing, setIsResizing] = useState();
-  // const [resizingColumnIndexes, setResizingColumnIndexes] = useState();
-  // const [pageX, setPageX] = useState();
-  // const [curColWidth, setCurColWidth] = useState();
-  // const [nextColWidth, setNextColWidth] = useState();
 
 
   const onOnDocumentMouseUp = (/* e */) => {
@@ -279,34 +236,22 @@ const DataGrid = (props: DataGridProps) => {
       nextColWidth: undefined,
       property: undefined,
     });
-    // setResizingColumnIndexes(undefined);
-    // setPageX(undefined);
-    // setCurColWidth(undefined);
     document.removeEventListener('mouseup', onOnDocumentMouseUp);
-    // setNextColWidth(undefined);
     document.body.style.cursor = 'inherit';
   };
 
   const onResizeStart = (e, property) => {
     // eslint-disable-next-line no-shadow
-    const currCol = e.target.parentElement.parentElement;
+    const currCol = e.target.parentElement;
     // eslint-disable-next-line no-shadow
     const { width: currColWidth } = currCol.getBoundingClientRect();
 
-    console.log('currColWidth', currColWidth, currCol);
-    // eslint-disable-next-line no-nested-ternary
-    // const siblingColumnIdx = columnIdx > -1
-    //   ? (columnIdx + 1) <= columnsCount ? columnIdx + 1 : null
-    //   : null;
-    // setResizingColumnIndexes([columnIdx, siblingColumnIdx]);
     const nextCol = currCol.nextElementSibling;
     // eslint-disable-next-line no-shadow
     const { width: nextColWidth } = (nextCol ? nextCol.getBoundingClientRect() : {});
-    console.log('nextColWidth', nextColWidth, nextCol);
     const payload = {
       isResizing: true,
       property,
-      // resizingColumnIndexes: [columnIdx, nextCol ? siblingColumnIdx : void 0],
       pageX: e.pageX,
       currColWidth,
       nextColWidth: nextCol ? nextColWidth : undefined,
@@ -314,49 +259,28 @@ const DataGrid = (props: DataGridProps) => {
 
     setIsResizing(payload);
 
-    // setPageX(e.pageX);
-    // setCurColWidth(currColWidth);
-    // if (nextCol) { setNextColWidth(nextCol.offsetWidth); }
-
     document.addEventListener('mouseup', onOnDocumentMouseUp);
-
-    // return () => {
-    //   document.removeEventListener('mouseup', onOnDocumentMouseUp);
-    // };
 
     document.body.style.cursor = 'col-resize';
   };
 
-  // useOnDocumentMouseMove([isResizing], (e) => {
   const onOnDocumentMouseMoveHandler = (e) => {
     if (isResizing) {
       const diffX = e.pageX - pageX;
-      console.log('diffX', diffX);
       if (display === 'table' && isResizingNextProp) {
         const v = nextColWidth - diffX;
-        console.log('calling setNextColumnWidth', v);
         setNextColumnWidth(v < minCellWidth ? minCellWidth : v);
       }
       const newVal = currColWidth + diffX;
       setCurrColumnWidth(newVal < minCellWidth ? minCellWidth : newVal);
-      // return c;
     }
   };
 
   useEffect(
     () => {
       if (isResizing) {
-        // const listener = (event) => {
-        //   onOnDocumentMouseMoveHandler(event);
-        // };
-
-        // const debounceListener = listener
         const debounceListener = debounce(
-          // debounce(
-          onOnDocumentMouseMoveHandler,
-          // 32, { maxWait: 180, leading: true, trailing: true }
-          // ),
-          16, { maxWait: 16, leading: true, trailing: true }
+          onOnDocumentMouseMoveHandler, 16, { maxWait: 16, leading: true, trailing: true }
         );
 
         document.addEventListener('mousemove', debounceListener);
@@ -368,7 +292,7 @@ const DataGrid = (props: DataGridProps) => {
       }
       return () => {};
     },
-    [isResizing/* , onOnDocumentMouseMoveHandler */]
+    [isResizing]
   );
 
   useEffect(
@@ -389,78 +313,13 @@ const DataGrid = (props: DataGridProps) => {
     [isResizing, onOnDocumentMouseUp]
   );
 
-
-  /* ColumnsOrder */
-  /* this one is declared higher up in the comp: */
-  // const [columnsOrder, setColumnsOrder] = useState(model.map((m, i) => ({ ...m, index: i })));
-  // const [tempThWidth, setIsReordering] = useState(null);
-  /*
-  const [isReordering, setIsReordering] = useState(null);
-  const [isReorderingHovered, setIsReorderingHovered] = useState(null);
-
-  const onDragTableHeaderStart = (index, ref) => {
-    if (ref && ref.current && ref.current.getBoundingClientRect) {
-      const { width } = ref.current.getBoundingClientRect();
-      setColumnsSizes([...columnsSizes]);
-    }
+  const onDragTableHeaderStart = (index/* , ref */) => {
     setIsReordering(index);
   };
-  const onDragTableHeaderMove = (idx) => {
-    if (isReorderingHovered !== idx) {
-      setIsReorderingHovered(idx);
-    }
-  };
-  const onDropTableHeader = (idx) => {
-    const reorderedColsSizes = Object.entries(
-      columnsSizes
-        .reduce((ac, x, i) => {
-          // eslint-disable-next-line no-param-reassign
-          if (i === idx) {
-            // eslint-disable-next-line no-param-reassign
-            ac[isReordering] = x;
-          } else if (i === isReordering) {
-            // eslint-disable-next-line no-param-reassign
-            ac[idx] = x;
-          }
-          return ac;
-        }, {})
-    )
-      .map(([k, v]) => v);
 
-
-    //   })
-    // .reduce((ac, cs, i, l) => {
-    //   if (i === idx) {
-    //     // eslint-disable-next-line no-param-reassign
-    //     ac[isReordering] = cs;
-    //     // eslint-disable-next-line no-param-reassign
-    //     ac[idx] = cs;
-    //   }
-    //   return ac;
-    // }, columnsSizes);
-
-    setColumnsOrder(columnsOrder
-      .map((co) => {
-        if (co.index === idx) {
-          return {
-            ...co,
-            index: isReordering,
-          };
-        } else if (co.index === isReordering) {
-          return {
-            ...co,
-            index: idx,
-          };
-        }
-        return co;
-      })
-      .sort(({ index: a }, { index: b }) => (a > b ? +1 : -1))
-    );
-    setColumnsSizes(reorderedColsSizes);
-    setIsReorderingHovered(null);
+  const onDropTableHeader = () => {
     setIsReordering(null);
   };
-  */
 
 
   /* Sort */
@@ -514,6 +373,8 @@ const DataGrid = (props: DataGridProps) => {
       setDisplay={setDisplay}
       display={display}
       columnsSizes={columns.map(({ width }) => width)}
+      storeContentRectHeight={storeContentRectHeight}
+      cRectHeight={cRectHeight}
     >
       <Table
         borderCollapse={borderCollapse}
@@ -542,7 +403,7 @@ const DataGrid = (props: DataGridProps) => {
             }
             {
               // (columnsOrder).map((m, i, { length }) => {
-              (columns.filter(c => c.show)).map((m, i, { length }) => {
+              (columns.filter(c => !c.hide)).map((m, i, { length }) => {
                 const resizeProps = resizable /* && (i < (length - 1)) */
                   ? {
                     onResizeStart,
@@ -568,48 +429,31 @@ const DataGrid = (props: DataGridProps) => {
                 ;
 
 
-                // const reorderingProps = {
-                //   reorderable: reorderable,
-                //   isReordering: isReordering,
-                //   isReorderingHovered: isReorderingHovered,
-                //   onDragTableHeaderStart: onDragTableHeaderStart,
-                //   onDragTableHeaderMove: onDragTableHeaderMove,
-                //   onDropTableHeader: onDropTableHeader,
-                // }
+                const reorderingProps = {
+                  reorderable,
+                  setColumOrder,
+                  isReordering,
+                  onDragTableHeaderStart,
+                  onDropTableHeader,
+                };
 
                 return (
                   <Th
+                    cRectHeight={cRectHeight}
                     allowInlinePropertySelection={allowInlinePropertySelection}
-                    // hasBeenResizedOnce={hasBeenResizedOnce}
                     display={display}
                     property={m.property}
                     setInitialSize={(width) => {
-                      // setColumnsSizes((columnsSizes) => { // eslint-disable-line no-shadow
-                      // columnsSizes.forEach((cs, j) => {
-                      // if (i === j) {
-                      // eslint-disable-next-line no-nested-ternary
-                      const res = display === 'block'
-                        ? width > baseCellWidth ? baseCellWidth : width
-                        : width;
-                      // setCurrColumnWidth({ property: m.property, width: res });
-                      setColumnWidth({ property: m.property, width: res });
-                      // return res;
-                      // }
-                      // return cs;
-                      // });
-
-                      // return newColsSizes;
-                      // });
+                      if (resizable) {
+                        const res = width < baseCellWidth ? baseCellWidth : width;
+                        setColumnWidth({ property: m.property, width: res });
+                      }
                     }}
                     model={columns}
                     showColumn={showColumn}
                     hideColumn={hideColumn}
-                    // setColumnsOrder={setColumnsOrder}
-                    // setColumnsSizes={setColumnsSizes}
-                    availProps={availProps}
                     data={data}
                     isResizing={isResizing}
-                    // resizingColumnIndexes={resizingColumnIndexes}
                     isBeingResized={!!(m.property === isResizingProp)}
                     isBeingResizedBySibling={!!(m.property === isResizingNextProp)}
                     menuDescriptor={m.menuDescriptor}
@@ -619,11 +463,10 @@ const DataGrid = (props: DataGridProps) => {
                     isLast={i === length - 1}
                     {...resizeProps}
                     {...sortProps}
-                    // {...reorderingProps}
+                    {...reorderingProps}
                     ThInnerWrapper={ThInnerWrapper}
                     dragId={m.property}
                   >
-                    {/* {m.displayName} */}
                     <TextEllipsis title={m.displayName}>{m.displayName}</TextEllipsis>
                   </Th>
                 );
@@ -634,10 +477,8 @@ const DataGrid = (props: DataGridProps) => {
             hasCustomHeader
               ? tableHeaderOverlayRender({
                 data,
-                // model: columnsOrder,
                 model,
                 selected: actualSelected,
-                // columnsSizes,
                 sortDirections: actualSortDirections,
               })
               : null
@@ -674,26 +515,21 @@ const DataGrid = (props: DataGridProps) => {
                   }
 
                   {
-                    // columnsOrder.map((m = {}, idx) => {
-                    (columns.filter(c => c.show)).map((m = {}, idx, filteredColumns) => {
+                    (columns.filter(c => !c.hide)).map((m = {}, idx, filteredColumns) => {
                       const sizeProps = (
                         hasBeenResizedOnce
+                        && resizable
                         && m.width !== undefined
-                        && columns.filter(c => c.show).length > 1
+                        && columns.filter(c => !c.hide).length > 1
                       )
                         ? {
                           style: {
                             width: m.width,
                             minWidth: m.width,
                             maxWidth: m.width,
-                            // maxWidth: '100%',
-                            // },
                           },
                         }
                         : {};
-
-                      // const maxWidth = columnsSizes && columnsSizes[idx] !== undefined
-                      //   ? columnsSizes[idx] - 8
 
                       const mComp = m.Component ? <m.Component {...entity} /> : null;
 
@@ -728,7 +564,6 @@ const DataGrid = (props: DataGridProps) => {
                                     </Flex>
                                   )
                               }
-
                             </Flex>
                           </span>
                         </TdInnerWrapper>
@@ -747,6 +582,7 @@ const DataGrid = (props: DataGridProps) => {
                       return (
                         <Td
                           allowInlinePropertySelection={allowInlinePropertySelection}
+                          key={idx}
                           columns={columns}
                           mComp={mComp}
                           Component={m.Component}
@@ -756,7 +592,6 @@ const DataGrid = (props: DataGridProps) => {
                           isResizing={isResizing}
                           isBeingResized={!!(m.property === isResizingProp)}
                           isBeingResizedBySibling={!!(m.property === isResizingNextProp)}
-                          key={idx}
                         >
                           {finalCellContent}
                         </Td>

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+
 const Tr = styled.tr`
   &:not(:last-child) {
     border-bottom: 1px solid hsla(0, 0%, 88%, 1);
@@ -12,7 +13,6 @@ const Tr = styled.tr`
   &:nth-child(1n) {
     ${({ selected }) => (selected ? css`background: hsla(0, 0%, 95%, 1);` : '')};
     &:hover {
-      /* background: hsla(0, 0%, 95%, 1); */
       background: ${({ theme: { palette } }) => `${palette.accent.light.replace('rgb(', 'rgba(').replace(')', ', .1)')}`};
     }
   }
