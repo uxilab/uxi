@@ -36,9 +36,21 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
       const { height, width: containerWidth } = contentRect;
       const displayVal = tableWidth <= containerWidth ? 'table' : 'block';
 
-      setDisplay(displayVal);
+      if (display !== displayVal) {
+        setDisplay(displayVal);
+      }
+
       if (cRectHeight !== height) {
-        storeContentRectHeight(height);
+        storeContentRectHeight(
+          // Substract scroll bar width, if needed, to remove a useless spacing
+          // that would create a useless scrolling context
+          // this only serves as a way to get a nice drag ghost,
+          // a couple missing PX are not a big issue,
+          // where a couple too much create the aforementioned issue
+          displayVal === 'block'
+            ? height - 17 // largest registered scrollbarWidth (https://bit.ly/2UBdiFz)
+            : height
+        );
       }
 
       table.setAttribute('style', '');
