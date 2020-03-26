@@ -39,8 +39,12 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
       if (display !== displayVal) {
         setDisplay(displayVal);
       }
+      const heightChanged = (displayVal === 'table'
+        ? (cRectHeight !== height)
+        : (cRectHeight !== height - 17) // potential scrollbar
+      );
 
-      if (cRectHeight !== height) {
+      if (heightChanged) {
         storeContentRectHeight(
           // Substract scroll bar width, if needed, to remove a useless spacing
           // that would create a useless scrolling context
