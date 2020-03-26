@@ -456,6 +456,7 @@ const DataGrid = (props: DataGridProps) => {
                     isResizing={isResizing}
                     isBeingResized={!!(m.property === isResizingProp)}
                     isBeingResizedBySibling={!!(m.property === isResizingNextProp)}
+                    isReordering={isReordering}
                     menuDescriptor={m.menuDescriptor}
                     menu={m.menu}
                     index={i}

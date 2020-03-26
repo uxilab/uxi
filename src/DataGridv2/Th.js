@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+// import isEqual from 'lodash/isEqual'
 import styled, { css } from 'styled-components';
 import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
@@ -96,10 +97,11 @@ class Th extends React.Component {
     }
   }
 
-  /* shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
       isResizing,
+      isReordering,
       model = [],
       isBeingResizedBySibling,
       // setInitialSize,
@@ -107,6 +109,7 @@ class Th extends React.Component {
     } = this.props;
     const {
       isResizing: willBeResizing,
+      isReordering: willBeReordering,
       model: nextModel = [],
       // setInitialSize: nextSetInitialSize,
     } = nextProps;
@@ -123,11 +126,11 @@ class Th extends React.Component {
       return true;
     }
 
-    if (!isEqual(nextModel.map(x => !x.hide), model.map(x => !x.hide))) {
+    if (nextModel.map(x => !x.hide).join(',') !== model.map(x => !x.hide).join(',')) {
       return true;
     }
 
-    if (!isEqual(nextModel.map(x => x.property), model.map(x => x.property))) {
+    if (nextModel.map(x => x.property).join(',') !== model.map(x => x.property).join(',')) {
       return true;
     }
 
@@ -138,25 +141,40 @@ class Th extends React.Component {
       return true;
     }
 
+    if (
+      (isReordering === null && willBeReordering !== null && isReordering !== willBeReordering)
+      || (isReordering !== null && willBeReordering === null && isReordering !== willBeReordering)
+    ) {
+      return true;
+    }
+
     return false;
   }
+  /*
+
   */
 
   componentDidUpdate(prevProps) {
     const { display, isResizing, model = [], property } = this.props;
     const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
-    const a = prevModel.find(m => m.property === property) || {};
-    const b = model.find(m => m.property === property) || {};
-    const wasJustAdded = (!b.hide && a.hide);
+    // const a = prevModel.find(m => m.property === property) || {};
+    const modelForThisProp = model.find(m => m.property === property) || {};
+    // const wasJustAdded = (!b.hide && a.hide);
+
+
+    // eslint-disable-next-line no-shadow
+    const curr = model.filter(x => !x.hide).map(({ property = '' } = {}) => property);
+    // eslint-disable-next-line no-shadow
+    const prev = prevModel.filter(x => !x.hide).map(({ property = '' } = {}) => property);
 
     const shouldCheckIntrinsicWidth = (
       ((wasResizing && !isResizing) && display === 'table')
-      || wasJustAdded
+      || (curr.join(',') !== prev.join(','))
     );
 
     if (shouldCheckIntrinsicWidth) {
       if (this.ref.current && this.ref.current.getBoundingClientRect) {
-        const { width } = b;
+        const { width } = modelForThisProp;
         const bRect = this.ref.current.getBoundingClientRect() || {};
         const { width: intrinsicWidth = 0 } = bRect;
 
@@ -374,7 +392,7 @@ class Th extends React.Component {
           >&nbsp;</div>
 
         </ThInnerWrapper>
-        {resizable && (isLast ? display !== 'table' : true) && !isReordering
+        {resizable && (isLast ? display !== 'table' : true) && isReordering === null
           ? (
             <ResizeHandler
               property={property}

@@ -54,7 +54,7 @@ const ThInnerWrapper = (props) => {
         const { left, width } = ref.current.getBoundingClientRect();
 
         const hoverMiddleX = (width) / 2;
-        const { x = 0 } = monitor.getClientOffset();
+        const { x = 0 } = monitor.getClientOffset() || {};
 
         const isDragingRight = dragIndex < hoverIndex;
 

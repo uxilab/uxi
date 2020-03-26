@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 import React from 'react';
-// import isEqual from 'lodash/isEqual';
+import isEqual from 'lodash/isEqual';
 
 const cellHeight = 48;
 
@@ -18,45 +18,47 @@ const TdUI = styled.td.attrs(props => ({
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Td extends React.Component {
-  // shouldComponentUpdate(nextProps ) {
-  //   const {
-  //     isBeingResized,
-  //     columnSize,
-  //     columns = [],
-  //     mComp,
-  //   } = this.props;
-  //   const {
-  //     columnSize: nextColumnSize,
-  //     mComp: nextmComp,
-  //     columns: nextColumns = [],
-  //   } = nextProps;
+  shouldComponentUpdate(nextProps) {
+    const {
+      isBeingResized,
+      columnSize,
+      columns = [],
+      mComp,
+    } = this.props;
+    const {
+      columnSize: nextColumnSize,
+      mComp: nextmComp,
+      columns: nextColumns = [],
+    } = nextProps;
 
-  //   if (
-  //     columns.filter((x = {}) => !x.hide).length
-  //     !== nextColumns.filter((x = {}) => !x.hide).length
-  //   ) {
-  //     return true;
-  //   }
+    const curr = columns.filter(x => !x.hide).map(({ property = '' } = {}) => property);
+    const next = nextColumns.filter(x => !x.hide).map(({ property = '' } = {}) => property);
+    if (curr.join(',') !== next.join(',')) {
+      return true;
+    }
 
-  //   /** Columns size can change on user input (dnd col resize)
-  //    * but also on mount,
-  //    * depending on props an available space
-  //    */
+    /** Columns size can change on user input (dnd col resize)
+     * but also on mount,
+     * depending on props an available space
+     */
 
-  //   if (columnSize !== nextColumnSize) {
-  //     return true;
-  //   }
+    if (columnSize !== nextColumnSize) {
+      return true;
+    }
 
-  //   if (isBeingResized) {
-  //     return true;
-  //   }
+    if (isBeingResized) {
+      return true;
+    }
 
-  //   if (nextmComp && mComp && !isEqual(nextmComp.props, mComp.props)) {
-  //     return true;
-  //   }
+    // if consumer changes props under ouor feet in its Component
+    // altho, should we do this here and not higher up in the tree ?
+    // e.g. is consumer changes anytihng in what is passed, let's rerender the entore datGRid
+    if (nextmComp && mComp && !isEqual(nextmComp.props, mComp.props)) {
+      return true;
+    }
 
-  //   return false;
-  // }
+    return false;
+  }
 
   render() {
     return (

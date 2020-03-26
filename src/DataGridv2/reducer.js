@@ -11,7 +11,7 @@ export const initialState = {
   nextColWidth: undefined,
   hasBeenResizedOnce: false,
 
-  isReordering: undefined,
+  isReordering: null,
 
   cRectHeight: undefined,
 };
@@ -132,7 +132,6 @@ export const reducer = (state, { type, payload }) => {
 };
 
 
-/*
 // eslint-disable-next-line no-shadow
 const middleware = reducer => (state, { type, payload }) => {
   console.log('––––––––––––––––––––––––––––', '\n');
@@ -144,6 +143,7 @@ const middleware = reducer => (state, { type, payload }) => {
 };
 
 export default middleware(reducer);
+/*
+export default reducer;
  */
 
-export default reducer;
