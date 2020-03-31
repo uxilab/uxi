@@ -14,10 +14,20 @@ export const initialState = {
   isReordering: null,
 
   cRectHeight: undefined,
+
+  baseCellWidth: 240,
+
+  display: 'table',
 };
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case C.SET_DISPLAY:
+      return {
+        ...state,
+        display: payload,
+      };
+
     case C.STORE_C_RECT_HEIGHT:
       return {
         ...state,
@@ -31,9 +41,26 @@ export const reducer = (state, { type, payload }) => {
       };
 
     case C.SHOW_COLUMN:
+
       return {
         ...state,
-        columns: state.columns.map(c => (c.property === payload ? { ...c, hide: false } : c)),
+        columns: state.columns
+          .map(c => (c.property === payload
+            ? console.log(c.property, c.width) || {
+              ...c,
+              hide: false,
+              // when display is table, intrinsic width will be added upon showing new column
+              // see Th.componentDidUpdate
+              // width: c.width || state.display !== 'table' ? state.baseCellWidth : undefined,
+              ...(
+                // eslint-disable-next-line no-nested-ternary
+                c.width === undefined
+                  ? state.display !== 'table' ? { width: state.baseCellWidth } : {}
+                  : {}
+              ),
+            }
+            : c
+          )),
       };
 
     case C.HIDE_COLUMN:
@@ -132,6 +159,7 @@ export const reducer = (state, { type, payload }) => {
 };
 
 
+/*
 // eslint-disable-next-line no-shadow
 const middleware = reducer => (state, { type, payload }) => {
   console.log('––––––––––––––––––––––––––––', '\n');
@@ -143,7 +171,7 @@ const middleware = reducer => (state, { type, payload }) => {
 };
 
 export default middleware(reducer);
-/*
+
+*/
 export default reducer;
- */
 

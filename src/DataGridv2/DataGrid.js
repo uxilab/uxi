@@ -14,6 +14,7 @@ import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import reducer, { initialState } from './reducer'; // eslint-disable-line import/no-named-as-default
 import {
+  setDisplay as setDisplayAction,
   setColumns as setColumnsAction,
   showColumn as showColumnAction,
   hideColumn as hideColumnAction,
@@ -167,6 +168,8 @@ const DataGrid = (props: DataGridProps) => {
       hasBeenResizedOnce,
 
       isReordering,
+
+      display,
     },
     dispatch,
   ] = useReducer(
@@ -174,6 +177,7 @@ const DataGrid = (props: DataGridProps) => {
     {
       ...initialState,
       columns: model,
+      baseCellWidth,
     }
   );
 
@@ -187,6 +191,8 @@ const DataGrid = (props: DataGridProps) => {
     }))
   ;
 
+
+  const setDisplay = property => dispatch(setDisplayAction(property));
 
   const setColumns = property => dispatch(setColumnsAction(property));
   const storeContentRectHeight = property => dispatch(storeContentRectHeightAction(property));
@@ -218,9 +224,6 @@ const DataGrid = (props: DataGridProps) => {
     }
     return () => {};
   }, [allowInlinePropertySelectionMonitor]);
-
-
-  const [display, setDisplay] = useState('table');
 
 
   runWarnings(props);
