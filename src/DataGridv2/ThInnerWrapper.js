@@ -15,8 +15,13 @@ const ThInnerWrapperUI = styled.div`
   width: auto;
   box-sizing : border-box;
   ${({ resizable }) => (resizable ? css`padding-right: 8px;` : '')};
+  ${({ canDrag }) => (canDrag ? css`cursor: ew-resize;` : '')};
   height: 100%;
-  width: calc(100% - 8px);
+  /* width: calc(100% - 8px); */
+  ${({ dragId }) => (dragId !== 'toString'
+    ? css`width: calc(100% - 8px);`
+    : css`width: calc(100%); max-width: calc(100%); padding: 0;`
+  )};
 `;
 
 
@@ -29,6 +34,7 @@ const ThInnerWrapper = (props) => {
     index,
     dragId,
     reorderable,
+    canDrag,
   } = props;
 
   const ref = useRef(null);
@@ -77,9 +83,18 @@ const ThInnerWrapper = (props) => {
   });
 
   const [, drag] = useDrag({
-    item: { type: 'my-foobar-type', dragId, index },
+    item: {
+      type: 'my-foobar-type',
+      dragId,
+      index,
+      options: {
+        canDrag,
+      },
+    },
+    // eslint-disable-next-line consistent-return
     begin: (/* monitor */) => {
-      if (!ref.current || isResizing) {
+      if (!ref.current || isResizing || !canDrag) {
+        // return drop(ref);
         return;
       }
       onDragTableHeaderStart(index, ref);
@@ -112,7 +127,7 @@ const ThInnerWrapper = (props) => {
   return (
     <ThInnerWrapperUI
       {...props}
-      ref={isResizing ? null : ref}
+      ref={isResizing || !canDrag ? null : ref}
     />
   );
 };
