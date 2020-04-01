@@ -17,7 +17,7 @@ const useResizeObserver = (deps, callback) => {
     };
 
     const debounceHandler = throttle(
-      handler, 32, { maxWait: 128, leading: true, trailing: false }
+      handler, 16, { maxWait: 16, leading: true, trailing: false }
     );
 
     const resizeObserver = new ResizeObserver(debounceHandler);

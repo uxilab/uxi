@@ -14,6 +14,8 @@ import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import reducer, { initialState } from './reducer'; // eslint-disable-line import/no-named-as-default
 import {
+  setExtraColumnWidth as setExtraColumnWidthAction,
+  setDisplay as setDisplayAction,
   setColumns as setColumnsAction,
   showColumn as showColumnAction,
   hideColumn as hideColumnAction,
@@ -167,6 +169,10 @@ const DataGrid = (props: DataGridProps) => {
       hasBeenResizedOnce,
 
       isReordering,
+
+      display,
+
+      extraColWidth,
     },
     dispatch,
   ] = useReducer(
@@ -174,11 +180,12 @@ const DataGrid = (props: DataGridProps) => {
     {
       ...initialState,
       columns: model,
+      baseCellWidth,
     }
   );
 
 
-  const columns = allowInlinePropertySelection
+  let columns = allowInlinePropertySelection
     ? columnsState
     : model.map(x => ({
       ...x,
@@ -187,6 +194,23 @@ const DataGrid = (props: DataGridProps) => {
     }))
   ;
 
+  if (extraColWidth) {
+    columns = [...columns, {
+      property: 'toString', // cheat
+      displayName: <TextEllipsis style={{ userSelect: 'none', textOverflow: 'clip' }}>
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+      </TextEllipsis>,
+      width: extraColWidth,
+    }];
+  }
+
+
+  const setExtraColumnWidth = width => dispatch(setExtraColumnWidthAction(width));
+
+  const setDisplay = property => dispatch(setDisplayAction(property));
 
   const setColumns = property => dispatch(setColumnsAction(property));
   const storeContentRectHeight = property => dispatch(storeContentRectHeightAction(property));
@@ -218,9 +242,6 @@ const DataGrid = (props: DataGridProps) => {
     }
     return () => {};
   }, [allowInlinePropertySelectionMonitor]);
-
-
-  const [display, setDisplay] = useState('table');
 
 
   runWarnings(props);
@@ -367,11 +388,15 @@ const DataGrid = (props: DataGridProps) => {
 
   return (
     <DataGridSmartOverflowXWrapper
+      selectable={selectable}
+      extraColWidth={extraColWidth}
+      setExtraColumnWidth={setExtraColumnWidth}
       hasBeenResizedOnce={hasBeenResizedOnce}
       isResizing={isResizing}
       useSmartOverflowX={useSmartOverflowX}
       setDisplay={setDisplay}
       display={display}
+      columns={columns}
       columnsSizes={columns.map(({ width }) => width)}
       storeContentRectHeight={storeContentRectHeight}
       cRectHeight={cRectHeight}
@@ -379,6 +404,7 @@ const DataGrid = (props: DataGridProps) => {
       <Table
         borderCollapse={borderCollapse}
         isResizing={isResizing}
+        isReordering={isReordering}
       >
         <thead {...(hasCustomHeader ? { position: 'relative' } : {})}>
           <Tr>
@@ -444,6 +470,7 @@ const DataGrid = (props: DataGridProps) => {
                     display={display}
                     property={m.property}
                     setInitialSize={(width) => {
+                      console.log('DataGrid setInitialSize called ', m.property, width);
                       if (resizable) {
                         const res = width < baseCellWidth ? baseCellWidth : width;
                         setColumnWidth({ property: m.property, width: res });
@@ -456,6 +483,7 @@ const DataGrid = (props: DataGridProps) => {
                     isResizing={isResizing}
                     isBeingResized={!!(m.property === isResizingProp)}
                     isBeingResizedBySibling={!!(m.property === isResizingNextProp)}
+                    isReordering={isReordering}
                     menuDescriptor={m.menuDescriptor}
                     menu={m.menu}
                     index={i}
@@ -467,7 +495,11 @@ const DataGrid = (props: DataGridProps) => {
                     ThInnerWrapper={ThInnerWrapper}
                     dragId={m.property}
                   >
-                    <TextEllipsis title={m.displayName}>{m.displayName}</TextEllipsis>
+                    {
+                      m.property === 'toString'
+                        ? m.displayName
+                        : <TextEllipsis title={m.displayName}>{m.displayName}</TextEllipsis>
+                    }
                   </Th>
                 );
               })

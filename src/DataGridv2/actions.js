@@ -1,5 +1,7 @@
 
 export const C = {
+  SET_EXTRA_COL_WIDTH: 'SET_EXTRA_COL_WIDTH',
+  SET_DISPLAY: 'SET_DISPLAY',
   SET_COLUMNS: 'SET_COLUMNS',
   SHOW_COLUMN: 'SHOW_COLUMN',
   HIDE_COLUMN: 'HIDE_COLUMN',
@@ -11,6 +13,10 @@ export const C = {
   SET_COLUMN_ORDER: 'SET_COLUMN_ORDER',
   STORE_C_RECT_HEIGHT: 'STORE_C_RECT_HEIGHT',
 };
+
+export const setExtraColumnWidth = payload => ({ type: C.SET_EXTRA_COL_WIDTH, payload });
+
+export const setDisplay = payload => ({ type: C.SET_DISPLAY, payload });
 
 export const storeContentRectHeight = payload => ({ type: C.STORE_C_RECT_HEIGHT, payload });
 export const setColumns = payload => ({ type: C.SET_COLUMNS, payload });

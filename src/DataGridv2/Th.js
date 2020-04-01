@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+// import isEqual from 'lodash/isEqual'
 import styled, { css } from 'styled-components';
 import ResizeHandler from './ResizeHandler';
 import SortHandler from './SortHandler';
@@ -32,12 +33,12 @@ const ThUI = styled.th`
       transition: all 280ms cubic-bezier(.5,1,.5,1);
       opacity: ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? 0.7 : 0) : 0.2)};
       width: 6px;
-      &:hover {
+      /* &:hover {
         &, &:after {
           opacity:.7;
           transition: all 280ms cubic-bezier(.5,1,.5,1);
         }
-      }
+      } */
     }
   }
 
@@ -46,20 +47,20 @@ const ThUI = styled.th`
       transition: all 280ms cubic-bezier(.5,1,.5,1);
       ${({ isBeingResized }) => (isBeingResized ? css`opacity: 0.7 !important;` : '')};
       ${({ isBeingResized }) => (isBeingResized ? css`width: 6px;` : '')};
-      &:hover, &:not(:hover) {
+      /* &:hover, &:not(:hover) {
         &, &:after {
           &
           ${({ isBeingResized }) => (isBeingResized ? css`opacity:.7;` : '')};
           transition: all 280ms cubic-bezier(.5,1,.5,1);
         }
-      }
+      } */
   }
-  &:last-child:hover ${ResizeHandler}:after,
+  /* &:last-child:hover ${ResizeHandler}:after,
   &:last-child:not(:hover) ${ResizeHandler}:after {
     content: '◂❘';
     margin-right: 0;
     transform: translateX(0%);
-  }
+  } */
 
   *[data-drop-down-trigger] {
     height: 100%;
@@ -86,20 +87,25 @@ class Th extends React.Component {
   }
 
   componentDidMount() {
+    const { property } = this.props;
+
     if (this.ref.current && this.ref.current.getBoundingClientRect) {
       const bRect = this.ref.current.getBoundingClientRect() || {};
       const { width = 0 } = bRect;
       const { setInitialSize } = this.props;
-      if (setInitialSize) {
+      // if (setInitialSize/*  && display === 'block' */) {
+      // otherwise we are ricking a cyclic deps with the useREsizebs and the extraCol
+      if (setInitialSize && property !== 'toString') {
         setInitialSize(width);
       }
     }
   }
 
-  /* shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
       isResizing,
+      isReordering,
       model = [],
       isBeingResizedBySibling,
       // setInitialSize,
@@ -107,6 +113,7 @@ class Th extends React.Component {
     } = this.props;
     const {
       isResizing: willBeResizing,
+      isReordering: willBeReordering,
       model: nextModel = [],
       // setInitialSize: nextSetInitialSize,
     } = nextProps;
@@ -123,11 +130,11 @@ class Th extends React.Component {
       return true;
     }
 
-    if (!isEqual(nextModel.map(x => !x.hide), model.map(x => !x.hide))) {
+    if (nextModel.map(x => !x.hide).join(',') !== model.map(x => !x.hide).join(',')) {
       return true;
     }
 
-    if (!isEqual(nextModel.map(x => x.property), model.map(x => x.property))) {
+    if (nextModel.map(x => x.property).join(',') !== model.map(x => x.property).join(',')) {
       return true;
     }
 
@@ -138,37 +145,52 @@ class Th extends React.Component {
       return true;
     }
 
+    if (
+      (isReordering === null && willBeReordering !== null && isReordering !== willBeReordering)
+      || (isReordering !== null && willBeReordering === null && isReordering !== willBeReordering)
+    ) {
+      return true;
+    }
+
     return false;
   }
+  /*
+
   */
 
-  componentDidUpdate(prevProps) {
-    const { display, isResizing, model = [], property } = this.props;
-    const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
-    const a = prevModel.find(m => m.property === property) || {};
-    const b = model.find(m => m.property === property) || {};
-    const wasJustAdded = (!b.hide && a.hide);
+  // componentDidUpdate(prevProps) {
+  //   const { display, isResizing, model = [], property } = this.props;
+  //   const { isResizing: wasResizing, model: prevModel = [] } = prevProps;
+  //   // const a = prevModel.find(m => m.property === property) || {};
+  //   const modelForThisProp = model.find(m => m.property === property) || {};
+  //   // const wasJustAdded = (!b.hide && a.hide);
 
-    const shouldCheckIntrinsicWidth = (
-      ((wasResizing && !isResizing) && display === 'table')
-      || wasJustAdded
-    );
 
-    if (shouldCheckIntrinsicWidth) {
-      if (this.ref.current && this.ref.current.getBoundingClientRect) {
-        const { width } = b;
-        const bRect = this.ref.current.getBoundingClientRect() || {};
-        const { width: intrinsicWidth = 0 } = bRect;
+  //   // eslint-disable-next-line no-shadow
+  //   const curr = model.filter(x => !x.hide).map(({ property = '' } = {}) => property);
+  //   // eslint-disable-next-line no-shadow
+  //   const prev = prevModel.filter(x => !x.hide).map(({ property = '' } = {}) => property);
 
-        if (intrinsicWidth !== width) {
-          const { setInitialSize } = this.props;
-          if (setInitialSize) {
-            setInitialSize(intrinsicWidth);
-          }
-        }
-      }
-    }
-  }
+  //   const shouldCheckIntrinsicWidth = (
+  //     ((wasResizing && !isResizing) && display === 'table')
+  //     || (curr.join(',') !== prev.join(','))
+  //   );
+
+  //   if (shouldCheckIntrinsicWidth) {
+  //     if (this.ref.current && this.ref.current.getBoundingClientRect) {
+  //       const { width } = modelForThisProp;
+  //       const bRect = this.ref.current.getBoundingClientRect() || {};
+  //       const { width: intrinsicWidth = 0 } = bRect;
+
+  //       if (intrinsicWidth !== width) {
+  //         const { setInitialSize } = this.props;
+  //         if (setInitialSize) {
+  //           setInitialSize(intrinsicWidth);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   render() {
     const {
@@ -216,6 +238,13 @@ class Th extends React.Component {
 
     const isBeingReordered = isReordering === index;
 
+    // eslint-disable-next-line no-nested-ternary
+    // const anchor = property === 'toString'
+    //   ? 'right'
+    //   : index === model
+    //         .filter(m => m.property !== 'toString')
+    //         .filter(x => !x.hide).length - 1 ? 'right' : 'left';
+
     return (
       <ThUI
         ref={this.ref}
@@ -227,6 +256,7 @@ class Th extends React.Component {
         isFirst={index === 0}
       >
         <ThInnerWrapper
+          canDrag={property !== 'toString'}
           reorderable={reorderable}
           isResizing={isResizing}
           onDragTableHeaderStart={onDragTableHeaderStart}
@@ -248,11 +278,16 @@ class Th extends React.Component {
                     alignItems: 'stretch',
                     flexGrow: 999,
                     flexShrink: 999,
-                    cursor: reorderable ? 'ew-resize' : 'normal',
+                    // cursor: reorderable ? 'ew-resize' : 'normal',
                   }}
                 >
                   <ButtonMenuMultiLevel
                     style={{ alignItems: 'stretch', display: 'flex', width: '100%', boxSizing: 'border-box' }}
+                    // anchor={index === model
+                    // .filter(m => m.property !== 'toString')
+                    // .filter(x => !x.hide).length - 1 ? 'right' : 'left'
+                    // }
+                    // anchor={anchor}
                     anchor={'left'}
                     buttonWrapperStyle={{
                       position: 'inherit',
@@ -266,7 +301,7 @@ class Th extends React.Component {
                       zIndex: 1,
                     }}
                     menuDescriptor={
-                      model.map((m) => {
+                      model.filter(m => m.property !== 'toString').map((m) => {
                         const modelDef = model.find(mo => m.property === mo.property);
                         const isActive = !m.hide;
                         const onClick = () => {
@@ -303,7 +338,7 @@ class Th extends React.Component {
                 </Flex>
               )
           }
-          {sortable
+          {sortable && (property !== 'toString')
             ? (
               <SortHandler
                 style={{ flexGrow: 1, flexShrink: 0 }}
@@ -356,7 +391,7 @@ class Th extends React.Component {
               zIndex: 1,
               position: 'absolute',
               width: isBeingReordered ? '100%' : '0',
-              height: cRectHeight,
+              height: cRectHeight - 18, // scrollbars
               right: 0,
               background: 'rgba(255, 255, 255, 0.5)',
             }}
@@ -367,14 +402,14 @@ class Th extends React.Component {
               transition: 'none',
               position: 'absolute',
               width: '1px',
-              height: cRectHeight,
+              height: cRectHeight - 18, // scrollbars
               right: 0,
               background: isReordering ? '#cecece' : 'transparent',
             }}
           >&nbsp;</div>
 
         </ThInnerWrapper>
-        {resizable && (isLast ? display !== 'table' : true) && !isReordering
+        {(property !== 'toString') && resizable && (isLast ? display !== 'table' : true) && isReordering === null
           ? (
             <ResizeHandler
               property={property}

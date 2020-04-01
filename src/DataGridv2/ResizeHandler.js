@@ -28,13 +28,14 @@ const ResizeHandler = styled.div.attrs(props => ({
   }
   &:hover {
     opacity: ${({ isResizing, isBeingResized }) => (isResizing ? (isBeingResized ? 0.7 : 0) : 0.2)};
-    &:after {
+    /* &:after {
       transition: all 280ms cubic-bezier(.5,1,.5,1);
       opacity: .7;
-    }
+    } */
   }
-  transition: all 280ms cubic-bezier(.5,1,.5,1);
-  &:after {
+  /* transition: all 280ms cubic-bezier(.5,1,.5,1); */
+  transition: none;
+  /* &:after {
     transition: all 280ms cubic-bezier(.5,1,.5,1);
     content: '◂❘▸';
     position: absolute;
@@ -44,7 +45,7 @@ const ResizeHandler = styled.div.attrs(props => ({
     transform: translateX(50%);
     width: auto;
     opacity: 0;
-  }
+  } */
 `;
 /* eslint-disable-enable no-nested-ternary */
 
