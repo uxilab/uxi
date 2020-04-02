@@ -24,6 +24,107 @@ The model support custom menu for table header
 
 
 
+## Example usage (uncontrolled  single selection)
+
+<Playground>
+  <ThemeProvider>
+    <DataGrid
+      useSmartOverflowX
+      resizable
+      reorderable
+      propertyKey="name"
+      selectable
+      onInvertSelection={(selected) => {
+        console.log('datagrid.mdx onInvertSelection', selected);
+      }}
+      onSelectionChange={(isSelected, entityId, selected) => {
+        console.log('isSelected, entityId, selected', isSelected, entityId, selected)
+      }}
+      onSelectAllChange={(selectAllChecked) => {
+        console.log('selectAllChecked', selectAllChecked)
+      }}
+      model={[
+        {
+          property: 'firstName',
+          displayName: 'First name',
+          CellDetail: (entity) => {
+            return (
+              <div style={{ padding: '16px' }}>
+                <h4>Valid Data</h4>
+                <p>Lorem ipsum dolor sit amet</p>
+                <Flex style={{ justifyContent: 'flex-start', margin: '8px 0' }}>
+                  <Circle style={{ margin: '0 8px' }} />
+                  <Circle style={{ margin: '0 8px' }} />
+                </Flex>
+                <div><a href="#">View original</a></div>
+                <div><a href="#">Search for similar</a></div>
+              </div>
+            )
+          },
+          // Component,
+          menuDescriptor: [
+            {
+              label: 'foo',
+              icon: <Circle />,
+              onClick: () => { console.log('foo')},
+              children: [
+                { label: 'bar', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                {
+                  label: 'foo',
+                  icon: <Circle />,
+                  onClick: () => { console.log('foo>bar')},
+                  children: [
+                    { label: 'bar', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                    { label: 'foo', icon: <Circle />, onClick: () => { console.log('foo>bar')} },
+                  ],
+                }
+              ],
+            },
+            {
+              label: 'bar',
+              icon: <Circle />,
+              onClick: () => { console.log('foo')},
+            },
+          ]
+        },
+        // { property: 'name', displayName: 'Name', menu: <ButtonMenu button={'≡'}>yooooo</ButtonMenu> },
+        { property: 'name', displayName: 'Name', menu: <Flex style={{ padding: '8px', marginLeft: 'auto' }}><Star /></Flex> },
+        {
+          property: 'age',
+          displayName: 'Age',
+          menuDescriptor: [{
+            label: 'foo',
+            icon: <Circle />,
+            onClick: () => { console.log('foo')},
+            children: [
+              {
+                label: 'bar',
+                icon: <Circle />,
+                onClick: () => { console.log('foo>bar')},
+              }
+            ],
+            // type: ,
+            // Link: ,
+            // to: ,
+            // href: ,
+            // target: ,
+            // isFullWidth: ,
+          }]
+        },
+      ]}
+      data={[
+        { age: 123, firstName: 'foozefv ojnzfkgjnbzjrnvzoekrjnv', name: 'bar', },
+        { age: 123, firstName: 'baz kzejfnvlskngd bl lknf lkzfn g', name: 'foo', },
+        { age: 123, firstName: 'fuz', name: 'fob', },
+        { age: 123, firstName: 'voo', name: 'mar', },
+        { age: 123, firstName: 'boplkznfknlfjgnkjnzfjkleznlfnzekjrfnkzenrkzejrnkzejrnf', name: 'vrn', },
+      ]}
+    />
+  </ThemeProvider>
+</Playground>
+
+
+
 ## Example usage (controlled selection)
 
 <Playground>
@@ -41,6 +142,13 @@ The model support custom menu for table header
           resizable
           reorderable
           propertyKey="name"
+          selectable
+          multiSelectable
+          selected={state.selected}
+          onInvertSelection={(selected) => {
+            console.log('datagrid.mdx onInvertSelection', selected);
+            setState({ ...state, selected });
+          }}
           onSelectionChange={(isSelected, entityId, selected) => {
             console.log('isSelected, entityId, selected', isSelected, entityId, selected)
             setState({ ...state, selected })
@@ -55,8 +163,6 @@ The model support custom menu for table header
             { age: 123, firstName: 'bop', name: 'vrn', },
           ].map(({ name }) => name ) : [] })
           }}
-          selected={state.selected}
-          selectable
           model={[
             {
               property: 'firstName',
@@ -133,9 +239,9 @@ The model support custom menu for table header
             { age: 123, firstName: 'voo', name: 'mar', },
             { age: 123, firstName: 'boplkznfknlfjgnkjnzfjkleznlfnzekjrfnkzenrkzejrnkzejrnf', name: 'vrn', },
           ]}
+          sortable
           sortDirections={state.sortDirections}
           defaultSortDirections={undefined}
-          sortable
           onSortChange={(property, sortDirection, newSortDirections) => {
             console.log('mdx: newSortDirections', newSortDirections)
             setState({ ...state, sortDirections: newSortDirections })

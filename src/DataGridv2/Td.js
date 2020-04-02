@@ -24,12 +24,18 @@ class Td extends React.Component {
       columnSize,
       columns = [],
       mComp,
+      selected = [],
     } = this.props;
     const {
       columnSize: nextColumnSize,
       mComp: nextmComp,
       columns: nextColumns = [],
+      selected: nextSelected = [],
     } = nextProps;
+
+    if (selected.join(',') !== nextSelected.join(',')) {
+      return true;
+    }
 
     const curr = columns.filter(x => !x.hide).map(({ property = '' } = {}) => property);
     const next = nextColumns.filter(x => !x.hide).map(({ property = '' } = {}) => property);

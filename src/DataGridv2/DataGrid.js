@@ -1,6 +1,8 @@
 // @flow
 import React, { useEffect, Component, useState, useReducer } from 'react';
 import debounce from 'lodash/debounce';
+import Checkboxoutline from '../Icons/Checkboxoutline';
+import { UnstyledButton } from '../Button/UnstyledButton1';
 import { Flex } from '../Layout/Flex';
 import Checkbox from '../Input/Checkbox';
 import CellWithPopOver from './CellWithPopOver';
@@ -14,6 +16,7 @@ import DataGridSmartOverflowXWrapper from './DataGridSmartOverflowXWrapper';
 import ThInnerWrapperComp from './ThInnerWrapper';
 import reducer, { initialState } from './reducer'; // eslint-disable-line import/no-named-as-default
 import {
+  setSelected as setSelectedAction,
   setExtraColumnWidth as setExtraColumnWidthAction,
   setDisplay as setDisplayAction,
   setColumns as setColumnsAction,
@@ -117,8 +120,10 @@ const DataGrid = (props: DataGridProps) => {
     model = Object.keys(data[0] || {}).map(k => ({ property: k, displayName: k, show: true })),
 
     selectable,
+    multiSelectable,
     onSelectionChange,
     onSelectAllChange,
+    onInvertSelection,
     selected: selectedProp,
     defaultSelected,
 
@@ -173,6 +178,8 @@ const DataGrid = (props: DataGridProps) => {
       display,
 
       extraColWidth,
+
+      selected,
     },
     dispatch,
   ] = useReducer(
@@ -181,8 +188,10 @@ const DataGrid = (props: DataGridProps) => {
       ...initialState,
       columns: model,
       baseCellWidth,
+      ...(defaultSelected ? { selected: defaultSelected } : {}),
     }
   );
+  // const [selected, setSelected] = useState(defaultSelected || []);
 
 
   let columns = allowInlinePropertySelection
@@ -207,6 +216,8 @@ const DataGrid = (props: DataGridProps) => {
     }];
   }
 
+
+  const setSelected = newSelected => dispatch(setSelectedAction(newSelected));
 
   const setExtraColumnWidth = width => dispatch(setExtraColumnWidthAction(width));
 
@@ -365,7 +376,7 @@ const DataGrid = (props: DataGridProps) => {
 
   /* selection */
   const isSelectionControlled = selectedProp !== undefined;
-  const [selected, setSelected] = useState(defaultSelected || []);
+  // const [selected, setSelected] = useState(defaultSelected || []);
   const actualSelected = isSelectionControlled ? selectedProp : selected;
   const onToggleSelectAll = (checked) => {
     const newSelected = checked ? data.map((_, i) => i) : [];
@@ -374,10 +385,22 @@ const DataGrid = (props: DataGridProps) => {
     }
     onSelectAllChange(checked);
   };
+  const onInvertSelectionHandler = () => {
+    const newSelected = data
+      .filter(x => !actualSelected.includes(x[propertyKey]))
+      .map(x => x[propertyKey]);
+
+    if (!isSelectionControlled) {
+      setSelected(newSelected);
+    }
+    // onSelectAllChange(checked);
+    onInvertSelection(newSelected);
+  };
   const onToggle = (checked, entityPropertyKeyValue) => {
     const newSelected = checked
       ? [...actualSelected, entityPropertyKeyValue]
       : actualSelected.filter(x => x !== entityPropertyKeyValue);
+
 
     if (!isSelectionControlled) {
       setSelected(newSelected);
@@ -409,20 +432,51 @@ const DataGrid = (props: DataGridProps) => {
         <thead {...(hasCustomHeader ? { position: 'relative' } : {})}>
           <Tr>
             {
-              selectable
+              multiSelectable || selectable
                 ? <Th
+                  isCheckboxCell
+                  selected={actualSelected}
+                  key="select-checkbox-cell"
                   ThInnerWrapper={({ children }) => <Flex>{children}</Flex>}
                   resizable={false}
                   reorderable={false}
                   style={{ width: cellHeight, maxWidth: cellHeight }}
                 >
                   <Flex style={{ width: '100%', height: '100%' }}>
-                    <Checkbox
-                      id={'DataGridMultiSelectCheckBox'}
-                      name={'DataGridMultiSelectCheckBox'}
-                      onChange={(evt, checked) => onToggleSelectAll(checked)}
-                      checked={actualSelected.length === data.length}
-                    />
+                    {
+                      /* eslint-disable no-nested-ternary */
+                      multiSelectable
+                        ? actualSelected.length === data.length
+                          ? (
+                            <Checkbox
+                              id={'DataGridMultiSelectCheckBox'}
+                              name={'DataGridMultiSelectCheckBox'}
+                              onChange={(evt, checked) => onToggleSelectAll(checked)}
+                              checked={true}
+                            />
+                          )
+                          : actualSelected.length === 0
+                            ? (
+                              <Checkbox
+                                id={'DataGridMultiSelectCheckBox'}
+                                name={'DataGridMultiSelectCheckBox'}
+                                onChange={(evt, checked) => onToggleSelectAll(checked)}
+                                checked={false}
+                              />
+                            )
+                            : (
+                              <UnstyledButton onClick={() => { onInvertSelectionHandler(); }}>
+                                <Flex style={{ width: '100%', height: '100%', position: 'relative' }}>
+                                  <Checkboxoutline />
+                                  <Flex style={{ fontSize: '32px', position: 'absolute', top: '-2.5px', left: 0, width: '100%', height: '100%' }}>
+                                    -
+                                  </Flex>
+                                </Flex>
+                              </UnstyledButton>
+                            )
+                        : null
+                        /* eslint-enable no-nested-ternary */
+                    }
                   </Flex>
                 </Th>
                 : null
@@ -470,7 +524,6 @@ const DataGrid = (props: DataGridProps) => {
                     display={display}
                     property={m.property}
                     setInitialSize={(width) => {
-                      console.log('DataGrid setInitialSize called ', m.property, width);
                       if (resizable) {
                         const res = width < baseCellWidth ? baseCellWidth : width;
                         setColumnWidth({ property: m.property, width: res });
@@ -530,9 +583,12 @@ const DataGrid = (props: DataGridProps) => {
                   selected={isSelected}
                 >
                   {
-                    selectable
+                    (multiSelectable || selectable)
                       ? (
-                        <Td>
+                        <Td
+                          key={`checkbox-select-cell${isSelected ? '-selected' : ''}`}
+                          selected={actualSelected}
+                        >
                           <TdInnerWrapper style={{ justifyContent: 'center', padding: '0 8px' }}>
                             <Checkbox
                               id={i}
