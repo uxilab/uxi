@@ -59,7 +59,6 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
     table.setAttribute('style', '');
 
 
-    console.log('containerWidth', containerWidth, ref.current);
     // const lastTh = table.querySelector('th:last-of-type');
     let widthsSum = columns.filter(x => !x.hide && x.property !== 'toString').reduce((a, { width }) => a + width, 0);
     if (selectable) {
@@ -70,15 +69,10 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
     //   ? lastTh.getBoundingClientRect()
     //   : { width: 0 };
 
-    console.log('widthsSum', widthsSum);
-    console.log('actualExtraCollWidth', actualExtraCollWidth);
     if (actualExtraCollWidth) {
       tableWidth -= actualExtraCollWidth;
       // const extraColTh = (ref && ref.current) ? ref.current.querySelector('th:last') : {};
     }
-
-
-    console.log('tableWidth', tableWidth, table);
 
 
     if (useSmartOverflowX) {
@@ -100,14 +94,12 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
         if (
           (display !== 'block')
         ) {
-          console.log('displayVal', 'block');
           setDisplay('block');
         }
         return;
       }
 
       if (display !== displayVal) {
-        console.log('displayVal', displayVal);
         setDisplay(displayVal);
       }
       const heightChanged = (cRectHeight !== height);

@@ -1,5 +1,6 @@
 
 export const C = {
+  SET_SELECTED: 'SET_SELECTED',
   SET_EXTRA_COL_WIDTH: 'SET_EXTRA_COL_WIDTH',
   SET_DISPLAY: 'SET_DISPLAY',
   SET_COLUMNS: 'SET_COLUMNS',
@@ -13,6 +14,8 @@ export const C = {
   SET_COLUMN_ORDER: 'SET_COLUMN_ORDER',
   STORE_C_RECT_HEIGHT: 'STORE_C_RECT_HEIGHT',
 };
+
+export const setSelected = payload => ({ type: C.SET_SELECTED, payload });
 
 export const setExtraColumnWidth = payload => ({ type: C.SET_EXTRA_COL_WIDTH, payload });
 

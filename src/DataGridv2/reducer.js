@@ -20,10 +20,18 @@ export const initialState = {
   display: 'table',
 
   extraColWidth: null,
+
+  selected: [],
 };
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case C.SET_SELECTED:
+      return {
+        ...state,
+        selected: payload,
+      };
+
     case C.SET_DISPLAY:
       return {
         ...state,

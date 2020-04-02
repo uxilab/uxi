@@ -186,7 +186,9 @@ class Ripples extends Component {
       >
 
         <div {...props} style={s} ref={this.storeRef} data-ripple-main>
-          <s style={{ ...rippleStyle, ...state.rippleStyle }} />
+          <div style={{ overflow: 'hidden' }}>
+            <s style={{ ...rippleStyle, ...state.rippleStyle }} />
+          </div>
           {children}
         </div>
       </Wrapper>

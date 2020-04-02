@@ -108,6 +108,7 @@ class Th extends React.Component {
       isReordering,
       model = [],
       isBeingResizedBySibling,
+      selected = [],
       // setInitialSize,
       // allowInlinePropertySelection,
     } = this.props;
@@ -115,6 +116,7 @@ class Th extends React.Component {
       isResizing: willBeResizing,
       isReordering: willBeReordering,
       model: nextModel = [],
+      selected: nextSelected = [],
       // setInitialSize: nextSetInitialSize,
     } = nextProps;
 
@@ -127,6 +129,10 @@ class Th extends React.Component {
     // }
 
     if (isBeingResized || isBeingResizedBySibling) {
+      return true;
+    }
+
+    if (selected.join(',') !== nextSelected.join(',')) {
       return true;
     }
 
@@ -227,6 +233,7 @@ class Th extends React.Component {
       setColumOrder,
       isLast,
       display,
+      isCheckboxCell,
     } = this.props;
 
     const styles = {
@@ -269,7 +276,7 @@ class Th extends React.Component {
           resizable={resizable}
         >
           {
-            !isResizing && allowInlinePropertySelection
+            !isCheckboxCell && !isResizing && allowInlinePropertySelection
               ? (
                 <Flex
                   style={{
@@ -337,7 +344,7 @@ class Th extends React.Component {
                 </Flex>
               )
           }
-          {sortable && (property !== 'toString')
+          {!isCheckboxCell && sortable && (property !== 'toString')
             ? (
               <SortHandler
                 style={{ flexGrow: 1, flexShrink: 0 }}
@@ -349,7 +356,7 @@ class Th extends React.Component {
             : null
           }
           {
-            menuDescriptor !== undefined
+            !isCheckboxCell && menuDescriptor !== undefined
               ? (
                 <Flex
                   style={{
@@ -380,35 +387,47 @@ class Th extends React.Component {
               : null
           }
           {
-            menuDescriptor === undefined && menu !== undefined
+            !isCheckboxCell && menuDescriptor === undefined && menu !== undefined
               ? menu
               : null
           }
-          <div
-            style={{
-              transition: 'none',
-              zIndex: 1,
-              position: 'absolute',
-              width: isBeingReordered ? '100%' : '0',
-              height: cRectHeight - 18, // scrollbars
-              right: 0,
-              background: 'rgba(255, 255, 255, 0.5)',
-            }}
-          >&nbsp;</div>
+          {
+            !isCheckboxCell && resizable
+              ? (
+                <div
+                  style={{
+                    transition: 'none',
+                    zIndex: 1,
+                    position: 'absolute',
+                    width: isBeingReordered ? '100%' : '0',
+                    height: cRectHeight - 18, // scrollbars
+                    right: 0,
+                    background: 'rgba(255, 255, 255, 0.5)',
+                  }}
+                >&nbsp;</div>
+              )
+              : null
+          }
 
-          <div
-            style={{
-              transition: 'none',
-              position: 'absolute',
-              width: '1px',
-              height: cRectHeight - 18, // scrollbars
-              right: 0,
-              background: isReordering ? '#cecece' : 'transparent',
-            }}
-          >&nbsp;</div>
+          {
+            !isCheckboxCell && resizable
+              ? (
+                <div
+                  style={{
+                    transition: 'none',
+                    position: 'absolute',
+                    width: '1px',
+                    height: cRectHeight - 18, // scrollbars
+                    right: 0,
+                    background: isReordering ? '#cecece' : 'transparent',
+                  }}
+                >&nbsp;</div>
+              )
+              : null
+          }
 
         </ThInnerWrapper>
-        {(property !== 'toString') && resizable && (isLast ? display !== 'table' : true) && isReordering === null
+        {!isCheckboxCell && (property !== 'toString') && resizable && (isLast ? display !== 'table' : true) && isReordering === null
           ? (
             <ResizeHandler
               property={property}
