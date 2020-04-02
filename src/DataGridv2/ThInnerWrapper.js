@@ -15,7 +15,7 @@ const ThInnerWrapperUI = styled.div`
   width: auto;
   box-sizing : border-box;
   ${({ resizable }) => (resizable ? css`padding-right: 8px;` : '')};
-  ${({ canDrag }) => (canDrag ? css`cursor: ew-resize;` : '')};
+  ${({ reorderable, canDrag }) => (reorderable && canDrag ? css`cursor: ew-resize;` : '')};
   height: 100%;
   /* width: calc(100% - 8px); */
   ${({ dragId }) => (dragId !== 'toString'

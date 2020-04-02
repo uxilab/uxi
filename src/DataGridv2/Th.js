@@ -278,7 +278,6 @@ class Th extends React.Component {
                     alignItems: 'stretch',
                     flexGrow: 999,
                     flexShrink: 999,
-                    // cursor: reorderable ? 'ew-resize' : 'normal',
                   }}
                 >
                   <ButtonMenuMultiLevel

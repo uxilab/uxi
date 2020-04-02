@@ -86,7 +86,7 @@ const DataGridSmartOverflowXWrapper = (props: DataGridProps) => {
         const d = containerWidth - tableWidth;
         // const offset = columns
         //  .filter(x => !x.hide).length - 1; // numbers of fences, not pickets;
-        const offset = 4; // numbers of fences, not pickets;
+        const offset = 4;
         const diff = d - offset > 0 ? d - offset : null; // like in the reducer
         if (
           (extraColWidth !== diff)
