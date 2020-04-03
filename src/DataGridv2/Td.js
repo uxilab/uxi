@@ -18,6 +18,7 @@ const TdUI = styled.td.attrs(props => ({
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Td extends React.Component {
+  /*
   shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
@@ -49,10 +50,10 @@ class Td extends React.Component {
       return true;
     }
 
-    /** Columns size can change on user input (dnd col resize)
-     * but also on mount,
-     * depending on props an available space
-     */
+    // Columns size can change on user input (dnd col resize)
+    // but also on mount,
+    // depending on props an available space
+    //
 
     if (columnSize !== nextColumnSize) {
       return true;
@@ -71,6 +72,7 @@ class Td extends React.Component {
 
     return false;
   }
+  */
 
   render() {
     return (
