@@ -8,13 +8,29 @@ import { Playground, Props } from 'docz'
 import ThemeProvider from '../../Theme/ThemeProvider'
 import Flex from '../../Layout/Flex'
 import SelectWithFiltering from './SelectWithFiltering'
+import Select from './Select'
 
 
-# Demo
+# Select
 
 <Playground>
   <ThemeProvider>
-    <div style={{ padding: '16px', height: '800Px' }}>
+    <div style={{ padding: '16px' }}>
+      <Select isFullWidth>
+        <Flex value='foo'>foo</Flex>
+        <Flex value='bar'>bar</Flex>
+      </Select>
+      <br />
+    </div>
+  </ThemeProvider>
+</Playground>
+
+
+# SelectWithFiltering
+
+<Playground>
+  <ThemeProvider>
+    <div style={{ padding: '16px' }}>
       <SelectWithFiltering>
         <Flex value='foo'>foo</Flex>
         <Flex value='bar'>bar</Flex>
@@ -24,7 +40,9 @@ import SelectWithFiltering from './SelectWithFiltering'
   </ThemeProvider>
 </Playground>
 
+<!--
 
 # API
 
 <Props of={SelectWithFiltering} />
+ -->
