@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 import React from 'react';
-import isEqual from 'lodash/isEqual';
+// import isEqual from 'lodash/isEqual';
 
 const cellHeight = 48;
 
