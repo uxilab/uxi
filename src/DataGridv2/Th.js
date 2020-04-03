@@ -100,7 +100,7 @@ class Th extends React.Component {
       }
     }
   }
-
+  /*
   shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
@@ -160,6 +160,7 @@ class Th extends React.Component {
 
     return false;
   }
+  */
   /*
 
   */
