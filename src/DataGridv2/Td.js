@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 import React from 'react';
-import isEqual from 'lodash/isEqual';
+// import isEqual from 'lodash/isEqual';
 
 const cellHeight = 48;
 
@@ -18,20 +18,27 @@ const TdUI = styled.td.attrs(props => ({
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Td extends React.Component {
+  /*
   shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
+      isResizing,
       columnSize,
       columns = [],
       mComp,
       selected = [],
     } = this.props;
     const {
+      isResizing: willBeResizing,
       columnSize: nextColumnSize,
       mComp: nextmComp,
       columns: nextColumns = [],
       selected: nextSelected = [],
     } = nextProps;
+
+    if (isResizing && !willBeResizing) {
+      return true;
+    }
 
     if (selected.join(',') !== nextSelected.join(',')) {
       return true;
@@ -43,10 +50,10 @@ class Td extends React.Component {
       return true;
     }
 
-    /** Columns size can change on user input (dnd col resize)
-     * but also on mount,
-     * depending on props an available space
-     */
+    // Columns size can change on user input (dnd col resize)
+    // but also on mount,
+    // depending on props an available space
+    //
 
     if (columnSize !== nextColumnSize) {
       return true;
@@ -65,6 +72,7 @@ class Td extends React.Component {
 
     return false;
   }
+  */
 
   render() {
     return (
