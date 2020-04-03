@@ -21,17 +21,23 @@ class Td extends React.Component {
   shouldComponentUpdate(nextProps) {
     const {
       isBeingResized,
+      isResizing,
       columnSize,
       columns = [],
       mComp,
       selected = [],
     } = this.props;
     const {
+      isResizing: willBeResizing,
       columnSize: nextColumnSize,
       mComp: nextmComp,
       columns: nextColumns = [],
       selected: nextSelected = [],
     } = nextProps;
+
+    if (isResizing && !willBeResizing) {
+      return true;
+    }
 
     if (selected.join(',') !== nextSelected.join(',')) {
       return true;
