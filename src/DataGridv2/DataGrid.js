@@ -254,6 +254,14 @@ const DataGrid = (props: DataGridProps) => {
     return () => {};
   }, [allowInlinePropertySelectionMonitor]);
 
+  useEffect(() => {
+    setColumns(model.map(x => ({
+      ...x,
+      show: true,
+      width: (columnsState.find(y => y.property === x.property) || {}).width || 240,
+    })));
+  }, [model]);
+
 
   runWarnings(props);
 
