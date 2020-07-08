@@ -6,11 +6,7 @@ const ContentWithExtraUI = styled.div`
   display: flex;
   min-height: 100%;
   width: 100%;
-  /* overflow: hidden; */
   flex-flow: ${({ isAfter }) => (isAfter ? 'row wrap' : 'row wrap')};
-  &, & * {
-    transition: ${({ theme: { transition } }) => transition.defaultAll};
-  }
 `;
 
 const ContentUI = styled.div`
