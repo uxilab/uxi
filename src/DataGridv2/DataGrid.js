@@ -499,7 +499,9 @@ const DataGrid = (props: DataGridProps) => {
                     resizable: true,
                     columnWidth: m.width,
                   }
-                  : {};
+                  : {
+                    columnWidth: m.width,
+                  };
 
                 const sortModel = (actualSortDirections || [])
                   .find(({ property }) => property === m.property);
