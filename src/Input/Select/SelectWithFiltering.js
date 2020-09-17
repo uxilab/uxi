@@ -450,7 +450,19 @@ class SelectWithFiltering extends Select {
   }
 
   preventScrollingOnSpace(e) {
-    if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32) {
+    if (
+      (
+        e.key === ' ' ||
+        e.key === 'Spacebar' ||
+        e.keyCode === 32
+      ) &&
+      (
+        // allow space can be set as a value
+        e.target &&
+        e.target.nodeName &&
+        e.target.nodeName !== 'INPUT'
+      )
+    ) {
       if (this.isOpenControlled) {
         const { onIsOpenChange } = this.props;
         if (onIsOpenChange) {
@@ -791,22 +803,6 @@ class SelectWithFiltering extends Select {
             {optionsItems}
           </div>
         </DropDown2>
-        {/* <DropDown
-          inertMain={inertTrigger}
-          mainScrollingElementSelector={mainScrollingElementSelector}
-          onIsOpenChange={this.handleDropDownChange}
-          isFullWidth={isFullWidth || ('width' in style)}
-          isOpen={isOpen}
-          main={trigerer}
-          items={optionsItems}
-          onItemRef={this.storeItemsRef}
-          itemsStyle={{
-            maxHeight: '200px',
-            overflowY: 'auto',
-            overflowX: 'hidden',
-          // }}
-        /> */}
-        {/* <ErrorWrapperUI>{error}</ErrorWrapperUI> */}
       </SelectWithFilteringWrapper>
     );
   }
