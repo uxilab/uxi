@@ -34,6 +34,8 @@ import {
 export const minCellWidth = 64;
 const cellHeight = 48;
 
+const isString = value => typeof value === 'string';
+
 const runWarnings = (props) => {
   if (
     props.selected === undefined
@@ -527,6 +529,8 @@ const DataGrid = (props: DataGridProps) => {
                   onDropTableHeader,
                 };
 
+                const thTitle = isString(m.displayName) ? m.displayName : m.property;
+
                 return (
                   <Th
                     cRectHeight={cRectHeight}
@@ -561,7 +565,7 @@ const DataGrid = (props: DataGridProps) => {
                     {
                       m.property === 'toString'
                         ? m.displayName
-                        : <TextEllipsis title={m.displayName}>{m.displayName}</TextEllipsis>
+                        : <TextEllipsis title={thTitle}>{m.displayName}</TextEllipsis>
                     }
                   </Th>
                 );
