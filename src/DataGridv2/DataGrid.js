@@ -589,11 +589,14 @@ const DataGrid = (props: DataGridProps) => {
           {
             data.map((entity, i) => {
               const isSelected = actualSelected.indexOf(entity[propertyKey]) > -1;
-
+              const propertyKeyIndex = (
+                entity &&
+                entity[propertyKey]
+              ) ? entity[propertyKey] : i;
 
               return (
                 <Tr
-                  key={i}
+                  key={propertyKeyIndex}
                   selected={isSelected}
                 >
                   {
