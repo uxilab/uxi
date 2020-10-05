@@ -35,7 +35,7 @@ class Modal extends Component {
   }
 
   handleDocumentKeyUp = (event) => {
-    if (event.key !== 'esc') {
+    if (event.key !== 'Escape') {
       return;
     }
 
