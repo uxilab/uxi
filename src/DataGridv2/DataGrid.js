@@ -146,6 +146,8 @@ const DataGrid = (props: DataGridProps) => {
     // eslint-disable-next-line no-nested-ternary
     baseCellWidth: baseCellWidthProp,
     allowInlinePropertySelection = true,
+    uniqueSelectionProperty,
+    restrictionValue,
   } = props;
 
   const useSmartOverflowX = resizable
@@ -594,6 +596,15 @@ const DataGrid = (props: DataGridProps) => {
                 entity[propertyKey]
               ) ? entity[propertyKey] : i;
 
+              let disabled = false;
+
+              if (uniqueSelectionProperty && restrictionValue) {
+                const valueForRestrictionProperty = (entity || {})[uniqueSelectionProperty];
+                disabled = (
+                  multiSelectable || selectable
+                ) && valueForRestrictionProperty !== restrictionValue;
+              }
+
               return (
                 <Tr
                   key={propertyKeyIndex}
@@ -610,6 +621,7 @@ const DataGrid = (props: DataGridProps) => {
                             <Checkbox
                               id={i}
                               name={i}
+                              disabled={disabled}
                               onChange={(evt, checked) => onToggle(checked, entity[propertyKey])}
                               checked={isSelected}
                             />
