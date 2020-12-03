@@ -9,7 +9,7 @@ const TdUI = styled.td.attrs(props => ({
   ...props,
 }))`
   box-sizing: border-box;
-  min-height: ${cellHeight}px;
+  height: ${cellHeight}px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
