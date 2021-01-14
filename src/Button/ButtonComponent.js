@@ -40,6 +40,7 @@ export class ButtonComponent extends Component {
       loading,
       tabIndex = 0,
       onMouseOut,
+      title,
     } = this.props;
 
     const textOrMessage = message || text || children;
@@ -63,6 +64,7 @@ export class ButtonComponent extends Component {
 
     const buttonAttr = {
       onClick: !loading && (click || onClick || null),
+      title,
       className,
       style: {
         ...style,
