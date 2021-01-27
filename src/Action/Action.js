@@ -39,6 +39,8 @@ const ActionWrapper = styled.div`
     background: #f2f2f2;
     border-color: ${({ theme, type }) => (type ? getLightTypeColor(theme, type) : theme.palette.lightGrey)};
   }
+  opacity: ${({ disabled }) => (disabled ? '0.4' : '1')};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
 `;
 
 const ActionIconWrapper = styled.div`
@@ -60,8 +62,8 @@ const ActionDisplayNameWrapper = styled.div`
   align-items: center;
 `;
 
-const Action = ({ menuDescriptor, type = 'primary' }) => (
-  <ActionWrapper onClick={menuDescriptor.onClick} type={type}>
+const Action = ({ menuDescriptor, disabled, type = 'primary' }) => (
+  <ActionWrapper onClick={menuDescriptor.onClick} disabled={disabled} type={type}>
     <ActionIconWrapper type={type}>
       {menuDescriptor.icon}
     </ActionIconWrapper>
