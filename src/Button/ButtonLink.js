@@ -21,9 +21,21 @@ const ButtonLinkWrapper = styled.a`
     color: ${({ theme, type }) => getTypeColor(theme, type)};
     fill: ${({ theme, type }) => getTypeColor(theme, type)};
   }
+  opacity: ${({ disabled }) => (disabled ? '0.4' : '1')};
 `;
 
-const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth, iconAfter }) => {
+const ButtonLink = ({
+  onClick,
+  icon,
+  text,
+  message,
+  children,
+  style,
+  isFullWidth,
+  iconAfter,
+  disabled,
+  title,
+}) => {
   const content = icon ? (
     <AvatarWithName
       inverse={iconAfter}
@@ -42,8 +54,10 @@ const ButtonLink = ({ onClick, icon, text, message, children, style, isFullWidth
   return (
     <ButtonLinkWrapper
       style={style}
-      onClick={(e) => { e.preventDefault(); onClick(e); }}
+      onClick={(e) => { e.preventDefault(); if (!disabled) { onClick(e); } }}
       isFullWidth={isFullWidth}
+      disabled={disabled}
+      title={title}
     >
       {content}
     </ButtonLinkWrapper>
@@ -60,6 +74,9 @@ ButtonLink.defaultProps = {
   children: null,
   style: {},
   isFullWidth: false,
+  iconAfter: undefined,
+  disabled: false,
+  title: undefined,
 };
 
 ButtonLink.propTypes = {
@@ -70,6 +87,9 @@ ButtonLink.propTypes = {
   children: PropTypes.any,
   style: PropTypes.object,
   isFullWidth: PropTypes.bool,
+  iconAfter: PropTypes.bool,
+  disabled: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default ButtonLink;
