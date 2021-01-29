@@ -389,6 +389,7 @@ export class DropDown extends PureComponent {
         // handleDropDownChange,
         // mainStyle,
         isOpen: isOpenProp,
+        disabled,
       },
       state: {
         isOpen: isOpenState,
@@ -460,6 +461,7 @@ export class DropDown extends PureComponent {
           data-drop-down-main
           role={inertMain === false ? undefined : 'menu'}
           isFullWidth={isFullWidth}
+          disabled={disabled}
           style={{ ...styles.triggerWrapper, ...triggerWrapperStyle, width: '100%' }}
           {...tabIndexButtonattr}
         >
