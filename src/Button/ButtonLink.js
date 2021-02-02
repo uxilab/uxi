@@ -35,6 +35,7 @@ const ButtonLink = ({
   iconAfter,
   disabled,
   title,
+  className,
 }) => {
   const content = icon ? (
     <AvatarWithName
@@ -58,6 +59,7 @@ const ButtonLink = ({
       isFullWidth={isFullWidth}
       disabled={disabled}
       title={title}
+      className={className}
     >
       {content}
     </ButtonLinkWrapper>
@@ -77,6 +79,7 @@ ButtonLink.defaultProps = {
   iconAfter: undefined,
   disabled: false,
   title: undefined,
+  className: undefined,
 };
 
 ButtonLink.propTypes = {
@@ -90,6 +93,7 @@ ButtonLink.propTypes = {
   iconAfter: PropTypes.bool,
   disabled: PropTypes.bool,
   title: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default ButtonLink;

@@ -693,6 +693,7 @@ class Select extends Component {
       // mainScrollingElementSelector,
       // inertTrigger,
       isOpen: isOpenProp,
+      className,
     } = this.props;
 
     const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
@@ -729,6 +730,7 @@ class Select extends Component {
           trigger={trigerer}
           onTriggerWrapperRef={this.storeTriggerWrapperRef}
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
+          className={className}
         >
           <div
             style={{

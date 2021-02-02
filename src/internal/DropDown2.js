@@ -163,6 +163,7 @@ class DropDown2 extends Component {
     const {
       trigger,
       children,
+      className,
       isFullWidth,
       anchor,
       fullWidthContent,
@@ -218,6 +219,7 @@ class DropDown2 extends Component {
           maxHeight={height}
           childrenWith={(childrenProps.style && childrenProps.style.width) || null}
           style={BoxWrapperUIStyle}
+          className={className}
         >
           <div ref={this.storeRef} data-drop-down-content>
             {React.Children.only(children)}
