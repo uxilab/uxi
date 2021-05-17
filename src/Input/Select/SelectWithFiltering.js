@@ -212,6 +212,7 @@ class SelectWithFiltering extends Select {
         triggerElement,
         style,
         isFullWidth,
+        disabled,
       },
     } = this;
 
@@ -248,6 +249,7 @@ class SelectWithFiltering extends Select {
       // } else {
       mainContent = (
         <TriggererWrapperWithEllispsisChildren
+          disabled={disabled}
           style={{ border: '1px solid #cecece' }}
         >
           <div
@@ -770,6 +772,7 @@ class SelectWithFiltering extends Select {
       // mainScrollingElementSelector,
       // inertTrigger,
       isOpen: isOpenProp,
+      disabled,
     } = this.props;
 
     const isOpen = this.isOpenControlled ? isOpenProp : isOpenState;
@@ -789,6 +792,7 @@ class SelectWithFiltering extends Select {
           trigger={trigerer}
           onTriggerWrapperRef={this.storeTriggerWrapperRef}
           onChildrenWrapperRef={this.storeChildrenWrapperRef}
+          disabled={disabled}
         >
           <div
             style={{

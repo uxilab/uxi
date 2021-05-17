@@ -171,6 +171,7 @@ class DropDown2 extends Component {
       visibleOverflow,
       buttonWrapperStyle,
       BoxWrapperUIStyle,
+      disabled,
     } = this.props;
 
     const {
@@ -184,10 +185,11 @@ class DropDown2 extends Component {
 
     const TriggerWithHandler = React.cloneElement(trigger, {
       ...((trigger && trigger.props) || {}),
+      disabled,
       // 'data-drop-down-trigger': true,
       onClick: (...a) => {
         this.toggleVisibility(...a);
-        if (trigger.props && trigger.props.onClick) {
+        if (!disabled && trigger.props && trigger.props.onClick) {
           trigger.props.onClick(...a);
         }
       },

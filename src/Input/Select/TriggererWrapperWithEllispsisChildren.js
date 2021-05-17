@@ -8,7 +8,16 @@ const TriggererWrapperWithEllispsisChildren = styled.div`
   /* background: white; */
   /* border: 1px solid #cecece; */
   border-radius: ${({ theme: { radius } }) => radius};
+  ${({ disabled }) => {
+    if (disabled) {
+      return `
+        opacity: 0.8;
+        background: #fafafa;
+      `;
+    }
 
+    return '';
+  }}
 
   * {
     overflow-x: hidden;
