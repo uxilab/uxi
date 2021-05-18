@@ -6,6 +6,7 @@ export const flexCSSString = css`
   justify-content: center;
   align-items: center;
   flex-direction: ${({ direction }) => (direction || 'row')};
+  transition: ${({ theme: { transition } }) => transition.defaultAll};
 `;
 
 

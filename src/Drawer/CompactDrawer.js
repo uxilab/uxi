@@ -18,13 +18,38 @@ const CompactDrawerUI = styled.div`
 
   z-index: 200;
   transition: all 1s linear;
-  transform: ${({ inAttr: isIn, dir }) => {
-    if (isIn === false) { return 'translate3d(0, 0, 0); opacity: 0; overflow: hidden'; }
-    else {
-      if (dir === 'left') return `translate3d(-100%, 0, 0)`
-      if (dir === 'right') return `translate3d(100%, 0, 0)`
-      if (dir === 'top') return `translate3d(0, -100%, 0)`
-      if (dir === 'bottom') return `translate3d(0, 100%, 0)`
+  transform: ${({ anchor: a, inAttr: isIn, dir }) => {
+    if (isIn === false) {
+      if (a === 'bottom-left' && dir === 'right') return `translate3d(-100%, 0, 0)`
+      if (a === 'bottom' && dir === 'top') return `translate3d(-50%, 0, 0)`
+      if (a === 'bottom-right' && dir === 'top') return `translate3d(0, 0, 0)`
+      if (a === 'bottom-right' && dir === 'left') return `translate3d(100%, 0, 0)`
+      if (a === 'left' && dir === 'right') return `translate3d(-100%, -50%, 0)`
+      if (a === 'right' && dir === 'left') return `translate3d(100%, -50%, 0)`
+      if (a === 'top' && dir === 'bottom') return `translate3d(-50%, -100%, 0)`
+      if (a === 'top-left' && dir === 'bottom') return `translate3d(0, -100%, 0)`
+      if (a === 'top-left' && dir === 'right') return `translate3d(-100%, 0, 0)`
+      if (a === 'top-right' && dir === 'bottom') return `translate3d(0, -100%, 0)`
+      if (a === 'top-right' && dir === 'left') return `translate3d(100%, 0, 0)`
+      if (a === 'center' && dir === 'top') return `translate3d(-50%, 100vh, 0)`
+      if (a === 'center' && dir === 'bottom') return `translate3d(-50%, -100vh, 0)`
+
+      // return 'translate3d(0, 0, 0); opacity: 0; overflow: hidden';
+    } else {
+      if (a === 'bottom' && dir === 'top') return `translate3d(-50%, -100%, 0)`
+      if (a === 'bottom-left' && dir === 'top') return `translate3d(0, -100%, 0)`
+      if (a === 'bottom-left' && dir === 'right') return `translate3d(0, 0, 0)`
+      if (a === 'bottom-right' && dir === 'top') return `translate3d(0, -100%, 0)`
+      if (a === 'bottom-right' && dir === 'left') return `translate3d(0, 0, 0)`
+      if (a === 'left' && dir === 'right') return `translate3d(0, -50%, 0)`
+      if (a === 'right' && dir === 'left') return `translate3d(0, -50%, 0)`
+      if (a === 'top' && dir === 'bottom') return `translate3d(-50%, 0, 0)`
+      if (a === 'top-left' && dir === 'bottom') return `translate3d(0, 0, 0)`
+      if (a === 'top-left' && dir === 'right') return `translate3d(0, 0, 0)`
+      if (a === 'top-right' && dir === 'bottom') return `translate3d(0, 0, 0)`
+      if (a === 'top-right' && dir === 'left') return `translate3d(0, 0, 0)`
+      if (a === 'center' && dir === 'top') return `translate3d(-50%, -50%, 0)`
+      if (a === 'center' && dir === 'bottom') return `translate3d(-50%, -50%, 0)`
     }
   }};
   transition: all ${({ inAttr: isIn, timeout, timeout: { enter, exit }, theme: { transition } }) => isIn
@@ -34,18 +59,52 @@ const CompactDrawerUI = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  /* ${({ dir }) => {dir === 'left' || dir === 'right' ? 'height: 100vh' : 'width: 100vw' }}; */
-  ${({ dir }) => {
-    if (dir === 'left') return 'left: 100%; right: auto; top: 0; bottom: 0'
-    if (dir === 'right') return 'right: 100%; left: auto; top: 0; bottom: 0'
-    if (dir === 'top') return 'top: 100%; bottom: auto; left: 0; right:0'
-    if (dir === 'bottom') return 'bottom: 100%; top: auto; left: 0; right:0'
+  ${({ dir, anchor: a, offsetSize }) => {
+    if (a === 'bottom' && dir === 'top')
+      return `left: 50%; right: auto; top: 100%; bottom: auto; padding-bottom: ${offsetSize}px`;
+
+    if (a === 'bottom-left' && dir === 'top')
+      return `left: 0; right: auto; top: 100%; bottom: auto; padding: 0 0 ${offsetSize}px ${offsetSize}px`;
+
+    if (a === 'bottom-left' && dir === 'right')
+      return `left: 0; right: auto; top: auto; bottom: 0; padding: 0 0 ${offsetSize}px ${offsetSize}px`;
+
+    if (a === 'bottom-right' && dir === 'top')
+      return `left: auto; right: 0; top: 100%; bottom: auto; padding: 0 ${offsetSize}px ${offsetSize}px 0`;
+
+    if (a === 'bottom-right' && dir === 'left')
+      return `left: auto; right: 0; top: auto; bottom: 0; padding: 0 ${offsetSize}px ${offsetSize}px 0`;
+
+    if (a === 'left' && dir === 'right')
+      return `left: 0; right: auto; top: 50%; bottom: auto; padding-left ${offsetSize}px`;
+
+    if (a === 'right' && dir === 'left')
+      return `left: auto; right: 0; top: 50%; bottom: auto; padding-right ${offsetSize}px`;
+
+    if (a === 'top' && dir === 'bottom')
+      return `left: 50%; right: auto; top: 0; bottom: auto; padding-top ${offsetSize}px`;
+
+    if (a === 'top-left' && dir === 'bottom')
+      return `left: 0; right: auto; top: 0; bottom: auto; padding: ${offsetSize}px 0 0 ${offsetSize}px`;
+
+    if (a === 'top-left' && dir === 'right')
+      return `left: 0; right: auto; top: 0; bottom: auto; padding: ${offsetSize}px 0 0 ${offsetSize}px`;
+
+    if (a === 'top-right' && dir === 'bottom')
+      return `left: auto; right: 0; top: 0; bottom: auto; padding: ${offsetSize}px ${offsetSize}px 0 0`;
+
+    if (a === 'top-right' && dir === 'left')
+      return `left: auto; right: 0; top: 0; bottom: auto; padding: ${offsetSize}px ${offsetSize}px 0 0`;
+
+    if (a === 'center')
+      return `left: 50%; right: auto; top: 50%; bottom: auto; padding: ${offsetSize}px`;
+
   }};
 
-  ${({ offsetTop }) => offsetTop && `padding-top: ${offsetTop}px`};
+  /* ${({ offsetTop }) => offsetTop && `padding-top: ${offsetTop}px`};
   ${({ offsetBottom }) => offsetBottom && `padding-bottom: ${offsetBottom}px`};
   ${({ offsetLeft }) => offsetLeft && `padding-left: ${offsetLeft}px`};
-  ${({ offsetRight }) => offsetRight && `padding-right: ${offsetRight}px`};
+  ${({ offsetRight }) => offsetRight && `padding-right: ${offsetRight}px`}; */
 `;
 
 class CompactDrawer extends React.Component {
@@ -88,6 +147,7 @@ class CompactDrawer extends React.Component {
       offsetTop,
       offsetLeft,
       offsetRight,
+      offsetSize,
       ...other
     } = this.props;
 
@@ -107,17 +167,16 @@ class CompactDrawer extends React.Component {
         offsetBottom={offsetBottom}
         offsetLeft={offsetLeft}
         offsetRight={offsetRight}
+        offsetSize={offsetSize}
         style={styleProp}
         {...handlers}
       >
-       <div>
         {
           React.Children.map(children, child => React.cloneElement(child, {
             onClose,
             ...(child.props || {}),
           }))
         }
-        </div>
       </CompactDrawerUI>
     );
   }
@@ -137,6 +196,12 @@ CompactDrawer.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  anchor: PropTypes.oneOf([
+    'left', 'right', 'bottom', 'top',
+    'bottom-left', 'bottom-right', 'top-left', 'top-right',
+    'center'
+  ]),
+  offsetSize: PropTypes.number,
 };
 
 CompactDrawer.defaultProps = {
@@ -144,11 +209,13 @@ CompactDrawer.defaultProps = {
     enter: 225,
     exit: 195,
   },
-  direction: 'right',
+  direction: 'top',
+  anchor: 'bottom-left',
   offsetBottom: 0,
   offsetTop: 0,
   offsetLeft: 0,
   offsetRight: 0,
+  offsetSize: 32,
 };
 
 export default CompactDrawer;
